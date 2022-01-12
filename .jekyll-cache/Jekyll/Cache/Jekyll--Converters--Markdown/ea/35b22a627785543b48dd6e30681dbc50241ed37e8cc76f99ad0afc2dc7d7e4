@@ -1,4 +1,4 @@
-I"*<p>안녕하세요, <code class="language-plaintext highlighter-rouge">071yoon</code>입니다.</p>
+I"�<p>안녕하세요, <code class="language-plaintext highlighter-rouge">071yoon</code>입니다.</p>
 
 <p>원래는 노션에서 제가 하는 작업들을 정리해 왔지만, 포스팅용의 사이트가 하나 필요하다 판단되어 Github IO를 채택하기로 했습니다.</p>
 
@@ -9,7 +9,7 @@
   <p>MAC 환경에서 작업햇습니다!!!</p>
 </blockquote>
 
-<h1 id="1-새로운-repository-생성">1. 새로운 Repository 생성</h1>
+<h2 id="1-새로운-repository-생성">1. 새로운 Repository 생성</h2>
 <blockquote>
   <p>주의 할 점 -&gt; 이름은 username.github.io 의 형태를 유지해야한다</p>
 </blockquote>
@@ -18,7 +18,7 @@
   <li>README는 딱히 필요 없다. (근데 어차피 추가 해야됨…)</li>
 </ul>
 
-<h1 id="2-clone">2. <code class="language-plaintext highlighter-rouge">clone</code></h1>
+<h2 id="2-clone">2. clone</h2>
 <ul>
   <li>
     <p>git clone` 으로 만들어 둔 Repiostiry 를 local로 clone</p>
@@ -28,7 +28,7 @@
   </li>
 </ul>
 
-<h1 id="3-jekyll">3. <code class="language-plaintext highlighter-rouge">Jekyll</code></h1>
+<h2 id="3-jekyll">3. Jekyll</h2>
 <blockquote>
   <p>만약 Windows 환경이라면 Ruby 설치가 필요하다</p>
 </blockquote>

@@ -22,12 +22,12 @@ tags: [blog, markdown]
 + README는 딱히 필요 없다. (근데 어차피 추가 해야됨...)
 
 
-## 2. `clone`
+## 2. clone
 + git clone` 으로 만들어 둔 Repiostiry 를 local로 clone
 
 + 앞으로 해당 디렉토리에서 작업을 한다
 
-## 3. `Jekyll`
+## 3. Jekyll
 > 만약 Windows 환경이라면 Ruby 설치가 필요하다
 
 + terminal 에서 `gem install jekyll bundler` 로 설치

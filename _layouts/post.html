@@ -59,6 +59,13 @@ sidebar:
     {%- assign result = hidden | where_exp: "item", "item == 'comments'" -%}
     {%- if result.size == 0 -%}
     <div class="post-comments">
+      <script src="https://utteranc.es/client.js"
+        repo="071yoon/071yoon.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+      </script>
       {%- if page.comments != false -%}
 
       {%- if site.disqus.shortname -%}
