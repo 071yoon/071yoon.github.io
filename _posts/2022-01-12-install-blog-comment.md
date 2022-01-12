@@ -72,3 +72,5 @@ tags: [github blog, markdown]
 > 삭제시에는 issue close 후 delete하면 잘 삭제가 된다
 
 오래 걸릴 줄 알았지만, 설정하기 쉽게 구성이되어 있어 빠르게 설치를 완료했다
+
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2F071yoon.github.io%2Fblog%2F2022%2F01%2F12%2Finstall-blog-comment.html&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)

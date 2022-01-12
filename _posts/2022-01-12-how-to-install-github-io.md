@@ -3,7 +3,7 @@ layout: post
 title: 깃허브 블로그 설치하기
 subtitle: MacOS에서 이쁜 깃허브 IO를 설치해보자
 categories: blog
-tags: [blog, markdown]
+tags: [github blog, markdown]
 ---
 
 안녕하세요, `071yoon`입니다.
@@ -72,3 +72,5 @@ tags: [blog, markdown]
 <img width="1173" alt="image" src="https://user-images.githubusercontent.com/66371206/149092791-01744bdf-8432-4e97-9f1c-522fcac07fe2.png">
 
 그림은 나만의 작은 블로그를 위해 직접 그려 배너로 대체했다 ㅎㅎ
+
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2F071yoon.github.io%2Fblog%2F2022%2F01%2F12%2Fhow-to-install-github-io.html&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
