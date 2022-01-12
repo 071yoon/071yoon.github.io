@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-01-12T18:12:49+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi&apos;s tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">깃허브 블로그 설치하기</title><link href="http://localhost:4000/blog/2022/01/12/how-to-install-github-io.html" rel="alternate" type="text/html" title="깃허브 블로그 설치하기" /><published>2022-01-12T00:00:00+09:00</published><updated>2022-01-12T00:00:00+09:00</updated><id>http://localhost:4000/blog/2022/01/12/how-to-install-github-io</id><content type="html" xml:base="http://localhost:4000/blog/2022/01/12/how-to-install-github-io.html"><![CDATA[<p>안녕하세요, <code class="language-plaintext highlighter-rouge">071yoon</code>입니다.</p>
+I"*<p>안녕하세요, <code class="language-plaintext highlighter-rouge">071yoon</code>입니다.</p>
 
 <p>원래는 노션에서 제가 하는 작업들을 정리해 왔지만, 포스팅용의 사이트가 하나 필요하다 판단되어 Github IO를 채택하기로 했습니다.</p>
 
@@ -92,4 +92,5 @@ git push origin master
 
 <p><img width="1173" alt="image" src="https://user-images.githubusercontent.com/66371206/149092791-01744bdf-8432-4e97-9f1c-522fcac07fe2.png" /></p>
 
-<p>그림은 나만의 작은 블로그를 위해 직접 그려 배너로 대체했다 ㅎㅎ</p>]]></content><author><name>071yoon</name></author><category term="blog" /><category term="blog" /><category term="markdown" /><summary type="html"><![CDATA[안녕하세요, 071yoon입니다.]]></summary></entry></feed>
+<p>그림은 나만의 작은 블로그를 위해 직접 그려 배너로 대체했다 ㅎㅎ</p>
+:ET

@@ -7,20 +7,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
 <!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>Categories | YeongGi’s tech blog</title>
+<title>깃허브 블로그 설치하기 | YeongGi’s tech blog</title>
 <meta name="generator" content="Jekyll v4.2.1">
-<meta property="og:title" content="Categories">
+<meta property="og:title" content="깃허브 블로그 설치하기">
 <meta name="author" content="071yoon">
 <meta property="og:locale" content="en_US">
 <meta name="description" content="This is YeongGi’s tech blog. I post IT related items.">
 <meta property="og:description" content="This is YeongGi’s tech blog. I post IT related items.">
-<link rel="canonical" href="http://localhost:4000/categories.html">
-<meta property="og:url" content="http://localhost:4000/categories.html">
+<link rel="canonical" href="http://localhost:4000/post_backups/2022-01-12-how-to-install-github-io.html">
+<meta property="og:url" content="http://localhost:4000/post_backups/2022-01-12-how-to-install-github-io.html">
 <meta property="og:site_name" content="YeongGi’s tech blog">
 <meta name="twitter:card" content="summary">
-<meta property="twitter:title" content="Categories">
+<meta property="twitter:title" content="깃허브 블로그 설치하기">
 <script type="application/ld+json">
-{"url":"http://localhost:4000/categories.html","author":{"@type":"Person","name":"071yoon"},"@type":"WebPage","headline":"Categories","description":"This is YeongGi’s tech blog. I post IT related items.","@context":"https://schema.org"}</script>
+{"url":"http://localhost:4000/post_backups/2022-01-12-how-to-install-github-io.html","author":{"@type":"Person","name":"071yoon"},"@type":"WebPage","headline":"깃허브 블로그 설치하기","description":"This is YeongGi’s tech blog. I post IT related items.","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="shortcut icon" href="">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -750,7 +750,8 @@ function googleTranslateElementInit() {
         <div class="framework">
   <section class="main">
 
-     
+     <div class="post">
+  <section>
 
 
 
@@ -760,78 +761,298 @@ function googleTranslateElementInit() {
 
 
 
+<header class="post-header">
+  <h1 class="post-title p-name" itemprop="name headline">깃허브 블로그 설치하기</h1>
+  <h2 class="post-subtitle">MacOS에서 이쁜 깃허브 IO를 설치해보자</h2>
 
+  <p class="post-meta">
+    <time class="dt-published" datetime="" itemprop="datePublished"><i class="fa fa-calendar"></i> 
+    </time>
 
-
-
-
-
-
-
-  
-  <div class="page-segments">
-  <ul class="page-segments-list">
     
-    <h2 id="blog" class="segment-name">blog</h2>
-      
-      
-        
-        <li> 
-<span class="post-meta">Jan 12, 2022</span>
-<span>
-  <a class="post-link" href="/blog/2022/01/12/how-to-install-github-io.html">
-    깃허브 블로그 설치하기
-  </a>
-</span>
- </li>
-        
-      
     
-  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 1 min</span>
+  </p>
+<div class="post-tags">
+<a class="post-tag" href="/tags.html#blog">#blog</a><a class="post-tag" href="/tags.html#markdown">#markdown</a>
+</div></header>
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <div class="post-content e-content" itemprop="articleBody">
+
+      <p>안녕하세요, <code class="language-plaintext highlighter-rouge">071yoon</code>입니다.</p>
+
+<p>원래는 노션에서 제가 하는 작업들을 정리해 왔지만, 포스팅용의 사이트가 하나 필요하다 판단되어 Github IO를 채택하기로 했습니다.</p>
+
+<p>혹시라도 제 노션이 궁금하다면 -&gt; <a href="https://yeonggi.notion.site/YeongGi-s-Scratch-9085f2628b87451a9e19e655c9c5bd5e" title="영기의 노션 링크">노션링크</a></p>
+
+<h2 id="만드는-과정-step-by-step">만드는 과정 <strong>Step by Step</strong>
+</h2>
+<blockquote>
+  <p>MAC 환경에서 작업햇습니다!!!</p>
+</blockquote>
+
+<h2 id="1-새로운-repository-생성">1. 새로운 Repository 생성</h2>
+<blockquote>
+  <p>주의 할 점 -&gt; 이름은 username.github.io 의 형태를 유지해야한다</p>
+</blockquote>
+
+<ul>
+  <li>README는 딱히 필요 없다. (근데 어차피 추가 해야됨…)</li>
+</ul>
+
+<h2 id="2-clone">2. <code class="language-plaintext highlighter-rouge">clone</code>
+</h2>
+<ul>
+  <li>
+    <p>git clone` 으로 만들어 둔 Repiostiry 를 local로 clone</p>
+  </li>
+  <li>
+    <p>앞으로 해당 디렉토리에서 작업을 한다</p>
+  </li>
+</ul>
+
+<h2 id="3-jekyll">3. <code class="language-plaintext highlighter-rouge">Jekyll</code>
+</h2>
+<blockquote>
+  <p>만약 Windows 환경이라면 Ruby 설치가 필요하다</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p>terminal 에서 <code class="language-plaintext highlighter-rouge">gem install jekyll bundler</code> 로 설치</p>
+  </li>
+  <li>
+    <p>만약 사용하고 싶은 템플릿 가 없다면 <code class="language-plaintext highlighter-rouge">Jekyll</code>의 기본 템플릿을 사용해보자</p>
+  </li>
+  <li>
+    <p>clone 한 디렉토리에서</p>
+
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>  jekyll new ./
+  bundle <span class="nb">install 
+  </span>bundle <span class="nb">exec </span>jekyll serve
+</code></pre></div>    </div>
+
+    <ul>
+      <li>
+        <p>까지 하게되면 서버를 열 수 있다</p>
+
+        <p><img width="695" alt="image" src="https://user-images.githubusercontent.com/66371206/149091259-85fb91e9-e480-4e0d-a521-559517d5c2a3.png"></p>
+      </li>
+      <li>
+        <p>해당 이미지에서 서버의 Host 주소를 파악 (여기서 http://127.0.0.1:4000/ 인 부분)</p>
+      </li>
+      <li>
+        <p>수정이 끝났다면</p>
+
+        <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>git add <span class="nb">.</span>
+git commit <span class="nt">-m</span> <span class="s2">"커밋 내용"</span>
+git push origin master
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p>를 사용해 배포 후 ` http://username.github.io ` 에서 본인의 첫 블로그를 확인 할 수 있다</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><br></p>
+<ul>
+  <li>
+    <p>만약 사용하고 싶은 템플릿이 있다면</p>
+
+    <ul>
+      <li>
+        <p>해당 파일의 zip 파일을 가져와 압축을 해제 한 후 전부 나의 리포지토리에 붙여넣고 서버에 push를 진행하면 기본 템플릿이 제공된 테마가 제공된다</p>
+      </li>
+      <li>
+        <p><code class="language-plaintext highlighter-rouge">jekyll</code> 테마들은 여러 웹사이트들에서 찾을 수 있으며 나는 ` http://jekyllthemes.org ` 에서 <code class="language-plaintext highlighter-rouge">yat</code> 이라는 이쁜 테마를 찾아 사용했다</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>이후 완성된 나의 첫 블로그 홈페이지</p>
+
+<p><img width="1173" alt="image" src="https://user-images.githubusercontent.com/66371206/149092791-01744bdf-8432-4e97-9f1c-522fcac07fe2.png"></p>
+
+<p>그림은 나만의 작은 블로그를 위해 직접 그려 배너로 대체했다 ㅎㅎ</p>
+
+
+    </div>
+
+</article>
+<div class="post-nav">
+<span></span><span></span>
+</div>
+<div class="post-related">
+      <div>Related Articles</div>
+      <ul>
+        </ul>
+    </div>
+<div class="post-comments"></div></section>
 </div>
 
 
   </section>
   <section class="sidebar" style="margin-left: 15px;">
-    <!-- Get sidebar items -->
+    <!-- Get sidebar items --><style type="text/css" media="screen">
+.post-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+</style>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="common-list">
-  <ul>
-    <li>
-      <a href="/index.html">
-        All<span>1</span>
-      </a>
-    </li>
-
-    
-      <li>
-        <a href="/categories.html#h-blog">
-          blog <span>1</span>
-        </a>
-      </li>
-    
-  </ul>
+<div class="post-menu">
+  <div class="post-menu-title">TOC</div>
+  <div class="post-menu-content"></div>
 </div>
 
+<script>
+  function generateContent() {
+    var menu = document.querySelector(".post-menu");
+    var menuContent =  menu.querySelector(".post-menu-content");
+    var headings = document.querySelector(".post-content").querySelectorAll("h2, h3, h4, h5, h6");
+
+    // Hide menu when no headings
+    if (headings.length === 0) {
+      return menu.style.display = "none";
+    }
+
+    // Generate post menu
+    var menuHTML = '';
+    for (var i = 0; i < headings.length; i++) {
+      var h = headings[i];
+      menuHTML += (
+        '<li class="h-' + h.tagName.toLowerCase() + '">'
+        + '<a href="#h-' + h.getAttribute('id') + '">' + h.textContent + '</a></li>');
+    }
+
+    menuContent.innerHTML = '<ul>' + menuHTML + '</ul>';
+
+    // The header element
+    var header = document.querySelector('header.site-header');
+
+    function doMenuCollapse(index, over_items) {
+      var items = menuContent.firstChild.children;
+
+      if (over_items == undefined) {
+        over_items = 20;
+      }
+
+      if (items.length < over_items) {
+        return;
+      }
+
+      var activeItem = items[index];
+      var beginItem = activeItem
+      var endItem = activeItem
+      var beginIndex = index;
+      var endIndex = index + 1;
+      while (beginIndex >= 0
+        && !items[beginIndex].classList.contains('h-h2')) {
+        beginIndex -= 1;
+      }
+      while (endIndex < items.length
+        && !items[endIndex].classList.contains('h-h2')) {
+        endIndex += 1;
+      }
+      for (var i = 0; i < beginIndex; i++) {
+        item = items[i]
+        if (!item.classList.contains('h-h2')) {
+          item.style.display = 'none';
+        }
+      }
+      for (var i = beginIndex + 1; i < endIndex; i++) {
+        item = items[i]
+        // if (!item.classList.contains('h-h2')) {
+          item.style.display = '';
+        // }
+      }
+      for (var i = endIndex; i < items.length; i++) {
+        item = items[i]
+        if (!item.classList.contains('h-h2')) {
+          item.style.display = 'none';
+        }
+      }
+    }
+
+    // Init menu collapsed
+    doMenuCollapse(-1);
+
+    // Active the menu item
+    window.addEventListener('scroll', function (event) {
+      var lastActive = menuContent.querySelector('.active');
+      var changed = true;
+      var activeIndex = -1;
+      for (var i = headings.length - 1; i >= 0; i--) {
+        var h = headings[i];
+        var headingRect = h.getBoundingClientRect();
+        var headerRect = header.getBoundingClientRect();
+        var headerTop = Math.floor(headerRect.top);
+        var headerHeight = Math.floor(headerRect.height);
+        var headerHeight = headerTop + headerHeight + 20;
+        if (headingRect.top <= headerHeight) {
+          var id = 'h-' + h.getAttribute('id');
+          var a = menuContent.querySelector('a[href="#' + id  + '"]');
+          var curActive = a.parentNode;
+          if (curActive) {
+            curActive.classList.add('active');
+            activeIndex = i;
+          }
+          if (lastActive == curActive) {
+            changed = false;
+          }
+          break;
+        }
+      }
+      if (changed) {
+        if (lastActive) {
+          lastActive.classList.remove('active');
+        }
+        doMenuCollapse(activeIndex);
+      }
+      event.preventDefault();
+    });
+  }
+  generateContent();
+</script>
 </section>
 </div>
 
