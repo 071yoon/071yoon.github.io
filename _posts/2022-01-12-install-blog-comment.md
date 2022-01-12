@@ -1,0 +1,74 @@
+---
+layout: post
+title: 깃허브 블로그 코멘트 설치하기
+subtitle: 깃허브 블로그에 코멘트 섹션을 추가해보자
+categories: blog
+tags: [github blog, markdown]
+---
+
+사실 노션에서 깃허브 IO 로 넘어온 이유 중 가장 큰 이유가 소통의 부재이다.
+물론 노션도 코멘트 기능을 가지고 있지만, 블로그에서처럼 활용도가 높지 않다. 그래서 야심차게 깃허브 블로그를 시작했지만... 코멘트 기능은 자동으로 있지 않았고 따로 설치가 필요해 따로 설치를 진행해 보았다.
+
+## **깃허브 블로그 코멘트 설치하기!**
+---
+우선 깃허브 코멘트 설치를 위해서 두가지 기능 중 하나를 선택해야 한다.
+
+1. [`disqus`](#disqus)
+2. [`utterance`](#utterance)
+
+### disqus
+이런저런 조사를 해 보니 `disqus` 같은 경우에는 되게 무겁다는 평이 많았다. 사람들이 정말 많이 사용하는 플랫폼이며, 이미지나 기본적인 텍스트 셋업을 도와줘서 간편하지만, 문제는 딸려오는 광고가 너무 많이 붙고 없애기 위해서는 월 9$씩 지불을 해야된다는 것이다!!!
+### utterance
+그래서 utterance를 설치하기로 결심했다. utterance의 장점은 당연히 광고가 없다는 점이며, Github 계정으로 댓글을 달고 댓글이 Issue로 올라오는 시스템이라 관리하기가 편하다는 점!!
+그리고 기본적인 텍스트 세팅이 없는 대신 마크다운을 지원한다!!
+
+## 블로그에 utterance 적용하기
+---
+### 1. 설치 위치 정하기
+* 나의 github 리포지토리에 코멘트를 적용시킬지 코멘트 적용 리포지토리를 생성할 지 결정한다
+
+* 아마 블로그가 private 한 사람들이 comment용 public repository를 따로 생성 한 후 관리를 하는 것 같다
+> 근데 어차피 코멘트가 많이 달릴 것 같지도 않고... 이미 public 블로그이므로 내 블로그 리포지토리에 생성하기로 결정
+
+### 2. utterance를 설치한다
+
++ [utterance 설치 링크](https://github.com/apps/utterances) 에서 설치를 진행하면 된다
+
+	> 설치 진행 중 All repositories가 기본으로 선택되어 있으니, 모든 레포에 utterance를 설치하는 불상사는 일어나지 않게 주의하자
+
++ issue 방식은 기본이 아무래도 편해 보여 기본으로 설정
+
++ comment type은 자신의 블로그의 잘 맞게 구성하자
+
++ 설정을 마무리 하는 과정에서 보면 script code를 자신의 블로그에 맞게 삽입하라고 나온다
+  
+	```html
+	 <script src="https://utteranc.es/client.js"
+        repo="071yoon/071yoon.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+      </script>
+	```
+
++ 이러한 코드를 자신의 환경에 잘 맞춰 삽입한다
+> 내 블로그 같은 경우 _layouts -> post.html에 post-comments의 블럭 밑에 넣어두었다
+
+
+### 3. 테스트
+
+모든 설정이 끝났으면 배포를 해보자!!
+
+<img width="736" alt="image" src="https://user-images.githubusercontent.com/66371206/149119619-93defcf0-9f46-459a-95f8-14082e102e7a.png">
+
+> 이쁘게 잘 보이는 걸 확인 할 수 있다!!
+
+
+<img width="724" alt="image" src="https://user-images.githubusercontent.com/66371206/149118548-441acc97-8d8d-4ede-bf53-dbcc13af31c6.png">
+
+**이런식으로 issue가 생성되어 잘 동작하는지 까지 확인 완료!!**
+
+> 삭제시에는 issue close 후 delete하면 잘 삭제가 된다
+
+오래 걸릴 줄 알았지만, 설정하기 쉽게 구성이되어 있어 빠르게 설치를 완료했다
