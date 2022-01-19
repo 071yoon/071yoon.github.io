@@ -844,13 +844,30 @@ function googleTranslateElementInit() {
       </h2>
       <div class="post-meta">
         <span class="post-date"><i class="fa fa-calendar"></i> Jan 18, 2022</span>
-        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 1 min</span>
+        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 4 mins</span>
       </div>
       <a class="post-excerpt" href="/javascript/2022/01/18/javascript-functions.html">
         <p>
         나머지 매개변수와 스프레드 문법
 
- <span class="read_more">Read More</span>
+나머지 매개변수
+예전에 printf를 구현을 할 때, 가변인수라고 해서 va args를 써서 구현을 했던 적이 있는데, 그거에 비해서 정말 아니 이렇게 써도 된다고??? 할정도로 자바스크립트에서는 구현이 가능하다
+
+function sumAll(...args){
+	let sum = 0;
+	for(let arg of args)
+		sum += arg;
+	
+	return (sum);
+}
+
+
+이런식으로도 구현이 가능하다!!
+
+function showName(firstName, lastName, ...titles) {
+	//firstName = Bora;
+	//LastName = Lee;
+... <span class="read_more">Read More</span>
         </p>
       </a>
       <div class="post-tags">
