@@ -137,4 +137,3 @@ group.showList();
 여기서 forEach에서 가리키느 화살표는 `this.title`의 화살표 밖에 있는 method인 showList가 가리키는 대상과 동일하다. 즉 `this.title == group.title` !!
 
 > 화살표 함수는 new 와 함께 사용될 수 없음에 주의!
-> 
