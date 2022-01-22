@@ -1,96 +1,108 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-01-20T12:54:34+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi&apos;s tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">자바스크립트 객체 프로퍼티 설정</title><link href="http://localhost:4000/javascript/2022/01/20/javascript-property.html" rel="alternate" type="text/html" title="자바스크립트 객체 프로퍼티 설정" /><published>2022-01-20T00:00:00+09:00</published><updated>2022-01-20T00:00:00+09:00</updated><id>http://localhost:4000/javascript/2022/01/20/javascript-property</id><content type="html" xml:base="http://localhost:4000/javascript/2022/01/20/javascript-property.html"><![CDATA[<h1 id="객체-프로퍼티">객체 프로퍼티</h1>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-01-22T18:04:38+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi&apos;s tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">바닐라JS로 앱 만들기 1</title><link href="http://localhost:4000/javascript/2022/01/22/javascript-coding-1.html" rel="alternate" type="text/html" title="바닐라JS로 앱 만들기 1" /><published>2022-01-22T00:00:00+09:00</published><updated>2022-01-22T00:00:00+09:00</updated><id>http://localhost:4000/javascript/2022/01/22/javascript-coding-1</id><content type="html" xml:base="http://localhost:4000/javascript/2022/01/22/javascript-coding-1.html"><![CDATA[<h2 id="자바스크립트-실습">자바스크립트 실습</h2>
 
-<p>프로퍼티란 단순히 <code class="language-plaintext highlighter-rouge">key-value</code> 가 아닌 더 유연한 자료구조로 사용 될 수 있으며, <code class="language-plaintext highlighter-rouge">getter</code>와 <code class="language-plaintext highlighter-rouge">setter</code> 등에 대해서 학습해보자</p>
+<hr />
 
-<h2 id="프로퍼티-플래그와-생성자">프로퍼티 플래그와 생성자</h2>
+<p>자바스크립트의 이론적인 부분에 대해서는 공부를 대충 해봤지만, 실생활에 어떤식으로 사용할 지, 혹은 어떤식으로 프로젝트를 진행할 지에 대해서 너무 무지했기 떄문에, 처음에는 강의에 의존을 해보기로 결정했다. 여러 자바스크립트 강의를 찾던 도중, <code class="language-plaintext highlighter-rouge">노마드코더</code>가 자바스크립트를 처음 접하기 좋다는 소식을 들어 이 사이트에서, 바닐라JS로 크롬 앱 만들기 강의를 시작해보기로 결정했다.</p>
 
-<p>객체 프로퍼티는 값과 플래그라는 속성을 가진다</p>
-<ul>
-  <li>writable - true 라면 수정이 가능하다</li>
-  <li>enumerable - true 라면 반복문으로 나열 할 수 있다</li>
-  <li>configurable - true 라면 삭제나 플래그 수정이 가능하다</li>
-</ul>
+<h3 id="why-javscript">Why Javscript?</h3>
 
-<p>평범한 방식으로 설계를 한다면, 프로퍼티는 모두 <code class="language-plaintext highlighter-rouge">true</code>이며, 언제든 수정 될 수 있다</p>
+<hr />
 
-<p><code class="language-plaintext highlighter-rouge">let descriptor = Object.getOwnPropertyDescriptor(obj, propertyName);</code></p>
+<p>왜 우리는 자바스크립트를 사용할까??</p>
 
-<p>여기서</p>
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">obj</code> 란 정보를 얻고자 하는 객체</li>
-  <li><code class="language-plaintext highlighter-rouge">propertyName</code> 이란 정보를 얻고자 하는 객체 내 프로퍼티
-를 말한다</li>
-</ul>
-
-<p>예시</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span>
-<span class="p">};</span>
-
-<span class="kd">let</span> <span class="nx">descriptor</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">getOwnPropertyDescriptor</span><span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="dl">'</span><span class="s1">name</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="nx">alert</span><span class="p">(</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">descriptor</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">2</span> <span class="p">)</span> <span class="p">);</span>
-<span class="cm">/* property descriptor:
-{
-  "value": "Yoon",
-  "writable": true,
-  "enumerable": true,
-  "configurable": true
-}
-*/</span>
-</code></pre></div></div>
-
-<p>이 상태에서 <code class="language-plaintext highlighter-rouge">Object.defineProperty</code>로 플래그를 변경 할 수 있다</p>
-
-<h2 id="getter-와-setter">getter 와 setter</h2>
-
-<p>객체의 프로퍼티를 나누는 두 분류로 볼 수 있다.</p>
-<ol>
-  <li>데이터 프로퍼티 -&gt; 현재까지 모두 사용한 프로퍼티</li>
-  <li>접근자 프로퍼티 -&gt; 새로운 종류로, 함수의 값을 획득하고 설정하는 역할을 담당한다</li>
-</ol>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="kd">get</span> <span class="nx">propName</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// getter, obj.propName실행시</span>
-  <span class="p">},</span>
-
-  <span class="kd">set</span> <span class="nx">propName</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// setter, obj.propName = value실행시</span>
-  <span class="p">}</span>
-<span class="p">};</span>
-</code></pre></div></div>
-
-<p>그럼 이걸 어떤식으로 활용 할 수 있을까??</p>
-
-<p><code class="language-plaintext highlighter-rouge">getter</code>와 <code class="language-plaintext highlighter-rouge">setter</code>를 실제 프로퍼티 값을 감싸는 래퍼로 사용하여, 프로퍼티 값을 통제하는 방법이 있다</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="kd">get</span> <span class="nx">name</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_name</span><span class="p">;</span>
-  <span class="p">},</span>
-
-  <span class="kd">set</span> <span class="nx">name</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">value</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">Too Short</span><span class="dl">"</span><span class="p">);</span>
-      <span class="k">return</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">_name</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">};</span>
-
-<span class="nx">user</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">;</span>
-<span class="nx">alert</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">// Yoon</span>
-
-<span class="nx">user</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="dl">""</span><span class="p">;</span> <span class="c1">// 너무 짧은 이름을 할당하려 함</span>
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">user</code>의 이름이 <code class="language-plaintext highlighter-rouge">_name</code>에 저장되어, 프로퍼티에 접근하는것이 <code class="language-plaintext highlighter-rouge">getter</code> 와 <code class="language-plaintext highlighter-rouge">setter</code>로 이루어진다.</p>
+<p>사실 자바스크립트는 그렇게 좋은 언어는 아니다. <code class="language-plaintext highlighter-rouge">let</code>, <code class="language-plaintext highlighter-rouge">var</code> 등등 (요새는 <code class="language-plaintext highlighter-rouge">var</code>를 안쓴다고 하긴 하더라) 데이터 타입을 명시해주는것 부터, 문법등을 보면 그렇게 멋진 언어는 아니다. 개인적으로 C언어가 완벽에 가까운 언어라고 생각을 하는데 (개발자의 역량에 따라 시간을 투자하면 원하는만큼 다 구현이 가능하니까) 왜 자바스크립트를 사용할까?? 사실 어쩔 수 없다는게 맞는 표현이다. 문제는 처음부터 웹을 만들 떄 자바스크립트를 사용했다는 것…! 애초부터 급조한 언어였기 때문에, 문제가 많았다.</p>
 
 <blockquote>
-  <p>솔직히 왜 사용하는지 이해는 되지 않지만, 그냥 이런게 있구나~ 하고 넘어가고 이후에 다시 확인해보기로 하자</p>
-</blockquote>]]></content><author><name>071yoon</name></author><category term="javascript" /><category term="javascript" /><category term="typescript" /><category term="TIL" /><category term="property" /><summary type="html"><![CDATA[객체 프로퍼티]]></summary></entry><entry><title type="html">자바스크립트 프로토타입과 클래스</title><link href="http://localhost:4000/javascript/2022/01/20/prototype.html" rel="alternate" type="text/html" title="자바스크립트 프로토타입과 클래스" /><published>2022-01-20T00:00:00+09:00</published><updated>2022-01-20T00:00:00+09:00</updated><id>http://localhost:4000/javascript/2022/01/20/prototype</id><content type="html" xml:base="http://localhost:4000/javascript/2022/01/20/prototype.html"><![CDATA[<h2 id="프로토타입과-프로토타입-상속">프로토타입과 프로토타입 상속</h2>
+  <p>실제로 10일만에 만든 언어라고 한다!</p>
+</blockquote>
+
+<p>하지만 이미 많은 사람들이 웹에서 자바스크립트를 사용하였기에, 갑자기 언어를 바꿔버리면 웹에 마비가 올 수 있다는 생각에 그냥 해당 자바스크립트를 두고 패치를 계속 진행을 하며, 현재의 자바스크립트까지 왔다고 한다. 즉 자바스크립트는 현재 웹에서 <code class="language-plaintext highlighter-rouge">대체불가언어</code> 라고 해도 과언이 아닐정도로 모든 웹에서 사용중이며, 우리가 배워야 하는 이유이다. 너무 싫어서 사용하기 싫다고 하더라도 웹쪽으로 커리어를 생각중이라면 어쩔 수 없이 배워야 하는 언어..? 정말 애증의 언어가 아닐 수 없다. 물론 요즘은 그런점들을 보완하며, 같이 상용이 가능한 <code class="language-plaintext highlighter-rouge">typescript</code>의 존재로 이러한 원성들을 조금이나마 잠재워 주고 있는듯 보인다.</p>
+
+<h3 id="project의-시작">Project의 시작</h3>
+
+<hr />
+
+<p>옛날에 웹디자인을 공부 할 때, 해봤지만 너무 옛날이라 기억도 안나고 역시 정리를 안해두니 찾아보기가 힘들어 이번에는 조금 정리를 하면서 진행을 해보려고 한다.</p>
+
+<p>우선 웹을 배우려면 <code class="language-plaintext highlighter-rouge">HTML</code>, <code class="language-plaintext highlighter-rouge">CSS</code>, <code class="language-plaintext highlighter-rouge">Javascript</code> 이 3개의 연관성에 대해서 조금이나마 알고 가야한다. <code class="language-plaintext highlighter-rouge">CSS</code> 와 <code class="language-plaintext highlighter-rouge">Javascript</code> 는 일반적으로 혼자 작동할 수 없는 언어이다. 즉 <code class="language-plaintext highlighter-rouge">HTML의 의존성을 가진 파일들</code> 이라고 할 수 있다. 아무리 이쁜 디자인을 <code class="language-plaintext highlighter-rouge">CSS</code> 에서 진행을 하고 얼마나 멋진 함수들을 <code class="language-plaintext highlighter-rouge">Javscript</code> 에서 구현을 했다 한들, 실제 보여지지않으면 의미가 없고, 이러한것들을 가시적으로 보여주면서 동작하게하는 것이 <code class="language-plaintext highlighter-rouge">HTML</code>이라고 보면 되겠다. 어떻게 연결하는지 기본적인 HTML을 보며 살펴보자</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"style.css"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;title&gt;</span>momentum<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;/head&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"script.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<p>이런식으로 <code class="language-plaintext highlighter-rouge">stylesheet</code>를 <code class="language-plaintext highlighter-rouge">style.css</code>로 두고 <code class="language-plaintext highlighter-rouge">script</code>를 <code class="language-plaintext highlighter-rouge">script.js</code> 로 두어 링크를 했다고 보면 되겠다.</p>
+
+<blockquote>
+  <p>주의할점! <code class="language-plaintext highlighter-rouge">script.js</code> 는 <code class="language-plaintext highlighter-rouge">body</code>의 끝에 주로 둔다. WHY? 왜냐하면 보통 사이즈가 큰 파일들은 <code class="language-plaintext highlighter-rouge">script.js</code>에 들어가 있고, 인터넷 속도가 느려서 자바스크립트파일을 다운받는데 오래 걸린다면, 그 전에 화면에 출력할 것을 먼저 다운받지 못해 빈 화면을 출력하고, 자바스크립트를 다운 다 받은 후 출력을 하기때문. 즉 유저의 편의를 좀 봐주자</p>
+</blockquote>
+
+<h3 id="data-types">Data Types</h3>
+
+<hr />
+
+<p>일단 자바스크립트는 <code class="language-plaintext highlighter-rouge">syntax</code>가 세개밖에 없다. <code class="language-plaintext highlighter-rouge">const, let, var</code> 심지어 <code class="language-plaintext highlighter-rouge">var</code> 는 잘 쓰지 않으므로 <code class="language-plaintext highlighter-rouge">const</code> 와 <code class="language-plaintext highlighter-rouge">let</code> 두개가 있다고 해도 무방하다.</p>
+
+<blockquote>
+  <p>심지어 파이썬은 저것조차 안써도 된다</p>
+</blockquote>
+
+<p>그럼 데이터타입을 알아서 정해준다는 것이다. 그럼 문제가 무엇이냐?? 언제 정수에서 문자형으로 바뀌는것이고, 문자열로 바뀌는지 프로그램이 정해주기 때문에 정할 수 없다는 것이다. 그래서 새로운 <code class="language-plaintext highlighter-rouge">typescript</code> 라고 자바스크립트에서 <code class="language-plaintext highlighter-rouge">type</code> 형식을 지정해주는 변형된 언어가 탄생을 했다.</p>
+
+<p>그럼 요새 사용은 안하는 <code class="language-plaintext highlighter-rouge">var</code> 형식은 언제 사용하는것일까? 사실 사용을 잘 안한다. <code class="language-plaintext highlighter-rouge">var</code> 는 처음에 만들어진 변수 선언 type 이고, 어디서나 재정의가 가능하다는 장점이 있지만, 사실이건 매우 위험하고 차라리 다른 변수명을 선언하는게 훨씬 낫다. 그래서 요새는 <code class="language-plaintext highlighter-rouge">let</code> 과 <code class="language-plaintext highlighter-rouge">const</code>로 대체해서 사용한다.</p>
+
+<p>자바스크립트에서 특이한것이 있는데, <code class="language-plaintext highlighter-rouge">null</code> 과 <code class="language-plaintext highlighter-rouge">undefined</code> 가 두개나 존재한다는 것이다. <code class="language-plaintext highlighter-rouge">null</code>은 내가 지정을 해 줘서 비어있을 때 <code class="language-plaintext highlighter-rouge">null</code> 인것이고, <code class="language-plaintext highlighter-rouge">undefined</code>는 내가 만약 <code class="language-plaintext highlighter-rouge">let variable;</code> 을 해주고 지정을 안해주면 <code class="language-plaintext highlighter-rouge">undefined</code> 라고 나오게 된다.</p>
+
+<blockquote>
+  <p>즉 null 은 비어있는것이고, undefined는 변수이지만 값이 없는것</p>
+</blockquote>
+
+<p>그리고 자바스크립트 배열에는 C 혹은 C++ 과 다른 특이점이 있다. 나의 테스트케이스를 보자</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">test</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">test</span><span class="dl">"</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="dl">"</span><span class="s2">c</span><span class="dl">"</span><span class="p">];</span>
+<span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">test</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="dl">"</span><span class="se">\n</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">test</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">test2</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">test</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">: </span><span class="dl">"</span> <span class="o">+</span> <span class="k">typeof</span> <span class="nx">test</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="dl">"</span><span class="se">\n</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>특이한 점 1 : 배열의 type 은 각 항목마다 다르다</p>
+</blockquote>
+
+<blockquote>
+  <p>특이한 점 2 : 만약에 7번을 만들면 자동으로 배열의 크기가 8로 늘어나고, 5 6 7 번은 undefined로 정의된다</p>
+</blockquote>
+
+<h3 id="비교연산자">비교연산자</h3>
+
+<hr />
+
+<p>타 언어들을 보면 비교연산자로 <code class="language-plaintext highlighter-rouge">==</code> 밖에 쓰지 않는데, 자바스크립트는 특이하게 <code class="language-plaintext highlighter-rouge">===</code> 를 주로 사용한다. 그렇다고해서 <code class="language-plaintext highlighter-rouge">==</code> 가 없다는 것은 아니다. 차이점은 <code class="language-plaintext highlighter-rouge">==</code> 은 값만 비교하는 것이고 <code class="language-plaintext highlighter-rouge">===</code> 는 <code class="language-plaintext highlighter-rouge">type</code> 까지 묶어서 비교를 한다는 점이다. 즉 <code class="language-plaintext highlighter-rouge">5 == '5'</code> 는 참이지만 <code class="language-plaintext highlighter-rouge">5 === '5'</code> 는 거짓이라는 것.</p>]]></content><author><name>071yoon</name></author><category term="javascript" /><category term="javascript" /><category term="TIL" /><summary type="html"><![CDATA[자바스크립트 실습]]></summary></entry><entry><title type="html">바닐라JS로 앱 만들기 2</title><link href="http://localhost:4000/javascript/2022/01/22/javascript-coding-2.html" rel="alternate" type="text/html" title="바닐라JS로 앱 만들기 2" /><published>2022-01-22T00:00:00+09:00</published><updated>2022-01-22T00:00:00+09:00</updated><id>http://localhost:4000/javascript/2022/01/22/javascript-coding-2</id><content type="html" xml:base="http://localhost:4000/javascript/2022/01/22/javascript-coding-2.html"><![CDATA[<h2 id="자바스크립트를-browser로-로딩하기">자바스크립트를 Browser로 로딩하기</h2>
+
+<hr />
+
+<h3 id="document-object"><code class="language-plaintext highlighter-rouge">document</code> Object</h3>
+
+<p><code class="language-plaintext highlighter-rouge">console</code>에 <code class="language-plaintext highlighter-rouge">document</code>를 쓰면, 이미 정의되어 있는 함수인걸 알 수 있다.
+그럼 html 에서 <code class="language-plaintext highlighter-rouge">block</code>으로 지정한 부분을 자바스크립트에서 바로 가져올 수 있다.</p>
+
+<blockquote>
+  <p>ex) <code class="language-plaintext highlighter-rouge">document.title</code> -&gt; 내가 지정한 HTML 의 title</p>
+</blockquote>
+
+<p>즉 이렇게 하면 HTML 의 코드를 자바스크립트의 관점에서 볼 수 있게된다</p>]]></content><author><name>071yoon</name></author><category term="javascript" /><category term="javascript" /><category term="TIL" /><summary type="html"><![CDATA[자바스크립트를 Browser로 로딩하기]]></summary></entry><entry><title type="html">자바스크립트 프로토타입과 클래스</title><link href="http://localhost:4000/javascript/2022/01/20/prototype.html" rel="alternate" type="text/html" title="자바스크립트 프로토타입과 클래스" /><published>2022-01-20T00:00:00+09:00</published><updated>2022-01-20T00:00:00+09:00</updated><id>http://localhost:4000/javascript/2022/01/20/prototype</id><content type="html" xml:base="http://localhost:4000/javascript/2022/01/20/prototype.html"><![CDATA[<h2 id="프로토타입과-프로토타입-상속">프로토타입과 프로토타입 상속</h2>
 
 <p>상속을 하는 이유??</p>
 
@@ -354,7 +366,99 @@
 <span class="k">new</span> <span class="nx">User</span><span class="p">(</span><span class="dl">"</span><span class="s2">Dude</span><span class="dl">"</span><span class="p">).</span><span class="nx">sayHi</span><span class="p">();</span> <span class="c1">// Hello Dude!</span>
 </code></pre></div></div>
 
-<p>이런식으로 상속없이 메서드를 복사하여, 믹스인을 활용하면 <code class="language-plaintext highlighter-rouge">User</code> 가 예시처럼 동시에 상속받아, 추가로 구현된 메서드 또한 사용 할 수 있는 모습을 볼 수 있다.</p>]]></content><author><name>071yoon</name></author><category term="javascript" /><category term="javascript" /><category term="typescript" /><category term="TIL" /><category term="prototype" /><category term="class" /><summary type="html"><![CDATA[프로토타입과 프로토타입 상속]]></summary></entry><entry><title type="html">자바스크립트 함수의 심화학습</title><link href="http://localhost:4000/javascript/2022/01/18/javascript-functions.html" rel="alternate" type="text/html" title="자바스크립트 함수의 심화학습" /><published>2022-01-18T00:00:00+09:00</published><updated>2022-01-18T00:00:00+09:00</updated><id>http://localhost:4000/javascript/2022/01/18/javascript-functions</id><content type="html" xml:base="http://localhost:4000/javascript/2022/01/18/javascript-functions.html"><![CDATA[<h2 id="나머지-매개변수와-스프레드-문법">나머지 매개변수와 스프레드 문법</h2>
+<p>이런식으로 상속없이 메서드를 복사하여, 믹스인을 활용하면 <code class="language-plaintext highlighter-rouge">User</code> 가 예시처럼 동시에 상속받아, 추가로 구현된 메서드 또한 사용 할 수 있는 모습을 볼 수 있다.</p>]]></content><author><name>071yoon</name></author><category term="javascript" /><category term="javascript" /><category term="typescript" /><category term="TIL" /><category term="prototype" /><category term="class" /><summary type="html"><![CDATA[프로토타입과 프로토타입 상속]]></summary></entry><entry><title type="html">자바스크립트 객체 프로퍼티 설정</title><link href="http://localhost:4000/javascript/2022/01/20/javascript-property.html" rel="alternate" type="text/html" title="자바스크립트 객체 프로퍼티 설정" /><published>2022-01-20T00:00:00+09:00</published><updated>2022-01-20T00:00:00+09:00</updated><id>http://localhost:4000/javascript/2022/01/20/javascript-property</id><content type="html" xml:base="http://localhost:4000/javascript/2022/01/20/javascript-property.html"><![CDATA[<h1 id="객체-프로퍼티">객체 프로퍼티</h1>
+
+<p>프로퍼티란 단순히 <code class="language-plaintext highlighter-rouge">key-value</code> 가 아닌 더 유연한 자료구조로 사용 될 수 있으며, <code class="language-plaintext highlighter-rouge">getter</code>와 <code class="language-plaintext highlighter-rouge">setter</code> 등에 대해서 학습해보자</p>
+
+<h2 id="프로퍼티-플래그와-생성자">프로퍼티 플래그와 생성자</h2>
+
+<p>객체 프로퍼티는 값과 플래그라는 속성을 가진다</p>
+<ul>
+  <li>writable - true 라면 수정이 가능하다</li>
+  <li>enumerable - true 라면 반복문으로 나열 할 수 있다</li>
+  <li>configurable - true 라면 삭제나 플래그 수정이 가능하다</li>
+</ul>
+
+<p>평범한 방식으로 설계를 한다면, 프로퍼티는 모두 <code class="language-plaintext highlighter-rouge">true</code>이며, 언제든 수정 될 수 있다</p>
+
+<p><code class="language-plaintext highlighter-rouge">let descriptor = Object.getOwnPropertyDescriptor(obj, propertyName);</code></p>
+
+<p>여기서</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">obj</code> 란 정보를 얻고자 하는 객체</li>
+  <li><code class="language-plaintext highlighter-rouge">propertyName</code> 이란 정보를 얻고자 하는 객체 내 프로퍼티
+를 말한다</li>
+</ul>
+
+<p>예시</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span>
+<span class="p">};</span>
+
+<span class="kd">let</span> <span class="nx">descriptor</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">getOwnPropertyDescriptor</span><span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="dl">'</span><span class="s1">name</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">alert</span><span class="p">(</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">descriptor</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">2</span> <span class="p">)</span> <span class="p">);</span>
+<span class="cm">/* property descriptor:
+{
+  "value": "Yoon",
+  "writable": true,
+  "enumerable": true,
+  "configurable": true
+}
+*/</span>
+</code></pre></div></div>
+
+<p>이 상태에서 <code class="language-plaintext highlighter-rouge">Object.defineProperty</code>로 플래그를 변경 할 수 있다</p>
+
+<h2 id="getter-와-setter">getter 와 setter</h2>
+
+<p>객체의 프로퍼티를 나누는 두 분류로 볼 수 있다.</p>
+<ol>
+  <li>데이터 프로퍼티 -&gt; 현재까지 모두 사용한 프로퍼티</li>
+  <li>접근자 프로퍼티 -&gt; 새로운 종류로, 함수의 값을 획득하고 설정하는 역할을 담당한다</li>
+</ol>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="kd">get</span> <span class="nx">propName</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// getter, obj.propName실행시</span>
+  <span class="p">},</span>
+
+  <span class="kd">set</span> <span class="nx">propName</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// setter, obj.propName = value실행시</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>그럼 이걸 어떤식으로 활용 할 수 있을까??</p>
+
+<p><code class="language-plaintext highlighter-rouge">getter</code>와 <code class="language-plaintext highlighter-rouge">setter</code>를 실제 프로퍼티 값을 감싸는 래퍼로 사용하여, 프로퍼티 값을 통제하는 방법이 있다</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="kd">get</span> <span class="nx">name</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_name</span><span class="p">;</span>
+  <span class="p">},</span>
+
+  <span class="kd">set</span> <span class="nx">name</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">value</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">Too Short</span><span class="dl">"</span><span class="p">);</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_name</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">user</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">;</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">// Yoon</span>
+
+<span class="nx">user</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="dl">""</span><span class="p">;</span> <span class="c1">// 너무 짧은 이름을 할당하려 함</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">user</code>의 이름이 <code class="language-plaintext highlighter-rouge">_name</code>에 저장되어, 프로퍼티에 접근하는것이 <code class="language-plaintext highlighter-rouge">getter</code> 와 <code class="language-plaintext highlighter-rouge">setter</code>로 이루어진다.</p>
+
+<blockquote>
+  <p>솔직히 왜 사용하는지 이해는 되지 않지만, 그냥 이런게 있구나~ 하고 넘어가고 이후에 다시 확인해보기로 하자</p>
+</blockquote>]]></content><author><name>071yoon</name></author><category term="javascript" /><category term="javascript" /><category term="typescript" /><category term="TIL" /><category term="property" /><summary type="html"><![CDATA[객체 프로퍼티]]></summary></entry><entry><title type="html">자바스크립트 함수의 심화학습</title><link href="http://localhost:4000/javascript/2022/01/18/javascript-functions.html" rel="alternate" type="text/html" title="자바스크립트 함수의 심화학습" /><published>2022-01-18T00:00:00+09:00</published><updated>2022-01-18T00:00:00+09:00</updated><id>http://localhost:4000/javascript/2022/01/18/javascript-functions</id><content type="html" xml:base="http://localhost:4000/javascript/2022/01/18/javascript-functions.html"><![CDATA[<h2 id="나머지-매개변수와-스프레드-문법">나머지 매개변수와 스프레드 문법</h2>
 
 <h3 id="나머지-매개변수">나머지 매개변수</h3>
 <p>예전에 printf를 구현을 할 때, 가변인수라고 해서 <code class="language-plaintext highlighter-rouge">va args</code>를 써서 구현을 했던 적이 있는데, 그거에 비해서 정말 아니 이렇게 써도 된다고??? 할정도로 자바스크립트에서는 구현이 가능하다</p>
@@ -893,7 +997,96 @@
 <span class="kd">let</span> <span class="nx">yoon</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">User</span><span class="p">(</span><span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">);</span>
 
 <span class="nx">yoon</span><span class="p">.</span><span class="nx">sayHi</span><span class="p">();</span> <span class="c1">//My name is Yoon.</span>
-</code></pre></div></div>]]></content><author><name>071yoon</name></author><category term="javascript" /><category term="javascript" /><category term="typescript" /><category term="method" /><category term="TIL" /><summary type="html"><![CDATA[최근에 마음이 맞는 사람들과 프로젝트를 진행해 보기로 했다. Decrypto 라는 보드게임을 웹 환경으로 만들어 보면 어떠겠는가 해서 시작된 프로젝트였다. 생각보다 관심이 있는 사람들이 많아 인원을 다 모으고 회의를 진행을 해 보았는데… 아뿔싸… 제대로 웹 개발을 해본 사람이 없는것! 그래서 프로젝트 바로 시작하는것은 잠시 미뤄두고 스터디를 진행을 해 보기로 하였다. 인원도 많았기에, 팀별로 React, Type Script, Node.js 이런식으로 인원을 쪼개 2주간 진행을 한 후 통합하여 실제로 웹 프로젝트를 진행해 보기로 했다.]]></summary></entry><entry><title type="html">깃허브 블로그 설치하기</title><link href="http://localhost:4000/blog/2022/01/12/how-to-install-github-io.html" rel="alternate" type="text/html" title="깃허브 블로그 설치하기" /><published>2022-01-12T00:00:00+09:00</published><updated>2022-01-12T00:00:00+09:00</updated><id>http://localhost:4000/blog/2022/01/12/how-to-install-github-io</id><content type="html" xml:base="http://localhost:4000/blog/2022/01/12/how-to-install-github-io.html"><![CDATA[<p>안녕하세요, <code class="language-plaintext highlighter-rouge">071yoon</code>입니다.</p>
+</code></pre></div></div>]]></content><author><name>071yoon</name></author><category term="javascript" /><category term="javascript" /><category term="typescript" /><category term="method" /><category term="TIL" /><summary type="html"><![CDATA[최근에 마음이 맞는 사람들과 프로젝트를 진행해 보기로 했다. Decrypto 라는 보드게임을 웹 환경으로 만들어 보면 어떠겠는가 해서 시작된 프로젝트였다. 생각보다 관심이 있는 사람들이 많아 인원을 다 모으고 회의를 진행을 해 보았는데… 아뿔싸… 제대로 웹 개발을 해본 사람이 없는것! 그래서 프로젝트 바로 시작하는것은 잠시 미뤄두고 스터디를 진행을 해 보기로 하였다. 인원도 많았기에, 팀별로 React, Type Script, Node.js 이런식으로 인원을 쪼개 2주간 진행을 한 후 통합하여 실제로 웹 프로젝트를 진행해 보기로 했다.]]></summary></entry><entry><title type="html">깃허브 블로그 코멘트 설치하기</title><link href="http://localhost:4000/blog/2022/01/12/install-blog-comment.html" rel="alternate" type="text/html" title="깃허브 블로그 코멘트 설치하기" /><published>2022-01-12T00:00:00+09:00</published><updated>2022-01-12T00:00:00+09:00</updated><id>http://localhost:4000/blog/2022/01/12/install-blog-comment</id><content type="html" xml:base="http://localhost:4000/blog/2022/01/12/install-blog-comment.html"><![CDATA[<p>사실 노션에서 깃허브 IO 로 넘어온 이유 중 가장 큰 이유가 소통의 부재이다.
+물론 노션도 코멘트 기능을 가지고 있지만, 블로그에서처럼 활용도가 높지 않다. 그래서 야심차게 깃허브 블로그를 시작했지만… 코멘트 기능은 자동으로 있지 않았고 따로 설치가 필요해 따로 설치를 진행해 보았다.</p>
+
+<h2 id="깃허브-블로그-코멘트-설치하기"><strong>깃허브 블로그 코멘트 설치하기!</strong></h2>
+<hr />
+<p>우선 깃허브 코멘트 설치를 위해서 두가지 기능 중 하나를 선택해야 한다.</p>
+
+<ol>
+  <li><a href="#disqus"><code class="language-plaintext highlighter-rouge">disqus</code></a></li>
+  <li><a href="#utterance"><code class="language-plaintext highlighter-rouge">utterance</code></a></li>
+</ol>
+
+<h3 id="disqus">disqus</h3>
+<p>이런저런 조사를 해 보니 <code class="language-plaintext highlighter-rouge">disqus</code> 같은 경우에는 되게 무겁다는 평이 많았다. 사람들이 정말 많이 사용하는 플랫폼이며, 이미지나 기본적인 텍스트 셋업을 도와줘서 간편하지만, 문제는 딸려오는 광고가 너무 많이 붙고 없애기 위해서는 월 9$씩 지불을 해야된다는 것이다!!!</p>
+<h3 id="utterance">utterance</h3>
+<p>그래서 utterance를 설치하기로 결심했다. utterance의 장점은 당연히 광고가 없다는 점이며, Github 계정으로 댓글을 달고 댓글이 Issue로 올라오는 시스템이라 관리하기가 편하다는 점!!
+그리고 기본적인 텍스트 세팅이 없는 대신 마크다운을 지원한다!!</p>
+
+<h2 id="블로그에-utterance-적용하기">블로그에 utterance 적용하기</h2>
+<hr />
+<h3 id="1-설치-위치-정하기">1. 설치 위치 정하기</h3>
+<ul>
+  <li>
+    <p>나의 github 리포지토리에 코멘트를 적용시킬지 코멘트 적용 리포지토리를 생성할 지 결정한다</p>
+  </li>
+  <li>
+    <p>아마 블로그가 private 한 사람들이 comment용 public repository를 따로 생성 한 후 관리를 하는 것 같다</p>
+    <blockquote>
+      <p>근데 어차피 코멘트가 많이 달릴 것 같지도 않고… 이미 public 블로그이므로 내 블로그 리포지토리에 생성하기로 결정</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="2-utterance를-설치한다">2. utterance를 설치한다</h3>
+
+<ul>
+  <li>
+    <p><a href="https://github.com/apps/utterances">utterance 설치 링크</a> 에서 설치를 진행하면 된다</p>
+
+    <blockquote>
+      <p>설치 진행 중 All repositories가 기본으로 선택되어 있으니, 모든 레포에 utterance를 설치하는 불상사는 일어나지 않게 주의하자</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>issue 방식은 기본이 아무래도 편해 보여 기본으로 설정</p>
+  </li>
+  <li>
+    <p>comment type은 자신의 블로그의 잘 맞게 구성하자</p>
+  </li>
+  <li>
+    <p>설정을 마무리 하는 과정에서 보면 script code를 자신의 블로그에 맞게 삽입하라고 나온다</p>
+
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://utteranc.es/client.js"</span>
+      <span class="na">repo=</span><span class="s">"071yoon/071yoon.github.io"</span>
+      <span class="na">issue-term=</span><span class="s">"pathname"</span>
+      <span class="na">theme=</span><span class="s">"github-light"</span>
+      <span class="na">crossorigin=</span><span class="s">"anonymous"</span>
+      <span class="na">async</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/script&gt;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>이러한 코드를 자신의 환경에 잘 맞춰 삽입한다</p>
+    <blockquote>
+      <p>내 블로그 같은 경우 _layouts -&gt; post.html에 post-comments의 블럭 밑에 넣어두었다</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="3-테스트">3. 테스트</h3>
+
+<p>모든 설정이 끝났으면 배포를 해보자!!</p>
+
+<p><img width="736" alt="image" src="https://user-images.githubusercontent.com/66371206/149119619-93defcf0-9f46-459a-95f8-14082e102e7a.png" /></p>
+
+<blockquote>
+  <p>이쁘게 잘 보이는 걸 확인 할 수 있다!!</p>
+</blockquote>
+
+<p><img width="724" alt="image" src="https://user-images.githubusercontent.com/66371206/149118548-441acc97-8d8d-4ede-bf53-dbcc13af31c6.png" /></p>
+
+<p><strong>이런식으로 issue가 생성되어 잘 동작하는지 까지 확인 완료!!</strong></p>
+
+<blockquote>
+  <p>삭제시에는 issue close 후 delete하면 잘 삭제가 된다</p>
+</blockquote>
+
+<p>오래 걸릴 줄 알았지만, 설정하기 쉽게 구성이되어 있어 빠르게 설치를 완료했다</p>
+
+<p><a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2F071yoon.github.io%2Fblog%2F2022%2F01%2F12%2Finstall-blog-comment.html&amp;count_bg=%2379C83D&amp;title_bg=%23555555&amp;icon=&amp;icon_color=%23E7E7E7&amp;title=hits&amp;edge_flat=false" alt="Hits" /></a></p>]]></content><author><name>071yoon</name></author><category term="blog" /><category term="github blog" /><category term="markdown" /><summary type="html"><![CDATA[사실 노션에서 깃허브 IO 로 넘어온 이유 중 가장 큰 이유가 소통의 부재이다. 물론 노션도 코멘트 기능을 가지고 있지만, 블로그에서처럼 활용도가 높지 않다. 그래서 야심차게 깃허브 블로그를 시작했지만… 코멘트 기능은 자동으로 있지 않았고 따로 설치가 필요해 따로 설치를 진행해 보았다.]]></summary></entry><entry><title type="html">깃허브 블로그 설치하기</title><link href="http://localhost:4000/blog/2022/01/12/how-to-install-github-io.html" rel="alternate" type="text/html" title="깃허브 블로그 설치하기" /><published>2022-01-12T00:00:00+09:00</published><updated>2022-01-12T00:00:00+09:00</updated><id>http://localhost:4000/blog/2022/01/12/how-to-install-github-io</id><content type="html" xml:base="http://localhost:4000/blog/2022/01/12/how-to-install-github-io.html"><![CDATA[<p>안녕하세요, <code class="language-plaintext highlighter-rouge">071yoon</code>입니다.</p>
 
 <p>원래는 노션에서 제가 하는 작업들을 정리해 왔지만, 포스팅용의 사이트가 하나 필요하다 판단되어 Github IO를 채택하기로 했습니다.</p>
 
@@ -989,93 +1182,4 @@ git push origin master
 
 <p>그림은 나만의 작은 블로그를 위해 직접 그려 배너로 대체했다 ㅎㅎ</p>
 
-<p><a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2F071yoon.github.io%2Fblog%2F2022%2F01%2F12%2Fhow-to-install-github-io.html&amp;count_bg=%2379C83D&amp;title_bg=%23555555&amp;icon=&amp;icon_color=%23E7E7E7&amp;title=hits&amp;edge_flat=false" alt="Hits" /></a></p>]]></content><author><name>071yoon</name></author><category term="blog" /><category term="github blog" /><category term="markdown" /><summary type="html"><![CDATA[안녕하세요, 071yoon입니다.]]></summary></entry><entry><title type="html">깃허브 블로그 코멘트 설치하기</title><link href="http://localhost:4000/blog/2022/01/12/install-blog-comment.html" rel="alternate" type="text/html" title="깃허브 블로그 코멘트 설치하기" /><published>2022-01-12T00:00:00+09:00</published><updated>2022-01-12T00:00:00+09:00</updated><id>http://localhost:4000/blog/2022/01/12/install-blog-comment</id><content type="html" xml:base="http://localhost:4000/blog/2022/01/12/install-blog-comment.html"><![CDATA[<p>사실 노션에서 깃허브 IO 로 넘어온 이유 중 가장 큰 이유가 소통의 부재이다.
-물론 노션도 코멘트 기능을 가지고 있지만, 블로그에서처럼 활용도가 높지 않다. 그래서 야심차게 깃허브 블로그를 시작했지만… 코멘트 기능은 자동으로 있지 않았고 따로 설치가 필요해 따로 설치를 진행해 보았다.</p>
-
-<h2 id="깃허브-블로그-코멘트-설치하기"><strong>깃허브 블로그 코멘트 설치하기!</strong></h2>
-<hr />
-<p>우선 깃허브 코멘트 설치를 위해서 두가지 기능 중 하나를 선택해야 한다.</p>
-
-<ol>
-  <li><a href="#disqus"><code class="language-plaintext highlighter-rouge">disqus</code></a></li>
-  <li><a href="#utterance"><code class="language-plaintext highlighter-rouge">utterance</code></a></li>
-</ol>
-
-<h3 id="disqus">disqus</h3>
-<p>이런저런 조사를 해 보니 <code class="language-plaintext highlighter-rouge">disqus</code> 같은 경우에는 되게 무겁다는 평이 많았다. 사람들이 정말 많이 사용하는 플랫폼이며, 이미지나 기본적인 텍스트 셋업을 도와줘서 간편하지만, 문제는 딸려오는 광고가 너무 많이 붙고 없애기 위해서는 월 9$씩 지불을 해야된다는 것이다!!!</p>
-<h3 id="utterance">utterance</h3>
-<p>그래서 utterance를 설치하기로 결심했다. utterance의 장점은 당연히 광고가 없다는 점이며, Github 계정으로 댓글을 달고 댓글이 Issue로 올라오는 시스템이라 관리하기가 편하다는 점!!
-그리고 기본적인 텍스트 세팅이 없는 대신 마크다운을 지원한다!!</p>
-
-<h2 id="블로그에-utterance-적용하기">블로그에 utterance 적용하기</h2>
-<hr />
-<h3 id="1-설치-위치-정하기">1. 설치 위치 정하기</h3>
-<ul>
-  <li>
-    <p>나의 github 리포지토리에 코멘트를 적용시킬지 코멘트 적용 리포지토리를 생성할 지 결정한다</p>
-  </li>
-  <li>
-    <p>아마 블로그가 private 한 사람들이 comment용 public repository를 따로 생성 한 후 관리를 하는 것 같다</p>
-    <blockquote>
-      <p>근데 어차피 코멘트가 많이 달릴 것 같지도 않고… 이미 public 블로그이므로 내 블로그 리포지토리에 생성하기로 결정</p>
-    </blockquote>
-  </li>
-</ul>
-
-<h3 id="2-utterance를-설치한다">2. utterance를 설치한다</h3>
-
-<ul>
-  <li>
-    <p><a href="https://github.com/apps/utterances">utterance 설치 링크</a> 에서 설치를 진행하면 된다</p>
-
-    <blockquote>
-      <p>설치 진행 중 All repositories가 기본으로 선택되어 있으니, 모든 레포에 utterance를 설치하는 불상사는 일어나지 않게 주의하자</p>
-    </blockquote>
-  </li>
-  <li>
-    <p>issue 방식은 기본이 아무래도 편해 보여 기본으로 설정</p>
-  </li>
-  <li>
-    <p>comment type은 자신의 블로그의 잘 맞게 구성하자</p>
-  </li>
-  <li>
-    <p>설정을 마무리 하는 과정에서 보면 script code를 자신의 블로그에 맞게 삽입하라고 나온다</p>
-
-    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://utteranc.es/client.js"</span>
-      <span class="na">repo=</span><span class="s">"071yoon/071yoon.github.io"</span>
-      <span class="na">issue-term=</span><span class="s">"pathname"</span>
-      <span class="na">theme=</span><span class="s">"github-light"</span>
-      <span class="na">crossorigin=</span><span class="s">"anonymous"</span>
-      <span class="na">async</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;/script&gt;</span>
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>이러한 코드를 자신의 환경에 잘 맞춰 삽입한다</p>
-    <blockquote>
-      <p>내 블로그 같은 경우 _layouts -&gt; post.html에 post-comments의 블럭 밑에 넣어두었다</p>
-    </blockquote>
-  </li>
-</ul>
-
-<h3 id="3-테스트">3. 테스트</h3>
-
-<p>모든 설정이 끝났으면 배포를 해보자!!</p>
-
-<p><img width="736" alt="image" src="https://user-images.githubusercontent.com/66371206/149119619-93defcf0-9f46-459a-95f8-14082e102e7a.png" /></p>
-
-<blockquote>
-  <p>이쁘게 잘 보이는 걸 확인 할 수 있다!!</p>
-</blockquote>
-
-<p><img width="724" alt="image" src="https://user-images.githubusercontent.com/66371206/149118548-441acc97-8d8d-4ede-bf53-dbcc13af31c6.png" /></p>
-
-<p><strong>이런식으로 issue가 생성되어 잘 동작하는지 까지 확인 완료!!</strong></p>
-
-<blockquote>
-  <p>삭제시에는 issue close 후 delete하면 잘 삭제가 된다</p>
-</blockquote>
-
-<p>오래 걸릴 줄 알았지만, 설정하기 쉽게 구성이되어 있어 빠르게 설치를 완료했다</p>
-
-<p><a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2F071yoon.github.io%2Fblog%2F2022%2F01%2F12%2Finstall-blog-comment.html&amp;count_bg=%2379C83D&amp;title_bg=%23555555&amp;icon=&amp;icon_color=%23E7E7E7&amp;title=hits&amp;edge_flat=false" alt="Hits" /></a></p>]]></content><author><name>071yoon</name></author><category term="blog" /><category term="github blog" /><category term="markdown" /><summary type="html"><![CDATA[사실 노션에서 깃허브 IO 로 넘어온 이유 중 가장 큰 이유가 소통의 부재이다. 물론 노션도 코멘트 기능을 가지고 있지만, 블로그에서처럼 활용도가 높지 않다. 그래서 야심차게 깃허브 블로그를 시작했지만… 코멘트 기능은 자동으로 있지 않았고 따로 설치가 필요해 따로 설치를 진행해 보았다.]]></summary></entry></feed>
+<p><a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2F071yoon.github.io%2Fblog%2F2022%2F01%2F12%2Fhow-to-install-github-io.html&amp;count_bg=%2379C83D&amp;title_bg=%23555555&amp;icon=&amp;icon_color=%23E7E7E7&amp;title=hits&amp;edge_flat=false" alt="Hits" /></a></p>]]></content><author><name>071yoon</name></author><category term="blog" /><category term="github blog" /><category term="markdown" /><summary type="html"><![CDATA[안녕하세요, 071yoon입니다.]]></summary></entry></feed>
