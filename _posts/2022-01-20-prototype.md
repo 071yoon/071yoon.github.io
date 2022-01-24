@@ -10,17 +10,18 @@ tags: [javascript, typescript, TIL, prototype, class]
 
 상속을 하는 이유??
 
-내가 `user`라는 객체가 있고, `user`와 유사하지만 비슷한 `admin` 과 `guest`를 만들어야 했을 때, 유사한 객체를 만들 수 있을까?? 
+내가 `user`라는 객체가 있고, `user`와 유사하지만 비슷한 `admin` 과 `guest`를 만들어야 했을 때, 유사한 객체를 만들 수 있을까??
+
 > 프로토타입 상속을 이용하여 만들 수 있다
 
 프로토타입의 예시 -> `__proto__` 로 만들 수 있다
 
 ```javascript
 let animal = {
-  eats: true
+  eats: true,
 };
 let rabbit = {
-  jumps: true
+  jumps: true,
 };
 
 rabbit.__proto__ = animal;
@@ -32,7 +33,7 @@ rabbit.__proto__ = animal;
 
 ### this 는 무엇을 나타낼까?
 
-먼저 코드를 보자 
+먼저 코드를 보자
 
 ```javascript
 // animal엔 다양한 메서드가 있습니다.
@@ -44,12 +45,12 @@ let animal = {
   },
   sleep() {
     this.isSleeping = true;
-  }
+  },
 };
 
 let rabbit = {
   name: "White Rabbit",
-  __proto__: animal
+  __proto__: animal,
 };
 
 // rabbit에 새로운 프로퍼티 isSleeping을 추가하고 그 값을 true로 변경합니다.
@@ -61,7 +62,7 @@ alert(animal.isSleeping); // undefined (프로토타입에는 isSleeping이라�
 
 그럼 여기서 `this`는 무엇을 나타낼까??
 
->method위치에 상관없이 `this` 는 항상 `.`앞에 있다
+> method위치에 상관없이 `this` 는 항상 `.`앞에 있다
 
 상속받은 메서드의 this는 animal이 아닌 실제 메서드가 호출되는 시점의 점(.) 앞에 있는 객체가 된다. 따라서 this에 데이터를 쓰면 animal이 아닌 해당 객체의 상태가 변화한다.
 
@@ -86,17 +87,22 @@ class MyClass {
 여기서 `constructor()`는 `new`에 자동으로 호출되어, 초기화 할 수 있다
 
 class User{...} 가 어떤식으로 동작하는가 알아보면
+
 1. `User`이라는 이름을 가지는 함수를 만들어, `constructor`에서 가져온다
 2. `sayHi` 같은 클래스 내에서 정의한 method를 `User.prototype`에 저장한다
 
 라는 과정을 거치게 된다.
 
-이러한 과정을 코드로 살펴보면 
+이러한 과정을 코드로 살펴보면
 
 ```javascript
 class User {
-  constructor(name) { this.name = name; }
-  sayHi() { alert(this.name); }
+  constructor(name) {
+    this.name = name;
+  }
+  sayHi() {
+    alert(this.name);
+  }
 }
 
 // 클래스는 함수입니다.
@@ -108,7 +114,7 @@ alert(User === User.prototype.constructor); // true
 // User.prototype에 저장
 alert(User.prototype.sayHi); // alert(this.name);
 
-// 현재 프로토타입에는 메서드가 두 
+// 현재 프로토타입에는 메서드가 두
 alert(Object.getOwnPropertyNames(User.prototype)); // constructor, sayHi
 ```
 
@@ -169,8 +175,7 @@ class Rabbit extends Animal {
 }
 ```
 
-이런식으로, Rabbit.stop() 을 하게되면 부모클래스의 `stop`을 이용해 호출을 해서 멈춘 후 숨게 된다. 
-
+이런식으로, Rabbit.stop() 을 하게되면 부모클래스의 `stop`을 이용해 호출을 해서 멈춘 후 숨게 된다.
 
 ### 정적 Method 와 정적 Property
 
@@ -194,7 +199,7 @@ User.staticMethod(); // true
 
 ### Private, Protected Property & Method
 
-객체지향 프로그래밍에서 Property & Method 는 두 그룹으로 분류된다 
+객체지향 프로그래밍에서 Property & Method 는 두 그룹으로 분류된다
 
 1. 내부 인터페이스 [Internal Interface] - 동일한 클래스 내의 다른 Method에 접근 할 수 있고, 클래스 밖에서는 접근할 수 없는 Property & Method -> Private
 2. 외부 인터페이스 [External Interface] - 클래스 밖에서도 접근 가능한 Property & Method -> Public
@@ -221,7 +226,6 @@ class CoffeeMachine {
   constructor(power) {
     this._power = power;
   }
-
 }
 
 // 커피 머신 생성
@@ -235,11 +239,10 @@ coffeeMachine.waterAmount = -10; // Error: 물의 양은 음수가 될 수 없�
 
 하지만 Java처럼 아예 접근이 불가능하게 private 하게 사용을 하려면 `_` 대신 `#` 을 사용하면 java에서 private 하게 사용했던 것 처럼 사용이 가능하다.
 
-
-
 ### Mix in
 
-자바스크립트는 보통 단일상속만 허용한다. 하지만 여러 상속들을 한번에 밭을 수 있는방법이 존재한다 
+자바스크립트는 보통 단일상속만 허용한다. 하지만 여러 상속들을 한번에 밭을 수 있는방법이 존재한다
+
 > 믹스인을 활용하여 다중상속을 받아보자
 
 ```javascript
@@ -249,7 +252,7 @@ let sayHiMixin = {
   },
   sayBye() {
     alert(`Bye ${this.name}`);
-  }
+  },
 };
 
 // 사용법:
@@ -267,4 +270,3 @@ new User("Dude").sayHi(); // Hello Dude!
 ```
 
 이런식으로 상속없이 메서드를 복사하여, 믹스인을 활용하면 `User` 가 예시처럼 동시에 상속받아, 추가로 구현된 메서드 또한 사용 할 수 있는 모습을 볼 수 있다.
-
