@@ -1,4 +1,157 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-01-27T10:36:36+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi&apos;s tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">The mind behind linux</title><link href="http://localhost:4000/deep-thought/2022/01/26/deep-thoughts-1.html" rel="alternate" type="text/html" title="The mind behind linux" /><published>2022-01-26T00:00:00+09:00</published><updated>2022-01-26T00:00:00+09:00</updated><id>http://localhost:4000/deep-thought/2022/01/26/deep-thoughts-1</id><content type="html" xml:base="http://localhost:4000/deep-thought/2022/01/26/deep-thoughts-1.html"><![CDATA[<h2 id="talk-is-cheap-show-me-the-code">Talk is cheap. Show me the code.</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-02-02T16:16:36+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi&apos;s tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">리액트JS로 앱 만들기 1</title><link href="http://localhost:4000/react/2022/02/02/make-react-app-1.html" rel="alternate" type="text/html" title="리액트JS로 앱 만들기 1" /><published>2022-02-02T00:00:00+09:00</published><updated>2022-02-02T00:00:00+09:00</updated><id>http://localhost:4000/react/2022/02/02/make-react-app-1</id><content type="html" xml:base="http://localhost:4000/react/2022/02/02/make-react-app-1.html"><![CDATA[<h2 id="react란-무엇인가">React란 무엇인가</h2>
+
+<p>React는 간단하게 말해서, 웹의 <code class="language-plaintext highlighter-rouge">Framework</code>이다.</p>
+
+<blockquote>
+  <p>정확하게는 사용자 인터페이스를 만들기 위한 Javascript Library</p>
+</blockquote>
+
+<p>그리고 <code class="language-plaintext highlighter-rouge">React</code> 란 놈에게는 큰 장점이 있다.</p>
+
+<ol>
+  <li>선언형</li>
+  <li>컴포넌트 기반</li>
+</ol>
+
+<p>이렇게 볼 수 있다.</p>
+
+<h3 id="선언형">선언형</h3>
+
+<hr />
+
+<p>선언형은 React는 상호작용이 많은 UI를 만들 때 생기는 어려움을 줄여준다. 즉 애플리케이션의 각 상태에 대한 간단한 뷰만 설계를 한다면 알아서 React가 데이터가 변경됨에 따라 적절한 컴포넌트만 효율적으로 갱신하고 렌더링을 해준다. 즉 말 그대로 <code class="language-plaintext highlighter-rouge">React</code> 하게 해준다는 것이다.</p>
+
+<p>간단하게 보면, <code class="language-plaintext highlighter-rouge">React</code> 파일에서</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">btn</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span>
+  <span class="dl">"</span><span class="s2">button</span><span class="dl">"</span><span class="p">,</span>
+  <span class="p">{</span>
+    <span class="na">onClick</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">im clicked</span><span class="dl">"</span><span class="p">),</span>
+  <span class="p">},</span>
+  <span class="dl">"</span><span class="s2">Click me</span><span class="dl">"</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p>이런식으로 HTML 으로 선언하지 않고도 단번에 생성과 동시에 옵션을 설정 할 수 있다.</p>
+
+<h3 id="컴포넌트-기반">컴포넌트 기반</h3>
+
+<hr />
+
+<p>스스로 상태를 관리하는 캡슐화된 컴포넌트를 만들 수 있다.</p>
+
+<p>여기서 상태를 관리한다는 말이 리액트에서는 꽤나 중요한 포인트라 할 수 있다. 우선 리액트 컴포넌트는 <code class="language-plaintext highlighter-rouge">render()</code> 함수를 이용하여, 데이터를 입력받아 화면에 표시할 내용을 리턴을 한다는 점에서 자바스크립트와 다르다. 그리고 이러한 컴포넌트는 <code class="language-plaintext highlighter-rouge">this.props</code>를 이용하여 입력 데이터를 다루고, <code class="language-plaintext highlighter-rouge">this.state</code>로 접근 할 수 있다. 그리고 상태 데이터가 바뀌면 <code class="language-plaintext highlighter-rouge">render()</code> 가 다시 호출되어 갱신이 되는 구조이다.</p>
+
+<p>말로 들어서는 이해가 잘 되지 않고, 역시 예제를 보며 학습을 하는것이 필요할 것 같다.</p>
+
+<p>또하나의 큰 장점을 <code class="language-plaintext highlighter-rouge">React Native</code> 로의 방향이 자유롭다는 것이다. <code class="language-plaintext highlighter-rouge">Native</code> 언어란, iOS app 에서 Swift 처럼 그 자체의 OS 를 활용하여 만드는 앱인데, 물론 제작을 하여도 진짜 Native 급으로 속도가 나오지는 않는다. 하지만, 그와 비슷한 속도를 낼 수 있고 문법 자체가 너무나도 비슷해서, 금방 금방 수정하여 웹뿐만이 아닌 페이스북 혹은 인스타그램 처럼 웹앱으로 변환이 가능하다.</p>
+
+<h3 id="jsx-의-활용">JSX 의 활용</h3>
+
+<p>JSX 가 나옴으로써, <code class="language-plaintext highlighter-rouge">React</code> 가 단순히 Javascript 처럼 활용하는것이 아니라, 마치 <code class="language-plaintext highlighter-rouge">HTML</code> 에서 사용한 것 처럼도 사용 할 수 있게 되었다. 이것또한 예제를 보고 확인해보자</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">Title</span> <span class="o">=</span> <span class="p">(</span>
+  <span class="p">&lt;</span><span class="nt">h3</span> <span class="na">id</span><span class="p">=</span><span class="s">"title"</span> <span class="na">onMouseEnter</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">mouse enter</span><span class="dl">"</span><span class="p">)</span><span class="si">}</span><span class="p">&gt;</span>
+    Hello I am a title
+  <span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p>이런식으로 <code class="language-plaintext highlighter-rouge">CreateElement</code> 를 사용하는것이 아니라, 마치 <code class="language-plaintext highlighter-rouge">HTML</code> 에서 태그를 해서 만드는것인데, 동시에 자바스크립트를 활용하여 만들 수 있게 되었다. 하지만 코드를 잘 보면 <code class="language-plaintext highlighter-rouge">CreateElement</code> 를 아예 안쓰는 것은 아니고, 이런식으로 <code class="language-plaintext highlighter-rouge">HTML</code> 처럼 편하게 적어두면 <code class="language-plaintext highlighter-rouge">BABEL</code> 이란 컴파일러에서 내부적으로 <code class="language-plaintext highlighter-rouge">CreateElement</code> 형으로 변환을 하여 적어주는 것이다.</p>
+
+<blockquote>
+  <p>여기서 중요한점은 함수나 변수명을 할 때 대문자로 시작을 해야 실제 HTML 의 태그 <code class="language-plaintext highlighter-rouge">button</code> 같은것과 헷갈리지 않는다</p>
+</blockquote>
+
+<h3 id="state-란">State 란</h3>
+
+<p>기본적으로 데이터가 저장되는 곳이라고 보면 쉽다.</p>
+
+<p>간단한 클릭형 버튼을 만들어서 확인해보자</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span> <span class="p">=</span> <span class="s">"text/babel"</span><span class="p">&gt;</span>
+	const root = document.getElementById("root");
+	let counter = 0;
+	function countUp()<span class="si">{</span>
+		<span class="nx">counter</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+	<span class="si">}</span>
+	function Container() <span class="si">{</span>
+		<span class="k">return</span> <span class="p">(</span>
+			<span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+				<span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span> Total Clicks: <span class="si">{</span><span class="nx">counter</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+				<span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="nx">countUp</span><span class="si">}</span><span class="p">&gt;</span>Click me<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+			<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+		<span class="p">);</span>
+	<span class="si">}</span>
+	ReactDom.render(<span class="p">&lt;</span><span class="nc">Container</span> <span class="p">/&gt;</span>, root);
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</code></pre></div></div>
+
+<p>이렇게만 보면 좋은 코드같아 보인다. 하지만 여기는 맹점이 있는데, 바로 Rendering 을 한번밖에 하지 않아, 아무리 클릭을 눌러도 웹상에서는 안보이는다는 것이다. 그래서 <code class="language-plaintext highlighter-rouge">State</code> 가 필요하게 된다.</p>
+
+<p>가장 손쉬운 방법은 countUp 함수가 할 때마다, <code class="language-plaintext highlighter-rouge">Render</code> 를 다시 불러주게 되면 해결 할 수 있다. 하지만 아무리봐도, 효율적인 부분이 아니다. 왜냐면 전부 다 렌더링을 하는것이 비효율적이고, 계속 렌더링을 해줘야되는것을 함수를 만들면서 생각을 하면서 설계를 해줘야 되기 떄문이다. 그럼 <code class="language-plaintext highlighter-rouge">그 변수</code>만 업데이트를 하려면 어떻게 해야될까?? 그게 바로 <code class="language-plaintext highlighter-rouge">React</code> 의 최대 장점이다. 즉 매우 <code class="language-plaintext highlighter-rouge">Interactive</code> 하고 <code class="language-plaintext highlighter-rouge">Effective</code> 한 프로그램이 만들어 지는것이다.</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span> <span class="p">=</span> <span class="s">"text/babel"</span><span class="p">&gt;</span>
+	const root = document.getElementById("root");
+	function Container() <span class="si">{</span>
+		<span class="kd">let</span> <span class="p">[</span><span class="nx">counter</span><span class="p">,</span> <span class="nx">modifier</span><span class="p">]</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+		<span class="c1">//counter = data[0], modifier = data[1]</span>
+		<span class="kd">const</span> <span class="nx">onClick</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+			<span class="nx">modifier</span><span class="p">(</span><span class="nx">counter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+			<span class="c1">//OR modifier((current) =&gt; current + 1);</span>
+		<span class="p">};</span>
+		<span class="k">return</span> <span class="p">(</span>
+			<span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+				<span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span> Total Clicks: <span class="si">{</span><span class="nx">counter</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+				<span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="nx">onClick</span><span class="si">}</span><span class="p">&gt;</span>Click me<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+			<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+		<span class="p">);</span>
+	<span class="si">}</span>
+	ReactDom.render(<span class="p">&lt;</span><span class="nc">Container</span> <span class="p">/&gt;</span>, root);
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</code></pre></div></div>
+
+<p>이렇게 설정하면, 클릭이 일어날 때 마다, modifier에서 counter + 1 로 해준 값이 반환되며, <code class="language-plaintext highlighter-rouge">modify</code> 가 일어날 때 마다, 딱 그 부분만 렌더링을 해주는 것이다.</p>
+
+<h3 id="props">Props</h3>
+
+<p>Props 란 부모 컴포넌트로부터 자식 컴포넌트로에게 데이터를 보낼 수 있게 해주는 방법이다.</p>
+
+<blockquote>
+  <p>Ex) 버튼의 스타일을 하나하나 다 바꿔주지 말고, 어차피 공통으로 갈거면 그러한 템플릿을 저장해 두었다가 사용하면 더 편하지 않겠냐 라는 것..!!</p>
+</blockquote>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Btn</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">reutnr</span><span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">button</span>
+      <span class="na">styles</span><span class="p">=</span>
+    <span class="p">&gt;</span>
+      <span class="si">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">text</span><span class="si">}</span>
+    <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nc">Btn</span> <span class="na">text</span><span class="p">=</span><span class="s">"Save changes"</span> <span class="p">/&gt;</span>
+      <span class="p">&lt;</span><span class="nc">Btn</span> <span class="na">text</span><span class="p">=</span><span class="s">"Continue"</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>이런식으로 사용 할 수 있다.</p>
+
+<h3 id="react-memo">React Memo</h3>
+
+<p>위 예제를 보면 버튼이 <code class="language-plaintext highlighter-rouge">Save Changes</code> 와 <code class="language-plaintext highlighter-rouge">Continue</code> 두개가 생성되었다. 하지만 만약, <code class="language-plaintext highlighter-rouge">State</code>를 활용하여, 첫 버튼만 렌더를 해주려고 해도, 두 버튼 다 렌더링이되는 불상사가 발생한다. 이러한 사태를 어떻게 막을 수 있을까?? 리액트 메모를 활용하여 막을 수 있다.</p>
+
+<blockquote>
+  <p>const MemorizedBtn = React.memo(Btn);</p>
+</blockquote>
+
+<p>라고 활용하고나서, 그 후 Btn이 아니라 MemorizedBtn 으로 호출하면 렌더링을 한번만 해도 될 수 있게 된다!!</p>]]></content><author><name>071yoon</name></author><category term="react" /><category term="react" /><category term="javascript" /><category term="TIL" /><category term="web" /><summary type="html"><![CDATA[React란 무엇인가]]></summary></entry><entry><title type="html">The mind behind linux</title><link href="http://localhost:4000/deep-thought/2022/01/26/deep-thoughts-1.html" rel="alternate" type="text/html" title="The mind behind linux" /><published>2022-01-26T00:00:00+09:00</published><updated>2022-01-26T00:00:00+09:00</updated><id>http://localhost:4000/deep-thought/2022/01/26/deep-thoughts-1</id><content type="html" xml:base="http://localhost:4000/deep-thought/2022/01/26/deep-thoughts-1.html"><![CDATA[<h2 id="talk-is-cheap-show-me-the-code">Talk is cheap. Show me the code.</h2>
 
 <p><code class="language-plaintext highlighter-rouge">Linus</code>의 전설적인 명언이다. 컴퓨터 공학도라면 한번쯤은 들어봤을 이름 <code class="language-plaintext highlighter-rouge">리누스 토르발스</code>. 내가 이 이름을 처음 들었던 것은 <code class="language-plaintext highlighter-rouge">System Programming</code> 과목에서 <code class="language-plaintext highlighter-rouge">Linux</code> 를 처음 배울 때 였다. 처음 <code class="language-plaintext highlighter-rouge">Linux</code>를 접했을 때는, 엥?? 이게 뭐지?? 싶을정도로 기괴했고, <code class="language-plaintext highlighter-rouge">CLI</code> 를 처음 접했던 나는 정말 적응하기가 힘들었다. 하지만 사용하면 사용 할 수록, 그가 왜 이러한 운영체제를 만들었고, 어떤생각을 하고있는지 이해를 하기 시작했고, 사람에대한 관심이 생겨 찾아보다 <code class="language-plaintext highlighter-rouge">Ted talk</code> 에서 이야기 한 것을 보게되었고, 그에따른 이야기를 조금 해보려고 한다.</p>
 
@@ -86,7 +239,7 @@
 <p>즉 한 문제에 대해서 갇혀있는 생각만 하지말고, 다양한 생각과 다양한 시각으로 보면 더 간편하고 직관적이며, 효율이 좋은 코드가 나올 수 있다는 것이다.
 항상 생각을 하고 행동을 하라는 의미로 받아들이고 싶다.</p>
 
-<p>오늘은 컴퓨터공학의 정말 중요한 인물인 리누스 토르발스에 대해서 알아보았는데, 정말 배울점이 많고, 신념이 뚜렷한 사람 같아서 정말 보기 좋다. 이 테드영상 이후로도 몇가지의 영상을 찾아보았는데, 정말 자부심이 강하고 멋진 사람이라고 생각한다. 나도 언젠가 이렇게 자신의 신념을 가지고 행동 할 수 있으며, 그 신념에 따른 무게의 책임질 수 있는 사람이 되고싶다.</p>]]></content><author><name>071yoon</name></author><category term="deep-thought" /><category term="deep thought" /><category term="linux" /><category term="philosophy" /><summary type="html"><![CDATA[Talk is cheap. Show me the code.]]></summary></entry><entry><title type="html">SQL 예제를 풀어보자</title><link href="http://localhost:4000/sql/2022/01/24/sql-practice.html" rel="alternate" type="text/html" title="SQL 예제를 풀어보자" /><published>2022-01-24T00:00:00+09:00</published><updated>2022-01-24T00:00:00+09:00</updated><id>http://localhost:4000/sql/2022/01/24/sql-practice</id><content type="html" xml:base="http://localhost:4000/sql/2022/01/24/sql-practice.html"><![CDATA[<h2 id="why-sql">Why SQL?</h2>
+<p>오늘은 컴퓨터공학의 정말 중요한 인물인 리누스 토르발스에 대해서 알아보았는데, 정말 배울점이 많고, 신념이 뚜렷한 사람 같아서 정말 보기 좋다. 이 테드영상 이후로도 몇가지의 영상을 찾아보았는데, 정말 자부심이 강하고 멋진 사람이라고 생각한다. 나도 언젠가 이렇게 자신의 신념을 가지고 행동 할 수 있으며, 그에 따른 무게의 책임질 수 있는 사람이 되고싶다.</p>]]></content><author><name>071yoon</name></author><category term="deep-thought" /><category term="deep thought" /><category term="linux" /><category term="philosophy" /><summary type="html"><![CDATA[Talk is cheap. Show me the code.]]></summary></entry><entry><title type="html">SQL 예제를 풀어보자</title><link href="http://localhost:4000/sql/2022/01/24/sql-practice.html" rel="alternate" type="text/html" title="SQL 예제를 풀어보자" /><published>2022-01-24T00:00:00+09:00</published><updated>2022-01-24T00:00:00+09:00</updated><id>http://localhost:4000/sql/2022/01/24/sql-practice</id><content type="html" xml:base="http://localhost:4000/sql/2022/01/24/sql-practice.html"><![CDATA[<h2 id="why-sql">Why SQL?</h2>
 
 <hr />
 
@@ -285,7 +438,7 @@
 
 <p>즉 toggle 은 이미 있는지 확인을 해서, 있다면 삭제하고 없다면 생성해주는 불을 키고 끄는것과 비슷한 행동을 해주는 함수라 할 수 있다.</p>
 
-<p>다음 포스트부터는 실제로 코드를 작성해서 VanillaJS 앱을 만들어보겠다</p>]]></content><author><name>071yoon</name></author><category term="javascript" /><category term="javascript" /><category term="TIL" /><summary type="html"><![CDATA[자바스크립트를 Browser로 로딩하기]]></summary></entry><entry><title type="html">바닐라JS로 앱 만들기 1</title><link href="http://localhost:4000/javascript/2022/01/22/javascript-coding-1.html" rel="alternate" type="text/html" title="바닐라JS로 앱 만들기 1" /><published>2022-01-22T00:00:00+09:00</published><updated>2022-01-22T00:00:00+09:00</updated><id>http://localhost:4000/javascript/2022/01/22/javascript-coding-1</id><content type="html" xml:base="http://localhost:4000/javascript/2022/01/22/javascript-coding-1.html"><![CDATA[<h2 id="자바스크립트-실습">자바스크립트 실습</h2>
+<p>다음 포스트부터는 실제로 코드를 작성해서 VanillaJS 앱을 만들어보겠다</p>]]></content><author><name>071yoon</name></author><category term="javascript" /><category term="javascript" /><category term="TIL" /><category term="web" /><summary type="html"><![CDATA[자바스크립트를 Browser로 로딩하기]]></summary></entry><entry><title type="html">바닐라JS로 앱 만들기 1</title><link href="http://localhost:4000/javascript/2022/01/22/javascript-coding-1.html" rel="alternate" type="text/html" title="바닐라JS로 앱 만들기 1" /><published>2022-01-22T00:00:00+09:00</published><updated>2022-01-22T00:00:00+09:00</updated><id>http://localhost:4000/javascript/2022/01/22/javascript-coding-1</id><content type="html" xml:base="http://localhost:4000/javascript/2022/01/22/javascript-coding-1.html"><![CDATA[<h2 id="자바스크립트-실습">자바스크립트 실습</h2>
 
 <hr />
 
@@ -376,7 +529,7 @@
 
 <hr />
 
-<p>타 언어들을 보면 비교연산자로 <code class="language-plaintext highlighter-rouge">==</code> 밖에 쓰지 않는데, 자바스크립트는 특이하게 <code class="language-plaintext highlighter-rouge">===</code> 를 주로 사용한다. 그렇다고해서 <code class="language-plaintext highlighter-rouge">==</code> 가 없다는 것은 아니다. 차이점은 <code class="language-plaintext highlighter-rouge">==</code> 은 값만 비교하는 것이고 <code class="language-plaintext highlighter-rouge">===</code> 는 <code class="language-plaintext highlighter-rouge">type</code> 까지 묶어서 비교를 한다는 점이다. 즉 <code class="language-plaintext highlighter-rouge">5 == '5'</code> 는 참이지만 <code class="language-plaintext highlighter-rouge">5 === '5'</code> 는 거짓이라는 것.</p>]]></content><author><name>071yoon</name></author><category term="javascript" /><category term="javascript" /><category term="TIL" /><summary type="html"><![CDATA[자바스크립트 실습]]></summary></entry><entry><title type="html">자바스크립트 프로토타입과 클래스</title><link href="http://localhost:4000/javascript/2022/01/20/prototype.html" rel="alternate" type="text/html" title="자바스크립트 프로토타입과 클래스" /><published>2022-01-20T00:00:00+09:00</published><updated>2022-01-20T00:00:00+09:00</updated><id>http://localhost:4000/javascript/2022/01/20/prototype</id><content type="html" xml:base="http://localhost:4000/javascript/2022/01/20/prototype.html"><![CDATA[<h2 id="프로토타입과-프로토타입-상속">프로토타입과 프로토타입 상속</h2>
+<p>타 언어들을 보면 비교연산자로 <code class="language-plaintext highlighter-rouge">==</code> 밖에 쓰지 않는데, 자바스크립트는 특이하게 <code class="language-plaintext highlighter-rouge">===</code> 를 주로 사용한다. 그렇다고해서 <code class="language-plaintext highlighter-rouge">==</code> 가 없다는 것은 아니다. 차이점은 <code class="language-plaintext highlighter-rouge">==</code> 은 값만 비교하는 것이고 <code class="language-plaintext highlighter-rouge">===</code> 는 <code class="language-plaintext highlighter-rouge">type</code> 까지 묶어서 비교를 한다는 점이다. 즉 <code class="language-plaintext highlighter-rouge">5 == '5'</code> 는 참이지만 <code class="language-plaintext highlighter-rouge">5 === '5'</code> 는 거짓이라는 것.</p>]]></content><author><name>071yoon</name></author><category term="javascript" /><category term="javascript" /><category term="TIL" /><category term="web" /><summary type="html"><![CDATA[자바스크립트 실습]]></summary></entry><entry><title type="html">자바스크립트 프로토타입과 클래스</title><link href="http://localhost:4000/javascript/2022/01/20/prototype.html" rel="alternate" type="text/html" title="자바스크립트 프로토타입과 클래스" /><published>2022-01-20T00:00:00+09:00</published><updated>2022-01-20T00:00:00+09:00</updated><id>http://localhost:4000/javascript/2022/01/20/prototype</id><content type="html" xml:base="http://localhost:4000/javascript/2022/01/20/prototype.html"><![CDATA[<h2 id="프로토타입과-프로토타입-상속">프로토타입과 프로토타입 상속</h2>
 
 <p>상속을 하는 이유??</p>
 
@@ -1277,100 +1430,4 @@
 <span class="kd">let</span> <span class="nx">yoon</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">User</span><span class="p">(</span><span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">);</span>
 
 <span class="nx">yoon</span><span class="p">.</span><span class="nx">sayHi</span><span class="p">();</span> <span class="c1">//My name is Yoon.</span>
-</code></pre></div></div>]]></content><author><name>071yoon</name></author><category term="javascript" /><category term="javascript" /><category term="typescript" /><category term="method" /><category term="TIL" /><summary type="html"><![CDATA[최근에 마음이 맞는 사람들과 프로젝트를 진행해 보기로 했다. Decrypto 라는 보드게임을 웹 환경으로 만들어 보면 어떠겠는가 해서 시작된 프로젝트였다. 생각보다 관심이 있는 사람들이 많아 인원을 다 모으고 회의를 진행을 해 보았는데… 아뿔싸… 제대로 웹 개발을 해본 사람이 없는것! 그래서 프로젝트 바로 시작하는것은 잠시 미뤄두고 스터디를 진행을 해 보기로 하였다. 인원도 많았기에, 팀별로 React, Type Script, Node.js 이런식으로 인원을 쪼개 2주간 진행을 한 후 통합하여 실제로 웹 프로젝트를 진행해 보기로 했다.]]></summary></entry><entry><title type="html">깃허브 블로그 설치하기</title><link href="http://localhost:4000/blog/2022/01/12/how-to-install-github-io.html" rel="alternate" type="text/html" title="깃허브 블로그 설치하기" /><published>2022-01-12T00:00:00+09:00</published><updated>2022-01-12T00:00:00+09:00</updated><id>http://localhost:4000/blog/2022/01/12/how-to-install-github-io</id><content type="html" xml:base="http://localhost:4000/blog/2022/01/12/how-to-install-github-io.html"><![CDATA[<p>안녕하세요, <code class="language-plaintext highlighter-rouge">071yoon</code>입니다.</p>
-
-<p>원래는 노션에서 제가 하는 작업들을 정리해 왔지만, 포스팅용의 사이트가 하나 필요하다 판단되어 Github IO를 채택하기로 했습니다.</p>
-
-<p>혹시라도 제 노션이 궁금하다면 -&gt; <a href="https://yeonggi.notion.site/YeongGi-s-Scratch-9085f2628b87451a9e19e655c9c5bd5e" title="영기의 노션 링크">노션링크</a></p>
-
-<h2 id="만드는-과정-step-by-step">만드는 과정 <strong>Step by Step</strong></h2>
-<blockquote>
-  <p>MAC 환경에서 작업햇습니다!!!</p>
-</blockquote>
-
-<h2 id="1-새로운-repository-생성">1. 새로운 Repository 생성</h2>
-<blockquote>
-  <p>주의 할 점 -&gt; 이름은 username.github.io 의 형태를 유지해야한다</p>
-</blockquote>
-
-<ul>
-  <li>README는 딱히 필요 없다. (근데 어차피 추가 해야됨…)</li>
-</ul>
-
-<h2 id="2-clone">2. clone</h2>
-<ul>
-  <li>
-    <p>git clone` 으로 만들어 둔 Repiostiry 를 local로 clone</p>
-  </li>
-  <li>
-    <p>앞으로 해당 디렉토리에서 작업을 한다</p>
-  </li>
-</ul>
-
-<h2 id="3-jekyll">3. Jekyll</h2>
-<blockquote>
-  <p>만약 Windows 환경이라면 Ruby 설치가 필요하다</p>
-</blockquote>
-
-<ul>
-  <li>
-    <p>terminal 에서 <code class="language-plaintext highlighter-rouge">gem install jekyll bundler</code> 로 설치</p>
-  </li>
-  <li>
-    <p>만약 사용하고 싶은 템플릿 가 없다면 <code class="language-plaintext highlighter-rouge">Jekyll</code>의 기본 템플릿을 사용해보자</p>
-  </li>
-  <li>
-    <p>clone 한 디렉토리에서</p>
-
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  jekyll new ./
-  bundle <span class="nb">install 
-  </span>bundle <span class="nb">exec </span>jekyll serve
-</code></pre></div>    </div>
-
-    <ul>
-      <li>
-        <p>까지 하게되면 서버를 열 수 있다</p>
-
-        <p><img width="695" alt="image" src="https://user-images.githubusercontent.com/66371206/149091259-85fb91e9-e480-4e0d-a521-559517d5c2a3.png" /></p>
-      </li>
-      <li>
-        <p>해당 이미지에서 서버의 Host 주소를 파악 (여기서 http://127.0.0.1:4000/ 인 부분)</p>
-      </li>
-      <li>
-        <p>수정이 끝났다면</p>
-
-        <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add <span class="nb">.</span>
-git commit <span class="nt">-m</span> <span class="s2">"커밋 내용"</span>
-git push origin master
-</code></pre></div>        </div>
-      </li>
-      <li>
-        <p>를 사용해 배포 후 ` http://username.github.io ` 에서 본인의 첫 블로그를 확인 할 수 있다</p>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<p><br /></p>
-<ul>
-  <li>
-    <p>만약 사용하고 싶은 템플릿이 있다면</p>
-
-    <ul>
-      <li>
-        <p>해당 파일의 zip 파일을 가져와 압축을 해제 한 후 전부 나의 리포지토리에 붙여넣고 서버에 push를 진행하면 기본 템플릿이 제공된 테마가 제공된다</p>
-      </li>
-      <li>
-        <p><code class="language-plaintext highlighter-rouge">jekyll</code> 테마들은 여러 웹사이트들에서 찾을 수 있으며 나는 ` http://jekyllthemes.org ` 에서 <code class="language-plaintext highlighter-rouge">yat</code> 이라는 이쁜 테마를 찾아 사용했다</p>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<p>이후 완성된 나의 첫 블로그 홈페이지</p>
-
-<p><img width="1173" alt="image" src="https://user-images.githubusercontent.com/66371206/149092791-01744bdf-8432-4e97-9f1c-522fcac07fe2.png" /></p>
-
-<p>그림은 나만의 작은 블로그를 위해 직접 그려 배너로 대체했다 ㅎㅎ</p>
-
-<p><a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2F071yoon.github.io%2Fblog%2F2022%2F01%2F12%2Fhow-to-install-github-io.html&amp;count_bg=%2379C83D&amp;title_bg=%23555555&amp;icon=&amp;icon_color=%23E7E7E7&amp;title=hits&amp;edge_flat=false" alt="Hits" /></a></p>]]></content><author><name>071yoon</name></author><category term="blog" /><category term="github blog" /><category term="markdown" /><summary type="html"><![CDATA[안녕하세요, 071yoon입니다.]]></summary></entry></feed>
+</code></pre></div></div>]]></content><author><name>071yoon</name></author><category term="javascript" /><category term="javascript" /><category term="typescript" /><category term="method" /><category term="TIL" /><summary type="html"><![CDATA[최근에 마음이 맞는 사람들과 프로젝트를 진행해 보기로 했다. Decrypto 라는 보드게임을 웹 환경으로 만들어 보면 어떠겠는가 해서 시작된 프로젝트였다. 생각보다 관심이 있는 사람들이 많아 인원을 다 모으고 회의를 진행을 해 보았는데… 아뿔싸… 제대로 웹 개발을 해본 사람이 없는것! 그래서 프로젝트 바로 시작하는것은 잠시 미뤄두고 스터디를 진행을 해 보기로 하였다. 인원도 많았기에, 팀별로 React, Type Script, Node.js 이런식으로 인원을 쪼개 2주간 진행을 한 후 통합하여 실제로 웹 프로젝트를 진행해 보기로 했다.]]></summary></entry></feed>

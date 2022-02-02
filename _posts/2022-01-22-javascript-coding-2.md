@@ -3,7 +3,7 @@ layout: post
 title: 바닐라JS로 앱 만들기 2
 subtitle: 자바스크립트 프로젝트 제작을 시작해보자
 categories: javascript
-tags: [javascript, TIL]
+tags: [javascript, TIL, web]
 ---
 
 ## 자바스크립트를 Browser로 로딩하기

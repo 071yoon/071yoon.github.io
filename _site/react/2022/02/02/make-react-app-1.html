@@ -7,22 +7,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
 <!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>바닐라JS로 앱 만들기 2 | YeongGi’s tech blog</title>
+<title>리액트JS로 앱 만들기 1 | YeongGi’s tech blog</title>
 <meta name="generator" content="Jekyll v4.2.1">
-<meta property="og:title" content="바닐라JS로 앱 만들기 2">
+<meta property="og:title" content="리액트JS로 앱 만들기 1">
 <meta name="author" content="071yoon">
 <meta property="og:locale" content="en_US">
-<meta name="description" content="자바스크립트를 Browser로 로딩하기">
-<meta property="og:description" content="자바스크립트를 Browser로 로딩하기">
-<link rel="canonical" href="http://localhost:4000/javascript/2022/01/22/javascript-coding-2.html">
-<meta property="og:url" content="http://localhost:4000/javascript/2022/01/22/javascript-coding-2.html">
+<meta name="description" content="React란 무엇인가">
+<meta property="og:description" content="React란 무엇인가">
+<link rel="canonical" href="http://localhost:4000/react/2022/02/02/make-react-app-1.html">
+<meta property="og:url" content="http://localhost:4000/react/2022/02/02/make-react-app-1.html">
 <meta property="og:site_name" content="YeongGi’s tech blog">
 <meta property="og:type" content="article">
-<meta property="article:published_time" content="2022-01-22T00:00:00+09:00">
+<meta property="article:published_time" content="2022-02-02T00:00:00+09:00">
 <meta name="twitter:card" content="summary">
-<meta property="twitter:title" content="바닐라JS로 앱 만들기 2">
+<meta property="twitter:title" content="리액트JS로 앱 만들기 1">
 <script type="application/ld+json">
-{"url":"http://localhost:4000/javascript/2022/01/22/javascript-coding-2.html","headline":"바닐라JS로 앱 만들기 2","dateModified":"2022-01-22T00:00:00+09:00","datePublished":"2022-01-22T00:00:00+09:00","author":{"@type":"Person","name":"071yoon"},"@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/javascript/2022/01/22/javascript-coding-2.html"},"description":"자바스크립트를 Browser로 로딩하기","@context":"https://schema.org"}</script>
+{"url":"http://localhost:4000/react/2022/02/02/make-react-app-1.html","headline":"리액트JS로 앱 만들기 1","dateModified":"2022-02-02T00:00:00+09:00","datePublished":"2022-02-02T00:00:00+09:00","author":{"@type":"Person","name":"071yoon"},"@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/react/2022/02/02/make-react-app-1.html"},"description":"React란 무엇인가","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="shortcut icon" href="">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -764,11 +764,11 @@ function googleTranslateElementInit() {
 
 
 <header class="post-header">
-  <h1 class="post-title p-name" itemprop="name headline">바닐라JS로 앱 만들기 2</h1>
-  <h2 class="post-subtitle">자바스크립트 프로젝트 제작을 시작해보자</h2>
+  <h1 class="post-title p-name" itemprop="name headline">리액트JS로 앱 만들기 1</h1>
+  <h2 class="post-subtitle">리액트가 무엇이고 어떻게 사용하는지 알아보자</h2>
 
   <p class="post-meta">
-    <time class="dt-published" datetime="2022-01-22T00:00:00+09:00" itemprop="datePublished"><i class="fa fa-calendar"></i> Jan 22, 2022
+    <time class="dt-published" datetime="2022-02-02T00:00:00+09:00" itemprop="datePublished"><i class="fa fa-calendar"></i> Feb 02, 2022
     </time>
 
     
@@ -805,112 +805,184 @@ function googleTranslateElementInit() {
 
 
 
-    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 3 mins</span>
+    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 6 mins</span>
   </p>
 <div class="post-tags">
-<a class="post-tag" href="/tags.html#javascript">#javascript</a><a class="post-tag" href="/tags.html#TIL">#TIL</a><a class="post-tag" href="/tags.html#web">#web</a>
+<a class="post-tag" href="/tags.html#react">#react</a><a class="post-tag" href="/tags.html#javascript">#javascript</a><a class="post-tag" href="/tags.html#TIL">#TIL</a><a class="post-tag" href="/tags.html#web">#web</a>
 </div></header>
 <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
     <div class="post-content e-content" itemprop="articleBody">
 
-      <h2 id="자바스크립트를-browser로-로딩하기">자바스크립트를 Browser로 로딩하기</h2>
+      <h2 id="react란-무엇인가">React란 무엇인가</h2>
+
+<p>React는 간단하게 말해서, 웹의 <code class="language-plaintext highlighter-rouge">Framework</code>이다.</p>
+
+<blockquote>
+  <p>정확하게는 사용자 인터페이스를 만들기 위한 Javascript Library</p>
+</blockquote>
+
+<p>그리고 <code class="language-plaintext highlighter-rouge">React</code> 란 놈에게는 큰 장점이 있다.</p>
+
+<ol>
+  <li>선언형</li>
+  <li>컴포넌트 기반</li>
+</ol>
+
+<p>이렇게 볼 수 있다.</p>
+
+<h3 id="선언형">선언형</h3>
 
 <hr>
 
-<h3 id="document-object">
-<code class="language-plaintext highlighter-rouge">document</code> Object</h3>
+<p>선언형은 React는 상호작용이 많은 UI를 만들 때 생기는 어려움을 줄여준다. 즉 애플리케이션의 각 상태에 대한 간단한 뷰만 설계를 한다면 알아서 React가 데이터가 변경됨에 따라 적절한 컴포넌트만 효율적으로 갱신하고 렌더링을 해준다. 즉 말 그대로 <code class="language-plaintext highlighter-rouge">React</code> 하게 해준다는 것이다.</p>
 
-<p><code class="language-plaintext highlighter-rouge">console</code>에 <code class="language-plaintext highlighter-rouge">document</code>를 쓰면, 이미 정의되어 있는 함수인걸 알 수 있다.
-그럼 html 에서 <code class="language-plaintext highlighter-rouge">block</code>으로 지정한 부분을 자바스크립트에서 바로 가져올 수 있다.</p>
+<p>간단하게 보면, <code class="language-plaintext highlighter-rouge">React</code> 파일에서</p>
 
-<blockquote>
-  <p>ex) <code class="language-plaintext highlighter-rouge">document.title</code> -&gt; 내가 지정한 HTML 의 title</p>
-</blockquote>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">btn</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span>
+  <span class="dl">"</span><span class="s2">button</span><span class="dl">"</span><span class="p">,</span>
+  <span class="p">{</span>
+    <span class="na">onClick</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">im clicked</span><span class="dl">"</span><span class="p">),</span>
+  <span class="p">},</span>
+  <span class="dl">"</span><span class="s2">Click me</span><span class="dl">"</span>
+<span class="p">);</span>
+</code></pre></div></div>
 
-<p>즉 이렇게 하면 HTML 의 코드를 자바스크립트의 관점에서 볼 수 있게된다</p>
+<p>이런식으로 HTML 으로 선언하지 않고도 단번에 생성과 동시에 옵션을 설정 할 수 있다.</p>
 
-<p>그럼 다른 block 에서 <code class="language-plaintext highlighter-rouge">id</code>로 가져오려면 어떻게 해야될까??</p>
+<h3 id="컴포넌트-기반">컴포넌트 기반</h3>
 
-<p>HTML 에서 <code class="language-plaintext highlighter-rouge">&lt;h1 id="name"&gt;Name&lt;/h1&gt;</code> 이런식의 블럭이 있다면 간단하게 <code class="language-plaintext highlighter-rouge">document.getElementById("name")</code> 이런식으로 호출 할 수 있다.</p>
+<hr>
 
-<blockquote>
-  <p>주의할점! <code class="language-plaintext highlighter-rouge">getElementById</code> 는 특정항목 하나만 가져오기 때문에 변수 하나에 저장되지만, <code class="language-plaintext highlighter-rouge">getElementByClass</code> 혹은 <code class="language-plaintext highlighter-rouge">getElementByTag</code> 는 여러 값들을 가져오기 때문에 배열로 할당되어 저장된다</p>
-</blockquote>
+<p>스스로 상태를 관리하는 캡슐화된 컴포넌트를 만들 수 있다.</p>
 
-<p>하지만 가장 많이 사용하는 것은 <code class="language-plaintext highlighter-rouge">querySelector</code>라고 한다. 하나만 가져오고 가져오는것 중 하나를 CSS형태로 선택 할 수 있어서 가장 깔끔하고 보기 편하다고 한다. 그리고 만약 겹친다면 첫번 째 나오는 element 만 가져온다!!</p>
+<p>여기서 상태를 관리한다는 말이 리액트에서는 꽤나 중요한 포인트라 할 수 있다. 우선 리액트 컴포넌트는 <code class="language-plaintext highlighter-rouge">render()</code> 함수를 이용하여, 데이터를 입력받아 화면에 표시할 내용을 리턴을 한다는 점에서 자바스크립트와 다르다. 그리고 이러한 컴포넌트는 <code class="language-plaintext highlighter-rouge">this.props</code>를 이용하여 입력 데이터를 다루고, <code class="language-plaintext highlighter-rouge">this.state</code>로 접근 할 수 있다. 그리고 상태 데이터가 바뀌면 <code class="language-plaintext highlighter-rouge">render()</code> 가 다시 호출되어 갱신이 되는 구조이다.</p>
 
-<ul>
-  <li>
-    <p>배열로 가져오려면 <code class="language-plaintext highlighter-rouge">quertySelectorAll</code>을 사용하면된다.</p>
+<p>말로 들어서는 이해가 잘 되지 않고, 역시 예제를 보며 학습을 하는것이 필요할 것 같다.</p>
 
-    <p><code class="language-plaintext highlighter-rouge">document.querySelector('.class_name block')</code></p>
+<p>또하나의 큰 장점을 <code class="language-plaintext highlighter-rouge">React Native</code> 로의 방향이 자유롭다는 것이다. <code class="language-plaintext highlighter-rouge">Native</code> 언어란, iOS app 에서 Swift 처럼 그 자체의 OS 를 활용하여 만드는 앱인데, 물론 제작을 하여도 진짜 Native 급으로 속도가 나오지는 않는다. 하지만, 그와 비슷한 속도를 낼 수 있고 문법 자체가 너무나도 비슷해서, 금방 금방 수정하여 웹뿐만이 아닌 페이스북 혹은 인스타그램 처럼 웹앱으로 변환이 가능하다.</p>
 
-    <p><code class="language-plaintext highlighter-rouge">docuemnt.querySelector('.class_name block:first-child)</code> 도 가능하다</p>
-  </li>
-</ul>
+<h3 id="jsx-의-활용">JSX 의 활용</h3>
 
-<blockquote>
-  <p><code class="language-plaintext highlighter-rouge">document.querySelector("#id")</code> 는 <code class="language-plaintext highlighter-rouge">document.getElementById("hello")</code> 와 동일하다</p>
-</blockquote>
+<p>JSX 가 나옴으로써, <code class="language-plaintext highlighter-rouge">React</code> 가 단순히 Javascript 처럼 활용하는것이 아니라, 마치 <code class="language-plaintext highlighter-rouge">HTML</code> 에서 사용한 것 처럼도 사용 할 수 있게 되었다. 이것또한 예제를 보고 확인해보자</p>
 
-<p>그럼 이렇게 호출된 <code class="language-plaintext highlighter-rouge">name</code> 은 <code class="language-plaintext highlighter-rouge">name.innerText()</code> 함수를 통해 안에 있는 내용을 변경 할 수 있게 해준다.</p>
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">Title</span> <span class="o">=</span> <span class="p">(</span>
+  <span class="p">&lt;</span><span class="nt">h3</span> <span class="na">id</span><span class="p">=</span><span class="s">"title"</span> <span class="na">onMouseEnter</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">mouse enter</span><span class="dl">"</span><span class="p">)</span><span class="si">}</span><span class="p">&gt;</span>
+    Hello I am a title
+  <span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+<span class="p">);</span>
+</code></pre></div></div>
 
-<h3 id="events">Events</h3>
-
-<p><code class="language-plaintext highlighter-rouge">variable.addEventListener("event", function);</code> 으로 선언을 해주면, 어떠한 event 를 할 때마다 function을 실행 해 줄것이다. event의 예로는 click, hover 기타등등이 있다. <code class="language-plaintext highlighter-rouge">console.dir</code> 으로 어떠한 함수들이 있는지 확인 할 수 있다.</p>
+<p>이런식으로 <code class="language-plaintext highlighter-rouge">CreateElement</code> 를 사용하는것이 아니라, 마치 <code class="language-plaintext highlighter-rouge">HTML</code> 에서 태그를 해서 만드는것인데, 동시에 자바스크립트를 활용하여 만들 수 있게 되었다. 하지만 코드를 잘 보면 <code class="language-plaintext highlighter-rouge">CreateElement</code> 를 아예 안쓰는 것은 아니고, 이런식으로 <code class="language-plaintext highlighter-rouge">HTML</code> 처럼 편하게 적어두면 <code class="language-plaintext highlighter-rouge">BABEL</code> 이란 컴파일러에서 내부적으로 <code class="language-plaintext highlighter-rouge">CreateElement</code> 형으로 변환을 하여 적어주는 것이다.</p>
 
 <blockquote>
-  <p>function을 호출할 떄 함수의 이름만 호출함에 주의! function()이렇게 아예 실행하도록 주지않고, 이름만 넘겨줘서 Event가 발생 시 function 을 실행하도록 한다</p>
+  <p>여기서 중요한점은 함수나 변수명을 할 때 대문자로 시작을 해야 실제 HTML 의 태그 <code class="language-plaintext highlighter-rouge">button</code> 같은것과 헷갈리지 않는다</p>
 </blockquote>
 
-<p><code class="language-plaintext highlighter-rouge">HTMLHeadingElement</code> 에 들어가서 어떠한 API 들을 사용 할 수 있는지 확인을 해봐도 된다.</p>
+<h3 id="state-란">State 란</h3>
 
-<p>혹은 <code class="language-plaintext highlighter-rouge">variable.on'event' = function</code> 이런식으로 선언을 해도 같은식으로 동작하게 만들 수 있다</p>
+<p>기본적으로 데이터가 저장되는 곳이라고 보면 쉽다.</p>
 
-<p>여기서 <code class="language-plaintext highlighter-rouge">Event</code>의 특징으로 또 강력한 것은 <code class="language-plaintext highlighter-rouge">Window</code> 객체에서 불러 올 수 있다는 것이다. <code class="language-plaintext highlighter-rouge">Window</code>는 현재 실행을 하는 그 화면을 말하는 것이고, 그 화면에서 정말 많은것을 구현 할 수 있다. 예를들어 <code class="language-plaintext highlighter-rouge">resize</code> 로 윈도우 크기를 조절하고 있을때의 이벤트, 혹은 <code class="language-plaintext highlighter-rouge">copy</code>, <code class="language-plaintext highlighter-rouge">offline</code> 등등 정말 많은 이벤트들이 구현되어 있고, 우리는 사용만 하면 된다!!</p>
+<p>간단한 클릭형 버튼을 만들어서 확인해보자</p>
 
-<p>내가 만약 <code class="language-plaintext highlighter-rouge">class</code> 를 받아와서 사용중에 있는데, 현재 내가 사용하고 있는 클래스는 폰트지정 클래스이고, 색변환 클래스를 추가하고 싶으면 어떻게 사용해야 될까??</p>
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span> <span class="p">=</span> <span class="s">"text/babel"</span><span class="p">&gt;</span>
+	const root = document.getElementById("root");
+	let counter = 0;
+	function countUp()<span class="si">{</span>
+		<span class="nx">counter</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+	<span class="si">}</span>
+	function Container() <span class="si">{</span>
+		<span class="k">return</span> <span class="p">(</span>
+			<span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+				<span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span> Total Clicks: <span class="si">{</span><span class="nx">counter</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+				<span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="nx">countUp</span><span class="si">}</span><span class="p">&gt;</span>Click me<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+			<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+		<span class="p">);</span>
+	<span class="si">}</span>
+	ReactDom.render(<span class="p">&lt;</span><span class="nc">Container</span> <span class="p">/&gt;</span>, root);
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</code></pre></div></div>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">handleCheck</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="nx">clickedClass</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">clicked</span><span class="dl">"</span><span class="p">;</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">h1</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="nx">clickedClass</span><span class="p">))</span> <span class="p">{</span>
-    <span class="nx">h1</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">clickedClass</span><span class="p">);</span>
-  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="nx">h1</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">clickedClass</span><span class="p">);</span>
-  <span class="p">}</span>
+<p>이렇게만 보면 좋은 코드같아 보인다. 하지만 여기는 맹점이 있는데, 바로 Rendering 을 한번밖에 하지 않아, 아무리 클릭을 눌러도 웹상에서는 안보이는다는 것이다. 그래서 <code class="language-plaintext highlighter-rouge">State</code> 가 필요하게 된다.</p>
+
+<p>가장 손쉬운 방법은 countUp 함수가 할 때마다, <code class="language-plaintext highlighter-rouge">Render</code> 를 다시 불러주게 되면 해결 할 수 있다. 하지만 아무리봐도, 효율적인 부분이 아니다. 왜냐면 전부 다 렌더링을 하는것이 비효율적이고, 계속 렌더링을 해줘야되는것을 함수를 만들면서 생각을 하면서 설계를 해줘야 되기 떄문이다. 그럼 <code class="language-plaintext highlighter-rouge">그 변수</code>만 업데이트를 하려면 어떻게 해야될까?? 그게 바로 <code class="language-plaintext highlighter-rouge">React</code> 의 최대 장점이다. 즉 매우 <code class="language-plaintext highlighter-rouge">Interactive</code> 하고 <code class="language-plaintext highlighter-rouge">Effective</code> 한 프로그램이 만들어 지는것이다.</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span> <span class="p">=</span> <span class="s">"text/babel"</span><span class="p">&gt;</span>
+	const root = document.getElementById("root");
+	function Container() <span class="si">{</span>
+		<span class="kd">let</span> <span class="p">[</span><span class="nx">counter</span><span class="p">,</span> <span class="nx">modifier</span><span class="p">]</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+		<span class="c1">//counter = data[0], modifier = data[1]</span>
+		<span class="kd">const</span> <span class="nx">onClick</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+			<span class="nx">modifier</span><span class="p">(</span><span class="nx">counter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+			<span class="c1">//OR modifier((current) =&gt; current + 1);</span>
+		<span class="p">};</span>
+		<span class="k">return</span> <span class="p">(</span>
+			<span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+				<span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span> Total Clicks: <span class="si">{</span><span class="nx">counter</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+				<span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="nx">onClick</span><span class="si">}</span><span class="p">&gt;</span>Click me<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+			<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+		<span class="p">);</span>
+	<span class="si">}</span>
+	ReactDom.render(<span class="p">&lt;</span><span class="nc">Container</span> <span class="p">/&gt;</span>, root);
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</code></pre></div></div>
+
+<p>이렇게 설정하면, 클릭이 일어날 때 마다, modifier에서 counter + 1 로 해준 값이 반환되며, <code class="language-plaintext highlighter-rouge">modify</code> 가 일어날 때 마다, 딱 그 부분만 렌더링을 해주는 것이다.</p>
+
+<h3 id="props">Props</h3>
+
+<p>Props 란 부모 컴포넌트로부터 자식 컴포넌트로에게 데이터를 보낼 수 있게 해주는 방법이다.</p>
+
+<blockquote>
+  <p>Ex) 버튼의 스타일을 하나하나 다 바꿔주지 말고, 어차피 공통으로 갈거면 그러한 템플릿을 저장해 두었다가 사용하면 더 편하지 않겠냐 라는 것..!!</p>
+</blockquote>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Btn</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">reutnr</span><span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">button</span>
+      <span class="na">styles</span><span class="p">=</span>
+    <span class="p">&gt;</span>
+      <span class="si">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">text</span><span class="si">}</span>
+    <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nc">Btn</span> <span class="na">text</span><span class="p">=</span><span class="s">"Save changes"</span> <span class="p">/&gt;</span>
+      <span class="p">&lt;</span><span class="nc">Btn</span> <span class="na">text</span><span class="p">=</span><span class="s">"Continue"</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>이런식으로 사용할 수 있다. 그럼 원래 있던 클래스 <code class="language-plaintext highlighter-rouge">class = "test"</code> 라 두면 추가되면 <code class="language-plaintext highlighter-rouge">class = "test clicked"</code> 이렇게 되고 remove시 <code class="language-plaintext highlighter-rouge">class = "test"</code> 이렇게 돌아갈 것이다. 이런식으로 클래스의 중첩이 가능하다!!</p>
+<p>이런식으로 사용 할 수 있다.</p>
 
-<p>이걸 편하게 해주는것이 <code class="language-plaintext highlighter-rouge">toggle function</code> 은 어떤 역할이다.</p>
+<h3 id="react-memo">React Memo</h3>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">handleCheck</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nx">h1</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">toggle</span><span class="p">(</span><span class="dl">"</span><span class="s2">clicked</span><span class="dl">"</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div></div>
+<p>위 예제를 보면 버튼이 <code class="language-plaintext highlighter-rouge">Save Changes</code> 와 <code class="language-plaintext highlighter-rouge">Continue</code> 두개가 생성되었다. 하지만 만약, <code class="language-plaintext highlighter-rouge">State</code>를 활용하여, 첫 버튼만 렌더를 해주려고 해도, 두 버튼 다 렌더링이되는 불상사가 발생한다. 이러한 사태를 어떻게 막을 수 있을까?? 리액트 메모를 활용하여 막을 수 있다.</p>
 
-<p>이런식으로 한번에 해결 할 수 있다.</p>
+<blockquote>
+  <p>const MemorizedBtn = React.memo(Btn);</p>
+</blockquote>
 
-<p>즉 toggle 은 이미 있는지 확인을 해서, 있다면 삭제하고 없다면 생성해주는 불을 키고 끄는것과 비슷한 행동을 해주는 함수라 할 수 있다.</p>
-
-<p>다음 포스트부터는 실제로 코드를 작성해서 VanillaJS 앱을 만들어보겠다</p>
+<p>라고 활용하고나서, 그 후 Btn이 아니라 MemorizedBtn 으로 호출하면 렌더링을 한번만 해도 될 수 있게 된다!!</p>
 
 
     </div>
 
 </article>
 <div class="post-nav">
-<a class="previous" href="/javascript/2022/01/22/javascript-coding-1.html" title="바닐라JS로 앱 만들기 1">바닐라JS로 앱 만들기 1</a><a class="next" href="/sql/2022/01/24/sql-practice.html" title="SQL 예제를 풀어보자">SQL 예제를 풀어보자</a>
+<a class="previous" href="/deep-thought/2022/01/26/deep-thoughts-1.html" title="The mind behind linux">The mind behind linux</a><span></span>
 </div>
 <div class="post-related">
       <div>Related Articles</div>
       <ul>
-        <li><a class="post-link" href="/javascript/2022/01/14/javascript-object.html" title="SQL 예제를 풀어보자">자바스크립트 객체</a></li>
-<li><a class="post-link" href="/javascript/2022/01/20/javascript-property.html" title="SQL 예제를 풀어보자">자바스크립트 객체 프로퍼티 설정</a></li>
-<li><a class="post-link" href="/blog/2022/01/12/install-blog-comment.html" title="SQL 예제를 풀어보자">깃허브 블로그 코멘트 설치하기</a></li>
-<li><a class="post-link" href="/blog/2022/01/12/how-to-install-github-io.html" title="SQL 예제를 풀어보자">깃허브 블로그 설치하기</a></li>
+        <li><a class="post-link" href="/javascript/2022/01/22/javascript-coding-1.html" title="">바닐라JS로 앱 만들기 1</a></li>
+<li><a class="post-link" href="/javascript/2022/01/17/javascript-data-structure.html" title="">자바스크립트 자료구조와 자료형</a></li>
+<li><a class="post-link" href="/javascript/2022/01/20/prototype.html" title="">자바스크립트 프로토타입과 클래스</a></li>
+<li><a class="post-link" href="/javascript/2022/01/22/javascript-coding-2.html" title="">바닐라JS로 앱 만들기 2</a></li>
 </ul>
     </div>
 <div class="post-comments">

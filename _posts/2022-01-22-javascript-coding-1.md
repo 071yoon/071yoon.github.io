@@ -3,7 +3,7 @@ layout: post
 title: 바닐라JS로 앱 만들기 1
 subtitle: 자바스크립트 프로젝트 기초에대해서 배워보자
 categories: javascript
-tags: [javascript, TIL]
+tags: [javascript, TIL, web]
 ---
 
 ## 자바스크립트 실습
