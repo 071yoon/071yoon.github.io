@@ -1,4 +1,141 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-02-02T16:16:36+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi&apos;s tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">리액트JS로 앱 만들기 1</title><link href="http://localhost:4000/react/2022/02/02/make-react-app-1.html" rel="alternate" type="text/html" title="리액트JS로 앱 만들기 1" /><published>2022-02-02T00:00:00+09:00</published><updated>2022-02-02T00:00:00+09:00</updated><id>http://localhost:4000/react/2022/02/02/make-react-app-1</id><content type="html" xml:base="http://localhost:4000/react/2022/02/02/make-react-app-1.html"><![CDATA[<h2 id="react란-무엇인가">React란 무엇인가</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-02-03T14:59:57+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi&apos;s tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">몬티 홀 문제</title><link href="http://localhost:4000/deep-thought/2022/02/03/monty-hall.html" rel="alternate" type="text/html" title="몬티 홀 문제" /><published>2022-02-03T00:00:00+09:00</published><updated>2022-02-03T00:00:00+09:00</updated><id>http://localhost:4000/deep-thought/2022/02/03/monty-hall</id><content type="html" xml:base="http://localhost:4000/deep-thought/2022/02/03/monty-hall.html"><![CDATA[<h2 id="몬티-홀-문제">몬티 홀 문제</h2>
+
+<hr />
+
+<h3 id="문제-분석">문제 분석</h3>
+
+<p>몬티 홀 문제는 영화 <code class="language-plaintext highlighter-rouge">21</code>에서 처음 공개된 아이디어이다. 잠깐 문제를 보고 가자면</p>
+
+<blockquote>
+  <p>Suppose you’re on a game show, and you’re given the choice of three doors. Behind one door is a car, behind the others, goats. You pick a door, say #1, and the host, who knows what’s behind the doors, opens another door, say #3, which has a goat. He says to you, “Do you want to pick door #2?” Is it to your advantage to switch your choice of doors?</p>
+</blockquote>
+
+<blockquote>
+  <p>당신이 한 게임 쇼에 참여하여 세 문들 중 하나를 고를 기회를 가졌다고 생각해봐라. 한 문 뒤에는 자동차가 있으며, 다른 두 문 뒤에는 염소가 있다. 당신은 1번 문을 고르고, 문 뒤에 무엇이 있는지 아는 사회자는 염소가 있는 3번 문을 연다. 그는 당신에게 “2번 문을 고르고 싶습니까?”라고 묻는다. 당신의 선택을 바꾸는 것은 이득이 되는가?</p>
+</blockquote>
+
+<p>즉 간단히 말하면</p>
+
+<ol>
+  <li>문 3개가 있는데 한 문 뒤에는 자동차가 있고 나머지 두 문 뒤에는 염소가 있다. 참가자는 이 상황에서 문을 하나 선택하여 그 뒤에 있는 상품을 얻는다.</li>
+  <li>참가자가 어떤 문을 선택하면 사회자는 나머지 두 문 중에 염소가 있는 문 한 개를 열어 참가자에게 그 문에 염소가 있다고 확인시켜준다.</li>
+  <li>그 후 사회자는 참가자에게 선택한 문을 닫혀있는 다른 문으로 선택을 바꿀 기회를 준다.</li>
+</ol>
+
+<p>얼핏보기에는 정말 간단해 보이는 문제고 나도 처음 문제를 접했을 때는 엥?? 이게 왜 이렇게 핫한 주제일까 라는 생각까지 했다. 하지만 여기서 중요한 점은 <code class="language-plaintext highlighter-rouge">사회자는 어디에 스포츠카가 있는지 알고있다</code> 라는것이 조건부 확률의 전제로 들어간다는 것이다. 정말 단순해 보이는 문제인데, 어째서 이게 많은 수학자들에게 항의 메일이 오도록 했을까??</p>
+
+<blockquote>
+  <p>IQ 200 인 사람도 처음에 틀리고, 노벨상 수상자 까지 문제가 잘못됐다고 메일을 보냈다고 한다…!!</p>
+</blockquote>
+
+<h3 id="my-thoughts">My Thoughts</h3>
+
+<hr />
+
+<p>우선 정답은 바꾸었을 때의 확률이 2/3 이고, 바꾸지 않았을 때의 확률은 1/3이므로, 당연히 바꾸는 것이 확률적으로 맞다!!</p>
+
+<p>이제, 나의 처음 접근을 한번 살펴보자. 아마 많은 사람들일 나처럼 생각했겠지만, 당연히 50프로라고 생각을 했다. 그리고 이건 부끄러운 생각이 절대 아니다. 직관적으로 생각을 해보면 그렇기 때문이다. 내가 우선 선택을 하였고, 사회자가 둘중 하나를 오픈을 해 주었다. 그 시점을 독립사건으로 본다고 하면, 나는 둘중 하나를 개봉하는것이기 때문에, 확률은 마치 반반처럼 보이지만, 그렇게 단순한 문제가 아니다. 왜냐하면 확률적으로 접근을 해야하기 때문이다.</p>
+
+<p>만약 처음에 내가 선택을 하지 않고, 사회자가 둘중 하나를 열어 준 다음 내가 선택을 하면 독립사건이 되어 50% 확률이 되는것이 수학적으롤도 맞다. 하지만, 내가 처음에 선택을 하였기 때문에, 바꾸지 않고 우승할 확률은 무조건 1/3 확률이고, 바꾸었을 때의 확률은 2/3이 된다. 여기서 중요한점은</p>
+
+<ol>
+  <li>사회자는 어디에 자동차에 있는지 이미 알고있다</li>
+  <li>내가 처음 선택을 하였다</li>
+</ol>
+
+<p>이렇게 두가지가 전제조건으로 나와있어야 조건부 확률로 성립을 한다는 것이다. 만약 사회자가 둘중 하나에 에라이~! 하고 아무거나 열어버린다면 자동차가 나올 수가 있고, 내가 처음 선택을 하지않았다면, 사회자가 어떤 문을 열어야 할 지 선택 할 지 모르기 때문에 전제가 틀려버린다. 아마 많은 사람들이 헷갈린 부분이 이러한 전제조건의 여부가 정확하게 확립되지 않아 헷갈린 것 같다. 하지만 이런식으로 이야기를 하여도 직관적으로 보기엔 정말 어렵다. 그러때는 역시 묻지마 코딩이 정답이다. C++ 로 코딩을 하면서 차근차근 왜 이러하게 나오지는 살펴보자</p>
+
+<h3 id="몬티-홀-문제-시뮬레이션-via-c">몬티 홀 문제 시뮬레이션 via C++</h3>
+
+<pre><code class="language-C++">#include &lt;iostream&gt;
+#include &lt;cstdlib&gt;
+#include &lt;ctime&gt;
+using namespace std;
+
+int main(){
+	srand(time(NULL));
+
+	int monty_sum = 0;
+	int dont_change_sum = 0;
+	int test_case = 0;
+	char simul_on;
+	cout &lt;&lt; "simulation counts : ";
+	cin &gt;&gt; test_case;
+	cout &lt;&lt; "check every simulations? (y/n) ";
+	cin &gt;&gt; simul_on;
+	for(int i = 0; i &lt; test_case; i++){
+		int chosen_door = rand() % 3;
+		int correct_door = rand() % 3;
+		if (simul_on == 'y')
+			cout &lt;&lt; "TEST CASE " &lt;&lt; i + 1 &lt;&lt; " Car is in " &lt;&lt; (char)(correct_door + 'A') &lt;&lt; " and my choice is " &lt;&lt; (char)(chosen_door + 'A') &lt;&lt; "\n";
+		if (correct_door == chosen_door){
+			if (simul_on == 'y')
+				cout &lt;&lt; "Monty-Hall X and got correct\n";
+			dont_change_sum += 1;
+		}
+		else{
+			if (simul_on == 'y')
+				cout &lt;&lt; "Monty-Hall X and got wrong\n";
+		}
+		if (correct_door == chosen_door){ // When you choose the coorect one at the first time -&gt; you will never be able to win
+			if (simul_on == 'y')
+				cout &lt;&lt; "Monty-Hall and got wrong\n";
+			continue;
+		}
+		else if (correct_door != chosen_door){ // When you choose the wrong one at the first time -&gt; you will get it for sure when you change
+			if (simul_on == 'y')
+				cout &lt;&lt; "Monty-Hall and got right\n";
+			monty_sum += 1;
+		}
+		// Since there is 1/3 possibility to win at the first time, possibility to get the prize is 2/3
+	}
+	cout &lt;&lt; "\nmonty possibility is : " &lt;&lt; ((double)monty_sum / (double)test_case) * (double)100 &lt;&lt; "%" &lt;&lt; "\ndon't change possibility is : " &lt;&lt; ((double)dont_change_sum / (double)test_case) * (double)100 &lt;&lt; "%" &lt;&lt; "\n";
+}
+</code></pre>
+
+<p>최대한 간략하면서, 직관적으로 보이게 짜보려고 했는데, 잘 됐을 지 모르겠다.
+테스트를 해본 결과 대략 10만번을 돌려보면, 66.95% 와 33.05% 가 나와 거의 2/3 과 1/3에 수렴하는것을 볼 수 있다.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>simulation counts : 100000
+check every simulations? <span class="o">(</span>y/n<span class="o">)</span> n
+
+monty possibility is : 66.95%
+don<span class="s1">'t change possibility is : 33.05%
+</span></code></pre></div></div>
+
+<p>여기서 시뮬레이션에 <code class="language-plaintext highlighter-rouge">y</code> 를 주면 실제 테스트케이스별로 확인도 할 수 있다.</p>
+
+<p>코드를 한번 설계를 해보면 왜 그런지 확실하게 알 수 있는데 확실하게 정의를 할 수 있다. 내가 몬티 홀을 믿고 무조건 바꾼다고 가정을 해보자. 그럼 당연하게 두가지 상황이 나온다.</p>
+
+<ol>
+  <li>내가 맞음</li>
+  <li>내가 틀림</li>
+</ol>
+
+<p>자동차를 개봉하기 전 확률상으로 보면 내가 맞을 확률은 1/3, 그리고 내가 틀릴 확률은 2/3 이다.</p>
+
+<p>여기서 만약 바꾸지 않고 똥고집을 부려 유지를 한다면, 그대로 1/3 확률로 나올 것이다. 하지만 바꾼다면 내가 처음에 틀린 경우 즉 2번으로 시작해서 무조건 맞으므로 맞을 확률이 2/3이 된다.</p>
+
+<p>이제 그럼 매우 간단한 로직으로 설명을 들 수 있다. 내가 몬티홀을 무조건 믿고 바꾼다고 생각을 해보자</p>
+
+<ol>
+  <li>내가 처음에 맞으면 무조건 틀림</li>
+  <li>내가 처음에 틀리면 무조건 맞음</li>
+</ol>
+
+<p>이렇게 설명 할 수 있다. 왜냐면 내가 바꿈으로써 나는 2개의 문을 동시에 확인하는 셈이 되어 버리기 때문이다. 그래서 처음에 맞을 확률 1/3, 처음에 틀릴 확률이 2/3 이므로 시뮬레이션을 돌려도 동일하게 나오는 것이다.</p>
+
+<p>사람의 말로만 들으면 충분히 헷갈릴 수 있다. 컴퓨터 공학도라면 직접 시뮬레이션을 돌려보며 생각을 해보는 것이 이해에 더 도움이 될거라 생각한다.</p>
+
+<h3 id="후기">후기</h3>
+
+<p>나무위키나 블로그들을 보면, 정말 많은 사람들이 다양한 이유로 다양한 설명들을 해놓은 것을 볼 수 있다. 그 중에, 수학적으로 접근을 하여 베이즈의 확률론으로 정리를 해놓은 사람, 혹은 경우의 수로 정리 한 사람, 문이 100개라고 가정을 하고 생각을 해보라는 사람.</p>
+
+<blockquote>
+  <p>잘 생각해보면 확률론으로 정리해놓은 것 빼고는 다 증명을 할 수 없는 말들이다</p>
+</blockquote>
+
+<p>하지만 이렇게 똑똑이들이 해놓은 증명을 보고도 이해가 잘 안된다면, 무작정 시뮬레이션을 해보고 코딩을 하며 문제를 더 완벽히 파악하고 큰 문제를 짧게 쪼개며 단순화 하는것이 더 도움이 될 수 있다는 생각이 든다.</p>]]></content><author><name>071yoon</name></author><category term="deep-thought" /><category term="deep-thought" /><category term="TIL" /><summary type="html"><![CDATA[몬티 홀 문제]]></summary></entry><entry><title type="html">리액트JS로 앱 만들기 1</title><link href="http://localhost:4000/react/2022/02/02/make-react-app-1.html" rel="alternate" type="text/html" title="리액트JS로 앱 만들기 1" /><published>2022-02-02T00:00:00+09:00</published><updated>2022-02-02T00:00:00+09:00</updated><id>http://localhost:4000/react/2022/02/02/make-react-app-1</id><content type="html" xml:base="http://localhost:4000/react/2022/02/02/make-react-app-1.html"><![CDATA[<h2 id="react란-무엇인가">React란 무엇인가</h2>
 
 <p>React는 간단하게 말해서, 웹의 <code class="language-plaintext highlighter-rouge">Framework</code>이다.</p>
 
@@ -529,7 +666,99 @@
 
 <hr />
 
-<p>타 언어들을 보면 비교연산자로 <code class="language-plaintext highlighter-rouge">==</code> 밖에 쓰지 않는데, 자바스크립트는 특이하게 <code class="language-plaintext highlighter-rouge">===</code> 를 주로 사용한다. 그렇다고해서 <code class="language-plaintext highlighter-rouge">==</code> 가 없다는 것은 아니다. 차이점은 <code class="language-plaintext highlighter-rouge">==</code> 은 값만 비교하는 것이고 <code class="language-plaintext highlighter-rouge">===</code> 는 <code class="language-plaintext highlighter-rouge">type</code> 까지 묶어서 비교를 한다는 점이다. 즉 <code class="language-plaintext highlighter-rouge">5 == '5'</code> 는 참이지만 <code class="language-plaintext highlighter-rouge">5 === '5'</code> 는 거짓이라는 것.</p>]]></content><author><name>071yoon</name></author><category term="javascript" /><category term="javascript" /><category term="TIL" /><category term="web" /><summary type="html"><![CDATA[자바스크립트 실습]]></summary></entry><entry><title type="html">자바스크립트 프로토타입과 클래스</title><link href="http://localhost:4000/javascript/2022/01/20/prototype.html" rel="alternate" type="text/html" title="자바스크립트 프로토타입과 클래스" /><published>2022-01-20T00:00:00+09:00</published><updated>2022-01-20T00:00:00+09:00</updated><id>http://localhost:4000/javascript/2022/01/20/prototype</id><content type="html" xml:base="http://localhost:4000/javascript/2022/01/20/prototype.html"><![CDATA[<h2 id="프로토타입과-프로토타입-상속">프로토타입과 프로토타입 상속</h2>
+<p>타 언어들을 보면 비교연산자로 <code class="language-plaintext highlighter-rouge">==</code> 밖에 쓰지 않는데, 자바스크립트는 특이하게 <code class="language-plaintext highlighter-rouge">===</code> 를 주로 사용한다. 그렇다고해서 <code class="language-plaintext highlighter-rouge">==</code> 가 없다는 것은 아니다. 차이점은 <code class="language-plaintext highlighter-rouge">==</code> 은 값만 비교하는 것이고 <code class="language-plaintext highlighter-rouge">===</code> 는 <code class="language-plaintext highlighter-rouge">type</code> 까지 묶어서 비교를 한다는 점이다. 즉 <code class="language-plaintext highlighter-rouge">5 == '5'</code> 는 참이지만 <code class="language-plaintext highlighter-rouge">5 === '5'</code> 는 거짓이라는 것.</p>]]></content><author><name>071yoon</name></author><category term="javascript" /><category term="javascript" /><category term="TIL" /><category term="web" /><summary type="html"><![CDATA[자바스크립트 실습]]></summary></entry><entry><title type="html">자바스크립트 객체 프로퍼티 설정</title><link href="http://localhost:4000/javascript/2022/01/20/javascript-property.html" rel="alternate" type="text/html" title="자바스크립트 객체 프로퍼티 설정" /><published>2022-01-20T00:00:00+09:00</published><updated>2022-01-20T00:00:00+09:00</updated><id>http://localhost:4000/javascript/2022/01/20/javascript-property</id><content type="html" xml:base="http://localhost:4000/javascript/2022/01/20/javascript-property.html"><![CDATA[<h1 id="객체-프로퍼티">객체 프로퍼티</h1>
+
+<p>프로퍼티란 단순히 <code class="language-plaintext highlighter-rouge">key-value</code> 가 아닌 더 유연한 자료구조로 사용 될 수 있으며, <code class="language-plaintext highlighter-rouge">getter</code>와 <code class="language-plaintext highlighter-rouge">setter</code> 등에 대해서 학습해보자</p>
+
+<h2 id="프로퍼티-플래그와-생성자">프로퍼티 플래그와 생성자</h2>
+
+<p>객체 프로퍼티는 값과 플래그라는 속성을 가진다</p>
+<ul>
+  <li>writable - true 라면 수정이 가능하다</li>
+  <li>enumerable - true 라면 반복문으로 나열 할 수 있다</li>
+  <li>configurable - true 라면 삭제나 플래그 수정이 가능하다</li>
+</ul>
+
+<p>평범한 방식으로 설계를 한다면, 프로퍼티는 모두 <code class="language-plaintext highlighter-rouge">true</code>이며, 언제든 수정 될 수 있다</p>
+
+<p><code class="language-plaintext highlighter-rouge">let descriptor = Object.getOwnPropertyDescriptor(obj, propertyName);</code></p>
+
+<p>여기서</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">obj</code> 란 정보를 얻고자 하는 객체</li>
+  <li><code class="language-plaintext highlighter-rouge">propertyName</code> 이란 정보를 얻고자 하는 객체 내 프로퍼티
+를 말한다</li>
+</ul>
+
+<p>예시</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span>
+<span class="p">};</span>
+
+<span class="kd">let</span> <span class="nx">descriptor</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">getOwnPropertyDescriptor</span><span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="dl">'</span><span class="s1">name</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">alert</span><span class="p">(</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">descriptor</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">2</span> <span class="p">)</span> <span class="p">);</span>
+<span class="cm">/* property descriptor:
+{
+  "value": "Yoon",
+  "writable": true,
+  "enumerable": true,
+  "configurable": true
+}
+*/</span>
+</code></pre></div></div>
+
+<p>이 상태에서 <code class="language-plaintext highlighter-rouge">Object.defineProperty</code>로 플래그를 변경 할 수 있다</p>
+
+<h2 id="getter-와-setter">getter 와 setter</h2>
+
+<p>객체의 프로퍼티를 나누는 두 분류로 볼 수 있다.</p>
+<ol>
+  <li>데이터 프로퍼티 -&gt; 현재까지 모두 사용한 프로퍼티</li>
+  <li>접근자 프로퍼티 -&gt; 새로운 종류로, 함수의 값을 획득하고 설정하는 역할을 담당한다</li>
+</ol>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="kd">get</span> <span class="nx">propName</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// getter, obj.propName실행시</span>
+  <span class="p">},</span>
+
+  <span class="kd">set</span> <span class="nx">propName</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// setter, obj.propName = value실행시</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>그럼 이걸 어떤식으로 활용 할 수 있을까??</p>
+
+<p><code class="language-plaintext highlighter-rouge">getter</code>와 <code class="language-plaintext highlighter-rouge">setter</code>를 실제 프로퍼티 값을 감싸는 래퍼로 사용하여, 프로퍼티 값을 통제하는 방법이 있다</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="kd">get</span> <span class="nx">name</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_name</span><span class="p">;</span>
+  <span class="p">},</span>
+
+  <span class="kd">set</span> <span class="nx">name</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">value</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">Too Short</span><span class="dl">"</span><span class="p">);</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_name</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">user</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">;</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">// Yoon</span>
+
+<span class="nx">user</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="dl">""</span><span class="p">;</span> <span class="c1">// 너무 짧은 이름을 할당하려 함</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">user</code>의 이름이 <code class="language-plaintext highlighter-rouge">_name</code>에 저장되어, 프로퍼티에 접근하는것이 <code class="language-plaintext highlighter-rouge">getter</code> 와 <code class="language-plaintext highlighter-rouge">setter</code>로 이루어진다.</p>
+
+<blockquote>
+  <p>솔직히 왜 사용하는지 이해는 되지 않지만, 그냥 이런게 있구나~ 하고 넘어가고 이후에 다시 확인해보기로 하자</p>
+</blockquote>]]></content><author><name>071yoon</name></author><category term="javascript" /><category term="javascript" /><category term="typescript" /><category term="TIL" /><category term="property" /><summary type="html"><![CDATA[객체 프로퍼티]]></summary></entry><entry><title type="html">자바스크립트 프로토타입과 클래스</title><link href="http://localhost:4000/javascript/2022/01/20/prototype.html" rel="alternate" type="text/html" title="자바스크립트 프로토타입과 클래스" /><published>2022-01-20T00:00:00+09:00</published><updated>2022-01-20T00:00:00+09:00</updated><id>http://localhost:4000/javascript/2022/01/20/prototype</id><content type="html" xml:base="http://localhost:4000/javascript/2022/01/20/prototype.html"><![CDATA[<h2 id="프로토타입과-프로토타입-상속">프로토타입과 프로토타입 상속</h2>
 
 <p>상속을 하는 이유??</p>
 
@@ -799,99 +1028,7 @@
 <span class="k">new</span> <span class="nx">User</span><span class="p">(</span><span class="dl">"</span><span class="s2">Dude</span><span class="dl">"</span><span class="p">).</span><span class="nx">sayHi</span><span class="p">();</span> <span class="c1">// Hello Dude!</span>
 </code></pre></div></div>
 
-<p>이런식으로 상속없이 메서드를 복사하여, 믹스인을 활용하면 <code class="language-plaintext highlighter-rouge">User</code> 가 예시처럼 동시에 상속받아, 추가로 구현된 메서드 또한 사용 할 수 있는 모습을 볼 수 있다.</p>]]></content><author><name>071yoon</name></author><category term="javascript" /><category term="javascript" /><category term="typescript" /><category term="TIL" /><category term="prototype" /><category term="class" /><summary type="html"><![CDATA[프로토타입과 프로토타입 상속]]></summary></entry><entry><title type="html">자바스크립트 객체 프로퍼티 설정</title><link href="http://localhost:4000/javascript/2022/01/20/javascript-property.html" rel="alternate" type="text/html" title="자바스크립트 객체 프로퍼티 설정" /><published>2022-01-20T00:00:00+09:00</published><updated>2022-01-20T00:00:00+09:00</updated><id>http://localhost:4000/javascript/2022/01/20/javascript-property</id><content type="html" xml:base="http://localhost:4000/javascript/2022/01/20/javascript-property.html"><![CDATA[<h1 id="객체-프로퍼티">객체 프로퍼티</h1>
-
-<p>프로퍼티란 단순히 <code class="language-plaintext highlighter-rouge">key-value</code> 가 아닌 더 유연한 자료구조로 사용 될 수 있으며, <code class="language-plaintext highlighter-rouge">getter</code>와 <code class="language-plaintext highlighter-rouge">setter</code> 등에 대해서 학습해보자</p>
-
-<h2 id="프로퍼티-플래그와-생성자">프로퍼티 플래그와 생성자</h2>
-
-<p>객체 프로퍼티는 값과 플래그라는 속성을 가진다</p>
-<ul>
-  <li>writable - true 라면 수정이 가능하다</li>
-  <li>enumerable - true 라면 반복문으로 나열 할 수 있다</li>
-  <li>configurable - true 라면 삭제나 플래그 수정이 가능하다</li>
-</ul>
-
-<p>평범한 방식으로 설계를 한다면, 프로퍼티는 모두 <code class="language-plaintext highlighter-rouge">true</code>이며, 언제든 수정 될 수 있다</p>
-
-<p><code class="language-plaintext highlighter-rouge">let descriptor = Object.getOwnPropertyDescriptor(obj, propertyName);</code></p>
-
-<p>여기서</p>
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">obj</code> 란 정보를 얻고자 하는 객체</li>
-  <li><code class="language-plaintext highlighter-rouge">propertyName</code> 이란 정보를 얻고자 하는 객체 내 프로퍼티
-를 말한다</li>
-</ul>
-
-<p>예시</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span>
-<span class="p">};</span>
-
-<span class="kd">let</span> <span class="nx">descriptor</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">getOwnPropertyDescriptor</span><span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="dl">'</span><span class="s1">name</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="nx">alert</span><span class="p">(</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">descriptor</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">2</span> <span class="p">)</span> <span class="p">);</span>
-<span class="cm">/* property descriptor:
-{
-  "value": "Yoon",
-  "writable": true,
-  "enumerable": true,
-  "configurable": true
-}
-*/</span>
-</code></pre></div></div>
-
-<p>이 상태에서 <code class="language-plaintext highlighter-rouge">Object.defineProperty</code>로 플래그를 변경 할 수 있다</p>
-
-<h2 id="getter-와-setter">getter 와 setter</h2>
-
-<p>객체의 프로퍼티를 나누는 두 분류로 볼 수 있다.</p>
-<ol>
-  <li>데이터 프로퍼티 -&gt; 현재까지 모두 사용한 프로퍼티</li>
-  <li>접근자 프로퍼티 -&gt; 새로운 종류로, 함수의 값을 획득하고 설정하는 역할을 담당한다</li>
-</ol>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="kd">get</span> <span class="nx">propName</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// getter, obj.propName실행시</span>
-  <span class="p">},</span>
-
-  <span class="kd">set</span> <span class="nx">propName</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// setter, obj.propName = value실행시</span>
-  <span class="p">}</span>
-<span class="p">};</span>
-</code></pre></div></div>
-
-<p>그럼 이걸 어떤식으로 활용 할 수 있을까??</p>
-
-<p><code class="language-plaintext highlighter-rouge">getter</code>와 <code class="language-plaintext highlighter-rouge">setter</code>를 실제 프로퍼티 값을 감싸는 래퍼로 사용하여, 프로퍼티 값을 통제하는 방법이 있다</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="kd">get</span> <span class="nx">name</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_name</span><span class="p">;</span>
-  <span class="p">},</span>
-
-  <span class="kd">set</span> <span class="nx">name</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">value</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">Too Short</span><span class="dl">"</span><span class="p">);</span>
-      <span class="k">return</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">_name</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">};</span>
-
-<span class="nx">user</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">;</span>
-<span class="nx">alert</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">// Yoon</span>
-
-<span class="nx">user</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="dl">""</span><span class="p">;</span> <span class="c1">// 너무 짧은 이름을 할당하려 함</span>
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">user</code>의 이름이 <code class="language-plaintext highlighter-rouge">_name</code>에 저장되어, 프로퍼티에 접근하는것이 <code class="language-plaintext highlighter-rouge">getter</code> 와 <code class="language-plaintext highlighter-rouge">setter</code>로 이루어진다.</p>
-
-<blockquote>
-  <p>솔직히 왜 사용하는지 이해는 되지 않지만, 그냥 이런게 있구나~ 하고 넘어가고 이후에 다시 확인해보기로 하자</p>
-</blockquote>]]></content><author><name>071yoon</name></author><category term="javascript" /><category term="javascript" /><category term="typescript" /><category term="TIL" /><category term="property" /><summary type="html"><![CDATA[객체 프로퍼티]]></summary></entry><entry><title type="html">자바스크립트 함수의 심화학습</title><link href="http://localhost:4000/javascript/2022/01/18/javascript-functions.html" rel="alternate" type="text/html" title="자바스크립트 함수의 심화학습" /><published>2022-01-18T00:00:00+09:00</published><updated>2022-01-18T00:00:00+09:00</updated><id>http://localhost:4000/javascript/2022/01/18/javascript-functions</id><content type="html" xml:base="http://localhost:4000/javascript/2022/01/18/javascript-functions.html"><![CDATA[<h2 id="나머지-매개변수와-스프레드-문법">나머지 매개변수와 스프레드 문법</h2>
+<p>이런식으로 상속없이 메서드를 복사하여, 믹스인을 활용하면 <code class="language-plaintext highlighter-rouge">User</code> 가 예시처럼 동시에 상속받아, 추가로 구현된 메서드 또한 사용 할 수 있는 모습을 볼 수 있다.</p>]]></content><author><name>071yoon</name></author><category term="javascript" /><category term="javascript" /><category term="typescript" /><category term="TIL" /><category term="prototype" /><category term="class" /><summary type="html"><![CDATA[프로토타입과 프로토타입 상속]]></summary></entry><entry><title type="html">자바스크립트 함수의 심화학습</title><link href="http://localhost:4000/javascript/2022/01/18/javascript-functions.html" rel="alternate" type="text/html" title="자바스크립트 함수의 심화학습" /><published>2022-01-18T00:00:00+09:00</published><updated>2022-01-18T00:00:00+09:00</updated><id>http://localhost:4000/javascript/2022/01/18/javascript-functions</id><content type="html" xml:base="http://localhost:4000/javascript/2022/01/18/javascript-functions.html"><![CDATA[<h2 id="나머지-매개변수와-스프레드-문법">나머지 매개변수와 스프레드 문법</h2>
 
 <h3 id="나머지-매개변수">나머지 매개변수</h3>
 <p>예전에 printf를 구현을 할 때, 가변인수라고 해서 <code class="language-plaintext highlighter-rouge">va args</code>를 써서 구현을 했던 적이 있는데, 그거에 비해서 정말 아니 이렇게 써도 된다고??? 할정도로 자바스크립트에서는 구현이 가능하다</p>
@@ -1185,249 +1322,4 @@
 
 <span class="nx">alert</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">json</span><span class="p">);</span> <span class="c1">//string</span>
 <span class="nx">alert</span><span class="p">(</span><span class="nx">json</span><span class="p">);</span><span class="c1">//student의 내용을 string으로 출력</span>
-</code></pre></div></div>]]></content><author><name>071yoon</name></author><category term="javascript" /><category term="javascript" /><category term="typescript" /><category term="TIL" /><category term="data structure" /><summary type="html"><![CDATA[자료구조와 자료형]]></summary></entry><entry><title type="html">자바스크립트 객체</title><link href="http://localhost:4000/javascript/2022/01/14/javascript-object.html" rel="alternate" type="text/html" title="자바스크립트 객체" /><published>2022-01-14T00:00:00+09:00</published><updated>2022-01-14T00:00:00+09:00</updated><id>http://localhost:4000/javascript/2022/01/14/javascript-object</id><content type="html" xml:base="http://localhost:4000/javascript/2022/01/14/javascript-object.html"><![CDATA[<p>최근에 마음이 맞는 사람들과 프로젝트를 진행해 보기로 했다. <code class="language-plaintext highlighter-rouge">Decrypto</code> 라는 보드게임을 웹 환경으로 만들어 보면 어떠겠는가 해서 시작된 프로젝트였다. 생각보다 관심이 있는 사람들이 많아 인원을 다 모으고 회의를 진행을 해 보았는데… 아뿔싸… 제대로 웹 개발을 해본 사람이 없는것! 그래서 프로젝트 바로 시작하는것은 잠시 미뤄두고 스터디를 진행을 해 보기로 하였다. 인원도 많았기에, 팀별로 <code class="language-plaintext highlighter-rouge">React</code>, <code class="language-plaintext highlighter-rouge">Type Script</code>, <code class="language-plaintext highlighter-rouge">Node.js</code> 이런식으로 인원을 쪼개 2주간 진행을 한 후 통합하여 실제로 웹 프로젝트를 진행해 보기로 했다.</p>
-
-<p>그렇게 우리팀인 <code class="language-plaintext highlighter-rouge">TypeScript</code> 스터디팀은 무작정 코드리뷰도 해보려고하고, 코드아카데미에서 따라도 해보았고 그렇게 결정 난 사안이 [아직 자바스크립트도 제대로 못한다] 였다. 그래서 이론적인 부분에서 자바스크립트를 조금 더 공부하고자 포스팅을 시작한다.</p>
-
-<h2 id="javscript---객체란-무엇인가">Javscript - 객체란 무엇인가</h2>
-
-<ul>
-  <li>
-    <p>객체란 다양한 데이터를 담을 수 있는 형태</p>
-  </li>
-  <li>
-    <p>키로 구분된 데이터의 집합이나 개체를 저장 할 수 있다</p>
-  </li>
-</ul>
-
-<h3 id="property">Property</h3>
-
-<ul>
-  <li>중괄호 <code class="language-plaintext highlighter-rouge">{...}</code> 를 통해 만들 수 있으며, 안에 <code class="language-plaintext highlighter-rouge">key[string]: value[all types]</code>에 해당한 프로퍼티가 들어가야 한다
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Object</span><span class="p">();</span>
-  <span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
-      <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">,</span>
-      <span class="na">age</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span>
-      <span class="dl">"</span><span class="s2">test case</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span>
-  <span class="p">};</span>
-</code></pre></div>    </div>
-    <blockquote>
-      <p>const로 선언된 상수 객체가 수정 될 수 있음에 주의</p>
-    </blockquote>
-  </li>
-</ul>
-
-<h3 id="대괄호-표기법">대괄호 표기법</h3>
-
-<ul>
-  <li>만약 내가 <code class="language-plaintext highlighter-rouge">user</code>에 <code class="language-plaintext highlighter-rouge">test case</code> 를 불러오고 싶어도 <code class="language-plaintext highlighter-rouge">user.test case</code> 라 선언 시 오류가 나기 때문에, user[“test case”] 이런식으로 대괄호로 읽어야 한다</li>
-  <li>혹은
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">let</span> <span class="nx">tmp</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">test case</span><span class="dl">"</span>
-  <span class="nx">user</span><span class="p">[</span><span class="nx">tmp</span><span class="p">]</span> <span class="o">=</span> <span class="kc">true</span>
-</code></pre></div>    </div>
-    <p>처럼 선언하여 사용 할 수 있다</p>
-  </li>
-</ul>
-
-<h3 id="in-연산자로-프로퍼티-존재-확인"><code class="language-plaintext highlighter-rouge">in</code> 연산자로 프로퍼티 존재 확인</h3>
-
-<ul>
-  <li>존재하지 않는 프로퍼티에 접근해도 에러가 발생하지 않고 <code class="language-plaintext highlighter-rouge">undefined</code>로 반환됨에 주의
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span> <span class="mi">25</span><span class="p">};</span>
-<span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">age</span><span class="dl">"</span> <span class="k">in</span> <span class="nx">user</span><span class="p">);</span> <span class="c1">//TRUE</span>
-<span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">work</span><span class="dl">"</span> <span class="k">in</span> <span class="nx">user</span><span class="p">);</span><span class="c1">//FALSE</span>
-<span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">user</span><span class="p">){</span>
-    <span class="nx">alert</span><span class="p">(</span><span class="nx">key</span><span class="p">);</span><span class="c1">//name, age</span>
-    <span class="nx">alert</span><span class="p">(</span><span class="nx">user</span><span class="p">[</span><span class="nx">key</span><span class="p">]);</span><span class="c1">//Yoon, 25</span>
-<span class="p">}</span>
-</code></pre></div>    </div>
-  </li>
-  <li>정렬방식은 정수 프로퍼티가 자동으로 정렬되고, 그 외는 추가 순서로 정렬됨에 주의
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">codes</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="dl">"</span><span class="s2">49</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Germany</span><span class="dl">"</span><span class="p">,</span>
-    <span class="dl">"</span><span class="s2">41</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Swiss</span><span class="dl">"</span><span class="p">,</span>
-    <span class="dl">"</span><span class="s2">44</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">England</span><span class="dl">"</span><span class="p">,</span>
-    <span class="c1">//..</span>
-    <span class="dl">"</span><span class="s2">1</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Korea</span><span class="dl">"</span>
-<span class="p">};</span>
-<span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">code</span> <span class="k">in</span> <span class="nx">codes</span><span class="p">){</span>
-    <span class="nx">alert</span><span class="p">(</span><span class="nx">code</span><span class="p">);</span><span class="c1">//1, 41, 44, 49</span>
-<span class="p">}</span>
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<h2 id="참조">참조</h2>
-
-<h3 id="참조에-의한-객체복사">참조에 의한 객체복사</h3>
-
-<p>객체와 원시타입의 차이는 <code class="language-plaintext highlighter-rouge">참조에 의해</code> 저장되고 복사된다는 점이다</p>
-
-<ul>
-  <li>예시
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">let</span> <span class="nx">message</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Hello!</span><span class="dl">"</span><span class="p">;</span>
-  <span class="kd">let</span> <span class="nx">phrase</span> <span class="o">=</span> <span class="nx">message</span><span class="p">;</span>
-</code></pre></div>    </div>
-    <p>이렇게 하면 message 와 phrase 둘 다 “Hello!”라는 문자열이 저장된다</p>
-  </li>
-  <li>이제 객체에 대한 참조를 해보면
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">YeongGi</span><span class="dl">"</span><span class="p">};</span>
-  <span class="kd">let</span> <span class="nx">admin</span> <span class="o">=</span> <span class="nx">user</span><span class="p">;</span>
-</code></pre></div>    </div>
-    <p>이런식으로 참조하여 복사를 하게되면, 이후 user의 값을 임의로 변경을 하여도 admin또한 변경이 된다</p>
-  </li>
-</ul>
-
-<h3 id="참조에-의한-비교">참조에 의한 비교</h3>
-<p>객체 비교 시 동등연산자 <code class="language-plaintext highlighter-rouge">==</code> 와 <code class="language-plaintext highlighter-rouge">===</code>의 차이를 알아보자</p>
-<ul>
-  <li>원래는 비교 시 피연산자인 두 객체가 동일한 경우 참을 반환한다
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">{};</span>
-  <span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">a</span><span class="p">;</span><span class="c1">//참조에 의한 복사</span>
-  <span class="nx">alert</span> <span class="p">(</span><span class="nx">a</span> <span class="o">==</span> <span class="nx">b</span><span class="p">);</span>
-  <span class="nx">alert</span> <span class="p">(</span><span class="nx">a</span> <span class="o">===</span> <span class="nx">b</span><span class="p">);</span>
-</code></pre></div>    </div>
-    <p>둘 다 참을 반환한다</p>
-  </li>
-  <li>독립된 객체의 비교
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">{};</span>
-  <span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="p">{};</span>
-  <span class="nx">alert</span> <span class="p">(</span> <span class="nx">a</span> <span class="o">==</span> <span class="nx">b</span><span class="p">);</span><span class="c1">//false</span>
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<h3 id="객체의-복사">객체의 복사</h3>
-<p>기존의 객체와 같으면서 독립적인 객체를 만들고 싶다면 두가지정도 방법이 존재한다</p>
-<ol>
-  <li><code class="language-plaintext highlighter-rouge">for loop</code> 을 돌며 복사</li>
-  <li><code class="language-plaintext highlighter-rouge">Object assign</code>을 활용</li>
-</ol>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
-	<span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">,</span>
-	<span class="na">age</span><span class="p">:</span> <span class="mi">25</span>
-<span class="p">};</span>
-
-<span class="kd">let</span> <span class="nx">clone</span> <span class="o">=</span> <span class="p">{};</span><span class="c1">//새로운 빈 객체</span>
-
-<span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">user</span><span class="p">){</span><span class="c1">//1번의 방법</span>
-	<span class="nx">clone</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">user</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>
-<span class="p">}</span>
-
-<span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="nx">clone</span><span class="p">);</span><span class="c1">//2번의 방법</span>
-</code></pre></div></div>
-
-<h2 id="가비지-컬렉션">가비지 컬렉션</h2>
-
-<p>눈에 보이지 않는 메모리 관리를 한번에 해결해주는 방법으로, Java에서 사용했던것과 유사하다.</p>
-<blockquote>
-  <p><code class="language-plaintext highlighter-rouge">Reachable</code>한 값은 메모리에서 삭제하지 않음에 주의</p>
-</blockquote>
-
-<h3 id="point">Point</h3>
-<ul>
-  <li>가비지 컬렉션은 엔진이 자동으로 수행하므로 억지로 실행 할 수는 없다</li>
-  <li>객체는 도달 가능한 상태일 때 메모리에 남는다</li>
-  <li>참조된다고 도달이 되는것은 아니다
-    <ul>
-      <li>서로 연결된 객체들도 도달 불가능 할 수 있다</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="method-와-this">Method 와 this</h2>
-<p>객체는 개체를 표현하고자 할 때 생성되며, 객체의 프로퍼티로 함수를 할당해 객체에 할당 시킬 수 있다</p>
-
-<h2 id="method-생성">Method 생성</h2>
-
-<p><code class="language-plaintext highlighter-rouge">Method</code> 생성에는 다양한 방법들이 있고 하나씩 나열해보자</p>
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
-	<span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">,</span>
-	<span class="na">age</span><span class="p">:</span> <span class="mi">25</span>
-<span class="p">};</span>
-
-<span class="nx">user</span><span class="p">.</span><span class="nx">sayHi</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span><span class="c1">//방법1</span>
-	<span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hello!</span><span class="dl">"</span><span class="p">);</span>
-<span class="p">};</span>
-
-<span class="kd">function</span> <span class="nx">sayHi</span><span class="p">()</span> <span class="p">{</span><span class="c1">//방법2</span>
-	<span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hello!</span><span class="dl">"</span><span class="p">);</span>
-<span class="p">};</span>
-<span class="nx">user</span><span class="p">.</span><span class="nx">SayHi</span> <span class="o">=</span> <span class="nx">sayHi</span><span class="p">;</span>
-
-<span class="nx">user</span> <span class="o">=</span> <span class="p">{</span><span class="c1">//방법3</span>
-	<span class="nx">SayHi</span><span class="p">(){</span>
-		<span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hello!</span><span class="dl">"</span><span class="p">);</span>
-	<span class="p">}</span>
-<span class="p">};</span>
-</code></pre></div></div>
-<h3 id="this의-사용법"><code class="language-plaintext highlighter-rouge">this</code>의 사용법</h3>
-<p>아까 사용했던 <code class="language-plaintext highlighter-rouge">user.sayHi()</code> 같은 경우에, 내부 코드에서 객체를 사용하려면 어떻게 사용해야 될까??</p>
-
-<p><code class="language-plaintext highlighter-rouge">this</code> 키워드를 사용하여 객체에 접근 할 수 있다</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
-	<span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">,</span>
-	<span class="na">age</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span>
-
-	<span class="nx">sayHi</span><span class="p">()</span> <span class="p">{</span>
-		<span class="nx">alert</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
-<span class="c1">//or	alert(user.name);</span>
-	<span class="p">}</span>
-<span class="p">};</span>
-</code></pre></div></div>
-<p>처럼 사용 할 수 있으며, 다른 프로그래밍 언어와 다르게 모든 함수에 <code class="language-plaintext highlighter-rouge">this</code>를 사용 할 수 있다</p>
-
-<blockquote>
-  <p>this가 없는 화살표 함수</p>
-  <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
-	<span class="na">firstName</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">,</span>
-	<span class="nx">sayHi</span><span class="p">(){</span>
-		<span class="kd">let</span> <span class="nx">arrow</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">alert</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span><span class="p">);</span>
-		<span class="nx">arrow</span><span class="p">();</span>
-	<span class="p">}</span>
-<span class="p">};</span>
-<span class="nx">user</span><span class="p">.</span><span class="nx">sayHi</span><span class="p">();</span> <span class="c1">//Yoon</span>
-</code></pre></div>  </div>
-  <p>별개의 this가 만들어 지는것을 원하지 않고, 외부 컨텍스트에서 this를 사요하고 싶을 때 화살표 함수를 사용한다.</p>
-</blockquote>
-
-<h2 id="new-연산자와-생성자함수">New 연산자와 생성자함수</h2>
-<p>객체 리터럴을 사용하여 객체를 쉽게 만들 수 있지만, 여러개 객체를 관리 할 때 <code class="language-plaintext highlighter-rouge">new</code> 연산자와 생성자를 통해 유사한 객체를 복수로 만들 수 있다</p>
-
-<h3 id="생성자-함수">생성자 함수</h3>
-<p>특징</p>
-<ol>
-  <li>함수 이름의 첫글자는 대문자로 시작</li>
-  <li>반드시 <code class="language-plaintext highlighter-rouge">new</code> 연산자를 붙여 실행한다
-예시
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">User</span><span class="p">(</span><span class="nx">name</span><span class="p">){</span>
- <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
- <span class="k">this</span><span class="p">.</span><span class="nx">isAdmin</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">User</span><span class="p">(</span><span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">);</span>
-<span class="nx">alert</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">//Yoon</span>
-<span class="nx">alert</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">isAdmin</span><span class="p">);</span><span class="c1">//False</span>
-</code></pre></div>    </div>
-  </li>
-</ol>
-
-<h3 id="생성자-내-method">생성자 내 Method</h3>
-
-<p>생성자 함수를 사용하면 매개변수를 이용해 객체 내부를 구성 할 수 있다.</p>
-<blockquote>
-  <p>유연하게 사용 할 수 있게 도와준다</p>
-</blockquote>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">User</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
-	<span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
-
-	<span class="k">this</span><span class="p">.</span><span class="nx">sayHi</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">My name is </span><span class="dl">"</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">.</span><span class="dl">"</span><span class="p">);</span>
-	<span class="p">};</span>
-<span class="p">}</span>
-<span class="kd">let</span> <span class="nx">yoon</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">User</span><span class="p">(</span><span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">);</span>
-
-<span class="nx">yoon</span><span class="p">.</span><span class="nx">sayHi</span><span class="p">();</span> <span class="c1">//My name is Yoon.</span>
-</code></pre></div></div>]]></content><author><name>071yoon</name></author><category term="javascript" /><category term="javascript" /><category term="typescript" /><category term="method" /><category term="TIL" /><summary type="html"><![CDATA[최근에 마음이 맞는 사람들과 프로젝트를 진행해 보기로 했다. Decrypto 라는 보드게임을 웹 환경으로 만들어 보면 어떠겠는가 해서 시작된 프로젝트였다. 생각보다 관심이 있는 사람들이 많아 인원을 다 모으고 회의를 진행을 해 보았는데… 아뿔싸… 제대로 웹 개발을 해본 사람이 없는것! 그래서 프로젝트 바로 시작하는것은 잠시 미뤄두고 스터디를 진행을 해 보기로 하였다. 인원도 많았기에, 팀별로 React, Type Script, Node.js 이런식으로 인원을 쪼개 2주간 진행을 한 후 통합하여 실제로 웹 프로젝트를 진행해 보기로 했다.]]></summary></entry></feed>
+</code></pre></div></div>]]></content><author><name>071yoon</name></author><category term="javascript" /><category term="javascript" /><category term="typescript" /><category term="TIL" /><category term="data structure" /><summary type="html"><![CDATA[자료구조와 자료형]]></summary></entry></feed>
