@@ -1,4 +1,119 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-05-08T16:55:58+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi&apos;s tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">NEXT-Others-2</title><link href="http://localhost:4000/next.js/2022/05/08/next-others-2.html" rel="alternate" type="text/html" title="NEXT-Others-2" /><published>2022-05-08T00:00:00+09:00</published><updated>2022-05-08T00:00:00+09:00</updated><id>http://localhost:4000/next.js/2022/05/08/next-others-2</id><content type="html" xml:base="http://localhost:4000/next.js/2022/05/08/next-others-2.html"><![CDATA[<h2 id="environment-variables">Environment Variables</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-05-15T18:54:04+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi&apos;s tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">NEXT-API</title><link href="http://localhost:4000/next.js/2022/05/15/next-api.html" rel="alternate" type="text/html" title="NEXT-API" /><published>2022-05-15T00:00:00+09:00</published><updated>2022-05-15T00:00:00+09:00</updated><id>http://localhost:4000/next.js/2022/05/15/next-api</id><content type="html" xml:base="http://localhost:4000/next.js/2022/05/15/next-api.html"><![CDATA[<h2 id="api-routes">API Routes</h2>
+
+<h3 id="intro">Intro</h3>
+
+<p><code class="language-plaintext highlighter-rouge">pages/api</code> 안에 있는 어떤 파일이든 전부 <code class="language-plaintext highlighter-rouge">/api/*/</code>로 접근 할 수 있으며, <code class="language-plaintext highlighter-rouge">page</code> 대신 API 최종점으로 여겨진다. 이 API들은 전부 server-side 전용이며, Client-side의 번들 사이즈를 증가시키지는 않는다.</p>
+
+<p>예를들어, 다음과 같이 <code class="language-plaintext highlighter-rouge">pages/api/users.js</code>가 리턴하는 <code class="language-plaintext highlighter-rouge">json</code>같응ㄴ 경우는 status 200으로 소통한다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">handler</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">200</span><span class="p">).</span><span class="nx">json</span><span class="p">({</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">YeongGi Yoon</span><span class="dl">"</span> <span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>이러한 API route가 작동하려면, 함수를 default 로 export 해야하며, 다음과 같은 인자들을 받는다</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">req</code>: http.IncomingMessage의 객체 중 하나 + pre-built middleware</li>
+  <li><code class="language-plaintext highlighter-rouge">res</code>: http.ServerResponse의 객체 중 하나 + helper functions</li>
+</ul>
+
+<p>다양한 HTTP API route를 처리하기 위해, request handler에 다음과 같이 <code class="language-plaintext highlighter-rouge">req.method</code>를 활용할 수 있다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">handler</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">method</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">POST) {
+		//POST에 해당하는 req
+	}
+	else {
+		//그 외
+	}
+}
+</span></code></pre></div></div>
+
+<h4 id="use-cases">Use Cases</h4>
+
+<p>새로운 프로젝트들을 위해서, 모든 API 와 API route를 만들 수 있다. 만약 존재하는 API가 있따면, API Route를 통한 forward call을 하지 않아도 된다. 다양한 API Route의 활용법은 다음과 같다.</p>
+
+<ul>
+  <li>외부 서비스의 URL를 마스킹 하는것 (<code class="language-plaintext highlighter-rouge">https://company.com/secret-url</code> 대신 <code class="language-plaintext highlighter-rouge">/api/secret</code>을 사용하게 하는 것)</li>
+  <li>서버에서 환경변수를 사용하여 더욱 안전하게 외부 서비스를 접근하는 법</li>
+</ul>
+
+<h4 id="caveats">Caveats</h4>
+
+<p>API Routes는 <code class="language-plaintext highlighter-rouge">CORS header</code>를 특정화하지 않는다. 즉, 일반적으로 같은 근간이라 할 수 있다. 이와같은 행동은 <code class="language-plaintext highlighter-rouge">CORS middleware</code>에서 정의 할 수 있다.
+API Route는 <code class="language-plaintext highlighter-rouge">next export</code>와 같이 사용될 수 없다.</p>
+
+<h3 id="dynamic-api-routes">Dynamic API Routes</h3>
+
+<p>API Route같은 경우에 <code class="language-plaintext highlighter-rouge">Dynamic Routes</code>를 바로 지원하며, 즉 <code class="language-plaintext highlighter-rouge">pages</code> 안에 파일 이름 규칙이 있다면 가져 올 수 있다. 예를들어 <code class="language-plaintext highlighter-rouge">pages/api/post/[pid].js</code> 와 같은 API Route가 존재한다면 코드로는 다음과 같다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">handler</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">pid</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">query</span><span class="p">;</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="s2">`Post: </span><span class="p">${</span><span class="nx">pid</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>이렇게 되면, <code class="language-plaintext highlighter-rouge">/api/post/abc</code>에 해당하는 request가 <code class="language-plaintext highlighter-rouge">Post: abc</code>에서 응답을 받을 수 있다.</p>
+
+<p>RESTful한 방식으로 routes를 만들면 다음과 같다.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">GET api/posts</code> : 모든 포스트에 대한 list를 가져온다</li>
+  <li><code class="language-plaintext highlighter-rouge">GET api/posts/12345</code> : 12345에 대한 포스트 정보만 가져온다</li>
+</ul>
+
+<p>그럼 모델을 두가지 분류로 나눌 수 있다.</p>
+
+<ol>
+  <li>1번 옵션
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">/api/posts.js</code></li>
+      <li><code class="language-plaintext highlighter-rouge">/api/posts/[postId].js</code></li>
+    </ul>
+  </li>
+  <li>2번 옵션
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">/api/posts/index.js</code></li>
+      <li><code class="language-plaintext highlighter-rouge">/api/posts/[postId].js</code></li>
+    </ul>
+  </li>
+</ol>
+
+<p>두가지 다 동일하지만, 세번째 옵션 <code class="language-plaintext highlighter-rouge">/api/posts/[postId].js</code> 같은 경우에는 Dynamic Routes가 <code class="language-plaintext highlighter-rouge">undefined</code>한 상태가 없기에 유효하지 않다.</p>
+
+<h4 id="catch-all-api-routes">Catch all API routes</h4>
+
+<p>API Route는 <code class="language-plaintext highlighter-rouge">...</code>을 추가하여 모든 루트를 추가할 수 있다. 예를 들어 <code class="language-plaintext highlighter-rouge">pages/api/post/[...slug].js</code> 는 <code class="language-plaintext highlighter-rouge">/api/post/a</code>와 매칭되며, <code class="language-plaintext highlighter-rouge">/api/post/a/b</code> 와 <code class="language-plaintext highlighter-rouge">/api/post/a/b/c</code> 모두 매칭이 된다. 이렇게 매칭된 인자들은 query parameter로 넘겨지며, 항상 배열이 된다. 즉 <code class="language-plaintext highlighter-rouge">/api/post/a</code>라는 루트는 <code class="language-plaintext highlighter-rouge">{ "slug": ["a"]}</code> 라는 <code class="language-plaintext highlighter-rouge">query object</code>를 가지게 된다. 만약 <code class="language-plaintext highlighter-rouge">/api/post/a/b</code> 라면 <code class="language-plaintext highlighter-rouge">{ "slug": ["a", "b"]}</code> 처럼 가지게 된다.</p>
+
+<p>종합하여 보면 <code class="language-plaintext highlighter-rouge">pages/api/post/[...slug].js</code> 라는 API Route 는 다음과 같이 생겼다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">handler</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">slug</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">query</span><span class="p">;</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="s2">`Post: </span><span class="p">${</span><span class="nx">slug</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="dl">"</span><span class="s2">, </span><span class="dl">"</span><span class="p">)}</span><span class="s2">`</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>그럼 <code class="language-plaintext highlighter-rouge">/api/post/a/b/c</code> 라는 request는 <code class="language-plaintext highlighter-rouge">Post: a, b, c</code>로 응답을 받게된다.</p>
+
+<h4 id="optional-catch-all-api-routes">Optional catch all API routes</h4>
+
+<p>이중괄후를 사용하여 모든 루트를 찾는 방법또한 사용 할 수 있다. <code class="language-plaintext highlighter-rouge">[[...slug]]</code> 처럼 사용하면 되며 <code class="language-plaintext highlighter-rouge">pages/api/post[[...slug]].js</code> 가 <code class="language-plaintext highlighter-rouge">/api/post</code> 와 <code class="language-plaintext highlighter-rouge">/api/post/a</code> 와 <code class="language-plaintext highlighter-rouge">/api/post/a/b</code> 모두 매칭 된다고 볼 수 있다.</p>
+
+<h4 id="caveats-1">Caveats</h4>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">pages/api/post/create.js</code> 는 <code class="language-plaintext highlighter-rouge">/api/post/create</code> 과 매칭된다.</li>
+  <li><code class="language-plaintext highlighter-rouge">pages/api/post/[pid].js</code> 는 <code class="language-plaintext highlighter-rouge">/api/post/1</code>, 와 <code class="language-plaintext highlighter-rouge">/api/post/abc,</code> 과 매칭되며 <code class="language-plaintext highlighter-rouge">/api/post/create</code> 과는 매칭되지 않는다.</li>
+  <li><code class="language-plaintext highlighter-rouge">pages/api/post/[...slug].js</code> 는 <code class="language-plaintext highlighter-rouge">/api/post/1/2</code> 와 <code class="language-plaintext highlighter-rouge">/api/post/a/b/c</code>와 매칭되며 <code class="language-plaintext highlighter-rouge">/api/post/create</code> 나 <code class="language-plaintext highlighter-rouge">/api/post/abc</code>와는 매칭되지 않는다.</li>
+</ul>
+
+<h3 id="api-middlewares">API Middlewares</h3>
+
+<h3 id="response-helpers">Response Helpers</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+</code></pre></div></div>]]></content><author><name>071yoon</name></author><category term="next.js" /><category term="next.js" /><category term="javascript" /><category term="web" /><category term="study" /><summary type="html"><![CDATA[API Routes]]></summary></entry><entry><title type="html">NEXT-Others-2</title><link href="http://localhost:4000/next.js/2022/05/08/next-others-2.html" rel="alternate" type="text/html" title="NEXT-Others-2" /><published>2022-05-08T00:00:00+09:00</published><updated>2022-05-08T00:00:00+09:00</updated><id>http://localhost:4000/next.js/2022/05/08/next-others-2</id><content type="html" xml:base="http://localhost:4000/next.js/2022/05/08/next-others-2.html"><![CDATA[<h2 id="environment-variables">Environment Variables</h2>
 
 <h3 id="loading-environment-variables">Loading Environment Variables</h3>
 
@@ -1520,101 +1635,4 @@ pnpm create next-app <span class="nt">--</span> <span class="nt">--ts</span>
 
 <p>앞으로 1주반 후에 결과가 나올텐데, 다음글이 소프트웨어 마에스트로 관련 글이라면 아마 합격을 했을것이고, 아예 딴 글이거나 올라오지 않는다면 떨어졌을것이다.</p>
 
-<p>이렇게 열심히 무언가를 위해서 준비한것은 정말 수능 이후로 처음인것 같았다. 열심히 준비한만큼 좋은 결과가 있기를 바라지만, 그렇지 않더라도 값진 경험을 했다고 생각하고 더 발전하는 계기가 되었다고 생각할것이다.</p>]]></content><author><name>071yoon</name></author><category term="retrospect" /><category term="me" /><category term="retrospect" /><summary type="html"><![CDATA[Intro]]></summary></entry><entry><title type="html">서버 맛보기</title><link href="http://localhost:4000/server/2022/02/23/server.html" rel="alternate" type="text/html" title="서버 맛보기" /><published>2022-02-23T00:00:00+09:00</published><updated>2022-02-23T00:00:00+09:00</updated><id>http://localhost:4000/server/2022/02/23/server</id><content type="html" xml:base="http://localhost:4000/server/2022/02/23/server.html"><![CDATA[<h2 id="what-is-nodejs">What is Node.js</h2>
-
-<p>Javscript는 알다시피 HTML 을 활용하기 위해서 만들어진 언어이며, 컴파일은 브라우저가 담당한다.</p>
-
-<blockquote>
-  <p>Chrome 은 V8, FireFox 는 SpiderMonkey ..</p>
-</blockquote>
-
-<p>그리고 Chrome V8 해석엔진이 워낙 좋아서, 해당 엔진을 사용하여 자체를 따로 출시하여 만든것이 Node.js 즉 크롬의 자바스크립트 엔진</p>
-
-<p>자바스크립트를 브라우저 내에서 사용하는것이 아닌 다른 환경에서도 실행을 할 수 있게 도와주기 위한 도구, 즉 런타임 실행환경이라 볼 수 있다</p>
-
-<p>이제 Node.js 덕분에 JavaScript를 프로그래밍 언어처럼 만들 수 도 있고, 서버도 쉽게 만들 수 있음!!</p>
-
-<p>그리고 Node.js 의 가장 큰 장점은 Non-blocking I/O 를 활용한다는점!!</p>
-
-<h2 id="nodejs의-특징">Node.js의 특징</h2>
-
-<ol>
-  <li>Event Driven</li>
-  <li>Non-blocking I/O</li>
-</ol>
-
-<p>일반적인 서버와 Node.js Non-Blocking 의 특징을 알아보면 일반 서버라면, 요청을 처리하는 과정이 FIFO 으로 제일 먼저 들어온 요청부터 처리하지만, Node.js 라면 일단 I/O 를 다 받아보고 빨리 완료될 것 부터 확인을 해서 처리를 가능하게 해준다.</p>
-
-<p>Node.js의 강점을 보여주는 부분</p>
-
-<ol>
-  <li>SNS</li>
-  <li>Chatting</li>
-  <li>WebServer</li>
-</ol>
-
-<p>으로 볼 수 있다.</p>
-
-<p>즉 간단한 서비스나 프로토 타입을 만들기에 정말 좋지만, 처리속도가 타 서버들보다 떨어 질 수 있으며, Node.js의 특징인 Non-Blocking 처리방식 또한, 다른 언어에서도 구현 할 수 있다.</p>
-
-<h2 id="rest-api">REST API</h2>
-
-<h3 id="api">API</h3>
-
-<p>API 란 무엇인가.</p>
-
-<p>Application Programming Interface 라고 부르며, 간단한 통신 규약이라 볼 수 있다. 간단하게 말하면 다른 프로그램들 간에 소통을 할 수 있게 데이터를 가져오는 방법이다.</p>
-
-<h3 id="rest-api-1">REST API</h3>
-
-<p>Representational State Transfer</p>
-
-<p>서버를 RESTFUL 하게 짠다는건 무엇일까??</p>
-
-<p>HTTP 의 4가지 요청 (GET, POST, PUT, DELETE) 를 REST 원칙에 대하여 써보자!</p>
-
-<blockquote>
-  <p>대표적으로 6가지의 특징이 있다</p>
-</blockquote>
-
-<ol>
-  <li>Uniform Interface
-    <ol>
-      <li>인터페이스는 일관성이 있어야 된다</li>
-      <li>하나의 URL 로는 하나의 Data만 가져와야된다</li>
-      <li>간결하고 예측가능해야된다</li>
-      <li>URL 이름짓기 관습을 따라야한다</li>
-    </ol>
-  </li>
-  <li>Client-Server 역할을 구분한다
-    <ol>
-      <li>URL 하나만 알면 서버에 있는 자료를 사용</li>
-      <li>고객에게 서버의 역할을 맡기거나 DB 를 꺼내오게 하면 안된다</li>
-    </ol>
-  </li>
-  <li>Stateless
-    <ol>
-      <li>요청들은 각각 독립적으로 처리되어야 한다</li>
-      <li>요청1이 성공하면 요청2를 보내주고 하는 식의 요청은 안된다</li>
-      <li>요청하나 만으로 자료를 가져올 수 있게 설정</li>
-    </ol>
-  </li>
-  <li>Cacheable
-    <ol>
-      <li>요청을 통해 보내는 자료들은 캐싱이 되어야 한다</li>
-    </ol>
-  </li>
-  <li>Layered System
-    <ol>
-      <li>요청을 처리하는곳, DB에 저장하는곳 이런 여러가지 단계를 거쳐 요청을 처리해도 된다</li>
-      <li>여러개의 레이어를 거쳐 요청을 처리하게 만들자</li>
-    </ol>
-  </li>
-  <li>Code on Demand
-    <ol>
-      <li>서버는 고객에게 실제 실행 가능한 코드를 전송 할 수 있다</li>
-    </ol>
-  </li>
-</ol>
-
-<p>다음에는 실제로 Node.js 와 Express 를 사용해 MongoDB 와 연동을 해보자</p>]]></content><author><name>071yoon</name></author><category term="server" /><category term="server" /><category term="TIL" /><summary type="html"><![CDATA[What is Node.js]]></summary></entry></feed>
+<p>이렇게 열심히 무언가를 위해서 준비한것은 정말 수능 이후로 처음인것 같았다. 열심히 준비한만큼 좋은 결과가 있기를 바라지만, 그렇지 않더라도 값진 경험을 했다고 생각하고 더 발전하는 계기가 되었다고 생각할것이다.</p>]]></content><author><name>071yoon</name></author><category term="retrospect" /><category term="me" /><category term="retrospect" /><summary type="html"><![CDATA[Intro]]></summary></entry></feed>
