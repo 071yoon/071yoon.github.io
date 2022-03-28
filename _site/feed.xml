@@ -1,4 +1,78 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-02-23T20:11:26+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi&apos;s tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">서버 맛보기</title><link href="http://localhost:4000/server/2022/02/23/server.html" rel="alternate" type="text/html" title="서버 맛보기" /><published>2022-02-23T00:00:00+09:00</published><updated>2022-02-23T00:00:00+09:00</updated><id>http://localhost:4000/server/2022/02/23/server</id><content type="html" xml:base="http://localhost:4000/server/2022/02/23/server.html"><![CDATA[<h2 id="what-is-nodejs">What is Node.js</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-03-28T16:17:39+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi&apos;s tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">SW Maestro 지원 후기</title><link href="http://localhost:4000/retrospect/2022/03/03/sw-maestro.html" rel="alternate" type="text/html" title="SW Maestro 지원 후기" /><published>2022-03-03T00:00:00+09:00</published><updated>2022-03-03T00:00:00+09:00</updated><id>http://localhost:4000/retrospect/2022/03/03/sw-maestro</id><content type="html" xml:base="http://localhost:4000/retrospect/2022/03/03/sw-maestro.html"><![CDATA[<h2 id="intro">Intro</h2>
+
+<p>오늘 심층면접을 끝으로 길고 길었던 소프트웨어 마에스트로의 지원이 끝났다.</p>
+
+<p>1월애 자소서를 쓰는것부터 시작해서 무려 두달이나 걸려서 오늘 최종 면접까지 가게 되었다. 끝나고 나니 아쉬운 부분도 있지만, 우선 정말 후련하고 후회는 없다.</p>
+
+<h2 id="1-자소서-예의는-있지">1. 자소서 [예의는 있지?]</h2>
+
+<p>자소서를 쓰는 단계였다. 하지만 인터넷 어디를 찾아봐도 자소서에서 떨어졌다는 이야기는 없다. 하지만 자소서는 면접질문에서 부메랑처럼 날아 올 수 있기에 최대한 사실대로 솔직하게 나의 정보를 어필하는것이 좋다고 판단했다. 그래서 꾸밈없이 정말 내가 개발하고 싶은 정보나 나의 철학을 정말 아낌없이 표현했다. 그리고 당연히 합격했다…</p>
+
+<blockquote>
+  <p>하지만 자소서의 내용은 평생 쓸 일이 없었는데… 읍읍..</p>
+</blockquote>
+
+<h2 id="2-1차-코딩테스트-너-코딩할-줄-아니">2. 1차 코딩테스트 [너 코딩할 줄 아니?]</h2>
+
+<p>1차 코딩테스트는 사실 별거 없었다. 시간만 충분했다면 웹까지 8문제 전부 어렵지 않게 풀 수 있을 수준이였다. 물론 시간이 문제여서 알고리즘 6번째 문제는 풀지 못했지만, 그래도 나쁘지 않게 보았고, 끝나자 마자 “아..! 붙겠다..!” 라는 생각을 했다.</p>
+
+<p>결과는 당연히 붙었다. 사실 byukim 님이랑 [42서울에서 만난 같이 소마를 지원하신 저의 영혼의 파트너] 한달넘게 코딩테스트를 준비했기에, 1차에서 떨어질 걱정은 하지 않았다. 다행히 byukim님 또한 잘 붙어서 2차까지 가게 되었다.</p>
+
+<p>자세한 코딩테스트의 문제들은 보안상의 이유로 공개 할 수 없지만, 정말 백준 실버1 급의 문제들이 대거 나왔기 때문에, 평소에 알고리즘을 1회독이라도 했다면, 어렵지 않게 합격 할 수준이다.</p>
+
+<h2 id="3-2차-코딩테스트-응-안풀면-그만이야">3. 2차 코딩테스트 [응~ 안풀면 그만이야~]</h2>
+
+<p>42서울에서 느꼈지만, 나는 카더라 통신에 정말 약하다. 이번 역시 카더라 통신을 신뢰했지만 결과는 처참했다. 분명히, 2차에서는 1차 코테에 문제에서 업그레이드된 문제가 나온다고해서, 이분탐색과 다익스트라를 정말 달달 외우고 갔지만 한문제도 나오지 않았다… 그리고 정말 뜬금없이 유니온 파인드와 미친난이도의 구현문제가 나왔다.</p>
+
+<blockquote>
+  <p>백준 다이아분도 구현문제는 어려워서 못푸셨다고 한다</p>
+</blockquote>
+
+<p>구현문제같은 경우는 끝나고 찾아보니, 백준 테트리미노와 비슷했지만 DP를 활용해서 푸는 문제였다. 푼 사람말로는 무슨 4차원 DP(..?) 썼다고 들었는데 이걸 두시간안에 풀 수 있을 사람이 있을까..? 싶었다. 구현문제를 제외하고는 난이도는 평이했다. 하지만 SQL에서 실수하기 정말 쉬운 함정을 파뒀고 나를 포함한 많은 참가자들이 함정에 바로 푹 빠져버렸다. 이 문제에 대해서는 추후에 면접에서 나올 예정이다.. 그리고 웹은 생각보다 쉬웠지만, 알고리즘을 풀다가 못풀어 버렸다.</p>
+
+<p>사실 비하인드 스토리긴 하지만, 나는 웹과 알고리즘 3번을 코딩테스트 당시에 엄청 고민했다. 둘 다 풀 수 있을 수준이라고 생각했고, 아무래도 알고리즘을 최근에 엄청 열심히 했기에 조금만 더 생각해보면 풀릴거라 생각했다. 그리고 비슷한 문제를 백준에서 풀었기에 더 자신감이 있었을지도 모르겠다. 하지만 구현을 하면 할수록 개미지옥에 빠지는 느낌이였고 결국 두마리 토끼 다 놓쳐버렸다… 그냥 웹이나 할걸..</p>
+
+<p>그렇게 총 두문제 밖에 풀지 못했지만, 운이 좋은건지 문제가 전체적으로 어려웠던건지 2차 코딩테스트까지 합격하게 됐다. 그리고 포트폴리오 준비로 넘어갔다.</p>
+
+<h2 id="4-포트폴리오-타임어택-on">4. 포트폴리오 [타임어택 ON]</h2>
+
+<p>2차 합격은 화요일 오후쯤 나왔고, 금요일 4시까지 포트폴리오를 제출하라고 했다. 다행인것은 기본적인 템플릿을 제공해 주어 사실 채우라는것만 채우면 됐었다. 하지만 여기서 함정이 숨어 있었는데 바로..</p>
+
+<blockquote>
+  <p>3분안에 발표할 내용을 넣어주세요</p>
+</blockquote>
+
+<p>그렇게 채워서 나름대로 시간을 재고 발표를 해보니 시간은 이미 4분이 훌쩍 넘어가 있었다. 그래서 열심히 채웠던 내용을 빼고 또 빼고 해서 3분을 채워서 제출했다. 지금와서 드는 생각이지만, 어차피 발표할 때 빼고 발표하면 되니까 맘껏 꾹꾹 눌러 담을 걸 그랬다.</p>
+
+<p>나는 내가 정말 개발에 열정이 있고, 배포도 해봤고 협업도 잘했다..! 라고 표현하기 위해서 프로젝트 하나와, 내가 아직 제대로 개발한지는 1년밖에 되지 않았지만 그래도 정말 열심히 살았다는 증거를 보여주기 위해 자기소개 두개를 넣어서 진행했다.</p>
+
+<h2 id="5-면접-히히-죽어라">5. 면접 [히히 죽어라]</h2>
+
+<p>진짜 피말려서 죽는 줄 알았다… ㅋㅋㅋㅋ 끝나고 같이 면접하신 분이랑 점심을 먹고 헤어졌는데 정말 둘이서 실소를 했다가 아쉬워했다가 미친사람들처럼 밥을 먹었다…</p>
+
+<p>우선 3분 포트폴리오 발표부터 했는데, 이거부터 문제였다. 2번인 나는 1번 다음 발표여서 아..! 1번님 하는거보고 바로 전략을 세워야겠다..! 생각을 했는데 웬걸 1번님이 안오셔서 내가 1번이 되어버렸다.. 그래서 질문같은것도 내가 항상 1번으로 대답해야했다… ㅜㅜㅜㅜ 이렇게 운이 안좋을 수 있나…!!</p>
+
+<p>사실 발표를 준비 할 때 제일 걱정됐던게 3분을 넘기면 무슨일이 일어날지였다. 그런데 발표를 시작하자마자, 관계자분이 오셔서 스탑와치를 탁 두고 가셨다. 뭔가 보고 있으니 이미 시간이 2:59… 2:58… 이렇게 가고 있었다. 그래서 아차! 싶어서 빠르게 발표를 시작했다.</p>
+
+<p>발표연습을 꽤 했었기에 대충 3분 나오는것을 알고 있었지만, 면접관들 얼굴한번 화면한번 조작한번 하다보니 생각보다 시간적으로 오차가 생겼다. 그래서 딱 마지막으로 ‘저를 이러이러한 지원자로 기억해주셨으면 좋겠습니다~’ 라는 멘트를 하려고 했는데 3분이 딱 걸려버렸다. 처음에 무시하고 에이 5초정도는 봐주겠지 라고 생각했지만 타이머는 기계였다. 한치의 오차 없이 ‘띠…띠…띠…’ 소리가 면접실에 울렸고 나는 ‘넵 감사합니다’ 하고 끝이나버렸다… 그래도 거의 할말을 다 했기에 아쉬움은 없지만 그래도 마지막 멋진 멘트를 할 기회를 뺐겼다는것이 아쉬웠다.</p>
+
+<p>면접을 진행하다 보니 면접관들은 프로그래밍의 신이기 때문에 함부로 까불면 안된다는것을 배웠다. 다행히 나는 그렇게 어려운 API 나 Open Source 를 쓴것도 아니고, 그냥 React 로 프로젝트를 만들어 봤고 내가 아는선에서 발표를 진행했기에 그렇게 공격(?) 받지는 않았다. 하지만 나를 제외하고 3명은 전부 AI 를 활용했다고 발표했기에 엄청난 공격을 받으셨다.</p>
+
+<blockquote>
+  <p>근데 공격 받은게 좋은건지 그냥 관심없어서 넘어간게 좋은건지는 모르겠다</p>
+</blockquote>
+
+<p>나는 최대한 나에게 질문오는 것을 열심히 대답했다고 생각은 하는데, 면접관들이 보기엔 어떻게 생각할지 모르겠다. 하지만 면접은 자신감이라고 했다. 나는 모르든 맞든 내 대답이 앞뒤가 맞는 안맞든 그냥 자신감있게 뱉고 봤다. 지금 생각해보니 정말 막 대답을 해서 면접관 분들이 알아 들으셨을지도 잘 모르겠다.. ㅜㅜ</p>
+
+<p>그리고 꼬리질문은 정말 매서웠다. 내가 쓴 기술들을 정말로 알고 있는지 확인을 정말 많이하셨고, 나는 특별히 어려운 기술을 안써서 잘 넘어갔다고 생각한다. 그리고 개발론에대해서도 대뜸 물어보시는 면접관이 계셨는데, 한명만 제대로 답할 수 있었다…</p>
+
+<h2 id="후기">후기</h2>
+
+<p>그렇게 한시간의 5:5 면접을 끝내고 나의 소프트웨어 마에스트로 지원이 끝이났다. 솔직히 1월부터 현재까지 프로젝트 진행하랴, 알고리즘 준비하랴, 발표 및 면접 준비하랴 정말 열심히 살았다. 그렇게 좋아하는 게임도 단 한판도 못할정도로 바쁘게 살았고 농도가 짙은 방학을 보냈다고 생각한다. 솔직히 결과가 어떻게 될지는 예상하기 어렵다. 나의 열정과 잠재력은 충분히 보여줬다고 생각은 들지만, 면접관들이 보시기에 내 진심이 잘 통했는지 모르겠다. 나는 기술적인 스택이 부족한것을 알기에 애초에 중점을 팀워크를 잘하고 포텐셜이 충만한것으로 갔었는데, 내 전략이 잘 먹혔기를 기도할 뿐이다.</p>
+
+<p>앞으로 1주반 후에 결과가 나올텐데, 다음글이 소프트웨어 마에스트로 관련 글이라면 아마 합격을 했을것이고, 아예 딴 글이거나 올라오지 않는다면 떨어졌을것이다.</p>
+
+<p>이렇게 열심히 무언가를 위해서 준비한것은 정말 수능 이후로 처음인것 같았다. 열심히 준비한만큼 좋은 결과가 있기를 바라지만, 그렇지 않더라도 값진 경험을 했다고 생각하고 더 발전하는 계기가 되었다고 생각할것이다.</p>]]></content><author><name>071yoon</name></author><category term="retrospect" /><category term="me" /><category term="retrospect" /><summary type="html"><![CDATA[Intro]]></summary></entry><entry><title type="html">서버 맛보기</title><link href="http://localhost:4000/server/2022/02/23/server.html" rel="alternate" type="text/html" title="서버 맛보기" /><published>2022-02-23T00:00:00+09:00</published><updated>2022-02-23T00:00:00+09:00</updated><id>http://localhost:4000/server/2022/02/23/server</id><content type="html" xml:base="http://localhost:4000/server/2022/02/23/server.html"><![CDATA[<h2 id="what-is-nodejs">What is Node.js</h2>
 
 <p>Javscript는 알다시피 HTML 을 활용하기 위해서 만들어진 언어이며, 컴파일은 브라우저가 담당한다.</p>
 
@@ -592,7 +666,87 @@ don<span class="s1">'t change possibility is : 33.05%
 
 <blockquote>
   <p>{Y,y} {M,m} {D,d} 모두 형식이 다르다. [문자열 vs 숫자]</p>
-</blockquote>]]></content><author><name>071yoon</name></author><category term="sql" /><category term="sql" /><category term="qeury" /><summary type="html"><![CDATA[Why SQL?]]></summary></entry><entry><title type="html">바닐라JS로 앱 만들기 1</title><link href="http://localhost:4000/javascript/2022/01/22/javascript-coding-1.html" rel="alternate" type="text/html" title="바닐라JS로 앱 만들기 1" /><published>2022-01-22T00:00:00+09:00</published><updated>2022-01-22T00:00:00+09:00</updated><id>http://localhost:4000/javascript/2022/01/22/javascript-coding-1</id><content type="html" xml:base="http://localhost:4000/javascript/2022/01/22/javascript-coding-1.html"><![CDATA[<h2 id="자바스크립트-실습">자바스크립트 실습</h2>
+</blockquote>]]></content><author><name>071yoon</name></author><category term="sql" /><category term="sql" /><category term="qeury" /><summary type="html"><![CDATA[Why SQL?]]></summary></entry><entry><title type="html">바닐라JS로 앱 만들기 2</title><link href="http://localhost:4000/javascript/2022/01/22/javascript-coding-2.html" rel="alternate" type="text/html" title="바닐라JS로 앱 만들기 2" /><published>2022-01-22T00:00:00+09:00</published><updated>2022-01-22T00:00:00+09:00</updated><id>http://localhost:4000/javascript/2022/01/22/javascript-coding-2</id><content type="html" xml:base="http://localhost:4000/javascript/2022/01/22/javascript-coding-2.html"><![CDATA[<h2 id="자바스크립트를-browser로-로딩하기">자바스크립트를 Browser로 로딩하기</h2>
+
+<hr />
+
+<h3 id="document-object"><code class="language-plaintext highlighter-rouge">document</code> Object</h3>
+
+<p><code class="language-plaintext highlighter-rouge">console</code>에 <code class="language-plaintext highlighter-rouge">document</code>를 쓰면, 이미 정의되어 있는 함수인걸 알 수 있다.
+그럼 html 에서 <code class="language-plaintext highlighter-rouge">block</code>으로 지정한 부분을 자바스크립트에서 바로 가져올 수 있다.</p>
+
+<blockquote>
+  <p>ex) <code class="language-plaintext highlighter-rouge">document.title</code> -&gt; 내가 지정한 HTML 의 title</p>
+</blockquote>
+
+<p>즉 이렇게 하면 HTML 의 코드를 자바스크립트의 관점에서 볼 수 있게된다</p>
+
+<p>그럼 다른 block 에서 <code class="language-plaintext highlighter-rouge">id</code>로 가져오려면 어떻게 해야될까??</p>
+
+<p>HTML 에서 <code class="language-plaintext highlighter-rouge">&lt;h1 id="name"&gt;Name&lt;/h1&gt;</code> 이런식의 블럭이 있다면 간단하게 <code class="language-plaintext highlighter-rouge">document.getElementById("name")</code> 이런식으로 호출 할 수 있다.</p>
+
+<blockquote>
+  <p>주의할점! <code class="language-plaintext highlighter-rouge">getElementById</code> 는 특정항목 하나만 가져오기 때문에 변수 하나에 저장되지만, <code class="language-plaintext highlighter-rouge">getElementByClass</code> 혹은 <code class="language-plaintext highlighter-rouge">getElementByTag</code> 는 여러 값들을 가져오기 때문에 배열로 할당되어 저장된다</p>
+</blockquote>
+
+<p>하지만 가장 많이 사용하는 것은 <code class="language-plaintext highlighter-rouge">querySelector</code>라고 한다. 하나만 가져오고 가져오는것 중 하나를 CSS형태로 선택 할 수 있어서 가장 깔끔하고 보기 편하다고 한다. 그리고 만약 겹친다면 첫번 째 나오는 element 만 가져온다!!</p>
+
+<ul>
+  <li>
+    <p>배열로 가져오려면 <code class="language-plaintext highlighter-rouge">quertySelectorAll</code>을 사용하면된다.</p>
+
+    <p><code class="language-plaintext highlighter-rouge">document.querySelector('.class_name block')</code></p>
+
+    <p><code class="language-plaintext highlighter-rouge">docuemnt.querySelector('.class_name block:first-child)</code> 도 가능하다</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">document.querySelector("#id")</code> 는 <code class="language-plaintext highlighter-rouge">document.getElementById("hello")</code> 와 동일하다</p>
+</blockquote>
+
+<p>그럼 이렇게 호출된 <code class="language-plaintext highlighter-rouge">name</code> 은 <code class="language-plaintext highlighter-rouge">name.innerText()</code> 함수를 통해 안에 있는 내용을 변경 할 수 있게 해준다.</p>
+
+<h3 id="events">Events</h3>
+
+<p><code class="language-plaintext highlighter-rouge">variable.addEventListener("event", function);</code> 으로 선언을 해주면, 어떠한 event 를 할 때마다 function을 실행 해 줄것이다. event의 예로는 click, hover 기타등등이 있다. <code class="language-plaintext highlighter-rouge">console.dir</code> 으로 어떠한 함수들이 있는지 확인 할 수 있다.</p>
+
+<blockquote>
+  <p>function을 호출할 떄 함수의 이름만 호출함에 주의! function()이렇게 아예 실행하도록 주지않고, 이름만 넘겨줘서 Event가 발생 시 function 을 실행하도록 한다</p>
+</blockquote>
+
+<p><code class="language-plaintext highlighter-rouge">HTMLHeadingElement</code> 에 들어가서 어떠한 API 들을 사용 할 수 있는지 확인을 해봐도 된다.</p>
+
+<p>혹은 <code class="language-plaintext highlighter-rouge">variable.on'event' = function</code> 이런식으로 선언을 해도 같은식으로 동작하게 만들 수 있다</p>
+
+<p>여기서 <code class="language-plaintext highlighter-rouge">Event</code>의 특징으로 또 강력한 것은 <code class="language-plaintext highlighter-rouge">Window</code> 객체에서 불러 올 수 있다는 것이다. <code class="language-plaintext highlighter-rouge">Window</code>는 현재 실행을 하는 그 화면을 말하는 것이고, 그 화면에서 정말 많은것을 구현 할 수 있다. 예를들어 <code class="language-plaintext highlighter-rouge">resize</code> 로 윈도우 크기를 조절하고 있을때의 이벤트, 혹은 <code class="language-plaintext highlighter-rouge">copy</code>, <code class="language-plaintext highlighter-rouge">offline</code> 등등 정말 많은 이벤트들이 구현되어 있고, 우리는 사용만 하면 된다!!</p>
+
+<p>내가 만약 <code class="language-plaintext highlighter-rouge">class</code> 를 받아와서 사용중에 있는데, 현재 내가 사용하고 있는 클래스는 폰트지정 클래스이고, 색변환 클래스를 추가하고 싶으면 어떻게 사용해야 될까??</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">handleCheck</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">clickedClass</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">clicked</span><span class="dl">"</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">h1</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="nx">clickedClass</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nx">h1</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">clickedClass</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">h1</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">clickedClass</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>이런식으로 사용할 수 있다. 그럼 원래 있던 클래스 <code class="language-plaintext highlighter-rouge">class = "test"</code> 라 두면 추가되면 <code class="language-plaintext highlighter-rouge">class = "test clicked"</code> 이렇게 되고 remove시 <code class="language-plaintext highlighter-rouge">class = "test"</code> 이렇게 돌아갈 것이다. 이런식으로 클래스의 중첩이 가능하다!!</p>
+
+<p>이걸 편하게 해주는것이 <code class="language-plaintext highlighter-rouge">toggle function</code> 은 어떤 역할이다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">handleCheck</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">h1</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">toggle</span><span class="p">(</span><span class="dl">"</span><span class="s2">clicked</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>이런식으로 한번에 해결 할 수 있다.</p>
+
+<p>즉 toggle 은 이미 있는지 확인을 해서, 있다면 삭제하고 없다면 생성해주는 불을 키고 끄는것과 비슷한 행동을 해주는 함수라 할 수 있다.</p>
+
+<p>다음 포스트부터는 실제로 코드를 작성해서 VanillaJS 앱을 만들어보겠다</p>]]></content><author><name>071yoon</name></author><category term="javascript" /><category term="javascript" /><category term="TIL" /><category term="web" /><summary type="html"><![CDATA[자바스크립트를 Browser로 로딩하기]]></summary></entry><entry><title type="html">바닐라JS로 앱 만들기 1</title><link href="http://localhost:4000/javascript/2022/01/22/javascript-coding-1.html" rel="alternate" type="text/html" title="바닐라JS로 앱 만들기 1" /><published>2022-01-22T00:00:00+09:00</published><updated>2022-01-22T00:00:00+09:00</updated><id>http://localhost:4000/javascript/2022/01/22/javascript-coding-1</id><content type="html" xml:base="http://localhost:4000/javascript/2022/01/22/javascript-coding-1.html"><![CDATA[<h2 id="자바스크립트-실습">자바스크립트 실습</h2>
 
 <hr />
 
@@ -683,179 +837,7 @@ don<span class="s1">'t change possibility is : 33.05%
 
 <hr />
 
-<p>타 언어들을 보면 비교연산자로 <code class="language-plaintext highlighter-rouge">==</code> 밖에 쓰지 않는데, 자바스크립트는 특이하게 <code class="language-plaintext highlighter-rouge">===</code> 를 주로 사용한다. 그렇다고해서 <code class="language-plaintext highlighter-rouge">==</code> 가 없다는 것은 아니다. 차이점은 <code class="language-plaintext highlighter-rouge">==</code> 은 값만 비교하는 것이고 <code class="language-plaintext highlighter-rouge">===</code> 는 <code class="language-plaintext highlighter-rouge">type</code> 까지 묶어서 비교를 한다는 점이다. 즉 <code class="language-plaintext highlighter-rouge">5 == '5'</code> 는 참이지만 <code class="language-plaintext highlighter-rouge">5 === '5'</code> 는 거짓이라는 것.</p>]]></content><author><name>071yoon</name></author><category term="javascript" /><category term="javascript" /><category term="TIL" /><category term="web" /><summary type="html"><![CDATA[자바스크립트 실습]]></summary></entry><entry><title type="html">바닐라JS로 앱 만들기 2</title><link href="http://localhost:4000/javascript/2022/01/22/javascript-coding-2.html" rel="alternate" type="text/html" title="바닐라JS로 앱 만들기 2" /><published>2022-01-22T00:00:00+09:00</published><updated>2022-01-22T00:00:00+09:00</updated><id>http://localhost:4000/javascript/2022/01/22/javascript-coding-2</id><content type="html" xml:base="http://localhost:4000/javascript/2022/01/22/javascript-coding-2.html"><![CDATA[<h2 id="자바스크립트를-browser로-로딩하기">자바스크립트를 Browser로 로딩하기</h2>
-
-<hr />
-
-<h3 id="document-object"><code class="language-plaintext highlighter-rouge">document</code> Object</h3>
-
-<p><code class="language-plaintext highlighter-rouge">console</code>에 <code class="language-plaintext highlighter-rouge">document</code>를 쓰면, 이미 정의되어 있는 함수인걸 알 수 있다.
-그럼 html 에서 <code class="language-plaintext highlighter-rouge">block</code>으로 지정한 부분을 자바스크립트에서 바로 가져올 수 있다.</p>
-
-<blockquote>
-  <p>ex) <code class="language-plaintext highlighter-rouge">document.title</code> -&gt; 내가 지정한 HTML 의 title</p>
-</blockquote>
-
-<p>즉 이렇게 하면 HTML 의 코드를 자바스크립트의 관점에서 볼 수 있게된다</p>
-
-<p>그럼 다른 block 에서 <code class="language-plaintext highlighter-rouge">id</code>로 가져오려면 어떻게 해야될까??</p>
-
-<p>HTML 에서 <code class="language-plaintext highlighter-rouge">&lt;h1 id="name"&gt;Name&lt;/h1&gt;</code> 이런식의 블럭이 있다면 간단하게 <code class="language-plaintext highlighter-rouge">document.getElementById("name")</code> 이런식으로 호출 할 수 있다.</p>
-
-<blockquote>
-  <p>주의할점! <code class="language-plaintext highlighter-rouge">getElementById</code> 는 특정항목 하나만 가져오기 때문에 변수 하나에 저장되지만, <code class="language-plaintext highlighter-rouge">getElementByClass</code> 혹은 <code class="language-plaintext highlighter-rouge">getElementByTag</code> 는 여러 값들을 가져오기 때문에 배열로 할당되어 저장된다</p>
-</blockquote>
-
-<p>하지만 가장 많이 사용하는 것은 <code class="language-plaintext highlighter-rouge">querySelector</code>라고 한다. 하나만 가져오고 가져오는것 중 하나를 CSS형태로 선택 할 수 있어서 가장 깔끔하고 보기 편하다고 한다. 그리고 만약 겹친다면 첫번 째 나오는 element 만 가져온다!!</p>
-
-<ul>
-  <li>
-    <p>배열로 가져오려면 <code class="language-plaintext highlighter-rouge">quertySelectorAll</code>을 사용하면된다.</p>
-
-    <p><code class="language-plaintext highlighter-rouge">document.querySelector('.class_name block')</code></p>
-
-    <p><code class="language-plaintext highlighter-rouge">docuemnt.querySelector('.class_name block:first-child)</code> 도 가능하다</p>
-  </li>
-</ul>
-
-<blockquote>
-  <p><code class="language-plaintext highlighter-rouge">document.querySelector("#id")</code> 는 <code class="language-plaintext highlighter-rouge">document.getElementById("hello")</code> 와 동일하다</p>
-</blockquote>
-
-<p>그럼 이렇게 호출된 <code class="language-plaintext highlighter-rouge">name</code> 은 <code class="language-plaintext highlighter-rouge">name.innerText()</code> 함수를 통해 안에 있는 내용을 변경 할 수 있게 해준다.</p>
-
-<h3 id="events">Events</h3>
-
-<p><code class="language-plaintext highlighter-rouge">variable.addEventListener("event", function);</code> 으로 선언을 해주면, 어떠한 event 를 할 때마다 function을 실행 해 줄것이다. event의 예로는 click, hover 기타등등이 있다. <code class="language-plaintext highlighter-rouge">console.dir</code> 으로 어떠한 함수들이 있는지 확인 할 수 있다.</p>
-
-<blockquote>
-  <p>function을 호출할 떄 함수의 이름만 호출함에 주의! function()이렇게 아예 실행하도록 주지않고, 이름만 넘겨줘서 Event가 발생 시 function 을 실행하도록 한다</p>
-</blockquote>
-
-<p><code class="language-plaintext highlighter-rouge">HTMLHeadingElement</code> 에 들어가서 어떠한 API 들을 사용 할 수 있는지 확인을 해봐도 된다.</p>
-
-<p>혹은 <code class="language-plaintext highlighter-rouge">variable.on'event' = function</code> 이런식으로 선언을 해도 같은식으로 동작하게 만들 수 있다</p>
-
-<p>여기서 <code class="language-plaintext highlighter-rouge">Event</code>의 특징으로 또 강력한 것은 <code class="language-plaintext highlighter-rouge">Window</code> 객체에서 불러 올 수 있다는 것이다. <code class="language-plaintext highlighter-rouge">Window</code>는 현재 실행을 하는 그 화면을 말하는 것이고, 그 화면에서 정말 많은것을 구현 할 수 있다. 예를들어 <code class="language-plaintext highlighter-rouge">resize</code> 로 윈도우 크기를 조절하고 있을때의 이벤트, 혹은 <code class="language-plaintext highlighter-rouge">copy</code>, <code class="language-plaintext highlighter-rouge">offline</code> 등등 정말 많은 이벤트들이 구현되어 있고, 우리는 사용만 하면 된다!!</p>
-
-<p>내가 만약 <code class="language-plaintext highlighter-rouge">class</code> 를 받아와서 사용중에 있는데, 현재 내가 사용하고 있는 클래스는 폰트지정 클래스이고, 색변환 클래스를 추가하고 싶으면 어떻게 사용해야 될까??</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">handleCheck</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="nx">clickedClass</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">clicked</span><span class="dl">"</span><span class="p">;</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">h1</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="nx">clickedClass</span><span class="p">))</span> <span class="p">{</span>
-    <span class="nx">h1</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">clickedClass</span><span class="p">);</span>
-  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="nx">h1</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">clickedClass</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p>이런식으로 사용할 수 있다. 그럼 원래 있던 클래스 <code class="language-plaintext highlighter-rouge">class = "test"</code> 라 두면 추가되면 <code class="language-plaintext highlighter-rouge">class = "test clicked"</code> 이렇게 되고 remove시 <code class="language-plaintext highlighter-rouge">class = "test"</code> 이렇게 돌아갈 것이다. 이런식으로 클래스의 중첩이 가능하다!!</p>
-
-<p>이걸 편하게 해주는것이 <code class="language-plaintext highlighter-rouge">toggle function</code> 은 어떤 역할이다.</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">handleCheck</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nx">h1</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">toggle</span><span class="p">(</span><span class="dl">"</span><span class="s2">clicked</span><span class="dl">"</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p>이런식으로 한번에 해결 할 수 있다.</p>
-
-<p>즉 toggle 은 이미 있는지 확인을 해서, 있다면 삭제하고 없다면 생성해주는 불을 키고 끄는것과 비슷한 행동을 해주는 함수라 할 수 있다.</p>
-
-<p>다음 포스트부터는 실제로 코드를 작성해서 VanillaJS 앱을 만들어보겠다</p>]]></content><author><name>071yoon</name></author><category term="javascript" /><category term="javascript" /><category term="TIL" /><category term="web" /><summary type="html"><![CDATA[자바스크립트를 Browser로 로딩하기]]></summary></entry><entry><title type="html">자바스크립트 객체 프로퍼티 설정</title><link href="http://localhost:4000/javascript/2022/01/20/javascript-property.html" rel="alternate" type="text/html" title="자바스크립트 객체 프로퍼티 설정" /><published>2022-01-20T00:00:00+09:00</published><updated>2022-01-20T00:00:00+09:00</updated><id>http://localhost:4000/javascript/2022/01/20/javascript-property</id><content type="html" xml:base="http://localhost:4000/javascript/2022/01/20/javascript-property.html"><![CDATA[<h1 id="객체-프로퍼티">객체 프로퍼티</h1>
-
-<p>프로퍼티란 단순히 <code class="language-plaintext highlighter-rouge">key-value</code> 가 아닌 더 유연한 자료구조로 사용 될 수 있으며, <code class="language-plaintext highlighter-rouge">getter</code>와 <code class="language-plaintext highlighter-rouge">setter</code> 등에 대해서 학습해보자</p>
-
-<h2 id="프로퍼티-플래그와-생성자">프로퍼티 플래그와 생성자</h2>
-
-<p>객체 프로퍼티는 값과 플래그라는 속성을 가진다</p>
-<ul>
-  <li>writable - true 라면 수정이 가능하다</li>
-  <li>enumerable - true 라면 반복문으로 나열 할 수 있다</li>
-  <li>configurable - true 라면 삭제나 플래그 수정이 가능하다</li>
-</ul>
-
-<p>평범한 방식으로 설계를 한다면, 프로퍼티는 모두 <code class="language-plaintext highlighter-rouge">true</code>이며, 언제든 수정 될 수 있다</p>
-
-<p><code class="language-plaintext highlighter-rouge">let descriptor = Object.getOwnPropertyDescriptor(obj, propertyName);</code></p>
-
-<p>여기서</p>
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">obj</code> 란 정보를 얻고자 하는 객체</li>
-  <li><code class="language-plaintext highlighter-rouge">propertyName</code> 이란 정보를 얻고자 하는 객체 내 프로퍼티
-를 말한다</li>
-</ul>
-
-<p>예시</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span>
-<span class="p">};</span>
-
-<span class="kd">let</span> <span class="nx">descriptor</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">getOwnPropertyDescriptor</span><span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="dl">'</span><span class="s1">name</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="nx">alert</span><span class="p">(</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">descriptor</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">2</span> <span class="p">)</span> <span class="p">);</span>
-<span class="cm">/* property descriptor:
-{
-  "value": "Yoon",
-  "writable": true,
-  "enumerable": true,
-  "configurable": true
-}
-*/</span>
-</code></pre></div></div>
-
-<p>이 상태에서 <code class="language-plaintext highlighter-rouge">Object.defineProperty</code>로 플래그를 변경 할 수 있다</p>
-
-<h2 id="getter-와-setter">getter 와 setter</h2>
-
-<p>객체의 프로퍼티를 나누는 두 분류로 볼 수 있다.</p>
-<ol>
-  <li>데이터 프로퍼티 -&gt; 현재까지 모두 사용한 프로퍼티</li>
-  <li>접근자 프로퍼티 -&gt; 새로운 종류로, 함수의 값을 획득하고 설정하는 역할을 담당한다</li>
-</ol>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="kd">get</span> <span class="nx">propName</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// getter, obj.propName실행시</span>
-  <span class="p">},</span>
-
-  <span class="kd">set</span> <span class="nx">propName</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// setter, obj.propName = value실행시</span>
-  <span class="p">}</span>
-<span class="p">};</span>
-</code></pre></div></div>
-
-<p>그럼 이걸 어떤식으로 활용 할 수 있을까??</p>
-
-<p><code class="language-plaintext highlighter-rouge">getter</code>와 <code class="language-plaintext highlighter-rouge">setter</code>를 실제 프로퍼티 값을 감싸는 래퍼로 사용하여, 프로퍼티 값을 통제하는 방법이 있다</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="kd">get</span> <span class="nx">name</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_name</span><span class="p">;</span>
-  <span class="p">},</span>
-
-  <span class="kd">set</span> <span class="nx">name</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">value</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">Too Short</span><span class="dl">"</span><span class="p">);</span>
-      <span class="k">return</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">_name</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">};</span>
-
-<span class="nx">user</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">;</span>
-<span class="nx">alert</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">// Yoon</span>
-
-<span class="nx">user</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="dl">""</span><span class="p">;</span> <span class="c1">// 너무 짧은 이름을 할당하려 함</span>
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">user</code>의 이름이 <code class="language-plaintext highlighter-rouge">_name</code>에 저장되어, 프로퍼티에 접근하는것이 <code class="language-plaintext highlighter-rouge">getter</code> 와 <code class="language-plaintext highlighter-rouge">setter</code>로 이루어진다.</p>
-
-<blockquote>
-  <p>솔직히 왜 사용하는지 이해는 되지 않지만, 그냥 이런게 있구나~ 하고 넘어가고 이후에 다시 확인해보기로 하자</p>
-</blockquote>]]></content><author><name>071yoon</name></author><category term="javascript" /><category term="javascript" /><category term="typescript" /><category term="TIL" /><category term="property" /><summary type="html"><![CDATA[객체 프로퍼티]]></summary></entry><entry><title type="html">자바스크립트 프로토타입과 클래스</title><link href="http://localhost:4000/javascript/2022/01/20/prototype.html" rel="alternate" type="text/html" title="자바스크립트 프로토타입과 클래스" /><published>2022-01-20T00:00:00+09:00</published><updated>2022-01-20T00:00:00+09:00</updated><id>http://localhost:4000/javascript/2022/01/20/prototype</id><content type="html" xml:base="http://localhost:4000/javascript/2022/01/20/prototype.html"><![CDATA[<h2 id="프로토타입과-프로토타입-상속">프로토타입과 프로토타입 상속</h2>
+<p>타 언어들을 보면 비교연산자로 <code class="language-plaintext highlighter-rouge">==</code> 밖에 쓰지 않는데, 자바스크립트는 특이하게 <code class="language-plaintext highlighter-rouge">===</code> 를 주로 사용한다. 그렇다고해서 <code class="language-plaintext highlighter-rouge">==</code> 가 없다는 것은 아니다. 차이점은 <code class="language-plaintext highlighter-rouge">==</code> 은 값만 비교하는 것이고 <code class="language-plaintext highlighter-rouge">===</code> 는 <code class="language-plaintext highlighter-rouge">type</code> 까지 묶어서 비교를 한다는 점이다. 즉 <code class="language-plaintext highlighter-rouge">5 == '5'</code> 는 참이지만 <code class="language-plaintext highlighter-rouge">5 === '5'</code> 는 거짓이라는 것.</p>]]></content><author><name>071yoon</name></author><category term="javascript" /><category term="javascript" /><category term="TIL" /><category term="web" /><summary type="html"><![CDATA[자바스크립트 실습]]></summary></entry><entry><title type="html">자바스크립트 프로토타입과 클래스</title><link href="http://localhost:4000/javascript/2022/01/20/prototype.html" rel="alternate" type="text/html" title="자바스크립트 프로토타입과 클래스" /><published>2022-01-20T00:00:00+09:00</published><updated>2022-01-20T00:00:00+09:00</updated><id>http://localhost:4000/javascript/2022/01/20/prototype</id><content type="html" xml:base="http://localhost:4000/javascript/2022/01/20/prototype.html"><![CDATA[<h2 id="프로토타입과-프로토타입-상속">프로토타입과 프로토타입 상속</h2>
 
 <p>상속을 하는 이유??</p>
 
@@ -1125,136 +1107,96 @@ don<span class="s1">'t change possibility is : 33.05%
 <span class="k">new</span> <span class="nx">User</span><span class="p">(</span><span class="dl">"</span><span class="s2">Dude</span><span class="dl">"</span><span class="p">).</span><span class="nx">sayHi</span><span class="p">();</span> <span class="c1">// Hello Dude!</span>
 </code></pre></div></div>
 
-<p>이런식으로 상속없이 메서드를 복사하여, 믹스인을 활용하면 <code class="language-plaintext highlighter-rouge">User</code> 가 예시처럼 동시에 상속받아, 추가로 구현된 메서드 또한 사용 할 수 있는 모습을 볼 수 있다.</p>]]></content><author><name>071yoon</name></author><category term="javascript" /><category term="javascript" /><category term="typescript" /><category term="TIL" /><category term="prototype" /><category term="class" /><summary type="html"><![CDATA[프로토타입과 프로토타입 상속]]></summary></entry><entry><title type="html">자바스크립트 함수의 심화학습</title><link href="http://localhost:4000/javascript/2022/01/18/javascript-functions.html" rel="alternate" type="text/html" title="자바스크립트 함수의 심화학습" /><published>2022-01-18T00:00:00+09:00</published><updated>2022-01-18T00:00:00+09:00</updated><id>http://localhost:4000/javascript/2022/01/18/javascript-functions</id><content type="html" xml:base="http://localhost:4000/javascript/2022/01/18/javascript-functions.html"><![CDATA[<h2 id="나머지-매개변수와-스프레드-문법">나머지 매개변수와 스프레드 문법</h2>
+<p>이런식으로 상속없이 메서드를 복사하여, 믹스인을 활용하면 <code class="language-plaintext highlighter-rouge">User</code> 가 예시처럼 동시에 상속받아, 추가로 구현된 메서드 또한 사용 할 수 있는 모습을 볼 수 있다.</p>]]></content><author><name>071yoon</name></author><category term="javascript" /><category term="javascript" /><category term="typescript" /><category term="TIL" /><category term="prototype" /><category term="class" /><summary type="html"><![CDATA[프로토타입과 프로토타입 상속]]></summary></entry><entry><title type="html">자바스크립트 객체 프로퍼티 설정</title><link href="http://localhost:4000/javascript/2022/01/20/javascript-property.html" rel="alternate" type="text/html" title="자바스크립트 객체 프로퍼티 설정" /><published>2022-01-20T00:00:00+09:00</published><updated>2022-01-20T00:00:00+09:00</updated><id>http://localhost:4000/javascript/2022/01/20/javascript-property</id><content type="html" xml:base="http://localhost:4000/javascript/2022/01/20/javascript-property.html"><![CDATA[<h1 id="객체-프로퍼티">객체 프로퍼티</h1>
 
-<h3 id="나머지-매개변수">나머지 매개변수</h3>
-<p>예전에 printf를 구현을 할 때, 가변인수라고 해서 <code class="language-plaintext highlighter-rouge">va args</code>를 써서 구현을 했던 적이 있는데, 그거에 비해서 정말 아니 이렇게 써도 된다고??? 할정도로 자바스크립트에서는 구현이 가능하다</p>
+<p>프로퍼티란 단순히 <code class="language-plaintext highlighter-rouge">key-value</code> 가 아닌 더 유연한 자료구조로 사용 될 수 있으며, <code class="language-plaintext highlighter-rouge">getter</code>와 <code class="language-plaintext highlighter-rouge">setter</code> 등에 대해서 학습해보자</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">sumAll</span><span class="p">(...</span><span class="nx">args</span><span class="p">){</span>
-	<span class="kd">let</span> <span class="nx">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-	<span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">arg</span> <span class="k">of</span> <span class="nx">args</span><span class="p">)</span>
-		<span class="nx">sum</span> <span class="o">+=</span> <span class="nx">arg</span><span class="p">;</span>
-	
-	<span class="k">return</span> <span class="p">(</span><span class="nx">sum</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div></div>
+<h2 id="프로퍼티-플래그와-생성자">프로퍼티 플래그와 생성자</h2>
 
-<p>이런식으로도 구현이 가능하다!!</p>
+<p>객체 프로퍼티는 값과 플래그라는 속성을 가진다</p>
+<ul>
+  <li>writable - true 라면 수정이 가능하다</li>
+  <li>enumerable - true 라면 반복문으로 나열 할 수 있다</li>
+  <li>configurable - true 라면 삭제나 플래그 수정이 가능하다</li>
+</ul>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">showName</span><span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">lastName</span><span class="p">,</span> <span class="p">...</span><span class="nx">titles</span><span class="p">)</span> <span class="p">{</span>
-	<span class="c1">//firstName = Bora;</span>
-	<span class="c1">//LastName = Lee;</span>
-	<span class="c1">// titles = ["Software Engineer", "Researcher"]</span>
-<span class="p">}</span>
+<p>평범한 방식으로 설계를 한다면, 프로퍼티는 모두 <code class="language-plaintext highlighter-rouge">true</code>이며, 언제든 수정 될 수 있다</p>
 
-<span class="nx">showName</span><span class="p">(</span><span class="dl">"</span><span class="s2">Bora</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Lee</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Software Engineer</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Researcher</span><span class="dl">"</span><span class="p">);</span>
-</code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">let descriptor = Object.getOwnPropertyDescriptor(obj, propertyName);</code></p>
 
-<h3 id="스프레드-문법">스프레드 문법</h3>
+<p>여기서</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">obj</code> 란 정보를 얻고자 하는 객체</li>
+  <li><code class="language-plaintext highlighter-rouge">propertyName</code> 이란 정보를 얻고자 하는 객체 내 프로퍼티
+를 말한다</li>
+</ul>
 
-<p>배열안에 있는 요소들을 함수안에 사용을 하여 매개변수로 사용할 떄, 그냥 <code class="language-plaintext highlighter-rouge">max(arr)</code> 이런식으로 하면 안된다!!</p>
-<blockquote>
-  <p>뭔가 파이썬이면 될거같은데…</p>
-</blockquote>
-
-<p>그래서 아까처럼 가변인자처럼 넘겨쓰는 스프레드 문법을 사용해야 된다</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">arr1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">];</span>
-<span class="kd">let</span> <span class="nx">arr2</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">];</span>
-
-<span class="nx">alert</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(...</span><span class="nx">arr1</span><span class="p">,</span> <span class="p">...</span><span class="nx">arr2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">));</span> <span class="c1">//9</span>
-</code></pre></div></div>
-
-<p>이런식으로 사용하면 된다!!</p>
-
-<h2 id="new-function-문법">New Function 문법</h2>
-
-<p><code class="language-plaintext highlighter-rouge">new Function</code>을 통해 함수를 만들어 보자!</p>
-
-<blockquote>
-  <p><code class="language-plaintext highlighter-rouge">let func = new Function ([arg1, arg2, ...argN], functionBody);</code></p>
-</blockquote>
-
-<p>새로 만들어지는 함수는 들어오는 인수 arg1…argN 과 functionBody로 이루어지며 최대 장점은 런타임 시간에 동적으로 문자열을 사용해 함수를 만들 수 있는것!!</p>
-
-<h2 id="함수-바인딩">함수 바인딩</h2>
-
-<blockquote>
-  <p>setTimeout 을 진행하면 Method callback 진행 시 <code class="language-plaintext highlighter-rouge">this</code>정보가 사라지는데, 방지를 어떻게 할것인가!!</p>
-</blockquote>
-
-<p><code class="language-plaintext highlighter-rouge">this</code>가 사라지는 과정</p>
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
-	<span class="na">firstName</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">,</span>
-	<span class="nx">sayHi</span><span class="p">()</span> <span class="p">{</span>
-		<span class="nx">alert</span> <span class="p">(</span><span class="s2">`Hello </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span><span class="p">}</span><span class="s2">!`</span><span class="p">);</span>
-	<span class="p">}</span>
-<span class="p">};</span>
-
-<span class="nx">setTimeout</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">sayHi</span><span class="p">(),</span> <span class="mi">1000</span><span class="p">);</span>
-</code></pre></div></div>
-
-<p>이러면 당연히 <code class="language-plaintext highlighter-rouge">Hello Yoon!</code> 이 나와야될것 처럼 보이지만, <code class="language-plaintext highlighter-rouge">setTimeout</code>이 객체에서 분리가 되어 <code class="language-plaintext highlighter-rouge">user.sayHi</code>로 전달되어 <code class="language-plaintext highlighter-rouge">Hello undefined!</code> 가 나오게 된다.</p>
-
-<h3 id="해결방안1-래퍼">해결방안1. 래퍼</h3>
-
-<blockquote>
-  <p>쇼미더머니 아님</p>
-</blockquote>
+<p>예시</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
-	<span class="na">firstName</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">,</span>
-	<span class="nx">sayHi</span><span class="p">(){</span>
-		<span class="nx">alert</span><span class="p">(</span><span class="s2">`Hello </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span><span class="p">}</span><span class="s2">!`</span><span class="p">);</span>
-	<span class="p">}</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span>
 <span class="p">};</span>
-<span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-	<span class="nx">user</span><span class="p">.</span><span class="nx">sayHi</span><span class="p">();</span>
-<span class="p">},</span> <span class="mi">1000</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">descriptor</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">getOwnPropertyDescriptor</span><span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="dl">'</span><span class="s1">name</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">alert</span><span class="p">(</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">descriptor</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">2</span> <span class="p">)</span> <span class="p">);</span>
+<span class="cm">/* property descriptor:
+{
+  "value": "Yoon",
+  "writable": true,
+  "enumerable": true,
+  "configurable": true
+}
+*/</span>
 </code></pre></div></div>
 
-<p>이러면 외부 렉시컬 환경에서 <code class="language-plaintext highlighter-rouge">user</code>를 받아오기 때문에 오류가 나지 않는다!!</p>
+<p>이 상태에서 <code class="language-plaintext highlighter-rouge">Object.defineProperty</code>로 플래그를 변경 할 수 있다</p>
 
-<h3 id="해결방안2-바인딩">해결방안2. 바인딩</h3>
+<h2 id="getter-와-setter">getter 와 setter</h2>
+
+<p>객체의 프로퍼티를 나누는 두 분류로 볼 수 있다.</p>
+<ol>
+  <li>데이터 프로퍼티 -&gt; 현재까지 모두 사용한 프로퍼티</li>
+  <li>접근자 프로퍼티 -&gt; 새로운 종류로, 함수의 값을 획득하고 설정하는 역할을 담당한다</li>
+</ol>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="kd">get</span> <span class="nx">propName</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// getter, obj.propName실행시</span>
+  <span class="p">},</span>
+
+  <span class="kd">set</span> <span class="nx">propName</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// setter, obj.propName = value실행시</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>그럼 이걸 어떤식으로 활용 할 수 있을까??</p>
+
+<p><code class="language-plaintext highlighter-rouge">getter</code>와 <code class="language-plaintext highlighter-rouge">setter</code>를 실제 프로퍼티 값을 감싸는 래퍼로 사용하여, 프로퍼티 값을 통제하는 방법이 있다</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">firstName</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span>
+  <span class="kd">get</span> <span class="nx">name</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_name</span><span class="p">;</span>
+  <span class="p">},</span>
+
+  <span class="kd">set</span> <span class="nx">name</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">value</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">Too Short</span><span class="dl">"</span><span class="p">);</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_name</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
+  <span class="p">}</span>
 <span class="p">};</span>
 
-<span class="kd">function</span> <span class="nx">func</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nx">alert</span><span class="p">(</span><span class="s2">`Hello </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span><span class="p">}</span><span class="s2">!`</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="nx">user</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">;</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">// Yoon</span>
 
-<span class="kd">let</span> <span class="nx">funcUser</span> <span class="o">=</span> <span class="nx">func</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">user</span><span class="p">);</span>
-
-<span class="nx">setTimeout</span><span class="p">(</span><span class="nx">funcUser</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
+<span class="nx">user</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="dl">""</span><span class="p">;</span> <span class="c1">// 너무 짧은 이름을 할당하려 함</span>
 </code></pre></div></div>
 
-<p>이런식으로 method를 user에 바인딩을 시켜버려서 묶어 버리는 방법이다.</p>
-
-<p>아무리봐도 바인딩이 래퍼보다 사용하기가 쉽고 활용도가 높아보인다!!</p>
-
-<h2 id="화살표-함수">화살표 함수</h2>
-
-<p>화살표 함수에는 대체로 <code class="language-plaintext highlighter-rouge">this</code>가 없다. 화살표 함수에서 <code class="language-plaintext highlighter-rouge">this</code>를 사용하면 외부에서 값을 가져온다고 한다..!!</p>
-
-<p>코드를 살펴보자</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">group</span> <span class="o">=</span> <span class="p">{</span>
-	<span class="na">title</span><span class="p">:</span> <span class="dl">"</span><span class="s2">group1</span><span class="dl">"</span>
-	<span class="na">students</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Kim</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Lee</span><span class="dl">"</span><span class="p">],</span>
-
-	<span class="nx">showList</span><span class="p">(){</span>
-		<span class="k">this</span><span class="p">.</span><span class="nx">students</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span>
-			<span class="nx">student</span> <span class="o">=&gt;</span> <span class="nx">alert</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">title</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">: </span><span class="dl">'</span> <span class="o">+</span> <span class="nx">student</span><span class="p">)</span>
-		<span class="p">);</span>
-	<span class="p">}</span>
-<span class="p">};</span>
-<span class="nx">group</span><span class="p">.</span><span class="nx">showList</span><span class="p">();</span>
-</code></pre></div></div>
-
-<p>여기서 forEach에서 가리키느 화살표는 <code class="language-plaintext highlighter-rouge">this.title</code>의 화살표 밖에 있는 method인 showList가 가리키는 대상과 동일하다. 즉 <code class="language-plaintext highlighter-rouge">this.title == group.title</code> !!</p>
+<p><code class="language-plaintext highlighter-rouge">user</code>의 이름이 <code class="language-plaintext highlighter-rouge">_name</code>에 저장되어, 프로퍼티에 접근하는것이 <code class="language-plaintext highlighter-rouge">getter</code> 와 <code class="language-plaintext highlighter-rouge">setter</code>로 이루어진다.</p>
 
 <blockquote>
-  <p>화살표 함수는 new 와 함께 사용될 수 없음에 주의!</p>
-</blockquote>]]></content><author><name>071yoon</name></author><category term="javascript" /><category term="javascript" /><category term="typescript" /><category term="TIL" /><category term="functions" /><summary type="html"><![CDATA[나머지 매개변수와 스프레드 문법]]></summary></entry></feed>
+  <p>솔직히 왜 사용하는지 이해는 되지 않지만, 그냥 이런게 있구나~ 하고 넘어가고 이후에 다시 확인해보기로 하자</p>
+</blockquote>]]></content><author><name>071yoon</name></author><category term="javascript" /><category term="javascript" /><category term="typescript" /><category term="TIL" /><category term="property" /><summary type="html"><![CDATA[객체 프로퍼티]]></summary></entry></feed>
