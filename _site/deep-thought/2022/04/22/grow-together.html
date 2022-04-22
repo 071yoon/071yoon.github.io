@@ -7,22 +7,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
 <!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>바닐라JS로 앱 만들기 1 | YeongGi’s tech blog</title>
+<title>함께 자라기 | YeongGi’s tech blog</title>
 <meta name="generator" content="Jekyll v4.2.1">
-<meta property="og:title" content="바닐라JS로 앱 만들기 1">
+<meta property="og:title" content="함께 자라기">
 <meta name="author" content="071yoon">
 <meta property="og:locale" content="en_US">
-<meta name="description" content="자바스크립트 실습">
-<meta property="og:description" content="자바스크립트 실습">
-<link rel="canonical" href="http://localhost:4000/javascript/2022/01/22/javascript-coding-1.html">
-<meta property="og:url" content="http://localhost:4000/javascript/2022/01/22/javascript-coding-1.html">
+<meta name="description" content="함께 자라기">
+<meta property="og:description" content="함께 자라기">
+<link rel="canonical" href="http://localhost:4000/deep-thought/2022/04/22/grow-together.html">
+<meta property="og:url" content="http://localhost:4000/deep-thought/2022/04/22/grow-together.html">
 <meta property="og:site_name" content="YeongGi’s tech blog">
 <meta property="og:type" content="article">
-<meta property="article:published_time" content="2022-01-22T00:00:00+09:00">
+<meta property="article:published_time" content="2022-04-22T00:00:00+09:00">
 <meta name="twitter:card" content="summary">
-<meta property="twitter:title" content="바닐라JS로 앱 만들기 1">
+<meta property="twitter:title" content="함께 자라기">
 <script type="application/ld+json">
-{"url":"http://localhost:4000/javascript/2022/01/22/javascript-coding-1.html","headline":"바닐라JS로 앱 만들기 1","dateModified":"2022-01-22T00:00:00+09:00","datePublished":"2022-01-22T00:00:00+09:00","author":{"@type":"Person","name":"071yoon"},"@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/javascript/2022/01/22/javascript-coding-1.html"},"description":"자바스크립트 실습","@context":"https://schema.org"}</script>
+{"url":"http://localhost:4000/deep-thought/2022/04/22/grow-together.html","headline":"함께 자라기","dateModified":"2022-04-22T00:00:00+09:00","datePublished":"2022-04-22T00:00:00+09:00","author":{"@type":"Person","name":"071yoon"},"@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/deep-thought/2022/04/22/grow-together.html"},"description":"함께 자라기","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="shortcut icon" href="">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -764,11 +764,11 @@ function googleTranslateElementInit() {
 
 
 <header class="post-header">
-  <h1 class="post-title p-name" itemprop="name headline">바닐라JS로 앱 만들기 1</h1>
-  <h2 class="post-subtitle">자바스크립트 프로젝트 기초에대해서 배워보자</h2>
+  <h1 class="post-title p-name" itemprop="name headline">함께 자라기</h1>
+  <h2 class="post-subtitle">소마에서 애자일로 살아남기</h2>
 
   <p class="post-meta">
-    <time class="dt-published" datetime="2022-01-22T00:00:00+09:00" itemprop="datePublished"><i class="fa fa-calendar"></i> Jan 22, 2022
+    <time class="dt-published" datetime="2022-04-22T00:00:00+09:00" itemprop="datePublished"><i class="fa fa-calendar"></i> Apr 22, 2022
     </time>
 
     
@@ -808,119 +808,89 @@ function googleTranslateElementInit() {
     <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 5 mins</span>
   </p>
 <div class="post-tags">
-<a class="post-tag" href="/tags.html#javascript">#javascript</a><a class="post-tag" href="/tags.html#TIL">#TIL</a><a class="post-tag" href="/tags.html#web">#web</a>
+<a class="post-tag" href="/tags.html#deep-thought">#deep-thought</a><a class="post-tag" href="/tags.html#book">#book</a>
 </div></header>
 <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
     <div class="post-content e-content" itemprop="articleBody">
 
-      <h2 id="자바스크립트-실습">자바스크립트 실습</h2>
+      <h2 id="함께-자라기">함께 자라기</h2>
 
-<hr>
+<h3 id="서론">서론</h3>
 
-<p>자바스크립트의 이론적인 부분에 대해서는 공부를 대충 해봤지만, 실생활에 어떤식으로 사용할 지, 혹은 어떤식으로 프로젝트를 진행할 지에 대해서 너무 무지했기 떄문에, 처음에는 강의에 의존을 해보기로 결정했다. 여러 자바스크립트 강의를 찾던 도중, <code class="language-plaintext highlighter-rouge">노마드코더</code>가 자바스크립트를 처음 접하기 좋다는 소식을 들어 이 사이트에서, 바닐라JS로 크롬 앱 만들기 강의를 시작해보기로 결정했다.</p>
+<p>우선 이전글에서 다뤘던 SW Maestro <code class="language-plaintext highlighter-rouge">소마</code> 라고 하는 정부지원사업에 붙게 되었다. 320명이나 되는 연수생들을 대충 확인해보았는데, 정말 다양한 사람들이 정말 많다는것을 느꼈다. 그리고 대부분이 전공생이 였다는게 정말 놀라웠다. 현재 진행중인 42 Seoul 인 경우에는 전공생보다는 부전공 혹은 아예 다른 전공에서 다른 일을 하다 프로그래머의 길로 빠지게 된 경우도 많이 보았는데 참 색달랐다.</p>
 
-<h3 id="why-javscript">Why Javscript?</h3>
+<p>그 후 멘토링을 몇번 받게 되었고, 운 좋게 마음에 드는 두분을 만나 팀 매칭까지 끝나게 되었다. 우리는 AI, 나 어플의 CRUD 시스템같은것 보다는 조금 더 혁신적이고, 재미있는 프로젝트를 하기로 했다. 아직 정확한 기획은 없지만 아마 메타버스 혹은 그 상위의 무엇인가가 될것 같다. 조합은 웹의 정석이라 불리는 2FE 1BE 로 진행이 될 것 같다.</p>
 
-<hr>
+<p>그리고 우리의 목적은 사업적으로 엄청나게 뛰어난 창업을 하겠다! 혹은 이 세계에 도움이 되는 무언가를 만들어 내겠다! 이런것은 아니다. 좀 더 우리의 가치와 실력을 높일 수 있는 기회가 되었으면 좋겠다! 에 가깝다. 그래서 우리는 최대한 다양한 기술들을 배우고 협력하는 과정을 느껴보자! 가 주제가 되었다.</p>
 
-<p>왜 우리는 자바스크립트를 사용할까??</p>
+<p>그렇게 우리의 목적에 맞춰 우선 정한것은</p>
 
-<p>사실 자바스크립트는 그렇게 좋은 언어는 아니다. <code class="language-plaintext highlighter-rouge">let</code>, <code class="language-plaintext highlighter-rouge">var</code> 등등 (요새는 <code class="language-plaintext highlighter-rouge">var</code>를 안쓴다고 하긴 하더라) 데이터 타입을 명시해주는것 부터, 문법등을 보면 그렇게 멋진 언어는 아니다. 개인적으로 C언어가 완벽에 가까운 언어라고 생각을 하는데 (개발자의 역량에 따라 시간을 투자하면 원하는만큼 다 구현이 가능하니까) 왜 자바스크립트를 사용할까?? 사실 어쩔 수 없다는게 맞는 표현이다. 문제는 처음부터 웹을 만들 떄 자바스크립트를 사용했다는 것…! 애초부터 급조한 언어였기 때문에, 문제가 많았다.</p>
+<ol>
+  <li>Jira 를 사용해보자</li>
+  <li>애자일 방법론을 채용하자</li>
+</ol>
 
-<blockquote>
-  <p>실제로 10일만에 만든 언어라고 한다!</p>
-</blockquote>
+<p>였다.</p>
 
-<p>하지만 이미 많은 사람들이 웹에서 자바스크립트를 사용하였기에, 갑자기 언어를 바꿔버리면 웹에 마비가 올 수 있다는 생각에 그냥 해당 자바스크립트를 두고 패치를 계속 진행을 하며, 현재의 자바스크립트까지 왔다고 한다. 즉 자바스크립트는 현재 웹에서 <code class="language-plaintext highlighter-rouge">대체불가언어</code> 라고 해도 과언이 아닐정도로 모든 웹에서 사용중이며, 우리가 배워야 하는 이유이다. 너무 싫어서 사용하기 싫다고 하더라도 웹쪽으로 커리어를 생각중이라면 어쩔 수 없이 배워야 하는 언어..? 정말 애증의 언어가 아닐 수 없다. 물론 요즘은 그런점들을 보완하며, 같이 상용이 가능한 <code class="language-plaintext highlighter-rouge">typescript</code>의 존재로 이러한 원성들을 조금이나마 잠재워 주고 있는듯 보인다.</p>
+<p>Jira 같은 경우에는, 차차 더 알아보며 Git Confluence 와 연동해서 사용 해 볼 예정이고 애자일 방법론에 대해서는 스프린트와 스크럼 정도밖에 몰랐던 나였기에 조금 더 공부를 해보고자 하였다.</p>
 
-<h3 id="project의-시작">Project의 시작</h3>
-
-<hr>
-
-<p>옛날에 웹디자인을 공부 할 때, 해봤지만 너무 옛날이라 기억도 안나고 역시 정리를 안해두니 찾아보기가 힘들어 이번에는 조금 정리를 하면서 진행을 해보려고 한다.</p>
-
-<p>우선 웹을 배우려면 <code class="language-plaintext highlighter-rouge">HTML</code>, <code class="language-plaintext highlighter-rouge">CSS</code>, <code class="language-plaintext highlighter-rouge">Javascript</code> 이 3개의 연관성에 대해서 조금이나마 알고 가야한다. <code class="language-plaintext highlighter-rouge">CSS</code> 와 <code class="language-plaintext highlighter-rouge">Javascript</code> 는 일반적으로 혼자 작동할 수 없는 언어이다. 즉 <code class="language-plaintext highlighter-rouge">HTML의 의존성을 가진 파일들</code> 이라고 할 수 있다. 아무리 이쁜 디자인을 <code class="language-plaintext highlighter-rouge">CSS</code> 에서 진행을 하고 얼마나 멋진 함수들을 <code class="language-plaintext highlighter-rouge">Javscript</code> 에서 구현을 했다 한들, 실제 보여지지않으면 의미가 없고, 이러한것들을 가시적으로 보여주면서 동작하게하는 것이 <code class="language-plaintext highlighter-rouge">HTML</code>이라고 보면 되겠다. 어떻게 연결하는지 기본적인 HTML을 보며 살펴보자</p>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
-<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;head&gt;</span>
-    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"style.css"</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;title&gt;</span>momentum<span class="nt">&lt;/title&gt;</span>
-  <span class="nt">&lt;/head&gt;</span>
-  <span class="nt">&lt;body&gt;</span>
-    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"script.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
-  <span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/html&gt;</span>
-</code></pre></div></div>
-
-<p>이런식으로 <code class="language-plaintext highlighter-rouge">stylesheet</code>를 <code class="language-plaintext highlighter-rouge">style.css</code>로 두고 <code class="language-plaintext highlighter-rouge">script</code>를 <code class="language-plaintext highlighter-rouge">script.js</code> 로 두어 링크를 했다고 보면 되겠다.</p>
+<p>그렇게 애자일이 무엇인가! 항상 근본적인것을 좋아하는 나는 애자일의 뜻부터 알아보았다.</p>
 
 <blockquote>
-  <p>주의할점! <code class="language-plaintext highlighter-rouge">script.js</code> 는 <code class="language-plaintext highlighter-rouge">body</code>의 끝에 주로 둔다. WHY? 왜냐하면 보통 사이즈가 큰 파일들은 <code class="language-plaintext highlighter-rouge">script.js</code>에 들어가 있고, 인터넷 속도가 느려서 자바스크립트파일을 다운받는데 오래 걸린다면, 그 전에 화면에 출력할 것을 먼저 다운받지 못해 빈 화면을 출력하고, 자바스크립트를 다운 다 받은 후 출력을 하기때문. 즉 유저의 편의를 좀 봐주자</p>
+  <p>애자일은 민첩성을 뜻하며 소포트웨어 기업들이 도입한 개념으로 급변하는 시장에서 기민한 대응을 하기 위해 빠르고 유연한 기업 환경(조직)을 만드는 것을 목적으로 한다.</p>
 </blockquote>
 
-<h3 id="data-types">Data Types</h3>
+<p>항상 말은 참 쉽지만, 실제로 이해하기는 정말 까다롭다. 그러던 중 팀원 중 한명이 <code class="language-plaintext highlighter-rouge">함께 자라기</code> 라는 좋은 애자일 방법론에 대한 책이 있다하여 읽어 보기로 하였다.</p>
 
-<hr>
+<h3 id="자라기">자라기</h3>
 
-<p>일단 자바스크립트는 <code class="language-plaintext highlighter-rouge">syntax</code>가 세개밖에 없다. <code class="language-plaintext highlighter-rouge">const, let, var</code> 심지어 <code class="language-plaintext highlighter-rouge">var</code> 는 잘 쓰지 않으므로 <code class="language-plaintext highlighter-rouge">const</code> 와 <code class="language-plaintext highlighter-rouge">let</code> 두개가 있다고 해도 무방하다.</p>
+<p>이 책을 읽다보면 정말 단순하지만 머리를 띵! 하게 만드는 부분들이 꽤나 있다. 우선 자라기에 대한 부분이 내 입장에서 제일 생각을 많이하게 만들었다.</p>
 
-<blockquote>
-  <p>심지어 파이썬은 저것조차 안써도 된다</p>
-</blockquote>
+<h4 id="가치">가치</h4>
 
-<p>그럼 데이터타입을 알아서 정해준다는 것이다. 그럼 문제가 무엇이냐?? 언제 정수에서 문자형으로 바뀌는것이고, 문자열로 바뀌는지 프로그램이 정해주기 때문에 정할 수 없다는 것이다. 그래서 새로운 <code class="language-plaintext highlighter-rouge">typescript</code> 라고 자바스크립트에서 <code class="language-plaintext highlighter-rouge">type</code> 형식을 지정해주는 변형된 언어가 탄생을 했다.</p>
+<p>다들 <code class="language-plaintext highlighter-rouge">1만시간의 법칙</code> 을 많이들 들어보았을 것이다. 정말 단순하게 어떠한 분야의 전문가가 되려면 <code class="language-plaintext highlighter-rouge">1만시간</code> 정도가 필요하다는 뜻이다. 하지만 이 말에는 큰 함정이 빠져있다. 이 <code class="language-plaintext highlighter-rouge">1만시간</code> 에는 단순히 내가 즐기거나, 어쩔 수 없이 하는것이 아니라 피드백을 받고 공부하거나 노력하는 과정이 포함되어야 된다는 것이다. 게임을 보더라도 내가 낮은 티어에서 게임을 몇천판을 하였지만, 아직도 낮은 티어일 수 있다. 책에서는 그 이유를 피드백 혹은 노력을 하지 않는것이라고 본다. 매 판마다 분석을 하고 취약점에 대하여 고치려는 노력을 한다면, 약점에 대해서는 반복적인 훈련을 한다면, 과연 실력이 낮은채로 가만히 있을까? 당연히 실력이 개선되는 미래가 펼쳐질 것이다.</p>
 
-<p>그럼 요새 사용은 안하는 <code class="language-plaintext highlighter-rouge">var</code> 형식은 언제 사용하는것일까? 사실 사용을 잘 안한다. <code class="language-plaintext highlighter-rouge">var</code> 는 처음에 만들어진 변수 선언 type 이고, 어디서나 재정의가 가능하다는 장점이 있지만, 사실이건 매우 위험하고 차라리 다른 변수명을 선언하는게 훨씬 낫다. 그래서 요새는 <code class="language-plaintext highlighter-rouge">let</code> 과 <code class="language-plaintext highlighter-rouge">const</code>로 대체해서 사용한다.</p>
+<h4 id="피드백">피드백</h4>
 
-<p>자바스크립트에서 특이한것이 있는데, <code class="language-plaintext highlighter-rouge">null</code> 과 <code class="language-plaintext highlighter-rouge">undefined</code> 가 두개나 존재한다는 것이다. <code class="language-plaintext highlighter-rouge">null</code>은 내가 지정을 해 줘서 비어있을 때 <code class="language-plaintext highlighter-rouge">null</code> 인것이고, <code class="language-plaintext highlighter-rouge">undefined</code>는 내가 만약 <code class="language-plaintext highlighter-rouge">let variable;</code> 을 해주고 지정을 안해주면 <code class="language-plaintext highlighter-rouge">undefined</code> 라고 나오게 된다.</p>
+<p>자라기에 또 매우 중요한 부분이 있다. 바로 피드백이 빨라야 된다는 것이다. 만약 우리가 어떠한 액션을 취하였을 때, 그에대한 결과가 1년후에 온다면 어떨까? 아마 1년전에 어떤 액션을 취했는지 기억도 잘 나지않아, 피드백이 제대로 이루어지지 않을것이다. 액션 직후 피드백을 바로 받고 그것을 기록 후 다음에 볼때 진정한 피드백이 완성된다고 본다. 그리고 이것은 <code class="language-plaintext highlighter-rouge">1만시간의 법칙</code> 에도 포함이 된다. 빠르고 진정성있는 피드백이 나를 발전시키는 중요한 포인트라 할 수 있다.</p>
 
-<blockquote>
-  <p>즉 null 은 비어있는것이고, undefined는 변수이지만 값이 없는것</p>
-</blockquote>
+<h4 id="실수">실수</h4>
 
-<p>그리고 자바스크립트 배열에는 C 혹은 C++ 과 다른 특이점이 있다. 나의 테스트케이스를 보자</p>
+<p>이 책은 이상하리만치 실수에 관대하다. 오히려 실수를 권장하는 모습까지 보여준다. 이건 나의 입장에서는 정말 특이한 접근이였다. 프로그래밍을 하다보면 실수를 줄여가는 것이 전문가의 덕목이라고 생각했고, 실제로 내가 처음 프로그래밍을 하던것과 비교를 해보면 실수가 정말 상당히 줄었다. 하지만 여기서 말하는 실수는 실제로 컴파일 과정을 하고 서버 배포를 해보니 앗! 에러가 있네! 이런것이 아니다. 프로그래밍을 하다 작은 오타 혹은 변수 하나 잘못 넣은것도 실수라고 본다. 그리고 이러한 소소한 실수는 얼마든지 해도 되지만 이러한 실수를 한 후 어떤식으로 대처를 하는것인가에 대해 집중한다.</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">test</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">test</span><span class="dl">"</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="dl">"</span><span class="s2">c</span><span class="dl">"</span><span class="p">];</span>
-<span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">test</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="dl">"</span><span class="se">\n</span><span class="dl">"</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="nx">test</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">test2</span><span class="dl">"</span><span class="p">;</span>
-<span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">test</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">: </span><span class="dl">"</span> <span class="o">+</span> <span class="k">typeof</span> <span class="nx">test</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="dl">"</span><span class="se">\n</span><span class="dl">"</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div></div>
+<p>책에서는 실수에 대한 문화를 두가지로 나누는데 <code class="language-plaintext highlighter-rouge">실수 예방</code> 과 <code class="language-plaintext highlighter-rouge">실수 관리</code> 이다. 첫번째인 <code class="language-plaintext highlighter-rouge">실수 예방</code> 을 중점으로 두는 회사같은 경우, 실수를 하는 경로를 방지하며, 실수에 대하여 비난 및 처벌이 주가 되는 반면, <code class="language-plaintext highlighter-rouge">실수 관리</code> 를 중점으로 두는 회사는, 실수를 빨리 발견 및 해결 그리고 피드백 후 다음에는 어떤식으로 대처를 하자가 주가 된다.</p>
 
-<blockquote>
-  <p>특이한 점 1 : 배열의 type 은 각 항목마다 다르다</p>
-</blockquote>
+<h3 id="함께">함께</h3>
 
-<blockquote>
-  <p>특이한 점 2 : 만약에 7번을 만들면 자동으로 배열의 크기가 8로 늘어나고, 5 6 7 번은 undefined로 정의된다</p>
-</blockquote>
+<h4 id="and-or">AND OR</h4>
 
-<h3 id="비교연산자">비교연산자</h3>
+<p>여기서 AND OR 연산자로 사람을 설명한다. 정말 공대스럽지 않을 수 없다. 하지만 또 정말 이것만큼 공대생들을 이해시켜주기 편한게 없다고 생각한다. 사람이 무엇인가를 배우거나 협력을 할 떄 AND 인지 OR 인지에 대하여 진지하게 설명한다.</p>
 
-<hr>
+<p>우선 우리는 AND 보다 OR 적인 사람이 되어야 된다 설명한다. 분석을 하였을 떄, AND 성향이 있는 사람은 독립 개체로 본다. 통계적으로 보면 독립사건이 되는것이다. 예를 들어, 프로그래머가 작업을 마감일에 맞춰 끝낼 확률이 0.9라 보자. 그럼 프로그래머가 5명이 모두 마감일에 맞출 확률은 0.9일까? 이건 0.9 ^ 5 의 확률이 될 것이고, 이건 0.6 밖에 되지 않는다. 즉 통계의 오류가 발생한 것이다. 하지만 팀을 꾸려 5명이서 한 작업을 같이 끝내고, 다음으로 넘어가는 식으로 한다면? 그건 OR 연산으로 오히려 한 프로젝트당 잘 끝낼 확률이 0.9보다 높아지며 효율또한 증가할것이라는 분석이다. 물론 실제로는, BE FE 등 따로 작업을 하겠지만, 그럼에도 불구하고 정말 좋은 접근이라 생각한다.</p>
 
-<p>타 언어들을 보면 비교연산자로 <code class="language-plaintext highlighter-rouge">==</code> 밖에 쓰지 않는데, 자바스크립트는 특이하게 <code class="language-plaintext highlighter-rouge">===</code> 를 주로 사용한다. 그렇다고해서 <code class="language-plaintext highlighter-rouge">==</code> 가 없다는 것은 아니다. 차이점은 <code class="language-plaintext highlighter-rouge">==</code> 은 값만 비교하는 것이고 <code class="language-plaintext highlighter-rouge">===</code> 는 <code class="language-plaintext highlighter-rouge">type</code> 까지 묶어서 비교를 한다는 점이다. 즉 <code class="language-plaintext highlighter-rouge">5 == '5'</code> 는 참이지만 <code class="language-plaintext highlighter-rouge">5 === '5'</code> 는 거짓이라는 것.</p>
+<p><code class="language-plaintext highlighter-rouge">당국자미 방관자청 (當局者迷 傍觀者淸)</code> 바둑을 구경하는 이가 더 수를 잘 본다 라는 뜻이다. 이건 단순히 바둑이 아닌 프로그래밍에도 통용이 된다 생각한다. 내가 페어프로그래밍을 할 때, 실제로 타이핑을 하는 사람은 타이핑하느라 정신이 없고, 설계한 대로 구현하고 있을때, 옆에서 보조하는 사람은, 코드를 보며 오류를 손쉽게 찾을 수 있으며, 설계에서 더 흐름을 보기 쉽다고 생각을 한다. 이러한 점에서 OR 적이며 앞에서 말한 실수의 관리에도 더욱 효율이 좋을것이다.</p>
+
+<h3 id="애자일">애자일?</h3>
+
+<p>사실 책은 애자일 방법론에 대하여 그렇게 중점적으로 설명해주지 않는다. 오히려 애자일이 디테일해질수록 애자일에 멀어진다고 설명한다. 애자일은 애초에 민첩하게 급변하는 시장에 맞춰 발전하는 형태이기에, 정적일수록 근본적으로 맞지않다고 판단하는 것이다.</p>
+
+<p>그럼에도, 나는 조금 더 스크럼을 하는법 혹은 스프린트를 뛰는법에 대하여 알려줬으면 좋겠다고 생각을 했지만, 그런부분은 조금 아쉬웠다. 그럼에도, 애자일을 왜 사용해야 되는지는 정말 깔끔하게 설명을 해준 것 같다. 앞에서 언급한 가치, 피드백, 실수 등 애자일 방법론을 채택하면 모두 극복이 가능한 시나리오 이다. 매일매일 스크럼과 일주일 단위의 회고로 인하여 완벽한 피드백 시스템을 구축 할 수 있으며, 이러한 과정에서 가치를 높일 수 있다 생각한다.</p>
 
 
     </div>
 
 </article>
 <div class="post-nav">
-<a class="previous" href="/javascript/2022/01/20/prototype.html" title="자바스크립트 프로토타입과 클래스">자바스크립트 프로토타입과 클래스</a><a class="next" href="/javascript/2022/01/22/javascript-coding-2.html" title="바닐라JS로 앱 만들기 2">바닐라JS로 앱 만들기 2</a>
+<a class="previous" href="/retrospect/2022/03/03/sw-maestro.html" title="SW Maestro 지원 후기">SW Maestro 지원 후기</a><span></span>
 </div>
 <div class="post-related">
       <div>Related Articles</div>
       <ul>
-        <li><a class="post-link" href="/deep-thought/2022/02/03/monty-hall.html" title="바닐라JS로 앱 만들기 2">몬티 홀 문제</a></li>
-<li><a class="post-link" href="/retrospect/2022/03/03/sw-maestro.html" title="바닐라JS로 앱 만들기 2">SW Maestro 지원 후기</a></li>
-<li><a class="post-link" href="/blog/2022/01/12/install-blog-comment.html" title="바닐라JS로 앱 만들기 2">깃허브 블로그 코멘트 설치하기</a></li>
-<li><a class="post-link" href="/sql/2022/01/24/sql-practice.html" title="바닐라JS로 앱 만들기 2">SQL 예제를 풀어보자</a></li>
+        <li><a class="post-link" href="/javascript/2022/01/22/javascript-coding-1.html" title="">바닐라JS로 앱 만들기 1</a></li>
+<li><a class="post-link" href="/javascript/2022/01/14/javascript-object.html" title="">자바스크립트 객체</a></li>
+<li><a class="post-link" href="/blog/2022/01/12/install-blog-comment.html" title="">깃허브 블로그 코멘트 설치하기</a></li>
+<li><a class="post-link" href="/react/2022/02/02/make-react-app-1.html" title="">리액트JS로 앱 만들기 1</a></li>
 </ul>
     </div>
 <div class="post-comments">
