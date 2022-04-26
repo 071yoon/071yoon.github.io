@@ -1,0 +1,177 @@
+I"-E<p>아래는 Next.js 공식문서의 번역본입니다</p>
+
+<p><a href="https://nextjs.org/docs/basic-features/pages">공식문서</a></p>
+
+<h2 id="pages">Pages</h2>
+
+<p>Next.js 의 <code class="language-plaintext highlighter-rouge">Page</code> 는 <code class="language-plaintext highlighter-rouge">React Component</code> 로써, <code class="language-plaintext highlighter-rouge">.js</code>, <code class="language-plaintext highlighter-rouge">.jsx</code>, <code class="language-plaintext highlighter-rouge">.ts</code>, <code class="language-plaintext highlighter-rouge">.tsx</code> 의 형태로 존재한다.</p>
+
+<h3 id="pre-rendering">Pre-rendering</h3>
+
+<p>Next.js 는 매 페이지마다 <code class="language-plaintext highlighter-rouge">pre-render</code>를 지원한다. 즉 Next는 Client가 자바스크립트로 처리하는것이 아니라 매 페이지마다 HTML 을 만들어낸다. 즉 여기서 성능과 <a href="2022-04-24-why-next-js.md">SEO</a> 측면에서 더 좋다. 이렇게 만들어진 HTML은 정말 페이지에 필요한 자바스크립트 코드만 들어가 있으며, 브라우저에서 로딩이 되면, 해당 자바스크립트 코드로 상호작용을 할 수 있다. -&gt; <code class="language-plaintext highlighter-rouge">hydration</code></p>
+
+<p>Pre-rendering 에는 두가지 방법이 존재하는데, <code class="language-plaintext highlighter-rouge">Static Generation</code> 과 <code class="language-plaintext highlighter-rouge">Server-side Rendering</code>이 있다. <a href="2022-04-24-why-next-js.md">SSR</a>같은 경우에는, 저번 포스트에서 설명을 하였으므로 넘어가고, 이번에는 Next에서 공식적으로 추천하는 Static Generation 방법에 대해서 알아보자.</p>
+
+<h3 id="ssg">SSG</h3>
+
+<p>어떠한 페이지가 <code class="language-plaintext highlighter-rouge">Static Generation</code> 이라면, 해당 페이지의 HTML은 빌드시간에 생성된다고 할 수 있다. 즉 <code class="language-plaintext highlighter-rouge">next build</code> 명령어의 실행과 동시에 페이지의 HTML이 만들어진다고 ㅂ로 수 있다. 그리고 이러한 HTML은 CDN(Contents Delivery Network)을 통하여 캐시 될 수 있다.</p>
+
+<p>Next.js 는 기본적으로 데이터 fetching을 제외한 <code class="language-plaintext highlighter-rouge">Static Generation</code>으로 작동한다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">About</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="nx">About</span><span class="o">&lt;</span><span class="sr">/div&gt;</span><span class="err">;
+</span><span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">About</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>아래와 같은 함수는 fetch 할 data가 없으니 바로 HTML로 변환되어 정적으로 하나의 HTML이 나올 것이다!</p>
+
+<p>그럼 Data가 있는 경우를 살펴보자</p>
+
+<p>Data가 있는 경우에 두가지로 쪼갤 수 있다. 1. page의 content가 외부 데이터에 의존할 때 (<code class="language-plaintext highlighter-rouge">getStaticProps</code>) 2. page의 path가 외부 데이터에 의존할 때 (<code class="language-plaintext highlighter-rouge">getStaticPaths</code>)</p>
+
+<h4 id="1-content가-의존성일-때">1. content가 의존성일 때</h4>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Blog</span><span class="p">({</span> <span class="nx">posts</span> <span class="p">})</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">ul</span><span class="o">&gt;</span>
+      <span class="p">{</span><span class="nx">posts</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">post</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span>
+        <span class="o">&lt;</span><span class="nx">li</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">post</span><span class="p">.</span><span class="nx">title</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/li</span><span class="err">&gt;
+</span>      <span class="p">))}</span>
+    <span class="o">&lt;</span><span class="sr">/ul</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">Blog</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>이러한 형태의 함수를 보낼시에, Next.js 는 async 를 export 하게 도와준다. <code class="language-plaintext highlighter-rouge">getStaticProps</code> 란 함수를 불러 사용이 가능하며, <code class="language-plaintext highlighter-rouge">pre-render</code> 과정에서, data를 fetch하게 도와준다. 그럼 수정본 코드를 보면 다음과 같다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Blog</span><span class="p">({</span> <span class="nx">posts</span> <span class="p">})</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">ul</span><span class="o">&gt;</span>
+      <span class="p">{</span><span class="nx">posts</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">post</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span>
+        <span class="o">&lt;</span><span class="nx">li</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">post</span><span class="p">.</span><span class="nx">title</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/li</span><span class="err">&gt;
+</span>      <span class="p">))}</span>
+    <span class="o">&lt;</span><span class="sr">/ul</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">async</span> <span class="kd">function</span> <span class="nx">getStaticProps</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://.../posts</span><span class="dl">"</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">posts</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="na">props</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nx">posts</span><span class="p">,</span>
+    <span class="p">},</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">Blog</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>언제 <code class="language-plaintext highlighter-rouge">getStaticProps</code>를 사용할까?</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1.  data가 user의 request전에 rendering에 필요로 할 때!
+2.  data가 headless CMS에서 올 때
+3.  data가 외부적으로 캐시가 가능할 때
+4.  페이지가 빨리 pre-render 되어아 할 때
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">getStaticProps</code> 가 오직 Server-Side 에서 작동하기에, Client 딴에서는 절대 실행이 되어서는 안된다. 심지어 브라우저에서는, JS bundle에 포함도 안되어 있다. 즉 API route에서 가져온다기보다, Server딴에서 코드를 바로 넣어 줄 수 있다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">getStaticProps</code>는 페이지에서만 만들어져야된다! 즉 component딴에서는 호출되면 안됨!</p>
+
+<h4 id="2-path가-의존성일-때">2. path가 의존성일 때</h4>
+
+<p>앞서 말했다시피 Next.js는 <code class="language-plaintext highlighter-rouge">dynamic routes</code>를 허용한다. 예를들어 file route가 <code class="language-plaintext highlighter-rouge">pages/posts/[id].js</code> 라면, <code class="language-plaintext highlighter-rouge">posts/1</code> 에 접속 시 <code class="language-plaintext highlighter-rouge">id: 1</code> 로 접근이 가능할것이다.</p>
+
+<p>이러한 접근을 하려면 <code class="language-plaintext highlighter-rouge">async</code> 를 <code class="language-plaintext highlighter-rouge">export</code> 하는 함수 즉 <code class="language-plaintext highlighter-rouge">getStaticPaths</code>를 사용하여 가능하다.</p>
+
+<p>path의 pre-render과정을 보면 다음과 같다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Post</span><span class="p">({</span> <span class="nx">post</span> <span class="p">})</span> <span class="p">{</span>
+  <span class="c1">// Render post...</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">async</span> <span class="kd">function</span> <span class="nx">getStaticPaths</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// Call an external API endpoint to get posts</span>
+  <span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://.../posts</span><span class="dl">"</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">posts</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+
+  <span class="c1">// Get the paths we want to pre-render based on posts</span>
+  <span class="kd">const</span> <span class="nx">paths</span> <span class="o">=</span> <span class="nx">posts</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">post</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span>
+    <span class="na">params</span><span class="p">:</span> <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="nx">post</span><span class="p">.</span><span class="nx">id</span> <span class="p">},</span>
+  <span class="p">}));</span>
+
+  <span class="c1">// 빌드 할 시에만 path 로 pre-render</span>
+  <span class="k">return</span> <span class="p">{</span> <span class="nx">paths</span><span class="p">,</span> <span class="na">fallback</span><span class="p">:</span> <span class="kc">false</span> <span class="p">};</span>
+<span class="p">}</span>
+<span class="c1">// 이것도 빌드시에 사용</span>
+<span class="k">export</span> <span class="k">async</span> <span class="kd">function</span> <span class="nx">getStaticProps</span><span class="p">({</span> <span class="nx">params</span> <span class="p">})</span> <span class="p">{</span>
+  <span class="c1">// 다이나믹하게 작동한다</span>
+  <span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="s2">`https://.../posts/</span><span class="p">${</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">post</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+
+  <span class="c1">// Pass post data to the page via props</span>
+  <span class="k">return</span> <span class="p">{</span> <span class="na">props</span><span class="p">:</span> <span class="p">{</span> <span class="nx">post</span> <span class="p">}</span> <span class="p">};</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">Post</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>언제 <code class="language-plaintext highlighter-rouge">getStaticPaths</code>를 사용할까?</p>
+
+<p>보통 dynamic route를 통하여 정적으로 페이지를 pre-render 하며</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. headless CMS에서 데이터가 올 때(모니터가 연결되어있지 않거나, 키보드나 마우스 등의 주변장치가 연결되어있지 않은 서버)
+2. DB 에서 데이터가 올 때
+3. FIlesystem 에서 데이터가 올 때
+4. 데이터가 외부로 캐시가능할 때
+5. 페이지가 매우 빠르게 pre-render 되어야 할 때
+   1. `getStaticProps`는 `HTML` 과 `JSON` 파일을 만들어, CDN으로 캐시 될 수 있다
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">getStaticPaths</code>는 오직 빌드 과정에서만 돌며, 런타임 환경에서는 작동하지 않는다. 오직, <code class="language-plaintext highlighter-rouge">getStaticProps</code>를 쓰는 다이나믹 루트를 통해서만 export 될 수 있으며, non-page file에서 export 할 수 없다! (ex. components)</p>
+
+<h3 id="ssr">SSR</h3>
+
+<p>SSR이란, 매 HTML 페이지가 매번 요청시에 Server 측에서 만들어 준다는 것이다. 즉 Server에 가는 부담이 커질 수 밖에 없다.</p>
+
+<p>이건 <code class="language-plaintext highlighter-rouge">export</code> 와 <code class="language-plaintext highlighter-rouge">async</code> 를 활용한 <code class="language-plaintext highlighter-rouge">getServerSideProps</code> 란 함수를 사용하여 구현할 수 있다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Page</span><span class="p">({</span> <span class="nx">data</span> <span class="p">})</span> <span class="p">{</span>
+  <span class="c1">// Render data...</span>
+<span class="p">}</span>
+
+<span class="c1">// 매번 불러온다</span>
+<span class="k">export</span> <span class="k">async</span> <span class="kd">function</span> <span class="nx">getServerSideProps</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// Fetch data from external API</span>
+  <span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="s2">`https://.../data`</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+
+  <span class="c1">// props 로 data 불러오기</span>
+  <span class="k">return</span> <span class="p">{</span> <span class="na">props</span><span class="p">:</span> <span class="p">{</span> <span class="nx">data</span> <span class="p">}</span> <span class="p">};</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">Page</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>자세히 보면, <code class="language-plaintext highlighter-rouge">getStaticProps</code> 와 매우 유사해 보이지만, 차이점은 <code class="language-plaintext highlighter-rouge">getServerSideProps</code>는 build 시에 처음만 하는것이 아닌 매번 요청마다 작동한다는 점이다!</p>
+
+<p>즉 <code class="language-plaintext highlighter-rouge">getServerSidePRops</code>는, 오직 Server-Side 에서만 굴러가고, 브라우저딴에서는 실행하지 않는다. 순서를 보면 다음과 같다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. 어떠한 페이지를 request 한다
+2. `getServerSideProps` 가 요청시에 실행된다
+3. 해당 props와 같이 페이지가 pre-render 된다.
+4. 링크를 통하여, 해당 페이지를 Client-Side에 요청시에 Next.js가 Server에 API 요청을 보내 `getServerSidePRops`를 실행한다.
+</code></pre></div></div>
+
+<p>그럼 <code class="language-plaintext highlighter-rouge">getServerSideProps</code>는 페이지 렌더링에 필요한 JSON을 리턴하고, 이러한 부분들은 Next.js 에서 자동을 해준다!</p>
+
+<p>중요한 부분은 <code class="language-plaintext highlighter-rouge">getServerSideProps</code>를 독립적인 함수로 빼서 export 해야된다. 만약 page component 안에 넣어두면 제대로 작동하지 앟는다.</p>
+
+<p>그럼 언제 사용할까? 한 페이지를 data가 fetch되는 request time 에 렌더링을 할 때 사용한다. 만약, request 시간에 렌더링을 할 필요가 없다면 Client Side 나 <code class="language-plaintext highlighter-rouge">getStaticProps</code>를 사용하는게 더 효율적이다.</p>
+:ET
