@@ -1,4 +1,95 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-04-27T21:40:52+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi&apos;s tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">NEXT-Built-In CSS</title><link href="http://localhost:4000/next.js/2022/04/27/next-built-in-css.html" rel="alternate" type="text/html" title="NEXT-Built-In CSS" /><published>2022-04-27T00:00:00+09:00</published><updated>2022-04-27T00:00:00+09:00</updated><id>http://localhost:4000/next.js/2022/04/27/next-built-in-css</id><content type="html" xml:base="http://localhost:4000/next.js/2022/04/27/next-built-in-css.html"><![CDATA[<h2 id="global-stylesheet">Global Stylesheet</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-04-28T17:29:39+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi&apos;s tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">NEXT-Layouts</title><link href="http://localhost:4000/next.js/2022/04/28/next-layouts.html" rel="alternate" type="text/html" title="NEXT-Layouts" /><published>2022-04-28T00:00:00+09:00</published><updated>2022-04-28T00:00:00+09:00</updated><id>http://localhost:4000/next.js/2022/04/28/next-layouts</id><content type="html" xml:base="http://localhost:4000/next.js/2022/04/28/next-layouts.html"><![CDATA[<h2 id="layouts">Layouts</h2>
+
+<p>React는 페이지를 컴포넌트로 나누는것이 가능하다. 이러한 컴포넌트들은 페이지간에 재사용이 가능하고, 예를 들어, 모든 페이지마다 같은 네비게이션바를 사용한다.</p>
+
+<h3 id="single-shared-layout-with-custom-app">Single Shared Layout with Custom App</h3>
+
+<p>만약 전체 어플에 대하여 하나의 레이아웃만 사용한다면, Custom App 을 만들어, 해당 레이아웃으로 둘러 쌀 수 있다. 해당 컴포넌트가 모든 페이지마다 재사용되므로, 이러한 컴포넌트의 상태정보는 계속 유지된다.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>예를 들어, input value가 들어와도 고정된다</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">Layout</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">../components/layout</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">MyApp</span><span class="p">({</span> <span class="nx">Component</span><span class="p">,</span> <span class="nx">pageProps</span> <span class="p">})</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">Layout</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">Component</span> <span class="p">{...</span><span class="nx">pageProps</span><span class="p">}</span> <span class="sr">/</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/Layout</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="per-page-layout">Per-Page Layout</h3>
+
+<p>만약 여러 레이아웃이 필요한 경우에, <code class="language-plaintext highlighter-rouge">getLayout</code> 이라는 property를 사용 할 수 있다. 컴포넌트안에 getLayout을 사용해서, 표현할지 안할지로 정해서 사용 가능하다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">Layout</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">../components/layout</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">NestedLayout</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">../components/nested-layout</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">Page</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="cm">/** Your content */</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+
+<span class="nx">Page</span><span class="p">.</span><span class="nx">getLayout</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">getLayout</span><span class="p">(</span><span class="nx">page</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">Layout</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">NestedLayout</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">page</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/NestedLayout</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/Layout</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>이렇게 선언 후 실제로 사용할 때는 다음과 같다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">MyApp</span><span class="p">({</span> <span class="nx">Component</span><span class="p">,</span> <span class="nx">pageProps</span> <span class="p">})</span> <span class="p">{</span>
+  <span class="c1">// Use the layout defined at the page level, if available</span>
+  <span class="kd">const</span> <span class="nx">getLayout</span> <span class="o">=</span> <span class="nx">Component</span><span class="p">.</span><span class="nx">getLayout</span> <span class="o">||</span> <span class="p">((</span><span class="nx">page</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">page</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="nx">getLayout</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">Component</span> <span class="p">{...</span><span class="nx">pageProps</span><span class="p">}</span> <span class="sr">/&gt;</span><span class="se">)</span><span class="err">;
+</span><span class="p">}</span>
+</code></pre></div></div>
+
+<p>타입스크립트를 이용하면 Props의 type에 주의해야된다.</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">MyApp</span><span class="p">({</span> <span class="nx">Component</span><span class="p">,</span> <span class="nx">pageProps</span> <span class="p">}:</span> <span class="nx">AppPropsWithLayout</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Use the layout defined at the page level, if available</span>
+  <span class="kd">const</span> <span class="nx">getLayout</span> <span class="o">=</span> <span class="nx">Component</span><span class="p">.</span><span class="nx">getLayout</span> <span class="o">??</span> <span class="p">((</span><span class="nx">page</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">page</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="nx">getLayout</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">Component</span> <span class="p">{...</span><span class="nx">pageProps</span><span class="p">}</span> <span class="sr">/&gt;</span><span class="se">)</span><span class="err">;
+</span><span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="data-fetching">Data Fetching</h3>
+
+<p>레이아웃안에, Client-Side에서 <code class="language-plaintext highlighter-rouge">useEffect</code>로 데이터를 가져올 수 도 있고, 라이브러리를 활용하여 <code class="language-plaintext highlighter-rouge">SWR</code>(React Query와 유사)로 가져올 수 도 있다. 하지만, Page가 아니기에, <code class="language-plaintext highlighter-rouge">getStaticProps</code>나 <code class="language-plaintext highlighter-rouge">getServerSideProps</code>를 사용 할 수는 없다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">useSWR</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">swr</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">Navbar</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./navbar</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">Footer</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./footer</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">Layout</span><span class="p">({</span> <span class="nx">children</span> <span class="p">})</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">error</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">useSWR</span><span class="p">(</span><span class="dl">"</span><span class="s2">/api/navigation</span><span class="dl">"</span><span class="p">,</span> <span class="nx">fetcher</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="k">return</span> <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="nx">Failed</span> <span class="nx">to</span> <span class="nx">load</span><span class="o">&lt;</span><span class="sr">/div&gt;</span><span class="err">;
+</span>  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">data</span><span class="p">)</span> <span class="k">return</span> <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="nx">Loading</span><span class="p">...</span><span class="o">&lt;</span><span class="sr">/div&gt;</span><span class="err">;
+</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;&gt;</span>
+      <span class="o">&lt;</span><span class="nx">Navbar</span> <span class="nx">links</span><span class="o">=</span><span class="p">{</span><span class="nx">data</span><span class="p">.</span><span class="nx">links</span><span class="p">}</span> <span class="sr">/</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">main</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">children</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/main</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">Footer</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="sr">/</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>]]></content><author><name>071yoon</name></author><category term="next.js" /><category term="next.js" /><category term="javascript" /><category term="web" /><category term="study" /><summary type="html"><![CDATA[Layouts]]></summary></entry><entry><title type="html">NEXT-Built-In CSS</title><link href="http://localhost:4000/next.js/2022/04/27/next-built-in-css.html" rel="alternate" type="text/html" title="NEXT-Built-In CSS" /><published>2022-04-27T00:00:00+09:00</published><updated>2022-04-27T00:00:00+09:00</updated><id>http://localhost:4000/next.js/2022/04/27/next-built-in-css</id><content type="html" xml:base="http://localhost:4000/next.js/2022/04/27/next-built-in-css.html"><![CDATA[<h2 id="global-stylesheet">Global Stylesheet</h2>
 
 <p>프로젝트에 <code class="language-plaintext highlighter-rouge">stylesheet</code>를 추가하려면, <code class="language-plaintext highlighter-rouge">pages/_app.js</code> 라는 CSS 파일을 import 해야된다.</p>
 
@@ -1201,123 +1292,4 @@ don<span class="s1">'t change possibility is : 33.05%
 <p>즉 한 문제에 대해서 갇혀있는 생각만 하지말고, 다양한 생각과 다양한 시각으로 보면 더 간편하고 직관적이며, 효율이 좋은 코드가 나올 수 있다는 것이다.
 항상 생각을 하고 행동을 하라는 의미로 받아들이고 싶다.</p>
 
-<p>오늘은 컴퓨터공학의 정말 중요한 인물인 리누스 토르발스에 대해서 알아보았는데, 정말 배울점이 많고, 신념이 뚜렷한 사람 같아서 정말 보기 좋다. 이 테드영상 이후로도 몇가지의 영상을 찾아보았는데, 정말 자부심이 강하고 멋진 사람이라고 생각한다. 나도 언젠가 이렇게 자신의 신념을 가지고 행동 할 수 있으며, 그에 따른 무게의 책임질 수 있는 사람이 되고싶다.</p>]]></content><author><name>071yoon</name></author><category term="deep-thought" /><category term="deep thought" /><category term="linux" /><category term="philosophy" /><summary type="html"><![CDATA[Talk is cheap. Show me the code.]]></summary></entry><entry><title type="html">SQL 예제를 풀어보자</title><link href="http://localhost:4000/sql/2022/01/24/sql-practice.html" rel="alternate" type="text/html" title="SQL 예제를 풀어보자" /><published>2022-01-24T00:00:00+09:00</published><updated>2022-01-24T00:00:00+09:00</updated><id>http://localhost:4000/sql/2022/01/24/sql-practice</id><content type="html" xml:base="http://localhost:4000/sql/2022/01/24/sql-practice.html"><![CDATA[<h2 id="why-sql">Why SQL?</h2>
-
-<hr />
-
-<p><code class="language-plaintext highlighter-rouge">SQL</code>은 내가 데이터베이스 강의를 들을 때 잠깐 만져보고 처음 본 <code class="language-plaintext highlighter-rouge">Query</code> 언어이다. 그 당시에 효율이 정몰 좋고 데이터베이스 관리를 위해서 꼭 사용해야 하는 언어라고 배웠고, 실제로 <code class="language-plaintext highlighter-rouge">MariaDB</code> 를 활용한 웹을 만들어 보면서 왜 사용해야되는지 배워보았다. 그리고 <code class="language-plaintext highlighter-rouge">SQl</code> 을 펼쳐보지도 않은지 거의 두 세달 이 되어서, S/W Maestro 관련 글을 보던 중 코딩테스트에 <code class="language-plaintext highlighter-rouge">SQL</code>이 나온다는 소식을 들었다… ㅜㅜ 그래서 어쩔 수 없이 <code class="language-plaintext highlighter-rouge">SQL</code> 문제들을 살펴보던 중 프로그래머스에 <code class="language-plaintext highlighter-rouge">SQL</code> 문제들이 올라와 있는걸 보았고, 기본기를 다지는데 훌륭하다고 하여서 한번 풀어보기로 했다.</p>
-
-<blockquote>
-  <p>그리고 어차피 한번 리마인드 할 때 됐다!!</p>
-</blockquote>
-
-<p>문제풀기를 진행하며 까다로웠던 부분들을 다시 보자</p>
-
-<h2 id="select">SELECT</h2>
-
-<hr />
-
-<p><code class="language-plaintext highlighter-rouge">SELECT</code>는 <code class="language-plaintext highlighter-rouge">SQL</code>을 처음 배우면 나오는 문법이다. 그냥 찾아주는거고 여기서 뭐 어려운 것은 없다.</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">ANIMAL_ID</span>
-<span class="k">FROM</span> <span class="n">ANIMAL_INS</span>
-<span class="k">WHERE</span> <span class="n">ANIMAL_ID</span> <span class="o">&gt;</span> <span class="mi">100</span>
-<span class="k">ORDER</span> <span class="k">BY</span> <span class="nb">DATETIME</span> <span class="k">ASC</span> <span class="o">#</span><span class="k">DESC</span>
-<span class="n">LMIIT</span> <span class="mi">1</span>
-</code></pre></div></div>
-
-<p>이런식으로, 찾는다 -&gt; 어디서? -&gt; 어떻게? 이런식으로 주면 된다</p>
-
-<h2 id="count">COUNT</h2>
-
-<hr />
-
-<p><code class="language-plaintext highlighter-rouge">COUNT(*)</code> 로 무엇의 개수를 셀 지 정할 수 있다.
-중요한점은 <code class="language-plaintext highlighter-rouge">GROUP BY</code> 로 어떤것의 개수를 어떤 그룹으로 쪼개서 계산할 지 할 수 있고, 같은것을 세기가 싫다면 <code class="language-plaintext highlighter-rouge">COUNT(DISTINCT NAME)</code> 이런식으로 할 수 도 있다.</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">HOUR</span><span class="p">(</span><span class="nb">DATETIME</span><span class="p">)</span> <span class="k">as</span> <span class="n">HOUR</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="nb">DATETIME</span><span class="p">)</span> <span class="k">as</span> <span class="k">COUNT</span>
-<span class="k">FROM</span> <span class="n">ANIMAL_OUTS</span>
-<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">HOUR</span><span class="p">(</span><span class="nb">DATETIME</span><span class="p">)</span> <span class="k">HAVING</span> <span class="n">HOUR</span> <span class="o">&gt;=</span> <span class="mi">9</span> <span class="k">AND</span> <span class="n">HOUR</span> <span class="o">&lt;=</span> <span class="mi">19</span>
-<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">HOUR</span><span class="p">(</span><span class="nb">DATETIME</span><span class="p">)</span>
-</code></pre></div></div>
-
-<p>09:00부터 19:59까지, 각 시간대별로 입양이 몇 건이나 발생했는지 조회하는 SQL문</p>
-
-<h2 id="is-null">IS NULL</h2>
-
-<hr />
-
-<p><code class="language-plaintext highlighter-rouge">NULL</code> 문은 특징이 있다. 우선 단독으로 <code class="language-plaintext highlighter-rouge">Something = 'NULL'</code> 이런식으로 사용 할 수 없고, <code class="language-plaintext highlighter-rouge">Something is NULL</code> 이런식으로 사용해야 알아듣는다. 생각해보면 당연한 것</p>
-
-<p>그리고 만약 <code class="language-plaintext highlighter-rouge">NULL</code> 이면 이러한 구문을 넣어라 이런것도 가능하다</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">ANIMAL_TYPE</span><span class="p">,</span> <span class="n">IFNULL</span><span class="p">(</span><span class="n">NAME</span><span class="p">,</span> <span class="nv">"No name"</span><span class="p">)</span> <span class="k">as</span> <span class="n">NAME</span><span class="p">,</span> <span class="n">SEX_UPON_INTAKE</span>
-<span class="k">FROM</span> <span class="n">ANIMAL_INS</span>
-</code></pre></div></div>
-
-<p>이렇게 하면 만약 <code class="language-plaintext highlighter-rouge">Name</code> 에 <code class="language-plaintext highlighter-rouge">NULL</code> 이라면 <code class="language-plaintext highlighter-rouge">No name</code> 이 들어가게 된다.</p>
-
-<h2 id="join">JOIN</h2>
-
-<hr />
-
-<p><code class="language-plaintext highlighter-rouge">SQL</code>의 꽃이라고 할 수 있는 <code class="language-plaintext highlighter-rouge">JOIN</code> 문이다. 간단하게 말하면 두 테이블을 합쳐주는 것인데, 합치는 과정에서 어떤식으로 문제를 찾을 지 정할 수 있는 방법이 무궁무진하기 떄문에, 만약 제대로 알고 가지 못한다면 어려워 질 수 있다. 실제로 내가 공부를 할 때는 <code class="language-plaintext highlighter-rouge">Natural JOIN</code> 으로 다 풀었었는데, 문제에서는 다 특이한 방법으로 값들을 찾으라 해서 조금 까다로웠다.</p>
-
-<p><code class="language-plaintext highlighter-rouge">OUTS</code> 에는 있지만 <code class="language-plaintext highlighter-rouge">INS</code> 에는 없는 데이터 출력</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span>
-    <span class="n">OUTS</span><span class="p">.</span><span class="n">ANIMAL_ID</span><span class="p">,</span> <span class="n">OUTS</span><span class="p">.</span><span class="n">NAME</span>
-<span class="k">FROM</span>
-    <span class="n">ANIMAL_INS</span> <span class="k">AS</span> <span class="n">INS</span>
-<span class="k">RIGHT</span> <span class="k">JOIN</span>
-    <span class="n">ANIMAL_OUTS</span> <span class="k">AS</span> <span class="n">OUTS</span>
-<span class="k">ON</span>
-    <span class="n">INS</span><span class="p">.</span><span class="n">ANIMAL_ID</span> <span class="o">=</span> <span class="n">OUTS</span><span class="p">.</span><span class="n">ANIMAL_ID</span>
-<span class="k">WHERE</span>
-    <span class="n">INS</span><span class="p">.</span><span class="n">ANIMAL_ID</span> <span class="k">IS</span> <span class="k">NULL</span><span class="p">;</span>
-</code></pre></div></div>
-
-<p>보호소에서 중성화 즉 Intact -&gt; Neutered or Sapyed가 된 경우 찾기</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">INS</span><span class="p">.</span><span class="n">ANIMAL_ID</span><span class="p">,</span> <span class="n">INS</span><span class="p">.</span><span class="n">ANIMAL_TYPE</span><span class="p">,</span> <span class="n">INS</span><span class="p">.</span><span class="n">NAME</span>
-<span class="k">FROM</span> <span class="n">ANIMAL_INS</span> <span class="n">INS</span>
-<span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">ANIMAL_OUTS</span> <span class="n">OUTS</span>
-<span class="k">ON</span> <span class="n">INS</span><span class="p">.</span><span class="n">ANIMAL_ID</span> <span class="o">=</span> <span class="n">OUTS</span><span class="p">.</span><span class="n">ANIMAL_ID</span>
-<span class="k">WHERE</span> <span class="n">INS</span><span class="p">.</span><span class="n">SEX_UPON_INTAKE</span> <span class="k">LIKE</span> <span class="s1">'Intact%'</span> <span class="k">AND</span> <span class="p">(</span><span class="n">OUTS</span><span class="p">.</span><span class="n">SEX_UPON_OUTCOME</span> <span class="k">LIKE</span> <span class="s1">'Neutered%'</span> <span class="k">OR</span> <span class="n">OUTS</span><span class="p">.</span><span class="n">SEX_UPON_OUTCOME</span> <span class="k">LIKE</span> <span class="s1">'Spayed%'</span><span class="p">)</span>
-<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">ANIMAL_ID</span>
-</code></pre></div></div>
-
-<h2 id="string-date">STRING, DATE</h2>
-
-<hr />
-
-<p><code class="language-plaintext highlighter-rouge">CASE</code> 를 나눠서 만약 1번이면 <code class="language-plaintext highlighter-rouge">X</code> 2번이면 <code class="language-plaintext highlighter-rouge">O</code> 를 출력하는 테이블을 만들 수 있다</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">ANIMAL_ID</span><span class="p">,</span> <span class="n">NAME</span><span class="p">,</span>
-<span class="k">CASE</span> <span class="k">WHEN</span> <span class="n">SEX_UPON_INTAKE</span> <span class="k">LIKE</span> <span class="s1">'Neutered%'</span> <span class="k">OR</span> <span class="n">SEX_UPON_INTAKE</span> <span class="k">LIKE</span> <span class="s1">'Spayed%'</span> <span class="k">THEN</span> <span class="s1">'O'</span> <span class="k">ELSE</span> <span class="s1">'X'</span> <span class="k">END</span> <span class="k">AS</span> <span class="s1">'중성화'</span>
-<span class="k">FROM</span> <span class="n">ANIMAL_INS</span>
-<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">ANIMAL_ID</span>
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">DATE</code> 를 뺼 때, 두가지 경우가 있는데 <code class="language-plaintext highlighter-rouge">DATEDIFF</code> 함수를 사용해서, 실제로 차이가 얼마나 나는지 원하는 데이터 타입으로 찾을 수 있고 아니면 그냥 변수마냥 빼도 알아서 게산을 해준다</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">INS</span><span class="p">.</span><span class="n">ANIMAL_ID</span><span class="p">,</span> <span class="n">INS</span><span class="p">.</span><span class="n">NAME</span>
-<span class="k">FROM</span> <span class="n">ANIMAL_INS</span> <span class="n">INS</span>
-<span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">ANIMAL_OUTS</span> <span class="n">OUTS</span>
-<span class="k">ON</span> <span class="n">INS</span><span class="p">.</span><span class="n">ANIMAL_ID</span> <span class="o">=</span> <span class="n">OUTS</span><span class="p">.</span><span class="n">ANIMAL_ID</span>
-<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">OUTS</span><span class="p">.</span><span class="nb">DATETIME</span> <span class="o">-</span> <span class="n">INS</span><span class="p">.</span><span class="nb">DATETIME</span> <span class="k">DESC</span>
-<span class="k">LIMIT</span> <span class="mi">2</span>
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">DATE</code> 에는 내장 함수들이 많은데, 그 중에 <code class="language-plaintext highlighter-rouge">DATE_FORMAT</code> 을 통해 내가 원하는 형식을 지정 해 줄 수 도 있다.</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">ANIMAL_ID</span><span class="p">,</span> <span class="n">NAME</span><span class="p">,</span> <span class="n">DATE_FORMAT</span><span class="p">(</span><span class="nb">DATETIME</span><span class="p">,</span> <span class="s1">'%Y-%m-%d'</span><span class="p">)</span> <span class="k">as</span> <span class="s1">'날짜'</span>
-<span class="k">FROM</span> <span class="n">ANIMAL_INS</span>
-<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">ANIMAL_ID</span>
-</code></pre></div></div>
-
-<p>이렇게 하면 내가 원하는 YEAR-MONTH-DAY 형식으로 출력이 된다.</p>
-
-<blockquote>
-  <p>{Y,y} {M,m} {D,d} 모두 형식이 다르다. [문자열 vs 숫자]</p>
-</blockquote>]]></content><author><name>071yoon</name></author><category term="sql" /><category term="sql" /><category term="qeury" /><summary type="html"><![CDATA[Why SQL?]]></summary></entry></feed>
+<p>오늘은 컴퓨터공학의 정말 중요한 인물인 리누스 토르발스에 대해서 알아보았는데, 정말 배울점이 많고, 신념이 뚜렷한 사람 같아서 정말 보기 좋다. 이 테드영상 이후로도 몇가지의 영상을 찾아보았는데, 정말 자부심이 강하고 멋진 사람이라고 생각한다. 나도 언젠가 이렇게 자신의 신념을 가지고 행동 할 수 있으며, 그에 따른 무게의 책임질 수 있는 사람이 되고싶다.</p>]]></content><author><name>071yoon</name></author><category term="deep-thought" /><category term="deep thought" /><category term="linux" /><category term="philosophy" /><summary type="html"><![CDATA[Talk is cheap. Show me the code.]]></summary></entry></feed>
