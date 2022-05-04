@@ -1,4 +1,263 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-04-28T17:29:39+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi&apos;s tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">NEXT-Layouts</title><link href="http://localhost:4000/next.js/2022/04/28/next-layouts.html" rel="alternate" type="text/html" title="NEXT-Layouts" /><published>2022-04-28T00:00:00+09:00</published><updated>2022-04-28T00:00:00+09:00</updated><id>http://localhost:4000/next.js/2022/04/28/next-layouts</id><content type="html" xml:base="http://localhost:4000/next.js/2022/04/28/next-layouts.html"><![CDATA[<h2 id="layouts">Layouts</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-05-05T00:26:52+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi&apos;s tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">NEXT-Optimization</title><link href="http://localhost:4000/next.js/2022/05/04/next-optimization.html" rel="alternate" type="text/html" title="NEXT-Optimization" /><published>2022-05-04T00:00:00+09:00</published><updated>2022-05-04T00:00:00+09:00</updated><id>http://localhost:4000/next.js/2022/05/04/next-optimization</id><content type="html" xml:base="http://localhost:4000/next.js/2022/05/04/next-optimization.html"><![CDATA[<h2 id="image-component-and-image-optimization">Image Component and Image Optimization</h2>
+
+<p><code class="language-plaintext highlighter-rouge">next/image</code> 에서의 Next의 이미지 컴포넌트는 HTML에서 <code class="language-plaintext highlighter-rouge">&lt;img&gt;</code> 의 연장선이라 볼 수 있다. 더 좋은 Web 환경을 위해 더 좋은 효율과 압축성을 보여준다. 이러한 효율성은 웹사이트 사용에 있어 UX 적으로 도움이 된다.</p>
+
+<blockquote>
+  <p>SEO 측면에서도 도움이 된다</p>
+</blockquote>
+
+<p>이러한 효율성은 크게 4가지로</p>
+
+<ol>
+  <li>
+    <p>Improve Perforamce : 모든 장치마다 최신 이미지 포맷을 사용하여 정확한 사이즈를 전달한다</p>
+  </li>
+  <li>
+    <p>Visual Stability : CLS(Cumulative Layout Shift)를 방지한다</p>
+  </li>
+</ol>
+
+<blockquote>
+  <p>CLS란 누적 레이아웃 변경으로, 웹페이지를 보는 사용자에게 예상치 못한 화면 변환이 나타나는 빈도 수</p>
+</blockquote>
+
+<ol>
+  <li>
+    <p>Faster Page Loads : 이미지가 <code class="language-plaintext highlighter-rouge">viewport</code>에 접근 시 로딩되어, 빠르고, 로딩 전 blur-up placeholder 를 설정 할 수 있다.</p>
+  </li>
+  <li>
+    <p>Asset Flexibility : 다른 서버에 이미지가 있는 경우에도, 원하는대로 이미지 리사이징이 자유롭다</p>
+  </li>
+</ol>
+
+<h3 id="local-images">Local Images</h3>
+
+<p>이미지의 예제는 다음과 같다</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">Image</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">next/image</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">profilePic</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">../public/me.png</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">Home</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;&gt;</span>
+      <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">My</span> <span class="nx">Homepage</span><span class="o">&lt;</span><span class="sr">/h1</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">Image</span>
+        <span class="nx">src</span><span class="o">=</span><span class="p">{</span><span class="nx">profilePic</span><span class="p">}</span>
+        <span class="nx">alt</span><span class="o">=</span><span class="dl">"</span><span class="s2">Picture of the author</span><span class="dl">"</span>
+        <span class="c1">// width={500} automatically provided</span>
+        <span class="c1">// height={500} automatically provided</span>
+        <span class="c1">// blurDataURL="data:..." automatically provided</span>
+        <span class="c1">// placeholder="blur" // Optional blur-up while loading</span>
+      <span class="o">/&gt;</span>
+      <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">Welcome</span> <span class="nx">to</span> <span class="nx">my</span> <span class="nx">homepage</span><span class="o">!&lt;</span><span class="sr">/p</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">import</code> 하는 과정이 정적이 되어야 build 과정에서 분석이 되기에 <code class="language-plaintext highlighter-rouge">await import()</code> 혹은 <code class="language-plaintext highlighter-rouge">require()</code>같은 동적인 행동은 지원하지 않는다.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>width 와 height 가 자동으로 고정 된 이유는 CLS를 방지하기 위함이다</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="remote-images">Remote Images</h3>
+
+<p>외부에 있는 이미지를 사용하기 위해서는 <code class="language-plaintext highlighter-rouge">src</code>로 위치를 잘 가져와야한다. Next.js같은 경우 build 과정에서 외부로 접근 할 권한이 없으므로 아까 전과는 달리 <code class="language-plaintext highlighter-rouge">width</code>, <code class="language-plaintext highlighter-rouge">height</code>, <code class="language-plaintext highlighter-rouge">blurDataURL</code> 을 넣어 줘야한다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">Image</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">next/image</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">Home</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;&gt;</span>
+      <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">My</span> <span class="nx">Homepage</span><span class="o">&lt;</span><span class="sr">/h1</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">Image</span>
+        <span class="nx">src</span><span class="o">=</span><span class="dl">"</span><span class="s2">/me.png</span><span class="dl">"</span>
+        <span class="nx">alt</span><span class="o">=</span><span class="dl">"</span><span class="s2">Picture of the author</span><span class="dl">"</span>
+        <span class="nx">width</span><span class="o">=</span><span class="p">{</span><span class="mi">500</span><span class="p">}</span>
+        <span class="nx">height</span><span class="o">=</span><span class="p">{</span><span class="mi">500</span><span class="p">}</span>
+      <span class="sr">/</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">Welcome</span> <span class="nx">to</span> <span class="nx">my</span> <span class="nx">homepage</span><span class="o">!&lt;</span><span class="sr">/p</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="domains">Domains</h3>
+
+<p>가끔 외부의 이미지를 사용하면서도 Next.js의 최적화 기법을 사용하고 싶을 수 있다. <code class="language-plaintext highlighter-rouge">loader</code>를 기본으로 두고, <code class="language-plaintext highlighter-rouge">src</code>에 절대경로 URL을 넣어 사용 할 수 있다.</p>
+
+<p>어플을 외부로부터 보호하기 위해 아래와 같이 <code class="language-plaintext highlighter-rouge">next.config.js</code>파일을 사용하여 외부 도메인으로 바로 접근하는것을 막을 수 있다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="k">export</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">images</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">domains</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">071yoon.github.io</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">github.com/071yoon</span><span class="dl">"</span><span class="p">],</span>
+  <span class="p">},</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h3 id="loaders">Loaders</h3>
+
+<p>앞서 <a href="#remote-images">Remote Images</a> 에서처럼 URL의 부분만 쓰는 경우 (<code class="language-plaintext highlighter-rouge">'/me.png'</code>) 는 <code class="language-plaintext highlighter-rouge">next/image</code> 의 loader의 구조상 가능한 부분이다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">Loader</code>는 이미지의 URL을 만들어 주는 기능을 한다. 제공된 <code class="language-plaintext highlighter-rouge">src</code>에 root domain 까지 추가 후 image를 다른 사이즈로 여러 URL을 만들어 연결 요청을 보낸다. 이러한 URL들은 srcset을 만들어내고, 방문자는 각자 <code class="language-plaintext highlighter-rouge">viewport</code>에 맞는 사이즈의 이미지를 볼 수 있게 된다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">Next.js</code>의 default loader는 <code class="language-plaintext highlighter-rouge">built-in Image Optimization API</code>를 사용했고, 웹의 어디에서나 이미지를 최적화 할 수 있었고, 바로 Next.js의 웹 서버에 보냈다. 만약 이미지를 CDN 이나 이미지 서버에 바로 보내고 싶다면, <code class="language-plaintext highlighter-rouge">built-in loader</code>를 사용하거나, 자바스크립트에서 따로 추가를 해야된다.</p>
+
+<p>이러한 로더는 Application Level 에서 이미지당 하나씩 정의가 된다.</p>
+
+<h3 id="priority">Priority</h3>
+
+<p>이미지에 <code class="language-plaintext highlighter-rouge">priority</code>란 속성을 넣어 매 페이지마다 LCP element를 가지게 할 수 있다. 즉 Next.js가 이미지 로딩의 우선순위를 둘 수 있다.</p>
+
+<blockquote>
+  <p>LCP : Largest Contentful Paint로 페이지의 메인 컨텐츠가 로드되었을 가능성이 있을 때 페이지 로드 타임라인에 해당 시점을 표시하여 사용자가 감지하는 로드 속도를 측정할 수 있는 메트릭스 -&gt; LCP가 빠르다 = 해당 페이지를 사용할 수 있다</p>
+</blockquote>
+
+<p>LCP element는 보통 viewport 에서 가장 큰 이미지거나 텍스트로 본다. <code class="language-plaintext highlighter-rouge">next dev</code> 실행시에, <code class="language-plaintext highlighter-rouge">&lt;Image&gt;</code> 에 <code class="language-plaintext highlighter-rouge">priority</code>가 설정되어 있지 않다면, Next는 자체적으로 경고창을 띄운다. 예시는 다음과 같다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">Image</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">next/image</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">Home</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;&gt;</span>
+      <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">My</span> <span class="nx">Homepage</span><span class="o">&lt;</span><span class="sr">/h1</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">Image</span>
+        <span class="nx">src</span><span class="o">=</span><span class="dl">"</span><span class="s2">/me.png</span><span class="dl">"</span>
+        <span class="nx">alt</span><span class="o">=</span><span class="dl">"</span><span class="s2">Picture of the author</span><span class="dl">"</span>
+        <span class="nx">width</span><span class="o">=</span><span class="p">{</span><span class="mi">500</span><span class="p">}</span>
+        <span class="nx">height</span><span class="o">=</span><span class="p">{</span><span class="mi">500</span><span class="p">}</span>
+        <span class="nx">priority</span>
+      <span class="o">/&gt;</span>
+      <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">Welcome</span> <span class="nx">to</span> <span class="nx">my</span> <span class="nx">homepage</span><span class="o">!&lt;</span><span class="sr">/p</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="image-sizing">Image Sizing</h2>
+
+<p>이미지가 성능에 영향을 미치는 경우는 보통 <code class="language-plaintext highlighter-rouge">layout shift</code>가 일어났을 때 이다. 이러한 <code class="language-plaintext highlighter-rouge">layout shift</code>는 이미지가 로딩되면서 다른 요소들을 밀치고 삽입되는 경우이다. 이런 문제는 Client 입장에서 매우 불편하고 <code class="language-plaintext highlighter-rouge">CLS</code>를 일으킨다. 이러한 문제를 해결하는법은 언제나 이미지의 사이즈를 조정하는것이다. 그럼으로써 브라우저딴에서 항상 로딩되기 전에 이미지의 자리를 예약 할 수 있다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">next/image</code>가 항상 좋은 성능을 위해 디자인 되었으므로, <code class="language-plaintext highlighter-rouge">layout shift</code> 현상은 일어나서는 안된다. 즉 아래 세가지 규칙중 하나를 사용해야 된다.</p>
+
+<ol>
+  <li>
+    <p>static import를 사용</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">width</code> 와 <code class="language-plaintext highlighter-rouge">height</code> 요소를 사용</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">layout="fill"</code>을 사용</p>
+  </li>
+</ol>
+
+<p>3번 같은 경우 내 이미지의 사이즈를 모를 때 사용한다. parent element 사이즈만큼 image가 사이즈될 수 있게 설정하게 된다. 그럼 <code class="language-plaintext highlighter-rouge">objectFit property</code> 를 <code class="language-plaintext highlighter-rouge">fill</code>, <code class="language-plaintext highlighter-rouge">contain</code>, <code class="language-plaintext highlighter-rouge">cover</code>, <code class="language-plaintext highlighter-rouge">objectPosition property</code>와 함께 사용하여 얼마나 이미지가 차지해야되는지 알 수 있다.</p>
+
+<p>만약 내가 아는 소스에서 이미지를 가져오는 것이라면, image의 pipeline을 일반화 하는것이 좋다.</p>
+
+<p>만약 API call 을 사용하여 이미지를 가져온다면, API call 을 중간에 수정하여 URL과 함께 이미지의 크기를 리턴하는것이 가능하다.</p>
+
+<p>만약 위 3가지의 방법을 사용하지 않는다면 <code class="language-plaintext highlighter-rouge">next/image</code>는 <code class="language-plaintext highlighter-rouge">&lt;img&gt;</code>와 차이가 없다.</p>
+
+<h2 id="styling">Styling</h2>
+
+<p>Styling 같은 경우에 <code class="language-plaintext highlighter-rouge">&lt;img&gt;</code>와 크게 다를것 없지만, 주의사항이 몇가지 존재한다.</p>
+
+<ol>
+  <li>
+    <p>올바른 layout mode 설정하기</p>
+  </li>
+  <li>
+    <p>이미지를 className으로 지정하기 (DOM 구조에 맞추지 말것)</p>
+  </li>
+</ol>
+
+<p>보통 layout에서 <code class="language-plaintext highlighter-rouge">&lt;img&gt;</code> 는 <code class="language-plaintext highlighter-rouge">&lt;span&gt;</code>에 둘러싸여 있다. 이러한 추가적인 <code class="language-plaintext highlighter-rouge">&lt;span&gt;</code>은 layout shift를 만드는 주된 원인이다. 즉 <code class="language-plaintext highlighter-rouge">&lt;img&gt;</code>에 <code class="language-plaintext highlighter-rouge">className</code>을 붙여 CSS Module을 사용하는것이 일반적이다. 혹은, <code class="language-plaintext highlighter-rouge">className</code>을 사용하여 <code class="language-plaintext highlighter-rouge">global stylesheet</code>를 사용할 수 도 있다.</p>
+
+<ol>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">layout='fill'</code>을 한다면 <code class="language-plaintext highlighter-rouge">position:relative</code> 도 함께 사용해야된다</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">layout='responsive'</code>를 사용할 시 <code class="language-plaintext highlighter-rouge">display:block</code>을 같이 사용할 것</p>
+  </li>
+</ol>
+
+<h2 id="font-optimization">Font Optimization</h2>
+
+<p>버전 <code class="language-plaintext highlighter-rouge">10.2</code> 부터 Next.js 는 built-in web font optimization 을 지원하게 되었다.</p>
+
+<p>일반적으로 Next.js는 자동으로 CSS를 빌드타임에 넣어, 추가적인 반복작업을 피한다. 이렇게 함으로써 FCP 와 LCP에 도움이 된다.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">FCP(First Contentful Paint)</code>란 페이지가 로드되기 시작한 시점부터 컨텐츠의 일부가 화면에 렌더링 될 때까지의 시간 <code class="language-plaintext highlighter-rouge">LCP(Largest Contentful Paint)</code>란 페이지가 로드되기 시작한 시점부터 뷰포트 내부의 가장 큰 이미지 또는 텍스트의 렌더링까지 걸리는 시간</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Before</span>
+<span class="o">&lt;</span><span class="nx">link</span>
+  <span class="nx">href</span><span class="o">=</span><span class="dl">"</span><span class="s2">https://fonts.googleapis.com/css2?family=Inter&amp;display=optional</span><span class="dl">"</span>
+  <span class="nx">rel</span><span class="o">=</span><span class="dl">"</span><span class="s2">stylesheet</span><span class="dl">"</span>
+<span class="o">/&gt;</span>
+
+<span class="c1">// After</span>
+<span class="o">&lt;</span><span class="nx">link</span> <span class="nx">rel</span><span class="o">=</span><span class="dl">"</span><span class="s2">preconnect</span><span class="dl">"</span> <span class="nx">href</span><span class="o">=</span><span class="dl">"</span><span class="s2">https://fonts.gstatic.com</span><span class="dl">"</span> <span class="nx">crossorigin</span> <span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="nx">style</span> <span class="nx">data</span><span class="o">-</span><span class="nx">href</span><span class="o">=</span><span class="dl">"</span><span class="s2">https://fonts.googleapis.com/css2?family=Inter&amp;display=optional</span><span class="dl">"</span><span class="o">&gt;</span>
+  <span class="p">@</span><span class="nd">font</span><span class="o">-</span><span class="nx">face</span><span class="p">{</span><span class="nx">font</span><span class="o">-</span><span class="nx">family</span><span class="p">:</span><span class="dl">'</span><span class="s1">Inter</span><span class="dl">'</span><span class="p">;</span><span class="nx">font</span><span class="o">-</span><span class="nx">style</span><span class="p">:</span><span class="nx">normal</span><span class="p">...</span>
+<span class="o">&lt;</span><span class="sr">/style</span><span class="err">&gt;
+</span></code></pre></div></div>
+
+<h3 id="usage">Usage</h3>
+
+<p>Webfont 를 Next.js에 넣으려면 <code class="language-plaintext highlighter-rouge">Document</code>안에 폰트를 삽입하면 된다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// pages/_document.js</span>
+
+<span class="k">import</span> <span class="nx">Document</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Html</span><span class="p">,</span> <span class="nx">Head</span><span class="p">,</span> <span class="nx">Main</span><span class="p">,</span> <span class="nx">NextScript</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">next/document</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="kd">class</span> <span class="nx">MyDocument</span> <span class="kd">extends</span> <span class="nx">Document</span> <span class="p">{</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="nx">Html</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">Head</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="nx">link</span>
+            <span class="nx">href</span><span class="o">=</span><span class="dl">"</span><span class="s2">https://fonts.googleapis.com/css2?family=Inter&amp;display=optional</span><span class="dl">"</span>
+            <span class="nx">rel</span><span class="o">=</span><span class="dl">"</span><span class="s2">stylesheet</span><span class="dl">"</span>
+          <span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="sr">/Head</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="nx">body</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="nx">Main</span> <span class="o">/&gt;</span>
+          <span class="o">&lt;</span><span class="nx">NextScript</span> <span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="sr">/body</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="sr">/Html</span><span class="err">&gt;
+</span>    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">MyDocument</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>특이한점은 해당 폰트는 특정한 페이지에만 사용되므로 <code class="language-plaintext highlighter-rouge">next/head</code>를 사용하지 않는다는 점이다. 현재 Automatic Webfont Optimization 은 Google Fonts에 의해 지원된다.</p>
+
+<h3 id="disabling-optimization">Disabling Optimization</h3>
+
+<p>Font Optimization 을 끄는 방식은 아래와 같다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// next.config.js</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">optimizeFonts</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+<span class="p">};</span>
+</code></pre></div></div>]]></content><author><name>071yoon</name></author><category term="next.js" /><category term="next.js" /><category term="javascript" /><category term="web" /><category term="study" /><summary type="html"><![CDATA[Image Component and Image Optimization]]></summary></entry><entry><title type="html">NEXT-Layouts</title><link href="http://localhost:4000/next.js/2022/04/28/next-layouts.html" rel="alternate" type="text/html" title="NEXT-Layouts" /><published>2022-04-28T00:00:00+09:00</published><updated>2022-04-28T00:00:00+09:00</updated><id>http://localhost:4000/next.js/2022/04/28/next-layouts</id><content type="html" xml:base="http://localhost:4000/next.js/2022/04/28/next-layouts.html"><![CDATA[<h2 id="layouts">Layouts</h2>
 
 <p>React는 페이지를 컴포넌트로 나누는것이 가능하다. 이러한 컴포넌트들은 페이지간에 재사용이 가능하고, 예를 들어, 모든 페이지마다 같은 네비게이션바를 사용한다.</p>
 
@@ -1204,92 +1463,4 @@ don<span class="s1">'t change possibility is : 33.05%
   <p>const MemorizedBtn = React.memo(Btn);</p>
 </blockquote>
 
-<p>라고 활용하고나서, 그 후 Btn이 아니라 MemorizedBtn 으로 호출하면 렌더링을 한번만 해도 될 수 있게 된다!!</p>]]></content><author><name>071yoon</name></author><category term="react" /><category term="react" /><category term="javascript" /><category term="TIL" /><category term="web" /><summary type="html"><![CDATA[React란 무엇인가]]></summary></entry><entry><title type="html">The mind behind linux</title><link href="http://localhost:4000/deep-thought/2022/01/26/deep-thoughts-1.html" rel="alternate" type="text/html" title="The mind behind linux" /><published>2022-01-26T00:00:00+09:00</published><updated>2022-01-26T00:00:00+09:00</updated><id>http://localhost:4000/deep-thought/2022/01/26/deep-thoughts-1</id><content type="html" xml:base="http://localhost:4000/deep-thought/2022/01/26/deep-thoughts-1.html"><![CDATA[<h2 id="talk-is-cheap-show-me-the-code">Talk is cheap. Show me the code.</h2>
-
-<p><code class="language-plaintext highlighter-rouge">Linus</code>의 전설적인 명언이다. 컴퓨터 공학도라면 한번쯤은 들어봤을 이름 <code class="language-plaintext highlighter-rouge">리누스 토르발스</code>. 내가 이 이름을 처음 들었던 것은 <code class="language-plaintext highlighter-rouge">System Programming</code> 과목에서 <code class="language-plaintext highlighter-rouge">Linux</code> 를 처음 배울 때 였다. 처음 <code class="language-plaintext highlighter-rouge">Linux</code>를 접했을 때는, 엥?? 이게 뭐지?? 싶을정도로 기괴했고, <code class="language-plaintext highlighter-rouge">CLI</code> 를 처음 접했던 나는 정말 적응하기가 힘들었다. 하지만 사용하면 사용 할 수록, 그가 왜 이러한 운영체제를 만들었고, 어떤생각을 하고있는지 이해를 하기 시작했고, 사람에대한 관심이 생겨 찾아보다 <code class="language-plaintext highlighter-rouge">Ted talk</code> 에서 이야기 한 것을 보게되었고, 그에따른 이야기를 조금 해보려고 한다.</p>
-
-<h2 id="who-is-linus">Who is Linus?</h2>
-
-<p>리누스가 뭐하는 사람인가. 이름에서 알 수 있다시피 <code class="language-plaintext highlighter-rouge">Linux</code> 를 만든사람이다.</p>
-
-<blockquote>
-  <p>대학교때 교수님이 만든 OS를 다듬다 만들었다고 한다… ㄷㄷ</p>
-</blockquote>
-
-<p>그리고 무려 <code class="language-plaintext highlighter-rouge">Git</code> 을 만든 사람이다..!! 즉 오픈소스의 창시자라고 할 수 있는 사람이다. 아마 컴퓨터 공학도가 아니라면 체감이 안되겠지만, 이 사람이 없었더라면 다시말해서 <code class="language-plaintext highlighter-rouge">Linux</code> 와 <code class="language-plaintext highlighter-rouge">Git</code> 이 없었더라면 아마 현재는 우리가 살고있는 현재와 많이 다를 것이다. 일단 <code class="language-plaintext highlighter-rouge">Linux</code> 기반의 소프트웨어가 존재하지 않는다는점 -&gt; 우리의 일반적인 휴대폰이나 태블릿 기타등등 얼마나 퇴화했을지 모르는것이고, 오픈소스가 없었다면 개발자들이 아직도 책으로 공부하며 <code class="language-plaintext highlighter-rouge">Peer evluation</code>, 혹은 <code class="language-plaintext highlighter-rouge">code review</code> 없이 개발을 했을지도 모른다. 하지만 깃의 개발을 통해 우리가 좀 더 쉽게 누구나 어떤 코드에 접근 할 수 있게 되었다. 그리고 이러한 개발을 한 그의 사상은 역시나 남들과 다른데 한번 들어보자.</p>
-
-<h2 id="ted-talk">Ted Talk</h2>
-
-<p>21분짜리 Ted Talk를 듣고있으면, 상당히 딴소리도 많이 한다. 자신의 근무환경이 어떻고, 부실하며, 개그도 치고 자신의 신념에 대해서도 말한다.</p>
-
-<blockquote>
-  <p>고양이 그르릉 소리를 들어야돼서 컴퓨터가 팬 소음이 심하면 안된다고 한다… ㅋㅋ</p>
-</blockquote>
-
-<p>조금 더 본론으로 들어가, 자신이 어떻게 깃허브를 만들게 되었는지 설명하는 부분이 나온다. 애초에 리눅스가 협업을 해서 만든 프로젝트가 아니라고 설명하고, 거의 프로젝트가 완성이 되었을 때, 남들에게 보여주고 comment 를 받기 위해 만들었다고 한다. 처음에는 물론 <code class="language-plaintext highlighter-rouge">아 이게 상업적 용도로 쓰이면 어떡하지?</code> 라는 생각도 했다고 한다. 그럼에도 남들이 사용을 해보고, 누구나 <code class="language-plaintext highlighter-rouge">PR</code> 을 넣어서 수정을 할 수 있다는 장점이 더 크다고 판단해 만들었다고 한다. 그리고 여기서 리누스의 개그가 나오는데, 사실 깃은 사람들과 소통을 하기 위해서 만든게 아니라 소통을 피하기 위해 만들었다고 한다. 잉?? 이게 무슨 말일까.. 리누스의 명언을 보면 이해가 된다</p>
-
-<p><code class="language-plaintext highlighter-rouge">Talk is cheap. Show me the code.</code></p>
-
-<p>실제로 리누스가 깃을 만들 때, 21살이여서 사람 만나는거를 별로 안좋아 했다고 한다. MBTI는 I로 시작하는게 분명하다. 그래서 자랑을 하거나 리뷰를 받을 때도, 실제로 만나는것 보다, 사람이 사용해보고 코드로 review 를 해줄 수 있는 방법을 고안하다 나온 방법인 것 같다. 정말 컴퓨터 공학과인 사람이 생각할 만한 이유이고, 나도 너무나도 공감이 된다. 즉 본인이 깃허브를 만든 이유는 오직 리눅스를 만들다 우연히 만든거라고 했다.</p>
-
-<blockquote>
-  <p>근데 우연히 만든게 모든 세상 개발자의 중심지가 될줄이야..</p>
-</blockquote>
-
-<p>그리고 리누스의 어린시절 이야기도 잠깐 언급된다. 자신은 코딩을 10살 때 부터 했고, 똑똑한 편은 아니였다. 똑똑하다기 보다는 자신에게 생긴 일에 고집이 쎄고 자부심이 강했으며, 한번 시작한 일을 끝날 때 까지 놓지 않는 성격이라고 했다. 하지만 제 3자인 내가 보았을 때 리누스는 성공하는 개발자의 덕목을 모두 가지고 있는 것 처럼 보였다. 우선, 한번 일을 시작하면 고집마냥 틀어박혀서 끝날 때 까지 나오지 않는것, 그리고 호기심이 생기면 어떻게 해서든 해결을 하려고 하는것. 그리고 말만 그렇게 하였지, 개발에 대한 재능도 엄청나다고 생각한다. 어떤 재능없는 사람이 21살에 자신만의 OS 를 개발 할 수 있겠는가.</p>
-
-<p>그리고 특히 더 대단한 것은, 보통 일반인으 개발자의 수명이 30중반 까지라고 한다. 그 이후가 되면, 머리도 굳고 힘에 부쳐 많이들 힘들어 한다고 한다. 그래서 보통 그 이후 SI 직군이나 소프트웨어 공학쪽으로 더 빠진다고 한다. 하지만 리누스의 개인 깃허브를 보면, 아직까지도 거의 매일매일 리눅스에대한 개발을 하고있다. 여전히 많은 사람들이 PR을 남겨주고, 매일매일 확인하며 그에 상응하는 대응을 해준다. 이정도의 부와 명예를 가지고 있다면, 충분히 다른 일을 찾아 나설 수 도 있지만, 본인이 이러한 개발을 좋아하고 보다 완벽한 것을 추구하기 떄문이라고 보인다.</p>
-
-<p><code class="language-plaintext highlighter-rouge">Ted Talk</code> 중간에 코드를 잠깐 보여주고 어떤것이 좋은 코드인가에 대한 설명을 잠깐 한 적이 있다. 우선 코드를 한번 확인해 보자</p>
-
-<pre><code class="language-C">remove_list_entry(enrty) {
-	prev = NULL;
-	walk = head;
-
-	//Walk the list
-
-	while (walk != entry) {
-		prev = walk;
-		walk = walk-&gt;next;
-	}
-
-	//Remove the entry by updating head or previous entry
-
-	if (!prev)
-		head = entry-&gt;next;
-	else
-		prev-&gt;next = entry-&gt;next;
-}
-</code></pre>
-
-<pre><code class="language-C">remove_list_entry(entry) {
-	//The "indirect" pointer points to the
-	//address of the thing we'll update
-
-	indirect = &amp;head;
-
-	//Walk the list, looking for the thing that
-	//points to the entry we want to remove
-
-	while((*indirect) != entry)
-		indirect = &amp;(*indirect)-&gt;next;
-
-	//and remove
-	*indrect = entry-&gt;next;
-}
-</code></pre>
-
-<p>하단에 있는 코드는 실제로 리눅스에 있는 링크드 리스트에서 한 리스트를 삭제를 하는 과정을 보여주는 코드이다. 어떻게 보면 두 코드가 동일해 보이고, 실제로 동작을 하는 모습은 동일하다. 그리고 보통 우리는 첫번째 방법으로 코딩을 많이 한다. 포인터를 쓰는것이 아니라, 노드 두개를 가지고 하나씩 옮겨가며 삭제할 곳 까지 찾아간 다음 삭제하고 연결을 해주는 과정이다. 실제로 내가 보기에도 첫번째가 좀 더 보기가 쉽고, 직관적이라 생각을 했다.</p>
-
-<blockquote>
-  <p>내가 아직 코딩을 못해서 그런걸지도 모르지만, 아직도 포인터와 주소값을 왔다갔다하면 헷갈린다</p>
-</blockquote>
-
-<p>하지만 리누스는 오히려 두번째가 더 좋은 코드라고 설명을 한다. 애초에 <code class="language-plaintext highlighter-rouge">if</code>를 쓰지 않고도 할 수 있고, 예외처리가 아예 필요가 없어지는 경우라고 한다. 내가 한국어로 표현을 잘 못해 직접 내용을 인용해 오겠다.</p>
-
-<p><code class="language-plaintext highlighter-rouge">that sometimes you can see a problem in a different way, and rewrite it so that a special case goes away and becomes the normal case. And that's the good code</code></p>
-
-<p>즉 한 문제에 대해서 갇혀있는 생각만 하지말고, 다양한 생각과 다양한 시각으로 보면 더 간편하고 직관적이며, 효율이 좋은 코드가 나올 수 있다는 것이다.
-항상 생각을 하고 행동을 하라는 의미로 받아들이고 싶다.</p>
-
-<p>오늘은 컴퓨터공학의 정말 중요한 인물인 리누스 토르발스에 대해서 알아보았는데, 정말 배울점이 많고, 신념이 뚜렷한 사람 같아서 정말 보기 좋다. 이 테드영상 이후로도 몇가지의 영상을 찾아보았는데, 정말 자부심이 강하고 멋진 사람이라고 생각한다. 나도 언젠가 이렇게 자신의 신념을 가지고 행동 할 수 있으며, 그에 따른 무게의 책임질 수 있는 사람이 되고싶다.</p>]]></content><author><name>071yoon</name></author><category term="deep-thought" /><category term="deep thought" /><category term="linux" /><category term="philosophy" /><summary type="html"><![CDATA[Talk is cheap. Show me the code.]]></summary></entry></feed>
+<p>라고 활용하고나서, 그 후 Btn이 아니라 MemorizedBtn 으로 호출하면 렌더링을 한번만 해도 될 수 있게 된다!!</p>]]></content><author><name>071yoon</name></author><category term="react" /><category term="react" /><category term="javascript" /><category term="TIL" /><category term="web" /><summary type="html"><![CDATA[React란 무엇인가]]></summary></entry></feed>
