@@ -1,4 +1,230 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-05-05T19:49:52+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi&apos;s tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">NEXT-Others-1</title><link href="http://localhost:4000/next.js/2022/05/05/next-others-1.html" rel="alternate" type="text/html" title="NEXT-Others-1" /><published>2022-05-05T00:00:00+09:00</published><updated>2022-05-05T00:00:00+09:00</updated><id>http://localhost:4000/next.js/2022/05/05/next-others-1</id><content type="html" xml:base="http://localhost:4000/next.js/2022/05/05/next-others-1.html"><![CDATA[<h2 id="static-file-serving">Static File Serving</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-05-08T16:55:58+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi&apos;s tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">NEXT-Others-2</title><link href="http://localhost:4000/next.js/2022/05/08/next-others-2.html" rel="alternate" type="text/html" title="NEXT-Others-2" /><published>2022-05-08T00:00:00+09:00</published><updated>2022-05-08T00:00:00+09:00</updated><id>http://localhost:4000/next.js/2022/05/08/next-others-2</id><content type="html" xml:base="http://localhost:4000/next.js/2022/05/08/next-others-2.html"><![CDATA[<h2 id="environment-variables">Environment Variables</h2>
+
+<h3 id="loading-environment-variables">Loading Environment Variables</h3>
+
+<p><code class="language-plaintext highlighter-rouge">Next.js</code>는 우선 내부적으로 <code class="language-plaintext highlighter-rouge">.env.local</code> 과 <code class="language-plaintext highlighter-rouge">process.env</code> 같은 환경변수를 제공해준다. 예를들어 <code class="language-plaintext highlighter-rouge">.env.local</code> 같은 경우에는 다음과 같이 사용한다.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">DB_HOST</span><span class="o">=</span>localhost
+<span class="nv">DB_USER</span><span class="o">=</span>myuser
+<span class="nv">DB_PASS</span><span class="o">=</span>mypassword
+</code></pre></div></div>
+
+<p>해당 환경변수들은 Node.js에서 자동으로 <code class="language-plaintext highlighter-rouge">Next.js</code>의 데이터를 가져오는 방식으로 사용하게 된다. 예를들어 해당 환경변수를 가지고 ` getStaticProps`를 사용하는 방식을 보면 다음과 같다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">async</span> <span class="kd">function</span> <span class="nx">getStaticProps</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">db</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">myDB</span><span class="p">.</span><span class="nx">connect</span><span class="p">({</span>
+    <span class="na">host</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DB_HOST</span><span class="p">,</span>
+    <span class="na">username</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DB_USER</span><span class="p">,</span>
+    <span class="na">password</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DB_PASS</span><span class="p">,</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<table>
+  <tbody>
+    <tr>
+      <td>서버가 민감한 정보들을 안전하게 다루기 위해 Next.js는 <code class="language-plaintext highlighter-rouge">process.env.*</code> 파일을 빌드 시간에 맞는 경로로 전달한다. 즉 <code class="language-plaintext highlighter-rouge">process.env</code>는 자바스크립트에서의 표준이 아니며, object destructuring을 사용할 수 없다는 뜻이다. 즉 환경 변수는 <code class="language-plaintext highlighter-rouge">const { PUBLISHABLE_KEY } = process.env</code> 처럼 사용하는 것이 아닌 <code class="language-plaintext highlighter-rouge">process.env.PUBLISHABLE_KEY</code> 처럼 사용해야 된다.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>또한 Next.js는 (<code class="language-plaintext highlighter-rouge">$VAR</code>) 과 같은 변수들은 자동적으로 <code class="language-plaintext highlighter-rouge">.env*</code> 파일에서 연장하여 사용한다. 변수를 사용한 방법은 다음과 같다.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># .env</span>
+<span class="nv">HOSTNAME</span><span class="o">=</span>localhost
+<span class="nv">PORT</span><span class="o">=</span>8080
+<span class="nv">HOST</span><span class="o">=</span>http://<span class="nv">$HOSTNAME</span>:<span class="nv">$PORT</span>
+</code></pre></div></div>
+
+<p>만약 <code class="language-plaintext highlighter-rouge">$</code> 를 그대로 쓰고싶다면 <code class="language-plaintext highlighter-rouge">\$</code> 과 같이 백슬래쉬를 넣어 사용해야된다.</p>
+
+<h3 id="exposing-environment-variables-to-the-browser">Exposing Environment Variables to the Browser</h3>
+
+<p>일반적인 환경변수들은 <code class="language-plaintext highlighter-rouge">Node.js</code> 환경에서만 사용가능하므로, 브라우저에 유출이 되진 않는다. 만약 브라우저에서 <code class="language-plaintext highlighter-rouge">NEXT_PUBLIC</code> 으로 시작하는 변수를 외부로 유출시키고 싶다면, 다음과 같이 사용하면 된다.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">NEXT_PUBLIC_ANALYTICS_ID</span><span class="o">=</span>abcdefghijk
+</code></pre></div></div>
+
+<p>이렇게 사용하게 되면, <code class="language-plaintext highlighter-rouge">process.env.NEXT_PUBLIC_ANALYTICS_ID</code>가 로드되어, Node.js 환경으로 자동으로 들어가 코드 어디에서도 사용 할 수 있게 된다. 즉 <code class="language-plaintext highlighter-rouge">NEXT_PUBLIC_</code>과 같은 접두사를 사용하게 된다면, 자바스크립트가 브라우저에게 바로 값을 넘겨주게 된다. 이러한 인라인은 빌드시간에 일어나며, 다음과 같은 <code class="language-plaintext highlighter-rouge">NEXT_PUBLIC_</code>의 환경변수들은 프로젝트가 빌드가 끝난 후 사용된다. 코드에서 사용되는 예시는 다음과 같다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// pages/index.js</span>
+<span class="k">import</span> <span class="nx">setupAnalyticsService</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">../lib/my-analytics-service</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="c1">// NEXT_PUBLIC_ANALYTICS_ID can be used here as it's prefixed by NEXT_PUBLIC_</span>
+<span class="nx">setupAnalyticsService</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NEXT_PUBLIC_ANALYTICS_ID</span><span class="p">);</span>
+
+<span class="kd">function</span> <span class="nx">HomePage</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Hello</span> <span class="nx">World</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span><span class="err">;
+</span><span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">HomePage</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="default-envrionment-variables">Default Envrionment Variables</h3>
+
+<p>일반적으로는 하나의 <code class="language-plaintext highlighter-rouge">.env.local</code>파일만이 필요하다. 하지만 가끔 <code class="language-plaintext highlighter-rouge">development</code>나 <code class="language-plaintext highlighter-rouge">production</code>에 따라 다른 환경 변수들을 사용 할 수 있다. 그래서 <code class="language-plaintext highlighter-rouge">Next.js</code> 는 <code class="language-plaintext highlighter-rouge">.env</code>, <code class="language-plaintext highlighter-rouge">.env.development</code>, <code class="language-plaintext highlighter-rouge">.env.production</code>과 같은 환경변수 또한 지원하며 <code class="language-plaintext highlighter-rouge">.env.local</code>을 항상 표준으로 둔다.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>주의사항으로는 <code class="language-plaintext highlighter-rouge">.env</code>, <code class="language-plaintext highlighter-rouge">.env.development</code>, <code class="language-plaintext highlighter-rouge">.env.production</code> 과 같은 파일들은 <code class="language-plaintext highlighter-rouge">.env*.local</code>에 정의되어 있어야 하고 <code class="language-plaintext highlighter-rouge">.gitignore</code>에 포함시켜 안전하게 보관해야된다.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="test-envrionment-variables">Test Envrionment Variables</h3>
+
+<p><code class="language-plaintext highlighter-rouge">development</code>와 <code class="language-plaintext highlighter-rouge">production</code> 환경변수외로, <code class="language-plaintext highlighter-rouge">text</code>라는 세번째 옵션이 또 존재한다. 앞선 방법들과 마찬가지로 <code class="language-plaintext highlighter-rouge">.env.teest</code>에서 <code class="language-plaintext highlighter-rouge">testing</code> 환경을 구축하여 사용 할 수 있다.</p>
+
+<p>이러한 방법은 <code class="language-plaintext highlighter-rouge">jest</code>나 <code class="language-plaintext highlighter-rouge">cypress</code>와 같은 테스팅 툴을 사용할 때 유용하게 사용 할 수 있다. 이러한 테스트 방식은 <code class="language-plaintext highlighter-rouge">NODE_ENV</code>가 <code class="language-plaintext highlighter-rouge">test</code>로 되어있다면, 테스트의 표준 환경을 사용 할 수 있다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">test</code> 가 <code class="language-plaintext highlighter-rouge">development</code> 와 <code class="language-plaintext highlighter-rouge">production</code> 와 다른점이 있다면, 테스트 환경은 <code class="language-plaintext highlighter-rouge">.env.local</code>에 로딩이 안된다는 것이다. 이러한 방식으로 실행되어야 매번 같은 환경을 사용할 수 있기 때문이다.</p>
+
+<p>unit test 를 하는 동안에는 <code class="language-plaintext highlighter-rouge">@next/env</code> 패키지를 사용하여 <code class="language-plaintext highlighter-rouge">loadEnvConfig</code>를 해야함에 주의한다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// The below can be used in a Jest global setup file or similar for your testing set-up</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">loadEnvConfig</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@next/env</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">projectDir</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">cwd</span><span class="p">();</span>
+  <span class="nx">loadEnvConfig</span><span class="p">(</span><span class="nx">projectDir</span><span class="p">);</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>env의 우선순위는 다음과 같다.</p>
+
+<h4 id="node_envproduction">NODE_ENV=production</h4>
+
+<ol>
+  <li>.env.production.local</li>
+  <li>.env.local</li>
+  <li>.env.production</li>
+  <li>.env</li>
+</ol>
+
+<h4 id="node_envdevelopment">NODE_ENV=development</h4>
+
+<ol>
+  <li>.env.development.local</li>
+  <li>.env.local</li>
+  <li>.env.development</li>
+  <li>.env</li>
+</ol>
+
+<h4 id="node_envtest">NODE_ENV=test</h4>
+
+<ol>
+  <li>.env.test.local</li>
+  <li>.env.test</li>
+  <li>.env</li>
+</ol>
+
+<h2 id="supported-browsers-and-features">Supported Browsers and Features</h2>
+
+<h2 id="script-component">Script Component</h2>
+
+<p>Image를 NEXT 에서 제공했던것 처럼, Script같은 경우에도 따로 지정해주는걸 사용하는것이 효율과 성능면에서 더 좋다. 해당 Script 컴포넌트는 <code class="language-plaintext highlighter-rouge">next/script</code>에서 가져올 수 있으며 기본적인 HTML <code class="language-plaintext highlighter-rouge">&lt;script&gt;</code>의 연장선이다. 해당 <script></script>는 <code class="language-plaintext highlighter-rouge">next/head</code> 밖에서 개발자들에게 로딩하는 우선순위를 지정할 수 있게 해주어 로딩 효율을 높여준다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">Script</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">next/script</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">Home</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;&gt;</span>
+      <span class="o">&lt;</span><span class="nx">Script</span> <span class="nx">src</span><span class="o">=</span><span class="dl">"</span><span class="s2">https://www.google-analytics.com/analytics.js</span><span class="dl">"</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="sr">/</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="overview">Overview</h3>
+
+<p>웹사이트는 가끔 통계, 광고, 위젯등을 사용할 때 써드파티의 스크립트를 사이트에서 사용하게 된다. 하지만 이러한 스크립트를 가져오는것이 보통 유저와 개발 입장에서 둘 다 문제를 일으키게 된다.</p>
+
+<ul>
+  <li>어떠한 써드파티의 스크립트 같은경우 너무 무거워서 로딩효율이 안좋고, UX 관점에서 되게 안좋을 수 있다. 특히나, render-block 혹은 딜레이가 생길 수 있다.</li>
+  <li>개발자들은 어떠한 써드파티의 스크립트를 어디에 두어야 효율적인 로딩이 될지 고민하게 된다.</li>
+</ul>
+
+<p>이러한 문제들을 Next 에서 제공하는 <code class="language-plaintext highlighter-rouge">Script</code>를 사용하여 해결 할 수 있다.</p>
+
+<h3 id="usage">Usage</h3>
+
+<p>이러한 <code class="language-plaintext highlighter-rouge">Script</code>를 사용시에, <code class="language-plaintext highlighter-rouge">strategy</code>란 속성을 두어서 관리를 할 수 있다. 간단한 예제를 보면 다음과 같다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">Script</span> <span class="nx">src</span><span class="o">=</span><span class="dl">"</span><span class="s2">https://connect.facebook.net/en_US/sdk.js</span><span class="dl">"</span> <span class="nx">strategy</span><span class="o">=</span><span class="dl">"</span><span class="s2">lazyOnload</span><span class="dl">"</span> <span class="o">/&gt;</span>
+</code></pre></div></div>
+
+<p>속성들을 보면 다음과 같다.</p>
+
+<ul>
+  <li><a href="#beforeinteractive">beforeInteractive</a></li>
+  <li><a href="#afterinteractive">afterInteractive</a></li>
+  <li><a href="#lazyonload">lazyOnload</a></li>
+  <li><a href="#worker">worker</a></li>
+</ul>
+
+<h4 id="beforeinteractive">beforeInteractive</h4>
+
+<p><code class="language-plaintext highlighter-rouge">beforeInteractive</code>속성이 있는 스크립트 같은 경우에는 최초의 HTML에 들어가, 서버가 바로 실행하여 self-bundle된 Javascript가 실행되기 전에 돌아간다. 이러한 방법은 페이지가 상호작용을 하기도전에, fetch하여 실행을 해야될 경우 주로 사용된다. 이러한 방법은 메인 페이지인 <code class="language-plaintext highlighter-rouge">_document.js</code>에서 동작하며, 보통 모든 사이트에서 로딩이 필요한 script인 경우에 들어가서 실행된다.</p>
+
+<p>이러한 <code class="language-plaintext highlighter-rouge">beforeInteractive</code>한 방법이 사용되는 이유는, 오직 <code class="language-plaintext highlighter-rouge">_document.js</code>에서만 동작하게 하여 스티리밍과 Suspense functionality를 지원하기 위함이다. 즉 <code class="language-plaintext highlighter-rouge">_document.js</code> 의 밖에서는 <code class="language-plaintext highlighter-rouge">beforeInteractive</code>의 방식이 우선순위를 잘 두어 실행된다는 보장을 할 수 없다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// In _document.js</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Html</span><span class="p">,</span> <span class="nx">Head</span><span class="p">,</span> <span class="nx">Main</span><span class="p">,</span> <span class="nx">NextScript</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">next/document</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">Script</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">next/script</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">Document</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">Html</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">Head</span> <span class="o">/&gt;</span>
+      <span class="o">&lt;</span><span class="nx">body</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">Main</span> <span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="nx">NextScript</span> <span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="nx">Script</span>
+          <span class="nx">src</span><span class="o">=</span><span class="dl">"</span><span class="s2">https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js</span><span class="dl">"</span>
+          <span class="nx">strategy</span><span class="o">=</span><span class="dl">"</span><span class="s2">beforeInteractive</span><span class="dl">"</span>
+        <span class="o">&gt;&lt;</span><span class="sr">/Script</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="sr">/body</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/Html</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>보통 이러한 속성을 띄는 예는 다음과 같다.</p>
+
+<ul>
+  <li>Bot detectors</li>
+  <li>Cookie consent managers</li>
+</ul>
+
+<h4 id="afterinteractive">afterInteractive</h4>
+
+<p><code class="language-plaintext highlighter-rouge">afterInteractive</code> 방법을 쓰는 Script같은 경우에는 클라이언트 딴에서 삽입되어, Next.js가 hydration 작업을 마친 후에 동작한다. 이러한 방식은 제일빨리 실행될 필요가 없으며 우선순위가 낮을 때 사용하게 된다.</p>
+
+<p>이러한 방식의 스크립트는 다음과 같은 상황에 많이 사용된다.</p>
+
+<ul>
+  <li>Tag managers</li>
+  <li>Analytics</li>
+</ul>
+
+<h4 id="lazyonload">lazyOnload</h4>
+
+<p><code class="language-plaintext highlighter-rouge">lazyOnload</code>의 속성을 띄는 Script 같은 경우에는, 모든 리소스들이 로딩된 후 <code class="language-plaintext highlighter-rouge">idle</code> 한 시간에 fetch되어 정보를 가져올 떄 사용된다. 이러한 방식은 background 나 낮은 우선순위를 가진 스크립트들이 주로 사용된다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">Script</span> <span class="nx">src</span><span class="o">=</span><span class="dl">"</span><span class="s2">https://connect.facebook.net/en_US/sdk.js</span><span class="dl">"</span> <span class="nx">strategy</span><span class="o">=</span><span class="dl">"</span><span class="s2">lazyOnload</span><span class="dl">"</span> <span class="o">/&gt;</span>
+</code></pre></div></div>
+
+<p>이러한 방식을 사용하는 스크립트는 주로 다음과 같다.</p>
+
+<ul>
+  <li>Chat support plugins</li>
+  <li>Social media widgets</li>
+</ul>
+
+<h4 id="worker">worker</h4>
+
+<p>해당 속성 같은 경우에는, 메일 쓰레드를 정해주어 효율을 높여주는 방식이지만, 아직 테스트 환경이라 안전하지 않다.</p>]]></content><author><name>071yoon</name></author><category term="next.js" /><category term="next.js" /><category term="javascript" /><category term="web" /><category term="study" /><summary type="html"><![CDATA[Environment Variables]]></summary></entry><entry><title type="html">NEXT-Others-1</title><link href="http://localhost:4000/next.js/2022/05/05/next-others-1.html" rel="alternate" type="text/html" title="NEXT-Others-1" /><published>2022-05-05T00:00:00+09:00</published><updated>2022-05-05T00:00:00+09:00</updated><id>http://localhost:4000/next.js/2022/05/05/next-others-1</id><content type="html" xml:base="http://localhost:4000/next.js/2022/05/05/next-others-1.html"><![CDATA[<h2 id="static-file-serving">Static File Serving</h2>
 
 <p><code class="language-plaintext highlighter-rouge">Next.js</code>는 파일을 <code class="language-plaintext highlighter-rouge">public</code>에서 이미지처럼 정적으로 활용 할 수 있다. <code class="language-plaintext highlighter-rouge">public</code>은 root 안에 있어야 하며, <code class="language-plaintext highlighter-rouge">public</code> 안에서는 <code class="language-plaintext highlighter-rouge">/</code>로 시작하는 base URL을 따라가야된다.</p>
 
@@ -1391,141 +1617,4 @@ pnpm create next-app <span class="nt">--</span> <span class="nt">--ts</span>
   </li>
 </ol>
 
-<p>다음에는 실제로 Node.js 와 Express 를 사용해 MongoDB 와 연동을 해보자</p>]]></content><author><name>071yoon</name></author><category term="server" /><category term="server" /><category term="TIL" /><summary type="html"><![CDATA[What is Node.js]]></summary></entry><entry><title type="html">몬티 홀 문제</title><link href="http://localhost:4000/deep-thought/2022/02/03/monty-hall.html" rel="alternate" type="text/html" title="몬티 홀 문제" /><published>2022-02-03T00:00:00+09:00</published><updated>2022-02-03T00:00:00+09:00</updated><id>http://localhost:4000/deep-thought/2022/02/03/monty-hall</id><content type="html" xml:base="http://localhost:4000/deep-thought/2022/02/03/monty-hall.html"><![CDATA[<h2 id="몬티-홀-문제">몬티 홀 문제</h2>
-
-<hr />
-
-<h3 id="문제-분석">문제 분석</h3>
-
-<p>몬티 홀 문제는 영화 <code class="language-plaintext highlighter-rouge">21</code>에서 처음 공개된 아이디어이다. 잠깐 문제를 보고 가자면</p>
-
-<blockquote>
-  <p>Suppose you’re on a game show, and you’re given the choice of three doors. Behind one door is a car, behind the others, goats. You pick a door, say #1, and the host, who knows what’s behind the doors, opens another door, say #3, which has a goat. He says to you, “Do you want to pick door #2?” Is it to your advantage to switch your choice of doors?</p>
-</blockquote>
-
-<blockquote>
-  <p>당신이 한 게임 쇼에 참여하여 세 문들 중 하나를 고를 기회를 가졌다고 생각해봐라. 한 문 뒤에는 자동차가 있으며, 다른 두 문 뒤에는 염소가 있다. 당신은 1번 문을 고르고, 문 뒤에 무엇이 있는지 아는 사회자는 염소가 있는 3번 문을 연다. 그는 당신에게 “2번 문을 고르고 싶습니까?”라고 묻는다. 당신의 선택을 바꾸는 것은 이득이 되는가?</p>
-</blockquote>
-
-<p>즉 간단히 말하면</p>
-
-<ol>
-  <li>문 3개가 있는데 한 문 뒤에는 자동차가 있고 나머지 두 문 뒤에는 염소가 있다. 참가자는 이 상황에서 문을 하나 선택하여 그 뒤에 있는 상품을 얻는다.</li>
-  <li>참가자가 어떤 문을 선택하면 사회자는 나머지 두 문 중에 염소가 있는 문 한 개를 열어 참가자에게 그 문에 염소가 있다고 확인시켜준다.</li>
-  <li>그 후 사회자는 참가자에게 선택한 문을 닫혀있는 다른 문으로 선택을 바꿀 기회를 준다.</li>
-</ol>
-
-<p>얼핏보기에는 정말 간단해 보이는 문제고 나도 처음 문제를 접했을 때는 엥?? 이게 왜 이렇게 핫한 주제일까 라는 생각까지 했다. 하지만 여기서 중요한 점은 <code class="language-plaintext highlighter-rouge">사회자는 어디에 스포츠카가 있는지 알고있다</code> 라는것이 조건부 확률의 전제로 들어간다는 것이다. 정말 단순해 보이는 문제인데, 어째서 이게 많은 수학자들에게 항의 메일이 오도록 했을까??</p>
-
-<blockquote>
-  <p>IQ 200 인 사람도 처음에 틀리고, 노벨상 수상자 까지 문제가 잘못됐다고 메일을 보냈다고 한다…!!</p>
-</blockquote>
-
-<h3 id="my-thoughts">My Thoughts</h3>
-
-<hr />
-
-<p>우선 정답은 바꾸었을 때의 확률이 2/3 이고, 바꾸지 않았을 때의 확률은 1/3이므로, 당연히 바꾸는 것이 확률적으로 맞다!!</p>
-
-<p>이제, 나의 처음 접근을 한번 살펴보자. 아마 많은 사람들일 나처럼 생각했겠지만, 당연히 50프로라고 생각을 했다. 그리고 이건 부끄러운 생각이 절대 아니다. 직관적으로 생각을 해보면 그렇기 때문이다. 내가 우선 선택을 하였고, 사회자가 둘중 하나를 오픈을 해 주었다. 그 시점을 독립사건으로 본다고 하면, 나는 둘중 하나를 개봉하는것이기 때문에, 확률은 마치 반반처럼 보이지만, 그렇게 단순한 문제가 아니다. 왜냐하면 확률적으로 접근을 해야하기 때문이다.</p>
-
-<p>만약 처음에 내가 선택을 하지 않고, 사회자가 둘중 하나를 열어 준 다음 내가 선택을 하면 독립사건이 되어 50% 확률이 되는것이 수학적으롤도 맞다. 하지만, 내가 처음에 선택을 하였기 때문에, 바꾸지 않고 우승할 확률은 무조건 1/3 확률이고, 바꾸었을 때의 확률은 2/3이 된다. 여기서 중요한점은</p>
-
-<ol>
-  <li>사회자는 어디에 자동차에 있는지 이미 알고있다</li>
-  <li>내가 처음 선택을 하였다</li>
-</ol>
-
-<p>이렇게 두가지가 전제조건으로 나와있어야 조건부 확률로 성립을 한다는 것이다. 만약 사회자가 둘중 하나에 에라이~! 하고 아무거나 열어버린다면 자동차가 나올 수가 있고, 내가 처음 선택을 하지않았다면, 사회자가 어떤 문을 열어야 할 지 선택 할 지 모르기 때문에 전제가 틀려버린다. 아마 많은 사람들이 헷갈린 부분이 이러한 전제조건의 여부가 정확하게 확립되지 않아 헷갈린 것 같다. 하지만 이런식으로 이야기를 하여도 직관적으로 보기엔 정말 어렵다. 그러때는 역시 묻지마 코딩이 정답이다. C++ 로 코딩을 하면서 차근차근 왜 이러하게 나오지는 살펴보자</p>
-
-<h3 id="몬티-홀-문제-시뮬레이션-via-c">몬티 홀 문제 시뮬레이션 via C++</h3>
-
-<pre><code class="language-C++">#include &lt;iostream&gt;
-#include &lt;cstdlib&gt;
-#include &lt;ctime&gt;
-using namespace std;
-
-int main(){
-	srand(time(NULL));
-
-	int monty_sum = 0;
-	int dont_change_sum = 0;
-	int test_case = 0;
-	char simul_on;
-	cout &lt;&lt; "simulation counts : ";
-	cin &gt;&gt; test_case;
-	cout &lt;&lt; "check every simulations? (y/n) ";
-	cin &gt;&gt; simul_on;
-	for(int i = 0; i &lt; test_case; i++){
-		int chosen_door = rand() % 3;
-		int correct_door = rand() % 3;
-		if (simul_on == 'y')
-			cout &lt;&lt; "TEST CASE " &lt;&lt; i + 1 &lt;&lt; " Car is in " &lt;&lt; (char)(correct_door + 'A') &lt;&lt; " and my choice is " &lt;&lt; (char)(chosen_door + 'A') &lt;&lt; "\n";
-		if (correct_door == chosen_door){
-			if (simul_on == 'y')
-				cout &lt;&lt; "Monty-Hall X and got correct\n";
-			dont_change_sum += 1;
-		}
-		else{
-			if (simul_on == 'y')
-				cout &lt;&lt; "Monty-Hall X and got wrong\n";
-		}
-		if (correct_door == chosen_door){ // When you choose the coorect one at the first time -&gt; you will never be able to win
-			if (simul_on == 'y')
-				cout &lt;&lt; "Monty-Hall and got wrong\n";
-			continue;
-		}
-		else if (correct_door != chosen_door){ // When you choose the wrong one at the first time -&gt; you will get it for sure when you change
-			if (simul_on == 'y')
-				cout &lt;&lt; "Monty-Hall and got right\n";
-			monty_sum += 1;
-		}
-		// Since there is 1/3 possibility to win at the first time, possibility to get the prize is 2/3
-	}
-	cout &lt;&lt; "\nmonty possibility is : " &lt;&lt; ((double)monty_sum / (double)test_case) * (double)100 &lt;&lt; "%" &lt;&lt; "\ndon't change possibility is : " &lt;&lt; ((double)dont_change_sum / (double)test_case) * (double)100 &lt;&lt; "%" &lt;&lt; "\n";
-}
-</code></pre>
-
-<p>최대한 간략하면서, 직관적으로 보이게 짜보려고 했는데, 잘 됐을 지 모르겠다.
-테스트를 해본 결과 대략 10만번을 돌려보면, 66.95% 와 33.05% 가 나와 거의 2/3 과 1/3에 수렴하는것을 볼 수 있다.</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>simulation counts : 100000
-check every simulations? <span class="o">(</span>y/n<span class="o">)</span> n
-
-monty possibility is : 66.95%
-don<span class="s1">'t change possibility is : 33.05%
-</span></code></pre></div></div>
-
-<p>여기서 시뮬레이션에 <code class="language-plaintext highlighter-rouge">y</code> 를 주면 실제 테스트케이스별로 확인도 할 수 있다.</p>
-
-<p>코드를 한번 설계를 해보면 왜 그런지 확실하게 알 수 있는데 확실하게 정의를 할 수 있다. 내가 몬티 홀을 믿고 무조건 바꾼다고 가정을 해보자. 그럼 당연하게 두가지 상황이 나온다.</p>
-
-<ol>
-  <li>내가 맞음</li>
-  <li>내가 틀림</li>
-</ol>
-
-<p>자동차를 개봉하기 전 확률상으로 보면 내가 맞을 확률은 1/3, 그리고 내가 틀릴 확률은 2/3 이다.</p>
-
-<p>여기서 만약 바꾸지 않고 똥고집을 부려 유지를 한다면, 그대로 1/3 확률로 나올 것이다. 하지만 바꾼다면 내가 처음에 틀린 경우 즉 2번으로 시작해서 무조건 맞으므로 맞을 확률이 2/3이 된다.</p>
-
-<p>이제 그럼 매우 간단한 로직으로 설명을 들 수 있다. 내가 몬티홀을 무조건 믿고 바꾼다고 생각을 해보자</p>
-
-<ol>
-  <li>내가 처음에 맞으면 무조건 틀림</li>
-  <li>내가 처음에 틀리면 무조건 맞음</li>
-</ol>
-
-<p>이렇게 설명 할 수 있다. 왜냐면 내가 바꿈으로써 나는 2개의 문을 동시에 확인하는 셈이 되어 버리기 때문이다. 그래서 처음에 맞을 확률 1/3, 처음에 틀릴 확률이 2/3 이므로 시뮬레이션을 돌려도 동일하게 나오는 것이다.</p>
-
-<p>사람의 말로만 들으면 충분히 헷갈릴 수 있다. 컴퓨터 공학도라면 직접 시뮬레이션을 돌려보며 생각을 해보는 것이 이해에 더 도움이 될거라 생각한다.</p>
-
-<h3 id="후기">후기</h3>
-
-<p>나무위키나 블로그들을 보면, 정말 많은 사람들이 다양한 이유로 다양한 설명들을 해놓은 것을 볼 수 있다. 그 중에, 수학적으로 접근을 하여 베이즈의 확률론으로 정리를 해놓은 사람, 혹은 경우의 수로 정리 한 사람, 문이 100개라고 가정을 하고 생각을 해보라는 사람.</p>
-
-<blockquote>
-  <p>잘 생각해보면 확률론으로 정리해놓은 것 빼고는 다 증명을 할 수 없는 말들이다</p>
-</blockquote>
-
-<p>하지만 이렇게 똑똑이들이 해놓은 증명을 보고도 이해가 잘 안된다면, 무작정 시뮬레이션을 해보고 코딩을 하며 문제를 더 완벽히 파악하고 큰 문제를 짧게 쪼개며 단순화 하는것이 더 도움이 될 수 있다는 생각이 든다.</p>]]></content><author><name>071yoon</name></author><category term="deep-thought" /><category term="deep-thought" /><category term="TIL" /><summary type="html"><![CDATA[몬티 홀 문제]]></summary></entry></feed>
+<p>다음에는 실제로 Node.js 와 Express 를 사용해 MongoDB 와 연동을 해보자</p>]]></content><author><name>071yoon</name></author><category term="server" /><category term="server" /><category term="TIL" /><summary type="html"><![CDATA[What is Node.js]]></summary></entry></feed>
