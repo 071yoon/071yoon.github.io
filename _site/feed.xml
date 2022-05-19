@@ -1,4 +1,149 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-05-15T18:54:04+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi&apos;s tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">NEXT-API</title><link href="http://localhost:4000/next.js/2022/05/15/next-api.html" rel="alternate" type="text/html" title="NEXT-API" /><published>2022-05-15T00:00:00+09:00</published><updated>2022-05-15T00:00:00+09:00</updated><id>http://localhost:4000/next.js/2022/05/15/next-api</id><content type="html" xml:base="http://localhost:4000/next.js/2022/05/15/next-api.html"><![CDATA[<h2 id="api-routes">API Routes</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-05-19T18:44:12+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi&apos;s tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">Intro to Machine Learning</title><link href="http://localhost:4000/ml/2022/05/19/intro-to-machine-learning.html" rel="alternate" type="text/html" title="Intro to Machine Learning" /><published>2022-05-19T00:00:00+09:00</published><updated>2022-05-19T00:00:00+09:00</updated><id>http://localhost:4000/ml/2022/05/19/intro-to-machine-learning</id><content type="html" xml:base="http://localhost:4000/ml/2022/05/19/intro-to-machine-learning.html"><![CDATA[<h2 id="definition-of-machine-learning">Definition of Machine Learning</h2>
+
+<h3 id="우리는-어떻게-문제를-해결할-수-있을까">우리는 어떻게 문제를 해결할 수 있을까??</h3>
+
+<ul>
+  <li>컴퓨터 공학도로써, 문제를 해결하기위하여 일정한 규칙을 행동하는 프로그램을 작성한다</li>
+  <li>많은 상황에서, 이러한 규칙들을 정하는것이 매우 힘들다</li>
+</ul>
+
+<h3 id="learning-systems들은-문제를-해결하기-위함이-아니다"><code class="language-plaintext highlighter-rouge">Learning Systems</code>들은 문제를 해결하기 위함이 아니다</h3>
+
+<ul>
+  <li>어떤식으로 동작해야되는지에 대한 프로그램을 개발</li>
+  <li>시행착오를 통하여 어떤식을 통하여 프로그램을 개발</li>
+</ul>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Learning</code> 이란 단순히 학습된 예제들을 시스템에 도입하는것에 지나지 않는다.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="arthur-samuel">Arthur Samuel</h3>
+
+<ul>
+  <li>머신러닝은 컴퓨터가 프로그램되지 않아도 배울수 있는 능력을 구축 할 수 있게 학습권을 주는것이다</li>
+</ul>
+
+<h3 id="tom-mitchell">Tom Mitchell</h3>
+
+<ul>
+  <li>
+    <p>머신러닝은 <code class="language-plaintext highlighter-rouge">Experience</code> 를 통하여 배우며, <code class="language-plaintext highlighter-rouge">Task</code> 를 반영하며, <code class="language-plaintext highlighter-rouge">Performance</code>에 신경쓰여야 된다. 그리고 이러한 특정한 <code class="language-plaintext highlighter-rouge">Task</code>에 대하여 <code class="language-plaintext highlighter-rouge">Performance</code> 로 측정되며, <code class="language-plaintext highlighter-rouge">Experience</code>를 통하여 발전한다.</p>
+  </li>
+  <li>Experience : 프로그램이 게임을 하는 과정</li>
+  <li>Performance measure : 우승률</li>
+</ul>
+
+<h2 id="tasks-that-requires-ml">Tasks that requires ML</h2>
+
+<ul>
+  <li>숫자를 보고 어떻게 2라고 판단을 할까?</li>
+  <li>2와 7의 차이를 어떻게 분석 할 수 있을까?</li>
+  <li>어떻게 로봇을 요리 할 수 있게 만들 수 있을까?</li>
+</ul>
+
+<h2 id="learning-algorithms-are-useful-in-many-tasks">Learning algorithms are useful in many tasks</h2>
+
+<ul>
+  <li>
+    <p>머신러닝은 AI의 방법으로 자리잡고있다</p>
+  </li>
+  <li>
+    <p>컴퓨터의 새로운 능력이다</p>
+  </li>
+  <li>
+    <p>예시</p>
+    <ul>
+      <li>Data mining
+        <ul>
+          <li>자동 혹은 웹으로 배포된 대량의 데이터베이스</li>
+          <li>Web click data, medical records, biology …</li>
+        </ul>
+      </li>
+      <li>Application can’t program by hand
+        <ul>
+          <li>NLP, Computer vision</li>
+          <li>자율주행, 필기인식</li>
+        </ul>
+      </li>
+      <li>Self-customizing programs
+        <ul>
+          <li>아마존,넷플릭스 자동 추천</li>
+        </ul>
+      </li>
+      <li>Understanding human learning
+        <ul>
+          <li>Brain, Real AI</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="taxonomy-of-machine-learning">Taxonomy of Machine Learning</h2>
+
+<h3 id="supervised-learning">Supervised Learning</h3>
+
+<h4 id="housing-price-prediction">Housing Price Prediction</h4>
+
+<ul>
+  <li>Supervised Learning : <code class="language-plaintext highlighter-rouge">정답</code>이 항상 정해진다</li>
+  <li>Regression : 연속적인 값들을 통하여 예측을 할 수 있다</li>
+</ul>
+
+<p>목표 : 값들이 듬성듬성 주어졌을 때, 선형분석을 하여 중간에 어떤 값을 주었을 때 예측을 할 수 있다.</p>
+
+<h4 id="breast-cancer">Breast Cancer</h4>
+
+<ul>
+  <li>Classification : 1 혹은 0으로 정해진 값</li>
+</ul>
+
+<p>Tumor Size, Malignant, Age, Clump thickness, Uniformity of cell size… 로 분석하여 유방암인지 아닌지 분석 할 수 있다.</p>
+
+<h4 id="supervised-learning-in-computer-vision">Supervised Learning in Computer Vision</h4>
+
+<ul>
+  <li>
+    <p>Image Classification</p>
+
+    <ul>
+      <li>X : raw pixels of image [이미지를 주면]</li>
+      <li>Y : main object [어떤 물체인지 판단해준다]</li>
+    </ul>
+  </li>
+  <li>
+    <p>Object localization and detection</p>
+    <ul>
+      <li>X : raw pixels of image [이미지를 주면]</li>
+      <li>Y : bounding boxes [물체들에 박스를 쳐준다]</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="unsupervised-learning">Unsupervised Learning</h3>
+
+<ul>
+  <li>Dataset에 라벨이 없다</li>
+  <li>목표 : 데이터를 보고 특이한 지점을 발견하는것</li>
+</ul>
+
+<h4 id="clustering">Clustering</h4>
+
+<ul>
+  <li>
+    <p>K-mean Clustering 혹은 가우시안을 통해 찾아낸다</p>
+  </li>
+  <li>
+    <p>예를들어, 뉴스에서 헤드라인을 서로 엮이는것들만 뽑아서 묶는 과정</p>
+  </li>
+</ul>
+
+<h3 id="reinforcement-learning">Reinforcement Learning</h3>]]></content><author><name>071yoon</name></author><category term="ML" /><category term="ML" /><category term="Machine Learning" /><category term="study" /><summary type="html"><![CDATA[Definition of Machine Learning]]></summary></entry><entry><title type="html">NEXT-API</title><link href="http://localhost:4000/next.js/2022/05/15/next-api.html" rel="alternate" type="text/html" title="NEXT-API" /><published>2022-05-15T00:00:00+09:00</published><updated>2022-05-15T00:00:00+09:00</updated><id>http://localhost:4000/next.js/2022/05/15/next-api</id><content type="html" xml:base="http://localhost:4000/next.js/2022/05/15/next-api.html"><![CDATA[<h2 id="api-routes">API Routes</h2>
 
 <h3 id="intro">Intro</h3>
 
@@ -1561,78 +1706,4 @@ pnpm create next-app <span class="nt">--</span> <span class="nt">--ts</span>
 
 <p>사실 책은 애자일 방법론에 대하여 그렇게 중점적으로 설명해주지 않는다. 오히려 애자일이 디테일해질수록 애자일에 멀어진다고 설명한다. 애자일은 애초에 민첩하게 급변하는 시장에 맞춰 발전하는 형태이기에, 정적일수록 근본적으로 맞지않다고 판단하는 것이다.</p>
 
-<p>그럼에도, 나는 조금 더 스크럼을 하는법 혹은 스프린트를 뛰는법에 대하여 알려줬으면 좋겠다고 생각을 했지만, 그런부분은 조금 아쉬웠다. 그럼에도, 애자일을 왜 사용해야 되는지는 정말 깔끔하게 설명을 해준 것 같다. 앞에서 언급한 가치, 피드백, 실수 등 애자일 방법론을 채택하면 모두 극복이 가능한 시나리오 이다. 매일매일 스크럼과 일주일 단위의 회고로 인하여 완벽한 피드백 시스템을 구축 할 수 있으며, 이러한 과정에서 가치를 높일 수 있다 생각한다.</p>]]></content><author><name>071yoon</name></author><category term="deep-thought" /><category term="deep-thought" /><category term="book" /><summary type="html"><![CDATA[함께 자라기]]></summary></entry><entry><title type="html">SW Maestro 지원 후기</title><link href="http://localhost:4000/retrospect/2022/03/03/sw-maestro.html" rel="alternate" type="text/html" title="SW Maestro 지원 후기" /><published>2022-03-03T00:00:00+09:00</published><updated>2022-03-03T00:00:00+09:00</updated><id>http://localhost:4000/retrospect/2022/03/03/sw-maestro</id><content type="html" xml:base="http://localhost:4000/retrospect/2022/03/03/sw-maestro.html"><![CDATA[<h2 id="intro">Intro</h2>
-
-<p>오늘 심층면접을 끝으로 길고 길었던 소프트웨어 마에스트로의 지원이 끝났다.</p>
-
-<p>1월애 자소서를 쓰는것부터 시작해서 무려 두달이나 걸려서 오늘 최종 면접까지 가게 되었다. 끝나고 나니 아쉬운 부분도 있지만, 우선 정말 후련하고 후회는 없다.</p>
-
-<h2 id="1-자소서-예의는-있지">1. 자소서 [예의는 있지?]</h2>
-
-<p>자소서를 쓰는 단계였다. 하지만 인터넷 어디를 찾아봐도 자소서에서 떨어졌다는 이야기는 없다. 하지만 자소서는 면접질문에서 부메랑처럼 날아 올 수 있기에 최대한 사실대로 솔직하게 나의 정보를 어필하는것이 좋다고 판단했다. 그래서 꾸밈없이 정말 내가 개발하고 싶은 정보나 나의 철학을 정말 아낌없이 표현했다. 그리고 당연히 합격했다…</p>
-
-<blockquote>
-  <p>하지만 자소서의 내용은 평생 쓸 일이 없었는데… 읍읍..</p>
-</blockquote>
-
-<h2 id="2-1차-코딩테스트-너-코딩할-줄-아니">2. 1차 코딩테스트 [너 코딩할 줄 아니?]</h2>
-
-<p>1차 코딩테스트는 사실 별거 없었다. 시간만 충분했다면 웹까지 8문제 전부 어렵지 않게 풀 수 있을 수준이였다. 물론 시간이 문제여서 알고리즘 6번째 문제는 풀지 못했지만, 그래도 나쁘지 않게 보았고, 끝나자 마자 “아..! 붙겠다..!” 라는 생각을 했다.</p>
-
-<p>결과는 당연히 붙었다. 사실 byukim 님이랑 [42서울에서 만난 같이 소마를 지원하신 저의 영혼의 파트너] 한달넘게 코딩테스트를 준비했기에, 1차에서 떨어질 걱정은 하지 않았다. 다행히 byukim님 또한 잘 붙어서 2차까지 가게 되었다.</p>
-
-<p>자세한 코딩테스트의 문제들은 보안상의 이유로 공개 할 수 없지만, 정말 백준 실버1 급의 문제들이 대거 나왔기 때문에, 평소에 알고리즘을 1회독이라도 했다면, 어렵지 않게 합격 할 수준이다.</p>
-
-<h2 id="3-2차-코딩테스트-응-안풀면-그만이야">3. 2차 코딩테스트 [응~ 안풀면 그만이야~]</h2>
-
-<p>42서울에서 느꼈지만, 나는 카더라 통신에 정말 약하다. 이번 역시 카더라 통신을 신뢰했지만 결과는 처참했다. 분명히, 2차에서는 1차 코테에 문제에서 업그레이드된 문제가 나온다고해서, 이분탐색과 다익스트라를 정말 달달 외우고 갔지만 한문제도 나오지 않았다… 그리고 정말 뜬금없이 유니온 파인드와 미친난이도의 구현문제가 나왔다.</p>
-
-<blockquote>
-  <p>백준 다이아분도 구현문제는 어려워서 못푸셨다고 한다</p>
-</blockquote>
-
-<p>구현문제같은 경우는 끝나고 찾아보니, 백준 테트리미노와 비슷했지만 DP를 활용해서 푸는 문제였다. 푼 사람말로는 무슨 4차원 DP(..?) 썼다고 들었는데 이걸 두시간안에 풀 수 있을 사람이 있을까..? 싶었다. 구현문제를 제외하고는 난이도는 평이했다. 하지만 SQL에서 실수하기 정말 쉬운 함정을 파뒀고 나를 포함한 많은 참가자들이 함정에 바로 푹 빠져버렸다. 이 문제에 대해서는 추후에 면접에서 나올 예정이다.. 그리고 웹은 생각보다 쉬웠지만, 알고리즘을 풀다가 못풀어 버렸다.</p>
-
-<p>사실 비하인드 스토리긴 하지만, 나는 웹과 알고리즘 3번을 코딩테스트 당시에 엄청 고민했다. 둘 다 풀 수 있을 수준이라고 생각했고, 아무래도 알고리즘을 최근에 엄청 열심히 했기에 조금만 더 생각해보면 풀릴거라 생각했다. 그리고 비슷한 문제를 백준에서 풀었기에 더 자신감이 있었을지도 모르겠다. 하지만 구현을 하면 할수록 개미지옥에 빠지는 느낌이였고 결국 두마리 토끼 다 놓쳐버렸다… 그냥 웹이나 할걸..</p>
-
-<p>그렇게 총 두문제 밖에 풀지 못했지만, 운이 좋은건지 문제가 전체적으로 어려웠던건지 2차 코딩테스트까지 합격하게 됐다. 그리고 포트폴리오 준비로 넘어갔다.</p>
-
-<h2 id="4-포트폴리오-타임어택-on">4. 포트폴리오 [타임어택 ON]</h2>
-
-<p>2차 합격은 화요일 오후쯤 나왔고, 금요일 4시까지 포트폴리오를 제출하라고 했다. 다행인것은 기본적인 템플릿을 제공해 주어 사실 채우라는것만 채우면 됐었다. 하지만 여기서 함정이 숨어 있었는데 바로..</p>
-
-<blockquote>
-  <p>3분안에 발표할 내용을 넣어주세요</p>
-</blockquote>
-
-<p>그렇게 채워서 나름대로 시간을 재고 발표를 해보니 시간은 이미 4분이 훌쩍 넘어가 있었다. 그래서 열심히 채웠던 내용을 빼고 또 빼고 해서 3분을 채워서 제출했다. 지금와서 드는 생각이지만, 어차피 발표할 때 빼고 발표하면 되니까 맘껏 꾹꾹 눌러 담을 걸 그랬다.</p>
-
-<p>나는 내가 정말 개발에 열정이 있고, 배포도 해봤고 협업도 잘했다..! 라고 표현하기 위해서 프로젝트 하나와, 내가 아직 제대로 개발한지는 1년밖에 되지 않았지만 그래도 정말 열심히 살았다는 증거를 보여주기 위해 자기소개 두개를 넣어서 진행했다.</p>
-
-<h2 id="5-면접-히히-죽어라">5. 면접 [히히 죽어라]</h2>
-
-<p>진짜 피말려서 죽는 줄 알았다… ㅋㅋㅋㅋ 끝나고 같이 면접하신 분이랑 점심을 먹고 헤어졌는데 정말 둘이서 실소를 했다가 아쉬워했다가 미친사람들처럼 밥을 먹었다…</p>
-
-<p>우선 3분 포트폴리오 발표부터 했는데, 이거부터 문제였다. 2번인 나는 1번 다음 발표여서 아..! 1번님 하는거보고 바로 전략을 세워야겠다..! 생각을 했는데 웬걸 1번님이 안오셔서 내가 1번이 되어버렸다.. 그래서 질문같은것도 내가 항상 1번으로 대답해야했다… ㅜㅜㅜㅜ 이렇게 운이 안좋을 수 있나…!!</p>
-
-<p>사실 발표를 준비 할 때 제일 걱정됐던게 3분을 넘기면 무슨일이 일어날지였다. 그런데 발표를 시작하자마자, 관계자분이 오셔서 스탑와치를 탁 두고 가셨다. 뭔가 보고 있으니 이미 시간이 2:59… 2:58… 이렇게 가고 있었다. 그래서 아차! 싶어서 빠르게 발표를 시작했다.</p>
-
-<p>발표연습을 꽤 했었기에 대충 3분 나오는것을 알고 있었지만, 면접관들 얼굴한번 화면한번 조작한번 하다보니 생각보다 시간적으로 오차가 생겼다. 그래서 딱 마지막으로 ‘저를 이러이러한 지원자로 기억해주셨으면 좋겠습니다~’ 라는 멘트를 하려고 했는데 3분이 딱 걸려버렸다. 처음에 무시하고 에이 5초정도는 봐주겠지 라고 생각했지만 타이머는 기계였다. 한치의 오차 없이 ‘띠…띠…띠…’ 소리가 면접실에 울렸고 나는 ‘넵 감사합니다’ 하고 끝이나버렸다… 그래도 거의 할말을 다 했기에 아쉬움은 없지만 그래도 마지막 멋진 멘트를 할 기회를 뺐겼다는것이 아쉬웠다.</p>
-
-<p>면접을 진행하다 보니 면접관들은 프로그래밍의 신이기 때문에 함부로 까불면 안된다는것을 배웠다. 다행히 나는 그렇게 어려운 API 나 Open Source 를 쓴것도 아니고, 그냥 React 로 프로젝트를 만들어 봤고 내가 아는선에서 발표를 진행했기에 그렇게 공격(?) 받지는 않았다. 하지만 나를 제외하고 3명은 전부 AI 를 활용했다고 발표했기에 엄청난 공격을 받으셨다.</p>
-
-<blockquote>
-  <p>근데 공격 받은게 좋은건지 그냥 관심없어서 넘어간게 좋은건지는 모르겠다</p>
-</blockquote>
-
-<p>나는 최대한 나에게 질문오는 것을 열심히 대답했다고 생각은 하는데, 면접관들이 보기엔 어떻게 생각할지 모르겠다. 하지만 면접은 자신감이라고 했다. 나는 모르든 맞든 내 대답이 앞뒤가 맞는 안맞든 그냥 자신감있게 뱉고 봤다. 지금 생각해보니 정말 막 대답을 해서 면접관 분들이 알아 들으셨을지도 잘 모르겠다.. ㅜㅜ</p>
-
-<p>그리고 꼬리질문은 정말 매서웠다. 내가 쓴 기술들을 정말로 알고 있는지 확인을 정말 많이하셨고, 나는 특별히 어려운 기술을 안써서 잘 넘어갔다고 생각한다. 그리고 개발론에대해서도 대뜸 물어보시는 면접관이 계셨는데, 한명만 제대로 답할 수 있었다…</p>
-
-<h2 id="후기">후기</h2>
-
-<p>그렇게 한시간의 5:5 면접을 끝내고 나의 소프트웨어 마에스트로 지원이 끝이났다. 솔직히 1월부터 현재까지 프로젝트 진행하랴, 알고리즘 준비하랴, 발표 및 면접 준비하랴 정말 열심히 살았다. 그렇게 좋아하는 게임도 단 한판도 못할정도로 바쁘게 살았고 농도가 짙은 방학을 보냈다고 생각한다. 솔직히 결과가 어떻게 될지는 예상하기 어렵다. 나의 열정과 잠재력은 충분히 보여줬다고 생각은 들지만, 면접관들이 보시기에 내 진심이 잘 통했는지 모르겠다. 나는 기술적인 스택이 부족한것을 알기에 애초에 중점을 팀워크를 잘하고 포텐셜이 충만한것으로 갔었는데, 내 전략이 잘 먹혔기를 기도할 뿐이다.</p>
-
-<p>앞으로 1주반 후에 결과가 나올텐데, 다음글이 소프트웨어 마에스트로 관련 글이라면 아마 합격을 했을것이고, 아예 딴 글이거나 올라오지 않는다면 떨어졌을것이다.</p>
-
-<p>이렇게 열심히 무언가를 위해서 준비한것은 정말 수능 이후로 처음인것 같았다. 열심히 준비한만큼 좋은 결과가 있기를 바라지만, 그렇지 않더라도 값진 경험을 했다고 생각하고 더 발전하는 계기가 되었다고 생각할것이다.</p>]]></content><author><name>071yoon</name></author><category term="retrospect" /><category term="me" /><category term="retrospect" /><summary type="html"><![CDATA[Intro]]></summary></entry></feed>
+<p>그럼에도, 나는 조금 더 스크럼을 하는법 혹은 스프린트를 뛰는법에 대하여 알려줬으면 좋겠다고 생각을 했지만, 그런부분은 조금 아쉬웠다. 그럼에도, 애자일을 왜 사용해야 되는지는 정말 깔끔하게 설명을 해준 것 같다. 앞에서 언급한 가치, 피드백, 실수 등 애자일 방법론을 채택하면 모두 극복이 가능한 시나리오 이다. 매일매일 스크럼과 일주일 단위의 회고로 인하여 완벽한 피드백 시스템을 구축 할 수 있으며, 이러한 과정에서 가치를 높일 수 있다 생각한다.</p>]]></content><author><name>071yoon</name></author><category term="deep-thought" /><category term="deep-thought" /><category term="book" /><summary type="html"><![CDATA[함께 자라기]]></summary></entry></feed>

@@ -7,22 +7,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>리액트JS로 앱 만들기 1 | YeongGi’s tech blog</title>
+<title>Intro to Machine Learning | YeongGi’s tech blog</title>
 <meta name="generator" content="Jekyll v4.2.2">
-<meta property="og:title" content="리액트JS로 앱 만들기 1">
+<meta property="og:title" content="Intro to Machine Learning">
 <meta name="author" content="071yoon">
 <meta property="og:locale" content="en_US">
-<meta name="description" content="React란 무엇인가">
-<meta property="og:description" content="React란 무엇인가">
-<link rel="canonical" href="http://localhost:4000/react/2022/02/02/make-react-app-1.html">
-<meta property="og:url" content="http://localhost:4000/react/2022/02/02/make-react-app-1.html">
+<meta name="description" content="Definition of Machine Learning">
+<meta property="og:description" content="Definition of Machine Learning">
+<link rel="canonical" href="http://localhost:4000/ml/2022/05/19/intro-to-machine-learning.html">
+<meta property="og:url" content="http://localhost:4000/ml/2022/05/19/intro-to-machine-learning.html">
 <meta property="og:site_name" content="YeongGi’s tech blog">
 <meta property="og:type" content="article">
-<meta property="article:published_time" content="2022-02-02T00:00:00+09:00">
+<meta property="article:published_time" content="2022-05-19T00:00:00+09:00">
 <meta name="twitter:card" content="summary">
-<meta property="twitter:title" content="리액트JS로 앱 만들기 1">
+<meta property="twitter:title" content="Intro to Machine Learning">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"071yoon"},"dateModified":"2022-02-02T00:00:00+09:00","datePublished":"2022-02-02T00:00:00+09:00","description":"React란 무엇인가","headline":"리액트JS로 앱 만들기 1","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/react/2022/02/02/make-react-app-1.html"},"url":"http://localhost:4000/react/2022/02/02/make-react-app-1.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"071yoon"},"dateModified":"2022-05-19T00:00:00+09:00","datePublished":"2022-05-19T00:00:00+09:00","description":"Definition of Machine Learning","headline":"Intro to Machine Learning","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/ml/2022/05/19/intro-to-machine-learning.html"},"url":"http://localhost:4000/ml/2022/05/19/intro-to-machine-learning.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="shortcut icon" href="">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -764,11 +764,11 @@ function googleTranslateElementInit() {
 
 
 <header class="post-header">
-  <h1 class="post-title p-name" itemprop="name headline">리액트JS로 앱 만들기 1</h1>
-  <h2 class="post-subtitle">리액트가 무엇이고 어떻게 사용하는지 알아보자</h2>
+  <h1 class="post-title p-name" itemprop="name headline">Intro to Machine Learning</h1>
+  <h2 class="post-subtitle">머신러닝을 배워보자</h2>
 
   <p class="post-meta">
-    <time class="dt-published" datetime="2022-02-02T00:00:00+09:00" itemprop="datePublished"><i class="fa fa-calendar"></i> Feb 02, 2022
+    <time class="dt-published" datetime="2022-05-19T00:00:00+09:00" itemprop="datePublished"><i class="fa fa-calendar"></i> May 19, 2022
     </time>
 
     
@@ -805,184 +805,178 @@ function googleTranslateElementInit() {
 
 
 
-    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 6 mins</span>
+    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 2 mins</span>
   </p>
 <div class="post-tags">
-<a class="post-tag" href="/tags.html#react">#react</a><a class="post-tag" href="/tags.html#javascript">#javascript</a><a class="post-tag" href="/tags.html#TIL">#TIL</a><a class="post-tag" href="/tags.html#web">#web</a>
+<a class="post-tag" href="/tags.html#ML">#ML</a><a class="post-tag" href="/tags.html#Machine%20Learning">#Machine Learning</a><a class="post-tag" href="/tags.html#study">#study</a>
 </div></header>
 <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
     <div class="post-content e-content" itemprop="articleBody">
 
-      <h2 id="react란-무엇인가">React란 무엇인가</h2>
+      <h2 id="definition-of-machine-learning">Definition of Machine Learning</h2>
 
-<p>React는 간단하게 말해서, 웹의 <code class="language-plaintext highlighter-rouge">Framework</code>이다.</p>
+<h3 id="우리는-어떻게-문제를-해결할-수-있을까">우리는 어떻게 문제를 해결할 수 있을까??</h3>
 
-<blockquote>
-  <p>정확하게는 사용자 인터페이스를 만들기 위한 Javascript Library</p>
-</blockquote>
+<ul>
+  <li>컴퓨터 공학도로써, 문제를 해결하기위하여 일정한 규칙을 행동하는 프로그램을 작성한다</li>
+  <li>많은 상황에서, 이러한 규칙들을 정하는것이 매우 힘들다</li>
+</ul>
 
-<p>그리고 <code class="language-plaintext highlighter-rouge">React</code> 란 놈에게는 큰 장점이 있다.</p>
+<h3 id="learning-systems들은-문제를-해결하기-위함이-아니다">
+<code class="language-plaintext highlighter-rouge">Learning Systems</code>들은 문제를 해결하기 위함이 아니다</h3>
 
-<ol>
-  <li>선언형</li>
-  <li>컴포넌트 기반</li>
-</ol>
+<ul>
+  <li>어떤식으로 동작해야되는지에 대한 프로그램을 개발</li>
+  <li>시행착오를 통하여 어떤식을 통하여 프로그램을 개발</li>
+</ul>
 
-<p>이렇게 볼 수 있다.</p>
+<table>
+  <tbody>
+    <tr>
+      <td>
+<code class="language-plaintext highlighter-rouge">Learning</code> 이란 단순히 학습된 예제들을 시스템에 도입하는것에 지나지 않는다.</td>
+    </tr>
+  </tbody>
+</table>
 
-<h3 id="선언형">선언형</h3>
+<h3 id="arthur-samuel">Arthur Samuel</h3>
 
-<hr>
+<ul>
+  <li>머신러닝은 컴퓨터가 프로그램되지 않아도 배울수 있는 능력을 구축 할 수 있게 학습권을 주는것이다</li>
+</ul>
 
-<p>선언형은 React는 상호작용이 많은 UI를 만들 때 생기는 어려움을 줄여준다. 즉 애플리케이션의 각 상태에 대한 간단한 뷰만 설계를 한다면 알아서 React가 데이터가 변경됨에 따라 적절한 컴포넌트만 효율적으로 갱신하고 렌더링을 해준다. 즉 말 그대로 <code class="language-plaintext highlighter-rouge">React</code> 하게 해준다는 것이다.</p>
+<h3 id="tom-mitchell">Tom Mitchell</h3>
 
-<p>간단하게 보면, <code class="language-plaintext highlighter-rouge">React</code> 파일에서</p>
+<ul>
+  <li>
+    <p>머신러닝은 <code class="language-plaintext highlighter-rouge">Experience</code> 를 통하여 배우며, <code class="language-plaintext highlighter-rouge">Task</code> 를 반영하며, <code class="language-plaintext highlighter-rouge">Performance</code>에 신경쓰여야 된다. 그리고 이러한 특정한 <code class="language-plaintext highlighter-rouge">Task</code>에 대하여 <code class="language-plaintext highlighter-rouge">Performance</code> 로 측정되며, <code class="language-plaintext highlighter-rouge">Experience</code>를 통하여 발전한다.</p>
+  </li>
+  <li>Experience : 프로그램이 게임을 하는 과정</li>
+  <li>Performance measure : 우승률</li>
+</ul>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">btn</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span>
-  <span class="dl">"</span><span class="s2">button</span><span class="dl">"</span><span class="p">,</span>
-  <span class="p">{</span>
-    <span class="na">onClick</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">im clicked</span><span class="dl">"</span><span class="p">),</span>
-  <span class="p">},</span>
-  <span class="dl">"</span><span class="s2">Click me</span><span class="dl">"</span>
-<span class="p">);</span>
-</code></pre></div></div>
+<h2 id="tasks-that-requires-ml">Tasks that requires ML</h2>
 
-<p>이런식으로 HTML 으로 선언하지 않고도 단번에 생성과 동시에 옵션을 설정 할 수 있다.</p>
+<ul>
+  <li>숫자를 보고 어떻게 2라고 판단을 할까?</li>
+  <li>2와 7의 차이를 어떻게 분석 할 수 있을까?</li>
+  <li>어떻게 로봇을 요리 할 수 있게 만들 수 있을까?</li>
+</ul>
 
-<h3 id="컴포넌트-기반">컴포넌트 기반</h3>
+<h2 id="learning-algorithms-are-useful-in-many-tasks">Learning algorithms are useful in many tasks</h2>
 
-<hr>
+<ul>
+  <li>
+    <p>머신러닝은 AI의 방법으로 자리잡고있다</p>
+  </li>
+  <li>
+    <p>컴퓨터의 새로운 능력이다</p>
+  </li>
+  <li>
+    <p>예시</p>
+    <ul>
+      <li>Data mining
+        <ul>
+          <li>자동 혹은 웹으로 배포된 대량의 데이터베이스</li>
+          <li>Web click data, medical records, biology …</li>
+        </ul>
+      </li>
+      <li>Application can’t program by hand
+        <ul>
+          <li>NLP, Computer vision</li>
+          <li>자율주행, 필기인식</li>
+        </ul>
+      </li>
+      <li>Self-customizing programs
+        <ul>
+          <li>아마존,넷플릭스 자동 추천</li>
+        </ul>
+      </li>
+      <li>Understanding human learning
+        <ul>
+          <li>Brain, Real AI</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
 
-<p>스스로 상태를 관리하는 캡슐화된 컴포넌트를 만들 수 있다.</p>
+<h2 id="taxonomy-of-machine-learning">Taxonomy of Machine Learning</h2>
 
-<p>여기서 상태를 관리한다는 말이 리액트에서는 꽤나 중요한 포인트라 할 수 있다. 우선 리액트 컴포넌트는 <code class="language-plaintext highlighter-rouge">render()</code> 함수를 이용하여, 데이터를 입력받아 화면에 표시할 내용을 리턴을 한다는 점에서 자바스크립트와 다르다. 그리고 이러한 컴포넌트는 <code class="language-plaintext highlighter-rouge">this.props</code>를 이용하여 입력 데이터를 다루고, <code class="language-plaintext highlighter-rouge">this.state</code>로 접근 할 수 있다. 그리고 상태 데이터가 바뀌면 <code class="language-plaintext highlighter-rouge">render()</code> 가 다시 호출되어 갱신이 되는 구조이다.</p>
+<h3 id="supervised-learning">Supervised Learning</h3>
 
-<p>말로 들어서는 이해가 잘 되지 않고, 역시 예제를 보며 학습을 하는것이 필요할 것 같다.</p>
+<h4 id="housing-price-prediction">Housing Price Prediction</h4>
 
-<p>또하나의 큰 장점을 <code class="language-plaintext highlighter-rouge">React Native</code> 로의 방향이 자유롭다는 것이다. <code class="language-plaintext highlighter-rouge">Native</code> 언어란, iOS app 에서 Swift 처럼 그 자체의 OS 를 활용하여 만드는 앱인데, 물론 제작을 하여도 진짜 Native 급으로 속도가 나오지는 않는다. 하지만, 그와 비슷한 속도를 낼 수 있고 문법 자체가 너무나도 비슷해서, 금방 금방 수정하여 웹뿐만이 아닌 페이스북 혹은 인스타그램 처럼 웹앱으로 변환이 가능하다.</p>
+<ul>
+  <li>Supervised Learning : <code class="language-plaintext highlighter-rouge">정답</code>이 항상 정해진다</li>
+  <li>Regression : 연속적인 값들을 통하여 예측을 할 수 있다</li>
+</ul>
 
-<h3 id="jsx-의-활용">JSX 의 활용</h3>
+<p>목표 : 값들이 듬성듬성 주어졌을 때, 선형분석을 하여 중간에 어떤 값을 주었을 때 예측을 할 수 있다.</p>
 
-<p>JSX 가 나옴으로써, <code class="language-plaintext highlighter-rouge">React</code> 가 단순히 Javascript 처럼 활용하는것이 아니라, 마치 <code class="language-plaintext highlighter-rouge">HTML</code> 에서 사용한 것 처럼도 사용 할 수 있게 되었다. 이것또한 예제를 보고 확인해보자</p>
+<h4 id="breast-cancer">Breast Cancer</h4>
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">Title</span> <span class="o">=</span> <span class="p">(</span>
-  <span class="p">&lt;</span><span class="nt">h3</span> <span class="na">id</span><span class="p">=</span><span class="s">"title"</span> <span class="na">onMouseEnter</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">mouse enter</span><span class="dl">"</span><span class="p">)</span><span class="si">}</span><span class="p">&gt;</span>
-    Hello I am a title
-  <span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
-<span class="p">);</span>
-</code></pre></div></div>
+<ul>
+  <li>Classification : 1 혹은 0으로 정해진 값</li>
+</ul>
 
-<p>이런식으로 <code class="language-plaintext highlighter-rouge">CreateElement</code> 를 사용하는것이 아니라, 마치 <code class="language-plaintext highlighter-rouge">HTML</code> 에서 태그를 해서 만드는것인데, 동시에 자바스크립트를 활용하여 만들 수 있게 되었다. 하지만 코드를 잘 보면 <code class="language-plaintext highlighter-rouge">CreateElement</code> 를 아예 안쓰는 것은 아니고, 이런식으로 <code class="language-plaintext highlighter-rouge">HTML</code> 처럼 편하게 적어두면 <code class="language-plaintext highlighter-rouge">BABEL</code> 이란 컴파일러에서 내부적으로 <code class="language-plaintext highlighter-rouge">CreateElement</code> 형으로 변환을 하여 적어주는 것이다.</p>
+<p>Tumor Size, Malignant, Age, Clump thickness, Uniformity of cell size… 로 분석하여 유방암인지 아닌지 분석 할 수 있다.</p>
 
-<blockquote>
-  <p>여기서 중요한점은 함수나 변수명을 할 때 대문자로 시작을 해야 실제 HTML 의 태그 <code class="language-plaintext highlighter-rouge">button</code> 같은것과 헷갈리지 않는다</p>
-</blockquote>
+<h4 id="supervised-learning-in-computer-vision">Supervised Learning in Computer Vision</h4>
 
-<h3 id="state-란">State 란</h3>
+<ul>
+  <li>
+    <p>Image Classification</p>
 
-<p>기본적으로 데이터가 저장되는 곳이라고 보면 쉽다.</p>
+    <ul>
+      <li>X : raw pixels of image [이미지를 주면]</li>
+      <li>Y : main object [어떤 물체인지 판단해준다]</li>
+    </ul>
+  </li>
+  <li>
+    <p>Object localization and detection</p>
+    <ul>
+      <li>X : raw pixels of image [이미지를 주면]</li>
+      <li>Y : bounding boxes [물체들에 박스를 쳐준다]</li>
+    </ul>
+  </li>
+</ul>
 
-<p>간단한 클릭형 버튼을 만들어서 확인해보자</p>
+<h3 id="unsupervised-learning">Unsupervised Learning</h3>
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span> <span class="p">=</span> <span class="s">"text/babel"</span><span class="p">&gt;</span>
-	const root = document.getElementById("root");
-	let counter = 0;
-	function countUp()<span class="si">{</span>
-		<span class="nx">counter</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
-	<span class="si">}</span>
-	function Container() <span class="si">{</span>
-		<span class="k">return</span> <span class="p">(</span>
-			<span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-				<span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span> Total Clicks: <span class="si">{</span><span class="nx">counter</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
-				<span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="nx">countUp</span><span class="si">}</span><span class="p">&gt;</span>Click me<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-			<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-		<span class="p">);</span>
-	<span class="si">}</span>
-	ReactDom.render(<span class="p">&lt;</span><span class="nc">Container</span> <span class="p">/&gt;</span>, root);
-<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-</code></pre></div></div>
+<ul>
+  <li>Dataset에 라벨이 없다</li>
+  <li>목표 : 데이터를 보고 특이한 지점을 발견하는것</li>
+</ul>
 
-<p>이렇게만 보면 좋은 코드같아 보인다. 하지만 여기는 맹점이 있는데, 바로 Rendering 을 한번밖에 하지 않아, 아무리 클릭을 눌러도 웹상에서는 안보이는다는 것이다. 그래서 <code class="language-plaintext highlighter-rouge">State</code> 가 필요하게 된다.</p>
+<h4 id="clustering">Clustering</h4>
 
-<p>가장 손쉬운 방법은 countUp 함수가 할 때마다, <code class="language-plaintext highlighter-rouge">Render</code> 를 다시 불러주게 되면 해결 할 수 있다. 하지만 아무리봐도, 효율적인 부분이 아니다. 왜냐면 전부 다 렌더링을 하는것이 비효율적이고, 계속 렌더링을 해줘야되는것을 함수를 만들면서 생각을 하면서 설계를 해줘야 되기 떄문이다. 그럼 <code class="language-plaintext highlighter-rouge">그 변수</code>만 업데이트를 하려면 어떻게 해야될까?? 그게 바로 <code class="language-plaintext highlighter-rouge">React</code> 의 최대 장점이다. 즉 매우 <code class="language-plaintext highlighter-rouge">Interactive</code> 하고 <code class="language-plaintext highlighter-rouge">Effective</code> 한 프로그램이 만들어 지는것이다.</p>
+<ul>
+  <li>
+    <p>K-mean Clustering 혹은 가우시안을 통해 찾아낸다</p>
+  </li>
+  <li>
+    <p>예를들어, 뉴스에서 헤드라인을 서로 엮이는것들만 뽑아서 묶는 과정</p>
+  </li>
+</ul>
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span> <span class="p">=</span> <span class="s">"text/babel"</span><span class="p">&gt;</span>
-	const root = document.getElementById("root");
-	function Container() <span class="si">{</span>
-		<span class="kd">let</span> <span class="p">[</span><span class="nx">counter</span><span class="p">,</span> <span class="nx">modifier</span><span class="p">]</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-		<span class="c1">//counter = data[0], modifier = data[1]</span>
-		<span class="kd">const</span> <span class="nx">onClick</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-			<span class="nx">modifier</span><span class="p">(</span><span class="nx">counter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-			<span class="c1">//OR modifier((current) =&gt; current + 1);</span>
-		<span class="p">};</span>
-		<span class="k">return</span> <span class="p">(</span>
-			<span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-				<span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span> Total Clicks: <span class="si">{</span><span class="nx">counter</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
-				<span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="nx">onClick</span><span class="si">}</span><span class="p">&gt;</span>Click me<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-			<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-		<span class="p">);</span>
-	<span class="si">}</span>
-	ReactDom.render(<span class="p">&lt;</span><span class="nc">Container</span> <span class="p">/&gt;</span>, root);
-<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-</code></pre></div></div>
-
-<p>이렇게 설정하면, 클릭이 일어날 때 마다, modifier에서 counter + 1 로 해준 값이 반환되며, <code class="language-plaintext highlighter-rouge">modify</code> 가 일어날 때 마다, 딱 그 부분만 렌더링을 해주는 것이다.</p>
-
-<h3 id="props">Props</h3>
-
-<p>Props 란 부모 컴포넌트로부터 자식 컴포넌트로에게 데이터를 보낼 수 있게 해주는 방법이다.</p>
-
-<blockquote>
-  <p>Ex) 버튼의 스타일을 하나하나 다 바꿔주지 말고, 어차피 공통으로 갈거면 그러한 템플릿을 저장해 두었다가 사용하면 더 편하지 않겠냐 라는 것..!!</p>
-</blockquote>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Btn</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">reutnr</span><span class="p">(</span>
-    <span class="p">&lt;</span><span class="nt">button</span>
-      <span class="na">styles</span><span class="p">=</span>
-    <span class="p">&gt;</span>
-      <span class="si">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">text</span><span class="si">}</span>
-    <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-  <span class="p">);</span>
-<span class="p">}</span>
-
-<span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="p">(</span>
-    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nc">Btn</span> <span class="na">text</span><span class="p">=</span><span class="s">"Save changes"</span> <span class="p">/&gt;</span>
-      <span class="p">&lt;</span><span class="nc">Btn</span> <span class="na">text</span><span class="p">=</span><span class="s">"Continue"</span> <span class="p">/&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p>이런식으로 사용 할 수 있다.</p>
-
-<h3 id="react-memo">React Memo</h3>
-
-<p>위 예제를 보면 버튼이 <code class="language-plaintext highlighter-rouge">Save Changes</code> 와 <code class="language-plaintext highlighter-rouge">Continue</code> 두개가 생성되었다. 하지만 만약, <code class="language-plaintext highlighter-rouge">State</code>를 활용하여, 첫 버튼만 렌더를 해주려고 해도, 두 버튼 다 렌더링이되는 불상사가 발생한다. 이러한 사태를 어떻게 막을 수 있을까?? 리액트 메모를 활용하여 막을 수 있다.</p>
-
-<blockquote>
-  <p>const MemorizedBtn = React.memo(Btn);</p>
-</blockquote>
-
-<p>라고 활용하고나서, 그 후 Btn이 아니라 MemorizedBtn 으로 호출하면 렌더링을 한번만 해도 될 수 있게 된다!!</p>
+<h3 id="reinforcement-learning">Reinforcement Learning</h3>
 
 
     </div>
 
 </article>
 <div class="post-nav">
-<a class="previous" href="/deep-thought/2022/01/26/deep-thoughts-1.html" title="The mind behind linux">The mind behind linux</a><a class="next" href="/deep-thought/2022/02/03/monty-hall.html" title="몬티 홀 문제">몬티 홀 문제</a>
+<a class="previous" href="/next.js/2022/05/15/next-api.html" title="NEXT-API">NEXT-API</a><span></span>
 </div>
 <div class="post-related">
       <div>Related Articles</div>
       <ul>
-        <li><a class="post-link" href="/deep-thought/2022/04/22/grow-together.html" title="몬티 홀 문제">함께 자라기</a></li>
-<li><a class="post-link" href="/deep-thought/2022/01/26/deep-thoughts-1.html" title="몬티 홀 문제">The mind behind linux</a></li>
-<li><a class="post-link" href="/server/2022/02/23/server.html" title="몬티 홀 문제">서버 맛보기</a></li>
-<li><a class="post-link" href="/javascript/2022/01/20/prototype.html" title="몬티 홀 문제">자바스크립트 프로토타입과 클래스</a></li>
+        <li><a class="post-link" href="/blog/2022/01/12/install-blog-comment.html" title="">깃허브 블로그 코멘트 설치하기</a></li>
+<li><a class="post-link" href="/react/2022/02/02/make-react-app-1.html" title="">리액트JS로 앱 만들기 1</a></li>
+<li><a class="post-link" href="/next.js/2022/04/27/next-built-in-css.html" title="">NEXT-Built-In CSS</a></li>
+<li><a class="post-link" href="/next.js/2022/05/08/next-others-2.html" title="">NEXT-Others-2</a></li>
 </ul>
     </div>
 <div class="post-comments">
