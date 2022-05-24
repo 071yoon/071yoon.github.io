@@ -1,406 +1,153 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
-        xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    
-    <url>
-        <loc>http://localhost:4000/ml/2022/05/19/intro-to-machine-learning.html</loc>
-        
-        <lastmod>2022-05-19T00:00:00+09:00</lastmod>
-        
-
-        
-        <changefreq>weekly</changefreq>
-        
-
-        
-        <priority>0.5</priority>
-        
-
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/next.js/2022/05/15/next-api.html</loc>
-        
-        <lastmod>2022-05-15T00:00:00+09:00</lastmod>
-        
-
-        
-        <changefreq>weekly</changefreq>
-        
-
-        
-        <priority>0.5</priority>
-        
-
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/next.js/2022/05/08/next-others-2.html</loc>
-        
-        <lastmod>2022-05-08T00:00:00+09:00</lastmod>
-        
-
-        
-        <changefreq>weekly</changefreq>
-        
-
-        
-        <priority>0.5</priority>
-        
-
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/next.js/2022/05/05/next-others-1.html</loc>
-        
-        <lastmod>2022-05-05T00:00:00+09:00</lastmod>
-        
-
-        
-        <changefreq>weekly</changefreq>
-        
-
-        
-        <priority>0.5</priority>
-        
-
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/next.js/2022/05/04/next-optimization.html</loc>
-        
-        <lastmod>2022-05-04T00:00:00+09:00</lastmod>
-        
-
-        
-        <changefreq>weekly</changefreq>
-        
-
-        
-        <priority>0.5</priority>
-        
-
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/next.js/2022/04/28/next-layouts.html</loc>
-        
-        <lastmod>2022-04-28T00:00:00+09:00</lastmod>
-        
-
-        
-        <changefreq>weekly</changefreq>
-        
-
-        
-        <priority>0.5</priority>
-        
-
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/next.js/2022/04/27/next-built-in-css.html</loc>
-        
-        <lastmod>2022-04-27T00:00:00+09:00</lastmod>
-        
-
-        
-        <changefreq>weekly</changefreq>
-        
-
-        
-        <priority>0.5</priority>
-        
-
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/next.js/2022/04/25/next-pages.html</loc>
-        
-        <lastmod>2022-04-25T00:00:00+09:00</lastmod>
-        
-
-        
-        <changefreq>weekly</changefreq>
-        
-
-        
-        <priority>0.5</priority>
-        
-
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/next.js/2022/04/24/why-next-js.html</loc>
-        
-        <lastmod>2022-04-24T00:00:00+09:00</lastmod>
-        
-
-        
-        <changefreq>weekly</changefreq>
-        
-
-        
-        <priority>0.5</priority>
-        
-
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/deep-thought/2022/04/22/grow-together.html</loc>
-        
-        <lastmod>2022-04-22T00:00:00+09:00</lastmod>
-        
-
-        
-        <changefreq>weekly</changefreq>
-        
-
-        
-        <priority>0.5</priority>
-        
-
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/retrospect/2022/03/03/sw-maestro.html</loc>
-        
-        <lastmod>2022-03-03T00:00:00+09:00</lastmod>
-        
-
-        
-        <changefreq>weekly</changefreq>
-        
-
-        
-        <priority>0.5</priority>
-        
-
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/server/2022/02/23/server.html</loc>
-        
-        <lastmod>2022-02-23T00:00:00+09:00</lastmod>
-        
-
-        
-        <changefreq>weekly</changefreq>
-        
-
-        
-        <priority>0.5</priority>
-        
-
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/deep-thought/2022/02/03/monty-hall.html</loc>
-        
-        <lastmod>2022-02-03T00:00:00+09:00</lastmod>
-        
-
-        
-        <changefreq>weekly</changefreq>
-        
-
-        
-        <priority>0.5</priority>
-        
-
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/react/2022/02/02/make-react-app-1.html</loc>
-        
-        <lastmod>2022-02-02T00:00:00+09:00</lastmod>
-        
-
-        
-        <changefreq>weekly</changefreq>
-        
-
-        
-        <priority>0.5</priority>
-        
-
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/deep-thought/2022/01/26/deep-thoughts-1.html</loc>
-        
-        <lastmod>2022-01-26T00:00:00+09:00</lastmod>
-        
-
-        
-        <changefreq>weekly</changefreq>
-        
-
-        
-        <priority>0.5</priority>
-        
-
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/sql/2022/01/24/sql-practice.html</loc>
-        
-        <lastmod>2022-01-24T00:00:00+09:00</lastmod>
-        
-
-        
-        <changefreq>weekly</changefreq>
-        
-
-        
-        <priority>0.5</priority>
-        
-
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/javascript/2022/01/22/javascript-coding-2.html</loc>
-        
-        <lastmod>2022-01-22T00:00:00+09:00</lastmod>
-        
-
-        
-        <changefreq>weekly</changefreq>
-        
-
-        
-        <priority>0.5</priority>
-        
-
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/javascript/2022/01/22/javascript-coding-1.html</loc>
-        
-        <lastmod>2022-01-22T00:00:00+09:00</lastmod>
-        
-
-        
-        <changefreq>weekly</changefreq>
-        
-
-        
-        <priority>0.5</priority>
-        
-
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/javascript/2022/01/20/prototype.html</loc>
-        
-        <lastmod>2022-01-20T00:00:00+09:00</lastmod>
-        
-
-        
-        <changefreq>weekly</changefreq>
-        
-
-        
-        <priority>0.5</priority>
-        
-
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/javascript/2022/01/20/javascript-property.html</loc>
-        
-        <lastmod>2022-01-20T00:00:00+09:00</lastmod>
-        
-
-        
-        <changefreq>weekly</changefreq>
-        
-
-        
-        <priority>0.5</priority>
-        
-
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/javascript/2022/01/18/javascript-functions.html</loc>
-        
-        <lastmod>2022-01-18T00:00:00+09:00</lastmod>
-        
-
-        
-        <changefreq>weekly</changefreq>
-        
-
-        
-        <priority>0.5</priority>
-        
-
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/javascript/2022/01/17/javascript-data-structure.html</loc>
-        
-        <lastmod>2022-01-17T00:00:00+09:00</lastmod>
-        
-
-        
-        <changefreq>weekly</changefreq>
-        
-
-        
-        <priority>0.5</priority>
-        
-
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/javascript/2022/01/14/javascript-object.html</loc>
-        
-        <lastmod>2022-01-14T00:00:00+09:00</lastmod>
-        
-
-        
-        <changefreq>weekly</changefreq>
-        
-
-        
-        <priority>0.5</priority>
-        
-
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/blog/2022/01/12/install-blog-comment.html</loc>
-        
-        <lastmod>2022-01-12T00:00:00+09:00</lastmod>
-        
-
-        
-        <changefreq>weekly</changefreq>
-        
-
-        
-        <priority>0.5</priority>
-        
-
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/blog/2022/01/12/how-to-install-github-io.html</loc>
-        
-        <lastmod>2022-01-12T00:00:00+09:00</lastmod>
-        
-
-        
-        <changefreq>weekly</changefreq>
-        
-
-        
-        <priority>0.5</priority>
-        
-
-    </url>
-    
+﻿<?xml version="1.0" encoding="UTF-8"?>
+		<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+	<loc>https://071yoon.github.io/</loc>
+	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://071yoon.github.io/about.html</loc>
+	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://071yoon.github.io/archives.html</loc>
+	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://071yoon.github.io/categories.html</loc>
+	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://071yoon.github.io/tags.html</loc>
+	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://071yoon.github.io/ml/2022/05/19/intro-to-machine-learning.html</loc>
+	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
+	<priority>0.2</priority>
+</url>
+<url>
+	<loc>https://071yoon.github.io/next.js/2022/05/15/next-api.html</loc>
+	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
+	<priority>0.2</priority>
+</url>
+<url>
+	<loc>https://071yoon.github.io/next.js/2022/05/08/next-others-2.html</loc>
+	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
+	<priority>0.2</priority>
+</url>
+<url>
+	<loc>https://071yoon.github.io/next.js/2022/05/05/next-others-1.html</loc>
+	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
+	<priority>0.2</priority>
+</url>
+<url>
+	<loc>https://071yoon.github.io/next.js/2022/05/04/next-optimization.html</loc>
+	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
+	<priority>0.2</priority>
+</url>
+<url>
+	<loc>https://071yoon.github.io/next.js/2022/04/28/next-layouts.html</loc>
+	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
+	<priority>0.2</priority>
+</url>
+<url>
+	<loc>https://071yoon.github.io/next.js/2022/04/27/next-built-in-css.html</loc>
+	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
+	<priority>0.2</priority>
+</url>
+<url>
+	<loc>https://071yoon.github.io/next.js/2022/04/25/next-pages.html</loc>
+	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
+	<priority>0.2</priority>
+</url>
+<url>
+	<loc>https://071yoon.github.io/next.js/2022/04/24/why-next-js.html</loc>
+	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
+	<priority>0.2</priority>
+</url>
+<url>
+	<loc>https://071yoon.github.io/deep-thought/2022/04/22/grow-together.html</loc>
+	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
+	<priority>0.2</priority>
+</url>
+<url>
+	<loc>https://071yoon.github.io/retrospect/2022/03/03/sw-maestro.html</loc>
+	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
+	<priority>0.2</priority>
+</url>
+<url>
+	<loc>https://071yoon.github.io/server/2022/02/23/server.html</loc>
+	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
+	<priority>0.2</priority>
+</url>
+<url>
+	<loc>https://071yoon.github.io/deep-thought/2022/02/03/monty-hall.html</loc>
+	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
+	<priority>0.2</priority>
+</url>
+<url>
+	<loc>https://071yoon.github.io/react/2022/02/02/make-react-app-1.html</loc>
+	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
+	<priority>0.2</priority>
+</url>
+<url>
+	<loc>https://071yoon.github.io/deep-thought/2022/01/26/deep-thoughts-1.html</loc>
+	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
+	<priority>0.2</priority>
+</url>
+<url>
+	<loc>https://071yoon.github.io/sql/2022/01/24/sql-practice.html</loc>
+	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
+	<priority>0.2</priority>
+</url>
+<url>
+	<loc>https://071yoon.github.io/javascript/2022/01/22/javascript-coding-2.html</loc>
+	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
+	<priority>0.2</priority>
+</url>
+<url>
+	<loc>https://071yoon.github.io/javascript/2022/01/22/javascript-coding-1.html</loc>
+	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
+	<priority>0.2</priority>
+</url>
+<url>
+	<loc>https://071yoon.github.io/javascript/2022/01/20/prototype.html</loc>
+	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
+	<priority>0.2</priority>
+</url>
+<url>
+	<loc>https://071yoon.github.io/javascript/2022/01/20/javascript-property.html</loc>
+	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
+	<priority>0.2</priority>
+</url>
+<url>
+	<loc>https://071yoon.github.io/javascript/2022/01/18/javascript-functions.html</loc>
+	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
+	<priority>0.2</priority>
+</url>
+<url>
+	<loc>https://071yoon.github.io/javascript/2022/01/17/javascript-data-structure.html</loc>
+	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
+	<priority>0.2</priority>
+</url>
+<url>
+	<loc>https://071yoon.github.io/javascript/2022/01/14/javascript-object.html</loc>
+	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
+	<priority>0.2</priority>
+</url>
+<url>
+	<loc>https://071yoon.github.io/blog/2022/01/12/install-blog-comment.html</loc>
+	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
+	<priority>0.2</priority>
+</url>
+<url>
+	<loc>https://071yoon.github.io/blog/2022/01/12/how-to-install-github-io.html</loc>
+	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
+	<priority>0.2</priority>
+</url>
 </urlset>
