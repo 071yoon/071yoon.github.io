@@ -1,149 +1,59 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-05-26T17:55:38+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi&apos;s tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">Intro to Machine Learning</title><link href="http://localhost:4000/ml/2022/05/19/intro-to-machine-learning.html" rel="alternate" type="text/html" title="Intro to Machine Learning" /><published>2022-05-19T00:00:00+09:00</published><updated>2022-05-19T00:00:00+09:00</updated><id>http://localhost:4000/ml/2022/05/19/intro-to-machine-learning</id><content type="html" xml:base="http://localhost:4000/ml/2022/05/19/intro-to-machine-learning.html"><![CDATA[<h2 id="definition-of-machine-learning">Definition of Machine Learning</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-05-30T15:54:09+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi&apos;s tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">Jira와 깃허브 연동</title><link href="http://localhost:4000/jira/2022/05/30/jira-github-%EC%97%B0%EB%8F%99.html" rel="alternate" type="text/html" title="Jira와 깃허브 연동" /><published>2022-05-30T00:00:00+09:00</published><updated>2022-05-30T00:00:00+09:00</updated><id>http://localhost:4000/jira/2022/05/30/jira-github-%EC%97%B0%EB%8F%99</id><content type="html" xml:base="http://localhost:4000/jira/2022/05/30/jira-github-%EC%97%B0%EB%8F%99.html"><![CDATA[<h2 id="jira와-깃허브-연동하기">Jira와 깃허브 연동하기</h2>
 
-<h3 id="우리는-어떻게-문제를-해결할-수-있을까">우리는 어떻게 문제를 해결할 수 있을까??</h3>
+<h3 id="1-깃허브앱-등록">1. 깃허브앱 등록</h3>
 
-<ul>
-  <li>컴퓨터 공학도로써, 문제를 해결하기위하여 일정한 규칙을 행동하는 프로그램을 작성한다</li>
-  <li>많은 상황에서, 이러한 규칙들을 정하는것이 매우 힘들다</li>
-</ul>
+<p>Jira와 연동을 하려면 우선 깃허브앱을 등록을 해야된다.
+<img width="428" alt="image" src="https://user-images.githubusercontent.com/66371206/170931557-3de22400-fb72-4f72-9c0a-55c9d665ef1e.png" /></p>
 
-<h3 id="learning-systems들은-문제를-해결하기-위함이-아니다"><code class="language-plaintext highlighter-rouge">Learning Systems</code>들은 문제를 해결하기 위함이 아니다</h3>
+<p>등록에 가서 평점이 조금 낮지만 공식 앱인 <code class="language-plaintext highlighter-rouge">Github for Jira</code>를 설치한다.</p>
 
-<ul>
-  <li>어떤식으로 동작해야되는지에 대한 프로그램을 개발</li>
-  <li>시행착오를 통하여 어떤식을 통하여 프로그램을 개발</li>
-</ul>
+<p><img width="823" alt="image" src="https://user-images.githubusercontent.com/66371206/170931899-d48cf6c9-57e0-47e7-891d-ce68ac0dc18d.png" /></p>
 
-<table>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">Learning</code> 이란 단순히 학습된 예제들을 시스템에 도입하는것에 지나지 않는다.</td>
-    </tr>
-  </tbody>
-</table>
+<p>그 후 Authorize를 하고 원하는 Organization 혹은 Repository를 등록하며 진행한다</p>
 
-<h3 id="arthur-samuel">Arthur Samuel</h3>
+<p><img width="574" alt="image" src="https://user-images.githubusercontent.com/66371206/170932096-0d8481f1-b06c-449a-b66d-5a1d1cf658c8.png" /></p>
 
-<ul>
-  <li>머신러닝은 컴퓨터가 프로그램되지 않아도 배울수 있는 능력을 구축 할 수 있게 학습권을 주는것이다</li>
-</ul>
+<p>다음과 같이 해당 깃허브 Repository에 Jira 앱이 설치되어 있고, 마찬가지로 Jira에도 앱 추가가 되어있으면 준비가 되었다.</p>
 
-<h3 id="tom-mitchell">Tom Mitchell</h3>
+<p><img width="1156" alt="image" src="https://user-images.githubusercontent.com/66371206/170932363-abe6fda2-4380-4e63-a9d7-01e893ec950d.png" /></p>
 
-<ul>
-  <li>
-    <p>머신러닝은 <code class="language-plaintext highlighter-rouge">Experience</code> 를 통하여 배우며, <code class="language-plaintext highlighter-rouge">Task</code> 를 반영하며, <code class="language-plaintext highlighter-rouge">Performance</code>에 신경쓰여야 된다. 그리고 이러한 특정한 <code class="language-plaintext highlighter-rouge">Task</code>에 대하여 <code class="language-plaintext highlighter-rouge">Performance</code> 로 측정되며, <code class="language-plaintext highlighter-rouge">Experience</code>를 통하여 발전한다.</p>
-  </li>
-  <li>Experience : 프로그램이 게임을 하는 과정</li>
-  <li>Performance measure : 우승률</li>
-</ul>
+<p><img width="1362" alt="image" src="https://user-images.githubusercontent.com/66371206/170932432-2458d419-37dd-479a-9cdb-fc594ce2b415.png" /></p>
 
-<h2 id="tasks-that-requires-ml">Tasks that requires ML</h2>
+<h3 id="2-이슈-만들기">2. 이슈 만들기</h3>
 
-<ul>
-  <li>숫자를 보고 어떻게 2라고 판단을 할까?</li>
-  <li>2와 7의 차이를 어떻게 분석 할 수 있을까?</li>
-  <li>어떻게 로봇을 요리 할 수 있게 만들 수 있을까?</li>
-</ul>
+<p>우선 이슈를 만들려면 스프린트부터 작성을 해야된다. 해당 지라앱에서 새로운 에픽을 만들어보자.</p>
 
-<h2 id="learning-algorithms-are-useful-in-many-tasks">Learning algorithms are useful in many tasks</h2>
+<p><img width="410" alt="image" src="https://user-images.githubusercontent.com/66371206/170931358-38c9357e-4599-4387-acb9-fc7569394184.png" /></p>
 
-<ul>
-  <li>
-    <p>머신러닝은 AI의 방법으로 자리잡고있다</p>
-  </li>
-  <li>
-    <p>컴퓨터의 새로운 능력이다</p>
-  </li>
-  <li>
-    <p>예시</p>
-    <ul>
-      <li>Data mining
-        <ul>
-          <li>자동 혹은 웹으로 배포된 대량의 데이터베이스</li>
-          <li>Web click data, medical records, biology …</li>
-        </ul>
-      </li>
-      <li>Application can’t program by hand
-        <ul>
-          <li>NLP, Computer vision</li>
-          <li>자율주행, 필기인식</li>
-        </ul>
-      </li>
-      <li>Self-customizing programs
-        <ul>
-          <li>아마존,넷플릭스 자동 추천</li>
-        </ul>
-      </li>
-      <li>Understanding human learning
-        <ul>
-          <li>Brain, Real AI</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
+<p>스프린트를 만들었다면, 좌측에 백로그에서 해당 스프린트에 대한 이슈를 만들 수 있다.</p>
 
-<h2 id="taxonomy-of-machine-learning">Taxonomy of Machine Learning</h2>
+<p><img width="1165" alt="image" src="https://user-images.githubusercontent.com/66371206/170932860-c7c291ae-877a-4a49-86ca-fc6eee95eb64.png" /></p>
 
-<h3 id="supervised-learning">Supervised Learning</h3>
+<p>간단하게 이슈를 하나 만든 후 스프린트 시작을 누르면 시작할 수 있고, 방금 만든 이슈에 대한 내용은 스프린트 페이지에서 하위 이슈로 확인 할 수 있다.</p>
 
-<h4 id="housing-price-prediction">Housing Price Prediction</h4>
+<p><img width="1174" alt="image" src="https://user-images.githubusercontent.com/66371206/170933380-46979990-b58c-4bf9-b028-68f2912af333.png" /></p>
 
-<ul>
-  <li>Supervised Learning : <code class="language-plaintext highlighter-rouge">정답</code>이 항상 정해진다</li>
-  <li>Regression : 연속적인 값들을 통하여 예측을 할 수 있다</li>
-</ul>
+<h3 id="3-브랜치-및-커밋-작성">3. 브랜치 및 커밋 작성</h3>
 
-<p>목표 : 값들이 듬성듬성 주어졌을 때, 선형분석을 하여 중간에 어떤 값을 주었을 때 예측을 할 수 있다.</p>
+<p>방금 만든 이슈에 대해서 커밋 만들기, 혹은 브랜치 만들기를 보면 다음과 같이 키를 알려준다.</p>
 
-<h4 id="breast-cancer">Breast Cancer</h4>
+<p><img width="411" alt="image" src="https://user-images.githubusercontent.com/66371206/170933552-1f99d427-18ef-4178-8bd4-a61e736f4780.png" /></p>
 
-<ul>
-  <li>Classification : 1 혹은 0으로 정해진 값</li>
-</ul>
+<p><img width="428" alt="image" src="https://user-images.githubusercontent.com/66371206/170933605-1b00262d-cbae-43b1-869f-3a1bafa70660.png" /></p>
 
-<p>Tumor Size, Malignant, Age, Clump thickness, Uniformity of cell size… 로 분석하여 유방암인지 아닌지 분석 할 수 있다.</p>
+<p>여기서 해당하는 키를 가지고 브랜치를 만들고, 커밋을 하면 자동으로 jira 가 해당하는 커밋을 track 해서 연동을 해준다.</p>
 
-<h4 id="supervised-learning-in-computer-vision">Supervised Learning in Computer Vision</h4>
+<p>그렇게 해서 완성된 이슈를 보면 다음과 같다.</p>
 
-<ul>
-  <li>
-    <p>Image Classification</p>
+<p>만들기 위해 커밋을 4번, 풀 리퀘스트를 진행 후 merge를 한 이슈이다.</p>
 
-    <ul>
-      <li>X : raw pixels of image [이미지를 주면]</li>
-      <li>Y : main object [어떤 물체인지 판단해준다]</li>
-    </ul>
-  </li>
-  <li>
-    <p>Object localization and detection</p>
-    <ul>
-      <li>X : raw pixels of image [이미지를 주면]</li>
-      <li>Y : bounding boxes [물체들에 박스를 쳐준다]</li>
-    </ul>
-  </li>
-</ul>
+<p><img width="1169" alt="image" src="https://user-images.githubusercontent.com/66371206/170933764-2d136f8b-36d1-4246-bd46-90dd5682e870.png" /></p>
 
-<h3 id="unsupervised-learning">Unsupervised Learning</h3>
+<p>해당하는 FIRE-44에 대한 커밋을 깃허브에서 보면 다음과 같이 설정되어있다.</p>
 
-<ul>
-  <li>Dataset에 라벨이 없다</li>
-  <li>목표 : 데이터를 보고 특이한 지점을 발견하는것</li>
-</ul>
+<p><img width="1264" alt="image" src="https://user-images.githubusercontent.com/66371206/170933985-8987738a-f687-49a1-af61-dfd22402a387.png" /></p>
 
-<h4 id="clustering">Clustering</h4>
-
-<ul>
-  <li>
-    <p>K-mean Clustering 혹은 가우시안을 통해 찾아낸다</p>
-  </li>
-  <li>
-    <p>예를들어, 뉴스에서 헤드라인을 서로 엮이는것들만 뽑아서 묶는 과정</p>
-  </li>
-</ul>
-
-<h3 id="reinforcement-learning">Reinforcement Learning</h3>]]></content><author><name>071yoon</name></author><category term="ML" /><category term="ML" /><category term="Machine Learning" /><category term="study" /><summary type="html"><![CDATA[Definition of Machine Learning]]></summary></entry><entry><title type="html">NEXT-API</title><link href="http://localhost:4000/next.js/2022/05/15/next-api.html" rel="alternate" type="text/html" title="NEXT-API" /><published>2022-05-15T00:00:00+09:00</published><updated>2022-05-15T00:00:00+09:00</updated><id>http://localhost:4000/next.js/2022/05/15/next-api</id><content type="html" xml:base="http://localhost:4000/next.js/2022/05/15/next-api.html"><![CDATA[<h2 id="api-routes">API Routes</h2>
+<p>깃허브와 Jira 연동 끗!!</p>]]></content><author><name>071yoon</name></author><category term="Jira" /><category term="Jira" /><category term="Agile" /><category term="Github" /><category term="study" /><summary type="html"><![CDATA[Jira와 깃허브 연동하기]]></summary></entry><entry><title type="html">NEXT-API</title><link href="http://localhost:4000/next.js/2022/05/15/next-api.html" rel="alternate" type="text/html" title="NEXT-API" /><published>2022-05-15T00:00:00+09:00</published><updated>2022-05-15T00:00:00+09:00</updated><id>http://localhost:4000/next.js/2022/05/15/next-api</id><content type="html" xml:base="http://localhost:4000/next.js/2022/05/15/next-api.html"><![CDATA[<h2 id="api-routes">API Routes</h2>
 
 <h3 id="intro">Intro</h3>
 
