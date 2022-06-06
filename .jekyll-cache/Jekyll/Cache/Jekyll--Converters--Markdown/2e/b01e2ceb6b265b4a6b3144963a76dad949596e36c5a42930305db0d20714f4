@@ -1,0 +1,193 @@
+I"~<h2 id="나만의-맥북-셋업">나만의 맥북 셋업</h2>
+
+<p>이번에 새로운 Mac m1 pro 를 갖게 되면서, 설치하다보니 뭐를 설치해야되고 어떤거를 동기화 해야되고 생각보다 기억이 잘 안났다. 그래서 이번 기회에 나의 맥이라면 이런걸 해야하는 TODO List를 만들어 보았다.</p>
+
+<h3 id="개발자-도구">개발자 도구</h3>
+
+<ul>
+  <li><a href="#iterm-setting">iTerm2</a>
+    <ul>
+      <li><a href="#oh-my-zsh">Oh-my-zsh</a></li>
+      <li><a href="#powerlevel10k">Powerlevel10k</a></li>
+      <li><a href="#brew">brew</a></li>
+      <li><a href="#git-setup">git-setup</a></li>
+    </ul>
+  </li>
+  <li><a href="#web-programming">Web</a>
+    <ul>
+      <li><a href="#node">node</a></li>
+      <li><a href="#yarn">yarn</a></li>
+    </ul>
+  </li>
+  <li><a href="#blog">Blog</a>
+    <ul>
+      <li><a href="#ruby">ruby</a></li>
+      <li><a href="#bundle--jekyll">bundler&amp;jekyll</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="어플">어플</h3>
+
+<ul>
+  <li>Chrome</li>
+  <li>VSC
+    <ul>
+      <li>Code Runner</li>
+      <li>Discord Presence</li>
+      <li>ESLint</li>
+      <li>Git-Graph</li>
+      <li>Live Share</li>
+      <li>Live Server</li>
+      <li>Prettier</li>
+      <li>styled-components</li>
+      <li>Material Icon</li>
+      <li>Markdown All in One</li>
+      <li>Markdown Preview</li>
+    </ul>
+  </li>
+  <li>Discord</li>
+  <li>KakaoTalk</li>
+  <li>Webex</li>
+  <li>Slack</li>
+  <li>Notion</li>
+  <li>Terminus</li>
+</ul>
+
+<h3 id="위젯">위젯</h3>
+
+<ul>
+  <li>AltTab</li>
+  <li>Fig</li>
+  <li>RunCat</li>
+  <li>Unicorn</li>
+  <li>Hidden Bar</li>
+  <li>Magnet</li>
+  <li>Karabiner</li>
+  <li>Amphetamine</li>
+</ul>
+
+<h2 id="개발자도구">개발자도구</h2>
+
+<h3 id="iterm-setting">iTerm Setting</h3>
+
+<p>나는 내장 terminal보다 iTerm을 주로 쓴다. 하이라이트, 복사, 붙여넣기, 히스토리 등 다양한 기능이 많아서 더 편함</p>
+
+<h4 id="oh-my-zsh">Oh-my-zsh</h4>
+
+<p>기왕 Terminal 쓰는김에 이쁘면 좋잖아요?</p>
+
+<p><a href="https://ohmyz.sh">공식문서</a></p>
+
+<h4 id="powerlevel10k">Powerlevel10k</h4>
+
+<p>마찬가지로 zsh shell을 더 이쁘게 만들어준다.</p>
+
+<p>설치 끝내고, VSC Terminal에서도 폰트 적용을 해서 깨지는걸 방지하자</p>
+
+<p><a href="https://github.com/romkatv/powerlevel10k">공식문서</a>
+<a href="https://velog.io/@boms2/Mac-Powerlevel10k로-Zsh-터미널-꾸미기-M1">도움받은 블로그</a></p>
+
+<h4 id="brew">brew</h4>
+
+<p>당연히 깔아야 하는 맥주</p>
+
+<p><a href="https://brew.sh/index_ko">공식문서</a></p>
+
+<h4 id="git-setup">git setup</h4>
+
+<p>git login을 미리미리 해두자</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git config <span class="nt">--global</span> user.name <span class="s2">"John Doe"</span>
+<span class="nv">$ </span>git config <span class="nt">--global</span> user.email johndoe@example.com
+</code></pre></div></div>
+
+<h3 id="web-programming">Web Programming</h3>
+
+<p>명색이 프론트엔드이기에 깔아야 하는 기본적인 세팅</p>
+
+<h4 id="node">node</h4>
+
+<p>맥주가 있어 행복하다</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>node
+node <span class="nt">--version</span>
+npm <span class="nt">--version</span>
+</code></pre></div></div>
+
+<h4 id="yarn">yarn</h4>
+
+<p>npm보다 더 안전하고 오류를 잘 잡아준다</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>yarn <span class="nt">--ignore-dependencies</span>
+</code></pre></div></div>
+
+<h3 id="blog">Blog</h3>
+
+<p>해당 깃허브 블로그 또한 jekyll 로 관리하기에 ruby, bundle, jekyll설치가 필수적이다</p>
+
+<h4 id="ruby">Ruby</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>rbenv ruby-build
+rbenv <span class="nb">install</span> <span class="nt">-l</span> <span class="c">#버전은 알아서 선택! 근데 3.0.0 부터 잘 안됐던거 같음</span>
+rbenv <span class="nb">install </span>2.7.2
+rbenv global 2.7.2
+</code></pre></div></div>
+
+<p>zsh 적용하기</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vim ~/.zshrc
+</code></pre></div></div>
+
+<p>들어가서 환경변수 추가</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/.rbenv/bin:</span><span class="nv">$PATH</span><span class="s2">"</span>
+<span class="nb">eval</span> <span class="s2">"</span><span class="si">$(</span>rbenv init -<span class="si">)</span><span class="s2">"</span>
+</code></pre></div></div>
+
+<h4 id="bundle--jekyll">Bundle &amp;&amp; Jekyll</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem <span class="nb">install </span>bundler
+bundle add jekyll
+bundle <span class="nb">install
+</span>gem <span class="nb">install </span>jekyll
+</code></pre></div></div>
+
+<h2 id="application">Application</h2>
+
+<p>내가 최초로 설치했던 어플리케이션 목록</p>
+
+<h3 id="chrome">Chrome</h3>
+
+<h3 id="visual-stuido-code">Visual Stuido Code</h3>
+
+<h3 id="discord">Discord</h3>
+
+<h3 id="kakaotalk">KakaoTalk</h3>
+
+<h3 id="webex">Webex</h3>
+
+<h3 id="slack">Slack</h3>
+
+<h3 id="notion">Notion</h3>
+
+<h3 id="terminus">Terminus</h3>
+
+<h3 id="widgets">Widgets</h3>
+
+<h3 id="alt-tab">Alt-Tab</h3>
+
+<h3 id="fig">Fig</h3>
+
+<h3 id="runcat">RunCat</h3>
+
+<h3 id="unicorn">Unicorn</h3>
+
+<h3 id="hidden-bar">Hidden-Bar</h3>
+
+<h3 id="magnet">Magnet</h3>
+
+<h3 id="karabiner">Karabiner</h3>
+
+<h3 id="amphetamine">Amphetamine</h3>
+:ET

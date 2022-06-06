@@ -129,13 +129,13 @@ Props 란 부모 컴포넌트로부터 자식 컴포넌트로에게 데이터를
 function Btn(props) {
   reutnr(
     <button
-      styles={{
-        backgroundColor: "tomato",
+      styles={
+        backgroundColor: "white",
         color: "white",
         padding: "10px 20px",
         border: 0,
         borderRadius: 10,
-      }}
+      }
     >
       {props.text}
     </button>
