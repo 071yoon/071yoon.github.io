@@ -26,36 +26,25 @@ tags: [Mac, Setting]
 
 ### 어플
 
-- Chrome
-- VSC
-  - Code Runner
-  - Discord Presence
-  - ESLint
-  - Git-Graph
-  - Live Share
-  - Live Server
-  - Prettier
-  - styled-components
-  - Material Icon
-  - Markdown All in One
-  - Markdown Preview
-- Discord
-- KakaoTalk
-- Webex
-- Slack
-- Notion
-- Terminus
+- [Chrome](#chrome)
+- [Visual Stuido Code](#visual-stuido-code)
+- [Discord](#discord)
+- [KakaoTalk](#kakaotalk)
+- [Webex](#webex)
+- [Slack](#slack)
+- [Notion](#notion)
+- [Terminus](#terminus)
 
 ### 위젯
 
-- AltTab
-- Fig
-- RunCat
-- Unicorn
-- Hidden Bar
-- Magnet
-- Karabiner
-- Amphetamine
+- [Alt-Tab](#alt-tab)
+- [Fig](#fig)
+- [RunCat](#runcat)
+- [Unicorn](#unicorn)
+- [Hidden-Bar](#hidden-bar)
+- [Magnet](#magnet)
+- [Karabiner](#karabiner)
+- [Amphetamine](#amphetamine)
 
 ## 개발자도구
 
@@ -63,13 +52,13 @@ tags: [Mac, Setting]
 
 나는 내장 terminal보다 iTerm을 주로 쓴다. 하이라이트, 복사, 붙여넣기, 히스토리 등 다양한 기능이 많아서 더 편함
 
-#### Oh-my-zsh
+- #### Oh-my-zsh
 
 기왕 Terminal 쓰는김에 이쁘면 좋잖아요?
 
 [공식문서](https://ohmyz.sh)
 
-#### Powerlevel10k
+- #### Powerlevel10k
 
 마찬가지로 zsh shell을 더 이쁘게 만들어준다.
 
@@ -78,13 +67,13 @@ tags: [Mac, Setting]
 [공식문서](https://github.com/romkatv/powerlevel10k)
 [도움받은 블로그](https://velog.io/@boms2/Mac-Powerlevel10k로-Zsh-터미널-꾸미기-M1)
 
-#### brew
+- #### brew
 
 당연히 깔아야 하는 맥주
 
 [공식문서](https://brew.sh/index_ko)
 
-#### git setup
+- #### git setup
 
 git login을 미리미리 해두자
 
@@ -97,7 +86,7 @@ $ git config --global user.email johndoe@example.com
 
 명색이 프론트엔드이기에 깔아야 하는 기본적인 세팅
 
-#### node
+- #### node
 
 맥주가 있어 행복하다
 
@@ -107,7 +96,7 @@ node --version
 npm --version
 ```
 
-#### yarn
+- #### yarn
 
 npm보다 더 안전하고 오류를 잘 잡아준다
 
@@ -119,7 +108,7 @@ brew install yarn --ignore-dependencies
 
 해당 깃허브 블로그 또한 jekyll 로 관리하기에 ruby, bundle, jekyll설치가 필수적이다
 
-#### Ruby
+- #### Ruby
 
 ```shell
 brew install rbenv ruby-build
@@ -141,7 +130,7 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 ```
 
-#### Bundle && Jekyll
+- #### Bundle && Jekyll
 
 ```shell
 gem install bundler
@@ -156,7 +145,53 @@ gem install jekyll
 
 ### Chrome
 
+사파리 대체용품
+
 ### Visual Stuido Code
+
+- #### Code Runner
+
+작성한 코드를 빠르게 실행시켜주게 도와주는 확장
+
+- #### Discord Presence
+
+Discord 에서 내가 어떤 작업하고 있는지 보여주는 확장
+
+- #### ESLint
+
+ESLint 규칙 적용해주는 확장
+
+- #### Git-Graph
+
+VSC Git Page에서 Git-Kraken 처럼 어떤 브랜치에서 어떤 작업하는지 보여주는 확장
+
+- #### Live Share
+
+VSC를 쓰는 주된 이유
+
+- #### Live Server
+
+VSC를 쓰는 주된 이유2 -> Live share 호스트 컴퓨터에서 서버 올릴 때 접속한 사람들도 같은 localhost로 접속 할 수 있음
+
+- #### Prettier
+
+Lint 혹은 일반적인 코드 포맷팅 도와주는 포매터
+
+- #### Styled-Components
+
+styled에서 주석처럼 안달리고, 코드처럼 사용가능. 훨씬 쉽다
+
+- #### Material Icon
+
+옆에 아이콘들 이쁘게 보임
+
+- #### Markdown All in One
+
+블로그 쓸 일이 많다면, 마크다운 쓸 때 도움 받을 수 있다
+
+- #### Markdown Preview
+
+마크다운 미리보기 지원
 
 ### Discord
 

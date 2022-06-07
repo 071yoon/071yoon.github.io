@@ -1,11 +1,12 @@
-I"~<h2 id="나만의-맥북-셋업">나만의 맥북 셋업</h2>
+I"�!<h2 id="나만의-맥북-셋업">나만의 맥북 셋업</h2>
 
 <p>이번에 새로운 Mac m1 pro 를 갖게 되면서, 설치하다보니 뭐를 설치해야되고 어떤거를 동기화 해야되고 생각보다 기억이 잘 안났다. 그래서 이번 기회에 나의 맥이라면 이런걸 해야하는 TODO List를 만들어 보았다.</p>
 
 <h3 id="개발자-도구">개발자 도구</h3>
 
 <ul>
-  <li><a href="#iterm-setting">iTerm2</a>
+  <li>
+    <h4 id="iterm2"><a href="#iterm-setting">iTerm2</a></h4>
     <ul>
       <li><a href="#oh-my-zsh">Oh-my-zsh</a></li>
       <li><a href="#powerlevel10k">Powerlevel10k</a></li>
@@ -13,13 +14,15 @@
       <li><a href="#git-setup">git-setup</a></li>
     </ul>
   </li>
-  <li><a href="#web-programming">Web</a>
+  <li>
+    <h4 id="web"><a href="#web-programming">Web</a></h4>
     <ul>
       <li><a href="#node">node</a></li>
       <li><a href="#yarn">yarn</a></li>
     </ul>
   </li>
-  <li><a href="#blog">Blog</a>
+  <li>
+    <h4 id="blog"><a href="#blog">Blog</a></h4>
     <ul>
       <li><a href="#ruby">ruby</a></li>
       <li><a href="#bundle--jekyll">bundler&amp;jekyll</a></li>
@@ -30,41 +33,73 @@
 <h3 id="어플">어플</h3>
 
 <ul>
-  <li>Chrome</li>
-  <li>VSC
+  <li>
+    <h6 id="chrome"><a href="#chrome">Chrome</a></h6>
+  </li>
+  <li>
+    <h6 id="visual-stuido-code"><a href="#visual-stuido-code">Visual Stuido Code</a></h6>
+  </li>
+  <li><a href="#code-runner">Code Runner</a></li>
+  <li><a href="#discord-presence">Discord Presence</a></li>
+  <li><a href="#eslint">ESLint</a></li>
+  <li><a href="#git-graph">Git-Graph</a></li>
+  <li><a href="#live-share">Live Share</a></li>
+  <li><a href="#live-server">Live Server</a></li>
+  <li><a href="#prettier">Prettier</a></li>
+  <li><a href="#styled-components">Styled-Components</a></li>
+  <li><a href="#material-icon">Material Icon</a></li>
+  <li><a href="#markdown-all-in-one">Markdown All in One</a></li>
+  <li><a href="#markdown-preview">Markdown Preview</a>
     <ul>
-      <li>Code Runner</li>
-      <li>Discord Presence</li>
-      <li>ESLint</li>
-      <li>Git-Graph</li>
-      <li>Live Share</li>
-      <li>Live Server</li>
-      <li>Prettier</li>
-      <li>styled-components</li>
-      <li>Material Icon</li>
-      <li>Markdown All in One</li>
-      <li>Markdown Preview</li>
+      <li>
+        <h6 id="discord"><a href="#discord">Discord</a></h6>
+      </li>
+      <li>
+        <h6 id="kakaotalk"><a href="#kakaotalk">KakaoTalk</a></h6>
+      </li>
+      <li>
+        <h6 id="webex"><a href="#webex">Webex</a></h6>
+      </li>
+      <li>
+        <h6 id="slack"><a href="#slack">Slack</a></h6>
+      </li>
+      <li>
+        <h6 id="notion"><a href="#notion">Notion</a></h6>
+      </li>
+      <li>
+        <h6 id="terminus"><a href="#terminus">Terminus</a></h6>
+      </li>
     </ul>
   </li>
-  <li>Discord</li>
-  <li>KakaoTalk</li>
-  <li>Webex</li>
-  <li>Slack</li>
-  <li>Notion</li>
-  <li>Terminus</li>
 </ul>
 
 <h3 id="위젯">위젯</h3>
 
 <ul>
-  <li>AltTab</li>
-  <li>Fig</li>
-  <li>RunCat</li>
-  <li>Unicorn</li>
-  <li>Hidden Bar</li>
-  <li>Magnet</li>
-  <li>Karabiner</li>
-  <li>Amphetamine</li>
+  <li>
+    <h4 id="alt-tab"><a href="#alt-tab">Alt-Tab</a></h4>
+  </li>
+  <li>
+    <h4 id="fig"><a href="#fig">Fig</a></h4>
+  </li>
+  <li>
+    <h4 id="runcat"><a href="#runcat">RunCat</a></h4>
+  </li>
+  <li>
+    <h4 id="unicorn"><a href="#unicorn">Unicorn</a></h4>
+  </li>
+  <li>
+    <h4 id="hidden-bar"><a href="#hidden-bar">Hidden-Bar</a></h4>
+  </li>
+  <li>
+    <h4 id="magnet"><a href="#magnet">Magnet</a></h4>
+  </li>
+  <li>
+    <h4 id="karabiner"><a href="#karabiner">Karabiner</a></h4>
+  </li>
+  <li>
+    <h4 id="amphetamine"><a href="#amphetamine">Amphetamine</a></h4>
+  </li>
 </ul>
 
 <h2 id="개발자도구">개발자도구</h2>
@@ -122,7 +157,7 @@ npm <span class="nt">--version</span>
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>yarn <span class="nt">--ignore-dependencies</span>
 </code></pre></div></div>
 
-<h3 id="blog">Blog</h3>
+<h3 id="blog-1">Blog</h3>
 
 <p>해당 깃허브 블로그 또한 jekyll 로 관리하기에 ruby, bundle, jekyll설치가 필수적이다</p>
 
@@ -153,41 +188,87 @@ bundle <span class="nb">install
 </span>gem <span class="nb">install </span>jekyll
 </code></pre></div></div>
 
-<h2 id="application">Application</h2>
+<h2 id="applications">Applications</h2>
 
 <p>내가 최초로 설치했던 어플리케이션 목록</p>
 
-<h3 id="chrome">Chrome</h3>
+<h3 id="chrome-1">Chrome</h3>
 
-<h3 id="visual-stuido-code">Visual Stuido Code</h3>
+<p>사파리 대체용품</p>
 
-<h3 id="discord">Discord</h3>
+<h3 id="visual-stuido-code-1">Visual Stuido Code</h3>
 
-<h3 id="kakaotalk">KakaoTalk</h3>
+<h4 id="code-runner">Code Runner</h4>
 
-<h3 id="webex">Webex</h3>
+<p>작성한 코드를 빠르게 실행시켜주게 도와주는 확장</p>
 
-<h3 id="slack">Slack</h3>
+<h4 id="discord-presence">Discord Presence</h4>
 
-<h3 id="notion">Notion</h3>
+<p>Discord 에서 내가 어떤 작업하고 있는지 보여주는 확장</p>
 
-<h3 id="terminus">Terminus</h3>
+<h4 id="eslint">ESLint</h4>
 
-<h3 id="widgets">Widgets</h3>
+<p>ESLint 규칙 적용해주는 확장</p>
 
-<h3 id="alt-tab">Alt-Tab</h3>
+<h4 id="git-graph">Git-Graph</h4>
 
-<h3 id="fig">Fig</h3>
+<p>VSC Git Page에서 Git-Kraken 처럼 어떤 브랜치에서 어떤 작업하는지 보여주는 확장</p>
 
-<h3 id="runcat">RunCat</h3>
+<h4 id="live-share">Live Share</h4>
 
-<h3 id="unicorn">Unicorn</h3>
+<p>VSC를 쓰는 주된 이유</p>
 
-<h3 id="hidden-bar">Hidden-Bar</h3>
+<h4 id="live-server">Live Server</h4>
 
-<h3 id="magnet">Magnet</h3>
+<p>VSC를 쓰는 주된 이유2 -&gt; Live share 호스트 컴퓨터에서 서버 올릴 때 접속한 사람들도 같은 localhost로 접속 할 수 있음</p>
 
-<h3 id="karabiner">Karabiner</h3>
+<h4 id="prettier">Prettier</h4>
 
-<h3 id="amphetamine">Amphetamine</h3>
+<p>Lint 혹은 일반적인 코드 포맷팅 도와주는 포매터</p>
+
+<h4 id="styled-components">Styled-Components</h4>
+
+<p>styled에서 주석처럼 안달리고, 코드처럼 사용가능. 훨씬 쉽다</p>
+
+<h4 id="material-icon">Material Icon</h4>
+
+<p>옆에 아이콘들 이쁘게 보임</p>
+
+<h4 id="markdown-all-in-one">Markdown All in One</h4>
+
+<p>블로그 쓸 일이 많다면, 마크다운 쓸 때 도움 받을 수 있다</p>
+
+<h4 id="markdown-preview">Markdown Preview</h4>
+
+<p>마크다운 미리보기 지원</p>
+
+<h3 id="discord-1">Discord</h3>
+
+<h3 id="kakaotalk-1">KakaoTalk</h3>
+
+<h3 id="webex-1">Webex</h3>
+
+<h3 id="slack-1">Slack</h3>
+
+<h3 id="notion-1">Notion</h3>
+
+<h3 id="terminus-1">Terminus</h3>
+
+<h2 id="widgets">Widgets</h2>
+
+<h3 id="alt-tab-1">Alt-Tab</h3>
+
+<h3 id="fig-1">Fig</h3>
+
+<h3 id="runcat-1">RunCat</h3>
+
+<h3 id="unicorn-1">Unicorn</h3>
+
+<h3 id="hidden-bar-1">Hidden-Bar</h3>
+
+<h3 id="magnet-1">Magnet</h3>
+
+<h3 id="karabiner-1">Karabiner</h3>
+
+<h3 id="amphetamine-1">Amphetamine</h3>
 :ET
