@@ -10,21 +10,13 @@ tags: [Mac, Setting]
 
 이번에 새로운 Mac m1 pro 를 갖게 되면서, 설치하다보니 뭐를 설치해야되고 어떤거를 동기화 해야되고 생각보다 기억이 잘 안났다. 그래서 이번 기회에 나의 맥이라면 이런걸 해야하는 TODO List를 만들어 보았다.
 
-### 개발자 도구
+### [개발자 도구](#개발자도구)
 
 - [iTerm2](#iterm-setting)
-  - [Oh-my-zsh](#oh-my-zsh)
-  - [Powerlevel10k](#powerlevel10k)
-  - [brew](#brew)
-  - [git-setup](#git-setup)
 - [Web](#web-programming)
-  - [node](#node)
-  - [yarn](#yarn)
 - [Blog](#blog)
-  - [ruby](#ruby)
-  - [bundler&jekyll](#bundle--jekyll)
 
-### 어플
+### [어플](#applications)
 
 - [Chrome](#chrome)
 - [Visual Stuido Code](#visual-stuido-code)
@@ -35,7 +27,7 @@ tags: [Mac, Setting]
 - [Notion](#notion)
 - [Terminus](#terminus)
 
-### 위젯
+### [위젯](#Widgets)
 
 - [Alt-Tab](#alt-tab)
 - [Fig](#fig)

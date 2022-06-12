@@ -1,33 +1,16 @@
-I"�+<h2 id="나만의-맥북-셋업">나만의 맥북 셋업</h2>
+I"a*<h2 id="나만의-맥북-셋업">나만의 맥북 셋업</h2>
 
 <p>이번에 새로운 Mac m1 pro 를 갖게 되면서, 설치하다보니 뭐를 설치해야되고 어떤거를 동기화 해야되고 생각보다 기억이 잘 안났다. 그래서 이번 기회에 나의 맥이라면 이런걸 해야하는 TODO List를 만들어 보았다.</p>
 
-<h3 id="개발자-도구">개발자 도구</h3>
+<h3 id="개발자-도구"><a href="#개발자도구">개발자 도구</a></h3>
 
 <ul>
-  <li><a href="#iterm-setting">iTerm2</a>
-    <ul>
-      <li><a href="#oh-my-zsh">Oh-my-zsh</a></li>
-      <li><a href="#powerlevel10k">Powerlevel10k</a></li>
-      <li><a href="#brew">brew</a></li>
-      <li><a href="#git-setup">git-setup</a></li>
-    </ul>
-  </li>
-  <li><a href="#web-programming">Web</a>
-    <ul>
-      <li><a href="#node">node</a></li>
-      <li><a href="#yarn">yarn</a></li>
-    </ul>
-  </li>
-  <li><a href="#blog">Blog</a>
-    <ul>
-      <li><a href="#ruby">ruby</a></li>
-      <li><a href="#bundle--jekyll">bundler&amp;jekyll</a></li>
-    </ul>
-  </li>
+  <li><a href="#iterm-setting">iTerm2</a></li>
+  <li><a href="#web-programming">Web</a></li>
+  <li><a href="#blog">Blog</a></li>
 </ul>
 
-<h3 id="어플">어플</h3>
+<h3 id="어플"><a href="#applications">어플</a></h3>
 
 <ul>
   <li><a href="#chrome">Chrome</a></li>
@@ -40,7 +23,7 @@
   <li><a href="#terminus">Terminus</a></li>
 </ul>
 
-<h3 id="위젯">위젯</h3>
+<h3 id="위젯"><a href="#widgets">위젯</a></h3>
 
 <ul>
   <li><a href="#alt-tab">Alt-Tab</a></li>

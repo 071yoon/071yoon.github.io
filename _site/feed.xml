@@ -1,33 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-06-09T14:18:22+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi's tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">Mac 초기 세팅</title><link href="http://localhost:4000/mac/2022/06/05/mac-setting.html" rel="alternate" type="text/html" title="Mac 초기 세팅" /><published>2022-06-05T00:00:00+09:00</published><updated>2022-06-05T00:00:00+09:00</updated><id>http://localhost:4000/mac/2022/06/05/mac-setting</id><content type="html" xml:base="http://localhost:4000/mac/2022/06/05/mac-setting.html"><![CDATA[<h2 id="나만의-맥북-셋업">나만의 맥북 셋업</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-06-13T02:07:05+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi's tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">Mac 초기 세팅</title><link href="http://localhost:4000/mac/2022/06/05/mac-setting.html" rel="alternate" type="text/html" title="Mac 초기 세팅" /><published>2022-06-05T00:00:00+09:00</published><updated>2022-06-05T00:00:00+09:00</updated><id>http://localhost:4000/mac/2022/06/05/mac-setting</id><content type="html" xml:base="http://localhost:4000/mac/2022/06/05/mac-setting.html"><![CDATA[<h2 id="나만의-맥북-셋업">나만의 맥북 셋업</h2>
 
 <p>이번에 새로운 Mac m1 pro 를 갖게 되면서, 설치하다보니 뭐를 설치해야되고 어떤거를 동기화 해야되고 생각보다 기억이 잘 안났다. 그래서 이번 기회에 나의 맥이라면 이런걸 해야하는 TODO List를 만들어 보았다.</p>
 
-<h3 id="개발자-도구">개발자 도구</h3>
+<h3 id="개발자-도구"><a href="#개발자도구">개발자 도구</a></h3>
 
 <ul>
-  <li><a href="#iterm-setting">iTerm2</a>
-    <ul>
-      <li><a href="#oh-my-zsh">Oh-my-zsh</a></li>
-      <li><a href="#powerlevel10k">Powerlevel10k</a></li>
-      <li><a href="#brew">brew</a></li>
-      <li><a href="#git-setup">git-setup</a></li>
-    </ul>
-  </li>
-  <li><a href="#web-programming">Web</a>
-    <ul>
-      <li><a href="#node">node</a></li>
-      <li><a href="#yarn">yarn</a></li>
-    </ul>
-  </li>
-  <li><a href="#blog">Blog</a>
-    <ul>
-      <li><a href="#ruby">ruby</a></li>
-      <li><a href="#bundle--jekyll">bundler&amp;jekyll</a></li>
-    </ul>
-  </li>
+  <li><a href="#iterm-setting">iTerm2</a></li>
+  <li><a href="#web-programming">Web</a></li>
+  <li><a href="#blog">Blog</a></li>
 </ul>
 
-<h3 id="어플">어플</h3>
+<h3 id="어플"><a href="#applications">어플</a></h3>
 
 <ul>
   <li><a href="#chrome">Chrome</a></li>
@@ -40,7 +23,7 @@
   <li><a href="#terminus">Terminus</a></li>
 </ul>
 
-<h3 id="위젯">위젯</h3>
+<h3 id="위젯"><a href="#Widgets">위젯</a></h3>
 
 <ul>
   <li><a href="#alt-tab">Alt-Tab</a></li>

@@ -1,30 +1,13 @@
-I"�+<h2 id="나만의-맥북-셋업">나만의 맥북 셋업</h2>
+I".*<h2 id="나만의-맥북-셋업">나만의 맥북 셋업</h2>
 
 <p>이번에 새로운 Mac m1 pro 를 갖게 되면서, 설치하다보니 뭐를 설치해야되고 어떤거를 동기화 해야되고 생각보다 기억이 잘 안났다. 그래서 이번 기회에 나의 맥이라면 이런걸 해야하는 TODO List를 만들어 보았다.</p>
 
-<h3 id="개발자-도구">개발자 도구</h3>
+<h3 id="개발자-도구"><a href="#개발자도구">개발자 도구</a></h3>
 
 <ul>
-  <li><a href="#iterm-setting">iTerm2</a>
-    <ul>
-      <li><a href="#oh-my-zsh">Oh-my-zsh</a></li>
-      <li><a href="#powerlevel10k">Powerlevel10k</a></li>
-      <li><a href="#brew">brew</a></li>
-      <li><a href="#git-setup">git-setup</a></li>
-    </ul>
-  </li>
-  <li><a href="#web-programming">Web</a>
-    <ul>
-      <li><a href="#node">node</a></li>
-      <li><a href="#yarn">yarn</a></li>
-    </ul>
-  </li>
-  <li><a href="#blog">Blog</a>
-    <ul>
-      <li><a href="#ruby">ruby</a></li>
-      <li><a href="#bundle--jekyll">bundler&amp;jekyll</a></li>
-    </ul>
-  </li>
+  <li><a href="#iterm-setting">iTerm2</a></li>
+  <li><a href="#web-programming">Web</a></li>
+  <li><a href="#blog">Blog</a></li>
 </ul>
 
 <h3 id="어플">어플</h3>
@@ -265,8 +248,9 @@ bundle <span class="nb">install
 
 <p><img src="https://user-images.githubusercontent.com/66371206/172769368-c464cf70-019b-4216-8baa-ec91a1d90111.png" alt="스크린샷 2022-06-09 오후 2 12 43" /></p>
 
-<p><img src="https://user-images.githubusercontent.com/66371206/172769373-95a150b5-d293-4589-af72-9cb13196ba90.png" alt="스크린샷 2022-06-09 오후 2 12 58" />
-<img src="https://user-images.githubusercontent.com/66371206/172769378-86ed108d-4a26-492c-a47d-b90ba30a515b.png" alt="스크린샷 2022-06-09 오후 2 13 10" /></p>
+<p><img src="https://user-images.githubusercontent.com/66371206/172769373-95a150b5-d293-4589-af72-9cb13196ba90.png" alt="스크린샷 2022-06-09 오후 2 12 58" /></p>
+
+<p><img src="https://user-images.githubusercontent.com/66371206/172769378-86ed108d-4a26-492c-a47d-b90ba30a515b.png" alt="스크린샷 2022-06-09 오후 2 13 10" /></p>
 
 <h3 id="runcat">RunCat</h3>
 
