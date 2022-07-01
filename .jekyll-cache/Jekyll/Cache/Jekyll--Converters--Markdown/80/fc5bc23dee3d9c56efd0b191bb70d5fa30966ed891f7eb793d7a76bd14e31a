@@ -1,0 +1,116 @@
+I"�<h2 id="why-recoil">Why Recoil?</h2>
+
+<p>왜 Recoil을 사용할까?</p>
+
+<p>우선 전역 상태관리는 개발을 하다보면 무조건 필요로 하게 된다. 특히나 전에 만들었던 프로젝트 경우에는 게임이였기 때문에, 더욱 필요했고, 이번에도 적지만 id 같은 경우에 모든 페이지마다 변경되는 state이다 보니 전역상태관리가 필요로 하게 된다.</p>
+
+<p>recoil공식 설명에서는 사용하는 이유 즉 탄생배경을 다음과 같이 설명한다.</p>
+
+<ol>
+  <li>컴포넌트의 상태는 공통된 상위요소까지만 끌어 올릴 수 있어, 이 과정에서 거대한 트리가 다시 렌더링 되는 효과가 나온다.</li>
+  <li>Context는 단일 값만 가질 수 있어, Consumer가 가지는 여러 값들의 집합을 담을 수 없다.</li>
+  <li>두 가지 특성이 트리의 상단부터 말단까지 이어져야 돼서 분할이 어려워진다.</li>
+</ol>
+
+<p>즉 Recoil은 해당 문제를 해결하기 위해 orthogonal 하지만 본직적인 방향 그래프를 정의해서 React 트리에 붙이게 된다. 즉 그래프의 뿌리 (atoms) 으로부터 시작해 Selectors(순수함수)를 거쳐 컴포넌트로 흐르게 된다.</p>
+
+<p>즉 Recoil의 사용함으로써 가져가는 장점은 다음과 같다.</p>
+
+<ol>
+  <li>동시성와 React의 호환성</li>
+  <li>상태정의 분산이 가능 -&gt; 코드 분할이 쉽다</li>
+  <li>컴포넌트를 수정하지 않고, 파생된 데이터로 대체 가능</li>
+  <li>공유된 상태도 React local state로 간단하게 사용 가능</li>
+</ol>
+
+<h2 id="atom">Atom</h2>
+
+<p>Recoil의 상태를 나타내는 상태 단위라 볼 수 있다.</p>
+
+<h3 id="atom-생성">Atom 생성</h3>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">atom</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span><span class="p">({</span>
+  <span class="na">key</span><span class="p">:</span> <span class="kr">string</span><span class="p">,</span>
+  <span class="na">default</span><span class="p">:</span> <span class="nx">T</span> <span class="o">|</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span> <span class="o">|</span> <span class="nx">RecoilValue</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span><span class="p">,</span>
+
+  <span class="nx">effects_UNSTABLE</span><span class="p">?:</span> <span class="nx">$ReadOnlyArray</span><span class="o">&lt;</span><span class="nx">AtomEffect</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;&gt;</span><span class="p">,</span>
+
+  <span class="nx">dangerouslyAllowMutability</span><span class="p">?:</span> <span class="nx">boolean</span><span class="p">,</span>
+<span class="p">}):</span> <span class="nx">RecoilState</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<p>위와 유사하게, atom을 선언 해 주어야 atom 함수를 사용 할 수 있다.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">key</code>는 atom의 unique한 값</li>
+  <li><code class="language-plaintext highlighter-rouge">default</code>는 초기값 혹은 selector, promise의 객체</li>
+  <li><code class="language-plaintext highlighter-rouge">effect_UNSTABLE</code>는 Atom Effects 배열</li>
+  <li><code class="language-plaintext highlighter-rouge">dangerouslyAllowMutability</code>는 atom이 변경될 경우, 등록된 컴포넌트에게 알리지 않고 리렌더링을 방지하는 옵션</li>
+</ul>
+
+<h3 id="atom의-hook">Atom의 Hook</h3>
+
+<p>먼저 atom을 생성해야된다</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">myState</span> <span class="o">=</span> <span class="nx">atom</span><span class="p">({</span>
+  <span class="na">key</span><span class="p">:</span> <span class="dl">"</span><span class="s2">uniqueKey</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">default</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<h4 id="userecoilstate">useRecoilState</h4>
+
+<p>atom을 읽고 쓰기 위해 사용</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">[</span><span class="nx">val</span><span class="p">,</span> <span class="nx">setVal</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useRecoilState</span><span class="p">(</span><span class="nx">uniqueKey</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h4 id="userecoilvalue">useRecoilValue</h4>
+
+<p>atom을 읽을 때 사용</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">val</span> <span class="o">=</span> <span class="nx">useRecoilValue</span><span class="p">(</span><span class="nx">uniqueKey</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h4 id="usesetrecoilstate">useSetRecoilState</h4>
+
+<p>atom에 쓰기 위해 사용
+업데이트 할 수 있는 setter를 리턴한다
+컴포넌트를 atom에 등록하지 않아, 변경이 되어도 리렌더링 되지는 않는다. -&gt; 즉 atom을 사용하지 않는 경우 이 훅을 사용</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">setVal</span> <span class="o">=</span> <span class="nx">useSetRecoilState</span><span class="p">(</span><span class="nx">uniqueKey</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h4 id="useresetrecoilstate">useResetRecoilState</h4>
+
+<p>atom을 default를 초기화한다
+비동기 setter를 리턴하며, 컴포넌트 리렌더링이 되지는 않는다</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">reset</span> <span class="o">=</span> <span class="nx">useResetRecoilState</span><span class="p">(</span><span class="nx">uniqueKey</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h4 id="userecoilcallback">useRecoilCallback</h4>
+
+<p>Recoil 상태에서 callback시킬 수 있는 훅</p>
+
+<h2 id="recoilselector">RecoilSelector</h2>
+
+<p>atom의 상태에서 파생된 데이터로, 상태에 의존하는 동적인 데이터이다.</p>
+
+<h2 id="recoilroot">RecoilRoot</h2>
+
+<p>Atom 컨텍스트를 제공해주며, hook의 조상으로 사용된다.</p>
+
+<p>override가 <code class="language-plaintext highlighter-rouge">true</code>라면 새로운 Scope 생성</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">RecoilRoot</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">recoil</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">RecoilRoot</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">Components</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="sr">/RecoilRoot</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+:ET

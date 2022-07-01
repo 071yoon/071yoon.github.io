@@ -1,4 +1,118 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-07-01T13:45:04+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi's tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">왜 TypeScript인가</title><link href="http://localhost:4000/til/2022/07/01/why-typescript.html" rel="alternate" type="text/html" title="왜 TypeScript인가" /><published>2022-07-01T00:00:00+09:00</published><updated>2022-07-01T00:00:00+09:00</updated><id>http://localhost:4000/til/2022/07/01/why-typescript</id><content type="html" xml:base="http://localhost:4000/til/2022/07/01/why-typescript.html"><![CDATA[<h2 id="typescript">TypeScript</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-07-01T22:14:31+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi's tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">Recoil 배우기</title><link href="http://localhost:4000/til/2022/07/01/recoil.html" rel="alternate" type="text/html" title="Recoil 배우기" /><published>2022-07-01T00:00:00+09:00</published><updated>2022-07-01T00:00:00+09:00</updated><id>http://localhost:4000/til/2022/07/01/recoil</id><content type="html" xml:base="http://localhost:4000/til/2022/07/01/recoil.html"><![CDATA[<h2 id="why-recoil">Why Recoil?</h2>
+
+<p>왜 Recoil을 사용할까?</p>
+
+<p>우선 전역 상태관리는 개발을 하다보면 무조건 필요로 하게 된다. 특히나 전에 만들었던 프로젝트 경우에는 게임이였기 때문에, 더욱 필요했고, 이번에도 적지만 id 같은 경우에 모든 페이지마다 변경되는 state이다 보니 전역상태관리가 필요로 하게 된다.</p>
+
+<p>recoil공식 설명에서는 사용하는 이유 즉 탄생배경을 다음과 같이 설명한다.</p>
+
+<ol>
+  <li>컴포넌트의 상태는 공통된 상위요소까지만 끌어 올릴 수 있어, 이 과정에서 거대한 트리가 다시 렌더링 되는 효과가 나온다.</li>
+  <li>Context는 단일 값만 가질 수 있어, Consumer가 가지는 여러 값들의 집합을 담을 수 없다.</li>
+  <li>두 가지 특성이 트리의 상단부터 말단까지 이어져야 돼서 분할이 어려워진다.</li>
+</ol>
+
+<p>즉 Recoil은 해당 문제를 해결하기 위해 orthogonal 하지만 본직적인 방향 그래프를 정의해서 React 트리에 붙이게 된다. 즉 그래프의 뿌리 (atoms) 으로부터 시작해 Selectors(순수함수)를 거쳐 컴포넌트로 흐르게 된다.</p>
+
+<p>즉 Recoil의 사용함으로써 가져가는 장점은 다음과 같다.</p>
+
+<ol>
+  <li>동시성와 React의 호환성</li>
+  <li>상태정의 분산이 가능 -&gt; 코드 분할이 쉽다</li>
+  <li>컴포넌트를 수정하지 않고, 파생된 데이터로 대체 가능</li>
+  <li>공유된 상태도 React local state로 간단하게 사용 가능</li>
+</ol>
+
+<h2 id="atom">Atom</h2>
+
+<p>Recoil의 상태를 나타내는 상태 단위라 볼 수 있다.</p>
+
+<h3 id="atom-생성">Atom 생성</h3>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">atom</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span><span class="p">({</span>
+  <span class="na">key</span><span class="p">:</span> <span class="kr">string</span><span class="p">,</span>
+  <span class="na">default</span><span class="p">:</span> <span class="nx">T</span> <span class="o">|</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span> <span class="o">|</span> <span class="nx">RecoilValue</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span><span class="p">,</span>
+
+  <span class="nx">effects_UNSTABLE</span><span class="p">?:</span> <span class="nx">$ReadOnlyArray</span><span class="o">&lt;</span><span class="nx">AtomEffect</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;&gt;</span><span class="p">,</span>
+
+  <span class="nx">dangerouslyAllowMutability</span><span class="p">?:</span> <span class="nx">boolean</span><span class="p">,</span>
+<span class="p">}):</span> <span class="nx">RecoilState</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<p>위와 유사하게, atom을 선언 해 주어야 atom 함수를 사용 할 수 있다.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">key</code>는 atom의 unique한 값</li>
+  <li><code class="language-plaintext highlighter-rouge">default</code>는 초기값 혹은 selector, promise의 객체</li>
+  <li><code class="language-plaintext highlighter-rouge">effect_UNSTABLE</code>는 Atom Effects 배열</li>
+  <li><code class="language-plaintext highlighter-rouge">dangerouslyAllowMutability</code>는 atom이 변경될 경우, 등록된 컴포넌트에게 알리지 않고 리렌더링을 방지하는 옵션</li>
+</ul>
+
+<h3 id="atom의-hook">Atom의 Hook</h3>
+
+<p>먼저 atom을 생성해야된다</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">myState</span> <span class="o">=</span> <span class="nx">atom</span><span class="p">({</span>
+  <span class="na">key</span><span class="p">:</span> <span class="dl">"</span><span class="s2">uniqueKey</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">default</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<h4 id="userecoilstate">useRecoilState</h4>
+
+<p>atom을 읽고 쓰기 위해 사용</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">[</span><span class="nx">val</span><span class="p">,</span> <span class="nx">setVal</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useRecoilState</span><span class="p">(</span><span class="nx">uniqueKey</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h4 id="userecoilvalue">useRecoilValue</h4>
+
+<p>atom을 읽을 때 사용</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">val</span> <span class="o">=</span> <span class="nx">useRecoilValue</span><span class="p">(</span><span class="nx">uniqueKey</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h4 id="usesetrecoilstate">useSetRecoilState</h4>
+
+<p>atom에 쓰기 위해 사용
+업데이트 할 수 있는 setter를 리턴한다
+컴포넌트를 atom에 등록하지 않아, 변경이 되어도 리렌더링 되지는 않는다. -&gt; 즉 atom을 사용하지 않는 경우 이 훅을 사용</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">setVal</span> <span class="o">=</span> <span class="nx">useSetRecoilState</span><span class="p">(</span><span class="nx">uniqueKey</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h4 id="useresetrecoilstate">useResetRecoilState</h4>
+
+<p>atom을 default를 초기화한다
+비동기 setter를 리턴하며, 컴포넌트 리렌더링이 되지는 않는다</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">reset</span> <span class="o">=</span> <span class="nx">useResetRecoilState</span><span class="p">(</span><span class="nx">uniqueKey</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h4 id="userecoilcallback">useRecoilCallback</h4>
+
+<p>Recoil 상태에서 callback시킬 수 있는 훅</p>
+
+<h2 id="recoilselector">RecoilSelector</h2>
+
+<p>atom의 상태에서 파생된 데이터로, 상태에 의존하는 동적인 데이터이다.</p>
+
+<h2 id="recoilroot">RecoilRoot</h2>
+
+<p>Atom 컨텍스트를 제공해주며, hook의 조상으로 사용된다.</p>
+
+<p>override가 <code class="language-plaintext highlighter-rouge">true</code>라면 새로운 Scope 생성</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">RecoilRoot</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">recoil</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">RecoilRoot</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">Components</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="sr">/RecoilRoot</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>]]></content><author><name>071yoon</name></author><category term="TIL" /><category term="TIL" /><category term="TypeScript" /><summary type="html"><![CDATA[Why Recoil?]]></summary></entry><entry><title type="html">왜 TypeScript인가</title><link href="http://localhost:4000/til/2022/06/30/why-typescript.html" rel="alternate" type="text/html" title="왜 TypeScript인가" /><published>2022-06-30T00:00:00+09:00</published><updated>2022-06-30T00:00:00+09:00</updated><id>http://localhost:4000/til/2022/06/30/why-typescript</id><content type="html" xml:base="http://localhost:4000/til/2022/06/30/why-typescript.html"><![CDATA[<h2 id="typescript">TypeScript</h2>
 
 <h3 id="why-typescript">Why TypeScript</h3>
 
@@ -117,7 +231,7 @@
 
 <h3 id="generic">Generic</h3>
 
-<h3 id="type-vs-interface">Type vs Interface</h3>]]></content><author><name>071yoon</name></author><category term="TIL" /><category term="TIL" /><category term="Javascript" /><category term="TypeScript" /><summary type="html"><![CDATA[TypeScript]]></summary></entry><entry><title type="html">Socket.io 연결 에러</title><link href="http://localhost:4000/til/2022/06/30/socket-error.html" rel="alternate" type="text/html" title="Socket.io 연결 에러" /><published>2022-06-30T00:00:00+09:00</published><updated>2022-06-30T00:00:00+09:00</updated><id>http://localhost:4000/til/2022/06/30/socket-error</id><content type="html" xml:base="http://localhost:4000/til/2022/06/30/socket-error.html"><![CDATA[<h2 id="socket-통신시-에러나는-경우">Socket 통신시 에러나는 경우</h2>
+<h3 id="type-vs-interface">Type vs Interface</h3>]]></content><author><name>071yoon</name></author><category term="TIL" /><category term="TIL" /><category term="Javascript" /><category term="TypeScript" /><summary type="html"><![CDATA[TypeScript]]></summary></entry><entry><title type="html">Socket.io 연결 에러</title><link href="http://localhost:4000/til/2022/06/29/socket-error.html" rel="alternate" type="text/html" title="Socket.io 연결 에러" /><published>2022-06-29T00:00:00+09:00</published><updated>2022-06-29T00:00:00+09:00</updated><id>http://localhost:4000/til/2022/06/29/socket-error</id><content type="html" xml:base="http://localhost:4000/til/2022/06/29/socket-error.html"><![CDATA[<h2 id="socket-통신시-에러나는-경우">Socket 통신시 에러나는 경우</h2>
 
 <p>최근에 WebRTC를 사용하며 소켓 통신을 해야할 일이 생겼는데, 웬걸 자꾸 연결에서 실패를 하였다.</p>
 
@@ -1610,95 +1724,4 @@ pnpm create next-app <span class="nt">--</span> <span class="nt">--ts</span>
 <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">optimizeFonts</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
 <span class="p">};</span>
-</code></pre></div></div>]]></content><author><name>071yoon</name></author><category term="next.js" /><category term="next.js" /><category term="javascript" /><category term="web" /><category term="study" /><summary type="html"><![CDATA[Image Component and Image Optimization]]></summary></entry><entry><title type="html">NEXT-Layouts</title><link href="http://localhost:4000/next.js/2022/04/28/next-layouts.html" rel="alternate" type="text/html" title="NEXT-Layouts" /><published>2022-04-28T00:00:00+09:00</published><updated>2022-04-28T00:00:00+09:00</updated><id>http://localhost:4000/next.js/2022/04/28/next-layouts</id><content type="html" xml:base="http://localhost:4000/next.js/2022/04/28/next-layouts.html"><![CDATA[<h2 id="layouts">Layouts</h2>
-
-<p>React는 페이지를 컴포넌트로 나누는것이 가능하다. 이러한 컴포넌트들은 페이지간에 재사용이 가능하고, 예를 들어, 모든 페이지마다 같은 네비게이션바를 사용한다.</p>
-
-<h3 id="single-shared-layout-with-custom-app">Single Shared Layout with Custom App</h3>
-
-<p>만약 전체 어플에 대하여 하나의 레이아웃만 사용한다면, Custom App 을 만들어, 해당 레이아웃으로 둘러 쌀 수 있다. 해당 컴포넌트가 모든 페이지마다 재사용되므로, 이러한 컴포넌트의 상태정보는 계속 유지된다.</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>예를 들어, input value가 들어와도 고정된다</td>
-    </tr>
-  </tbody>
-</table>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">Layout</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">../components/layout</span><span class="dl">"</span><span class="p">;</span>
-
-<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">MyApp</span><span class="p">({</span> <span class="nx">Component</span><span class="p">,</span> <span class="nx">pageProps</span> <span class="p">})</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="p">(</span>
-    <span class="o">&lt;</span><span class="nx">Layout</span><span class="o">&gt;</span>
-      <span class="o">&lt;</span><span class="nx">Component</span> <span class="p">{...</span><span class="nx">pageProps</span><span class="p">}</span> <span class="sr">/</span><span class="err">&gt;
-</span>    <span class="o">&lt;</span><span class="sr">/Layout</span><span class="err">&gt;
-</span>  <span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<h3 id="per-page-layout">Per-Page Layout</h3>
-
-<p>만약 여러 레이아웃이 필요한 경우에, <code class="language-plaintext highlighter-rouge">getLayout</code> 이라는 property를 사용 할 수 있다. 컴포넌트안에 getLayout을 사용해서, 표현할지 안할지로 정해서 사용 가능하다.</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">Layout</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">../components/layout</span><span class="dl">"</span><span class="p">;</span>
-<span class="k">import</span> <span class="nx">NestedLayout</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">../components/nested-layout</span><span class="dl">"</span><span class="p">;</span>
-
-<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">Page</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="p">{</span>
-    <span class="cm">/** Your content */</span>
-  <span class="p">};</span>
-<span class="p">}</span>
-
-<span class="nx">Page</span><span class="p">.</span><span class="nx">getLayout</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">getLayout</span><span class="p">(</span><span class="nx">page</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="p">(</span>
-    <span class="o">&lt;</span><span class="nx">Layout</span><span class="o">&gt;</span>
-      <span class="o">&lt;</span><span class="nx">NestedLayout</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">page</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/NestedLayout</span><span class="err">&gt;
-</span>    <span class="o">&lt;</span><span class="sr">/Layout</span><span class="err">&gt;
-</span>  <span class="p">);</span>
-<span class="p">};</span>
-</code></pre></div></div>
-
-<p>이렇게 선언 후 실제로 사용할 때는 다음과 같다.</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">MyApp</span><span class="p">({</span> <span class="nx">Component</span><span class="p">,</span> <span class="nx">pageProps</span> <span class="p">})</span> <span class="p">{</span>
-  <span class="c1">// Use the layout defined at the page level, if available</span>
-  <span class="kd">const</span> <span class="nx">getLayout</span> <span class="o">=</span> <span class="nx">Component</span><span class="p">.</span><span class="nx">getLayout</span> <span class="o">||</span> <span class="p">((</span><span class="nx">page</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">page</span><span class="p">);</span>
-
-  <span class="k">return</span> <span class="nx">getLayout</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">Component</span> <span class="p">{...</span><span class="nx">pageProps</span><span class="p">}</span> <span class="sr">/&gt;</span><span class="se">)</span><span class="err">;
-</span><span class="p">}</span>
-</code></pre></div></div>
-
-<p>타입스크립트를 이용하면 Props의 type에 주의해야된다.</p>
-
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">MyApp</span><span class="p">({</span> <span class="nx">Component</span><span class="p">,</span> <span class="nx">pageProps</span> <span class="p">}:</span> <span class="nx">AppPropsWithLayout</span><span class="p">)</span> <span class="p">{</span>
-  <span class="c1">// Use the layout defined at the page level, if available</span>
-  <span class="kd">const</span> <span class="nx">getLayout</span> <span class="o">=</span> <span class="nx">Component</span><span class="p">.</span><span class="nx">getLayout</span> <span class="o">??</span> <span class="p">((</span><span class="nx">page</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">page</span><span class="p">);</span>
-
-  <span class="k">return</span> <span class="nx">getLayout</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">Component</span> <span class="p">{...</span><span class="nx">pageProps</span><span class="p">}</span> <span class="sr">/&gt;</span><span class="se">)</span><span class="err">;
-</span><span class="p">}</span>
-</code></pre></div></div>
-
-<h3 id="data-fetching">Data Fetching</h3>
-
-<p>레이아웃안에, Client-Side에서 <code class="language-plaintext highlighter-rouge">useEffect</code>로 데이터를 가져올 수 도 있고, 라이브러리를 활용하여 <code class="language-plaintext highlighter-rouge">SWR</code>(React Query와 유사)로 가져올 수 도 있다. 하지만, Page가 아니기에, <code class="language-plaintext highlighter-rouge">getStaticProps</code>나 <code class="language-plaintext highlighter-rouge">getServerSideProps</code>를 사용 할 수는 없다.</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">useSWR</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">swr</span><span class="dl">"</span><span class="p">;</span>
-<span class="k">import</span> <span class="nx">Navbar</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./navbar</span><span class="dl">"</span><span class="p">;</span>
-<span class="k">import</span> <span class="nx">Footer</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./footer</span><span class="dl">"</span><span class="p">;</span>
-
-<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">Layout</span><span class="p">({</span> <span class="nx">children</span> <span class="p">})</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="p">{</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">error</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">useSWR</span><span class="p">(</span><span class="dl">"</span><span class="s2">/api/navigation</span><span class="dl">"</span><span class="p">,</span> <span class="nx">fetcher</span><span class="p">);</span>
-
-  <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="k">return</span> <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="nx">Failed</span> <span class="nx">to</span> <span class="nx">load</span><span class="o">&lt;</span><span class="sr">/div&gt;</span><span class="err">;
-</span>  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">data</span><span class="p">)</span> <span class="k">return</span> <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="nx">Loading</span><span class="p">...</span><span class="o">&lt;</span><span class="sr">/div&gt;</span><span class="err">;
-</span>
-  <span class="k">return</span> <span class="p">(</span>
-    <span class="o">&lt;&gt;</span>
-      <span class="o">&lt;</span><span class="nx">Navbar</span> <span class="nx">links</span><span class="o">=</span><span class="p">{</span><span class="nx">data</span><span class="p">.</span><span class="nx">links</span><span class="p">}</span> <span class="sr">/</span><span class="err">&gt;
-</span>      <span class="o">&lt;</span><span class="nx">main</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">children</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/main</span><span class="err">&gt;
-</span>      <span class="o">&lt;</span><span class="nx">Footer</span> <span class="o">/&gt;</span>
-    <span class="o">&lt;</span><span class="sr">/</span><span class="err">&gt;
-</span>  <span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div></div>]]></content><author><name>071yoon</name></author><category term="next.js" /><category term="next.js" /><category term="javascript" /><category term="web" /><category term="study" /><summary type="html"><![CDATA[Layouts]]></summary></entry></feed>
+</code></pre></div></div>]]></content><author><name>071yoon</name></author><category term="next.js" /><category term="next.js" /><category term="javascript" /><category term="web" /><category term="study" /><summary type="html"><![CDATA[Image Component and Image Optimization]]></summary></entry></feed>
