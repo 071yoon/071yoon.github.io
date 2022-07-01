@@ -839,6 +839,96 @@ function googleTranslateElementInit() {
 
 
 <h2 class="post-title">
+        <a class="post-link" href="/til/2022/06/30/socket-error.html">
+          Socket.io 연결 에러
+        </a>
+      </h2>
+      <div class="post-meta">
+        <span class="post-date"><i class="fa fa-calendar"></i> Jun 30, 2022</span>
+        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 1 min</span>
+      </div>
+      <a class="post-excerpt" href="/til/2022/06/30/socket-error.html">
+        <p>
+        Socket 통신시 에러나는 경우
+
+최근에 WebRTC를 사용하며 소켓 통신을 해야할 일이 생겼는데, 웬걸 자꾸 연결에서 실패를 하였다.
+
+우선 결론은 dependency 확인이다. Front에서 연결을 하려는 소켓 통신인 경우 socket.io-client라는 module을 사용하는데, 이게 Back에 기다리고 있는 socket.io 모듈에서의 Server와 Socket의 dependency를 맞춰야 된다. 내가 Front 에서 사용하던 모듈은 ^4.3 이였고 백에서는 ^2에서 주었기 때문에 당연히 오류가 났다… 결국 둘 다 최근 모듈인 4세대로 바꾼 후 잘 작동하였다 ㅎㅎ
+
+
+백엔드와 소통을 열심히 하자~
+
+공... <span class="read_more">Read More</span>
+        </p>
+      </a>
+      <div class="post-tags">
+<a class="post-tag" href="/tags.html#TIL">#TIL</a><a class="post-tag" href="/tags.html#Javascript">#Javascript</a>
+</div>
+    </li>
+<li>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2 class="post-title">
         <a class="post-link" href="/mac/2022/06/05/mac-setting.html">
           Mac 초기 세팅
         </a>
@@ -3418,7 +3508,7 @@ disqus
   <ul>
     <li>
       <a href="/index.html">
-        All<span>27</span>
+        All<span>28</span>
       </a>
     </li>
 
@@ -3438,6 +3528,12 @@ disqus
       <li>
         <a href="/categories.html#h-Mac">
           Mac <span>1</span>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/categories.html#h-TIL">
+          TIL <span>1</span>
         </a>
       </li>
     
