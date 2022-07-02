@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-07-01T22:14:31+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi's tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">Recoil 배우기</title><link href="http://localhost:4000/til/2022/07/01/recoil.html" rel="alternate" type="text/html" title="Recoil 배우기" /><published>2022-07-01T00:00:00+09:00</published><updated>2022-07-01T00:00:00+09:00</updated><id>http://localhost:4000/til/2022/07/01/recoil</id><content type="html" xml:base="http://localhost:4000/til/2022/07/01/recoil.html"><![CDATA[<h2 id="why-recoil">Why Recoil?</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-07-02T10:54:54+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi&apos;s tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">Recoil 배우기</title><link href="http://localhost:4000/til/2022/07/01/recoil.html" rel="alternate" type="text/html" title="Recoil 배우기" /><published>2022-07-01T00:00:00+09:00</published><updated>2022-07-01T00:00:00+09:00</updated><id>http://localhost:4000/til/2022/07/01/recoil</id><content type="html" xml:base="http://localhost:4000/til/2022/07/01/recoil.html"><![CDATA[<h2 id="why-recoil">Why Recoil?</h2>
 
 <p>왜 Recoil을 사용할까?</p>
 
@@ -93,10 +93,6 @@
 
 <p>Recoil 상태에서 callback시킬 수 있는 훅</p>
 
-<h2 id="recoilselector">RecoilSelector</h2>
-
-<p>atom의 상태에서 파생된 데이터로, 상태에 의존하는 동적인 데이터이다.</p>
-
 <h2 id="recoilroot">RecoilRoot</h2>
 
 <p>Atom 컨텍스트를 제공해주며, hook의 조상으로 사용된다.</p>
@@ -112,7 +108,11 @@
     <span class="o">&lt;</span><span class="sr">/RecoilRoot</span><span class="err">&gt;
 </span>  <span class="p">);</span>
 <span class="p">}</span>
-</code></pre></div></div>]]></content><author><name>071yoon</name></author><category term="TIL" /><category term="TIL" /><category term="TypeScript" /><summary type="html"><![CDATA[Why Recoil?]]></summary></entry><entry><title type="html">왜 TypeScript인가</title><link href="http://localhost:4000/til/2022/06/30/why-typescript.html" rel="alternate" type="text/html" title="왜 TypeScript인가" /><published>2022-06-30T00:00:00+09:00</published><updated>2022-06-30T00:00:00+09:00</updated><id>http://localhost:4000/til/2022/06/30/why-typescript</id><content type="html" xml:base="http://localhost:4000/til/2022/06/30/why-typescript.html"><![CDATA[<h2 id="typescript">TypeScript</h2>
+</code></pre></div></div>
+
+<h2 id="recoilselector">RecoilSelector</h2>
+
+<p>atom의 상태에서 파생된 데이터로, 상태에 의존하는 동적인 데이터이다.</p>]]></content><author><name>071yoon</name></author><category term="TIL" /><category term="TIL" /><category term="TypeScript" /><summary type="html"><![CDATA[Why Recoil?]]></summary></entry><entry><title type="html">왜 TypeScript인가</title><link href="http://localhost:4000/til/2022/06/30/why-typescript.html" rel="alternate" type="text/html" title="왜 TypeScript인가" /><published>2022-06-30T00:00:00+09:00</published><updated>2022-06-30T00:00:00+09:00</updated><id>http://localhost:4000/til/2022/06/30/why-typescript</id><content type="html" xml:base="http://localhost:4000/til/2022/06/30/why-typescript.html"><![CDATA[<h2 id="typescript">TypeScript</h2>
 
 <h3 id="why-typescript">Why TypeScript</h3>
 
