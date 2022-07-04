@@ -1,0 +1,174 @@
+I"@<h2 id="왜-zustand">왜 Zustand?</h2>
+
+<p>Zustand에 대하여 공부하기 앞서, 왜 Zustand인지 알아보도록 하겠다. 우선, Zustand vs Recoil vs Jotai vs Redux vs Context API 등 전역상태관리에 대해 여러가지 방법들이 존재한다. 그중에 Zustand를 택한건 크게 두가지가 있다.</p>
+
+<ol>
+  <li>쉬움</li>
+  <li>트렌드임</li>
+</ol>
+
+<p>우선 너무 쉽다. Recoil도 배웠을 때는 어렵지 않았다. 솔직히 Redux를 써보고 Recoil을 사용해서 인지는 몰라도, 한번 RecoilProvider로 감싸기만 하면, const state를 관리할 수 있다. 하지만 Redux는 여기서 Provider로 감싸지도 않고 사용할 수 있다. 그냥 상태관리를 해주는 파일을 하나 만들어, 여기서만 정해진 함수로 상태를 바꿀 수 있게 관리를 해주면, 전역 상태관리로 사용할 수 있다.</p>
+
+<p>다음은 트렌드이다. 처음에는 아무리 그래도 React에서 100% 호환되게 서포트 해주는 Recoil이 다운로드수나 인기상으로 더 높다고 생각했다. 그렇게 전역 상태관리로 Recoil을 선택하고, 마지막으로 npm trend를 확인했는데, Zustand가 압도적으로 높았다. 여기서, Zustand를 써보기로 결심하고 공부를 시작해보았다.</p>
+
+<p><img width="1387" alt="image" src="https://user-images.githubusercontent.com/66371206/177025269-8f208795-796f-4f38-88a9-84452da95117.png" /></p>
+
+<blockquote>
+  <p>놀라운 Zustand의 성장세..!</p>
+</blockquote>
+
+<h2 id="적용">적용</h2>
+
+<p>간단하게 전역 상태 관리를 해보자</p>
+
+<p>우선 간단하게 ID를 메인 페이지에서 입력하면, 추후에 모든 페이지에 적용이 되게 관리하고 싶어, 전역 상태를 채용했다고 가정해보겠다. 그럼 구현해야 되는 순서는 다음과 같다.</p>
+
+<ol>
+  <li>아이디를 저장하는 zustand 객체 생성</li>
+  <li>ID 입력하는 페이지 구성</li>
+  <li>다음 페이지에 방금 입력한 ID가 잘 적용 되었는지 확인</li>
+</ol>
+
+<h3 id="아이디를-저장하는-zustand-객체-rngus">아이디를 저장하는 zustand 객체 rngus</h3>
+
+<blockquote>
+  <p>typescript에 맞춰 interface를 만드는것에 주의</p>
+</blockquote>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">create</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">zustand</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="kr">interface</span> <span class="nx">ID</span> <span class="p">{</span>
+  <span class="nl">id</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
+  <span class="nl">setId</span><span class="p">:</span> <span class="p">(</span><span class="nx">id</span><span class="p">:</span> <span class="kr">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="k">void</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">IdStore</span> <span class="o">=</span> <span class="nx">create</span><span class="o">&lt;</span><span class="nx">ID</span><span class="o">&gt;</span><span class="p">((</span><span class="kd">set</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span>
+  <span class="na">id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">init</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">setId</span><span class="p">:</span> <span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">set</span><span class="p">((</span><span class="nx">state</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span> <span class="na">id</span><span class="p">:</span> <span class="nx">id</span> <span class="p">}));</span>
+  <span class="p">},</span>
+  <span class="cm">/*
+    setId: (by) =&gt; {
+    set((state) =&gt; ({ id: by }));
+  }, // 이게 더 보기 편할 수 있음
+  */</span>
+<span class="p">}));</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">IdStore</span><span class="p">;</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>입력하지 않으면 페이지가 넘어가지 않음</p>
+</blockquote>
+
+<h3 id="id-입력하는-페이지-구성">ID 입력하는 페이지 구성</h3>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">InputID</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">navigate</span> <span class="o">=</span> <span class="nx">useNavigate</span><span class="p">();</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">setId</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">IdStore</span><span class="p">();</span>
+
+  <span class="kd">const</span> <span class="nx">onSubmit</span> <span class="o">=</span> <span class="p">(</span><span class="nx">event</span><span class="p">:</span> <span class="nx">React</span><span class="p">.</span><span class="nx">FormEvent</span><span class="o">&lt;</span><span class="nx">HTMLFormElement</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+    <span class="nx">navigate</span><span class="p">(</span><span class="s2">`/lobby`</span><span class="p">);</span>
+  <span class="p">};</span>
+
+  <span class="kd">const</span> <span class="nx">onChange</span> <span class="o">=</span> <span class="p">(</span><span class="nx">event</span><span class="p">:</span> <span class="nx">React</span><span class="p">.</span><span class="nx">ChangeEvent</span><span class="o">&lt;</span><span class="nx">HTMLInputElement</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">setId</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+  <span class="p">};</span>
+
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">Form</span> <span class="nx">onSubmit</span><span class="o">=</span><span class="p">{</span><span class="nx">onSubmit</span><span class="p">}</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">Input</span>
+        <span class="nx">autoComplete</span><span class="o">=</span><span class="dl">"</span><span class="s2">off</span><span class="dl">"</span>
+        <span class="nx">onChange</span><span class="o">=</span><span class="p">{</span><span class="nx">onChange</span><span class="p">}</span>
+        <span class="nx">placeholder</span><span class="o">=</span><span class="dl">"</span><span class="s2">Enter ID</span><span class="dl">"</span>
+        <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">nickname</span><span class="dl">"</span>
+      <span class="o">/&gt;</span>
+      <span class="o">&lt;</span><span class="nx">Button</span> <span class="nx">disabled</span><span class="o">=</span><span class="p">{</span><span class="o">!</span><span class="nx">id</span><span class="p">.</span><span class="nx">length</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">Enter</span><span class="o">&lt;</span><span class="sr">/Button</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/Form</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="다음-페이지에-방금-입력한-id가-잘-적용-되었는지-확인">다음 페이지에 방금 입력한 ID가 잘 적용 되었는지 확인</h3>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">Lobby</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">id</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">IdStore</span><span class="p">();</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">Container</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">Header</span><span class="o">&gt;</span><span class="nx">Lobby</span><span class="o">&lt;</span><span class="sr">/Header</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">Me</span><span class="o">&gt;</span><span class="nx">name</span><span class="p">:</span> <span class="p">{</span><span class="nx">id</span><span class="p">}</span> <span class="o">&lt;</span><span class="sr">/Me</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/Container</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>이렇게 구성해서 확인해보았다.</p>
+
+<h3 id="결과물">결과물</h3>
+
+<p><img src="https://user-images.githubusercontent.com/66371206/177069313-1c86d716-465e-4c0b-87a0-779f79e1d73e.gif" alt="ezgif-4-300bae9264" /></p>
+
+<p>그리고, 실시간으로 전역상태가 관리되고 있는지 확인하기 위해 한 페이지에서 다른 컴포넌트에서 한 전역상태를 가지고 테스트도 해 보았다.</p>
+
+<h3 id="bearcounter-state">BearCounter State</h3>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">create</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">zustand</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="kr">interface</span> <span class="nx">BearState</span> <span class="p">{</span>
+  <span class="nl">bears</span><span class="p">:</span> <span class="kr">number</span><span class="p">;</span>
+  <span class="nl">increase</span><span class="p">:</span> <span class="p">(</span><span class="nx">by</span><span class="p">:</span> <span class="kr">number</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="k">void</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">useStore</span> <span class="o">=</span> <span class="nx">create</span><span class="o">&lt;</span><span class="nx">BearState</span><span class="o">&gt;</span><span class="p">()((</span><span class="kd">set</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span>
+  <span class="na">bears</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="na">increase</span><span class="p">:</span> <span class="p">(</span><span class="nx">by</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="kd">set</span><span class="p">((</span><span class="nx">state</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span> <span class="na">bears</span><span class="p">:</span> <span class="nx">state</span><span class="p">.</span><span class="nx">bears</span> <span class="o">+</span> <span class="nx">by</span> <span class="p">})),</span>
+<span class="p">}));</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">useStore</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="bearcounter-component">BearCounter Component</h3>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">TestOne</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">navigate</span> <span class="o">=</span> <span class="nx">useNavigate</span><span class="p">();</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">bears</span><span class="p">,</span> <span class="nx">increase</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">useStore</span><span class="p">();</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">id</span><span class="p">,</span> <span class="nx">setId</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="o">&lt;</span><span class="kr">number</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+  <span class="c1">// const increasePopulation = useStore((state) =&gt; state.increase);</span>
+
+  <span class="kd">const</span> <span class="nx">formHandler</span> <span class="o">=</span> <span class="p">(</span><span class="nx">event</span><span class="p">:</span> <span class="nx">React</span><span class="p">.</span><span class="nx">FormEvent</span><span class="o">&lt;</span><span class="nx">HTMLFormElement</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+    <span class="k">return</span> <span class="nx">increase</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="p">};</span>
+
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">Container</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">form</span> <span class="nx">onSubmit</span><span class="o">=</span><span class="p">{</span><span class="nx">formHandler</span><span class="p">}</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">button</span> <span class="kd">type</span><span class="o">=</span><span class="dl">"</span><span class="s2">submit</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">incrase</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="sr">/form</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">TestTwo</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="sr">/Container</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">TestOne</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="testtwo">TestTwo</h3>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">TestTwo</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">bears</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">useStore</span><span class="p">();</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">Container</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">bears</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/h1</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/Container</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">TestTwo</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><img src="https://user-images.githubusercontent.com/66371206/177069574-5e7cd794-b86a-4282-9b5a-1c998b4862b6.gif" alt="ezgif-4-4fc22081fc" /></p>
+
+<p>잘 되는 모습을 볼 수 있다</p>
+:ET
