@@ -7,22 +7,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>함께 자라기 | YeongGi’s tech blog</title>
+<title>Typescript React Styled-Component 에서 Font 적용하기 | YeongGi’s tech blog</title>
 <meta name="generator" content="Jekyll v4.2.2">
-<meta property="og:title" content="함께 자라기">
+<meta property="og:title" content="Typescript React Styled-Component 에서 Font 적용하기">
 <meta name="author" content="071yoon">
 <meta property="og:locale" content="en_US">
-<meta name="description" content="함께 자라기">
-<meta property="og:description" content="함께 자라기">
-<link rel="canonical" href="http://localhost:4000/deep-thought/2022/04/22/grow-together.html">
-<meta property="og:url" content="http://localhost:4000/deep-thought/2022/04/22/grow-together.html">
+<meta name="description" content="Typescript, React, Styled-Component 환경에서 Font 적용하기">
+<meta property="og:description" content="Typescript, React, Styled-Component 환경에서 Font 적용하기">
+<link rel="canonical" href="http://localhost:4000/til/2022/07/09/typescript-font.html">
+<meta property="og:url" content="http://localhost:4000/til/2022/07/09/typescript-font.html">
 <meta property="og:site_name" content="YeongGi’s tech blog">
 <meta property="og:type" content="article">
-<meta property="article:published_time" content="2022-04-22T00:00:00+09:00">
+<meta property="article:published_time" content="2022-07-09T00:00:00+09:00">
 <meta name="twitter:card" content="summary">
-<meta property="twitter:title" content="함께 자라기">
+<meta property="twitter:title" content="Typescript React Styled-Component 에서 Font 적용하기">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"071yoon"},"dateModified":"2022-04-22T00:00:00+09:00","datePublished":"2022-04-22T00:00:00+09:00","description":"함께 자라기","headline":"함께 자라기","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/deep-thought/2022/04/22/grow-together.html"},"url":"http://localhost:4000/deep-thought/2022/04/22/grow-together.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"071yoon"},"dateModified":"2022-07-09T00:00:00+09:00","datePublished":"2022-07-09T00:00:00+09:00","description":"Typescript, React, Styled-Component 환경에서 Font 적용하기","headline":"Typescript React Styled-Component 에서 Font 적용하기","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/til/2022/07/09/typescript-font.html"},"url":"http://localhost:4000/til/2022/07/09/typescript-font.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="shortcut icon" href="">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -764,11 +764,11 @@ function googleTranslateElementInit() {
 
 
 <header class="post-header">
-  <h1 class="post-title p-name" itemprop="name headline">함께 자라기</h1>
-  <h2 class="post-subtitle">소마에서 애자일로 살아남기</h2>
+  <h1 class="post-title p-name" itemprop="name headline">Typescript React Styled-Component 에서 Font 적용하기</h1>
+  <h2 class="post-subtitle">CRA 환경에서 Font 적용하기</h2>
 
   <p class="post-meta">
-    <time class="dt-published" datetime="2022-04-22T00:00:00+09:00" itemprop="datePublished"><i class="fa fa-calendar"></i> Apr 22, 2022
+    <time class="dt-published" datetime="2022-07-09T00:00:00+09:00" itemprop="datePublished"><i class="fa fa-calendar"></i> Jul 09, 2022
     </time>
 
     
@@ -805,92 +805,131 @@ function googleTranslateElementInit() {
 
 
 
-    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 5 mins</span>
+    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 3 mins</span>
   </p>
 <div class="post-tags">
-<a class="post-tag" href="/tags.html#deep-thought">#deep-thought</a><a class="post-tag" href="/tags.html#book">#book</a>
+<a class="post-tag" href="/tags.html#TIL">#TIL</a><a class="post-tag" href="/tags.html#TypeScript">#TypeScript</a>
 </div></header>
 <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
     <div class="post-content e-content" itemprop="articleBody">
 
-      <h2 id="함께-자라기">함께 자라기</h2>
+      <h2 id="typescript-react-styled-component-환경에서-font-적용하기">Typescript, React, Styled-Component 환경에서 Font 적용하기</h2>
 
-<h3 id="서론">서론</h3>
+<p>프로젝트를 진행하다보니, Font를 설정해야 되는데, 일반적으로 App.css를 사용하는 방식이 아니라, Styled-Component를 사용했기에 조금 더 복잡했다.</p>
 
-<p>우선 이전글에서 다뤘던 SW Maestro <code class="language-plaintext highlighter-rouge">소마</code> 라고 하는 정부지원사업에 붙게 되었다. 320명이나 되는 연수생들을 대충 확인해보았는데, 정말 다양한 사람들이 정말 많다는것을 느꼈다. 그리고 대부분이 전공생이 였다는게 정말 놀라웠다. 현재 진행중인 42 Seoul 인 경우에는 전공생보다는 부전공 혹은 아예 다른 전공에서 다른 일을 하다 프로그래머의 길로 빠지게 된 경우도 많이 보았는데 참 색달랐다.</p>
+<h2 id="적용순서">적용순서</h2>
 
-<p>그 후 멘토링을 몇번 받게 되었고, 운 좋게 마음에 드는 두분을 만나 팀 매칭까지 끝나게 되었다. 우리는 AI, 나 어플의 CRUD 시스템같은것 보다는 조금 더 혁신적이고, 재미있는 프로젝트를 하기로 했다. 아직 정확한 기획은 없지만 아마 메타버스 혹은 그 상위의 무엇인가가 될것 같다. 조합은 웹의 정석이라 불리는 2FE 1BE 로 진행이 될 것 같다.</p>
+<h3 id="font-다운받기">Font 다운받기</h3>
 
-<p>그리고 우리의 목적은 사업적으로 엄청나게 뛰어난 창업을 하겠다! 혹은 이 세계에 도움이 되는 무언가를 만들어 내겠다! 이런것은 아니다. 좀 더 우리의 가치와 실력을 높일 수 있는 기회가 되었으면 좋겠다! 에 가깝다. 그래서 우리는 최대한 다양한 기술들을 배우고 협력하는 과정을 느껴보자! 가 주제가 되었다.</p>
+<p>font는 OpenSource 나 원하는곳에서 잘 다운 받으면 된다. 나는 <a href="https://noonnu.cc">눈누</a>라는 폰트 저장소를 애용한다. 저작권에 주의하며 다운받자.</p>
 
-<p>그렇게 우리의 목적에 맞춰 우선 정한것은</p>
+<p>다운을 받을 때, ttf, otf, woff 중 어떤것을 받을지 선택 할 수 있는데, 우선 ttf로 적용하였다.</p>
 
-<ol>
-  <li>Jira 를 사용해보자</li>
-  <li>애자일 방법론을 채용하자</li>
-</ol>
-
-<p>였다.</p>
-
-<p>Jira 같은 경우에는, 차차 더 알아보며 Git Confluence 와 연동해서 사용 해 볼 예정이고 애자일 방법론에 대해서는 스프린트와 스크럼 정도밖에 몰랐던 나였기에 조금 더 공부를 해보고자 하였다.</p>
-
-<p>그렇게 애자일이 무엇인가! 항상 근본적인것을 좋아하는 나는 애자일의 뜻부터 알아보았다.</p>
+<p><code class="language-plaintext highlighter-rouge">ttf</code>는 true type font <code class="language-plaintext highlighter-rouge">otf</code>는 open type font 으로 pc에 설치하는 폰트이며 <code class="language-plaintext highlighter-rouge">woff</code>는 web open font format 으로 웹에서 사용하는 포맷이다.</p>
 
 <blockquote>
-  <p>애자일은 민첩성을 뜻하며 소포트웨어 기업들이 도입한 개념으로 급변하는 시장에서 기민한 대응을 하기 위해 빠르고 유연한 기업 환경(조직)을 만드는 것을 목적으로 한다.</p>
+  <p>로딩속도는 woff2 &gt; woff &gt; ttf 순서</p>
 </blockquote>
 
-<p>항상 말은 참 쉽지만, 실제로 이해하기는 정말 까다롭다. 그러던 중 팀원 중 한명이 <code class="language-plaintext highlighter-rouge">함께 자라기</code> 라는 좋은 애자일 방법론에 대한 책이 있다하여 읽어 보기로 하였다.</p>
+<p>그럼 잘 다운받은 폰트를 src폴더 안에 fonts라는 디렉토리를 만들어 잘 저장해둔다.</p>
 
-<h3 id="자라기">자라기</h3>
+<p>프로젝트 내부의 폴더구조는 다음과 같다
+<img width="273" alt="image" src="https://user-images.githubusercontent.com/66371206/178093254-5ca4bbff-b528-41a3-a7c0-d17afe8a2d9d.png"></p>
 
-<p>이 책을 읽다보면 정말 단순하지만 머리를 띵! 하게 만드는 부분들이 꽤나 있다. 우선 자라기에 대한 부분이 내 입장에서 제일 생각을 많이하게 만들었다.</p>
+<h3 id="globalstyle에-font-추가">GlobalStyle에 Font 추가</h3>
 
-<h4 id="가치">가치</h4>
+<p>원래는 App.css에 font를 적용시켜 <code class="language-plaintext highlighter-rouge">&lt;App&gt;</code>에 감싸주기만 하면 됐다. 하지만, 지금은 Styled-Component를 사용하므로 GlobalStyle로 잘 적용시켜보자.</p>
 
-<p>다들 <code class="language-plaintext highlighter-rouge">1만시간의 법칙</code> 을 많이들 들어보았을 것이다. 정말 단순하게 어떠한 분야의 전문가가 되려면 <code class="language-plaintext highlighter-rouge">1만시간</code> 정도가 필요하다는 뜻이다. 하지만 이 말에는 큰 함정이 빠져있다. 이 <code class="language-plaintext highlighter-rouge">1만시간</code> 에는 단순히 내가 즐기거나, 어쩔 수 없이 하는것이 아니라 피드백을 받고 공부하거나 노력하는 과정이 포함되어야 된다는 것이다. 게임을 보더라도 내가 낮은 티어에서 게임을 몇천판을 하였지만, 아직도 낮은 티어일 수 있다. 책에서는 그 이유를 피드백 혹은 노력을 하지 않는것이라고 본다. 매 판마다 분석을 하고 취약점에 대하여 고치려는 노력을 한다면, 약점에 대해서는 반복적인 훈련을 한다면, 과연 실력이 낮은채로 가만히 있을까? 당연히 실력이 개선되는 미래가 펼쳐질 것이다.</p>
+<p>우선 styles 디렉토리에 있는 GlobalStyle을 담당하고있는 global.ts에 사용하고싶은 font들을 추가해주었다.</p>
 
-<h4 id="피드백">피드백</h4>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// global.ts</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">createGlobalStyle</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">styled-components</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">GmarketSansTTFBold</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">../fonts/GmarketSansTTFBold.ttf</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">GmarketSansTTFMedium</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">../fonts/GmarketSansTTFMedium.ttf</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">GmarketSansTTFLight</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">../fonts/GmarketSansTTFLight.ttf</span><span class="dl">'</span><span class="p">;</span>
 
-<p>자라기에 또 매우 중요한 부분이 있다. 바로 피드백이 빨라야 된다는 것이다. 만약 우리가 어떠한 액션을 취하였을 때, 그에대한 결과가 1년후에 온다면 어떨까? 아마 1년전에 어떤 액션을 취했는지 기억도 잘 나지않아, 피드백이 제대로 이루어지지 않을것이다. 액션 직후 피드백을 바로 받고 그것을 기록 후 다음에 볼때 진정한 피드백이 완성된다고 본다. 그리고 이것은 <code class="language-plaintext highlighter-rouge">1만시간의 법칙</code> 에도 포함이 된다. 빠르고 진정성있는 피드백이 나를 발전시키는 중요한 포인트라 할 수 있다.</p>
+<span class="kd">const</span> <span class="nx">GlobalStyle</span> <span class="o">=</span> <span class="nx">createGlobalStyle</span><span class="s2">`
+  @font-face {
+        font-family: 'GmarketSansTTFBold';
+        src: local('GmarketSansTTFBold'), local('GmarketSansTTFBold');
+        font-style: normal;
+        src: url(</span><span class="p">${</span><span class="nx">GmarketSansTTFBold</span><span class="p">}</span><span class="s2">) format('truetype');
+  }
+  @font-face {
+        font-family: 'GmarketSansTTFMedium';
+        src: local('GmarketSansTTFMedium'), local('GmarketSansTTFMedium');
+        font-style: normal;
+        src: url(</span><span class="p">${</span><span class="nx">GmarketSansTTFMedium</span><span class="p">}</span><span class="s2">) format('truetype');
+  }
+  @font-face {
+        font-family: 'GmarketSansTTFLight';
+        src: local('GmarketSansTTFLight'), local('GmarketSansTTFLight');
+        font-style: normal;
+        src: url(</span><span class="p">${</span><span class="nx">GmarketSansTTFLight</span><span class="p">}</span><span class="s2">) format('truetype');
+  }
+</span></code></pre></div></div>
 
-<h4 id="실수">실수</h4>
+<p>여기서 문제가 하나 생기는데, <code class="language-plaintext highlighter-rouge">.ttf</code> 파일을 제대로 import 해줄 수 없다. 해당 문제는 src의 디렉토리위에 <code class="language-plaintext highlighter-rouge">fonts.d.ts</code>를 만들어 해당 타입의 모듈을 import 해줄 수 있게 수정해주면 된다.</p>
 
-<p>이 책은 이상하리만치 실수에 관대하다. 오히려 실수를 권장하는 모습까지 보여준다. 이건 나의 입장에서는 정말 특이한 접근이였다. 프로그래밍을 하다보면 실수를 줄여가는 것이 전문가의 덕목이라고 생각했고, 실제로 내가 처음 프로그래밍을 하던것과 비교를 해보면 실수가 정말 상당히 줄었다. 하지만 여기서 말하는 실수는 실제로 컴파일 과정을 하고 서버 배포를 해보니 앗! 에러가 있네! 이런것이 아니다. 프로그래밍을 하다 작은 오타 혹은 변수 하나 잘못 넣은것도 실수라고 본다. 그리고 이러한 소소한 실수는 얼마든지 해도 되지만 이러한 실수를 한 후 어떤식으로 대처를 하는것인가에 대해 집중한다.</p>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// fonts.d.ts</span>
+<span class="kr">declare</span> <span class="kr">module</span> <span class="dl">"</span><span class="s2">*.ttf</span><span class="dl">"</span><span class="p">;</span>
+</code></pre></div></div>
 
-<p>책에서는 실수에 대한 문화를 두가지로 나누는데 <code class="language-plaintext highlighter-rouge">실수 예방</code> 과 <code class="language-plaintext highlighter-rouge">실수 관리</code> 이다. 첫번째인 <code class="language-plaintext highlighter-rouge">실수 예방</code> 을 중점으로 두는 회사같은 경우, 실수를 하는 경로를 방지하며, 실수에 대하여 비난 및 처벌이 주가 되는 반면, <code class="language-plaintext highlighter-rouge">실수 관리</code> 를 중점으로 두는 회사는, 실수를 빨리 발견 및 해결 그리고 피드백 후 다음에는 어떤식으로 대처를 하자가 주가 된다.</p>
+<h3 id="globalstyle-적용">GlobalStyle 적용</h3>
 
-<h3 id="함께">함께</h3>
+<p>이제 index.tsx에 폰트들이 추가된 GlobalStyle을 잘 둘러주기만 하면 된다.</p>
 
-<h4 id="and-or">AND OR</h4>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">App</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./App</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">GlobalStyle</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./styles/global</span><span class="dl">"</span><span class="p">;</span>
 
-<p>여기서 AND OR 연산자로 사람을 설명한다. 정말 공대스럽지 않을 수 없다. 하지만 또 정말 이것만큼 공대생들을 이해시켜주기 편한게 없다고 생각한다. 사람이 무엇인가를 배우거나 협력을 할 떄 AND 인지 OR 인지에 대하여 진지하게 설명한다.</p>
+<span class="kd">const</span> <span class="nx">rootElement</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">root</span><span class="dl">"</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">rootElement</span><span class="p">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="dl">"</span><span class="s2">Failed to find the root element</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">root</span> <span class="o">=</span> <span class="nx">createRoot</span><span class="p">(</span><span class="nx">rootElement</span><span class="p">);</span>
+<span class="nx">root</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span>
+  <span class="o">&lt;</span><span class="nx">StrictMode</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">GlobalStyle</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="nx">App</span> <span class="o">/&gt;</span>
+  <span class="o">&lt;</span><span class="sr">/StrictMode</span><span class="err">&gt;
+</span><span class="p">);</span>
+</code></pre></div></div>
 
-<p>우선 우리는 AND 보다 OR 적인 사람이 되어야 된다 설명한다. 분석을 하였을 떄, AND 성향이 있는 사람은 독립 개체로 본다. 통계적으로 보면 독립사건이 되는것이다. 예를 들어, 프로그래머가 작업을 마감일에 맞춰 끝낼 확률이 0.9라 보자. 그럼 프로그래머가 5명이 모두 마감일에 맞출 확률은 0.9일까? 이건 0.9 ^ 5 의 확률이 될 것이고, 이건 0.6 밖에 되지 않는다. 즉 통계의 오류가 발생한 것이다. 하지만 팀을 꾸려 5명이서 한 작업을 같이 끝내고, 다음으로 넘어가는 식으로 한다면? 그건 OR 연산으로 오히려 한 프로젝트당 잘 끝낼 확률이 0.9보다 높아지며 효율또한 증가할것이라는 분석이다. 물론 실제로는, BE FE 등 따로 작업을 하겠지만, 그럼에도 불구하고 정말 좋은 접근이라 생각한다.</p>
+<h3 id="사용하고-싶은-font를-component에-적용">사용하고 싶은 Font를 Component에 적용</h3>
 
-<p><code class="language-plaintext highlighter-rouge">당국자미 방관자청 (當局者迷 傍觀者淸)</code> 바둑을 구경하는 이가 더 수를 잘 본다 라는 뜻이다. 이건 단순히 바둑이 아닌 프로그래밍에도 통용이 된다 생각한다. 내가 페어프로그래밍을 할 때, 실제로 타이핑을 하는 사람은 타이핑하느라 정신이 없고, 설계한 대로 구현하고 있을때, 옆에서 보조하는 사람은, 코드를 보며 오류를 손쉽게 찾을 수 있으며, 설계에서 더 흐름을 보기 쉽다고 생각을 한다. 이러한 점에서 OR 적이며 앞에서 말한 실수의 관리에도 더욱 효율이 좋을것이다.</p>
+<p>이제 해당 App 안에 있는 컴포넌트에서 자유롭게 폰트를 꺼내서 사용할 수 있다.</p>
 
-<h3 id="애자일">애자일?</h3>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// main.tsx</span>
+<span class="p">...</span>
+<span class="kd">const</span> <span class="nx">Title</span> <span class="o">=</span> <span class="nx">styled</span><span class="p">.</span><span class="nx">p</span><span class="s2">`
+  margin-top: 5rem;
+  height: 10rem;
+  font-size: 10rem;
+  font-family: GmarketSansTTFLight, sans-serif, Arial;
+`</span><span class="p">;</span>
+</code></pre></div></div>
 
-<p>사실 책은 애자일 방법론에 대하여 그렇게 중점적으로 설명해주지 않는다. 오히려 애자일이 디테일해질수록 애자일에 멀어진다고 설명한다. 애자일은 애초에 민첩하게 급변하는 시장에 맞춰 발전하는 형태이기에, 정적일수록 근본적으로 맞지않다고 판단하는 것이다.</p>
+<p><img width="651" alt="image" src="https://user-images.githubusercontent.com/66371206/178093400-3c5fa099-f561-4f21-954e-650dfa98b0b5.png"></p>
 
-<p>그럼에도, 나는 조금 더 스크럼을 하는법 혹은 스프린트를 뛰는법에 대하여 알려줬으면 좋겠다고 생각을 했지만, 그런부분은 조금 아쉬웠다. 그럼에도, 애자일을 왜 사용해야 되는지는 정말 깔끔하게 설명을 해준 것 같다. 앞에서 언급한 가치, 피드백, 실수 등 애자일 방법론을 채택하면 모두 극복이 가능한 시나리오 이다. 매일매일 스크럼과 일주일 단위의 회고로 인하여 완벽한 피드백 시스템을 구축 할 수 있으며, 이러한 과정에서 가치를 높일 수 있다 생각한다.</p>
+<p>잘 적용된 모습을 볼 수 있다.</p>
+
+<h2 id="후기">후기</h2>
+
+<p>이번에는 우선 ttf로 통일을 했지만, 역시나 개선을 위해 woff로 하는것이 좋아보인다. 튜닝을 하게된다면, 웹폰트로 지정을 해서 로딩속도를 개선해보자.</p>
 
 
     </div>
 
 </article>
 <div class="post-nav">
-<a class="previous" href="/retrospect/2022/03/03/sw-maestro.html" title="SW Maestro 지원 후기">SW Maestro 지원 후기</a><a class="next" href="/next.js/2022/04/24/why-next-js.html" title="NEXT">NEXT</a>
+<a class="previous" href="/til/2022/07/03/zustand.html" title="Typescript 에서 Zustand 배우기">Typescript 에서 Zustand 배우기</a><span></span>
 </div>
 <div class="post-related">
       <div>Related Articles</div>
       <ul>
-        <li><a class="post-link" href="/javascript/2022/01/18/javascript-functions.html" title="NEXT">자바스크립트 함수의 심화학습</a></li>
-<li><a class="post-link" href="/next.js/2022/04/25/next-pages.html" title="NEXT">NEXT-Pages</a></li>
-<li><a class="post-link" href="/mac/2022/06/05/mac-setting.html" title="NEXT">Mac 초기 세팅</a></li>
-<li><a class="post-link" href="/jira/2022/05/30/jira-github-%EC%97%B0%EB%8F%99.html" title="NEXT">Jira와 깃허브 연동</a></li>
+        <li><a class="post-link" href="/next.js/2022/04/24/why-next-js.html" title="">NEXT</a></li>
+<li><a class="post-link" href="/next.js/2022/04/25/next-pages.html" title="">NEXT-Pages</a></li>
+<li><a class="post-link" href="/til/2022/07/03/zustand.html" title="">Typescript 에서 Zustand 배우기</a></li>
+<li><a class="post-link" href="/next.js/2022/05/05/next-others-1.html" title="">NEXT-Others-1</a></li>
 </ul>
     </div>
 <div class="post-comments">
