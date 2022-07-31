@@ -1,4 +1,201 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-07-11T20:38:51+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi's tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">React + Typescript 에서 Horizontal Scroll 구현</title><link href="http://localhost:4000/til/2022/07/11/react-horizontal-scroll.html" rel="alternate" type="text/html" title="React + Typescript 에서 Horizontal Scroll 구현" /><published>2022-07-11T00:00:00+09:00</published><updated>2022-07-11T00:00:00+09:00</updated><id>http://localhost:4000/til/2022/07/11/react-horizontal-scroll</id><content type="html" xml:base="http://localhost:4000/til/2022/07/11/react-horizontal-scroll.html"><![CDATA[<h2 id="react-에서-가로-스크롤-구현을-해보자">React 에서 가로 스크롤 구현을 해보자</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-08-01T00:08:43+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi&apos;s tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">React에서 Volume Slider 구현하기</title><link href="http://localhost:4000/til/2022/07/31/react-volume-slider.html" rel="alternate" type="text/html" title="React에서 Volume Slider 구현하기" /><published>2022-07-31T00:00:00+09:00</published><updated>2022-07-31T00:00:00+09:00</updated><id>http://localhost:4000/til/2022/07/31/react-volume-slider</id><content type="html" xml:base="http://localhost:4000/til/2022/07/31/react-volume-slider.html"><![CDATA[<h2 id="react-볼륨-슬라이더-만들기">React 볼륨 슬라이더 만들기</h2>
+
+<p>프로젝트를 진행중에, 이러한 시안이 날라왔다. 대충 볼륨을 컨트롤 할 수 있는 Slider를 제작하는 것.</p>
+
+<p><img width="758" alt="image" src="https://user-images.githubusercontent.com/66371206/182016262-70befb1d-aa0f-4e68-b26d-4c61d20f1199.png" /></p>
+
+<p>우선 여러가지 선택사항이 있는데, material UI를 사용하여, 간단하고 이쁜 슬라이더를 가져다 쓰는것, 아니면 직접 구현이 있었다.</p>
+
+<p>우선 라이브러리를 쓰는것 보다 구현을 하는것을 좋아하기에, 한번 알아보았고, <code class="language-plaintext highlighter-rouge">input type</code> 을 <code class="language-plaintext highlighter-rouge">range</code>로 선택하여 간단하게 구현할 수 있음을 알게되었다.</p>
+
+<h3 id="vanilla-html로-구현">Vanilla HTML로 구현</h3>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">input</span>
+  <span class="kd">type</span><span class="o">=</span><span class="dl">"</span><span class="s2">range</span><span class="dl">"</span>
+  <span class="nx">min</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">}</span>
+  <span class="nx">max</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">}</span>
+  <span class="nx">color</span><span class="o">=</span><span class="dl">"</span><span class="s2">gray</span><span class="dl">"</span>
+  <span class="nx">step</span><span class="o">=</span><span class="p">{</span><span class="mf">0.02</span><span class="p">}</span>
+  <span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="nx">volume</span><span class="p">}</span>
+  <span class="nx">onChange</span><span class="o">=</span><span class="p">{(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">setVolume</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">valueAsNumber</span><span class="p">);</span>
+  <span class="p">}}</span>
+<span class="sr">/</span><span class="err">&gt;
+</span></code></pre></div></div>
+
+<p>간단하게 구현을 해보면 위의 코드와 같다.</p>
+
+<p>setVolume같은 경우에는, state로 관리하기 위해서 넣었고, step 기준으로 volume bar를 컨트롤 할 수 있다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/66371206/182019180-9500a561-ee79-468d-b97b-220abb93d398.gif" alt="ezgif-3-5e9fa8f258" /></p>
+
+<p>괜찮아 보이지만, 여러 문제가 있다.</p>
+
+<ol>
+  <li>컨트롤 하는 동그라미 (thumb) 도 파란색이 마음에 안든다</li>
+  <li>볼륨이 0이 됐을 때 투명해졌으면 좋겠다</li>
+  <li>볼륨이 올라갈때 색이 파란색이 마음에 안든다</li>
+</ol>
+
+<p>이러한 문제를 해결하기 위해 CSS에서 노력을 해주어야 한다.</p>
+
+<h3 id="css-적용">CSS 적용</h3>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">VolumeControl</span> <span class="nx">volume</span><span class="o">=</span><span class="p">{</span><span class="nx">volume</span> <span class="o">*</span> <span class="mi">100</span><span class="p">}</span> <span class="nx">speaker</span><span class="o">=</span><span class="p">{</span><span class="nx">userSpeaker</span><span class="p">}</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">input</span>
+    <span class="kd">type</span><span class="o">=</span><span class="dl">"</span><span class="s2">range</span><span class="dl">"</span>
+    <span class="nx">min</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">}</span>
+    <span class="nx">max</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">}</span>
+    <span class="nx">step</span><span class="o">=</span><span class="p">{</span><span class="mf">0.02</span><span class="p">}</span>
+    <span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="nx">volume</span><span class="p">}</span>
+    <span class="nx">onChange</span><span class="o">=</span><span class="p">{(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">setVolume</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">valueAsNumber</span><span class="p">);</span>
+    <span class="p">}}</span>
+  <span class="sr">/</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="sr">/VolumeControl</span><span class="err">&gt;
+</span></code></pre></div></div>
+
+<p>우선 styled로 크게 VolumeControl이라는 component로 분할하였고, speaker로 스피커가 꺼져있음을 판단할 수 있고, volume으로 나의 speaker 크기를 판단할 수 있게 만들었다. 여기서 <code class="language-plaintext highlighter-rouge">volume === 0</code> 인 경우 speaker 가 꺼져있다고 판단할것이다.</p>
+
+<h4 id="컨트롤-하는-동그라미-thumb-도-파란색이-마음에-안든다">컨트롤 하는 동그라미 (thumb) 도 파란색이 마음에 안든다</h4>
+
+<p>우선 처음에는 1번 문제를 해결하기 위해 slider-thumb를 손봐주었다.</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&amp;</span><span class="nd">::-webkit-slider-thumb</span> <span class="p">{</span>
+      <span class="nl">-webkit-appearance</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+      <span class="nl">height</span><span class="p">:</span> <span class="m">16px</span><span class="p">;</span>
+      <span class="nl">width</span><span class="p">:</span> <span class="m">16px</span><span class="p">;</span>
+      <span class="nl">border-radius</span><span class="p">:</span> <span class="m">50%</span><span class="p">;</span>
+      <span class="nl">background</span><span class="p">:</span> <span class="err">${</span><span class="p">(</span><span class="n">props</span><span class="p">)</span> <span class="err">=&gt;</span> <span class="p">(</span><span class="n">props</span><span class="p">.</span><span class="n">volume</span> <span class="err">?</span> <span class="s1">"#d9d9d9"</span> <span class="p">:</span> <span class="s1">"#E5E7EB"</span><span class="p">)}</span><span class="o">;</span>
+      <span class="nt">margin-top</span><span class="o">:</span> <span class="nt">-5px</span><span class="o">;</span>
+      <span class="nt">cursor</span><span class="o">:</span> <span class="nt">pointer</span><span class="o">;</span>
+    <span class="err">}</span>
+</code></pre></div></div>
+
+<p>해당코드는 별 문제 없이 가능하다. 그냥 volume 이 0이라면 볼륨이 꺼졌을 때의 색상이 나올 수 있게 지정하고 끝이다.</p>
+
+<h4 id="볼륨이-0이-됐을-때-투명해졌으면-좋겠다">볼륨이 0이 됐을 때 투명해졌으면 좋겠다</h4>
+
+<p>이부분도 그렇게 어렵지 않다.</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="o">&amp;</span><span class="nd">::-webkit-slider-runnable-track</span> <span class="p">{</span>
+      <span class="nl">height</span><span class="p">:</span> <span class="m">0.6rem</span><span class="p">;</span>
+      <span class="nl">opacity</span><span class="p">:</span> <span class="err">${</span><span class="p">(</span><span class="n">props</span><span class="p">)</span> <span class="err">=&gt;</span> <span class="p">(</span><span class="n">props</span><span class="p">.</span><span class="n">volume</span> <span class="err">&amp;&amp;</span> <span class="n">props</span><span class="p">.</span><span class="n">speaker</span> <span class="err">?</span> <span class="s1">"1"</span> <span class="p">:</span> <span class="s1">"0.5"</span><span class="p">)}</span><span class="o">;</span>
+    <span class="err">}</span>
+</code></pre></div></div>
+
+<p>그냥 opacity를 volume과 speaker가 존재 시 1, 아니면 0.5를 줘서 간단히 해결하였다.</p>
+
+<h4 id="볼륨이-올라갈때-색이-파란색이-마음에-안든다">볼륨이 올라갈때 색이 파란색이 마음에 안든다</h4>
+
+<p>이부분이 상당히 애를 먹었다. 우선 여러번의 삽질과 해결법이 존재하였고, 나는 나름 정말 우아한 해결법을 찾았다고 생각한다.</p>
+
+<p>우선 첫번째는 너무나 쉬운 material-UI 를 사용하는것이다. 하지만, 이미 돌아가기엔, 너무 많이 구현을 해버린 나… 끝까지 바닐라로 해결해보았다.</p>
+
+<p>두번째는 내장 CSS 옵션을 사용하는 방법. CSS 는 브라우저에 의존적이기에, <code class="language-plaintext highlighter-rouge">fill-lower, fill-upper</code> 를 사용하여 색 지정이 되는 브라우저가 있다고 한다. 하지만 이건 IE만 지원을 하며, 크롬이나 파이어폭스는 지원하지 않아, 무시하였다.</p>
+
+<p>혹시라도 사용하고 싶다면</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">input</span><span class="o">[</span><span class="nt">type</span><span class="o">=</span><span class="s1">"range"</span><span class="o">]</span><span class="nd">::-ms-fill-lower</span> <span class="p">{</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="no">red</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">input</span><span class="o">[</span><span class="nt">type</span><span class="o">=</span><span class="s1">"range"</span><span class="o">]</span><span class="nd">::-ms-fill-upper</span> <span class="p">{</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="no">blue</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>이러한 방식을 사용하면 된다.</p>
+
+<p>세번째는 인터넷에 떠돌아 다니는 방법을 사용하는 것. 바로 thumb의 box-shadow를 두어 0부터 thumb까지 전부 색칠하는 방법이다. 그리고 남는 부분은 input 전체에 <code class="language-plaintext highlighter-rouge">overflow: hidden</code>을 두어 새어 나오는것을 방지하는 방법이다.</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">input</span><span class="o">[</span><span class="nt">type</span><span class="o">=</span><span class="s1">"range"</span><span class="o">]</span> <span class="p">{</span>
+  <span class="nl">overflow</span><span class="p">:</span> <span class="nb">hidden</span><span class="p">;</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">80px</span><span class="p">;</span>
+  <span class="nl">-webkit-appearance</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#9a905d</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">input</span><span class="o">[</span><span class="nt">type</span><span class="o">=</span><span class="s1">"range"</span><span class="o">]</span><span class="nd">::-webkit-slider-runnable-track</span> <span class="p">{</span>
+  <span class="nl">height</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>
+  <span class="nl">-webkit-appearance</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="m">#13bba4</span><span class="p">;</span>
+  <span class="nl">margin-top</span><span class="p">:</span> <span class="m">-1px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">input</span><span class="o">[</span><span class="nt">type</span><span class="o">=</span><span class="s1">"range"</span><span class="o">]</span><span class="nd">::-webkit-slider-thumb</span> <span class="p">{</span>
+  <span class="nl">-webkit-appearance</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>
+  <span class="nl">height</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>
+  <span class="nl">background</span><span class="p">:</span> <span class="m">#434343</span><span class="p">;</span>
+  <span class="nl">box-shadow</span><span class="p">:</span> <span class="m">-80px</span> <span class="m">0</span> <span class="m">0</span> <span class="m">80px</span> <span class="m">#43e5f7</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>이건 괜찮아 보이지만 문제가 많다. 우선 완성된 결과물부터 보자.</p>
+
+<p><img src="https://user-images.githubusercontent.com/66371206/182020050-bbbdd186-67b7-45b0-849f-fc0eec3c075b.gif" alt="ezgif-3-875a95cf4c" /></p>
+
+<p>우선 box shadow를 활용하기에, 동그라미인 thumb 를 사용할 수 없으며 overflow-hidden이 필수적으로 필요해 원하는 이쁜 디자인을 절대 만들 수 없다. 그래서 더 고민을 하고 linear-gradient를 활용한 우아한 해결법을 찾았다.</p>
+
+<p>linear-gradient 가 단순히 서서히 적용되지 않고, 완전 다른 색으로 hard line을 그릴 수 있는 방법을 이용하였다. 코드를 보면 다음과 같다.</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">background</span><span class="o">:</span> <span class="err">$</span><span class="p">{</span><span class="err">(props)</span> <span class="err">=&gt;</span>
+        <span class="err">props.volume</span>
+          <span class="err">?</span> <span class="err">`linear-gradient(to</span> <span class="err">right,</span> <span class="err">#D9D9D9</span> <span class="err">${props.volume</span><span class="p">}</span><span class="o">%,</span> <span class="nt">rgba</span><span class="o">(</span><span class="err">229</span><span class="o">,</span> <span class="err">231</span><span class="o">,</span> <span class="err">235</span><span class="o">,</span> <span class="err">0</span><span class="o">.</span><span class="err">5</span><span class="o">)</span>
+ <span class="err">$</span><span class="p">{</span><span class="err">props.volume</span><span class="p">}</span><span class="o">%</span> <span class="err">100</span><span class="o">%)</span><span class="err">`</span>
+          <span class="o">:</span> <span class="s1">"#E5E7EB"</span><span class="err">}</span><span class="o">;</span>
+</code></pre></div></div>
+
+<p>우선 볼륨을 0 ~ 100 의 수를 주므로, 해당하는 볼륨 % 까지, <code class="language-plaintext highlighter-rouge">#d9d9d9</code>의 색으로, 그 다음부터는 rgba(229, 231, 235, 0.5) 에 해당하는 색으로 지정하였다. 그렇게 완성된 볼륨 슬라이더는 다음과 같다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/66371206/182032799-34a4b224-7e92-4388-8d45-58db2714bad0.gif" alt="ezgif-3-10012500c9" /></p>
+
+<blockquote>
+  <p>최종적으로 적용된 CSS 는 다음과 같다.</p>
+</blockquote>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">VolumeControl</span> <span class="o">=</span> <span class="nx">styled</span><span class="p">.</span><span class="nx">div</span><span class="o">&lt;</span><span class="p">{</span> <span class="na">volume</span><span class="p">:</span> <span class="kr">number</span><span class="p">;</span> <span class="nl">speaker</span><span class="p">:</span> <span class="nx">boolean</span> <span class="p">}</span><span class="o">&gt;</span><span class="s2">`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 1rem;
+  width: 6rem;
+
+  input[type='range'] {
+    -webkit-appearance: none;
+    height: 100%;
+    background: transparent;
+
+    &amp;:focus {
+      outline: none;
+    }
+
+    //WEBKIT
+    &amp;::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 16px;
+      width: 16px;
+      border-radius: 50%;
+      background: </span><span class="p">${(</span><span class="nx">props</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="nx">props</span><span class="p">.</span><span class="nx">volume</span> <span class="p">?</span> <span class="dl">"</span><span class="s2">#d9d9d9</span><span class="dl">"</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">#E5E7EB</span><span class="dl">"</span><span class="p">)}</span><span class="s2">;
+      margin-top: -5px;
+      cursor: pointer;
+    }
+
+    &amp;::-webkit-slider-runnable-track {
+      height: 0.6rem;
+      background: </span><span class="p">${(</span><span class="nx">props</span><span class="p">)</span> <span class="o">=&gt;</span>
+        <span class="nx">props</span><span class="p">.</span><span class="nx">volume</span>
+          <span class="p">?</span> <span class="s2">`linear-gradient(to right, #D9D9D9 </span><span class="p">${</span><span class="nx">props</span><span class="p">.</span><span class="nx">volume</span><span class="p">}</span><span class="s2">%, rgba(229, 231, 235, 0.5)
+ </span><span class="p">${</span><span class="nx">props</span><span class="p">.</span><span class="nx">volume</span><span class="p">}</span><span class="s2">% 100%)`</span>
+          <span class="p">:</span> <span class="dl">"</span><span class="s2">#E5E7EB</span><span class="dl">"</span><span class="p">}</span><span class="s2">;
+      opacity: </span><span class="p">${(</span><span class="nx">props</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="nx">props</span><span class="p">.</span><span class="nx">volume</span> <span class="o">&amp;&amp;</span> <span class="nx">props</span><span class="p">.</span><span class="nx">speaker</span> <span class="p">?</span> <span class="dl">"</span><span class="s2">1</span><span class="dl">"</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">0.5</span><span class="dl">"</span><span class="p">)}</span><span class="s2">;
+      border-radius: 3rem;
+      transition: all 0.5s;
+      cursor: pointer;
+    }
+`</span><span class="p">;</span>
+</code></pre></div></div>]]></content><author><name>071yoon</name></author><category term="TIL" /><category term="TIL" /><category term="React" /><summary type="html"><![CDATA[React 볼륨 슬라이더 만들기]]></summary></entry><entry><title type="html">React + Typescript 에서 Horizontal Scroll 구현</title><link href="http://localhost:4000/til/2022/07/11/react-horizontal-scroll.html" rel="alternate" type="text/html" title="React + Typescript 에서 Horizontal Scroll 구현" /><published>2022-07-11T00:00:00+09:00</published><updated>2022-07-11T00:00:00+09:00</updated><id>http://localhost:4000/til/2022/07/11/react-horizontal-scroll</id><content type="html" xml:base="http://localhost:4000/til/2022/07/11/react-horizontal-scroll.html"><![CDATA[<h2 id="react-에서-가로-스크롤-구현을-해보자">React 에서 가로 스크롤 구현을 해보자</h2>
 
 <p>좌우 스크롤은 직접 구현해도 되지만, 누군가 이쁜 library를 만들어 두었길래, 바로 사용하였다.</p>
 
@@ -1320,119 +1517,4 @@ bundle <span class="nb">install
 
 <p><img width="1264" alt="image" src="https://user-images.githubusercontent.com/66371206/170933985-8987738a-f687-49a1-af61-dfd22402a387.png" /></p>
 
-<p>깃허브와 Jira 연동 끗!!</p>]]></content><author><name>071yoon</name></author><category term="Jira" /><category term="Jira" /><category term="Agile" /><category term="Github" /><category term="study" /><summary type="html"><![CDATA[Jira와 깃허브 연동하기]]></summary></entry><entry><title type="html">NEXT-API</title><link href="http://localhost:4000/next.js/2022/05/15/next-api.html" rel="alternate" type="text/html" title="NEXT-API" /><published>2022-05-15T00:00:00+09:00</published><updated>2022-05-15T00:00:00+09:00</updated><id>http://localhost:4000/next.js/2022/05/15/next-api</id><content type="html" xml:base="http://localhost:4000/next.js/2022/05/15/next-api.html"><![CDATA[<h2 id="api-routes">API Routes</h2>
-
-<h3 id="intro">Intro</h3>
-
-<p><code class="language-plaintext highlighter-rouge">pages/api</code> 안에 있는 어떤 파일이든 전부 <code class="language-plaintext highlighter-rouge">/api/*/</code>로 접근 할 수 있으며, <code class="language-plaintext highlighter-rouge">page</code> 대신 API 최종점으로 여겨진다. 이 API들은 전부 server-side 전용이며, Client-side의 번들 사이즈를 증가시키지는 않는다.</p>
-
-<p>예를들어, 다음과 같이 <code class="language-plaintext highlighter-rouge">pages/api/users.js</code>가 리턴하는 <code class="language-plaintext highlighter-rouge">json</code>같응ㄴ 경우는 status 200으로 소통한다.</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">handler</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">200</span><span class="p">).</span><span class="nx">json</span><span class="p">({</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">YeongGi Yoon</span><span class="dl">"</span> <span class="p">});</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p>이러한 API route가 작동하려면, 함수를 default 로 export 해야하며, 다음과 같은 인자들을 받는다</p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">req</code>: http.IncomingMessage의 객체 중 하나 + pre-built middleware</li>
-  <li><code class="language-plaintext highlighter-rouge">res</code>: http.ServerResponse의 객체 중 하나 + helper functions</li>
-</ul>
-
-<p>다양한 HTTP API route를 처리하기 위해, request handler에 다음과 같이 <code class="language-plaintext highlighter-rouge">req.method</code>를 활용할 수 있다.</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">handler</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-	<span class="k">if</span> <span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">method</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">POST) {
-		//POST에 해당하는 req
-	}
-	else {
-		//그 외
-	}
-}
-</span></code></pre></div></div>
-
-<h4 id="use-cases">Use Cases</h4>
-
-<p>새로운 프로젝트들을 위해서, 모든 API 와 API route를 만들 수 있다. 만약 존재하는 API가 있따면, API Route를 통한 forward call을 하지 않아도 된다. 다양한 API Route의 활용법은 다음과 같다.</p>
-
-<ul>
-  <li>외부 서비스의 URL를 마스킹 하는것 (<code class="language-plaintext highlighter-rouge">https://company.com/secret-url</code> 대신 <code class="language-plaintext highlighter-rouge">/api/secret</code>을 사용하게 하는 것)</li>
-  <li>서버에서 환경변수를 사용하여 더욱 안전하게 외부 서비스를 접근하는 법</li>
-</ul>
-
-<h4 id="caveats">Caveats</h4>
-
-<p>API Routes는 <code class="language-plaintext highlighter-rouge">CORS header</code>를 특정화하지 않는다. 즉, 일반적으로 같은 근간이라 할 수 있다. 이와같은 행동은 <code class="language-plaintext highlighter-rouge">CORS middleware</code>에서 정의 할 수 있다.
-API Route는 <code class="language-plaintext highlighter-rouge">next export</code>와 같이 사용될 수 없다.</p>
-
-<h3 id="dynamic-api-routes">Dynamic API Routes</h3>
-
-<p>API Route같은 경우에 <code class="language-plaintext highlighter-rouge">Dynamic Routes</code>를 바로 지원하며, 즉 <code class="language-plaintext highlighter-rouge">pages</code> 안에 파일 이름 규칙이 있다면 가져 올 수 있다. 예를들어 <code class="language-plaintext highlighter-rouge">pages/api/post/[pid].js</code> 와 같은 API Route가 존재한다면 코드로는 다음과 같다.</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">handler</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="p">{</span> <span class="nx">pid</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">query</span><span class="p">;</span>
-  <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="s2">`Post: </span><span class="p">${</span><span class="nx">pid</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p>이렇게 되면, <code class="language-plaintext highlighter-rouge">/api/post/abc</code>에 해당하는 request가 <code class="language-plaintext highlighter-rouge">Post: abc</code>에서 응답을 받을 수 있다.</p>
-
-<p>RESTful한 방식으로 routes를 만들면 다음과 같다.</p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">GET api/posts</code> : 모든 포스트에 대한 list를 가져온다</li>
-  <li><code class="language-plaintext highlighter-rouge">GET api/posts/12345</code> : 12345에 대한 포스트 정보만 가져온다</li>
-</ul>
-
-<p>그럼 모델을 두가지 분류로 나눌 수 있다.</p>
-
-<ol>
-  <li>1번 옵션
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">/api/posts.js</code></li>
-      <li><code class="language-plaintext highlighter-rouge">/api/posts/[postId].js</code></li>
-    </ul>
-  </li>
-  <li>2번 옵션
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">/api/posts/index.js</code></li>
-      <li><code class="language-plaintext highlighter-rouge">/api/posts/[postId].js</code></li>
-    </ul>
-  </li>
-</ol>
-
-<p>두가지 다 동일하지만, 세번째 옵션 <code class="language-plaintext highlighter-rouge">/api/posts/[postId].js</code> 같은 경우에는 Dynamic Routes가 <code class="language-plaintext highlighter-rouge">undefined</code>한 상태가 없기에 유효하지 않다.</p>
-
-<h4 id="catch-all-api-routes">Catch all API routes</h4>
-
-<p>API Route는 <code class="language-plaintext highlighter-rouge">...</code>을 추가하여 모든 루트를 추가할 수 있다. 예를 들어 <code class="language-plaintext highlighter-rouge">pages/api/post/[...slug].js</code> 는 <code class="language-plaintext highlighter-rouge">/api/post/a</code>와 매칭되며, <code class="language-plaintext highlighter-rouge">/api/post/a/b</code> 와 <code class="language-plaintext highlighter-rouge">/api/post/a/b/c</code> 모두 매칭이 된다. 이렇게 매칭된 인자들은 query parameter로 넘겨지며, 항상 배열이 된다. 즉 <code class="language-plaintext highlighter-rouge">/api/post/a</code>라는 루트는 <code class="language-plaintext highlighter-rouge">{ "slug": ["a"]}</code> 라는 <code class="language-plaintext highlighter-rouge">query object</code>를 가지게 된다. 만약 <code class="language-plaintext highlighter-rouge">/api/post/a/b</code> 라면 <code class="language-plaintext highlighter-rouge">{ "slug": ["a", "b"]}</code> 처럼 가지게 된다.</p>
-
-<p>종합하여 보면 <code class="language-plaintext highlighter-rouge">pages/api/post/[...slug].js</code> 라는 API Route 는 다음과 같이 생겼다.</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">handler</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="p">{</span> <span class="nx">slug</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">query</span><span class="p">;</span>
-  <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="s2">`Post: </span><span class="p">${</span><span class="nx">slug</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="dl">"</span><span class="s2">, </span><span class="dl">"</span><span class="p">)}</span><span class="s2">`</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p>그럼 <code class="language-plaintext highlighter-rouge">/api/post/a/b/c</code> 라는 request는 <code class="language-plaintext highlighter-rouge">Post: a, b, c</code>로 응답을 받게된다.</p>
-
-<h4 id="optional-catch-all-api-routes">Optional catch all API routes</h4>
-
-<p>이중괄후를 사용하여 모든 루트를 찾는 방법또한 사용 할 수 있다. <code class="language-plaintext highlighter-rouge">[[...slug]]</code> 처럼 사용하면 되며 <code class="language-plaintext highlighter-rouge">pages/api/post[[...slug]].js</code> 가 <code class="language-plaintext highlighter-rouge">/api/post</code> 와 <code class="language-plaintext highlighter-rouge">/api/post/a</code> 와 <code class="language-plaintext highlighter-rouge">/api/post/a/b</code> 모두 매칭 된다고 볼 수 있다.</p>
-
-<h4 id="caveats-1">Caveats</h4>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">pages/api/post/create.js</code> 는 <code class="language-plaintext highlighter-rouge">/api/post/create</code> 과 매칭된다.</li>
-  <li><code class="language-plaintext highlighter-rouge">pages/api/post/[pid].js</code> 는 <code class="language-plaintext highlighter-rouge">/api/post/1</code>, 와 <code class="language-plaintext highlighter-rouge">/api/post/abc,</code> 과 매칭되며 <code class="language-plaintext highlighter-rouge">/api/post/create</code> 과는 매칭되지 않는다.</li>
-  <li><code class="language-plaintext highlighter-rouge">pages/api/post/[...slug].js</code> 는 <code class="language-plaintext highlighter-rouge">/api/post/1/2</code> 와 <code class="language-plaintext highlighter-rouge">/api/post/a/b/c</code>와 매칭되며 <code class="language-plaintext highlighter-rouge">/api/post/create</code> 나 <code class="language-plaintext highlighter-rouge">/api/post/abc</code>와는 매칭되지 않는다.</li>
-</ul>
-
-<h3 id="api-middlewares">API Middlewares</h3>
-
-<h3 id="response-helpers">Response Helpers</h3>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-</code></pre></div></div>]]></content><author><name>071yoon</name></author><category term="next.js" /><category term="next.js" /><category term="javascript" /><category term="web" /><category term="study" /><summary type="html"><![CDATA[API Routes]]></summary></entry></feed>
+<p>깃허브와 Jira 연동 끗!!</p>]]></content><author><name>071yoon</name></author><category term="Jira" /><category term="Jira" /><category term="Agile" /><category term="Github" /><category term="study" /><summary type="html"><![CDATA[Jira와 깃허브 연동하기]]></summary></entry></feed>
