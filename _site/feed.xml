@@ -1,4 +1,138 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-08-06T23:18:57+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi&apos;s tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">React에서 Volume Slider 구현하기</title><link href="http://localhost:4000/til/2022/07/31/react-volume-slider.html" rel="alternate" type="text/html" title="React에서 Volume Slider 구현하기" /><published>2022-07-31T00:00:00+09:00</published><updated>2022-07-31T00:00:00+09:00</updated><id>http://localhost:4000/til/2022/07/31/react-volume-slider</id><content type="html" xml:base="http://localhost:4000/til/2022/07/31/react-volume-slider.html"><![CDATA[<h2 id="react-볼륨-슬라이더-만들기">React 볼륨 슬라이더 만들기</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-08-10T22:21:49+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi's tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">S3 &amp;amp; CloudFront를 활용한 CDN 서버 만들기</title><link href="http://localhost:4000/til/2022/08/10/aws-cloudFront.html" rel="alternate" type="text/html" title="S3 &amp;amp; CloudFront를 활용한 CDN 서버 만들기" /><published>2022-08-10T00:00:00+09:00</published><updated>2022-08-10T00:00:00+09:00</updated><id>http://localhost:4000/til/2022/08/10/aws-cloudFront</id><content type="html" xml:base="http://localhost:4000/til/2022/08/10/aws-cloudFront.html"><![CDATA[<p><img width="300" alt="image" src="https://user-images.githubusercontent.com/66371206/183911780-90c424e9-e115-44e2-8163-f0b4ab823458.png" /></p>
+
+<p>CDN 서버를 만들기 앞서, 왜 CDN 서버를 만드는지에 대해 알아보자</p>
+
+<h2 id="cdn">CDN</h2>
+
+<h3 id="cdn-이란">CDN 이란?</h3>
+
+<p>콘텐츠 전송 네트워크(CDN)는 데이터 사용량이 많은 애플리케이션의 웹 페이지 로드 속도를 높이는 상호 연결된 서버 네트워크로 콘텐츠 전송 혹은 배포 용도로 사용된다.</p>
+
+<p>실제 사용자는 웹사이트에 접속 시, 해당 웹사이트의 데이터를 다운받기 위해 인터넷으로 접속한다. 하지만, 사용자가 서버에서 떨어질 수록, 웹사이트의 정적 이미지(이미지, 동영상, 음악 등)를 다운받는데 오래 걸리게 됩니다. 이러한 경우, CDN 서버를 전 세계에 있는 엣지 포인트를 두어 캐싱처리를 하여 사용자가 가장 가까운 지역의 엣지 포인트로 접속하게 하여 해당 문제를 해결 할 수 있다.</p>
+
+<h2 id="cdn이-중요한-이유">CDN이 중요한 이유?</h2>
+
+<p>콘텐츠 전송 네트워크(CDN)의 주 목적은 대기 시간을 줄이거나 네트워크 설계로 인해 발생하는 통신 지연을 줄이는 것이다. CDN은 클라이언트와 웹 사이트 서버 간에 중간 서버를 두어 효율성을 높일 수 있다. 이러한 CDN 서버는 클라이언트-서버 통신을 관리하며, 웹 서버에 대한 웹 트래픽을 줄이고, 대역폭 소비를 줄이며, 애플리케이션의 사용자 환경을 개선할 수 있다.</p>
+
+<h2 id="cdn의-장점">CDN의 장점?</h2>
+
+<p>CDN을 사용함으로써 다음과 같은 이득을 볼 수 있다.</p>
+
+<h3 id="페이지-로드-시간-단축">페이지 로드 시간 단축</h3>
+
+<p>페이지 로드 시간이 너무 느리면 웹 사이트 트래픽이 감소할 수 있으므로, 반송률을 줄이고 사용자가 사이트에서 보내는 시간을 늘릴 수 있다.</p>
+
+<h3 id="대역폭-비용-절감">대역폭 비용 절감</h3>
+
+<p>들어오는 모든 웹 사이트 요청은 네트워크 대역폭을 사용하기 때문에 대역폭 비용이 상당히 높다. 캐싱 및 기타 최적화를 통해 CDN은 오리진 서버가 제공해야 하는 데이터의 양을 줄여 웹 사이트 소유자의 호스팅 비용을 절감할 수 있음.</p>
+
+<h3 id="콘텐츠-가용성-제고">콘텐츠 가용성 제고</h3>
+
+<p>한 번에 너무 많은 방문자가 방문하거나 네트워크 하드웨어 오류가 발생하면 웹 사이트가 중단될 수 있습니다. CDN 서비스는 더 많은 웹 트래픽을 처리하고 웹 서버의 로드를 줄일 수 있습니다. 또한 하나 이상의 CDN 서버가 오프라인으로 전환되면 다른 운영 서버가 해당 서버를 대체하여 서비스가 중단되지 않도록 할 수 있습니다.</p>
+
+<h3 id="웹-사이트-보안-강화">웹 사이트 보안 강화</h3>
+
+<p>분산 서비스 거부(DDoS) 공격은 대량의 가짜 트래픽을 웹 사이트로 전송하여 애플리케이션이 작동 중지되도록 만들려고 시도합니다. CDN은 여러 중간 서버 간에 로드를 분산하여 오리진 서버에 미치는 영향을 줄임으로써 이러한 트래픽 급증을 처리할 수 있습니다.</p>
+
+<h2 id="cdn-구현">CDN 구현</h2>
+
+<h3 id="s3-버킷-생성">S3 버킷 생성</h3>
+
+<p>먼저 S3 버킷을 일반적으로 생성한다.
+<img width="844" alt="image" src="https://user-images.githubusercontent.com/66371206/183887243-2b1dd102-166b-4e1f-bbc8-846ff990d27f.png" /></p>
+
+<blockquote>
+  <p>CloudFront에서 public으로 열어줄 예정이라, 액세스 차단을 해도 된다</p>
+</blockquote>
+
+<p><img width="835" alt="image" src="https://user-images.githubusercontent.com/66371206/183887348-9e248bf8-a7c3-4b79-857f-68a672208981.png" /></p>
+
+<p>다음으로, 프로젝트에서 사용할 static 파일들을 넣어준다.</p>
+
+<p><img width="1202" alt="image" src="https://user-images.githubusercontent.com/66371206/183887581-979abfb6-6557-416a-813c-a7cf04a79817.png" /></p>
+
+<p>마지막으로 버킷정책과 CORS 정책을 수립해주면 된다.
+<img src="https://user-images.githubusercontent.com/66371206/183889538-902d219b-75f3-48aa-a7b9-541a9a788125.png" alt="image" /></p>
+
+<blockquote>
+  <p>버킷정책</p>
+</blockquote>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"Version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2008-10-17"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"Id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PolicyForCloudFrontPrivateContent"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"Statement"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"Sid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"Effect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Allow"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"Principal"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"AWS"</span><span class="p">:</span><span class="w"> </span><span class="s2">"arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity [my id]"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"Action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"s3:GetObject"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"Resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"arn:aws:s3:::static.[myDomain].com/*"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"Sid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"Effect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Allow"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"Principal"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"AWS"</span><span class="p">:</span><span class="w"> </span><span class="s2">"arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity [my id]"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"Action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"s3:GetObject"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"Resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"arn:aws:s3:::static.[myDomain].com/*"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<blockquote>
+  <p>CORS 정책</p>
+</blockquote>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"AllowedHeaders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"*"</span><span class="p">],</span><span class="w">
+    </span><span class="nl">"AllowedMethods"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"HEAD"</span><span class="p">,</span><span class="w"> </span><span class="s2">"GET"</span><span class="p">],</span><span class="w">
+    </span><span class="nl">"AllowedOrigins"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"*"</span><span class="p">],</span><span class="w">
+    </span><span class="nl">"ExposeHeaders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"ETag"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"x-amz-server-side-encryption"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"x-amz-request-id"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"x-amz-id-2"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"MaxAgeSeconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="cloudfront-연동">CloudFront 연동</h3>
+
+<p>아까만든 S3 버킷으로 CloudFront를 생성해주면 된다
+<img src="https://user-images.githubusercontent.com/66371206/183890057-0a6c3ebb-9a0f-4886-8113-f6cc92ab5010.png" alt="image" /></p>
+
+<p>여기서 나온 ID를 앞서 버킷 정책에서의 [my id]에 넣어주면 된다.</p>
+
+<p>상세 정책은 다음과 같다</p>
+
+<p><img src="https://user-images.githubusercontent.com/66371206/183895266-496ab645-577b-45a2-a003-b374bfcabe70.png" alt="image" /></p>
+
+<p><img src="https://user-images.githubusercontent.com/66371206/183895316-83d7189c-5310-4d2e-931f-84dd6c21a565.png" alt="image" /></p>
+
+<p>CloudFront를 public으로 열어두고, CORS 정책을 S3에 위임하면 된다.</p>
+
+<h2 id="domain-달기">Domain 달기</h2>
+
+<p>Domain은 AWS 내 Route 53에서 미리 구매한 Domain을 확장해서 사용하였다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/66371206/183895726-b2486618-83c4-48a9-b269-9f4af7a8fb24.png" alt="image" /></p>
+
+<p><img src="https://user-images.githubusercontent.com/66371206/183895901-8c996509-d9b8-461d-8ec4-f611672fbb01.png" alt="image" /></p>
+
+<p>그리고 다시 CloudFront로 와서, 생성한 대체 도메인을 선택 후, https 를 사용하기에 해당 SSL 인증서를 등록해주면 static.domain.com 으로 접근 가능한 cdn 서버가 완료가 된다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/66371206/183910403-19ac163e-a202-4a59-8430-a81beae4385b.png" alt="image" /></p>
+
+<p>참조
+<a href="https://aws.amazon.com/ko/what-is/cdn/">https://aws.amazon.com/ko/what-is/cdn/</a></p>]]></content><author><name>071yoon</name></author><category term="TIL" /><category term="TIL" /><category term="AWS" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">React에서 Volume Slider 구현하기</title><link href="http://localhost:4000/til/2022/07/31/react-volume-slider.html" rel="alternate" type="text/html" title="React에서 Volume Slider 구현하기" /><published>2022-07-31T00:00:00+09:00</published><updated>2022-07-31T00:00:00+09:00</updated><id>http://localhost:4000/til/2022/07/31/react-volume-slider</id><content type="html" xml:base="http://localhost:4000/til/2022/07/31/react-volume-slider.html"><![CDATA[<h2 id="react-볼륨-슬라이더-만들기">React 볼륨 슬라이더 만들기</h2>
 
 <p>프로젝트를 진행중에, 이러한 시안이 날라왔다. 대충 볼륨을 컨트롤 할 수 있는 Slider를 제작하는 것.</p>
 
@@ -1462,59 +1596,4 @@ bundle <span class="nb">install
 
 <p><a href="https://nykim.work/15">https://nykim.work/15</a></p>
 
-<p><a href="https://react.vlpt.us/styling/02-css-module.html">https://react.vlpt.us/styling/02-css-module.html</a></p>]]></content><author><name>071yoon</name></author><category term="CSS" /><category term="CSS" /><category term="SASS" /><category term="SCSS" /><category term="styled-components" /><category term="CSS-Moduler" /><summary type="html"><![CDATA[CSS 트렌드]]></summary></entry><entry><title type="html">Jira와 깃허브 연동</title><link href="http://localhost:4000/jira/2022/05/30/jira-github-%EC%97%B0%EB%8F%99.html" rel="alternate" type="text/html" title="Jira와 깃허브 연동" /><published>2022-05-30T00:00:00+09:00</published><updated>2022-05-30T00:00:00+09:00</updated><id>http://localhost:4000/jira/2022/05/30/jira-github-%EC%97%B0%EB%8F%99</id><content type="html" xml:base="http://localhost:4000/jira/2022/05/30/jira-github-%EC%97%B0%EB%8F%99.html"><![CDATA[<h2 id="jira와-깃허브-연동하기">Jira와 깃허브 연동하기</h2>
-
-<h3 id="1-깃허브앱-등록">1. 깃허브앱 등록</h3>
-
-<p>Jira와 연동을 하려면 우선 깃허브앱을 등록을 해야된다.
-<img width="428" alt="image" src="https://user-images.githubusercontent.com/66371206/170931557-3de22400-fb72-4f72-9c0a-55c9d665ef1e.png" /></p>
-
-<p>등록에 가서 평점이 조금 낮지만 공식 앱인 <code class="language-plaintext highlighter-rouge">Github for Jira</code>를 설치한다.</p>
-
-<p><img width="823" alt="image" src="https://user-images.githubusercontent.com/66371206/170931899-d48cf6c9-57e0-47e7-891d-ce68ac0dc18d.png" /></p>
-
-<p>그 후 Authorize를 하고 원하는 Organization 혹은 Repository를 등록하며 진행한다</p>
-
-<p><img width="574" alt="image" src="https://user-images.githubusercontent.com/66371206/170932096-0d8481f1-b06c-449a-b66d-5a1d1cf658c8.png" /></p>
-
-<p>다음과 같이 해당 깃허브 Repository에 Jira 앱이 설치되어 있고, 마찬가지로 Jira에도 앱 추가가 되어있으면 준비가 되었다.</p>
-
-<p><img width="1156" alt="image" src="https://user-images.githubusercontent.com/66371206/170932363-abe6fda2-4380-4e63-a9d7-01e893ec950d.png" /></p>
-
-<p><img width="1362" alt="image" src="https://user-images.githubusercontent.com/66371206/170932432-2458d419-37dd-479a-9cdb-fc594ce2b415.png" /></p>
-
-<h3 id="2-이슈-만들기">2. 이슈 만들기</h3>
-
-<p>우선 이슈를 만들려면 스프린트부터 작성을 해야된다. 해당 지라앱에서 새로운 에픽을 만들어보자.</p>
-
-<p><img width="410" alt="image" src="https://user-images.githubusercontent.com/66371206/170931358-38c9357e-4599-4387-acb9-fc7569394184.png" /></p>
-
-<p>스프린트를 만들었다면, 좌측에 백로그에서 해당 스프린트에 대한 이슈를 만들 수 있다.</p>
-
-<p><img width="1165" alt="image" src="https://user-images.githubusercontent.com/66371206/170932860-c7c291ae-877a-4a49-86ca-fc6eee95eb64.png" /></p>
-
-<p>간단하게 이슈를 하나 만든 후 스프린트 시작을 누르면 시작할 수 있고, 방금 만든 이슈에 대한 내용은 스프린트 페이지에서 하위 이슈로 확인 할 수 있다.</p>
-
-<p><img width="1174" alt="image" src="https://user-images.githubusercontent.com/66371206/170933380-46979990-b58c-4bf9-b028-68f2912af333.png" /></p>
-
-<h3 id="3-브랜치-및-커밋-작성">3. 브랜치 및 커밋 작성</h3>
-
-<p>방금 만든 이슈에 대해서 커밋 만들기, 혹은 브랜치 만들기를 보면 다음과 같이 키를 알려준다.</p>
-
-<p><img width="411" alt="image" src="https://user-images.githubusercontent.com/66371206/170933552-1f99d427-18ef-4178-8bd4-a61e736f4780.png" /></p>
-
-<p><img width="428" alt="image" src="https://user-images.githubusercontent.com/66371206/170933605-1b00262d-cbae-43b1-869f-3a1bafa70660.png" /></p>
-
-<p>여기서 해당하는 키를 가지고 브랜치를 만들고, 커밋을 하면 자동으로 jira 가 해당하는 커밋을 track 해서 연동을 해준다.</p>
-
-<p>그렇게 해서 완성된 이슈를 보면 다음과 같다.</p>
-
-<p>만들기 위해 커밋을 4번, 풀 리퀘스트를 진행 후 merge를 한 이슈이다.</p>
-
-<p><img width="1169" alt="image" src="https://user-images.githubusercontent.com/66371206/170933764-2d136f8b-36d1-4246-bd46-90dd5682e870.png" /></p>
-
-<p>해당하는 FIRE-44에 대한 커밋을 깃허브에서 보면 다음과 같이 설정되어있다.</p>
-
-<p><img width="1264" alt="image" src="https://user-images.githubusercontent.com/66371206/170933985-8987738a-f687-49a1-af61-dfd22402a387.png" /></p>
-
-<p>깃허브와 Jira 연동 끗!!</p>]]></content><author><name>071yoon</name></author><category term="Jira" /><category term="Jira" /><category term="Agile" /><category term="Github" /><category term="study" /><summary type="html"><![CDATA[Jira와 깃허브 연동하기]]></summary></entry></feed>
+<p><a href="https://react.vlpt.us/styling/02-css-module.html">https://react.vlpt.us/styling/02-css-module.html</a></p>]]></content><author><name>071yoon</name></author><category term="CSS" /><category term="CSS" /><category term="SASS" /><category term="SCSS" /><category term="styled-components" /><category term="CSS-Moduler" /><summary type="html"><![CDATA[CSS 트렌드]]></summary></entry></feed>
