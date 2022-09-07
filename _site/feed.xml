@@ -1,4 +1,165 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-08-10T22:21:49+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi's tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">S3 &amp;amp; CloudFront를 활용한 CDN 서버 만들기</title><link href="http://localhost:4000/til/2022/08/10/aws-cloudFront.html" rel="alternate" type="text/html" title="S3 &amp;amp; CloudFront를 활용한 CDN 서버 만들기" /><published>2022-08-10T00:00:00+09:00</published><updated>2022-08-10T00:00:00+09:00</updated><id>http://localhost:4000/til/2022/08/10/aws-cloudFront</id><content type="html" xml:base="http://localhost:4000/til/2022/08/10/aws-cloudFront.html"><![CDATA[<p><img width="300" alt="image" src="https://user-images.githubusercontent.com/66371206/183911780-90c424e9-e115-44e2-8163-f0b4ab823458.png" /></p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-09-07T16:21:34+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi's tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">드랍다운 애니메이션 제작</title><link href="http://localhost:4000/blog/2022/09/05/dropdown-animation.html" rel="alternate" type="text/html" title="드랍다운 애니메이션 제작" /><published>2022-09-05T00:00:00+09:00</published><updated>2022-09-05T00:00:00+09:00</updated><id>http://localhost:4000/blog/2022/09/05/dropdown-animation</id><content type="html" xml:base="http://localhost:4000/blog/2022/09/05/dropdown-animation.html"><![CDATA[<p><img src="https://user-images.githubusercontent.com/66371206/188813661-d31a95d8-8a3d-4916-a82e-8a924d5010f2.gif" alt="ezgif-4-8e32a6168e" /></p>
+
+<h2 id="why">Why?</h2>
+
+<p>나만의 드랍다운을 만들어보자.</p>
+
+<p>사실 커스텀 드랍다운은 옛날부터 만들고 싶었지만, 시간 투자 대비 사소한 디자인이여서 그냥 기본 custom selector를 주로 사용했었다.
+그러다 이제는 더이상 미룰 수 없기에 커스텀 드랍다운 제작에 나섰다.
+우선 이번 드랍다운의 기능은 다음과 같다.</p>
+
+<ol>
+  <li>드랍다운 메뉴를 클릭하면, 드랍다운 메뉴(현재 내가 선택 가능한 입출력 디바이스)가 나타난다.</li>
+  <li>드랍다운 메뉴를 다시 클릭 혹은 select하면, 드랍다운 메뉴가 사라진다.</li>
+  <li>select된 입출력 디바이스는 해당 브라우저 탭에서 오디오 입출력 디바이스가 된다.</li>
+</ol>
+
+<p>입출력 디바이스를 선택하는 부분은, 따로 라이브러리를 사용하지 않고, 브라우저의 MediaDevices API를 사용하여 구현하였다.
+내용이 생각보다 길어 다음 포스트에 이어서 작성하겠다.</p>
+
+<h3 id="드랍다운-프레임-만들기">드랍다운 프레임 만들기</h3>
+
+<p>드랍다운을 만들기 전에, 먼저 디자인을 해보자.</p>
+
+<p>우선 어떠한 버튼을 누르면 DropDown이 나오게 될지 만들어야 된다.</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">dropDown</span> <span class="o">=</span> <span class="p">(</span><span class="nx">event</span><span class="p">:</span> <span class="nx">React</span><span class="p">.</span><span class="nx">MouseEvent</span><span class="o">&lt;</span><span class="nx">HTMLDivElement</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+  <span class="nx">setDropDown</span><span class="p">(</span><span class="o">!</span><span class="nx">showDropDown</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="o">&lt;</span><span class="nx">DropDownContainer</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">dropDown</span><span class="p">}</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">Text</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">myDevice</span> <span class="o">!==</span> <span class="kc">null</span> <span class="p">?</span> <span class="nx">myDevice</span><span class="p">?.</span><span class="nx">label</span> <span class="p">:</span> <span class="nx">defaultDevice</span><span class="p">(</span><span class="nx">device</span><span class="p">)}</span><span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
+</span>  <span class="o">&lt;</span><span class="nx">BottomArrow</span> <span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="sr">/DropDownContainer&gt;</span><span class="err">;
+</span></code></pre></div></div>
+
+<p>여기서 DropDownContainer를 누르면, !setDropDown을 해주어, 껐다 킬 수 있는 toggle을 만들어 주었다. 그렇게 되면, 애니메이션이 없는 누르면 껐다 켜질 수 있는 토글 버튼이 만들어 지게 된다.</p>
+
+<p>그 다음에, <code class="language-plaintext highlighter-rouge">DropDownItem</code>에 내가 원하는 디바이스의 아이템들을 이쁘게 담아둔다.</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">setDevice</span> <span class="o">=</span> <span class="p">(</span>
+  <span class="nx">device</span><span class="p">:</span> <span class="nx">MediaDeviceInfo</span><span class="p">,</span>
+  <span class="nx">event</span><span class="p">:</span> <span class="nx">React</span><span class="p">.</span><span class="nx">MouseEvent</span><span class="o">&lt;</span><span class="nx">HTMLDivElement</span><span class="o">&gt;</span>
+<span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+  <span class="nx">setMyDevice</span><span class="p">(</span><span class="nx">device</span><span class="p">);</span>
+  <span class="nx">setDropDown</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="o">&lt;</span><span class="nx">DropDownItem</span>
+  <span class="nx">key</span><span class="o">=</span><span class="p">{</span><span class="nx">device</span><span class="p">.</span><span class="nx">deviceId</span><span class="p">}</span>
+  <span class="nx">onClick</span><span class="o">=</span><span class="p">{(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">setDevice</span><span class="p">(</span><span class="nx">device</span><span class="p">,</span> <span class="nx">event</span><span class="p">);</span>
+  <span class="p">}}</span>
+<span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">Text</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">device</span><span class="p">.</span><span class="nx">label</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="sr">/DropDownItem&gt;</span><span class="err">;
+</span>
+<span class="kd">const</span> <span class="nx">DropDownItem</span> <span class="o">=</span> <span class="nx">styled</span><span class="p">.</span><span class="nx">div</span><span class="s2">`
+  border-radius: 0.5rem;
+  padding: 1rem;
+  cursor: pointer;
+  &amp;:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+`</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>DropDown을 클릭하게 되면, 현재 내가 선택한 디바이스state로 설정한 후 추후에 state변화를 감지하여, 입출력 디바이스로 변경할 것이다. 그리고, 자연스럽게 DropDown을 닫아준다.
+디자인적으로 <code class="language-plaintext highlighter-rouge">Text</code>로 디바이스의 이름을 이쁘게 출력할 수 있게 설정해주었다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/66371206/188814527-971f756d-5b06-4b7f-b2ed-0004c1465103.gif" alt="ezgif-4-76b3c89864" /></p>
+
+<p>이렇게 되면, 애니메이션 없는 드랍다운이 완성된다. 하지만 내가 원하는건 그저 토글이 되는 드랍다운이 아닌, 밑으로 죽 내려오는 드랍다운이다.</p>
+
+<h3 id="드랍다운-애니메이션-만들기">드랍다운 애니메이션 만들기</h3>
+
+<p>여기서 내적 고민을 잠깐 하였다… 간단하게 Bootstrap혹은 이미 있는걸 가져다 사용할 지 아니면 직접 CSS로 완성할지… 그러다 내가 원하는 디자인 및 감성으로 제작하기 위해 커스텀 DropDown을 만들게 되었다.</p>
+
+<p>생각보다 자료도 많이 없고, 아이디어를 생각해내기 쉽지 않았다. 그러다 생각해낸 방법은, 드랍다운이 내려오는 창 바로 위에 선을 하나 두고 <code class="language-plaintext highlighter-rouge">overflow: hidden</code>으로 감싼 뒤 toggle되면 드랍다운을 내리는 animation transition을 넣는 방식이였다.</p>
+
+<p>animation은 간단하게 keyframes 로 구성하였다</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">@</span><span class="nd">keyframes</span> <span class="nx">dropdown</span> <span class="p">{</span>
+    <span class="mi">0</span><span class="o">%</span> <span class="p">{</span>
+      <span class="na">transform</span><span class="p">:</span> <span class="nx">translateY</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="o">%</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="mi">100</span><span class="o">%</span> <span class="p">{</span>
+      <span class="na">transform</span><span class="p">:</span> <span class="nx">translateY</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="nl">animation</span><span class="p">:</span> <span class="nx">dropdown</span> <span class="mf">0.4</span><span class="nx">s</span> <span class="nx">ease</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>영상으로 보는것이 이해가 쉬울 것 같아 가져왔다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/66371206/188813331-8fd6e3ca-6739-429b-84d0-cb6250365424.gif" alt="ezgif-4-c2ecb01224" /></p>
+
+<p>보이는것과 같이, 바를 기준으로 드랍다운이 내려오게 설정하였고, <code class="language-plaintext highlighter-rouge">overflow: hidden</code> 을 하지 않았을 때 상황이다.</p>
+
+<p>이 상태에서, <code class="language-plaintext highlighter-rouge">overflow</code> 를 가려서 위에 부분을 안보이게만 하면 이쁜 드랍다운이 완성된다.</p>
+
+<p>주요 코드는 다음과 같다.</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">DropDownContainer</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">dropDown</span><span class="p">}</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">Text</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">myDevice</span> <span class="o">!==</span> <span class="kc">null</span> <span class="p">?</span> <span class="nx">myDevice</span><span class="p">?.</span><span class="nx">label</span> <span class="p">:</span> <span class="nx">defaultDevice</span><span class="p">(</span><span class="nx">device</span><span class="p">)}</span><span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
+</span>  <span class="o">&lt;</span><span class="nx">BottomArrow</span> <span class="o">/&gt;</span>
+  <span class="p">{</span><span class="nx">showDropDown</span> <span class="o">&amp;&amp;</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">DropDownPosition</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">DropDown</span><span class="o">&gt;</span>
+        <span class="p">{</span><span class="nx">device</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">device</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span>
+          <span class="o">&lt;</span><span class="nx">DropDownItem</span>
+            <span class="nx">key</span><span class="o">=</span><span class="p">{</span><span class="nx">device</span><span class="p">.</span><span class="nx">deviceId</span><span class="p">}</span>
+            <span class="nx">onClick</span><span class="o">=</span><span class="p">{(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+              <span class="nx">setDevice</span><span class="p">(</span><span class="nx">device</span><span class="p">,</span> <span class="nx">event</span><span class="p">);</span>
+            <span class="p">}}</span>
+          <span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="nx">Text</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">device</span><span class="p">.</span><span class="nx">label</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
+</span>          <span class="o">&lt;</span><span class="sr">/DropDownItem</span><span class="err">&gt;
+</span>        <span class="p">))}</span>
+      <span class="o">&lt;</span><span class="sr">/DropDown</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/DropDownPosition</span><span class="err">&gt;
+</span>  <span class="p">)}</span>
+<span class="o">&lt;</span><span class="sr">/DropDownContainer&gt;</span><span class="err">;
+</span>
+<span class="kd">const</span> <span class="nx">DropDownPosition</span> <span class="o">=</span> <span class="nx">styled</span><span class="p">.</span><span class="nx">div</span><span class="s2">`
+  position: absolute;
+  top: 5rem;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  z-index: 1;
+`</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">DropDown</span> <span class="o">=</span> <span class="nx">styled</span><span class="p">.</span><span class="nx">div</span><span class="s2">`
+  border-radius: 0.5rem;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  background-color: #31343e;
+  @keyframes dropdown {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  animation: dropdown 0.4s ease;
+`</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">DropDownItem</span> <span class="o">=</span> <span class="nx">styled</span><span class="p">.</span><span class="nx">div</span><span class="s2">`
+  border-radius: 0.5rem;
+  padding: 1rem;
+  cursor: pointer;
+  &amp;:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+`</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>완성된 버전</p>
+
+<p><img src="https://user-images.githubusercontent.com/66371206/188813661-d31a95d8-8a3d-4916-a82e-8a924d5010f2.gif" alt="ezgif-4-8e32a6168e" /></p>]]></content><author><name>071yoon</name></author><category term="blog" /><category term="css" /><category term="javascript" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">S3 &amp;amp; CloudFront를 활용한 CDN 서버 만들기</title><link href="http://localhost:4000/til/2022/08/10/aws-cloudFront.html" rel="alternate" type="text/html" title="S3 &amp;amp; CloudFront를 활용한 CDN 서버 만들기" /><published>2022-08-10T00:00:00+09:00</published><updated>2022-08-10T00:00:00+09:00</updated><id>http://localhost:4000/til/2022/08/10/aws-cloudFront</id><content type="html" xml:base="http://localhost:4000/til/2022/08/10/aws-cloudFront.html"><![CDATA[<p><img width="300" alt="image" src="https://user-images.githubusercontent.com/66371206/183911780-90c424e9-e115-44e2-8163-f0b4ab823458.png" /></p>
 
 <p>CDN 서버를 만들기 앞서, 왜 CDN 서버를 만드는지에 대해 알아보자</p>
 
@@ -1284,316 +1445,4 @@ bundle <span class="nb">install
 
 <p>나는 Cmd와 Option 키만 바꿔서 사용한다.</p>
 
-<h3 id="amphetamine">Amphetamine</h3>]]></content><author><name>071yoon</name></author><category term="Mac" /><category term="Mac" /><category term="Setting" /><summary type="html"><![CDATA[나만의 맥북 셋업]]></summary></entry><entry><title type="html">CSS의 역사</title><link href="http://localhost:4000/css/2022/05/31/css-history.html" rel="alternate" type="text/html" title="CSS의 역사" /><published>2022-05-31T00:00:00+09:00</published><updated>2022-05-31T00:00:00+09:00</updated><id>http://localhost:4000/css/2022/05/31/css-history</id><content type="html" xml:base="http://localhost:4000/css/2022/05/31/css-history.html"><![CDATA[<center>CSS 트렌드</center>
-
-<p><img src="https://user-images.githubusercontent.com/66371206/171093573-f5758d9a-6ff3-44e8-aa86-8c52ad983c93.png" alt="image" /></p>
-
-<center>(출처: oliverturner's twitter)</center>
-
-<h2 id="traditional-css">Traditional CSS</h2>
-
-<p>가장 전통적인 CSS 방식에는 크게 3가지 방식이 존재한다.</p>
-
-<ul>
-  <li><a href="#inline-css">Inline CSS</a></li>
-  <li><a href="#internal-css">Internal CSS</a></li>
-  <li><a href="#external-css">External CSS</a></li>
-</ul>
-
-<h3 id="inline-css">Inline CSS</h3>
-
-<blockquote>
-  <p>일반적으로 간단하게 태그안에 style을 적용하는 방법</p>
-</blockquote>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;h1</span> <span class="na">style=</span><span class="s">"color:white;padding:30px;"</span><span class="nt">&gt;</span>Inline CSS<span class="nt">&lt;/h1&gt;</span>
-<span class="nt">&lt;p</span> <span class="na">style=</span><span class="s">"color:white;"</span><span class="nt">&gt;</span>HTML 안에서 직접 스타일 적용.<span class="nt">&lt;/p&gt;</span>
-</code></pre></div></div>
-
-<h4 id="inline-css-장점">Inline CSS 장점</h4>
-
-<ul>
-  <li>HTML 페이지에 쉽고 빠르게 CSS 룰을 삽입할 수 있다.
-    <ul>
-      <li>변경에 대한 미리보기, 그리고 빠르게 고칠 수 있는 성능에 유용하다.</li>
-    </ul>
-  </li>
-  <li>별도의 문서로 외부 스타일을 만들거나 업로드 할 필요가 없다.</li>
-</ul>
-
-<h4 id="inline-css-단점">Inline CSS 단점</h4>
-
-<ul>
-  <li>CSS룰을 모든 HTML 엘리먼트에 추가하는 것은 시간 낭비이며 HTML 구조를 복잡하게 만든다.</li>
-  <li>여러 엘리먼트에 스타일을 적용하는 것은 웹페이지 사이즈가 커지고 다운로드 시간이 걸리게 된다.</li>
-</ul>
-
-<h3 id="internal-css">Internal CSS</h3>
-
-<blockquote>
-  <p>CSS Object Model처럼 사용하는 방법.</p>
-</blockquote>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;style </span><span class="na">type=</span><span class="s">"text/css"</span><span class="nt">&gt;</span>
-  <span class="nt">body</span> <span class="p">{</span>
-    <span class="nl">background-color</span><span class="p">:</span> <span class="no">blue</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="nt">h1</span> <span class="p">{</span>
-    <span class="nl">color</span><span class="p">:</span> <span class="no">red</span><span class="p">;</span>
-    <span class="nl">padding</span><span class="p">:</span> <span class="m">60px</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="nt">&lt;/style&gt;</span>
-</code></pre></div></div>
-
-<h4 id="internal-css-장점">Internal CSS 장점</h4>
-
-<ul>
-  <li>스타일시트에 클래스와 ID 선택자를 사용할 수 있다.</li>
-  <li>동일한 HTML 파일 내에서만 코드를 추가하여 여러 파일을 업로드할 필요가 없다.</li>
-</ul>
-
-<h4 id="internal-css-단점">Internal CSS 단점</h4>
-
-<ul>
-  <li>HTML 문서에 코드를 추가하는 것은 페이지의 사이즈와 로딩 시간을 증가시킬 수 있다.</li>
-</ul>
-
-<h3 id="external-css">External CSS</h3>
-
-<blockquote>
-  <p>외부에 .css 파일을 따로 빼서 만드는 방법.</p>
-</blockquote>
-
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">/* external.css */</span>
-<span class="nc">.xleftcol</span> <span class="p">{</span>
-  <span class="nl">float</span><span class="p">:</span> <span class="nb">left</span><span class="p">;</span>
-  <span class="nl">width</span><span class="p">:</span> <span class="m">33%</span><span class="p">;</span>
-  <span class="nl">background</span><span class="p">:</span> <span class="m">#809900</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="nc">.xmiddlecol</span> <span class="p">{</span>
-  <span class="nl">float</span><span class="p">:</span> <span class="nb">left</span><span class="p">;</span>
-  <span class="nl">width</span><span class="p">:</span> <span class="m">34%</span><span class="p">;</span>
-  <span class="nl">background</span><span class="p">:</span> <span class="m">#eff2df</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- head --&gt;</span>
-<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">type=</span><span class="s">"text/css"</span> <span class="na">href=</span><span class="s">"external.css"</span> <span class="nt">/&gt;</span>
-</code></pre></div></div>
-
-<h4 id="external-css의-장점">External CSS의 장점</h4>
-
-<ul>
-  <li>CSS 코드가 별도의 문서로 있기 때문에 HTML 파일 구조가 깔끔해지고, 사이즈가 작아진다.</li>
-  <li>여러 페이지들에 같은 .css 파일을 사용할 수 있다.</li>
-</ul>
-
-<h4 id="external-css의-단점">External CSS의 단점</h4>
-
-<ul>
-  <li>외부 CSS 파일이 로드되기 전까지 페이지가 올바르게 표시되지 않는다.</li>
-  <li>여러 CSS 파일을 업로드 하거나 연결하면 사이트 다운로드 시간이 증가할 수 있다.</li>
-</ul>
-
-<h2 id="sassscss">SASS/SCSS</h2>
-
-<blockquote>
-  <p>SCSS와 SASS는 CSS를 편리하게 이용할 수 있도록 도와주며 추가 기능도 있는 확장판이다</p>
-</blockquote>
-
-<p>간단하게 css 스타일의 코드 차이를 보며 이해해보자</p>
-
-<h3 id="일반적인-css">일반적인 CSS</h3>
-
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.list</span> <span class="p">{</span>
-  <span class="nl">width</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>
-  <span class="nl">float</span><span class="p">:</span> <span class="nb">left</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="nt">li</span> <span class="p">{</span>
-  <span class="nl">color</span><span class="p">:</span> <span class="no">red</span><span class="p">;</span>
-  <span class="nl">background</span><span class="p">:</span> <span class="sx">url("./image.jpg")</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="nt">li</span><span class="nd">:last-child</span> <span class="p">{</span>
-  <span class="nl">margin-right</span><span class="p">:</span> <span class="m">-10px</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<h3 id="scss">SCSS</h3>
-
-<div class="language-scss highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.list</span> <span class="p">{</span>
-  <span class="nl">width</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>
-  <span class="nl">float</span><span class="p">:</span> <span class="nb">left</span><span class="p">;</span>
-  <span class="nt">li</span> <span class="p">{</span>
-    <span class="nl">color</span><span class="p">:</span> <span class="no">red</span><span class="p">;</span>
-    <span class="nl">background</span><span class="p">:</span> <span class="sx">url("./image.jpg")</span><span class="p">;</span>
-    <span class="k">&amp;</span><span class="nd">:last-child</span> <span class="p">{</span>
-      <span class="nl">margin-right</span><span class="p">:</span> <span class="m">-10px</span><span class="p">;</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<h3 id="sass">SASS</h3>
-
-<div class="language-sass highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.list</span>
-  <span class="nl">width</span><span class="p">:</span> <span class="m">100px</span>
-  <span class="nl">float</span><span class="p">:</span> <span class="nb">left</span>
-  <span class="nt">li</span>
-    <span class="nl">color</span><span class="p">:</span> <span class="no">red</span>
-    <span class="nl">background</span><span class="p">:</span> <span class="sx">url("./image.jpg")</span>
-    <span class="k">&amp;</span><span class="nd">:last-child</span>
-      <span class="nl">margin-right</span><span class="p">:</span> <span class="m">-10px</span>
-</code></pre></div></div>
-
-<h3 id="왜-쓰는가">왜 쓰는가</h3>
-
-<blockquote>
-  <p>CSS가 복잡한 언어는 아니지만 작업이 크고 고도화 될수록 불편하다!</p>
-</blockquote>
-
-<p>SCSS나 SASS는 선택자를 많이 남발하거나 프로젝트가 커지면서 점점 복잡해지게 되는데, 이러한 부분에서 가독성과 재사용성을 높여주며 유지보수를 쉽게 만들어준다. 여기서 도움을 주는 도구는 다음과 같다.</p>
-
-<ul>
-  <li>변수의 사용</li>
-  <li>조건문과 반복문</li>
-  <li>Import</li>
-  <li>Nesting</li>
-  <li>Mixin</li>
-  <li>Extend/Inheritance</li>
-</ul>
-
-<h3 id="scss-vs-sass">SCSS vs SASS</h3>
-
-<p>SCSS = (Sassy CSS) -&gt; 지리는 CSS</p>
-
-<p>SASS = (Syntactically Awesome Style Sheets) -&gt; 문법적으로 엄청난 CSS</p>
-
-<blockquote>
-  <p>SASS는 들여쓰기 기반, SCSS는 {} 기반</p>
-</blockquote>
-
-<p>일반적으로 SCSS가 더 넓은 범용성과 CSS의 호환성 등의 장점으로 SCSS를 사용하기를 권장하고 있다!</p>
-
-<h2 id="bem">BEM</h2>
-
-<blockquote>
-  <p>Blcok, Element, Modifier</p>
-</blockquote>
-
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.header__navigation--navi-text</span> <span class="p">{</span>
-  <span class="nl">color</span><span class="p">:</span> <span class="no">red</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p>여기서 header는 <code class="language-plaintext highlighter-rouge">Block</code>, naviagtion은 <code class="language-plaintext highlighter-rouge">Element</code>, navi-text는 <code class="language-plaintext highlighter-rouge">Modifier가</code> 된다.</p>
-
-<p>BEM은 기본적으로 ID를 사용하지 않으며, class만을 사용하며, 이름을 연결할 때는 block-name과 같이 하이픈 하나만 써서 연결한다.</p>
-
-<h3 id="block">Block</h3>
-
-<blockquote>
-  <p>재사용 가능한 기능적으로 독립적인 페이지 컴포넌트</p>
-</blockquote>
-
-<p><img src="https://user-images.githubusercontent.com/66371206/171098198-40127e9b-c070-4c13-8a33-4198472d5d28.png" alt="9977B24F5C7BF67802" /></p>
-
-<p>즉 위 사진처럼 떼어내서, 재사용이 가능한 컴포넌트를 부른다. 어디에서나 종속되지 않고, 독립적으로 사용할 수 있으며 특징으로는 블럭은 블럭으로 감쌀 수 있다는 점이 있다.</p>
-
-<h3 id="element">Element</h3>
-
-<blockquote>
-  <p>블럭을 구성하는 단위</p>
-</blockquote>
-
-<p><img src="https://user-images.githubusercontent.com/66371206/171098520-fe2f8dac-867e-45e3-85d3-9979e60e5647.png" alt="993FCF4A5C7BF68F27" /></p>
-
-<p>자신이 속한 블럭 내에서만 의미를 가지기 때문에 블럭 안에서 떼어다 다른 데 쓸 수 없다.</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">form</span> <span class="kd">class</span><span class="o">=</span><span class="dl">"</span><span class="s2">search-form</span><span class="dl">"</span><span class="o">&gt;</span>
-  <span class="o">&lt;</span><span class="nx">input</span> <span class="kd">class</span><span class="o">=</span><span class="dl">"</span><span class="s2">search-form__input</span><span class="dl">"</span> <span class="o">/&gt;</span>
-  <span class="o">&lt;</span><span class="nx">button</span> <span class="kd">class</span><span class="o">=</span><span class="dl">"</span><span class="s2">search-form__button</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">Search</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
-</span><span class="o">&lt;</span><span class="sr">/form</span><span class="err">&gt;
-</span></code></pre></div></div>
-
-<p>위 예시에서 <code class="language-plaintext highlighter-rouge">.search-form</code>은 블럭이고, <code class="language-plaintext highlighter-rouge">.search-form__input</code>과 <code class="language-plaintext highlighter-rouge">.search-form__button</code>은 엘리먼트이다.
-저 search-form이란 블럭은 떼어내서 마음껏 붙여도 된다.
-하지만 내부의 input과 button은 검색을 위한 인풋창이자 버튼이기 때문에, search-form 안에서만 존재 의미가 있는 엘리먼트이다.</p>
-
-<h3 id="modifier">Modifier</h3>
-
-<blockquote>
-  <p>블럭이나 엘리먼트의 속성을 담당</p>
-</blockquote>
-
-<p><img src="https://user-images.githubusercontent.com/66371206/171098735-bb4930fb-7ee3-4bfd-82e5-de42bd017a50.png" alt="992F5E4A5C7BF68F33" /></p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">ul</span> <span class="kd">class</span><span class="o">=</span><span class="dl">"</span><span class="s2">tab</span><span class="dl">"</span><span class="o">&gt;</span>
-  <span class="o">&lt;</span><span class="nx">li</span> <span class="kd">class</span><span class="o">=</span><span class="dl">"</span><span class="s2">tab__item tab__item--focused</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">탭</span> <span class="mi">1</span><span class="o">&lt;</span><span class="sr">/li</span><span class="err">&gt;
-</span>  <span class="o">&lt;</span><span class="nx">li</span> <span class="kd">class</span><span class="o">=</span><span class="dl">"</span><span class="s2">tab__item</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">탭</span> <span class="mi">2</span><span class="o">&lt;</span><span class="sr">/li</span><span class="err">&gt;
-</span>  <span class="o">&lt;</span><span class="nx">li</span> <span class="kd">class</span><span class="o">=</span><span class="dl">"</span><span class="s2">tab__item</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">탭</span> <span class="mi">3</span><span class="o">&lt;</span><span class="sr">/li</span><span class="err">&gt;
-</span><span class="o">&lt;</span><span class="sr">/ul</span><span class="err">&gt;
-</span></code></pre></div></div>
-
-<p>위 코드에서 –focused가 수식어에 해당한다. 저렇게 작성된 걸 불리언(boolean) 타입이라고 하는데, 그 값이 true라고 가정하고 사용하며, <code class="language-plaintext highlighter-rouge">key-value</code>로도 사용할 수 있다.</p>
-
-<h2 id="css-module">CSS Module</h2>
-
-<blockquote>
-  <p>리액트 프로젝트에서 컴포넌트를 스타일링 할 때 CSS Module 이라는 기술을 사용하면, CSS 클래스가 중첩되는 것을 완벽히 방지할 수 있다.</p>
-</blockquote>
-
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">/*box.css*/</span>
-<span class="nc">.Box</span> <span class="p">{</span>
-  <span class="nl">background</span><span class="p">:</span> <span class="no">black</span><span class="p">;</span>
-  <span class="nl">color</span><span class="p">:</span> <span class="no">white</span><span class="p">;</span>
-  <span class="nl">padding</span><span class="p">:</span> <span class="m">2rem</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//box.js</span>
-<span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">react</span><span class="dl">"</span><span class="p">;</span>
-<span class="k">import</span> <span class="nx">styles</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./Box.module.css</span><span class="dl">"</span><span class="p">;</span>
-
-<span class="kd">function</span> <span class="nx">Box</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">className</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">Box</span><span class="p">}</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">Box</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/div&gt;</span><span class="err">;
-</span><span class="p">}</span>
-
-<span class="k">export</span> <span class="k">default</span> <span class="nx">Box</span><span class="p">;</span>
-</code></pre></div></div>
-
-<p>그럼 다른 css 파일에서 동일한 css className을 만들어야 된다는 부담감에 필요없이 만들 수 있다.</p>
-
-<h2 id="css-in-js">CSS in JS</h2>
-
-<blockquote>
-  <p>마지막으로 CSS in JS에서 제일 유명한 styled components 를 보며 알아보자</p>
-</blockquote>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Box4.js</span>
-<span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">react</span><span class="dl">"</span><span class="p">;</span>
-<span class="k">import</span> <span class="nx">styled</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">styled-components</span><span class="dl">"</span><span class="p">;</span>
-
-<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">Box</span><span class="p">({</span> <span class="nx">size</span> <span class="p">})</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="nx">isBig</span> <span class="o">=</span> <span class="nx">size</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">big</span><span class="dl">"</span><span class="p">;</span>
-  <span class="kd">const</span> <span class="nx">label</span> <span class="o">=</span> <span class="nx">isBig</span> <span class="p">?</span> <span class="dl">"</span><span class="s2">큰 박스</span><span class="dl">"</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">작은 박스</span><span class="dl">"</span><span class="p">;</span>
-  <span class="k">return</span> <span class="o">&lt;</span><span class="nx">BoxCommon</span> <span class="nx">isBig</span><span class="o">=</span><span class="p">{</span><span class="nx">isBig</span><span class="p">}</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">label</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/BoxCommon&gt;</span><span class="err">;
-</span><span class="p">}</span>
-
-<span class="kd">const</span> <span class="nx">BoxCommon</span> <span class="o">=</span> <span class="nx">styled</span><span class="p">.</span><span class="nx">div</span><span class="s2">`
-  width: </span><span class="p">${(</span><span class="nx">props</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="nx">props</span><span class="p">.</span><span class="nx">isBig</span> <span class="p">?</span> <span class="mi">200</span> <span class="p">:</span> <span class="mi">100</span><span class="p">)}</span><span class="s2">px;
-  height: 50px;
-  background-color: #aaaaaa;
-`</span><span class="p">;</span>
-</code></pre></div></div>
-
-<p>다음과 같이 진행했던 CSS를 module 처럼 뺄 필요도 없이, 한 페이지에서 관리할 수 있다. 즉 CSS코드를 자바스크립트 파일안에서 하므로, 내부응집도가 올라가고, 동적으로 CSS를 변경하기도 쉽다.</p>
-
-<p>출처</p>
-
-<p><a href="https://latte-is-horse.tistory.com/38">https://latte-is-horse.tistory.com/38</a></p>
-
-<p><a href="https://velog.io/@jch9537/CSS-SCSS-SASS">https://velog.io/@jch9537/CSS-SCSS-SASS</a></p>
-
-<p><a href="https://nykim.work/15">https://nykim.work/15</a></p>
-
-<p><a href="https://react.vlpt.us/styling/02-css-module.html">https://react.vlpt.us/styling/02-css-module.html</a></p>]]></content><author><name>071yoon</name></author><category term="CSS" /><category term="CSS" /><category term="SASS" /><category term="SCSS" /><category term="styled-components" /><category term="CSS-Moduler" /><summary type="html"><![CDATA[CSS 트렌드]]></summary></entry></feed>
+<h3 id="amphetamine">Amphetamine</h3>]]></content><author><name>071yoon</name></author><category term="Mac" /><category term="Mac" /><category term="Setting" /><summary type="html"><![CDATA[나만의 맥북 셋업]]></summary></entry></feed>

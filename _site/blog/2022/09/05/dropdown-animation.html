@@ -7,22 +7,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Jira와 깃허브 연동 | YeongGi’s tech blog</title>
+<title>드랍다운 애니메이션 제작 | YeongGi’s tech blog</title>
 <meta name="generator" content="Jekyll v4.2.2">
-<meta property="og:title" content="Jira와 깃허브 연동">
+<meta property="og:title" content="드랍다운 애니메이션 제작">
 <meta name="author" content="071yoon">
 <meta property="og:locale" content="en_US">
-<meta name="description" content="Jira와 깃허브 연동하기">
-<meta property="og:description" content="Jira와 깃허브 연동하기">
-<link rel="canonical" href="http://localhost:4000/jira/2022/05/30/jira-github-%EC%97%B0%EB%8F%99.html">
-<meta property="og:url" content="http://localhost:4000/jira/2022/05/30/jira-github-%EC%97%B0%EB%8F%99.html">
+<meta name="description" content="This is YeongGi’s tech blog. I post IT related items.">
+<meta property="og:description" content="This is YeongGi’s tech blog. I post IT related items.">
+<link rel="canonical" href="http://localhost:4000/blog/2022/09/05/dropdown-animation.html">
+<meta property="og:url" content="http://localhost:4000/blog/2022/09/05/dropdown-animation.html">
 <meta property="og:site_name" content="YeongGi’s tech blog">
 <meta property="og:type" content="article">
-<meta property="article:published_time" content="2022-05-30T00:00:00+09:00">
+<meta property="article:published_time" content="2022-09-05T00:00:00+09:00">
 <meta name="twitter:card" content="summary">
-<meta property="twitter:title" content="Jira와 깃허브 연동">
+<meta property="twitter:title" content="드랍다운 애니메이션 제작">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"071yoon"},"dateModified":"2022-05-30T00:00:00+09:00","datePublished":"2022-05-30T00:00:00+09:00","description":"Jira와 깃허브 연동하기","headline":"Jira와 깃허브 연동","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jira/2022/05/30/jira-github-%EC%97%B0%EB%8F%99.html"},"url":"http://localhost:4000/jira/2022/05/30/jira-github-%EC%97%B0%EB%8F%99.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"071yoon"},"dateModified":"2022-09-05T00:00:00+09:00","datePublished":"2022-09-05T00:00:00+09:00","description":"This is YeongGi’s tech blog. I post IT related items.","headline":"드랍다운 애니메이션 제작","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/2022/09/05/dropdown-animation.html"},"url":"http://localhost:4000/blog/2022/09/05/dropdown-animation.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="shortcut icon" href="">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -764,11 +764,11 @@ function googleTranslateElementInit() {
 
 
 <header class="post-header">
-  <h1 class="post-title p-name" itemprop="name headline">Jira와 깃허브 연동</h1>
-  <h2 class="post-subtitle">Jira Github 연동 후 스프린트를 뛰어보자</h2>
+  <h1 class="post-title p-name" itemprop="name headline">드랍다운 애니메이션 제작</h1>
+  <h2 class="post-subtitle">커스텀 드랍다운 애니메이션을 만들어보자</h2>
 
   <p class="post-meta">
-    <time class="dt-published" datetime="2022-05-30T00:00:00+09:00" itemprop="datePublished"><i class="fa fa-calendar"></i> May 30, 2022
+    <time class="dt-published" datetime="2022-09-05T00:00:00+09:00" itemprop="datePublished"><i class="fa fa-calendar"></i> Sep 05, 2022
     </time>
 
     
@@ -805,86 +805,192 @@ function googleTranslateElementInit() {
 
 
 
-    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 1 min</span>
+    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 5 mins</span>
   </p>
 <div class="post-tags">
-<a class="post-tag" href="/tags.html#Jira">#Jira</a><a class="post-tag" href="/tags.html#Agile">#Agile</a><a class="post-tag" href="/tags.html#Github">#Github</a><a class="post-tag" href="/tags.html#study">#study</a>
+<a class="post-tag" href="/tags.html#css">#css</a><a class="post-tag" href="/tags.html#javascript">#javascript</a>
 </div></header>
 <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
     <div class="post-content e-content" itemprop="articleBody">
 
-      <h2 id="jira와-깃허브-연동하기">Jira와 깃허브 연동하기</h2>
+      <p><img src="https://user-images.githubusercontent.com/66371206/188813661-d31a95d8-8a3d-4916-a82e-8a924d5010f2.gif" alt="ezgif-4-8e32a6168e"></p>
 
-<h3 id="1-깃허브앱-등록">1. 깃허브앱 등록</h3>
+<h2 id="why">Why?</h2>
 
-<p>Jira와 연동을 하려면 우선 깃허브앱을 등록을 해야된다.
-<img width="428" alt="image" src="https://user-images.githubusercontent.com/66371206/170931557-3de22400-fb72-4f72-9c0a-55c9d665ef1e.png"></p>
+<p>나만의 드랍다운을 만들어보자.</p>
 
-<p>등록에 가서 평점이 조금 낮지만 공식 앱인 <code class="language-plaintext highlighter-rouge">Github for Jira</code>를 설치한다.</p>
+<p>사실 커스텀 드랍다운은 옛날부터 만들고 싶었지만, 시간 투자 대비 사소한 디자인이여서 그냥 기본 custom selector를 주로 사용했었다.
+그러다 이제는 더이상 미룰 수 없기에 커스텀 드랍다운 제작에 나섰다.
+우선 이번 드랍다운의 기능은 다음과 같다.</p>
 
-<p><img width="823" alt="image" src="https://user-images.githubusercontent.com/66371206/170931899-d48cf6c9-57e0-47e7-891d-ce68ac0dc18d.png"></p>
+<ol>
+  <li>드랍다운 메뉴를 클릭하면, 드랍다운 메뉴(현재 내가 선택 가능한 입출력 디바이스)가 나타난다.</li>
+  <li>드랍다운 메뉴를 다시 클릭 혹은 select하면, 드랍다운 메뉴가 사라진다.</li>
+  <li>select된 입출력 디바이스는 해당 브라우저 탭에서 오디오 입출력 디바이스가 된다.</li>
+</ol>
 
-<p>그 후 Authorize를 하고 원하는 Organization 혹은 Repository를 등록하며 진행한다</p>
+<p>입출력 디바이스를 선택하는 부분은, 따로 라이브러리를 사용하지 않고, 브라우저의 MediaDevices API를 사용하여 구현하였다.
+내용이 생각보다 길어 다음 포스트에 이어서 작성하겠다.</p>
 
-<p><img width="574" alt="image" src="https://user-images.githubusercontent.com/66371206/170932096-0d8481f1-b06c-449a-b66d-5a1d1cf658c8.png"></p>
+<h3 id="드랍다운-프레임-만들기">드랍다운 프레임 만들기</h3>
 
-<p>다음과 같이 해당 깃허브 Repository에 Jira 앱이 설치되어 있고, 마찬가지로 Jira에도 앱 추가가 되어있으면 준비가 되었다.</p>
+<p>드랍다운을 만들기 전에, 먼저 디자인을 해보자.</p>
 
-<p><img width="1156" alt="image" src="https://user-images.githubusercontent.com/66371206/170932363-abe6fda2-4380-4e63-a9d7-01e893ec950d.png"></p>
+<p>우선 어떠한 버튼을 누르면 DropDown이 나오게 될지 만들어야 된다.</p>
 
-<p><img width="1362" alt="image" src="https://user-images.githubusercontent.com/66371206/170932432-2458d419-37dd-479a-9cdb-fc594ce2b415.png"></p>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">dropDown</span> <span class="o">=</span> <span class="p">(</span><span class="nx">event</span><span class="p">:</span> <span class="nx">React</span><span class="p">.</span><span class="nx">MouseEvent</span><span class="o">&lt;</span><span class="nx">HTMLDivElement</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+  <span class="nx">setDropDown</span><span class="p">(</span><span class="o">!</span><span class="nx">showDropDown</span><span class="p">);</span>
+<span class="p">};</span>
 
-<h3 id="2-이슈-만들기">2. 이슈 만들기</h3>
+<span class="o">&lt;</span><span class="nx">DropDownContainer</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">dropDown</span><span class="p">}</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">Text</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">myDevice</span> <span class="o">!==</span> <span class="kc">null</span> <span class="p">?</span> <span class="nx">myDevice</span><span class="p">?.</span><span class="nx">label</span> <span class="p">:</span> <span class="nx">defaultDevice</span><span class="p">(</span><span class="nx">device</span><span class="p">)}</span><span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
+</span>  <span class="o">&lt;</span><span class="nx">BottomArrow</span> <span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="sr">/DropDownContainer&gt;</span><span class="err">;
+</span></code></pre></div></div>
 
-<p>우선 이슈를 만들려면 스프린트부터 작성을 해야된다. 해당 지라앱에서 새로운 에픽을 만들어보자.</p>
+<p>여기서 DropDownContainer를 누르면, !setDropDown을 해주어, 껐다 킬 수 있는 toggle을 만들어 주었다. 그렇게 되면, 애니메이션이 없는 누르면 껐다 켜질 수 있는 토글 버튼이 만들어 지게 된다.</p>
 
-<p><img width="410" alt="image" src="https://user-images.githubusercontent.com/66371206/170931358-38c9357e-4599-4387-acb9-fc7569394184.png"></p>
+<p>그 다음에, <code class="language-plaintext highlighter-rouge">DropDownItem</code>에 내가 원하는 디바이스의 아이템들을 이쁘게 담아둔다.</p>
 
-<p>스프린트를 만들었다면, 좌측에 백로그에서 해당 스프린트에 대한 이슈를 만들 수 있다.</p>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">setDevice</span> <span class="o">=</span> <span class="p">(</span>
+  <span class="nx">device</span><span class="p">:</span> <span class="nx">MediaDeviceInfo</span><span class="p">,</span>
+  <span class="nx">event</span><span class="p">:</span> <span class="nx">React</span><span class="p">.</span><span class="nx">MouseEvent</span><span class="o">&lt;</span><span class="nx">HTMLDivElement</span><span class="o">&gt;</span>
+<span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+  <span class="nx">setMyDevice</span><span class="p">(</span><span class="nx">device</span><span class="p">);</span>
+  <span class="nx">setDropDown</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+<span class="p">};</span>
 
-<p><img width="1165" alt="image" src="https://user-images.githubusercontent.com/66371206/170932860-c7c291ae-877a-4a49-86ca-fc6eee95eb64.png"></p>
+<span class="o">&lt;</span><span class="nx">DropDownItem</span>
+  <span class="nx">key</span><span class="o">=</span><span class="p">{</span><span class="nx">device</span><span class="p">.</span><span class="nx">deviceId</span><span class="p">}</span>
+  <span class="nx">onClick</span><span class="o">=</span><span class="p">{(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">setDevice</span><span class="p">(</span><span class="nx">device</span><span class="p">,</span> <span class="nx">event</span><span class="p">);</span>
+  <span class="p">}}</span>
+<span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">Text</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">device</span><span class="p">.</span><span class="nx">label</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="sr">/DropDownItem&gt;</span><span class="err">;
+</span>
+<span class="kd">const</span> <span class="nx">DropDownItem</span> <span class="o">=</span> <span class="nx">styled</span><span class="p">.</span><span class="nx">div</span><span class="s2">`
+  border-radius: 0.5rem;
+  padding: 1rem;
+  cursor: pointer;
+  &amp;:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+`</span><span class="p">;</span>
+</code></pre></div></div>
 
-<p>간단하게 이슈를 하나 만든 후 스프린트 시작을 누르면 시작할 수 있고, 방금 만든 이슈에 대한 내용은 스프린트 페이지에서 하위 이슈로 확인 할 수 있다.</p>
+<p>DropDown을 클릭하게 되면, 현재 내가 선택한 디바이스state로 설정한 후 추후에 state변화를 감지하여, 입출력 디바이스로 변경할 것이다. 그리고, 자연스럽게 DropDown을 닫아준다.
+디자인적으로 <code class="language-plaintext highlighter-rouge">Text</code>로 디바이스의 이름을 이쁘게 출력할 수 있게 설정해주었다.</p>
 
-<p><img width="1174" alt="image" src="https://user-images.githubusercontent.com/66371206/170933380-46979990-b58c-4bf9-b028-68f2912af333.png"></p>
+<p><img src="https://user-images.githubusercontent.com/66371206/188814527-971f756d-5b06-4b7f-b2ed-0004c1465103.gif" alt="ezgif-4-76b3c89864"></p>
 
-<h3 id="3-브랜치-및-커밋-작성">3. 브랜치 및 커밋 작성</h3>
+<p>이렇게 되면, 애니메이션 없는 드랍다운이 완성된다. 하지만 내가 원하는건 그저 토글이 되는 드랍다운이 아닌, 밑으로 죽 내려오는 드랍다운이다.</p>
 
-<p>방금 만든 이슈에 대해서 커밋 만들기, 혹은 브랜치 만들기를 보면 다음과 같이 키를 알려준다.</p>
+<h3 id="드랍다운-애니메이션-만들기">드랍다운 애니메이션 만들기</h3>
 
-<p><img width="411" alt="image" src="https://user-images.githubusercontent.com/66371206/170933552-1f99d427-18ef-4178-8bd4-a61e736f4780.png"></p>
+<p>여기서 내적 고민을 잠깐 하였다… 간단하게 Bootstrap혹은 이미 있는걸 가져다 사용할 지 아니면 직접 CSS로 완성할지… 그러다 내가 원하는 디자인 및 감성으로 제작하기 위해 커스텀 DropDown을 만들게 되었다.</p>
 
-<p><img width="428" alt="image" src="https://user-images.githubusercontent.com/66371206/170933605-1b00262d-cbae-43b1-869f-3a1bafa70660.png"></p>
+<p>생각보다 자료도 많이 없고, 아이디어를 생각해내기 쉽지 않았다. 그러다 생각해낸 방법은, 드랍다운이 내려오는 창 바로 위에 선을 하나 두고 <code class="language-plaintext highlighter-rouge">overflow: hidden</code>으로 감싼 뒤 toggle되면 드랍다운을 내리는 animation transition을 넣는 방식이였다.</p>
 
-<p>여기서 해당하는 키를 가지고 브랜치를 만들고, 커밋을 하면 자동으로 jira 가 해당하는 커밋을 track 해서 연동을 해준다.</p>
+<p>animation은 간단하게 keyframes 로 구성하였다</p>
 
-<p>그렇게 해서 완성된 이슈를 보면 다음과 같다.</p>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">@</span><span class="nd">keyframes</span> <span class="nx">dropdown</span> <span class="p">{</span>
+    <span class="mi">0</span><span class="o">%</span> <span class="p">{</span>
+      <span class="na">transform</span><span class="p">:</span> <span class="nx">translateY</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="o">%</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="mi">100</span><span class="o">%</span> <span class="p">{</span>
+      <span class="na">transform</span><span class="p">:</span> <span class="nx">translateY</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="nl">animation</span><span class="p">:</span> <span class="nx">dropdown</span> <span class="mf">0.4</span><span class="nx">s</span> <span class="nx">ease</span><span class="p">;</span>
+</code></pre></div></div>
 
-<p>만들기 위해 커밋을 4번, 풀 리퀘스트를 진행 후 merge를 한 이슈이다.</p>
+<p>영상으로 보는것이 이해가 쉬울 것 같아 가져왔다.</p>
 
-<p><img width="1169" alt="image" src="https://user-images.githubusercontent.com/66371206/170933764-2d136f8b-36d1-4246-bd46-90dd5682e870.png"></p>
+<p><img src="https://user-images.githubusercontent.com/66371206/188813331-8fd6e3ca-6739-429b-84d0-cb6250365424.gif" alt="ezgif-4-c2ecb01224"></p>
 
-<p>해당하는 FIRE-44에 대한 커밋을 깃허브에서 보면 다음과 같이 설정되어있다.</p>
+<p>보이는것과 같이, 바를 기준으로 드랍다운이 내려오게 설정하였고, <code class="language-plaintext highlighter-rouge">overflow: hidden</code> 을 하지 않았을 때 상황이다.</p>
 
-<p><img width="1264" alt="image" src="https://user-images.githubusercontent.com/66371206/170933985-8987738a-f687-49a1-af61-dfd22402a387.png"></p>
+<p>이 상태에서, <code class="language-plaintext highlighter-rouge">overflow</code> 를 가려서 위에 부분을 안보이게만 하면 이쁜 드랍다운이 완성된다.</p>
 
-<p>깃허브와 Jira 연동 끗!!</p>
+<p>주요 코드는 다음과 같다.</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">DropDownContainer</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">dropDown</span><span class="p">}</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">Text</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">myDevice</span> <span class="o">!==</span> <span class="kc">null</span> <span class="p">?</span> <span class="nx">myDevice</span><span class="p">?.</span><span class="nx">label</span> <span class="p">:</span> <span class="nx">defaultDevice</span><span class="p">(</span><span class="nx">device</span><span class="p">)}</span><span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
+</span>  <span class="o">&lt;</span><span class="nx">BottomArrow</span> <span class="o">/&gt;</span>
+  <span class="p">{</span><span class="nx">showDropDown</span> <span class="o">&amp;&amp;</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">DropDownPosition</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">DropDown</span><span class="o">&gt;</span>
+        <span class="p">{</span><span class="nx">device</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">device</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span>
+          <span class="o">&lt;</span><span class="nx">DropDownItem</span>
+            <span class="nx">key</span><span class="o">=</span><span class="p">{</span><span class="nx">device</span><span class="p">.</span><span class="nx">deviceId</span><span class="p">}</span>
+            <span class="nx">onClick</span><span class="o">=</span><span class="p">{(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+              <span class="nx">setDevice</span><span class="p">(</span><span class="nx">device</span><span class="p">,</span> <span class="nx">event</span><span class="p">);</span>
+            <span class="p">}}</span>
+          <span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="nx">Text</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">device</span><span class="p">.</span><span class="nx">label</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
+</span>          <span class="o">&lt;</span><span class="sr">/DropDownItem</span><span class="err">&gt;
+</span>        <span class="p">))}</span>
+      <span class="o">&lt;</span><span class="sr">/DropDown</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/DropDownPosition</span><span class="err">&gt;
+</span>  <span class="p">)}</span>
+<span class="o">&lt;</span><span class="sr">/DropDownContainer&gt;</span><span class="err">;
+</span>
+<span class="kd">const</span> <span class="nx">DropDownPosition</span> <span class="o">=</span> <span class="nx">styled</span><span class="p">.</span><span class="nx">div</span><span class="s2">`
+  position: absolute;
+  top: 5rem;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  z-index: 1;
+`</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">DropDown</span> <span class="o">=</span> <span class="nx">styled</span><span class="p">.</span><span class="nx">div</span><span class="s2">`
+  border-radius: 0.5rem;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  background-color: #31343e;
+  @keyframes dropdown {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  animation: dropdown 0.4s ease;
+`</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">DropDownItem</span> <span class="o">=</span> <span class="nx">styled</span><span class="p">.</span><span class="nx">div</span><span class="s2">`
+  border-radius: 0.5rem;
+  padding: 1rem;
+  cursor: pointer;
+  &amp;:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+`</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>완성된 버전</p>
+
+<p><img src="https://user-images.githubusercontent.com/66371206/188813661-d31a95d8-8a3d-4916-a82e-8a924d5010f2.gif" alt="ezgif-4-8e32a6168e"></p>
 
 
     </div>
 
 </article>
 <div class="post-nav">
-<a class="previous" href="/next.js/2022/05/15/next-api.html" title="NEXT-API">NEXT-API</a><a class="next" href="/css/2022/05/31/css-history.html" title="CSS의 역사">CSS의 역사</a>
+<a class="previous" href="/til/2022/08/10/aws-cloudFront.html" title="S3 &amp; CloudFront를 활용한 CDN 서버 만들기">S3 &amp; CloudFront를 활용한 CDN 서버...</a><span></span>
 </div>
 <div class="post-related">
       <div>Related Articles</div>
       <ul>
-        <li><a class="post-link" href="/deep-thought/2022/02/03/monty-hall.html" title="CSS의 역사">몬티 홀 문제</a></li>
-<li><a class="post-link" href="/jira/2022/05/30/jira-github-%EC%97%B0%EB%8F%99.html" title="CSS의 역사">Jira와 깃허브 연동</a></li>
-<li><a class="post-link" href="/retrospect/2022/03/03/sw-maestro.html" title="CSS의 역사">SW Maestro 지원 후기</a></li>
-<li><a class="post-link" href="/blog/2022/01/12/install-blog-comment.html" title="CSS의 역사">깃허브 블로그 코멘트 설치하기</a></li>
+        <li><a class="post-link" href="/javascript/2022/01/17/javascript-data-structure.html" title="">자바스크립트 자료구조와 자료형</a></li>
+<li><a class="post-link" href="/mac/2022/06/05/mac-setting.html" title="">Mac 초기 세팅</a></li>
+<li><a class="post-link" href="/css/2022/05/31/css-history.html" title="">CSS의 역사</a></li>
+<li><a class="post-link" href="/blog/2022/09/05/dropdown-animation.html" title="">드랍다운 애니메이션 제작</a></li>
 </ul>
     </div>
 <div class="post-comments">
