@@ -1,4 +1,184 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-09-07T16:21:34+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi's tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">드랍다운 애니메이션 제작</title><link href="http://localhost:4000/blog/2022/09/05/dropdown-animation.html" rel="alternate" type="text/html" title="드랍다운 애니메이션 제작" /><published>2022-09-05T00:00:00+09:00</published><updated>2022-09-05T00:00:00+09:00</updated><id>http://localhost:4000/blog/2022/09/05/dropdown-animation</id><content type="html" xml:base="http://localhost:4000/blog/2022/09/05/dropdown-animation.html"><![CDATA[<p><img src="https://user-images.githubusercontent.com/66371206/188813661-d31a95d8-8a3d-4916-a82e-8a924d5010f2.gif" alt="ezgif-4-8e32a6168e" /></p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-09-07T17:10:06+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi's tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">오디오 비주얼라이저 만들기</title><link href="http://localhost:4000/modoco/2022/09/07/audio-visualizer.html" rel="alternate" type="text/html" title="오디오 비주얼라이저 만들기" /><published>2022-09-07T00:00:00+09:00</published><updated>2022-09-07T00:00:00+09:00</updated><id>http://localhost:4000/modoco/2022/09/07/audio-visualizer</id><content type="html" xml:base="http://localhost:4000/modoco/2022/09/07/audio-visualizer.html"><![CDATA[]]></content><author><name>071yoon</name></author><category term="modoco" /><category term="javascript" /><category term="web" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">브라우저에서 입출력 제어하기</title><link href="http://localhost:4000/modoco/2022/09/06/audio-inputoutput.html" rel="alternate" type="text/html" title="브라우저에서 입출력 제어하기" /><published>2022-09-06T00:00:00+09:00</published><updated>2022-09-06T00:00:00+09:00</updated><id>http://localhost:4000/modoco/2022/09/06/audio-inputoutput</id><content type="html" xml:base="http://localhost:4000/modoco/2022/09/06/audio-inputoutput.html"><![CDATA[<h2 id="브라우저에서-입출력-제어">브라우저에서 입출력 제어</h2>
+
+<p>현재 만들고 있는 프로제긑는 디스코드와 게더타운과 유사한, 실시간 통신이 들어간 웹 플랫폼이다. 이런 유사한 프로젝트에 필수적으로 들어가야 되는 요소는 오디오의 제어이다.</p>
+
+<blockquote>
+  <p>말을 하다가 마이크를 바꿔야 되는 상황이 된다면?</p>
+</blockquote>
+
+<blockquote>
+  <p>음질이 좋지 않다고 해서, 이어폰을 꼈을 때, 소리를 스피커에서 이어폰을 바꿔야 한다면?</p>
+</blockquote>
+
+<blockquote>
+  <p>이어폰 배터리가 나가서 중간에 스피커로 교체 해야된다면?</p>
+</blockquote>
+
+<p>등 등 정말 많은 상황들이 연출 될 수 있다. 물론 가장 간편한 방법은, 알아서 시스템의 Default장비를 교체 후 브라우저를 refresh 해버리면 된다.
+하지만 UX 관점에서, 오디오의 입출력을 브라우저에서 하는건 중요하다. 사실, 웹 플랫폼이 아닌 electron처럼 앱으로 만들었다면 쉬웠겠지만…</p>
+
+<p>그렇게 브라우저 오디오 입출력 제어에 대한 글을 찾아보던 중 정말 쉽게 정리된 글도 없고, 오래된 내용들 특히 이미 지원이 끝난 함수들이 많아 막 사용하기 정말 쉽지 않았다. 그래서 내가 한번 정리를 해보았다.</p>
+
+<h4 id="제공할-기능-목록">제공할 기능 목록</h4>
+
+<ol>
+  <li>카메라 입력 디바이스 제어가능</li>
+  <li>음성 입력 디바이스 제어가능</li>
+  <li>음성 출력 디바이스 제어가능</li>
+</ol>
+
+<p>드랍다운 까지 완성된 형태는 <a href="https://velog.io/@071yoon/%EC%BB%A4%EC%8A%A4%ED%85%80-%EB%93%9C%EB%9E%8D%EB%8B%A4%EC%9A%B4-%EC%95%A0%EB%8B%88%EB%A9%94%EC%9D%B4%EC%85%98%EC%9D%84-%EB%A7%8C%EB%93%A4%EC%96%B4%EB%B3%B4%EC%9E%90">참고</a>링크에 있다.</p>
+
+<h3 id="입출력-디바이스-찾기">입출력 디바이스 찾기</h3>
+
+<p>우선, 선택을 하기 위해서는 나의 입출력 디바이스를 찾는것 부터 해야된다.</p>
+
+<p>모든 선택 및 제어는 드랍다운에서 렌더링에도 사용되므로 전부 상태로 관리해주었다.</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Selectors.tsx</span>
+<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">Selectors</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">audioInput</span><span class="p">,</span> <span class="nx">setAudioInput</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="o">&lt;</span><span class="nx">MediaDeviceInfo</span><span class="p">[]</span> <span class="o">|</span> <span class="kc">null</span><span class="o">&gt;</span><span class="p">([]);</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">audioOutput</span><span class="p">,</span> <span class="nx">setAudioOutput</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="o">&lt;</span><span class="nx">MediaDeviceInfo</span><span class="p">[]</span> <span class="o">|</span> <span class="kc">null</span><span class="o">&gt;</span><span class="p">([]);</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">videoInput</span><span class="p">,</span> <span class="nx">setVideoInput</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="o">&lt;</span><span class="nx">MediaDeviceInfo</span><span class="p">[]</span> <span class="o">|</span> <span class="kc">null</span><span class="o">&gt;</span><span class="p">([]);</span>
+  <span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">getDevice</span><span class="p">(</span><span class="nx">setAudioInput</span><span class="p">,</span> <span class="nx">setAudioOutput</span><span class="p">,</span> <span class="nx">setVideoInput</span><span class="p">);</span>
+  <span class="p">},</span> <span class="p">[]);</span>
+
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">Container</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">SelectorContainer</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">Selector</span> <span class="nx">select</span><span class="o">=</span><span class="dl">"</span><span class="s2">camera</span><span class="dl">"</span> <span class="nx">device</span><span class="o">=</span><span class="p">{</span><span class="nx">videoInput</span><span class="p">}</span> <span class="sr">/</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="nx">Selector</span> <span class="nx">select</span><span class="o">=</span><span class="dl">"</span><span class="s2">mic</span><span class="dl">"</span> <span class="nx">device</span><span class="o">=</span><span class="p">{</span><span class="nx">audioInput</span><span class="p">}</span> <span class="sr">/</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="nx">Selector</span> <span class="nx">select</span><span class="o">=</span><span class="dl">"</span><span class="s2">speaker</span><span class="dl">"</span> <span class="nx">device</span><span class="o">=</span><span class="p">{</span><span class="nx">audioOutput</span><span class="p">}</span> <span class="sr">/</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="sr">/SelectorContainer</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/Container</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>그리고 getDevice함수에서 현재 사용하고 있는 모든 장비들을 불러올 수 있는 <code class="language-plaintext highlighter-rouge">navigator.mediaDevices.enumerateDevices()</code>함수를 사용하였다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">console</code>을 찍어보면 나온 device의 리스트는 다음과 같다.
+<img width="985" alt="image" src="https://user-images.githubusercontent.com/66371206/188820065-c76d2d54-9e2a-4031-867f-1c3853347934.png" /></p>
+
+<p>여기서 <code class="language-plaintext highlighter-rouge">kind</code>로 분류하여 비디오 입력, 오디오 입력, 오디오 출력을 구별하여 따로 저장하였다.</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// getDevice.ts</span>
+<span class="kd">const</span> <span class="nx">getDevice</span> <span class="o">=</span> <span class="k">async</span> <span class="p">(</span>
+  <span class="nx">setAudioInput</span><span class="p">:</span> <span class="nx">Dispatch</span><span class="o">&lt;</span><span class="nx">SetStateAction</span><span class="o">&lt;</span><span class="nx">MediaDeviceInfo</span><span class="p">[]</span><span class="o">&gt;&gt;</span><span class="p">,</span>
+  <span class="nx">setAudioOutput</span><span class="p">:</span> <span class="nx">Dispatch</span><span class="o">&lt;</span><span class="nx">SetStateAction</span><span class="o">&lt;</span><span class="nx">MediaDeviceInfo</span><span class="p">[]</span><span class="o">&gt;&gt;</span><span class="p">,</span>
+  <span class="nx">setVideoInput</span><span class="p">:</span> <span class="nx">Dispatch</span><span class="o">&lt;</span><span class="nx">SetStateAction</span><span class="o">&lt;</span><span class="nx">MediaDeviceInfo</span><span class="p">[]</span><span class="o">&gt;&gt;</span>
+<span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">devices</span> <span class="o">=</span> <span class="k">await</span> <span class="nb">navigator</span><span class="p">.</span><span class="nx">mediaDevices</span><span class="p">.</span><span class="nx">enumerateDevices</span><span class="p">();</span>
+    <span class="nx">setAudioInput</span><span class="p">(</span><span class="nx">devices</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">device</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">device</span><span class="p">.</span><span class="nx">kind</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">audioinput</span><span class="dl">"</span><span class="p">));</span>
+    <span class="nx">setAudioOutput</span><span class="p">(</span><span class="nx">devices</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">device</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">device</span><span class="p">.</span><span class="nx">kind</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">audiooutput</span><span class="dl">"</span><span class="p">));</span>
+    <span class="nx">setVideoInput</span><span class="p">(</span><span class="nx">devices</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">device</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">device</span><span class="p">.</span><span class="nx">kind</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">videoinput</span><span class="dl">"</span><span class="p">));</span>
+    <span class="k">return</span> <span class="nx">devices</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="dl">"</span><span class="s2">error getting devices</span><span class="dl">"</span><span class="p">);</span>
+    <span class="k">return</span> <span class="dl">"</span><span class="s2">error</span><span class="dl">"</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>이렇게 주르륵 나온 devices들을 가지고 저번 포스트에서 다뤘던 드랍다운을 통하여 유저가 선택한 디바이스 정보를 나의 상태에 저장될 수 있게 설정해주었다.</p>
+
+<blockquote>
+  <p><a href="https://velog.io/@071yoon/%EC%BB%A4%EC%8A%A4%ED%85%80-%EB%93%9C%EB%9E%8D%EB%8B%A4%EC%9A%B4-%EC%95%A0%EB%8B%88%EB%A9%94%EC%9D%B4%EC%85%98%EC%9D%84-%EB%A7%8C%EB%93%A4%EC%96%B4%EB%B3%B4%EC%9E%90">저번 블로그 주소</a></p>
+</blockquote>
+
+<h3 id="출력-디바이스-제어">출력 디바이스 제어</h3>
+
+<p>무사히 유저가 원하는 입출력 디바이스를 선택하였고, 그 정보가 <code class="language-plaintext highlighter-rouge">userAudioOutputDevice</code>라는 상태에 존재한다고 가정하고 진행하도록 하겠다.</p>
+
+<p>사실 여기까지 왔다면 거의 다한것이나 마찬가지다. 적어도 출력은 정말 간단하다.</p>
+
+<p>현재 우리의 플랫폼에서 지원하는 오디오 출력은 두가지 존재한다.</p>
+
+<ol>
+  <li>테마 bgm</li>
+  <li>상대방의 마이크 음성</li>
+</ol>
+
+<p>우선 상대방의 마이크 음성을 제어하는 부분을 보면 다음과 같다.</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Screen.tsx</span>
+<span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">videoRef</span><span class="p">.</span><span class="nx">current</span> <span class="o">&amp;&amp;</span> <span class="nx">stream</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">videoRef</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">srcObject</span> <span class="o">=</span> <span class="nx">stream</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="kd">const</span> <span class="nx">newRef</span> <span class="o">=</span> <span class="nx">videoRef</span><span class="p">.</span><span class="nx">current</span><span class="p">;</span>
+  <span class="p">(</span><span class="nx">newRef</span> <span class="k">as</span> <span class="kr">any</span><span class="p">).</span><span class="nx">setSinkId</span><span class="p">(</span><span class="nx">userAudioOutputDevice</span><span class="p">?.</span><span class="nx">deviceId</span><span class="p">);</span>
+<span class="p">},</span> <span class="p">[</span><span class="nx">stream</span><span class="p">,</span> <span class="nx">videoRef</span><span class="p">,</span> <span class="nx">userAudioOutputDevice</span><span class="p">]);</span>
+</code></pre></div></div>
+
+<p>테마로 나오는 음성을 다음과 같다.</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Theme.tsx</span>
+<span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">volumeRef</span><span class="p">.</span><span class="nx">current</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">volumeRef</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">volume</span> <span class="o">=</span> <span class="nx">volume</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="kd">const</span> <span class="nx">newAudio</span> <span class="o">=</span> <span class="nx">volumeRef</span><span class="p">.</span><span class="nx">current</span><span class="p">;</span>
+  <span class="p">(</span><span class="nx">newAudio</span> <span class="k">as</span> <span class="kr">any</span><span class="p">).</span><span class="nx">setSinkId</span><span class="p">(</span><span class="nx">userAudioOutputDevice</span><span class="p">?.</span><span class="nx">deviceId</span><span class="p">);</span>
+<span class="p">},</span> <span class="p">[</span><span class="nx">volume</span><span class="p">,</span> <span class="nx">userAudioOutputDevice</span><span class="p">]);</span>
+</code></pre></div></div>
+
+<p>여기서 새로 추가된 부분은 setSinkId를 해주는 부분이다. 바로 deviceId를 넣어주면, 해당하는 device로 출력이 바뀌는 것이다. userAudioOutputDevice가 상태이므로, 해당 상태가 바뀔때 마다 sink를 맞춰서 video의 오디오를 변경 할 수 있게 useEffect로 감싸주고, dependency로 넣어주었다.</p>
+
+<p>type을 any로 변경해준 이유는, 컴파일 할 때 setSinkId를 찾지못해 에러를 내기 때문이다. 추후에 Interface를 하나 만들어 setSinkId를 추가하여 방지할 예정이다.</p>
+
+<p>여기서 문제는 호환성 문제이다.
+<img width="823" alt="image" src="https://user-images.githubusercontent.com/66371206/188821917-ecf262ae-c9d0-449f-a9d6-e3675c879224.png" />
+보시다시피, Chrome, IE, Opera만 공식적으로 지원하기에, 만약 Safari로 접속한다면 바로 백색화면이 뜨는것을 볼 수 있다. 이 경우에는 browser 감지를 우선하여, Safari에서는 해당 함수를 실행하지 않도록 방지해줘야된다.</p>
+
+<h3 id="입력-디바이스-설정">입력 디바이스 설정</h3>
+
+<p>입력디바이스는 생각보다 까다롭다.</p>
+
+<p>우선, 전송하는 mediaTrack이 이미 getUserMedia에서 audio를 default로 가져왔을테니, 여기서 내가 마음대로 media 장비를 바꾼다고 해서 바로 바뀌지 않을 것이다. 그래서 생각해낸 방법은 다음과 같다.</p>
+
+<ol>
+  <li>새로운 오디오 트랙을 만들어낸다 (새로 바뀔 입력 device인 트랙)</li>
+  <li>현재 송출하고 있는 오디오 트랙을 삭제한다</li>
+  <li>내 stream에 새로운 트랙을 추가한다</li>
+  <li>보내고 있는 stream에 audio를 찾아 새로운 track으로 교체한다</li>
+</ol>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// useCreateMediaStream.tsx</span>
+<span class="kd">const</span> <span class="nx">replaceAudioStream</span> <span class="o">=</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">audioStream</span> <span class="o">=</span> <span class="k">await</span> <span class="nb">navigator</span><span class="p">.</span><span class="nx">mediaDevices</span><span class="p">.</span><span class="nx">getUserMedia</span><span class="p">({</span>
+      <span class="na">audio</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">deviceId</span><span class="p">:</span> <span class="nx">userAudioInputDevice</span><span class="p">?.</span><span class="nx">deviceId</span><span class="p">,</span>
+      <span class="p">},</span>
+    <span class="p">});</span>
+    <span class="nx">myStream</span><span class="p">.</span><span class="nx">localStream</span><span class="p">.</span><span class="nx">removeTrack</span><span class="p">(</span><span class="nx">myStream</span><span class="p">.</span><span class="nx">localStream</span><span class="p">.</span><span class="nx">getAudioTracks</span><span class="p">()[</span><span class="mi">0</span><span class="p">]);</span>
+    <span class="nx">myStream</span><span class="p">.</span><span class="nx">localStream</span><span class="p">.</span><span class="nx">addTrack</span><span class="p">(</span><span class="nx">audioStream</span><span class="p">.</span><span class="nx">getAudioTracks</span><span class="p">()[</span><span class="mi">0</span><span class="p">]);</span>
+    <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">pcs</span><span class="p">).</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">pc</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">sender</span> <span class="o">=</span> <span class="nx">pcs</span><span class="p">[</span><span class="nx">pc</span><span class="p">].</span><span class="nx">getSenders</span><span class="p">().</span><span class="nx">find</span><span class="p">((</span><span class="nx">s</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">s</span><span class="p">.</span><span class="nx">track</span><span class="p">.</span><span class="nx">kind</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">audio</span><span class="dl">"</span><span class="p">);</span>
+      <span class="nx">sender</span><span class="p">.</span><span class="nx">replaceTrack</span><span class="p">(</span><span class="nx">audioStream</span><span class="p">.</span><span class="nx">getAudioTracks</span><span class="p">()[</span><span class="mi">0</span><span class="p">]);</span>
+    <span class="p">});</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">failed to change audio stream</span><span class="dl">"</span><span class="p">,</span> <span class="nx">error</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">stream</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MediaStream</span><span class="p">();</span>
+    <span class="nx">setUserMediaStream</span><span class="p">(</span><span class="nx">stream</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>그리고 이런 과정을 useEffect로 감싸서, userAudioInput이 바뀔때 마다 선언해준다.</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// settingModal</span>
+<span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">replaceAudioStream</span><span class="p">();</span>
+<span class="p">},</span> <span class="p">[</span><span class="nx">replaceAudioStream</span><span class="p">,</span> <span class="nx">userAudioInputDevice</span><span class="p">]);</span>
+</code></pre></div></div>
+
+<p>무사히 마치고 나면 입력 버튼에서, 이어폰 -&gt; 맥북으로 바꾸어도 음성 입력트랙이 잘 바뀌는것을 확인 할 수 있다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/66371206/188824872-87f9ddaf-9bcc-44fc-955d-f7abe2beb227.gif" alt="ezgif-2-3f5a74b33f" /></p>]]></content><author><name>071yoon</name></author><category term="modoco" /><category term="javascript" /><category term="web" /><summary type="html"><![CDATA[브라우저에서 입출력 제어]]></summary></entry><entry><title type="html">드랍다운 애니메이션 제작</title><link href="http://localhost:4000/modoco/2022/09/05/dropdown-animation.html" rel="alternate" type="text/html" title="드랍다운 애니메이션 제작" /><published>2022-09-05T00:00:00+09:00</published><updated>2022-09-05T00:00:00+09:00</updated><id>http://localhost:4000/modoco/2022/09/05/dropdown-animation</id><content type="html" xml:base="http://localhost:4000/modoco/2022/09/05/dropdown-animation.html"><![CDATA[<p><img src="https://user-images.githubusercontent.com/66371206/188813661-d31a95d8-8a3d-4916-a82e-8a924d5010f2.gif" alt="ezgif-4-8e32a6168e" /></p>
 
 <h2 id="why">Why?</h2>
 
@@ -159,7 +339,7 @@
 
 <p>완성된 버전</p>
 
-<p><img src="https://user-images.githubusercontent.com/66371206/188813661-d31a95d8-8a3d-4916-a82e-8a924d5010f2.gif" alt="ezgif-4-8e32a6168e" /></p>]]></content><author><name>071yoon</name></author><category term="blog" /><category term="css" /><category term="javascript" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">S3 &amp;amp; CloudFront를 활용한 CDN 서버 만들기</title><link href="http://localhost:4000/til/2022/08/10/aws-cloudFront.html" rel="alternate" type="text/html" title="S3 &amp;amp; CloudFront를 활용한 CDN 서버 만들기" /><published>2022-08-10T00:00:00+09:00</published><updated>2022-08-10T00:00:00+09:00</updated><id>http://localhost:4000/til/2022/08/10/aws-cloudFront</id><content type="html" xml:base="http://localhost:4000/til/2022/08/10/aws-cloudFront.html"><![CDATA[<p><img width="300" alt="image" src="https://user-images.githubusercontent.com/66371206/183911780-90c424e9-e115-44e2-8163-f0b4ab823458.png" /></p>
+<p><img src="https://user-images.githubusercontent.com/66371206/188813661-d31a95d8-8a3d-4916-a82e-8a924d5010f2.gif" alt="ezgif-4-8e32a6168e" /></p>]]></content><author><name>071yoon</name></author><category term="modoco" /><category term="css" /><category term="javascript" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">S3 &amp;amp; CloudFront를 활용한 CDN 서버 만들기</title><link href="http://localhost:4000/til/2022/08/10/aws-cloudFront.html" rel="alternate" type="text/html" title="S3 &amp;amp; CloudFront를 활용한 CDN 서버 만들기" /><published>2022-08-10T00:00:00+09:00</published><updated>2022-08-10T00:00:00+09:00</updated><id>http://localhost:4000/til/2022/08/10/aws-cloudFront</id><content type="html" xml:base="http://localhost:4000/til/2022/08/10/aws-cloudFront.html"><![CDATA[<p><img width="300" alt="image" src="https://user-images.githubusercontent.com/66371206/183911780-90c424e9-e115-44e2-8163-f0b4ab823458.png" /></p>
 
 <p>CDN 서버를 만들기 앞서, 왜 CDN 서버를 만드는지에 대해 알아보자</p>
 
@@ -293,7 +473,7 @@
 <p><img src="https://user-images.githubusercontent.com/66371206/183910403-19ac163e-a202-4a59-8430-a81beae4385b.png" alt="image" /></p>
 
 <p>참조
-<a href="https://aws.amazon.com/ko/what-is/cdn/">https://aws.amazon.com/ko/what-is/cdn/</a></p>]]></content><author><name>071yoon</name></author><category term="TIL" /><category term="TIL" /><category term="AWS" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">React에서 Volume Slider 구현하기</title><link href="http://localhost:4000/til/2022/07/31/react-volume-slider.html" rel="alternate" type="text/html" title="React에서 Volume Slider 구현하기" /><published>2022-07-31T00:00:00+09:00</published><updated>2022-07-31T00:00:00+09:00</updated><id>http://localhost:4000/til/2022/07/31/react-volume-slider</id><content type="html" xml:base="http://localhost:4000/til/2022/07/31/react-volume-slider.html"><![CDATA[<h2 id="react-볼륨-슬라이더-만들기">React 볼륨 슬라이더 만들기</h2>
+<a href="https://aws.amazon.com/ko/what-is/cdn/">https://aws.amazon.com/ko/what-is/cdn/</a></p>]]></content><author><name>071yoon</name></author><category term="TIL" /><category term="TIL" /><category term="AWS" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">React에서 Volume Slider 구현하기</title><link href="http://localhost:4000/modoco/2022/07/31/react-volume-slider.html" rel="alternate" type="text/html" title="React에서 Volume Slider 구현하기" /><published>2022-07-31T00:00:00+09:00</published><updated>2022-07-31T00:00:00+09:00</updated><id>http://localhost:4000/modoco/2022/07/31/react-volume-slider</id><content type="html" xml:base="http://localhost:4000/modoco/2022/07/31/react-volume-slider.html"><![CDATA[<h2 id="react-볼륨-슬라이더-만들기">React 볼륨 슬라이더 만들기</h2>
 
 <p>프로젝트를 진행중에, 이러한 시안이 날라왔다. 대충 볼륨을 컨트롤 할 수 있는 Slider를 제작하는 것.</p>
 
@@ -490,7 +670,7 @@
       cursor: pointer;
     }
 `</span><span class="p">;</span>
-</code></pre></div></div>]]></content><author><name>071yoon</name></author><category term="TIL" /><category term="TIL" /><category term="React" /><summary type="html"><![CDATA[React 볼륨 슬라이더 만들기]]></summary></entry><entry><title type="html">React + Typescript 에서 Horizontal Scroll 구현</title><link href="http://localhost:4000/til/2022/07/11/react-horizontal-scroll.html" rel="alternate" type="text/html" title="React + Typescript 에서 Horizontal Scroll 구현" /><published>2022-07-11T00:00:00+09:00</published><updated>2022-07-11T00:00:00+09:00</updated><id>http://localhost:4000/til/2022/07/11/react-horizontal-scroll</id><content type="html" xml:base="http://localhost:4000/til/2022/07/11/react-horizontal-scroll.html"><![CDATA[<h2 id="react-에서-가로-스크롤-구현을-해보자">React 에서 가로 스크롤 구현을 해보자</h2>
+</code></pre></div></div>]]></content><author><name>071yoon</name></author><category term="modoco" /><category term="TIL" /><category term="React" /><summary type="html"><![CDATA[React 볼륨 슬라이더 만들기]]></summary></entry><entry><title type="html">React + Typescript 에서 Horizontal Scroll 구현</title><link href="http://localhost:4000/modoco/2022/07/11/react-horizontal-scroll.html" rel="alternate" type="text/html" title="React + Typescript 에서 Horizontal Scroll 구현" /><published>2022-07-11T00:00:00+09:00</published><updated>2022-07-11T00:00:00+09:00</updated><id>http://localhost:4000/modoco/2022/07/11/react-horizontal-scroll</id><content type="html" xml:base="http://localhost:4000/modoco/2022/07/11/react-horizontal-scroll.html"><![CDATA[<h2 id="react-에서-가로-스크롤-구현을-해보자">React 에서 가로 스크롤 구현을 해보자</h2>
 
 <p>좌우 스크롤은 직접 구현해도 되지만, 누군가 이쁜 library를 만들어 두었길래, 바로 사용하였다.</p>
 
@@ -632,7 +812,7 @@
 
 <p>부드럽게 잘 작동한다..!</p>
 
-<p>만족 ㅎㅎ</p>]]></content><author><name>071yoon</name></author><category term="TIL" /><category term="TIL" /><category term="TypeScript" /><summary type="html"><![CDATA[React 에서 가로 스크롤 구현을 해보자]]></summary></entry><entry><title type="html">Typescript React Styled-Component 에서 Font 적용하기</title><link href="http://localhost:4000/til/2022/07/09/typescript-font.html" rel="alternate" type="text/html" title="Typescript React Styled-Component 에서 Font 적용하기" /><published>2022-07-09T00:00:00+09:00</published><updated>2022-07-09T00:00:00+09:00</updated><id>http://localhost:4000/til/2022/07/09/typescript-font</id><content type="html" xml:base="http://localhost:4000/til/2022/07/09/typescript-font.html"><![CDATA[<h2 id="typescript-react-styled-component-환경에서-font-적용하기">Typescript, React, Styled-Component 환경에서 Font 적용하기</h2>
+<p>만족 ㅎㅎ</p>]]></content><author><name>071yoon</name></author><category term="modoco" /><category term="TIL" /><category term="TypeScript" /><summary type="html"><![CDATA[React 에서 가로 스크롤 구현을 해보자]]></summary></entry><entry><title type="html">Typescript React Styled-Component 에서 Font 적용하기</title><link href="http://localhost:4000/modoco/2022/07/09/typescript-font.html" rel="alternate" type="text/html" title="Typescript React Styled-Component 에서 Font 적용하기" /><published>2022-07-09T00:00:00+09:00</published><updated>2022-07-09T00:00:00+09:00</updated><id>http://localhost:4000/modoco/2022/07/09/typescript-font</id><content type="html" xml:base="http://localhost:4000/modoco/2022/07/09/typescript-font.html"><![CDATA[<h2 id="typescript-react-styled-component-환경에서-font-적용하기">Typescript, React, Styled-Component 환경에서 Font 적용하기</h2>
 
 <p>프로젝트를 진행하다보니, Font를 설정해야 되는데, 일반적으로 App.css를 사용하는 방식이 아니라, Styled-Component를 사용했기에 조금 더 복잡했다.</p>
 
@@ -732,7 +912,7 @@
 
 <h2 id="후기">후기</h2>
 
-<p>이번에는 우선 ttf로 통일을 했지만, 역시나 개선을 위해 woff로 하는것이 좋아보인다. 튜닝을 하게된다면, 웹폰트로 지정을 해서 로딩속도를 개선해보자.</p>]]></content><author><name>071yoon</name></author><category term="TIL" /><category term="TIL" /><category term="TypeScript" /><summary type="html"><![CDATA[Typescript, React, Styled-Component 환경에서 Font 적용하기]]></summary></entry><entry><title type="html">Typescript 에서 Zustand 배우기</title><link href="http://localhost:4000/til/2022/07/03/zustand.html" rel="alternate" type="text/html" title="Typescript 에서 Zustand 배우기" /><published>2022-07-03T00:00:00+09:00</published><updated>2022-07-03T00:00:00+09:00</updated><id>http://localhost:4000/til/2022/07/03/zustand</id><content type="html" xml:base="http://localhost:4000/til/2022/07/03/zustand.html"><![CDATA[<h2 id="왜-zustand">왜 Zustand?</h2>
+<p>이번에는 우선 ttf로 통일을 했지만, 역시나 개선을 위해 woff로 하는것이 좋아보인다. 튜닝을 하게된다면, 웹폰트로 지정을 해서 로딩속도를 개선해보자.</p>]]></content><author><name>071yoon</name></author><category term="modoco" /><category term="TIL" /><category term="TypeScript" /><summary type="html"><![CDATA[Typescript, React, Styled-Component 환경에서 Font 적용하기]]></summary></entry><entry><title type="html">Typescript 에서 Zustand 배우기</title><link href="http://localhost:4000/modoco/2022/07/03/zustand.html" rel="alternate" type="text/html" title="Typescript 에서 Zustand 배우기" /><published>2022-07-03T00:00:00+09:00</published><updated>2022-07-03T00:00:00+09:00</updated><id>http://localhost:4000/modoco/2022/07/03/zustand</id><content type="html" xml:base="http://localhost:4000/modoco/2022/07/03/zustand.html"><![CDATA[<h2 id="왜-zustand">왜 Zustand?</h2>
 
 <p>Zustand에 대하여 공부하기 앞서, 왜 Zustand인지 알아보도록 하겠다. 우선, Zustand vs Recoil vs Jotai vs Redux vs Context API 등 전역상태관리에 대해 여러가지 방법들이 존재한다. 그중에 Zustand를 택한건 크게 두가지가 있다.</p>
 
@@ -904,7 +1084,7 @@
 
 <p><img src="https://user-images.githubusercontent.com/66371206/177069574-5e7cd794-b86a-4282-9b5a-1c998b4862b6.gif" alt="ezgif-4-4fc22081fc" /></p>
 
-<p>잘 되는 모습을 볼 수 있다</p>]]></content><author><name>071yoon</name></author><category term="TIL" /><category term="TIL" /><category term="TypeScript" /><summary type="html"><![CDATA[왜 Zustand?]]></summary></entry><entry><title type="html">Recoil 배우기</title><link href="http://localhost:4000/til/2022/07/01/recoil.html" rel="alternate" type="text/html" title="Recoil 배우기" /><published>2022-07-01T00:00:00+09:00</published><updated>2022-07-01T00:00:00+09:00</updated><id>http://localhost:4000/til/2022/07/01/recoil</id><content type="html" xml:base="http://localhost:4000/til/2022/07/01/recoil.html"><![CDATA[<h2 id="why-recoil">Why Recoil?</h2>
+<p>잘 되는 모습을 볼 수 있다</p>]]></content><author><name>071yoon</name></author><category term="modoco" /><category term="TIL" /><category term="TypeScript" /><summary type="html"><![CDATA[왜 Zustand?]]></summary></entry><entry><title type="html">Recoil 배우기</title><link href="http://localhost:4000/til/2022/07/01/recoil.html" rel="alternate" type="text/html" title="Recoil 배우기" /><published>2022-07-01T00:00:00+09:00</published><updated>2022-07-01T00:00:00+09:00</updated><id>http://localhost:4000/til/2022/07/01/recoil</id><content type="html" xml:base="http://localhost:4000/til/2022/07/01/recoil.html"><![CDATA[<h2 id="why-recoil">Why Recoil?</h2>
 
 <p>왜 Recoil을 사용할까?</p>
 
@@ -1137,312 +1317,4 @@
 
 <h3 id="generic">Generic</h3>
 
-<h3 id="type-vs-interface">Type vs Interface</h3>]]></content><author><name>071yoon</name></author><category term="TIL" /><category term="TIL" /><category term="Javascript" /><category term="TypeScript" /><summary type="html"><![CDATA[TypeScript]]></summary></entry><entry><title type="html">Socket.io 연결 에러</title><link href="http://localhost:4000/til/2022/06/29/socket-error.html" rel="alternate" type="text/html" title="Socket.io 연결 에러" /><published>2022-06-29T00:00:00+09:00</published><updated>2022-06-29T00:00:00+09:00</updated><id>http://localhost:4000/til/2022/06/29/socket-error</id><content type="html" xml:base="http://localhost:4000/til/2022/06/29/socket-error.html"><![CDATA[<h2 id="socket-통신시-에러나는-경우">Socket 통신시 에러나는 경우</h2>
-
-<p>최근에 WebRTC를 사용하며 소켓 통신을 해야할 일이 생겼는데, 웬걸 자꾸 연결에서 실패를 하였다.</p>
-
-<p>우선 결론은 dependency 확인이다. Front에서 연결을 하려는 소켓 통신인 경우 <code class="language-plaintext highlighter-rouge">socket.io-client</code>라는 module을 사용하는데, 이게 Back에 기다리고 있는 <code class="language-plaintext highlighter-rouge">socket.io</code> 모듈에서의 Server와 Socket의 dependency를 맞춰야 된다. 내가 Front 에서 사용하던 모듈은 ^4.3 이였고 백에서는 ^2에서 주었기 때문에 당연히 오류가 났다… 결국 둘 다 최근 모듈인 4세대로 바꾼 후 잘 작동하였다 ㅎㅎ
-<img width="305" alt="image" src="https://user-images.githubusercontent.com/66371206/176819682-9a5fe411-e64c-4152-88dd-0c7c6d303155.png" /></p>
-
-<p>백엔드와 소통을 열심히 하자~</p>
-
-<h3 id="공식-document와-stackoverflow를-보며-했던-tries">공식 document와 StackOverflow를 보며 했던 tries</h3>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">io</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">socket.io-client</span><span class="dl">"</span><span class="p">;</span>
-<span class="k">import</span> <span class="o">*</span> <span class="k">as</span> <span class="nx">io</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">socket.io-client</span><span class="dl">"</span><span class="p">;</span>
-<span class="k">import</span> <span class="nx">io</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">socket.io-client</span><span class="dl">"</span><span class="p">;</span>
-</code></pre></div></div>
-
-<p>등 버전에 따라 import 하는 방식도 다른 것 같았다.</p>
-
-<h3 id="유의사항">유의사항</h3>
-
-<blockquote>
-  <p>Backend에서 줄 때는 CORS에러에 유의하자.</p>
-</blockquote>
-
-<blockquote>
-  <p>ES6의 React StrictMode를 꺼야지 Socket통신을 한번만 받는다. 켜두면 두번 받아서 한번은 잘 받고, 한번은 제대로 못받아서 오류가 났었다.</p>
-</blockquote>]]></content><author><name>071yoon</name></author><category term="TIL" /><category term="TIL" /><category term="Javascript" /><summary type="html"><![CDATA[Socket 통신시 에러나는 경우]]></summary></entry><entry><title type="html">Mac 초기 세팅</title><link href="http://localhost:4000/mac/2022/06/05/mac-setting.html" rel="alternate" type="text/html" title="Mac 초기 세팅" /><published>2022-06-05T00:00:00+09:00</published><updated>2022-06-05T00:00:00+09:00</updated><id>http://localhost:4000/mac/2022/06/05/mac-setting</id><content type="html" xml:base="http://localhost:4000/mac/2022/06/05/mac-setting.html"><![CDATA[<h2 id="나만의-맥북-셋업">나만의 맥북 셋업</h2>
-
-<p>이번에 새로운 Mac m1 pro 를 갖게 되면서, 설치하다보니 뭐를 설치해야되고 어떤거를 동기화 해야되고 생각보다 기억이 잘 안났다. 그래서 이번 기회에 나의 맥이라면 이런걸 해야하는 TODO List를 만들어 보았다.</p>
-
-<h3 id="개발자-도구"><a href="#개발자도구">개발자 도구</a></h3>
-
-<ul>
-  <li><a href="#iterm-setting">iTerm2</a></li>
-  <li><a href="#web-programming">Web</a></li>
-  <li><a href="#blog">Blog</a></li>
-</ul>
-
-<h3 id="어플"><a href="#applications">어플</a></h3>
-
-<ul>
-  <li><a href="#chrome">Chrome</a></li>
-  <li><a href="#visual-stuido-code">Visual Stuido Code</a></li>
-  <li><a href="#discord">Discord</a></li>
-  <li><a href="#kakaotalk">KakaoTalk</a></li>
-  <li><a href="#webex">Webex</a></li>
-  <li><a href="#slack">Slack</a></li>
-  <li><a href="#notion">Notion</a></li>
-  <li><a href="#terminus">Terminus</a></li>
-</ul>
-
-<h3 id="위젯"><a href="#Widgets">위젯</a></h3>
-
-<ul>
-  <li><a href="#alt-tab">Alt-Tab</a></li>
-  <li><a href="#fig">Fig</a></li>
-  <li><a href="#runcat">RunCat</a></li>
-  <li><a href="#unicorn">Unicorn</a></li>
-  <li><a href="#hidden-bar">Hidden-Bar</a></li>
-  <li><a href="#magnet">Magnet</a></li>
-  <li><a href="#karabiner">Karabiner</a></li>
-  <li><a href="#amphetamine">Amphetamine</a></li>
-</ul>
-
-<h2 id="개발자도구">개발자도구</h2>
-
-<h3 id="iterm-setting">iTerm Setting</h3>
-
-<p>나는 내장 terminal보다 iTerm을 주로 쓴다. 하이라이트, 복사, 붙여넣기, 히스토리 등 다양한 기능이 많아서 더 편함</p>
-
-<ul>
-  <li>
-    <h4 id="oh-my-zsh">Oh-my-zsh</h4>
-
-    <p>기왕 Terminal 쓰는김에 이쁘면 좋잖아요?</p>
-
-    <p><a href="https://ohmyz.sh">공식문서</a></p>
-  </li>
-  <li>
-    <h4 id="powerlevel10k">Powerlevel10k</h4>
-
-    <p>마찬가지로 zsh shell을 더 이쁘게 만들어준다.</p>
-
-    <p>설치 끝내고, VSC Terminal에서도 폰트 적용을 해서 깨지는걸 방지하자</p>
-
-    <p><a href="https://github.com/romkatv/powerlevel10k">공식문서</a>
-<a href="https://velog.io/@boms2/Mac-Powerlevel10k로-Zsh-터미널-꾸미기-M1">도움받은 블로그</a></p>
-
-    <p>완성된 모습
-<img width="681" alt="스크린샷 2022-06-09 오후 2 00 03" src="https://user-images.githubusercontent.com/66371206/172768037-5da27996-7652-42ff-874b-f84c55648b32.png" /></p>
-  </li>
-  <li>
-    <h4 id="brew">brew</h4>
-
-    <p>당연히 깔아야 하는 맥주</p>
-
-    <p><a href="https://brew.sh/index_ko">공식문서</a></p>
-  </li>
-  <li>
-    <h4 id="git-setup">git setup</h4>
-
-    <p>git login을 미리미리 해두자</p>
-
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git config <span class="nt">--global</span> user.name <span class="s2">"John Doe"</span>
-<span class="nv">$ </span>git config <span class="nt">--global</span> user.email johndoe@example.com
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<h3 id="web-programming">Web Programming</h3>
-
-<p>명색이 프론트엔드이기에 깔아야 하는 기본적인 세팅</p>
-
-<ul>
-  <li>
-    <h4 id="node">node</h4>
-
-    <p>맥주가 있어 행복하다</p>
-
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>node
-node <span class="nt">--version</span>
-npm <span class="nt">--version</span>
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <h4 id="yarn">yarn</h4>
-
-    <p>npm보다 더 안전하고 오류를 잘 잡아준다</p>
-
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>yarn <span class="nt">--ignore-dependencies</span>
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<h3 id="blog">Blog</h3>
-
-<p>해당 깃허브 블로그 또한 jekyll 로 관리하기에 ruby, bundle, jekyll설치가 필수적이다</p>
-
-<ul>
-  <li>
-    <h4 id="ruby">Ruby</h4>
-
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>rbenv ruby-build
-rbenv <span class="nb">install</span> <span class="nt">-l</span> <span class="c">#버전은 알아서 선택! 근데 3.0.0 부터 잘 안됐던거 같음</span>
-rbenv <span class="nb">install </span>2.7.2
-rbenv global 2.7.2
-</code></pre></div>    </div>
-
-    <p>zsh 적용하기</p>
-
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vim ~/.zshrc
-</code></pre></div>    </div>
-
-    <p>들어가서 환경변수 추가</p>
-
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/.rbenv/bin:</span><span class="nv">$PATH</span><span class="s2">"</span>
-<span class="nb">eval</span> <span class="s2">"</span><span class="si">$(</span>rbenv init -<span class="si">)</span><span class="s2">"</span>
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <h4 id="bundle--jekyll">Bundle &amp;&amp; Jekyll</h4>
-
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem <span class="nb">install </span>bundler
-bundle add jekyll
-bundle <span class="nb">install
-</span>gem <span class="nb">install </span>jekyll
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<h2 id="applications">Applications</h2>
-
-<p>내가 최초로 설치했던 어플리케이션 목록</p>
-
-<h3 id="chrome">Chrome</h3>
-
-<p>사파리 대체용품</p>
-
-<h3 id="visual-stuido-code">Visual Stuido Code</h3>
-
-<ul>
-  <li>
-    <h4 id="code-runner">Code Runner</h4>
-
-    <p>작성한 코드를 빠르게 실행시켜주게 도와주는 확장</p>
-  </li>
-  <li>
-    <h4 id="discord-presence">Discord Presence</h4>
-
-    <p>Discord 에서 내가 어떤 작업하고 있는지 보여주는 확장
-<img width="353" alt="스크린샷 2022-06-09 오후 2 02 14" src="https://user-images.githubusercontent.com/66371206/172768189-80f3ab3c-8d3a-4ff7-98ff-a30175ceed47.png" /></p>
-  </li>
-  <li>
-    <h4 id="eslint">ESLint</h4>
-
-    <p>ESLint 규칙 적용해주는 확장</p>
-  </li>
-  <li>
-    <h4 id="git-graph">Git-Graph</h4>
-
-    <p>VSC Git Page에서 Git-Kraken 처럼 어떤 브랜치에서 어떤 작업하는지 보여주는 확장</p>
-  </li>
-  <li>
-    <h4 id="live-share">Live Share</h4>
-
-    <p>VSC를 쓰는 주된 이유</p>
-  </li>
-  <li>
-    <h4 id="live-server">Live Server</h4>
-
-    <p>VSC를 쓰는 주된 이유2 -&gt; Live share 호스트 컴퓨터에서 서버 올릴 때 접속한 사람들도 같은 localhost로 접속 할 수 있음</p>
-  </li>
-  <li>
-    <h4 id="prettier">Prettier</h4>
-
-    <p>Lint 혹은 일반적인 코드 포맷팅 도와주는 포매터
-기본 foramtter를 prettier로 설정 및 format on save 등록하는걸 까먹지 말자.</p>
-
-    <p><img src="https://user-images.githubusercontent.com/66371206/172768418-1d71bd54-8a8d-4faf-8a08-0aef05dc6d74.png" alt="image" /></p>
-
-    <p><img src="https://user-images.githubusercontent.com/66371206/172768450-f4fc69bc-5ba7-4a13-8cf4-e3788dfd480d.png" alt="image" /></p>
-  </li>
-  <li>
-    <h4 id="styled-components">Styled-Components</h4>
-
-    <p>styled에서 주석처럼 안달리고, 코드처럼 사용가능. 훨씬 쉽다.
-심지어 추천도 해준다
-<img src="https://user-images.githubusercontent.com/66371206/172768289-34e830cd-3a5b-472e-87a0-e2e6dd12f0d1.png" alt="image" /></p>
-  </li>
-  <li>
-    <h4 id="material-icon">Material Icon</h4>
-
-    <p><img src="https://user-images.githubusercontent.com/66371206/172767754-dee7ea7e-5c56-485d-aae3-8cce8d3cf2af.png" alt="image" /></p>
-
-    <p>옆에 아이콘들 이쁘게 보임</p>
-  </li>
-  <li>
-    <h4 id="markdown-all-in-one">Markdown All in One</h4>
-
-    <p>블로그 쓸 일이 많다면, 마크다운 쓸 때 도움 받을 수 있다</p>
-  </li>
-  <li>
-    <h4 id="markdown-preview">Markdown Preview</h4>
-
-    <p>마크다운 미리보기 지원</p>
-
-    <p><img src="https://user-images.githubusercontent.com/66371206/172768531-8acc01b2-0d48-4926-81b1-c780fa316a20.png" alt="image" /></p>
-  </li>
-</ul>
-
-<h3 id="discord">Discord</h3>
-
-<h3 id="kakaotalk">KakaoTalk</h3>
-
-<h3 id="webex">Webex</h3>
-
-<h3 id="slack">Slack</h3>
-
-<h3 id="notion">Notion</h3>
-
-<h3 id="terminus">Terminus</h3>
-
-<h2 id="widgets">Widgets</h2>
-
-<h3 id="alt-tab">Alt-Tab</h3>
-
-<p>보통 맥북을 사용하다보면, Cmd + Tab을 주로 사용하는데, 사파리 창이 여러개 띄워져 있는 경우에 상당히 불편하다. 윈도우처럼 쓰는 창들이 전부 분할해서 나오면 참 좋겠다~ 싶을 때 사용하는 위젯</p>
-
-<p><img width="1215" alt="image" src="https://user-images.githubusercontent.com/66371206/172768969-3022bcc2-c7d9-42ff-ae94-ad978e8af522.png" /></p>
-
-<h3 id="fig">Fig</h3>
-
-<p>터미널을 쓰다보면, 단축키가 뭐였는지 까먹을 때가 많다. 올바른 명령어를 추천해주기도 하고, cd 에서 어디로 가야할 지 모를 때, ls로 안찾고 gui처럼 쉽게 찾을 수 있다.</p>
-
-<p><img src="https://user-images.githubusercontent.com/66371206/172769368-c464cf70-019b-4216-8baa-ec91a1d90111.png" alt="스크린샷 2022-06-09 오후 2 12 43" /></p>
-
-<p><img src="https://user-images.githubusercontent.com/66371206/172769373-95a150b5-d293-4589-af72-9cb13196ba90.png" alt="스크린샷 2022-06-09 오후 2 12 58" /></p>
-
-<p><img src="https://user-images.githubusercontent.com/66371206/172769378-86ed108d-4a26-492c-a47d-b90ba30a515b.png" alt="스크린샷 2022-06-09 오후 2 13 10" /></p>
-
-<h3 id="runcat">RunCat</h3>
-
-<p>상태바에 CPU 속도만큼 뛰는 고양이</p>
-
-<p>나는 주로 귀여운 슬라임과 WIFI 다운로드 및 업로드 속도를 켜둔다</p>
-
-<p><img src="https://user-images.githubusercontent.com/66371206/172769669-0f0e2982-bf7f-4395-8fd8-a8fe1384ead2.gif" alt="화면-기록-2022-06-09-오후-2 14 41" /></p>
-
-<h3 id="unicorn">Unicorn</h3>
-
-<p>사파리 광고차단 위젯.</p>
-
-<p>유료인데 값어치를 한다고 생각한다</p>
-
-<h3 id="hidden-bar">Hidden-Bar</h3>
-
-<p>상태바에 너무 많아서 정리하고 싶을 때 사용.</p>
-
-<p>보통 상태바에서 정말 빠져도 괜찮다~ 싶은데, 필수록 달아둬야 하는게 많은데, 그런것들 빼놓을 수 있다</p>
-
-<h3 id="magnet">Magnet</h3>
-
-<h3 id="karabiner">Karabiner</h3>
-
-<p>윈도우 키보드를 맥용으로 사용할 수 있게 도와준다.</p>
-
-<p>나는 Cmd와 Option 키만 바꿔서 사용한다.</p>
-
-<h3 id="amphetamine">Amphetamine</h3>]]></content><author><name>071yoon</name></author><category term="Mac" /><category term="Mac" /><category term="Setting" /><summary type="html"><![CDATA[나만의 맥북 셋업]]></summary></entry></feed>
+<h3 id="type-vs-interface">Type vs Interface</h3>]]></content><author><name>071yoon</name></author><category term="TIL" /><category term="TIL" /><category term="Javascript" /><category term="TypeScript" /><summary type="html"><![CDATA[TypeScript]]></summary></entry></feed>

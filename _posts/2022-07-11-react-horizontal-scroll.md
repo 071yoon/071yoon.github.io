@@ -2,7 +2,7 @@
 layout: post
 title: React + Typescript 에서 Horizontal Scroll 구현
 subtitle: React Horizontal Scroll
-categories: TIL
+categories: modoco
 tags: [TIL, TypeScript]
 ---
 

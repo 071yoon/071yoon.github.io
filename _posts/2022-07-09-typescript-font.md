@@ -2,7 +2,7 @@
 layout: post
 title: Typescript React Styled-Component 에서 Font 적용하기
 subtitle: CRA 환경에서 Font 적용하기
-categories: TIL
+categories: modoco
 tags: [TIL, TypeScript]
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title: 드랍다운 애니메이션 제작
 subtitle: 커스텀 드랍다운 애니메이션을 만들어보자
-categories: blog
+categories: modoco
 tags: [css, javascript]
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title: React에서 Volume Slider 구현하기
 subtitle: React Volume Slider
-categories: TIL
+categories: modoco
 tags: [TIL, React]
 ---
 
