@@ -1,4 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-09-07T17:10:06+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi's tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">오디오 비주얼라이저 만들기</title><link href="http://localhost:4000/modoco/2022/09/07/audio-visualizer.html" rel="alternate" type="text/html" title="오디오 비주얼라이저 만들기" /><published>2022-09-07T00:00:00+09:00</published><updated>2022-09-07T00:00:00+09:00</updated><id>http://localhost:4000/modoco/2022/09/07/audio-visualizer</id><content type="html" xml:base="http://localhost:4000/modoco/2022/09/07/audio-visualizer.html"><![CDATA[]]></content><author><name>071yoon</name></author><category term="modoco" /><category term="javascript" /><category term="web" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">브라우저에서 입출력 제어하기</title><link href="http://localhost:4000/modoco/2022/09/06/audio-inputoutput.html" rel="alternate" type="text/html" title="브라우저에서 입출력 제어하기" /><published>2022-09-06T00:00:00+09:00</published><updated>2022-09-06T00:00:00+09:00</updated><id>http://localhost:4000/modoco/2022/09/06/audio-inputoutput</id><content type="html" xml:base="http://localhost:4000/modoco/2022/09/06/audio-inputoutput.html"><![CDATA[<h2 id="브라우저에서-입출력-제어">브라우저에서 입출력 제어</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-09-12T19:25:54+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi's tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">리액트 테스팅하기</title><link href="http://localhost:4000/react/2022/09/09/react-test.html" rel="alternate" type="text/html" title="리액트 테스팅하기" /><published>2022-09-09T00:00:00+09:00</published><updated>2022-09-09T00:00:00+09:00</updated><id>http://localhost:4000/react/2022/09/09/react-test</id><content type="html" xml:base="http://localhost:4000/react/2022/09/09/react-test.html"><![CDATA[<h2 id="jest와-react-testing-library를-사용하여-테스트를-해보자">Jest와 React-Testing-Library를 사용하여 테스트를 해보자</h2>
+
+<p>이번에는 모킹 없이 간단하게 DOM관련 테스트만 진행할 예정이다.</p>
+
+<p>여러 테스트 예시들을 보면, 한 <code class="language-plaintext highlighter-rouge">jest.it</code> 함수 에서 render를 여러번 하는것을 손쉽게 볼 수 있다. 그렇게 나도 유사하게 해보며 익혀보았다.</p>
+
+<p>참고 : <a href="https://javascript.plainenglish.io/declarative-and-scalable-testing-with-react-testing-library-177f35f41396">확장가능한 테스트</a></p>]]></content><author><name>071yoon</name></author><category term="react" /><category term="javascript" /><category term="react" /><summary type="html"><![CDATA[Jest와 React-Testing-Library를 사용하여 테스트를 해보자]]></summary></entry><entry><title type="html">오디오 비주얼라이저 만들기</title><link href="http://localhost:4000/modoco/2022/09/07/audio-visualizer.html" rel="alternate" type="text/html" title="오디오 비주얼라이저 만들기" /><published>2022-09-07T00:00:00+09:00</published><updated>2022-09-07T00:00:00+09:00</updated><id>http://localhost:4000/modoco/2022/09/07/audio-visualizer</id><content type="html" xml:base="http://localhost:4000/modoco/2022/09/07/audio-visualizer.html"><![CDATA[]]></content><author><name>071yoon</name></author><category term="modoco" /><category term="javascript" /><category term="web" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">브라우저에서 입출력 제어하기</title><link href="http://localhost:4000/modoco/2022/09/06/audio-inputoutput.html" rel="alternate" type="text/html" title="브라우저에서 입출력 제어하기" /><published>2022-09-06T00:00:00+09:00</published><updated>2022-09-06T00:00:00+09:00</updated><id>http://localhost:4000/modoco/2022/09/06/audio-inputoutput</id><content type="html" xml:base="http://localhost:4000/modoco/2022/09/06/audio-inputoutput.html"><![CDATA[<h2 id="브라우저에서-입출력-제어">브라우저에서 입출력 제어</h2>
 
 <p>현재 만들고 있는 프로제긑는 디스코드와 게더타운과 유사한, 실시간 통신이 들어간 웹 플랫폼이다. 이런 유사한 프로젝트에 필수적으로 들어가야 되는 요소는 오디오의 제어이다.</p>
 
@@ -1198,123 +1204,4 @@
 
 <h2 id="recoilselector">RecoilSelector</h2>
 
-<p>atom의 상태에서 파생된 데이터로, 상태에 의존하는 동적인 데이터이다.</p>]]></content><author><name>071yoon</name></author><category term="TIL" /><category term="TIL" /><category term="TypeScript" /><summary type="html"><![CDATA[Why Recoil?]]></summary></entry><entry><title type="html">왜 TypeScript인가</title><link href="http://localhost:4000/til/2022/06/30/why-typescript.html" rel="alternate" type="text/html" title="왜 TypeScript인가" /><published>2022-06-30T00:00:00+09:00</published><updated>2022-06-30T00:00:00+09:00</updated><id>http://localhost:4000/til/2022/06/30/why-typescript</id><content type="html" xml:base="http://localhost:4000/til/2022/06/30/why-typescript.html"><![CDATA[<h2 id="typescript">TypeScript</h2>
-
-<h3 id="why-typescript">Why TypeScript</h3>
-
-<p>JavaScript는 Dynamic Typing을 지원한다. <a href="https://seongonion.tistory.com/16">관련블로그</a></p>
-
-<p>간략하게 설명하면, 변수를 지정시에 데이터 타입등을 정하지 않고, 컴퓨터가 정하도록 둘 수 있다. 코드가 간결하고 로직을 명확하게 볼 수 있지만, 컴퓨터가 파악하기에 실행속도가 느려지가 해당 오류가 날 수 있다. 그걸 TypeScript를 이용하여 정적 타이핑으로 만들어 주는 것이다. 이런 데이터 타입을 지정해 줌으로써, 코드의 안정성과 정교함이 커지게 된다.</p>
-
-<p>예제</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">5</span> <span class="o">-</span> <span class="dl">"</span><span class="s2">3</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//?</span>
-<span class="mi">1</span> <span class="o">+</span> <span class="kc">true</span><span class="p">;</span> <span class="c1">//?</span>
-</code></pre></div></div>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">mul</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="nx">a</span> <span class="o">*</span> <span class="nx">b</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="nx">mul</span><span class="p">();</span> <span class="c1">//?</span>
-<span class="nx">mul</span><span class="p">(</span><span class="dl">"</span><span class="s2">hi</span><span class="dl">"</span><span class="p">);</span> <span class="c1">//?</span>
-<span class="nx">mul</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span> <span class="dl">"</span><span class="s2">hi</span><span class="dl">"</span><span class="p">);</span> <span class="c1">//? -&gt; Runtime Error</span>
-</code></pre></div></div>
-
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="nx">count</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">1</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//Type 'string' is not assignable to type 'number'</span>
-</code></pre></div></div>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">append</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span>
-<span class="p">};</span>
-<span class="nx">obj</span><span class="p">.</span><span class="nx">apend</span><span class="p">;</span> <span class="c1">//undefined</span>
-</code></pre></div></div>
-
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">append</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span>
-<span class="p">};</span>
-<span class="nx">obj</span><span class="p">.</span><span class="nx">apend</span><span class="p">;</span> <span class="c1">//'append'아니야? 그거 2번줄에 declared ㅋㅋ</span>
-</code></pre></div></div>
-
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">mul</span><span class="p">(</span><span class="nx">a</span><span class="p">:</span> <span class="kr">number</span><span class="p">,</span> <span class="nx">b</span><span class="p">:</span> <span class="kr">number</span><span class="p">):</span> <span class="kr">string</span> <span class="p">{</span>
-  <span class="c1">//return도 지정 가능</span>
-  <span class="k">return</span> <span class="p">(</span><span class="nx">a</span> <span class="o">*</span> <span class="nx">b</span><span class="p">).</span><span class="nx">toString</span><span class="p">();</span>
-<span class="p">}</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mul</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">));</span>
-</code></pre></div></div>
-
-<h3 id="types">Types</h3>
-
-<h4 id="implicit-types-타입추론">Implicit Types [타입추론]</h4>
-
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">test</span><span class="dl">"</span><span class="p">;</span>
-<span class="nx">a</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">//string -&gt; number 안됨!</span>
-<span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">a</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">b</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">c</span><span class="dl">"</span><span class="p">];</span>
-<span class="nx">b</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="dl">"</span><span class="s2">d</span><span class="dl">"</span><span class="p">);</span> <span class="c1">//OK</span>
-</code></pre></div></div>
-
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">fire</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">member1</span> <span class="p">:</span> <span class="dl">'</span><span class="s1">juhyeong</span><span class="dl">'</span><span class="p">;</span>
-    <span class="nl">member2</span> <span class="p">:</span> <span class="dl">'</span><span class="s1">yeonggi</span><span class="dl">'</span><span class="p">;</span>
-    <span class="nl">member3</span> <span class="p">:</span> <span class="dl">'</span><span class="s1">haryung</span><span class="dl">'</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="nx">fire</span><span class="p">.</span><span class="nx">member1</span> <span class="o">=</span> <span class="mi">42</span> <span class="c1">//ERROR</span>
-</code></pre></div></div>
-
-<h4 id="explicit-types-타입지정">Explicit Types [타입지정]</h4>
-
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">c</span><span class="p">:</span> <span class="kr">number</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[];</span>
-<span class="nx">c</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="c1">//OK</span>
-</code></pre></div></div>
-
-<h4 id="null-처리">NULL 처리</h4>
-
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">yeonggi</span><span class="p">:</span> <span class="p">{</span>
-  <span class="nl">team</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
-  <span class="nl">age</span><span class="p">?:</span> <span class="kr">number</span><span class="p">;</span>
-<span class="p">}</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">team</span><span class="p">:</span> <span class="dl">"</span><span class="s2">FIRE</span><span class="dl">"</span><span class="p">,</span>
-<span class="p">};</span>
-<span class="k">if</span> <span class="p">(</span><span class="nx">yeonggi</span><span class="p">.</span><span class="nx">age</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
-  <span class="c1">//ERROR</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">yeonggi</span><span class="p">.</span><span class="nx">age</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">type</span> <span class="nx">Member</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">name</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
-  <span class="nl">age</span><span class="p">?:</span> <span class="kr">number</span><span class="p">;</span>
-<span class="p">};</span>
-<span class="kd">function</span> <span class="nx">memberGenerator</span><span class="p">(</span><span class="nx">name</span><span class="p">:</span> <span class="kr">string</span><span class="p">)</span> <span class="p">{</span>
-  <span class="c1">//?</span>
-  <span class="k">return</span> <span class="p">{</span>
-    <span class="nx">name</span><span class="p">,</span>
-  <span class="p">};</span>
-<span class="p">}</span>
-<span class="c1">// const memberGenerator = (name: string) : Player =&gt; ({name})</span>
-<span class="kd">const</span> <span class="nx">yeonggi</span> <span class="o">=</span> <span class="nx">memberGenerator</span><span class="p">(</span><span class="dl">"</span><span class="s2">yeonggi</span><span class="dl">"</span><span class="p">);</span>
-<span class="nx">yeonggi</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
-</code></pre></div></div>
-
-<h4 id="any">ANY</h4>
-
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">a</span><span class="p">:</span> <span class="kr">any</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">];</span>
-<span class="kd">const</span> <span class="nx">b</span><span class="p">:</span> <span class="kr">any</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-
-<span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span> <span class="c1">//OK but hmmm...</span>
-</code></pre></div></div>
-
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">a</span><span class="p">:</span> <span class="nx">unknown</span><span class="p">;</span>
-<span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">a</span> <span class="o">===</span> <span class="kr">string</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">a</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">1</span><span class="dl">"</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">a</span> <span class="o">===</span> <span class="kr">number</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">a</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p><a href="https://ui.toast.com/weekly-pick/ko_20220323">never 관련 블로그</a></p>
-
-<h3 id="generic">Generic</h3>
-
-<h3 id="type-vs-interface">Type vs Interface</h3>]]></content><author><name>071yoon</name></author><category term="TIL" /><category term="TIL" /><category term="Javascript" /><category term="TypeScript" /><summary type="html"><![CDATA[TypeScript]]></summary></entry></feed>
+<p>atom의 상태에서 파생된 데이터로, 상태에 의존하는 동적인 데이터이다.</p>]]></content><author><name>071yoon</name></author><category term="TIL" /><category term="TIL" /><category term="TypeScript" /><summary type="html"><![CDATA[Why Recoil?]]></summary></entry></feed>

@@ -1,0 +1,8 @@
+I"�<h2 id="jest와-react-testing-library를-사용하여-테스트를-해보자">Jest와 React-Testing-Library를 사용하여 테스트를 해보자</h2>
+
+<p>이번에는 모킹 없이 간단하게 DOM관련 테스트만 진행할 예정이다.</p>
+
+<p>여러 테스트 예시들을 보면, 한 <code class="language-plaintext highlighter-rouge">jest.it</code> 함수 에서 render를 여러번 하는것을 손쉽게 볼 수 있다. 그렇게 나도 유사하게 해보며 익혀보았다.</p>
+
+<p>참고 : <a href="https://javascript.plainenglish.io/declarative-and-scalable-testing-with-react-testing-library-177f35f41396">확장가능한 테스트</a></p>
+:ET
