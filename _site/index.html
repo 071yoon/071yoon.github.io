@@ -845,18 +845,30 @@ function googleTranslateElementInit() {
       </h2>
       <div class="post-meta">
         <span class="post-date"><i class="fa fa-calendar"></i> Sep 09, 2022</span>
-        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 1 min</span>
+        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 9 mins</span>
       </div>
       <a class="post-excerpt" href="/react/2022/09/09/react-test.html">
         <p>
         Jest와 React-Testing-Library를 사용하여 테스트를 해보자
 
-이번에는 모킹 없이 간단하게 DOM관련 테스트만 진행할 예정이다.
+이번에는 모킹 없이 간단하게 DOM관련 테스트만 진행할 예정이다. 모킹 관련은 다음 포스트에서 다룰 예정.
 
 여러 테스트 예시들을 보면, 한 jest.it 함수 에서 render를 여러번 하는것을 손쉽게 볼 수 있다. 그렇게 나도 유사하게 해보며 익혀보았다.
 
-참고 : 확장가능한 테스트
- <span class="read_more">Read More</span>
+간단한 사용법 익히기
+
+describe
+
+describe에서 내가 어떠한 component를 할지 먼저 알려준다.
+
+describe("&lt;MyPageForm /&gt;", () =&gt; {});
+
+
+it
+
+it에서 어떠한 동작들을 테스트할 지 선언하여 알려줄 수 있다.
+
+it... <span class="read_more">Read More</span>
         </p>
       </a>
       <div class="post-tags">
