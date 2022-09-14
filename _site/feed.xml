@@ -1,4 +1,441 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-09-13T15:47:49+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi's tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">리액트 테스팅하기</title><link href="http://localhost:4000/react/2022/09/09/react-test.html" rel="alternate" type="text/html" title="리액트 테스팅하기" /><published>2022-09-09T00:00:00+09:00</published><updated>2022-09-09T00:00:00+09:00</updated><id>http://localhost:4000/react/2022/09/09/react-test</id><content type="html" xml:base="http://localhost:4000/react/2022/09/09/react-test.html"><![CDATA[<h2 id="jest와-react-testing-library를-사용하여-테스트를-해보자">Jest와 React-Testing-Library를 사용하여 테스트를 해보자</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-09-15T03:16:07+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi&apos;s tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">빌더 패턴 익히기</title><link href="http://localhost:4000/gof/2022/09/15/builder-pattern.html" rel="alternate" type="text/html" title="빌더 패턴 익히기" /><published>2022-09-15T00:00:00+09:00</published><updated>2022-09-15T00:00:00+09:00</updated><id>http://localhost:4000/gof/2022/09/15/builder-pattern</id><content type="html" xml:base="http://localhost:4000/gof/2022/09/15/builder-pattern.html"><![CDATA[<h2 id="java언어로-배우는-디자인-패턴-입문">Java언어로 배우는 디자인 패턴 입문</h2>
+
+<h3 id="생성-패턴-creational-pattern">생성 패턴 Creational Pattern</h3>
+
+<p>생성 패턴에서는 중요한 이슈가 두 가지가 존재한다.</p>
+
+<ul>
+  <li>생성 패턴은 시스템이 어떤 Concrete Class를 사용하는지에 대한 정보를 캡슐화한다.</li>
+  <li>생성 패턴은 이들 클래스의 인스턴스들이 어떻게 만들고 어떻게 결합하는지에 대한 부분을 완전히 가려준다.</li>
+</ul>
+
+<blockquote>
+  <p>생성 패턴을 이용하면 무엇이 생성되고, 누가 이것을 생성하며, 이것이 어떻게 생성되는지, 언제 생성할 것인지 결정하는 데 유연성을 확보할 수 있다.</p>
+</blockquote>
+
+<p>추후에 어떤식으로 구현할 수 있는지 알아보자.</p>
+
+<h3 id="빌더-패턴의-등장인물">빌더 패턴의 등장인물</h3>
+
+<p><img src="https://user-images.githubusercontent.com/66371206/190228103-b8b180e3-1fb3-4700-872c-5f263b0b6284.jpg" alt="Director 1" /></p>
+
+<ul>
+  <li>Builder
+    <ul>
+      <li>Instance 생성을 위한 API를 결정</li>
+      <li>인스턴스의 각 부분을 만들기 위한 메소드 존재</li>
+      <li>Builder Class</li>
+    </ul>
+  </li>
+  <li>ConcreteBuilder
+    <ul>
+      <li>Build 역할의 API를 실제로 구현</li>
+      <li>인스턴스 작성으로 호출되는 메소드가 정의</li>
+      <li>최종적인 결과물을 얻기위한 메소드가 준비</li>
+      <li>TextBuilder와 HTMLBuilder</li>
+    </ul>
+  </li>
+  <li>Director
+    <ul>
+      <li>Builder 역할의 API를 사용하여 인스턴스 생성</li>
+      <li>ConcreteBuilder에 의존하지 않음</li>
+      <li>ConcreteBuilder에 상관하지 않고, Builder 역할의 메소드만 사용</li>
+      <li>Director Class</li>
+    </ul>
+  </li>
+  <li>Client
+    <ul>
+      <li>Builder패턴을 이용</li>
+      <li>Main Class</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/66371206/190228118-4e62902f-cd49-40ad-b139-f66ac0eef2c0.jpg" alt="Director 2" /></p>
+
+<h3 id="빌더-패턴-예시">빌더 패턴 예시</h3>
+
+<p><code class="language-plaintext highlighter-rouge">문서</code>를 작성하는 프로그램</p>
+
+<h4 id="구조">구조</h4>
+
+<ul>
+  <li>타이틀을 한 개 포함</li>
+  <li>문자열을 몇 개 포함</li>
+  <li>개별항목을 몇 개 포함</li>
+  <li>TextBuilder : Plain Text를 사용하여 문서를 생성</li>
+  <li>HTMLBuilder : HTML을 사용하여 문서를 생성</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/66371206/190228122-f6accbb8-f15b-4575-b69a-0330d2853373.jpg" alt="Director 3" /></p>
+
+<h4 id="builder-class">Builder Class</h4>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">문서</code>를 만들 메소드들을 선언하고 있는 추상클래스</p>
+</blockquote>
+
+<p>makeTitle, makeString, makeItems는 각각 타이틀, 문자열, 개별 항목을 문서 안에 구축하는 메소드</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">Builder</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">makeTitle</span><span class="o">(</span><span class="nc">String</span> <span class="n">title</span><span class="o">);</span>
+	<span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">makeString</span><span class="o">(</span><span class="nc">String</span> <span class="n">str</span><span class="o">);</span>
+	<span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">makeItems</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">items</span><span class="o">);</span>
+	<span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">close</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="director-class">Director Class</h4>
+
+<blockquote>
+  <p>Builder 클래스로 선언되어 있는 메소드를 사용하여 문서를 생성</p>
+</blockquote>
+
+<p>Director 클래스의 생성자는 Builder형이지만, 실제로 Builder 클래스의 인스턴스가 주어지지는 않는다.</p>
+
+<blockquote>
+  <p>Builder 클래스는 추상클래스이므로, 인스턴스 생성이 불가</p>
+</blockquote>
+
+<p>Director 클래스에서 실제로 전달되는것은 Builder 클래스의 하위 클래스의 인스턴스이다. Builder 클래스의 하위 클래스 종류에 따라 Director 클래스가 만들 문서의 형식이 정해진다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Director</span> <span class="o">{</span>
+	<span class="kd">private</span> <span class="nc">Builder</span> <span class="n">builder</span><span class="o">;</span>
+	<span class="kd">public</span> <span class="nf">Director</span><span class="o">(</span><span class="nc">Builder</span> <span class="n">builder</span><span class="o">){</span> <span class="c1">// Builder의 하위 클래스의 인스턴스이므로</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">builder</span> <span class="o">=</span> <span class="n">builder</span><span class="o">;</span> <span class="c1">// builder필드에 저장</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">construct</span><span class="o">()</span> <span class="o">{</span>
+		<span class="n">builder</span><span class="o">.</span><span class="na">makeTitle</span><span class="o">(</span><span class="err">'</span><span class="nc">Greeting</span><span class="err">'</span><span class="o">);</span>
+		<span class="n">builder</span><span class="o">.</span><span class="na">makeString</span><span class="o">(</span><span class="err">'</span><span class="n">아침과</span> <span class="n">낮에</span><span class="err">'</span><span class="o">);</span>
+		<span class="n">builder</span><span class="o">.</span><span class="na">makeItems</span><span class="o">(</span><span class="k">new</span> <span class="nc">String</span><span class="o">[]{</span>
+			<span class="err">'</span><span class="n">좋은</span> <span class="n">아침입니다</span><span class="o">.</span><span class="err">'</span><span class="o">,</span>
+			<span class="err">'</span><span class="n">안녕하세요</span><span class="o">.</span><span class="err">'</span><span class="o">,</span>
+		<span class="o">});</span>
+		<span class="n">builder</span><span class="o">.</span><span class="na">makeString</span><span class="o">(</span><span class="err">'</span><span class="n">밤에</span><span class="err">'</span><span class="o">);</span>
+		<span class="n">builder</span><span class="o">.</span><span class="na">makeItems</span><span class="o">(</span><span class="k">new</span> <span class="nc">String</span><span class="o">[]{</span>
+			<span class="err">'</span><span class="n">안녕하세요</span><span class="o">.</span><span class="err">'</span><span class="o">,</span>
+			<span class="err">'</span><span class="n">안녕히</span> <span class="n">주무세요</span><span class="o">.</span><span class="err">'</span><span class="o">,</span>
+			<span class="err">'</span><span class="n">안녕히</span> <span class="n">계세요</span><span class="o">.</span><span class="err">'</span><span class="o">,</span>
+		<span class="o">});</span>
+		<span class="n">builder</span><span class="o">.</span><span class="na">close</span><span class="o">();</span> <span class="c1">//문서를 완성</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="textbuilder-class">TextBuilder Class</h4>
+
+<blockquote>
+  <p>Builder Class의 하위 Class</p>
+</blockquote>
+
+<p>일반 텍스트를 사용하여 문서를 구축하고, String으로 봔한</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TextBuilder</span> <span class="kd">extends</span> <span class="nc">Builder</span> <span class="o">{</span>
+	<span class="kd">private</span> <span class="nc">StringBuffer</span> <span class="n">buffer</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuffer</span><span class="o">();</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">makeTitle</span><span class="o">(</span><span class="nc">String</span> <span class="n">title</span><span class="o">){</span>
+		<span class="n">buffer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="err">'</span><span class="o">======================</span><span class="err">\</span><span class="n">n</span><span class="err">'</span><span class="o">);</span>
+		<span class="n">buffer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="sc">'['</span> <span class="o">+</span> <span class="err">'</span><span class="n">title</span><span class="err">'</span> <span class="o">+</span> <span class="err">'</span><span class="o">]</span><span class="err">\</span><span class="n">n</span><span class="err">'</span><span class="o">);</span>
+		<span class="n">buffer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="sc">'\n'</span><span class="o">);</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">makeString</span><span class="o">(</span><span class="nc">String</span> <span class="n">str</span><span class="o">){</span>
+		<span class="n">buffer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="sc">'ㅁ'</span> <span class="o">+</span> <span class="n">str</span> <span class="o">+</span> <span class="err">'</span><span class="n">ㅁ</span><span class="err">\</span><span class="n">n</span><span class="err">'</span><span class="o">);</span>
+		<span class="n">buffer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="sc">'\n'</span><span class="o">);</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">makeItems</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">items</span><span class="o">){</span>
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">items</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+			<span class="n">buffer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="err">'</span> <span class="o">-</span><span class="err">'</span> <span class="o">+</span> <span class="n">items</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+</span> <span class="sc">'\n'</span><span class="o">);</span>
+		<span class="o">}</span>
+		<span class="n">buffer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="sc">'\n'</span><span class="o">);</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">close</span><span class="o">(){</span>
+		<span class="n">buffer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="err">'</span><span class="o">======================</span><span class="err">\</span><span class="n">n</span><span class="err">'</span><span class="o">);</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="nc">String</span> <span class="nf">getResult</span><span class="o">(){</span>
+		<span class="k">return</span> <span class="n">buffer</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="htmlbuilder-class">HTMLBuilder Class</h4>
+
+<blockquote>
+  <p>Builder Class의 하위 Class</p>
+</blockquote>
+
+<p>HTML 파일로 문서를 구축</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HTMLBuilder</span> <span class="kd">extends</span> <span class="nc">Builder</span><span class="o">{</span>
+	<span class="kd">private</span> <span class="nc">String</span> <span class="n">filename</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="nc">PrintWriter</span> <span class="n">writer</span><span class="o">;</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">makeTitle</span><span class="o">(</span><span class="nc">String</span> <span class="n">title</span><span class="o">){</span>
+		<span class="n">filename</span> <span class="o">=</span> <span class="n">title</span> <span class="o">+</span> <span class="err">'</span><span class="o">.</span><span class="na">html</span><span class="err">'</span><span class="o">;</span>
+		<span class="k">try</span> <span class="o">{</span>
+			<span class="n">writer</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PrintWrite</span><span class="o">(</span><span class="k">new</span> <span class="nc">FileWriter</span><span class="o">(</span><span class="n">filename</span><span class="o">));</span>
+		<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+		<span class="o">}</span>
+		<span class="n">writer</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"&lt;html&gt;&lt;head&gt;&lt;title&gt;"</span> <span class="o">+</span> <span class="n">title</span> <span class="o">+</span> <span class="s">"&lt;/title&gt;&lt;/head&gt;&lt;body&gt;"</span><span class="o">);</span>
+		<span class="n">writer</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"&lt;h1&gt;"</span> <span class="o">+</span> <span class="n">title</span> <span class="o">+</span> <span class="s">"&lt;/h1&gt;"</span><span class="o">);</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">makeString</span><span class="o">(</span><span class="nc">String</span> <span class="n">str</span><span class="o">){</span>
+		<span class="n">writer</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"&lt;p&gt;"</span> <span class="o">+</span> <span class="n">str</span> <span class="o">+</span> <span class="s">"&lt;/p&gt;"</span><span class="o">);</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">makeItems</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">items</span><span class="o">){</span>
+		<span class="n">writer</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"&lt;ul&gt;"</span><span class="o">);</span>
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">items</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+			<span class="n">writer</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"&lt;li&gt;"</span> <span class="o">+</span> <span class="n">items</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+</span> <span class="s">"&lt;/li&gt;"</span><span class="o">);</span>
+		<span class="o">}</span>
+		<span class="n">writer</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"&lt;/ul&gt;"</span><span class="o">);</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">close</span><span class="o">(){</span>
+		<span class="n">writer</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"&lt;/body&gt;&lt;/html&gt;"</span><span class="o">);</span>
+		<span class="n">writer</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="nc">String</span> <span class="nf">getResult</span><span class="o">(){</span>
+		<span class="k">return</span> <span class="n">filename</span><span class="o">;</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="main-class">Main Class</h4>
+
+<blockquote>
+  <p>실제로 실행하는 Builder 패턴의 테스트 프로그램</p>
+</blockquote>
+
+<p>TextBuilder와 HTMLBuilder는 Builder의 하위클래스이며, Director는 Builder의 메소드만을 사용하여 문서를 작성한다. Builder의 메소드만을 사용한다는 뜻은 Director는 실제로 동작하는것이 TextBuilder인지, HTMLBuilder인지 알 수 없다는 뜻. 즉 Builder는 문서를 구축하기 위해, 필요 충분한 메소드군을 선언할 필요가 있다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span><span class="o">{</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+		<span class="k">if</span><span class="o">(</span><span class="n">args</span><span class="o">.</span><span class="na">length</span> <span class="o">!=</span> <span class="mi">1</span><span class="o">){</span>
+			<span class="n">usage</span><span class="o">();</span>
+			<span class="nc">System</span><span class="o">.</span><span class="na">exit</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+		<span class="o">}</span>
+		<span class="k">if</span> <span class="o">(</span><span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">equals</span><span class="o">(</span><span class="err">'</span><span class="n">plain</span><span class="err">'</span><span class="o">)){</span>
+			<span class="nc">TextBuilder</span> <span class="n">textbuilder</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TextBuilder</span><span class="o">();</span>
+			<span class="nc">Director</span> <span class="n">director</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Director</span><span class="o">(</span><span class="n">textbuilder</span><span class="o">);</span>
+			<span class="n">director</span><span class="o">.</span><span class="na">construct</span><span class="o">();</span>
+			<span class="nc">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">textbuilder</span><span class="o">.</span><span class="na">getResult</span><span class="o">();</span>
+			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">result</span><span class="o">);</span>
+		<span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">equals</span><span class="o">(</span><span class="err">'</span><span class="n">html</span><span class="err">'</span><span class="o">))</span> <span class="o">{</span>
+			<span class="nc">HTMLBuilder</span> <span class="n">htmlbuilder</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HTMLBuilder</span><span class="o">();</span>
+			<span class="nc">Director</span> <span class="n">director</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Director</span><span class="o">(</span><span class="n">htmlbuilder</span><span class="o">);</span>
+			<span class="n">director</span><span class="o">.</span><span class="na">construct</span><span class="o">();</span>
+			<span class="nc">String</span> <span class="n">filename</span> <span class="o">=</span> <span class="n">htmlbuilder</span><span class="o">.</span><span class="na">getResult</span><span class="o">();</span>
+			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">filename</span> <span class="o">+</span> <span class="err">'</span><span class="n">가</span> <span class="n">생성되었습니다</span><span class="o">.</span><span class="err">'</span><span class="o">);</span>
+		<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+			<span class="n">usage</span><span class="o">();</span>
+			<span class="nc">System</span><span class="o">.</span><span class="na">exit</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">usage</span><span class="o">()</span> <span class="o">{</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="err">'</span><span class="nl">Usage:</span> <span class="n">java</span> <span class="nc">Main</span> <span class="n">plain</span> <span class="n">일반</span> <span class="n">텍스트로</span> <span class="n">문서작성</span><span class="err">'</span><span class="o">);</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="err">'</span><span class="nl">Usage:</span> <span class="n">java</span> <span class="nc">Main</span> <span class="n">html</span> <span class="no">HTML</span> <span class="n">파일로</span> <span class="n">문서작성</span><span class="err">'</span><span class="o">);</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>일반 텍스트 실행결과
+<img src="https://user-images.githubusercontent.com/66371206/190231034-16e7b3c7-9880-45b8-8b40-6d4914133567.png" width="400px" /></p>
+</blockquote>
+
+<blockquote>
+  <p>HTML 파일 실행결과
+<img src="https://user-images.githubusercontent.com/66371206/190230554-99d4ada5-afa7-4781-9fad-7d2b7b5362a7.png" width="400px" /></p>
+</blockquote>
+
+<blockquote>
+  <p>HTMLBuidler가 작성한 Greeting.html의 브라우저 결과
+<img src="https://user-images.githubusercontent.com/66371206/190230484-11188473-993c-415e-a887-f311cf88f5b8.png" width="400px" /></p>
+</blockquote>
+
+<h3 id="누가-무엇을">누가 무엇을?</h3>
+
+<ul>
+  <li>Main Class는 Builder Class의 메소드를 모른다 (호출하지 않음)</li>
+  <li>Main Class는 Director Class의 construct만 호출한다</li>
+  <li>Director Class는 Builder Class를 알고있다</li>
+  <li>Director Class는 실제로 이용하고 있는 클래스가 무엇인지 알 수 없다
+    <ul>
+      <li>HTMLBuilder인지 TextBuilder인지 알 수 없음</li>
+      <li>Director Class는 Builder Class의 메소드만 사용</li>
+      <li>Builder Class의 하위 클래스는 메소드를 구현</li>
+    </ul>
+  </li>
+  <li>Director Class가 Builder Class의 하위 클래스를 모르기 때문에, 교체할 수 있다
+    <ul>
+      <li>모르기 때문에 교환이 가능하며, 교체가 가능하기 때문에 부품의 가치가 높다</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="더-알아보기">더 알아보기</h2>
+
+<blockquote>
+  <p>엥 이거 완전 팩토리 패턴이랑 비슷한거 아니야?</p>
+</blockquote>
+
+<h3 id="여행-예제로-알아보기">여행 예제로 알아보기</h3>
+
+<ul>
+  <li>
+    <p>클라이언트 프로그램으로부터 팩토리 클래스로 많은 파라미터를 넘겨줄 때 타입, 순서 등에 대한 관리가 어려워져 에러가 발생할 확률이 높아진다.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">new</span> <span class="nc">TourPlan</span><span class="o">(</span><span class="s">"여행 계획"</span><span class="o">,</span> <span class="nc">LocalDate</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">2021</span><span class="o">,</span><span class="mi">12</span><span class="o">,</span> <span class="mi">24</span><span class="o">),</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="s">"호텔"</span><span class="o">,</span> <span class="nc">Collections</span><span class="o">.</span><span class="na">singletonList</span><span class="o">(</span><span class="k">new</span> <span class="nc">DetailPlan</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="s">"체크인"</span><span class="o">)));</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>경우에 따라 필요 없는 파라미터들에 대해서 팩토리 클래스에 일일이 null 값을 넘겨줘야 한다.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">new</span> <span class="nc">TourPlan</span><span class="o">(</span><span class="s">"여행 계획"</span><span class="o">,</span> <span class="nc">LocalDate</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">2021</span><span class="o">,</span><span class="mi">12</span><span class="o">,</span> <span class="mi">24</span><span class="o">),</span> <span class="kc">null</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="nc">Collections</span><span class="o">.</span><span class="na">singletonList</span><span class="o">(</span><span class="k">new</span> <span class="nc">DetailPlan</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="s">"놀고 돌아오기"</span><span class="o">)));</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>생성해야 하는 sub class가 무거워지고 복잡해짐에 따라 팩토리 클래스 또한 복잡해진다.</p>
+  </li>
+</ul>
+
+<h4 id="builder-class-1">Builder Class</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">TourPlanBuilder</span> <span class="o">{</span>
+    <span class="nc">TourPlanBuilder</span> <span class="nf">nightsAndDays</span><span class="o">(</span><span class="kt">int</span> <span class="n">nights</span><span class="o">,</span> <span class="kt">int</span> <span class="n">days</span><span class="o">);</span>
+    <span class="nc">TourPlanBuilder</span> <span class="nf">title</span><span class="o">(</span><span class="nc">String</span> <span class="n">title</span><span class="o">);</span>
+    <span class="nc">TourPlanBuilder</span> <span class="nf">startDate</span><span class="o">(</span><span class="nc">LocalDate</span> <span class="n">localDate</span><span class="o">);</span>
+    <span class="nc">TourPlanBuilder</span> <span class="nf">whereToStay</span><span class="o">(</span><span class="nc">String</span> <span class="n">whereToStay</span><span class="o">);</span>
+    <span class="nc">TourPlanBuilder</span> <span class="nf">addPlan</span><span class="o">(</span><span class="kt">int</span> <span class="n">day</span><span class="o">,</span> <span class="nc">String</span> <span class="n">plan</span><span class="o">);</span>
+    <span class="nc">TourPlan</span> <span class="nf">getPlan</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="concrete-builder">Concrete Builder</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DefaultTourBuilder</span> <span class="kd">implements</span> <span class="nc">TourPlanBuilder</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">title</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">nights</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">days</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">LocalDate</span> <span class="n">startDate</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">whereToStay</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">DetailPlan</span><span class="o">&gt;</span> <span class="n">plans</span><span class="o">;</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">TourPlanBuilder</span> <span class="nf">nightsAndDays</span><span class="o">(</span><span class="kt">int</span> <span class="n">nights</span><span class="o">,</span> <span class="kt">int</span> <span class="n">days</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nights</span> <span class="o">=</span> <span class="n">nights</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">days</span> <span class="o">=</span> <span class="n">days</span><span class="o">;</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+	<span class="o">}</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">TourPlanBuilder</span> <span class="nf">title</span><span class="o">(</span><span class="nc">String</span> <span class="n">title</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">title</span> <span class="o">=</span> <span class="n">title</span><span class="o">;</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">TourPlanBuilder</span> <span class="nf">startDate</span><span class="o">(</span><span class="nc">LocalDate</span> <span class="n">startDate</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">startDate</span> <span class="o">=</span> <span class="n">startDate</span><span class="o">;</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">TourPlanBuilder</span> <span class="nf">whereToStay</span><span class="o">(</span><span class="nc">String</span> <span class="n">whereToStay</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">whereToStay</span> <span class="o">=</span> <span class="n">whereToStay</span><span class="o">;</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">TourPlanBuilder</span> <span class="nf">addPlan</span><span class="o">(</span><span class="kt">int</span> <span class="n">day</span><span class="o">,</span> <span class="nc">String</span> <span class="n">plan</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">plans</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">plans</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+        <span class="o">}</span>
+
+        <span class="k">this</span><span class="o">.</span><span class="na">plans</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">DetailPlan</span><span class="o">(</span><span class="n">day</span><span class="o">,</span> <span class="n">plan</span><span class="o">));</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">TourPlan</span> <span class="nf">getPlan</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">TourPlan</span><span class="o">(</span><span class="n">title</span><span class="o">,</span> <span class="n">startDate</span><span class="o">,</span> <span class="n">days</span><span class="o">,</span> <span class="n">nights</span><span class="o">,</span> <span class="n">whereToStay</span><span class="o">,</span> <span class="n">plans</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="director-class-1">Director Class</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TourDirector</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">TourPlanBuilder</span> <span class="n">tourPlanBuilder</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">TourDirector</span><span class="o">(</span><span class="nc">TourPlanBuilder</span> <span class="n">tourPlanBuilder</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">tourPlanBuilder</span> <span class="o">=</span> <span class="n">tourPlanBuilder</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">TourPlan</span> <span class="nf">cancunTrip</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">tourPlanBuilder</span><span class="o">.</span><span class="na">title</span><span class="o">(</span><span class="s">"칸쿤 여행"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">nightsAndDays</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">startDate</span><span class="o">(</span><span class="nc">LocalDate</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">2020</span><span class="o">,</span> <span class="mi">12</span><span class="o">,</span> <span class="mi">9</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">whereToStay</span><span class="o">(</span><span class="s">"리조트"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">addPlan</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="s">"체크인하고 짐 풀기"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">addPlan</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="s">"저녁 식사"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">getPlan</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">TourPlan</span> <span class="nf">longBeachTrip</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">tourPlanBuilder</span><span class="o">.</span><span class="na">title</span><span class="o">(</span><span class="s">"롱비치"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">startDate</span><span class="o">(</span><span class="nc">LocalDate</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">2021</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">15</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">getPlan</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="main-class-1">Main Class</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+	<span class="nc">DefaultTourBuilder</span> <span class="n">defaultbuilder</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DefaultTourBuilder</span><span class="o">();</span>
+    <span class="nc">TourDirector</span> <span class="n">director</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TourDirector</span><span class="o">(</span><span class="n">defaultbuilder</span><span class="o">);</span>
+    <span class="nc">TourPlan</span> <span class="n">tourPlan</span> <span class="o">=</span> <span class="n">director</span><span class="o">.</span><span class="na">cancunTrip</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>setter가 없으므로 객체 일관성을 유지하여 불변 객체로 생성할 수 있다.</p>
+</blockquote>
+
+<h3 id="when-not-to-use">When not to use</h3>
+
+<blockquote>
+  <p>객체를 생성하는 대부분의 경우에는 빌더 패턴을 적용하는 것이 좋다.</p>
+</blockquote>
+
+<p>예외적으로 2가지 상황에서는 빌더를 구현해야될지 고려하면 좋다.</p>
+
+<ol>
+  <li>
+    <p>객체의 생성을 라이브러리로 위임하는 경우</p>
+
+    <ul>
+      <li>엔티티(Entity) 객체나 도메인(Domain) 객체로부터 DTO를 생성하는 경우라면 직접 빌더를 만들고 하는 작업이 번거로우므로 MapStruct나 Model Mapper와 같은 라이브러리를 통해 생성을 위임할 수 있다.</li>
+    </ul>
+  </li>
+  <li>
+    <p>변수의 개수가 2개 이하이며, 변경 가능성이 없는 경우</p>
+    <ul>
+      <li>또한 변수가 늘어날 가능성이 거의 없으며, 변수의 개수가 2개 이하인 경우에는 정적 팩토리 메소드를 사용하는 것이 더 좋을 수도 있다.</li>
+      <li>빌더의 남용은 오히려 코드를 비대하게 만들 수 있으므로  변수의 개수와 변경 가능성 등을 중점적으로 보고 빌더 패턴을 적용할지 판단하면 된다.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="참고">참고</h3>
+
+<p><a href="https://readystory.tistory.com/121">참고링크1</a>
+<a href="https://dev-youngjun.tistory.com/197">참고링크2</a>
+<a href="https://mangkyu.tistory.com/163">참고링크3</a></p>]]></content><author><name>071yoon</name></author><category term="GoF" /><category term="GoF" /><category term="Java" /><summary type="html"><![CDATA[Java언어로 배우는 디자인 패턴 입문]]></summary></entry><entry><title type="html">리액트 테스팅하기</title><link href="http://localhost:4000/react/2022/09/09/react-test.html" rel="alternate" type="text/html" title="리액트 테스팅하기" /><published>2022-09-09T00:00:00+09:00</published><updated>2022-09-09T00:00:00+09:00</updated><id>http://localhost:4000/react/2022/09/09/react-test</id><content type="html" xml:base="http://localhost:4000/react/2022/09/09/react-test.html"><![CDATA[<h2 id="jest와-react-testing-library를-사용하여-테스트를-해보자">Jest와 React-Testing-Library를 사용하여 테스트를 해보자</h2>
 
 <p>이번에는 모킹 없이 간단하게 DOM관련 테스트만 진행할 예정이다. 모킹 관련은 다음 포스트에서 다룰 예정.</p>
 
@@ -1493,118 +1930,4 @@
 
 <p><img src="https://user-images.githubusercontent.com/66371206/177069574-5e7cd794-b86a-4282-9b5a-1c998b4862b6.gif" alt="ezgif-4-4fc22081fc" /></p>
 
-<p>잘 되는 모습을 볼 수 있다</p>]]></content><author><name>071yoon</name></author><category term="modoco" /><category term="TIL" /><category term="TypeScript" /><summary type="html"><![CDATA[왜 Zustand?]]></summary></entry><entry><title type="html">Recoil 배우기</title><link href="http://localhost:4000/til/2022/07/01/recoil.html" rel="alternate" type="text/html" title="Recoil 배우기" /><published>2022-07-01T00:00:00+09:00</published><updated>2022-07-01T00:00:00+09:00</updated><id>http://localhost:4000/til/2022/07/01/recoil</id><content type="html" xml:base="http://localhost:4000/til/2022/07/01/recoil.html"><![CDATA[<h2 id="why-recoil">Why Recoil?</h2>
-
-<p>왜 Recoil을 사용할까?</p>
-
-<p>우선 전역 상태관리는 개발을 하다보면 무조건 필요로 하게 된다. 특히나 전에 만들었던 프로젝트 경우에는 게임이였기 때문에, 더욱 필요했고, 이번에도 적지만 id 같은 경우에 모든 페이지마다 변경되는 state이다 보니 전역상태관리가 필요로 하게 된다.</p>
-
-<p>recoil공식 설명에서는 사용하는 이유 즉 탄생배경을 다음과 같이 설명한다.</p>
-
-<ol>
-  <li>컴포넌트의 상태는 공통된 상위요소까지만 끌어 올릴 수 있어, 이 과정에서 거대한 트리가 다시 렌더링 되는 효과가 나온다.</li>
-  <li>Context는 단일 값만 가질 수 있어, Consumer가 가지는 여러 값들의 집합을 담을 수 없다.</li>
-  <li>두 가지 특성이 트리의 상단부터 말단까지 이어져야 돼서 분할이 어려워진다.</li>
-</ol>
-
-<p>즉 Recoil은 해당 문제를 해결하기 위해 orthogonal 하지만 본직적인 방향 그래프를 정의해서 React 트리에 붙이게 된다. 즉 그래프의 뿌리 (atoms) 으로부터 시작해 Selectors(순수함수)를 거쳐 컴포넌트로 흐르게 된다.</p>
-
-<p>즉 Recoil의 사용함으로써 가져가는 장점은 다음과 같다.</p>
-
-<ol>
-  <li>동시성와 React의 호환성</li>
-  <li>상태정의 분산이 가능 -&gt; 코드 분할이 쉽다</li>
-  <li>컴포넌트를 수정하지 않고, 파생된 데이터로 대체 가능</li>
-  <li>공유된 상태도 React local state로 간단하게 사용 가능</li>
-</ol>
-
-<h2 id="atom">Atom</h2>
-
-<p>Recoil의 상태를 나타내는 상태 단위라 볼 수 있다.</p>
-
-<h3 id="atom-생성">Atom 생성</h3>
-
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">atom</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span><span class="p">({</span>
-  <span class="na">key</span><span class="p">:</span> <span class="kr">string</span><span class="p">,</span>
-  <span class="na">default</span><span class="p">:</span> <span class="nx">T</span> <span class="o">|</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span> <span class="o">|</span> <span class="nx">RecoilValue</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span><span class="p">,</span>
-
-  <span class="nx">effects_UNSTABLE</span><span class="p">?:</span> <span class="nx">$ReadOnlyArray</span><span class="o">&lt;</span><span class="nx">AtomEffect</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;&gt;</span><span class="p">,</span>
-
-  <span class="nx">dangerouslyAllowMutability</span><span class="p">?:</span> <span class="nx">boolean</span><span class="p">,</span>
-<span class="p">}):</span> <span class="nx">RecoilState</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span>
-</code></pre></div></div>
-
-<p>위와 유사하게, atom을 선언 해 주어야 atom 함수를 사용 할 수 있다.</p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">key</code>는 atom의 unique한 값</li>
-  <li><code class="language-plaintext highlighter-rouge">default</code>는 초기값 혹은 selector, promise의 객체</li>
-  <li><code class="language-plaintext highlighter-rouge">effect_UNSTABLE</code>는 Atom Effects 배열</li>
-  <li><code class="language-plaintext highlighter-rouge">dangerouslyAllowMutability</code>는 atom이 변경될 경우, 등록된 컴포넌트에게 알리지 않고 리렌더링을 방지하는 옵션</li>
-</ul>
-
-<h3 id="atom의-hook">Atom의 Hook</h3>
-
-<p>먼저 atom을 생성해야된다</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">myState</span> <span class="o">=</span> <span class="nx">atom</span><span class="p">({</span>
-  <span class="na">key</span><span class="p">:</span> <span class="dl">"</span><span class="s2">uniqueKey</span><span class="dl">"</span><span class="p">,</span>
-  <span class="na">default</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-<span class="p">});</span>
-</code></pre></div></div>
-
-<h4 id="userecoilstate">useRecoilState</h4>
-
-<p>atom을 읽고 쓰기 위해 사용</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">[</span><span class="nx">val</span><span class="p">,</span> <span class="nx">setVal</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useRecoilState</span><span class="p">(</span><span class="nx">uniqueKey</span><span class="p">);</span>
-</code></pre></div></div>
-
-<h4 id="userecoilvalue">useRecoilValue</h4>
-
-<p>atom을 읽을 때 사용</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">val</span> <span class="o">=</span> <span class="nx">useRecoilValue</span><span class="p">(</span><span class="nx">uniqueKey</span><span class="p">);</span>
-</code></pre></div></div>
-
-<h4 id="usesetrecoilstate">useSetRecoilState</h4>
-
-<p>atom에 쓰기 위해 사용
-업데이트 할 수 있는 setter를 리턴한다
-컴포넌트를 atom에 등록하지 않아, 변경이 되어도 리렌더링 되지는 않는다. -&gt; 즉 atom을 사용하지 않는 경우 이 훅을 사용</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">setVal</span> <span class="o">=</span> <span class="nx">useSetRecoilState</span><span class="p">(</span><span class="nx">uniqueKey</span><span class="p">);</span>
-</code></pre></div></div>
-
-<h4 id="useresetrecoilstate">useResetRecoilState</h4>
-
-<p>atom을 default를 초기화한다
-비동기 setter를 리턴하며, 컴포넌트 리렌더링이 되지는 않는다</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">reset</span> <span class="o">=</span> <span class="nx">useResetRecoilState</span><span class="p">(</span><span class="nx">uniqueKey</span><span class="p">);</span>
-</code></pre></div></div>
-
-<h4 id="userecoilcallback">useRecoilCallback</h4>
-
-<p>Recoil 상태에서 callback시킬 수 있는 훅</p>
-
-<h2 id="recoilroot">RecoilRoot</h2>
-
-<p>Atom 컨텍스트를 제공해주며, hook의 조상으로 사용된다.</p>
-
-<p>override가 <code class="language-plaintext highlighter-rouge">true</code>라면 새로운 Scope 생성</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">RecoilRoot</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">recoil</span><span class="dl">"</span><span class="p">;</span>
-
-<span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="p">(</span>
-    <span class="o">&lt;</span><span class="nx">RecoilRoot</span><span class="o">&gt;</span>
-      <span class="o">&lt;</span><span class="nx">Components</span> <span class="o">/&gt;</span>
-    <span class="o">&lt;</span><span class="sr">/RecoilRoot</span><span class="err">&gt;
-</span>  <span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<h2 id="recoilselector">RecoilSelector</h2>
-
-<p>atom의 상태에서 파생된 데이터로, 상태에 의존하는 동적인 데이터이다.</p>]]></content><author><name>071yoon</name></author><category term="TIL" /><category term="TIL" /><category term="TypeScript" /><summary type="html"><![CDATA[Why Recoil?]]></summary></entry></feed>
+<p>잘 되는 모습을 볼 수 있다</p>]]></content><author><name>071yoon</name></author><category term="modoco" /><category term="TIL" /><category term="TypeScript" /><summary type="html"><![CDATA[왜 Zustand?]]></summary></entry></feed>
