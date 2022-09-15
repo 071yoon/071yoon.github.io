@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-09-15T20:05:55+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi's tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">빌더 패턴</title><link href="http://localhost:4000/gof/2022/09/15/builder-pattern.html" rel="alternate" type="text/html" title="빌더 패턴" /><published>2022-09-15T00:00:00+09:00</published><updated>2022-09-15T00:00:00+09:00</updated><id>http://localhost:4000/gof/2022/09/15/builder-pattern</id><content type="html" xml:base="http://localhost:4000/gof/2022/09/15/builder-pattern.html"><![CDATA[<h2 id="java언어로-배우는-디자인-패턴-입문">Java언어로 배우는 디자인 패턴 입문</h2>
+=======
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-09-15T03:16:07+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi&apos;s tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">빌더 패턴 익히기</title><link href="http://localhost:4000/gof/2022/09/15/builder-pattern.html" rel="alternate" type="text/html" title="빌더 패턴 익히기" /><published>2022-09-15T00:00:00+09:00</published><updated>2022-09-15T00:00:00+09:00</updated><id>http://localhost:4000/gof/2022/09/15/builder-pattern</id><content type="html" xml:base="http://localhost:4000/gof/2022/09/15/builder-pattern.html"><![CDATA[<h2 id="java언어로-배우는-디자인-패턴-입문">Java언어로 배우는 디자인 패턴 입문</h2>
+>>>>>>> c7bf659f477023de6c82a03c8cb9762ca1da787f
 
 <h3 id="생성-패턴-creational-pattern">생성 패턴 Creational Pattern</h3>
 
@@ -435,7 +439,11 @@
 
 <p><a href="https://readystory.tistory.com/121">참고링크1</a>
 <a href="https://dev-youngjun.tistory.com/197">참고링크2</a>
+<<<<<<< HEAD
 <a href="https://mangkyu.tistory.com/163">참고링크3</a></p>]]></content><author><name>071yoon</name></author><category term="GoF" /><category term="GoF" /><category term="TIL" /><summary type="html"><![CDATA[Java언어로 배우는 디자인 패턴 입문]]></summary></entry><entry><title type="html">리액트 테스팅하기</title><link href="http://localhost:4000/react/2022/09/09/react-test.html" rel="alternate" type="text/html" title="리액트 테스팅하기" /><published>2022-09-09T00:00:00+09:00</published><updated>2022-09-09T00:00:00+09:00</updated><id>http://localhost:4000/react/2022/09/09/react-test</id><content type="html" xml:base="http://localhost:4000/react/2022/09/09/react-test.html"><![CDATA[<h2 id="jest와-react-testing-library를-사용하여-테스트를-해보자">Jest와 React-Testing-Library를 사용하여 테스트를 해보자</h2>
+=======
+<a href="https://mangkyu.tistory.com/163">참고링크3</a></p>]]></content><author><name>071yoon</name></author><category term="GoF" /><category term="GoF" /><category term="Java" /><summary type="html"><![CDATA[Java언어로 배우는 디자인 패턴 입문]]></summary></entry><entry><title type="html">리액트 테스팅하기</title><link href="http://localhost:4000/react/2022/09/09/react-test.html" rel="alternate" type="text/html" title="리액트 테스팅하기" /><published>2022-09-09T00:00:00+09:00</published><updated>2022-09-09T00:00:00+09:00</updated><id>http://localhost:4000/react/2022/09/09/react-test</id><content type="html" xml:base="http://localhost:4000/react/2022/09/09/react-test.html"><![CDATA[<h2 id="jest와-react-testing-library를-사용하여-테스트를-해보자">Jest와 React-Testing-Library를 사용하여 테스트를 해보자</h2>
+>>>>>>> c7bf659f477023de6c82a03c8cb9762ca1da787f
 
 <p>이번에는 모킹 없이 간단하게 DOM관련 테스트만 진행할 예정이다. 모킹 관련은 다음 포스트에서 다룰 예정.</p>
 
