@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>전략 패턴 | YeongGi’s tech blog</title>
+<meta name="generator" content="Jekyll v4.2.2">
+<meta property="og:title" content="전략 패턴">
+<meta name="author" content="071yoon">
+<meta property="og:locale" content="en_US">
+<meta name="description" content="전략이란?">
+<meta property="og:description" content="전략이란?">
+<link rel="canonical" href="http://localhost:4000/gof/2022/09/28/strategy-pattern-copy.html">
+<meta property="og:url" content="http://localhost:4000/gof/2022/09/28/strategy-pattern-copy.html">
+<meta property="og:site_name" content="YeongGi’s tech blog">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2022-09-28T00:00:00+09:00">
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="전략 패턴">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"071yoon"},"dateModified":"2022-09-28T00:00:00+09:00","datePublished":"2022-09-28T00:00:00+09:00","description":"전략이란?","headline":"전략 패턴","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/gof/2022/09/28/strategy-pattern-copy.html"},"url":"http://localhost:4000/gof/2022/09/28/strategy-pattern-copy.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="shortcut icon" href="">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-noto-sans@0.0.72/index.min.css">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <script src="/assets/js/main.js"></script><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="YeongGi's tech blog">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+<!-- and it's easy to individually load additional languages -->
+<script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/languages/go.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// Init highlight js
+document.addEventListener('DOMContentLoaded', function(event) {
+  var els = document.querySelectorAll('pre code')
+
+  function addLangData(block) {
+    var outer = block.parentElement.parentElement.parentElement;
+    var lang = block.getAttribute('data-lang');
+    for (var i = 0; i < outer.classList.length; i++) {
+      var cls = outer.classList[i];
+      if (cls.startsWith('language-')) {
+        lang = cls;
+        break;
+      }
+    }
+    if (!lang) {
+      cls = block.getAttribute('class');
+      lang = cls ? cls.replace('hljs ', '') : '';
+    }
+    if (lang.startsWith('language-')) {
+      lang = lang.substr(9);
+    }
+    block.setAttribute('class', 'hljs ' + lang);
+    block.parentNode.setAttribute('data-lang', lang);
+  }
+
+  function addBadge(block) {
+    var enabled = ('true' || 'true').toLowerCase();
+    if (enabled == 'true') {
+      var pre = block.parentElement;
+      pre.classList.add('badge');
+    }
+  }
+
+  function handle(block) {
+    addLangData(block);
+    addBadge(block)
+    hljs.highlightBlock(block);
+  }
+
+  for (var i = 0; i < els.length; i++) {
+    var el = els[i];
+    handle(el);
+  }
+});
+</script>
+
+<style>
+  /* code language badge */
+  pre.badge::before {
+    content: attr(data-lang);
+    color: #fff;
+    background-color: #ff4e00;
+    padding: 0 .5em;
+    border-radius: 0 2px;
+    text-transform: uppercase;
+    text-align: center;
+    min-width: 32px;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+  }
+
+  /* fix wrong badge display for firefox browser */
+  code > table pre::before {
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="site-header " role="banner">
+
+  <div class="wrapper">
+    <div class="site-header-inner">
+<span class="site-brand"><a class="site-brand-inner" rel="author" href="/">
+  <img class="site-favicon" title="YeongGi's tech blog" src="" onerror="this.style.display='none'">
+  YeongGi's tech blog
+</a>
+</span><nav class="site-nav">
+          <input type="checkbox" id="nav-trigger" class="nav-trigger">
+          <label for="nav-trigger">
+            <span class="menu-icon">
+              <svg viewbox="0 0 18 15" width="18px" height="15px">
+                <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"></path>
+              </svg>
+            </span>
+          </label>
+
+          <div class="trigger">
+<a class="page-link" href="/about.html">ABOUT</a><a class="page-link" href="/archives.html">ARCHIVES</a><a class="page-link" href="/categories.html">CATEGORIES</a><a class="page-link" href="/">HOME</a><a class="page-link" href="/tags.html">TAGS</a>
+
+
+
+
+
+
+
+
+
+<span class="page-link">
+
+
+
+<div id="google_translate_element" style="display: none;">
+</div>
+
+<span class="ct-language">
+  <ul class="list-unstyled ct-language-dropdown">
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="en">
+          
+          <img src="https://cdn.countryflags.com/thumbs/united-states-of-america/flag-400.png" title="English">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="fr">
+          
+          <img src="https://cdn.countryflags.com/thumbs/france/flag-400.png" title="French">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="zh-CN">
+          
+          <img src="https://cdn.countryflags.com/thumbs/china/flag-400.png" title="Chinese(Simple)">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ja">
+          
+          <img src="https://cdn.countryflags.com/thumbs/japan/flag-400.png" title="Japanese">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ko">
+          
+          <img src="https://cdn.countryflags.com/thumbs/south-korea/flag-400.png" title="Korean">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ru">
+          
+          <img src="https://cdn.countryflags.com/thumbs/russia/flag-400.png" title="Russian">
+          
+        </a>
+      </li>
+    
+  </ul>
+</span>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    autoDisplay: false,
+    layout: google.translate.TranslateElement.InlineLayout.VERTICAL
+  }, 'google_translate_element');
+
+  // Links to cross-origin destinations are unsafe
+  var gll = document.getElementsByClassName('goog-logo-link')[0];
+  if (gll) {
+    gll.setAttribute('rel', 'noopener');
+  }
+
+  function restoreLang() {
+    var iframe = document.getElementsByClassName('goog-te-banner-frame')[0];
+    if (!iframe) return;
+
+    var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+    var restore_el = innerDoc.getElementsByTagName("button");
+
+    for (var i = 0; i < restore_el.length; i++) {
+      if (restore_el[i].id.indexOf("restore") >= 0) {
+        restore_el[i].click();
+        var close_el = innerDoc.getElementsByClassName("goog-close-link");
+        close_el[0].click();
+        return;
+      }
+    }
+  }
+
+  function triggerHtmlEvent(element, eventName) {
+    var event;
+    if (document.createEvent) {
+      event = document.createEvent('HTMLEvents');
+      event.initEvent(eventName, true, true);
+      element.dispatchEvent(event);
+    } else {
+      event = document.createEventObject();
+      event.eventType = eventName;
+      element.fireEvent('on' + event.eventType, event);
+    }
+  }
+
+  var googleCombo = document.querySelector("select.goog-te-combo");
+  var langSelect = document.querySelector('.ct-language');
+  langSelect.addEventListener('click', function(event) {
+    if (!event.target) {
+      return;
+    }
+
+    var selected = document.querySelector('.ct-language .ct-language-selected');
+    if (selected) {
+      selected.classList.remove('ct-language-selected');
+    }
+
+    var target = event.target;
+    while (target && target !== langSelect ) {
+      if (target.matches('.lang-select')) {
+        break;
+      }
+      target = target.parentElement;
+    }
+
+    if (target && target.matches('.lang-select')) {
+      var lang = target.getAttribute('data-lang');
+      if (googleCombo.value == lang) {
+        restoreLang();
+      } else {
+        target.parentElement.classList.add('ct-language-selected');
+        googleCombo.value = lang;
+        triggerHtmlEvent(googleCombo, 'change');
+      }
+    }
+
+    event.preventDefault();
+  });
+}
+</script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</span>
+</div>
+        </nav>
+</div>
+  </div>
+</header>
+
+<script>
+  function initHeader() {
+    var lastScrollY = getScrollPos().y;
+    var documentElement = document.documentElement;
+
+    function storeScrollData() {
+      var y = getScrollPos().y;var scrollStatus = "";
+
+      if (y <= 0) {
+        scrollStatus = "top";
+      } else if ((window.innerHeight + y) >= document.body.offsetHeight) {
+        scrollStatus = "bottom";
+      } else {
+        var isScrollDown = (y - lastScrollY > 0) ? true : false;
+        scrollStatus = isScrollDown ? "down" : "up";
+      }
+
+      lastScrollY = y;
+      documentElement.setAttribute("data-scroll-status", scrollStatus);
+    }
+
+    window.addEventListener('scroll', function(e) {
+      storeScrollData();
+    });
+
+    storeScrollData();
+  }
+  document.addEventListener('DOMContentLoaded', initHeader);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  function hashLocate(hashValue) {
+    hashValue = hashValue.replace(/^.*#h-/, '');
+    hashValue = decodeURIComponent(hashValue);
+    var element = document.getElementById(hashValue);
+
+    if (!element) {
+      return;
+    }
+
+    var header = document.querySelector('header.site-header');
+    var headerRect = header.getBoundingClientRect();
+    var headerTop = Math.floor(headerRect.top);
+    var headerHeight = Math.floor(headerRect.height);
+    var scrollPos = getScrollPos();
+    var offsetY = element.offsetTop - (headerTop + headerHeight + 20);
+
+    if (offsetY == scrollPos.y) {
+      return;
+    }
+
+    if (headerTop == 0  && offsetY > scrollPos.y) {
+      offsetY += headerHeight + 2;
+    } else if (headerTop < 0  && offsetY < scrollPos.y) {
+      offsetY -= headerHeight - 2;
+    }
+
+    smoothScrollTo(offsetY);
+  }
+
+  // The first event occurred
+  window.addEventListener('load', function(event) {
+    if (window.location.hash) {
+      hashLocate(window.location.hash);
+    }
+  });
+
+  // The first event occurred
+  window.addEventListener('click', function(event) {
+    if (event.target.tagName.toLowerCase() == 'a') {
+      hashLocate(event.target.getAttribute('href'));
+    }
+  });
+</script>
+<div class="theme-toggle">
+  <input type="checkbox" id="theme-switch">
+  <label for="theme-switch">
+    <div class="toggle"></div>
+    <div class="names">
+      <p class="light">Light</p>
+      <p class="dark">Dark</p>
+    </div>
+  </label>
+</div>
+
+
+
+
+<script>
+  (function() {
+    var sw = document.getElementById('theme-switch');
+    var html = document.getElementsByTagName('html')[0];
+    var nightModeOption = ('off' || 'auto').toLowerCase();
+    var storage = nightModeOption === 'manual'
+        ? localStorage
+        : sessionStorage;
+    var themeData = loadThemeData();
+
+    function saveThemeData(data) {
+      storage.setItem('theme', JSON.stringify(data));
+    }
+
+    function loadThemeData() {
+      var data = storage.getItem('theme');
+      try {
+        data = JSON.parse(data ? data : '');
+      } catch(e) {
+        data = { nightShift: undefined, autoToggleAt: 0 };
+        saveThemeData(data);
+      }
+      return data;
+    }
+
+    function handleThemeToggle(nightShift) {
+      themeData.nightShift = nightShift;
+      saveThemeData(themeData);
+      html.dataset.theme = nightShift ? 'dark' : 'light';
+      setTimeout(function() {
+        sw.checked = nightShift ? true : false;
+      }, 50);
+    }
+
+    function autoThemeToggle() {
+      // Next time point of theme toggle
+      var now = new Date();
+      var toggleAt = new Date();
+      var hours = now.getHours();
+      var nightShift = hours >= 19 || hours <=7;
+
+      if (nightShift) {
+        if (hours > 7) {
+          toggleAt.setDate(toggleAt.getDate() + 1);
+        }
+        toggleAt.setHours(7);
+      } else {
+        toggleAt.setHours(19);
+      }
+
+      toggleAt.setMinutes(0);
+      toggleAt.setSeconds(0);
+      toggleAt.setMilliseconds(0)
+
+      var delay = toggleAt.getTime() - now.getTime();
+
+      // auto toggle theme mode
+      setTimeout(function() {
+        handleThemeToggle(!nightShift);
+      }, delay);
+
+      return {
+        nightShift: nightShift,
+        toggleAt: toggleAt.getTime()
+      };
+    }
+
+    // Listen the theme toggle event
+    sw.addEventListener('change', function(event) {
+      handleThemeToggle(event.target.checked);
+    });
+
+    if (nightModeOption == 'auto') {
+      var data = autoThemeToggle();
+
+      // Toggle theme by local setting
+      if (data.toggleAt > themeData.autoToggleAt) {
+        themeData.autoToggleAt = data.toggleAt;
+        handleThemeToggle(data.nightShift);
+      } else {
+        handleThemeToggle(themeData.nightShift);
+      }
+    } else if (nightModeOption == 'manual') {
+      handleThemeToggle(themeData.nightShift);
+    } else {
+      var nightShift = themeData.nightShift;
+      if (nightShift === undefined) {
+        nightShift = nightModeOption === 'on';
+      }
+      handleThemeToggle(nightShift);
+    }
+  })();
+</script>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <div class="framework">
+  <section class="main">
+
+     <div class="post">
+  <section>
+
+
+
+
+
+
+
+
+
+<header class="post-header">
+  <h1 class="post-title p-name" itemprop="name headline">전략 패턴</h1>
+  <h2 class="post-subtitle">자바로 전략패턴 학습하기</h2>
+
+  <p class="post-meta">
+    <time class="dt-published" datetime="2022-09-28T00:00:00+09:00" itemprop="datePublished"><i class="fa fa-calendar"></i> Sep 28, 2022
+    </time>
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 12 mins</span>
+  </p>
+<div class="post-tags">
+<a class="post-tag" href="/tags.html#GoF">#GoF</a><a class="post-tag" href="/tags.html#TIL">#TIL</a>
+</div></header>
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <div class="post-content e-content" itemprop="articleBody">
+
+      <h2 id="전략이란">전략이란?</h2>
+
+<ol>
+  <li>적을 부수기 위한 작전</li>
+  <li>군대를 움직일 때의 방책</li>
+  <li>문제를 해결하기 위한 방법</li>
+</ol>
+
+<p>등 이라 볼 수 있다.</p>
+
+<blockquote>
+  <p>즉 알고리즘을 빈틈없이 교체하여 같은 문제를 다른 방법으로 쉽게 해결할 수 있게 도와주는 패턴이다!</p>
+</blockquote>
+
+<h2 id="등장인물">등장인물</h2>
+
+<p><img src="https://user-images.githubusercontent.com/66371206/192945590-e33c0b30-da51-4759-a4b6-68b499b65783.png" alt="StrategyPatternTemplate drawio"></p>
+
+<h3 id="strategy">Strategy</h3>
+
+<p>Strategy는 전략을 이용하기 위한 API를 결정한다.
+-&gt; Strategy Interface로 이용</p>
+
+<h3 id="concrete-strategy">Concrete Strategy</h3>
+
+<p>구체적인 API를 구현한다.
+-&gt; Winning Strategy, ProbStrategy로 구현</p>
+
+<h3 id="context">Context</h3>
+
+<p>Strategy를 이용한다.
+-&gt; Player로 구현</p>
+
+<h2 id="예제-프로그램">예제 프로그램</h2>
+
+<p><img src="https://user-images.githubusercontent.com/66371206/192945589-86dea94f-74a8-42db-9295-06512f4500bd.png" alt="StrategyPatternExample drawio"></p>
+
+<h3 id="예제-설명">예제 설명</h3>
+
+<p>Strategy Pattern을 활용한 <code class="language-plaintext highlighter-rouge">가위바위보</code> 프로그램을 제작해보자!</p>
+
+<p>현재 프로그램에서는 두가지 전략이 존재한다.</p>
+
+<ol>
+  <li>이기면 다음에 같은 손을 내밀고, 졌다면 랜덤한 손을 내는 간단한 전략</li>
+  <li>직전에 냈던 손과 다음에 낼 손을 확률적으로 계산하여 높은 확률의 손을 내는 전략</li>
+</ol>
+
+<p>직접 구현을 하며, Strategy Pattern 이 어떤식으로 구현되어 있는지 알아보자</p>
+
+<h3 id="hand-class">Hand Class</h3>
+
+<p>Hand는 Player의 손을 표시하는 클래스로 존재한다. 내부적으로 [주먹, 가위, 보] 를 [0, 1, 2] 로 저장하고 있으며, Player는 필요할 때 언제든 같은 객체를 반복하여 사용할 수 있다.</p>
+
+<blockquote>
+  <p>싱글톤을 잘 활용한 예시</p>
+</blockquote>
+
+<p>주요 함수로는, 가위바위보를 진행 후에 <code class="language-plaintext highlighter-rouge">isStrongerThan</code>으로 승패를 판단할 수 있다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Hand</span><span class="o">{</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">ROCK</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">SCIS</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">PAPE</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">Hand</span><span class="o">[]</span> <span class="n">hand</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="k">new</span> <span class="nf">Hand</span><span class="o">(</span><span class="no">ROCK</span><span class="o">);</span>
+    <span class="k">new</span> <span class="nf">Hand</span><span class="o">(</span><span class="no">SICS</span><span class="o">);</span>
+    <span class="k">new</span> <span class="nf">Hand</span><span class="o">(</span><span class="no">PAPE</span><span class="o">);</span>
+  <span class="o">};</span>
+
+  <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span><span class="o">[]</span> <span class="n">name</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="err">'</span><span class="nc">Rock</span><span class="err">'</span><span class="o">,</span> <span class="err">'</span><span class="nc">Scissors</span><span class="err">'</span><span class="o">,</span> <span class="err">'</span><span class="nc">Paper</span><span class="err">'</span>
+  <span class="o">};</span>
+
+  <span class="kd">private</span> <span class="kt">int</span> <span class="n">handValue</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="nf">Hand</span><span class="o">(</span><span class="kt">int</span> <span class="n">handValue</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// constructor</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">handValue</span> <span class="o">=</span> <span class="n">handValue</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="nc">Hand</span> <span class="nf">getHand</span><span class="o">(</span><span class="kt">int</span> <span class="nc">HandValue</span><span class="o">)</span> <span class="o">{</span> <span class="c1">//get instance from value</span>
+    <span class="k">return</span> <span class="n">hand</span><span class="o">[</span><span class="n">handValue</span><span class="o">];</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isStrongerThan</span><span class="o">(</span><span class="nc">Hand</span> <span class="n">h</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// return true when win</span>
+    <span class="k">return</span> <span class="nf">fight</span><span class="o">(</span><span class="n">h</span><span class="o">)</span> <span class="o">==</span> <span class="mi">1</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isWeakerThan</span><span class="o">(</span><span class="nc">Hand</span> <span class="n">h</span><span class="o">)</span> <span class="o">{</span> <span class="c1">//return true when lose</span>
+    <span class="k">return</span> <span class="nf">fight</span><span class="o">(</span><span class="n">h</span><span class="o">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">private</span> <span class="kt">int</span> <span class="nf">fight</span><span class="o">(</span><span class="nc">Hand</span> <span class="n">h</span><span class="o">)</span> <span class="o">{</span> <span class="c1">//private fight method</span>
+    <span class="k">if</span> <span class="o">(</span><span class="k">this</span> <span class="o">==</span> <span class="n">h</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// draw</span>
+      <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">((</span><span class="k">this</span><span class="o">.</span><span class="na">handValue</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="n">h</span><span class="o">.</span><span class="na">handValue</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// win</span>
+      <span class="k">return</span> <span class="mi">1</span><span class="o">;</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span> <span class="c1">// lose</span>
+      <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">name</span><span class="o">[</span><span class="n">handValue</span><span class="o">];</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<h3 id="strategy-interface">Strategy Interface</h3>
+
+<p>전략을 위한 추상 메소드의 집합이다.
+nextHand는 다음에 내는 손을 얻기 위한 메소드이며, 이 메소드가 호출되면, 다음에 낼 손을 리턴하게 된다.
+Study는 직전에 내가 낸 손으로 이겼는지 졌는지, 그리고 그에 해당하는 학습을 위한 메소드로 사용된다. 이겼다면 <code class="language-plaintext highlighter-rouge">study(true)</code>, 졌다면 <code class="language-plaintext highlighter-rouge">study(false)</code>로 호출된다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Strategy</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="kd">abstract</span> <span class="nc">Hand</span> <span class="nf">nextHand</span><span class="o">();</span>
+	<span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">study</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">win</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="winningstrategy-class">WinningStrategy Class</h3>
+
+<p>단순한 Strategy 를 나타낸다.</p>
+
+<p>간단하게, 직전 승부에서 이겼다면, 이긴 손을 계속내고, 만약 졌다면 새로운 랜덤한 손을 생성해서 제공한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">WinningStrategy</span> <span class="kd">implements</span> <span class="nc">Strategy</span> <span class="o">{</span>
+	<span class="kd">private</span> <span class="nc">Random</span> <span class="n">random</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="kt">boolean</span> <span class="n">won</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="nc">Hand</span> <span class="n">prevHand</span><span class="o">;</span>
+
+	<span class="kd">public</span> <span class="nf">WinningStrategy</span><span class="o">(</span><span class="kt">int</span> <span class="n">seed</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// init Random from seed</span>
+		<span class="n">random</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Random</span><span class="o">(</span><span class="n">seed</span><span class="o">);</span>
+	<span class="o">}</span>
+
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="nc">Hand</span> <span class="nf">nextHand</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">if</span><span class="o">(!</span><span class="n">won</span><span class="o">){</span> <span class="c1">// lose -&gt; next hand will be random</span>
+			<span class="n">prevHand</span> <span class="o">=</span> <span class="nc">Hand</span><span class="o">.</span><span class="na">getHand</span><span class="o">(</span><span class="n">random</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="mi">3</span><span class="o">));</span>
+		<span class="o">}</span>
+		<span class="k">return</span> <span class="n">prevHand</span><span class="o">;</span> <span class="c1">// win -&gt; next hand is same</span>
+	<span class="o">}</span>
+
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">study</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">win</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// check if last game is won</span>
+		<span class="n">won</span> <span class="o">=</span> <span class="n">win</span><span class="o">;</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="probstrategy-class">ProbStrategy Class</h3>
+
+<p>가위바위보의 복잡한 전략
+간단하게 설명을 하자면
+<code class="language-plaintext highlighter-rouge">history[이전에 낸 손][이번에 낼 손]</code> 에 해당하는 데이터들을 계속 쌓아, 이번에 낼 손 중에 가장 이겼던 확률이 높았던 것을 내게 결정한다.</p>
+
+<p>예를들어 내가 이때까지 가위를 내고 다음에 주먹을 내서 이겼던 상황이 10번 있었다면 <code class="language-plaintext highlighter-rouge">history[1][2] = 10</code>이 된다.</p>
+
+<p>즉 내가 저번에 가위를 냈고 다음에 주먹, 가위, 보를 냈을때의 승률 즉 <code class="language-plaintext highlighter-rouge">history[1][0]</code> <code class="language-plaintext highlighter-rouge">history[1][1]</code> <code class="language-plaintext highlighter-rouge">history[1][2]</code>의 비율이 <code class="language-plaintext highlighter-rouge">1:3:5</code> 라면 주먹을 낼 확률이 1/9, 가위를 낼 확률이 3/9, 보를 낼 확률이 5/9. 이런식으로 정의를 하였다</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProbStrategy</span> <span class="kd">implements</span> <span class="nc">Strategy</span> <span class="o">{</span>
+	<span class="kd">private</span> <span class="nc">Random</span> <span class="n">random</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="kt">int</span> <span class="n">prevHandValue</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="kt">int</span> <span class="n">currentHandValue</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="kt">int</span><span class="o">[][]</span> <span class="n">history</span> <span class="o">=</span> <span class="o">{</span>
+			<span class="o">{</span><span class="mi">1</span><span class="o">,</span><span class="mi">1</span><span class="o">,</span><span class="mi">1</span><span class="o">,},</span>
+			<span class="o">{</span><span class="mi">1</span><span class="o">,</span><span class="mi">1</span><span class="o">,</span><span class="mi">1</span><span class="o">,},</span>
+			<span class="o">{</span><span class="mi">1</span><span class="o">,</span><span class="mi">1</span><span class="o">,</span><span class="mi">1</span><span class="o">,},</span>
+	<span class="o">};</span>
+
+	<span class="kd">public</span> <span class="nf">ProbStrategy</span><span class="o">(</span><span class="kt">int</span> <span class="n">seed</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// init Random from seed</span>
+		<span class="n">random</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Random</span><span class="o">(</span><span class="n">seed</span><span class="o">);</span>
+	<span class="o">}</span>
+
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="nc">Hand</span> <span class="nf">nextHand</span><span class="o">()</span> <span class="o">{</span> <span class="c1">// next hand algorithm logic</span>
+		<span class="kt">int</span> <span class="n">bet</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="n">getSum</span><span class="o">(</span><span class="n">currentHandValue</span><span class="o">));</span>
+		<span class="kt">int</span> <span class="n">handValue</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+		<span class="k">if</span><span class="o">(</span><span class="n">bet</span> <span class="o">&lt;</span> <span class="n">history</span><span class="o">[</span><span class="n">currentHandValue</span><span class="o">][</span><span class="mi">0</span><span class="o">]){</span>
+			<span class="n">handValue</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+		<span class="o">}</span><span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">bet</span> <span class="o">&lt;</span> <span class="n">history</span><span class="o">[</span><span class="n">currentHandValue</span><span class="o">][</span><span class="mi">0</span><span class="o">]+</span><span class="n">history</span><span class="o">[</span><span class="n">currentHandValue</span><span class="o">][</span><span class="mi">1</span><span class="o">]){</span>
+			<span class="n">handValue</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+		<span class="o">}</span><span class="k">else</span><span class="o">{</span>
+			<span class="n">handValue</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
+		<span class="o">}</span>
+		<span class="n">prevHandValue</span> <span class="o">=</span> <span class="n">currentHandValue</span><span class="o">;</span>
+		<span class="n">currentHandValue</span> <span class="o">=</span> <span class="n">handValue</span><span class="o">;</span>
+		<span class="k">return</span> <span class="nc">Hand</span><span class="o">.</span><span class="na">getHand</span><span class="o">(</span><span class="n">handValue</span><span class="o">);</span>
+	<span class="o">}</span>
+
+	<span class="kd">private</span> <span class="kt">int</span> <span class="nf">getSum</span><span class="o">(</span><span class="kt">int</span> <span class="n">hv</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// help next hand algorithm logic</span>
+		<span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">3</span><span class="o">;</span><span class="n">i</span><span class="o">++){</span>
+			<span class="n">sum</span> <span class="o">+=</span> <span class="n">history</span><span class="o">[</span><span class="n">hv</span><span class="o">][</span><span class="n">i</span><span class="o">];</span>
+		<span class="o">}</span>
+		<span class="k">return</span> <span class="n">sum</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">study</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">win</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// stack data for algorithm</span>
+		<span class="k">if</span><span class="o">(</span><span class="n">win</span><span class="o">){</span>
+			<span class="n">history</span><span class="o">[</span><span class="n">prevHandValue</span><span class="o">][</span><span class="n">currentHandValue</span><span class="o">]++;</span>
+		<span class="o">}</span><span class="k">else</span><span class="o">{</span>
+			<span class="n">history</span><span class="o">[</span><span class="n">prevHandValue</span><span class="o">][(</span><span class="n">currentHandValue</span><span class="o">+</span><span class="mi">1</span><span class="o">)%</span><span class="mi">3</span><span class="o">]++;</span>
+			<span class="n">history</span><span class="o">[</span><span class="n">prevHandValue</span><span class="o">][(</span><span class="n">currentHandValue</span><span class="o">+</span><span class="mi">2</span><span class="o">)%</span><span class="mi">3</span><span class="o">]++;</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<h3 id="player-class">Player Class</h3>
+
+<p>실제 가위바위보를 하는 사람을 표현할 클래스이다.
+Player는 <code class="language-plaintext highlighter-rouge">이름</code> 과 <code class="language-plaintext highlighter-rouge">전략</code>이 할당되어 인스턴스를 만들게 된다.
+<code class="language-plaintext highlighter-rouge">nextHand</code>를 호출하면, 전략에 알맞는 다음 손을 유추하여 리턴 받고 다음 손으로 지정하게 된다. 즉 다음에 자신이 해야 할 행동을 Strategy에 맡기고 <code class="language-plaintext highlighter-rouge">위임</code>을 하고 있다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Player</span> <span class="o">{</span>
+	<span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="nc">Strategy</span> <span class="n">strategy</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="kt">int</span> <span class="n">wincount</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="kt">int</span> <span class="n">losecount</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="kt">int</span> <span class="n">gamecount</span><span class="o">;</span>
+
+	<span class="kd">public</span> <span class="nf">Player</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">,</span><span class="nc">Strategy</span> <span class="n">strategy</span><span class="o">){</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">strategy</span> <span class="o">=</span> <span class="n">strategy</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="nc">Hand</span> <span class="nf">nextHand</span><span class="o">()</span> <span class="o">{</span> <span class="c1">// get command from strategy</span>
+		<span class="k">return</span> <span class="n">strategy</span><span class="o">.</span><span class="na">nextHand</span><span class="o">();</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">win</span><span class="o">(){</span>
+		<span class="n">strategy</span><span class="o">.</span><span class="na">study</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+		<span class="n">wincount</span><span class="o">++;</span>
+		<span class="n">gamecount</span><span class="o">++;</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">lose</span><span class="o">(){</span>
+		<span class="n">strategy</span><span class="o">.</span><span class="na">study</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+		<span class="n">losecount</span><span class="o">++;</span>
+		<span class="n">gamecount</span><span class="o">++;</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">even</span><span class="o">(){</span>
+		<span class="n">gamecount</span><span class="o">++;</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">(){</span>
+		<span class="k">return</span> <span class="s">"["</span><span class="o">+</span><span class="n">name</span><span class="o">+</span><span class="s">":"</span><span class="o">+</span><span class="n">gamecount</span><span class="o">+</span><span class="s">"games,"</span><span class="o">+</span><span class="n">wincount</span><span class="o">+</span><span class="s">"win,"</span><span class="o">+</span><span class="n">losecount</span><span class="o">+</span><span class="s">"lose"</span><span class="o">+</span><span class="s">"]"</span><span class="o">;</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<h3 id="main-class">Main Class</h3>
+
+<p>실제로 Main 함수는 다음과 같이 흘러간다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">if</span><span class="o">(</span><span class="n">args</span><span class="o">.</span><span class="na">length</span><span class="o">!=</span><span class="mi">2</span><span class="o">){</span>
+			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Usage:java Main randomseed1 randomseed2"</span><span class="o">);</span>
+			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Example:java Main 314 15"</span><span class="o">);</span>
+			<span class="nc">System</span><span class="o">.</span><span class="na">exit</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+		<span class="o">}</span>
+
+		<span class="kt">int</span> <span class="n">seed1</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">]);</span> <span class="c1">// init with seed</span>
+		<span class="kt">int</span> <span class="n">seed2</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">args</span><span class="o">[</span><span class="mi">1</span><span class="o">]);</span>
+
+		<span class="nc">Player</span> <span class="n">player1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Player</span><span class="o">(</span><span class="s">"HanRyang"</span><span class="o">,</span><span class="k">new</span> <span class="nc">WinningStrategy</span><span class="o">(</span><span class="n">seed1</span><span class="o">));</span>
+		<span class="nc">Player</span> <span class="n">player2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Player</span><span class="o">(</span><span class="s">"Halang"</span><span class="o">,</span><span class="k">new</span> <span class="nc">WinningStrategy</span><span class="o">(</span><span class="n">seed2</span><span class="o">));</span>
+
+		<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">1000</span><span class="o">;</span><span class="n">i</span><span class="o">++){</span>
+			<span class="nc">Hand</span> <span class="n">nextHand1</span> <span class="o">=</span> <span class="n">player1</span><span class="o">.</span><span class="na">nextHand</span><span class="o">();</span>
+			<span class="nc">Hand</span> <span class="n">nextHand2</span> <span class="o">=</span> <span class="n">player2</span><span class="o">.</span><span class="na">nextHand</span><span class="o">();</span>
+
+			<span class="k">if</span><span class="o">(</span><span class="n">nextHand1</span><span class="o">.</span><span class="na">isStrongThan</span><span class="o">(</span><span class="n">nextHand2</span><span class="o">))</span> <span class="o">{</span>
+				<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Winner:"</span><span class="o">+</span><span class="n">player1</span><span class="o">);</span>
+				<span class="n">player1</span><span class="o">.</span><span class="na">win</span><span class="o">();</span>
+				<span class="n">player2</span><span class="o">.</span><span class="na">lose</span><span class="o">();</span>
+			<span class="o">}</span> <span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">nextHand1</span><span class="o">.</span><span class="na">isWeakerThan</span><span class="o">(</span><span class="n">nextHand2</span><span class="o">))</span> <span class="o">{</span>
+				<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Winner:"</span><span class="o">+</span><span class="n">player2</span><span class="o">);</span>
+				<span class="n">player2</span><span class="o">.</span><span class="na">win</span><span class="o">();</span>
+				<span class="n">player1</span><span class="o">.</span><span class="na">lose</span><span class="o">();</span>
+			<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+				<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Even..."</span><span class="o">);</span>
+				<span class="n">player1</span><span class="o">.</span><span class="na">even</span><span class="o">();</span>
+				<span class="n">player2</span><span class="o">.</span><span class="na">even</span><span class="o">();</span>
+			<span class="o">}</span>
+		<span class="o">}</span>
+
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Total result:"</span><span class="o">);</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">player1</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">player2</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="왜-사용할까">왜 사용할까?</h2>
+
+<p>일반적으로 메소드 내부에 동화된 형태로 알고리즘을 구현하지만 Strategy Pattern은 알고리즘을 다른 부분을 분리하여 API 즉 알고리즘의 인터페이스만 규정하고있다.</p>
+
+<p>만약 알고리즘을 개량하고 싶은 상황이 온다면, Strategy Pattern의 인터페이스는 유지한 채로, Concrete Strategy만 변경하면 된다. 혹은 새로운 알고리즘을 사용하고 싶다면, 새로운 Concrete Strategy를 만든 후 바꾸기만 하면 된다. 즉 위임이라는 <code class="language-plaintext highlighter-rouge">느슨한 연결</code>을 제공함으로써 알고리즘을 용이하게 교환할 수 있게 된다.</p>
+
+<p>혹은 원래 알고리즘과 속도 비교등도 간단하게 교체를 통하여 진행 할 수 있다.</p>
+
+<h2 id="tip">TIP</h2>
+
+<p>Strategy 패턴을 활용하여, 동작 중에도 Concrete Strategy 역할의 클래스를 교체 할 수도 있다.</p>
+
+<blockquote>
+  <p>Ex. 메모리가 적은 환경에서는 속도가 느리지만 메모리를 절약하는 전략, 메모리가 많을 때에서는 속도가 빠르지만 메모리를 많이 사용하는 전략을 선택 할 수 있다.</p>
+</blockquote>
+
+
+    </div>
+
+</article>
+<div class="post-nav">
+<a class="previous" href="/react/2022/09/19/start-cypress.html" title="Cypress로 e2e 테스트 하기">Cypress로 e2e 테스트 하기</a><span></span>
+</div>
+<div class="post-related">
+      <div>Related Articles</div>
+      <ul>
+        <li><a class="post-link" href="/deep-thought/2022/01/26/deep-thoughts-1.html" title="">The mind behind linux</a></li>
+<li><a class="post-link" href="/gof/2022/09/28/strategy-pattern-copy.html" title="">전략 패턴</a></li>
+<li><a class="post-link" href="/til/2022/08/10/aws-cloudFront.html" title="">S3 &amp; CloudFront를 활용한 CDN 서버 만들기</a></li>
+<li><a class="post-link" href="/next.js/2022/05/08/next-others-2.html" title="">NEXT-Others-2</a></li>
+</ul>
+    </div>
+<div class="post-comments">
+      <script src="https://utteranc.es/client.js" repo="071yoon/071yoon.github.io" issue-term="pathname" theme="github-light" crossorigin="anonymous" async>
+      </script>
+</div></section>
+</div>
+
+
+  </section>
+  <section class="sidebar" style="margin-left: 15px;">
+    <!-- Get sidebar items --><style type="text/css" media="screen">
+.post-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+</style>
+
+<div class="post-menu">
+  <div class="post-menu-title">TOC</div>
+  <div class="post-menu-content"></div>
+</div>
+
+<script>
+  function generateContent() {
+    var menu = document.querySelector(".post-menu");
+    var menuContent =  menu.querySelector(".post-menu-content");
+    var headings = document.querySelector(".post-content").querySelectorAll("h2, h3, h4, h5, h6");
+
+    // Hide menu when no headings
+    if (headings.length === 0) {
+      return menu.style.display = "none";
+    }
+
+    // Generate post menu
+    var menuHTML = '';
+    for (var i = 0; i < headings.length; i++) {
+      var h = headings[i];
+      menuHTML += (
+        '<li class="h-' + h.tagName.toLowerCase() + '">'
+        + '<a href="#h-' + h.getAttribute('id') + '">' + h.textContent + '</a></li>');
+    }
+
+    menuContent.innerHTML = '<ul>' + menuHTML + '</ul>';
+
+    // The header element
+    var header = document.querySelector('header.site-header');
+
+    function doMenuCollapse(index, over_items) {
+      var items = menuContent.firstChild.children;
+
+      if (over_items == undefined) {
+        over_items = 20;
+      }
+
+      if (items.length < over_items) {
+        return;
+      }
+
+      var activeItem = items[index];
+      var beginItem = activeItem
+      var endItem = activeItem
+      var beginIndex = index;
+      var endIndex = index + 1;
+      while (beginIndex >= 0
+        && !items[beginIndex].classList.contains('h-h2')) {
+        beginIndex -= 1;
+      }
+      while (endIndex < items.length
+        && !items[endIndex].classList.contains('h-h2')) {
+        endIndex += 1;
+      }
+      for (var i = 0; i < beginIndex; i++) {
+        item = items[i]
+        if (!item.classList.contains('h-h2')) {
+          item.style.display = 'none';
+        }
+      }
+      for (var i = beginIndex + 1; i < endIndex; i++) {
+        item = items[i]
+        // if (!item.classList.contains('h-h2')) {
+          item.style.display = '';
+        // }
+      }
+      for (var i = endIndex; i < items.length; i++) {
+        item = items[i]
+        if (!item.classList.contains('h-h2')) {
+          item.style.display = 'none';
+        }
+      }
+    }
+
+    // Init menu collapsed
+    doMenuCollapse(-1);
+
+    // Active the menu item
+    window.addEventListener('scroll', function (event) {
+      var lastActive = menuContent.querySelector('.active');
+      var changed = true;
+      var activeIndex = -1;
+      for (var i = headings.length - 1; i >= 0; i--) {
+        var h = headings[i];
+        var headingRect = h.getBoundingClientRect();
+        var headerRect = header.getBoundingClientRect();
+        var headerTop = Math.floor(headerRect.top);
+        var headerHeight = Math.floor(headerRect.height);
+        var headerHeight = headerTop + headerHeight + 20;
+        if (headingRect.top <= headerHeight) {
+          var id = 'h-' + h.getAttribute('id');
+          var a = menuContent.querySelector('a[href="#' + id  + '"]');
+          var curActive = a.parentNode;
+          if (curActive) {
+            curActive.classList.add('active');
+            activeIndex = i;
+          }
+          if (lastActive == curActive) {
+            changed = false;
+          }
+          break;
+        }
+      }
+      if (changed) {
+        if (lastActive) {
+          lastActive.classList.remove('active');
+        }
+        doMenuCollapse(activeIndex);
+      }
+      event.preventDefault();
+    });
+  }
+  generateContent();
+</script>
+</section>
+</div>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+    <div class="site-footer-inner">
+<div>Unpublished Work <span class="copyleft">©</span> 2021-2022 071yoon</div>
+      <div>Powered by <a title="Jekyll is a simple, blog-aware, static site
+      generator." href="http://jekyllrb.com/">Jekyll</a> &amp; <a title="Yat, yet
+      another theme." href="https://github.com/jeffreytse/jekyll-theme-yat">Yat Theme</a>.</div>
+      <div class="footer-col rss-subscribe">Subscribe <a href="/feed.xml">via RSS</a>
+</div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
