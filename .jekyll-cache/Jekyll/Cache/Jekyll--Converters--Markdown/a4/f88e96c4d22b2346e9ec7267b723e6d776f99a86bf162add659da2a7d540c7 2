@@ -1,0 +1,82 @@
+I"�<h2 id="자바스크립트를-browser로-로딩하기">자바스크립트를 Browser로 로딩하기</h2>
+
+<hr />
+
+<h3 id="document-object"><code class="language-plaintext highlighter-rouge">document</code> Object</h3>
+
+<p><code class="language-plaintext highlighter-rouge">console</code>에 <code class="language-plaintext highlighter-rouge">document</code>를 쓰면, 이미 정의되어 있는 함수인걸 알 수 있다.
+그럼 html 에서 <code class="language-plaintext highlighter-rouge">block</code>으로 지정한 부분을 자바스크립트에서 바로 가져올 수 있다.</p>
+
+<blockquote>
+  <p>ex) <code class="language-plaintext highlighter-rouge">document.title</code> -&gt; 내가 지정한 HTML 의 title</p>
+</blockquote>
+
+<p>즉 이렇게 하면 HTML 의 코드를 자바스크립트의 관점에서 볼 수 있게된다</p>
+
+<p>그럼 다른 block 에서 <code class="language-plaintext highlighter-rouge">id</code>로 가져오려면 어떻게 해야될까??</p>
+
+<p>HTML 에서 <code class="language-plaintext highlighter-rouge">&lt;h1 id="name"&gt;Name&lt;/h1&gt;</code> 이런식의 블럭이 있다면 간단하게 <code class="language-plaintext highlighter-rouge">document.getElementById("name")</code> 이런식으로 호출 할 수 있다.</p>
+
+<blockquote>
+  <p>주의할점! <code class="language-plaintext highlighter-rouge">getElementById</code> 는 특정항목 하나만 가져오기 때문에 변수 하나에 저장되지만, <code class="language-plaintext highlighter-rouge">getElementByClass</code> 혹은 <code class="language-plaintext highlighter-rouge">getElementByTag</code> 는 여러 값들을 가져오기 때문에 배열로 할당되어 저장된다</p>
+</blockquote>
+
+<p>하지만 가장 많이 사용하는 것은 <code class="language-plaintext highlighter-rouge">querySelector</code>라고 한다. 하나만 가져오고 가져오는것 중 하나를 CSS형태로 선택 할 수 있어서 가장 깔끔하고 보기 편하다고 한다. 그리고 만약 겹친다면 첫번 째 나오는 element 만 가져온다!!</p>
+
+<ul>
+  <li>
+    <p>배열로 가져오려면 <code class="language-plaintext highlighter-rouge">quertySelectorAll</code>을 사용하면된다.</p>
+
+    <p><code class="language-plaintext highlighter-rouge">document.querySelector('.class_name block')</code></p>
+
+    <p><code class="language-plaintext highlighter-rouge">docuemnt.querySelector('.class_name block:first-child)</code> 도 가능하다</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">document.querySelector("#id")</code> 는 <code class="language-plaintext highlighter-rouge">document.getElementById("hello")</code> 와 동일하다</p>
+</blockquote>
+
+<p>그럼 이렇게 호출된 <code class="language-plaintext highlighter-rouge">name</code> 은 <code class="language-plaintext highlighter-rouge">name.innerText()</code> 함수를 통해 안에 있는 내용을 변경 할 수 있게 해준다.</p>
+
+<h3 id="events">Events</h3>
+
+<p><code class="language-plaintext highlighter-rouge">variable.addEventListener("event", function);</code> 으로 선언을 해주면, 어떠한 event 를 할 때마다 function을 실행 해 줄것이다. event의 예로는 click, hover 기타등등이 있다. <code class="language-plaintext highlighter-rouge">console.dir</code> 으로 어떠한 함수들이 있는지 확인 할 수 있다.</p>
+
+<blockquote>
+  <p>function을 호출할 떄 함수의 이름만 호출함에 주의! function()이렇게 아예 실행하도록 주지않고, 이름만 넘겨줘서 Event가 발생 시 function 을 실행하도록 한다</p>
+</blockquote>
+
+<p><code class="language-plaintext highlighter-rouge">HTMLHeadingElement</code> 에 들어가서 어떠한 API 들을 사용 할 수 있는지 확인을 해봐도 된다.</p>
+
+<p>혹은 <code class="language-plaintext highlighter-rouge">variable.on'event' = function</code> 이런식으로 선언을 해도 같은식으로 동작하게 만들 수 있다</p>
+
+<p>여기서 <code class="language-plaintext highlighter-rouge">Event</code>의 특징으로 또 강력한 것은 <code class="language-plaintext highlighter-rouge">Window</code> 객체에서 불러 올 수 있다는 것이다. <code class="language-plaintext highlighter-rouge">Window</code>는 현재 실행을 하는 그 화면을 말하는 것이고, 그 화면에서 정말 많은것을 구현 할 수 있다. 예를들어 <code class="language-plaintext highlighter-rouge">resize</code> 로 윈도우 크기를 조절하고 있을때의 이벤트, 혹은 <code class="language-plaintext highlighter-rouge">copy</code>, <code class="language-plaintext highlighter-rouge">offline</code> 등등 정말 많은 이벤트들이 구현되어 있고, 우리는 사용만 하면 된다!!</p>
+
+<p>내가 만약 <code class="language-plaintext highlighter-rouge">class</code> 를 받아와서 사용중에 있는데, 현재 내가 사용하고 있는 클래스는 폰트지정 클래스이고, 색변환 클래스를 추가하고 싶으면 어떻게 사용해야 될까??</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">handleCheck</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">clickedClass</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">clicked</span><span class="dl">"</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">h1</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="nx">clickedClass</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nx">h1</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">clickedClass</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">h1</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">clickedClass</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>이런식으로 사용할 수 있다. 그럼 원래 있던 클래스 <code class="language-plaintext highlighter-rouge">class = "test"</code> 라 두면 추가되면 <code class="language-plaintext highlighter-rouge">class = "test clicked"</code> 이렇게 되고 remove시 <code class="language-plaintext highlighter-rouge">class = "test"</code> 이렇게 돌아갈 것이다. 이런식으로 클래스의 중첩이 가능하다!!</p>
+
+<p>이걸 편하게 해주는것이 <code class="language-plaintext highlighter-rouge">toggle function</code> 은 어떤 역할이다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">handleCheck</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">h1</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">toggle</span><span class="p">(</span><span class="dl">"</span><span class="s2">clicked</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>이런식으로 한번에 해결 할 수 있다.</p>
+
+<p>즉 toggle 은 이미 있는지 확인을 해서, 있다면 삭제하고 없다면 생성해주는 불을 키고 끄는것과 비슷한 행동을 해주는 함수라 할 수 있다.</p>
+
+<p>다음 포스트부터는 실제로 코드를 작성해서 VanillaJS 앱을 만들어보겠다</p>
+:ET

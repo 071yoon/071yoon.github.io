@@ -1,0 +1,220 @@
+I"GB<h2 id="static-file-serving">Static File Serving</h2>
+
+<p><code class="language-plaintext highlighter-rouge">Next.js</code>는 파일을 <code class="language-plaintext highlighter-rouge">public</code>에서 이미지처럼 정적으로 활용 할 수 있다. <code class="language-plaintext highlighter-rouge">public</code>은 root 안에 있어야 하며, <code class="language-plaintext highlighter-rouge">public</code> 안에서는 <code class="language-plaintext highlighter-rouge">/</code>로 시작하는 base URL을 따라가야된다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">public/me.png</code>를 삽입하는 과정은 다음과 같다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">Image</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">next/image</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">Avatar</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="o">&lt;</span><span class="nx">Image</span> <span class="nx">src</span><span class="o">=</span><span class="dl">"</span><span class="s2">/me.png</span><span class="dl">"</span> <span class="nx">alt</span><span class="o">=</span><span class="dl">"</span><span class="s2">me</span><span class="dl">"</span> <span class="nx">width</span><span class="o">=</span><span class="dl">"</span><span class="s2">64</span><span class="dl">"</span> <span class="nx">height</span><span class="o">=</span><span class="dl">"</span><span class="s2">64</span><span class="dl">"</span> <span class="o">/&gt;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">Avatar</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">next/img</code>의 대한 내용은 <a href="2022-05-04-next-optimization.md">NextOptimization</a> 를 참고.</p>
+
+<p>이러한 폴더는 <code class="language-plaintext highlighter-rouge">robots.txt</code> 혹은 <code class="language-plaintext highlighter-rouge">favicon.ico</code> 에서도 사용이 될 수 있으며, Google Site Verification 등에도 활용될 수 있다.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>주의사항! <code class="language-plaintext highlighter-rouge">public</code>이란 명명은 다른곳에서 사용하면 안된다. 해당 폴더는 정적인 asset만 포함되어야 된다!</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>주의사항2! 마찬가지로 정적 파일을 <code class="language-plaintext highlighter-rouge">pages/</code>라는 폴더 안에 넣게되면 에러가 난다!</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>주의사항3! <code class="language-plaintext highlighter-rouge">public</code> 폴더 안에 들어간 assets 들 만이 빌드 타임에서 Next.js로 넘겨진다. 런타임중에서는 추가가 되어도 활용되지 않으므로, <code class="language-plaintext highlighter-rouge">AWS S3</code>과 같은 third party를 사용하는 것이 좋다.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="fast-refresh">Fast Refresh</h2>
+
+<p>Fast Refresh는 React component에 편집을 한 즉시 피드백을 주는 기능이다. 이러한 기능은 Next.jsdml 9.4 이상에서 자동으로 작동하며, 켜져있다면 component 의 상태정보를 잃지 않고 바로 확인을 할 수 있다.</p>
+
+<h3 id="how-it-works">How It Works</h3>
+
+<ul>
+  <li>
+    <p>만약 <code class="language-plaintext highlighter-rouge">React component</code>만 export하는 환경이라면, Fast Refresh는 오직 그 한 파일만 업데이트를 하며, 컴포넌트를 다시 렌더링 해준다. 해당 파일 안에서는 style, logic, handler, effects 등 아무거나 편집을 해도 된다!</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">React component</code>가 아닌 파일을 편집한다면, Fast Refresh는 두 파일 모두와 import 된 다른 파일들을 재실행 할 것이다. 예를들어, <code class="language-plaintext highlighter-rouge">Button.tsx</code>와 <code class="language-plaintext highlighter-rouge">Modal.tsx</code>가 <code class="language-plaintext highlighter-rouge">theme.tsx</code>를 import 한다면, <code class="language-plaintext highlighter-rouge">theme.tsx</code>를 편집하게 되면, 두 컴포넌트 다 업데이트가 된다.</p>
+  </li>
+  <li>
+    <p>만약 React 구조에서 벗어난 import 파일을 편집하게 된다면, Fast Refresh는 full reload를 어쩔 수 없이 하게된다. 예를들어, 만약 상수 component를 export 하지만, non-React utility file이 import 되어 있다면 파일의 위치를 바꾸어야된다.</p>
+  </li>
+</ul>
+
+<h3 id="error-resillience">Error Resillience</h3>
+
+<h4 id="syntax-errors">Syntax Errors</h4>
+
+<p>만약 개발중에 syntax error가 나온다면, 수정 후 파일을 저장하면 바로 적용이 된다. 오류는 자동으로 없어지고, 앱을 재로딩할 필요도 없다.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>컴포넌트의 상태정보 또한 잃지 않는다.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="runtime-errors">Runtime Errors</h4>
+
+<p>만약 런타임 에러가 나는 코드를 짜버렸다면, contextual overlay가 나온다. 에러를 고치면 바로 overlay가 없어지면서 앱이 재로딩이 된다.</p>
+
+<p>컴포넌트의 상태정보는 렌더링을 하지 않았을 시 저장된다. 만약 렌더링 중에 에러가 나왔다면, 리액트는 업데이트된 코드로 재구동 한다.</p>
+
+<p>만약 앱에 <code class="language-plaintext highlighter-rouge">error boundaries</code>가 설정 되어있다면, 렌더링 에러 이후 렌더링하려고 바로 재시도를 한다. 즉 <code class="language-plaintext highlighter-rouge">error boundary</code>가 설정되어 있다면, 루트의 앱 상탲정보를 항상 재설정 해주는 수고를 겪지 않아도 된다. 하지만, <code class="language-plaintext highlighter-rouge">error boundary</code>가 너무 세분화되면 안된다. 보통 React production에 많이 사용되고, 의도적으로 사용되어야 한다.</p>
+
+<h3 id="limitations">Limitations</h3>
+
+<p>Fast Refresh는 컴포넌트를 수정시에도 local React state를 유지하려고 노력한다.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>안전하다고 판단될떄만 사용해야됨!</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>local state가 자주 재설정 되는 이유는 다음과 같다.</p>
+
+<ul>
+  <li>
+    <p>Local State는 클래스 컴포넌트에서 예약되어지지 않는다.</p>
+  </li>
+  <li>
+    <p>편집하려는 파일이 다른 export된 리액트 컴포넌트를 사용하고 있을 수 도 있다.</p>
+  </li>
+  <li>
+    <p>파일이 <code class="language-plaintext highlighter-rouge">HOC</code>같은 상위의 컴포넌트를 export 할 수 있다. 만약 리턴된 형태가 class라면 상태는 리셋된다.</p>
+  </li>
+  <li>
+    <p>익명 화살표함수는 Fast Refresh를 local component state에 저장하지 않는다. 더 큰 코드인 경우에는 <code class="language-plaintext highlighter-rouge">name-default-component</code>를 사용 할 수 있다.</p>
+  </li>
+</ul>
+
+<h3 id="tips">Tips</h3>
+
+<p>Fast Refresh는 React local state를 함수 컴포넌트로 예약한다</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>만약 강제로 상태를 초기화하고 싶을 수가 있다. <code class="language-plaintext highlighter-rouge">// @refresh reset</code>과 같이 초기화 할 수 있다.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="fast-refresh-and-hooks">Fast Refresh and Hooks</h3>
+
+<p>가능하다면 Fast Refresh는 수정중에 컴포넌트에 상태 정보를 저장한다. 특히 <code class="language-plaintext highlighter-rouge">useState</code> 와 <code class="language-plaintext highlighter-rouge">useRef</code> 같은 경우에, 인자나 Hook call을 하지 않는 이상 이전값을 저장하고 있다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">useEffect</code>, <code class="language-plaintext highlighter-rouge">useMemo</code>, <code class="language-plaintext highlighter-rouge">useCallback</code> 같은 의존성이 있는 Hook 같은 경우에는, Fast Refresh중에 항상 update 된다. 이러한 의존성들은 Fast Refresh가 일어나고 있는중에 무시된다. 예를들어, <code class="language-plaintext highlighter-rouge">useMemo(() =&gt; x * 2, [x])</code> 가 <code class="language-plaintext highlighter-rouge">useMemo(() =&gt; x * 10, [x])</code> 로 변환다면, x가 변하지 않았음에도 불구하고 재실행 된다.</p>
+
+<p>위와 같은 방법은 예상치못한 결과를 낳을 수 있다. 예를들어 <code class="language-plaintext highlighter-rouge">uesEffect</code>가 빈 배열을 줄 수 도 있다. 하지만, 이런 탄력적인 코드를 사용하는것은 좋은 연습이 된다.</p>
+
+<h2 id="typescript">TypeScript</h2>
+
+<h3 id="typescript로-npx-설정하는법">TypeScript로 npx 설정하는법</h3>
+
+<p>새로 설정하는것이라면</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npx create-next-app@latest <span class="nt">--ts</span>
+<span class="c"># or</span>
+yarn create next-app <span class="nt">--typescript</span>
+<span class="c"># or</span>
+pnpm create next-app <span class="nt">--</span> <span class="nt">--ts</span>
+</code></pre></div></div>
+
+<p>이미 있는 프로젝트에 삽입한다면</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">touch </span>tsconfig.json
+</code></pre></div></div>
+
+<h3 id="static-generation--server-side-rendering">Static Generation &amp; Server-side Rendering</h3>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">GetStaticProps</span><span class="p">,</span> <span class="nx">GetStaticPaths</span><span class="p">,</span> <span class="nx">GetServerSideProps</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">next</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">getStaticProps</span><span class="p">:</span> <span class="nx">GetStaticProps</span> <span class="o">=</span> <span class="k">async</span> <span class="p">(</span><span class="nx">context</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// ...</span>
+<span class="p">};</span>
+
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">getStaticPaths</span><span class="p">:</span> <span class="nx">GetStaticPaths</span> <span class="o">=</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// ...</span>
+<span class="p">};</span>
+
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">getServerSideProps</span><span class="p">:</span> <span class="nx">GetServerSideProps</span> <span class="o">=</span> <span class="k">async</span> <span class="p">(</span><span class="nx">context</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// ...</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h3 id="api-routing">API Routing</h3>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="kd">type</span> <span class="p">{</span> <span class="nx">NextApiRequest</span><span class="p">,</span> <span class="nx">NextApiResponse</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">next</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="p">(</span><span class="nx">req</span><span class="p">:</span> <span class="nx">NextApiRequest</span><span class="p">,</span> <span class="nx">res</span><span class="p">:</span> <span class="nx">NextApiResponse</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">200</span><span class="p">).</span><span class="nx">json</span><span class="p">({</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">John Doe</span><span class="dl">"</span> <span class="p">});</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>혹은</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="kd">type</span> <span class="p">{</span> <span class="nx">NextApiRequest</span><span class="p">,</span> <span class="nx">NextApiResponse</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">next</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="kd">type</span> <span class="nx">Data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="p">(</span><span class="nx">req</span><span class="p">:</span> <span class="nx">NextApiRequest</span><span class="p">,</span> <span class="nx">res</span><span class="p">:</span> <span class="nx">NextApiResponse</span><span class="o">&lt;</span><span class="nx">Data</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">200</span><span class="p">).</span><span class="nx">json</span><span class="p">({</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">John Doe</span><span class="dl">"</span> <span class="p">});</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>와 같이 사용 할 수 있다.</p>
+
+<h3 id="custom-app">Custom <code class="language-plaintext highlighter-rouge">App</code></h3>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="kd">type</span> <span class="p">{</span> <span class="nx">AppProps</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">next/app</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">MyApp</span><span class="p">({</span> <span class="nx">Component</span><span class="p">,</span> <span class="nx">pageProps</span> <span class="p">}:</span> <span class="nx">AppProps</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="o">&lt;</span><span class="nx">Component</span> <span class="p">{...</span><span class="nx">pageProps</span><span class="p">}</span> <span class="sr">/&gt;</span><span class="err">;
+</span><span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="ignoring-typescript-errors">Ignoring TypeScript Errors</h3>
+
+<p>Next.js는 TypeScript 에러가 존재 할 시 build 에서 오류를 낸다.</p>
+
+<p>만약 이러한 오류에도 불구하고 사용을 하고 싶다면 다음과 같이 사용하면 된다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">next.config.js</code>에서 <code class="language-plaintext highlighter-rouge">ignoreBuildErrors</code>를 켜주면 된다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//next.config.js</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">typescript</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1">// !! WARN !!</span>
+    <span class="c1">// Dangerously allow production builds to successfully complete even if</span>
+    <span class="c1">// your project has type errors.</span>
+    <span class="c1">// !! WARN !!</span>
+    <span class="na">ignoreBuildErrors</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="p">},</span>
+<span class="p">};</span>
+</code></pre></div></div>
+:ET

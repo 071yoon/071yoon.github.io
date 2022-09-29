@@ -1,0 +1,182 @@
+I"�S<h2 id="브라우저에서-입출력-제어">브라우저에서 입출력 제어</h2>
+
+<p>현재 만들고 있는 프로제긑는 디스코드와 게더타운과 유사한, 실시간 통신이 들어간 웹 플랫폼이다. 이런 유사한 프로젝트에 필수적으로 들어가야 되는 요소는 오디오의 제어이다.</p>
+
+<blockquote>
+  <p>말을 하다가 마이크를 바꿔야 되는 상황이 된다면?</p>
+</blockquote>
+
+<blockquote>
+  <p>음질이 좋지 않다고 해서, 이어폰을 꼈을 때, 소리를 스피커에서 이어폰을 바꿔야 한다면?</p>
+</blockquote>
+
+<blockquote>
+  <p>이어폰 배터리가 나가서 중간에 스피커로 교체 해야된다면?</p>
+</blockquote>
+
+<p>등 등 정말 많은 상황들이 연출 될 수 있다. 물론 가장 간편한 방법은, 알아서 시스템의 Default장비를 교체 후 브라우저를 refresh 해버리면 된다.
+하지만 UX 관점에서, 오디오의 입출력을 브라우저에서 하는건 중요하다. 사실, 웹 플랫폼이 아닌 electron처럼 앱으로 만들었다면 쉬웠겠지만…</p>
+
+<p>그렇게 브라우저 오디오 입출력 제어에 대한 글을 찾아보던 중 정말 쉽게 정리된 글도 없고, 오래된 내용들 특히 이미 지원이 끝난 함수들이 많아 막 사용하기 정말 쉽지 않았다. 그래서 내가 한번 정리를 해보았다.</p>
+
+<h4 id="제공할-기능-목록">제공할 기능 목록</h4>
+
+<ol>
+  <li>카메라 입력 디바이스 제어가능</li>
+  <li>음성 입력 디바이스 제어가능</li>
+  <li>음성 출력 디바이스 제어가능</li>
+</ol>
+
+<p>드랍다운 까지 완성된 형태는 <a href="https://velog.io/@071yoon/%EC%BB%A4%EC%8A%A4%ED%85%80-%EB%93%9C%EB%9E%8D%EB%8B%A4%EC%9A%B4-%EC%95%A0%EB%8B%88%EB%A9%94%EC%9D%B4%EC%85%98%EC%9D%84-%EB%A7%8C%EB%93%A4%EC%96%B4%EB%B3%B4%EC%9E%90">참고</a>링크에 있다.</p>
+
+<h3 id="입출력-디바이스-찾기">입출력 디바이스 찾기</h3>
+
+<p>우선, 선택을 하기 위해서는 나의 입출력 디바이스를 찾는것 부터 해야된다.</p>
+
+<p>모든 선택 및 제어는 드랍다운에서 렌더링에도 사용되므로 전부 상태로 관리해주었다.</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Selectors.tsx</span>
+<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">Selectors</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">audioInput</span><span class="p">,</span> <span class="nx">setAudioInput</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="o">&lt;</span><span class="nx">MediaDeviceInfo</span><span class="p">[]</span> <span class="o">|</span> <span class="kc">null</span><span class="o">&gt;</span><span class="p">([]);</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">audioOutput</span><span class="p">,</span> <span class="nx">setAudioOutput</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="o">&lt;</span><span class="nx">MediaDeviceInfo</span><span class="p">[]</span> <span class="o">|</span> <span class="kc">null</span><span class="o">&gt;</span><span class="p">([]);</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">videoInput</span><span class="p">,</span> <span class="nx">setVideoInput</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="o">&lt;</span><span class="nx">MediaDeviceInfo</span><span class="p">[]</span> <span class="o">|</span> <span class="kc">null</span><span class="o">&gt;</span><span class="p">([]);</span>
+  <span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">getDevice</span><span class="p">(</span><span class="nx">setAudioInput</span><span class="p">,</span> <span class="nx">setAudioOutput</span><span class="p">,</span> <span class="nx">setVideoInput</span><span class="p">);</span>
+  <span class="p">},</span> <span class="p">[]);</span>
+
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">Container</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">SelectorContainer</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">Selector</span> <span class="nx">select</span><span class="o">=</span><span class="dl">"</span><span class="s2">camera</span><span class="dl">"</span> <span class="nx">device</span><span class="o">=</span><span class="p">{</span><span class="nx">videoInput</span><span class="p">}</span> <span class="sr">/</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="nx">Selector</span> <span class="nx">select</span><span class="o">=</span><span class="dl">"</span><span class="s2">mic</span><span class="dl">"</span> <span class="nx">device</span><span class="o">=</span><span class="p">{</span><span class="nx">audioInput</span><span class="p">}</span> <span class="sr">/</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="nx">Selector</span> <span class="nx">select</span><span class="o">=</span><span class="dl">"</span><span class="s2">speaker</span><span class="dl">"</span> <span class="nx">device</span><span class="o">=</span><span class="p">{</span><span class="nx">audioOutput</span><span class="p">}</span> <span class="sr">/</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="sr">/SelectorContainer</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/Container</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>그리고 getDevice함수에서 현재 사용하고 있는 모든 장비들을 불러올 수 있는 <code class="language-plaintext highlighter-rouge">navigator.mediaDevices.enumerateDevices()</code>함수를 사용하였다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">console</code>을 찍어보면 나온 device의 리스트는 다음과 같다.
+<img width="985" alt="image" src="https://user-images.githubusercontent.com/66371206/188820065-c76d2d54-9e2a-4031-867f-1c3853347934.png" /></p>
+
+<p>여기서 <code class="language-plaintext highlighter-rouge">kind</code>로 분류하여 비디오 입력, 오디오 입력, 오디오 출력을 구별하여 따로 저장하였다.</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// getDevice.ts</span>
+<span class="kd">const</span> <span class="nx">getDevice</span> <span class="o">=</span> <span class="k">async</span> <span class="p">(</span>
+  <span class="nx">setAudioInput</span><span class="p">:</span> <span class="nx">Dispatch</span><span class="o">&lt;</span><span class="nx">SetStateAction</span><span class="o">&lt;</span><span class="nx">MediaDeviceInfo</span><span class="p">[]</span><span class="o">&gt;&gt;</span><span class="p">,</span>
+  <span class="nx">setAudioOutput</span><span class="p">:</span> <span class="nx">Dispatch</span><span class="o">&lt;</span><span class="nx">SetStateAction</span><span class="o">&lt;</span><span class="nx">MediaDeviceInfo</span><span class="p">[]</span><span class="o">&gt;&gt;</span><span class="p">,</span>
+  <span class="nx">setVideoInput</span><span class="p">:</span> <span class="nx">Dispatch</span><span class="o">&lt;</span><span class="nx">SetStateAction</span><span class="o">&lt;</span><span class="nx">MediaDeviceInfo</span><span class="p">[]</span><span class="o">&gt;&gt;</span>
+<span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">devices</span> <span class="o">=</span> <span class="k">await</span> <span class="nb">navigator</span><span class="p">.</span><span class="nx">mediaDevices</span><span class="p">.</span><span class="nx">enumerateDevices</span><span class="p">();</span>
+    <span class="nx">setAudioInput</span><span class="p">(</span><span class="nx">devices</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">device</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">device</span><span class="p">.</span><span class="nx">kind</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">audioinput</span><span class="dl">"</span><span class="p">));</span>
+    <span class="nx">setAudioOutput</span><span class="p">(</span><span class="nx">devices</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">device</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">device</span><span class="p">.</span><span class="nx">kind</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">audiooutput</span><span class="dl">"</span><span class="p">));</span>
+    <span class="nx">setVideoInput</span><span class="p">(</span><span class="nx">devices</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">device</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">device</span><span class="p">.</span><span class="nx">kind</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">videoinput</span><span class="dl">"</span><span class="p">));</span>
+    <span class="k">return</span> <span class="nx">devices</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="dl">"</span><span class="s2">error getting devices</span><span class="dl">"</span><span class="p">);</span>
+    <span class="k">return</span> <span class="dl">"</span><span class="s2">error</span><span class="dl">"</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>이렇게 주르륵 나온 devices들을 가지고 저번 포스트에서 다뤘던 드랍다운을 통하여 유저가 선택한 디바이스 정보를 나의 상태에 저장될 수 있게 설정해주었다.</p>
+
+<blockquote>
+  <p><a href="https://velog.io/@071yoon/%EC%BB%A4%EC%8A%A4%ED%85%80-%EB%93%9C%EB%9E%8D%EB%8B%A4%EC%9A%B4-%EC%95%A0%EB%8B%88%EB%A9%94%EC%9D%B4%EC%85%98%EC%9D%84-%EB%A7%8C%EB%93%A4%EC%96%B4%EB%B3%B4%EC%9E%90">저번 블로그 주소</a></p>
+</blockquote>
+
+<h3 id="출력-디바이스-제어">출력 디바이스 제어</h3>
+
+<p>무사히 유저가 원하는 입출력 디바이스를 선택하였고, 그 정보가 <code class="language-plaintext highlighter-rouge">userAudioOutputDevice</code>라는 상태에 존재한다고 가정하고 진행하도록 하겠다.</p>
+
+<p>사실 여기까지 왔다면 거의 다한것이나 마찬가지다. 적어도 출력은 정말 간단하다.</p>
+
+<p>현재 우리의 플랫폼에서 지원하는 오디오 출력은 두가지 존재한다.</p>
+
+<ol>
+  <li>테마 bgm</li>
+  <li>상대방의 마이크 음성</li>
+</ol>
+
+<p>우선 상대방의 마이크 음성을 제어하는 부분을 보면 다음과 같다.</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Screen.tsx</span>
+<span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">videoRef</span><span class="p">.</span><span class="nx">current</span> <span class="o">&amp;&amp;</span> <span class="nx">stream</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">videoRef</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">srcObject</span> <span class="o">=</span> <span class="nx">stream</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="kd">const</span> <span class="nx">newRef</span> <span class="o">=</span> <span class="nx">videoRef</span><span class="p">.</span><span class="nx">current</span><span class="p">;</span>
+  <span class="p">(</span><span class="nx">newRef</span> <span class="k">as</span> <span class="kr">any</span><span class="p">).</span><span class="nx">setSinkId</span><span class="p">(</span><span class="nx">userAudioOutputDevice</span><span class="p">?.</span><span class="nx">deviceId</span><span class="p">);</span>
+<span class="p">},</span> <span class="p">[</span><span class="nx">stream</span><span class="p">,</span> <span class="nx">videoRef</span><span class="p">,</span> <span class="nx">userAudioOutputDevice</span><span class="p">]);</span>
+</code></pre></div></div>
+
+<p>테마로 나오는 음성을 다음과 같다.</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Theme.tsx</span>
+<span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">volumeRef</span><span class="p">.</span><span class="nx">current</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">volumeRef</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">volume</span> <span class="o">=</span> <span class="nx">volume</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="kd">const</span> <span class="nx">newAudio</span> <span class="o">=</span> <span class="nx">volumeRef</span><span class="p">.</span><span class="nx">current</span><span class="p">;</span>
+  <span class="p">(</span><span class="nx">newAudio</span> <span class="k">as</span> <span class="kr">any</span><span class="p">).</span><span class="nx">setSinkId</span><span class="p">(</span><span class="nx">userAudioOutputDevice</span><span class="p">?.</span><span class="nx">deviceId</span><span class="p">);</span>
+<span class="p">},</span> <span class="p">[</span><span class="nx">volume</span><span class="p">,</span> <span class="nx">userAudioOutputDevice</span><span class="p">]);</span>
+</code></pre></div></div>
+
+<p>여기서 새로 추가된 부분은 setSinkId를 해주는 부분이다. 바로 deviceId를 넣어주면, 해당하는 device로 출력이 바뀌는 것이다. userAudioOutputDevice가 상태이므로, 해당 상태가 바뀔때 마다 sink를 맞춰서 video의 오디오를 변경 할 수 있게 useEffect로 감싸주고, dependency로 넣어주었다.</p>
+
+<p>type을 any로 변경해준 이유는, 컴파일 할 때 setSinkId를 찾지못해 에러를 내기 때문이다. 추후에 Interface를 하나 만들어 setSinkId를 추가하여 방지할 예정이다.</p>
+
+<p>여기서 문제는 호환성 문제이다.
+<img width="823" alt="image" src="https://user-images.githubusercontent.com/66371206/188821917-ecf262ae-c9d0-449f-a9d6-e3675c879224.png" />
+보시다시피, Chrome, IE, Opera만 공식적으로 지원하기에, 만약 Safari로 접속한다면 바로 백색화면이 뜨는것을 볼 수 있다. 이 경우에는 browser 감지를 우선하여, Safari에서는 해당 함수를 실행하지 않도록 방지해줘야된다.</p>
+
+<h3 id="입력-디바이스-설정">입력 디바이스 설정</h3>
+
+<p>입력디바이스는 생각보다 까다롭다.</p>
+
+<p>우선, 전송하는 mediaTrack이 이미 getUserMedia에서 audio를 default로 가져왔을테니, 여기서 내가 마음대로 media 장비를 바꾼다고 해서 바로 바뀌지 않을 것이다. 그래서 생각해낸 방법은 다음과 같다.</p>
+
+<ol>
+  <li>새로운 오디오 트랙을 만들어낸다 (새로 바뀔 입력 device인 트랙)</li>
+  <li>현재 송출하고 있는 오디오 트랙을 삭제한다</li>
+  <li>내 stream에 새로운 트랙을 추가한다</li>
+  <li>보내고 있는 stream에 audio를 찾아 새로운 track으로 교체한다</li>
+</ol>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// useCreateMediaStream.tsx</span>
+<span class="kd">const</span> <span class="nx">replaceAudioStream</span> <span class="o">=</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">audioStream</span> <span class="o">=</span> <span class="k">await</span> <span class="nb">navigator</span><span class="p">.</span><span class="nx">mediaDevices</span><span class="p">.</span><span class="nx">getUserMedia</span><span class="p">({</span>
+      <span class="na">audio</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">deviceId</span><span class="p">:</span> <span class="nx">userAudioInputDevice</span><span class="p">?.</span><span class="nx">deviceId</span><span class="p">,</span>
+      <span class="p">},</span>
+    <span class="p">});</span>
+    <span class="nx">myStream</span><span class="p">.</span><span class="nx">localStream</span><span class="p">.</span><span class="nx">removeTrack</span><span class="p">(</span><span class="nx">myStream</span><span class="p">.</span><span class="nx">localStream</span><span class="p">.</span><span class="nx">getAudioTracks</span><span class="p">()[</span><span class="mi">0</span><span class="p">]);</span>
+    <span class="nx">myStream</span><span class="p">.</span><span class="nx">localStream</span><span class="p">.</span><span class="nx">addTrack</span><span class="p">(</span><span class="nx">audioStream</span><span class="p">.</span><span class="nx">getAudioTracks</span><span class="p">()[</span><span class="mi">0</span><span class="p">]);</span>
+    <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">pcs</span><span class="p">).</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">pc</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">sender</span> <span class="o">=</span> <span class="nx">pcs</span><span class="p">[</span><span class="nx">pc</span><span class="p">].</span><span class="nx">getSenders</span><span class="p">().</span><span class="nx">find</span><span class="p">((</span><span class="nx">s</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">s</span><span class="p">.</span><span class="nx">track</span><span class="p">.</span><span class="nx">kind</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">audio</span><span class="dl">"</span><span class="p">);</span>
+      <span class="nx">sender</span><span class="p">.</span><span class="nx">replaceTrack</span><span class="p">(</span><span class="nx">audioStream</span><span class="p">.</span><span class="nx">getAudioTracks</span><span class="p">()[</span><span class="mi">0</span><span class="p">]);</span>
+    <span class="p">});</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">failed to change audio stream</span><span class="dl">"</span><span class="p">,</span> <span class="nx">error</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">stream</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MediaStream</span><span class="p">();</span>
+    <span class="nx">setUserMediaStream</span><span class="p">(</span><span class="nx">stream</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>그리고 이런 과정을 useEffect로 감싸서, userAudioInput이 바뀔때 마다 선언해준다.</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// settingModal</span>
+<span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">replaceAudioStream</span><span class="p">();</span>
+<span class="p">},</span> <span class="p">[</span><span class="nx">replaceAudioStream</span><span class="p">,</span> <span class="nx">userAudioInputDevice</span><span class="p">]);</span>
+</code></pre></div></div>
+
+<p>무사히 마치고 나면 입력 버튼에서, 이어폰 -&gt; 맥북으로 바꾸어도 음성 입력트랙이 잘 바뀌는것을 확인 할 수 있다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/66371206/188824872-87f9ddaf-9bcc-44fc-955d-f7abe2beb227.gif" alt="ezgif-2-3f5a74b33f" /></p>
+:ET

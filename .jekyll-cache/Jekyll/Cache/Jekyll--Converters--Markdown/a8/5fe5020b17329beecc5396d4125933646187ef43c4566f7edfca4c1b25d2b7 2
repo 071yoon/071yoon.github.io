@@ -1,0 +1,93 @@
+I"�'<h2 id="layouts">Layouts</h2>
+
+<p>React는 페이지를 컴포넌트로 나누는것이 가능하다. 이러한 컴포넌트들은 페이지간에 재사용이 가능하고, 예를 들어, 모든 페이지마다 같은 네비게이션바를 사용한다.</p>
+
+<h3 id="single-shared-layout-with-custom-app">Single Shared Layout with Custom App</h3>
+
+<p>만약 전체 어플에 대하여 하나의 레이아웃만 사용한다면, Custom App 을 만들어, 해당 레이아웃으로 둘러 쌀 수 있다. 해당 컴포넌트가 모든 페이지마다 재사용되므로, 이러한 컴포넌트의 상태정보는 계속 유지된다.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>예를 들어, input value가 들어와도 고정된다</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">Layout</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">../components/layout</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">MyApp</span><span class="p">({</span> <span class="nx">Component</span><span class="p">,</span> <span class="nx">pageProps</span> <span class="p">})</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">Layout</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">Component</span> <span class="p">{...</span><span class="nx">pageProps</span><span class="p">}</span> <span class="sr">/</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/Layout</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="per-page-layout">Per-Page Layout</h3>
+
+<p>만약 여러 레이아웃이 필요한 경우에, <code class="language-plaintext highlighter-rouge">getLayout</code> 이라는 property를 사용 할 수 있다. 컴포넌트안에 getLayout을 사용해서, 표현할지 안할지로 정해서 사용 가능하다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">Layout</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">../components/layout</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">NestedLayout</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">../components/nested-layout</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">Page</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="cm">/** Your content */</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+
+<span class="nx">Page</span><span class="p">.</span><span class="nx">getLayout</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">getLayout</span><span class="p">(</span><span class="nx">page</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">Layout</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">NestedLayout</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">page</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/NestedLayout</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/Layout</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>이렇게 선언 후 실제로 사용할 때는 다음과 같다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">MyApp</span><span class="p">({</span> <span class="nx">Component</span><span class="p">,</span> <span class="nx">pageProps</span> <span class="p">})</span> <span class="p">{</span>
+  <span class="c1">// Use the layout defined at the page level, if available</span>
+  <span class="kd">const</span> <span class="nx">getLayout</span> <span class="o">=</span> <span class="nx">Component</span><span class="p">.</span><span class="nx">getLayout</span> <span class="o">||</span> <span class="p">((</span><span class="nx">page</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">page</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="nx">getLayout</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">Component</span> <span class="p">{...</span><span class="nx">pageProps</span><span class="p">}</span> <span class="sr">/&gt;</span><span class="se">)</span><span class="err">;
+</span><span class="p">}</span>
+</code></pre></div></div>
+
+<p>타입스크립트를 이용하면 Props의 type에 주의해야된다.</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">MyApp</span><span class="p">({</span> <span class="nx">Component</span><span class="p">,</span> <span class="nx">pageProps</span> <span class="p">}:</span> <span class="nx">AppPropsWithLayout</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Use the layout defined at the page level, if available</span>
+  <span class="kd">const</span> <span class="nx">getLayout</span> <span class="o">=</span> <span class="nx">Component</span><span class="p">.</span><span class="nx">getLayout</span> <span class="o">??</span> <span class="p">((</span><span class="nx">page</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">page</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="nx">getLayout</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">Component</span> <span class="p">{...</span><span class="nx">pageProps</span><span class="p">}</span> <span class="sr">/&gt;</span><span class="se">)</span><span class="err">;
+</span><span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="data-fetching">Data Fetching</h3>
+
+<p>레이아웃안에, Client-Side에서 <code class="language-plaintext highlighter-rouge">useEffect</code>로 데이터를 가져올 수 도 있고, 라이브러리를 활용하여 <code class="language-plaintext highlighter-rouge">SWR</code>(React Query와 유사)로 가져올 수 도 있다. 하지만, Page가 아니기에, <code class="language-plaintext highlighter-rouge">getStaticProps</code>나 <code class="language-plaintext highlighter-rouge">getServerSideProps</code>를 사용 할 수는 없다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">useSWR</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">swr</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">Navbar</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./navbar</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">Footer</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./footer</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">Layout</span><span class="p">({</span> <span class="nx">children</span> <span class="p">})</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">error</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">useSWR</span><span class="p">(</span><span class="dl">"</span><span class="s2">/api/navigation</span><span class="dl">"</span><span class="p">,</span> <span class="nx">fetcher</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="k">return</span> <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="nx">Failed</span> <span class="nx">to</span> <span class="nx">load</span><span class="o">&lt;</span><span class="sr">/div&gt;</span><span class="err">;
+</span>  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">data</span><span class="p">)</span> <span class="k">return</span> <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="nx">Loading</span><span class="p">...</span><span class="o">&lt;</span><span class="sr">/div&gt;</span><span class="err">;
+</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;&gt;</span>
+      <span class="o">&lt;</span><span class="nx">Navbar</span> <span class="nx">links</span><span class="o">=</span><span class="p">{</span><span class="nx">data</span><span class="p">.</span><span class="nx">links</span><span class="p">}</span> <span class="sr">/</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">main</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">children</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/main</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">Footer</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="sr">/</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+:ET
