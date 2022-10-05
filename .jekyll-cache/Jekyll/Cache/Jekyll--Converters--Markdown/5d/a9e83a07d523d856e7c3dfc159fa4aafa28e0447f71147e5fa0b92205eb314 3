@@ -1,2 +1,0 @@
-I"�<p>서버가 민감한 정보들을 안전하게 다루기 위해 Next.js는 <code class="language-plaintext highlighter-rouge">process.env.*</code> 파일을 빌드 시간에 맞는 경로로 전달한다. 즉 <code class="language-plaintext highlighter-rouge">process.env</code>는 자바스크립트에서의 표준이 아니며, object destructuring을 사용할 수 없다는 뜻이다. 즉 환경 변수는 <code class="language-plaintext highlighter-rouge">const { PUBLISHABLE_KEY } = process.env</code> 처럼 사용하는 것이 아닌 <code class="language-plaintext highlighter-rouge">process.env.PUBLISHABLE_KEY</code> 처럼 사용해야 된다.</p>
-:ET

@@ -1,4 +1,410 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-10-04T01:13:50+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi's tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">망 사용료가 대체 뭔데?</title><link href="http://localhost:4000/til/2022/10/03/network-usage-fee.html" rel="alternate" type="text/html" title="망 사용료가 대체 뭔데?" /><published>2022-10-03T00:00:00+09:00</published><updated>2022-10-03T00:00:00+09:00</updated><id>http://localhost:4000/til/2022/10/03/network-usage-fee</id><content type="html" xml:base="http://localhost:4000/til/2022/10/03/network-usage-fee.html"><![CDATA[<p>요새 망 사용료에 대한 말이 온/오프라인으로 많이 언급되고 있다. 한술 더 떠서 트위치는 화질 제한을 720p로 낮추는 등 화질제한을 거는등 관련 이슈들이 정말 계속 터져나오고 있다. 망 사용료란 무엇이고, 왜 우리가 관심을 가져야 하는지에 대해서 알아보자</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-10-06T02:30:21+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi's tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">Visitor Pattern</title><link href="http://localhost:4000/gof/2022/10/05/visitor-pattern.html" rel="alternate" type="text/html" title="Visitor Pattern" /><published>2022-10-05T00:00:00+09:00</published><updated>2022-10-05T00:00:00+09:00</updated><id>http://localhost:4000/gof/2022/10/05/visitor-pattern</id><content type="html" xml:base="http://localhost:4000/gof/2022/10/05/visitor-pattern.html"><![CDATA[<h2 id="방문자-패턴">방문자 패턴</h2>
+
+<p>데이터 구조는 많은 요소가 저장되어 있고, 각 요소에 대해 어떻게 <code class="language-plaintext highlighter-rouge">처리</code>가 필요한 경우를 생각해보자.</p>
+
+<p><code class="language-plaintext highlighter-rouge">처리</code>에 대한 코드는 어디에 있어야 될까? 일반적으로 데이터 구조를 표지하는 클래스에 기술하겠지만, <code class="language-plaintext highlighter-rouge">처리</code>가 늘어날 때 마다 데이터 구조의 클래스를 수정해야 되는 경우가 생긴다.</p>
+
+<p>방문자 패턴은 해당 문제를 <strong>데이터 구조와 처리를 분리</strong>하며 해결한다. 데이터 구조 안을 돌아다닐 수 있는 <code class="language-plaintext highlighter-rouge">방문자</code> 클래스를 준비하여, 그 클래스에게 처리를 위임한다. 즉 새로운 처리를 추가하고 싶을 때 새로운 <code class="language-plaintext highlighter-rouge">방문자</code>를 만들게 되면 된다.</p>
+
+<h2 id="방문자-패턴의-등장인물">방문자 패턴의 등장인물</h2>
+
+<p><img src="https://user-images.githubusercontent.com/66371206/194114652-7aed7b17-134c-4cf4-bf18-e95806874317.png" alt="image-1" /></p>
+
+<h3 id="visitor-방문자">Visitor (방문자)</h3>
+
+<p>Visitor는 데이터 구조의 구체적인 요소(ConcreteElement 역할)마다 visit(xxxx) 메소드를 선언합니다. 메소드는 xxxx를 처리하기 위한 메소드이고, 구현은 ConcreteVisitor가 합니다.</p>
+
+<h3 id="concrete-visitor">Concrete Visitor</h3>
+
+<p>Visitor 의 인터페이스(API)를 구현한다.</p>
+
+<blockquote>
+  <p>예제의 ListVisitor에서 currentdir 값이 변화하듯 visit을 수행하는 도중 ConcreteVisitor 역할의 내부 상태가 변화하는 일도 있다.</p>
+</blockquote>
+
+<h3 id="element">Element</h3>
+
+<p>Visitor역할의 방문할 곳을 나타내는 역할로, 방문자를 받아들이는 accept 메소드를 선언한다. 메소드의 인자값으로는 Visitor역할이 전달된다.</p>
+
+<h3 id="concrete-element">Concrete Element</h3>
+
+<p>Element역할의 인터페이스(API)를 구현하는 역할이다.</p>
+
+<blockquote>
+  <p>예제에서 File이나 Directory에서 accept 메소드를 오버라이딩해서 구현한것과 동일.</p>
+</blockquote>
+
+<h3 id="object-structure">Object Structure</h3>
+
+<p>Element역할의 집합을 취급하는 역할이다. ConcreteVisitor 역할이 각각의 Element역할을 취급할 수 있는 메소드를 구비하고 있다.</p>
+
+<blockquote>
+  <p>예제에서는 Directory가 ConcreteElementB와 ObjectStructure 두 역할을 동시에 수행한다</p>
+</blockquote>
+
+<hr />
+
+<h2 id="예제">예제</h2>
+
+<h3 id="composite-패턴-복습">Composite 패턴 복습</h3>
+
+<p>Composite 패턴에서의 상황과 유사한 상황을 가정하고 사용하기 위해, Composite 패턴의 예제를 복습해보자.</p>
+
+<blockquote>
+  <p>전체와 부분을 동일시해서 재귀적인 구조를 만들기 위한 디자인 패턴</p>
+</blockquote>
+
+<p><img src="https://user-images.githubusercontent.com/66371206/194115416-8410628d-67da-455d-8acc-8dedd1f2ce02.png" alt="image-3" /></p>
+
+<p>File 과 Directory의 <code class="language-plaintext highlighter-rouge">printList</code>를 <code class="language-plaintext highlighter-rouge">accept</code>로 바꾸고, Directory에 <code class="language-plaintext highlighter-rouge">iterator</code> 메소드가 추가된 것을 제외하고는 동일한 구현이다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/66371206/194115155-65810fd3-d2e3-4140-98e9-c53335b6783a.png" alt="image" /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>이름</th>
+      <th>해설</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Visitor</td>
+      <td>파일과 디렉토리를 방문하는 방문자를 나타내는 추상클래스</td>
+    </tr>
+    <tr>
+      <td>Element</td>
+      <td>VIsitor 클래스의 생성자를 받아들이는 데이터 구조를 나타내는 인터페이스</td>
+    </tr>
+    <tr>
+      <td>ListVisitor</td>
+      <td>Visitor 클래스의 하위 클래스로 파일과 디렉터리의 종류를 나타내는 클래스</td>
+    </tr>
+    <tr>
+      <td>Entry</td>
+      <td>File과 Directory의 상위 클래스가 되는 추상 클래스(Acceptor 인터페이스를 구현)</td>
+    </tr>
+    <tr>
+      <td>File</td>
+      <td>파일을 나타내는 클래스</td>
+    </tr>
+    <tr>
+      <td>Directory</td>
+      <td>디렉토리를 나타내는 클래스</td>
+    </tr>
+    <tr>
+      <td>FIleTreatmentException</td>
+      <td>File에 대해서 add한 경우 발생하는 예외 클래스</td>
+    </tr>
+    <tr>
+      <td>Main</td>
+      <td>동작 테스트용 클래스</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="visitor-class">Visitor Class</h3>
+
+<ul>
+  <li>
+    <p>Visitor는 ‘방문자’를 나타내는 추상클래스이고 자기가 방문할 곳(FIle, Directory)에 의존한다.</p>
+  </li>
+  <li>
+    <p>Visitor클래스는 File과 Directory를 가지는 두개의 메소드를 오버로드해서 가지며 위임의 역할을 할 필드가 된다.</p>
+  </li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">Visitor</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">visit</span><span class="o">(</span><span class="nc">File</span> <span class="n">file</span><span class="o">);</span>
+  <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">visit</span><span class="o">(</span><span class="nc">Directory</span> <span class="n">directory</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="element-interface">Element Interface</h3>
+
+<ul>
+  <li>Visitor를 <code class="language-plaintext highlighter-rouge">accept</code>로받아들이는 인터페이스</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Element</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">accept</span> <span class="o">(</span><span class="nc">Visitor</span> <span class="n">v</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="entry-class">Entry Class</h3>
+
+<ul>
+  <li>Element 인터페이스를 구현</li>
+  <li>Entry Class를 Visitor Pattern에 적용시키기 위해 사용</li>
+  <li>accept를 실제 구현하는 것은 Entry 의 하위 클래스인 File 과 Directory Class</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.Iterator</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">Entry</span> <span class="kd">implements</span> <span class="nc">Element</span><span class="o">{</span>
+  <span class="kd">public</span> <span class="kd">abstract</span> <span class="nc">String</span> <span class="nf">getName</span><span class="o">();</span>
+  <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">int</span> <span class="nf">getSize</span><span class="o">();</span>
+  <span class="kd">public</span> <span class="nc">Entry</span> <span class="nf">add</span><span class="o">(</span><span class="nc">Entry</span> <span class="n">entry</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">FileTreatmentException</span> <span class="o">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nf">FileTreatmentException</span><span class="o">();</span>
+  <span class="o">}</span>
+  <span class="kd">public</span> <span class="nc">Iterator</span> <span class="nf">iterator</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">FileTreatmentException</span> <span class="o">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nf">FileTreatmentException</span><span class="o">();</span>
+  <span class="o">}</span>
+  <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">+</span> <span class="s">" ("</span><span class="o">+</span><span class="n">getSize</span><span class="o">()+</span><span class="s">")"</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>add와 iterator는 Directory Class에만 유효하므로 Entry Class 에서는 에러로 처리</p>
+</blockquote>
+
+<h3 id="file-class">File Class</h3>
+
+<ul>
+  <li>Composite 에서의 예제와 유사</li>
+  <li>accept 메소드 안에서 Visitor의 visit 메소드를 호출</li>
+  <li>File로 오버로드 된 메소드가 호출된다</li>
+  <li>visit 메소드를 호출하며, File의 인스턴스(this)를 Visitor에세 알려준다</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">File</span> <span class="kd">extends</span> <span class="nc">Entry</span> <span class="o">{</span>
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="kt">int</span> <span class="n">size</span><span class="o">;</span>
+
+  <span class="kd">public</span> <span class="nf">File</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">int</span> <span class="n">size</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+      <span class="k">this</span><span class="o">.</span><span class="na">size</span> <span class="o">=</span> <span class="n">size</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">name</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getSize</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">size</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">accept</span><span class="o">(</span><span class="nc">Visitor</span> <span class="n">v</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">v</span><span class="o">.</span><span class="na">visit</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="directory-class">Directory Class</h3>
+
+<ul>
+  <li>Composite 패턴의 예제와 유사</li>
+  <li>iterator는 포함되어 있는 Directory Entry의 종류를 얻기 위한 Iterator 반환</li>
+  <li>accept가 visit(Directory) 메소드를 호출</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Directory</span> <span class="kd">extends</span> <span class="nc">Entry</span> <span class="o">{</span>
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="nc">ArrayList</span> <span class="n">directory</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">();</span>
+
+  <span class="kd">public</span> <span class="nf">Directory</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">name</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getSize</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="nc">Object</span> <span class="n">o</span> <span class="o">:</span> <span class="n">directory</span><span class="o">)</span> <span class="o">{</span>
+      <span class="nc">Entry</span> <span class="n">entry</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Entry</span><span class="o">)</span> <span class="n">o</span><span class="o">;</span>
+      <span class="n">size</span> <span class="o">+=</span> <span class="n">entry</span><span class="o">.</span><span class="na">getSize</span><span class="o">();</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">size</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="nc">Entry</span> <span class="nf">add</span><span class="o">(</span><span class="nc">Entry</span> <span class="n">entry</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">directory</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">entry</span><span class="o">);</span>
+      <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="nc">Iterator</span> <span class="nf">iterator</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">FileTreatmentException</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">directory</span><span class="o">.</span><span class="na">iterator</span><span class="o">();</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">accept</span><span class="o">(</span><span class="nc">Visitor</span> <span class="n">v</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">v</span><span class="o">.</span><span class="na">visit</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="listvisitor-class">ListVisitor Class</h3>
+
+<ul>
+  <li>Visitor Class의 하위 클래스로, 데이터 구조를 돌아다니며 종류를 표시한다</li>
+  <li>visit(File)과 visit(Directory)를 구현</li>
+  <li>currentdir는 현재 주목하고 있는 Directory 이름을 저장</li>
+  <li>visit(File) 메소드는 <strong>File 클래스의 인스턴스에 대해서 실행해야 될 처리</strong>를 기술</li>
+  <li>visit(Directory) 메소드는 <strong>Directory 클래스의 인스턴스에 대해서 실행해야 될 처리</strong>를 기술</li>
+</ul>
+
+<blockquote>
+  <p>directory의 처리란? Directory의 Iterator를 가져와, 각 엔트리에 대한 accept 메소드를 호출</p>
+</blockquote>
+
+<ul>
+  <li>accept 메소드는 visit 메소드를 호출하고, visit 메소드는 accept를 호출</li>
+  <li>visit 메소드와 accept 메소드가 서로 상대를 호출</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ListVisitor</span> <span class="kd">extends</span> <span class="nc">Visitor</span><span class="o">{</span>
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">currentdir</span> <span class="o">=</span> <span class="s">""</span><span class="o">;</span> <span class="c1">// 현재 주목하고 있는 디렉토리 이름 저장하는 필드</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">visit</span><span class="o">(</span><span class="nc">File</span> <span class="n">file</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">currentdir</span> <span class="o">+</span> <span class="s">"/"</span> <span class="o">+</span> <span class="n">file</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">visit</span><span class="o">(</span><span class="nc">Directory</span> <span class="n">directory</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">currentdir</span> <span class="o">+</span> <span class="s">"/"</span> <span class="o">+</span> <span class="n">directory</span><span class="o">);</span>
+    <span class="nc">String</span> <span class="n">savedir</span> <span class="o">=</span> <span class="n">currentdir</span><span class="o">;</span>
+    <span class="n">currentdir</span> <span class="o">=</span> <span class="n">currentdir</span> <span class="o">+</span> <span class="s">"/"</span> <span class="o">+</span> <span class="n">directory</span><span class="o">.</span><span class="na">getName</span><span class="o">();</span>
+    <span class="nc">Iterator</span> <span class="n">it</span> <span class="o">=</span> <span class="n">directory</span><span class="o">.</span><span class="na">iterator</span><span class="o">();</span>
+    <span class="k">while</span> <span class="o">(</span><span class="n">it</span><span class="o">.</span><span class="na">hasNext</span><span class="o">())</span> <span class="o">{</span>
+      <span class="nc">Entry</span> <span class="n">entry</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Entry</span><span class="o">)</span><span class="n">it</span><span class="o">.</span><span class="na">next</span><span class="o">();</span>
+      <span class="n">entry</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="n">currentdir</span> <span class="o">=</span> <span class="n">savedir</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="filetreatment-exception">FileTreatment Exception</h3>
+
+<ul>
+  <li>예외처리</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">FileTreatmentException</span> <span class="kd">extends</span> <span class="nc">RuntimeException</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="nf">FileTreatmentException</span><span class="o">()</span> <span class="o">{</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="nf">FileTreatmentException</span><span class="o">(</span><span class="nc">String</span> <span class="n">message</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">super</span><span class="o">(</span><span class="n">message</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="main-class">Main Class</h3>
+
+<ul>
+  <li>composite 패턴과 매우 유사하지만, Directory 표시를 위해, 표시 방문자인 ListVisitor의 인스턴스를 사용한다</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">try</span><span class="o">{</span>
+      <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Making root entries..."</span><span class="o">);</span>
+      <span class="nc">Directory</span> <span class="n">rootdir</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Directory</span><span class="o">(</span><span class="s">"root"</span><span class="o">);</span>
+      <span class="nc">Directory</span> <span class="n">bindir</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Directory</span><span class="o">(</span><span class="s">"bin"</span><span class="o">);</span>
+      <span class="nc">Directory</span> <span class="n">tmpdir</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Directory</span><span class="o">(</span><span class="s">"tmp"</span><span class="o">);</span>
+      <span class="nc">Directory</span> <span class="n">usrdir</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Directory</span><span class="o">(</span><span class="s">"usr"</span><span class="o">);</span>
+
+      <span class="n">rootdir</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">bindir</span><span class="o">);</span>
+      <span class="n">rootdir</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">tmpdir</span><span class="o">);</span>
+      <span class="n">rootdir</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">usrdir</span><span class="o">);</span>
+      <span class="n">bindir</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="s">"vi"</span><span class="o">,</span> <span class="mi">10000</span><span class="o">));</span>
+      <span class="n">bindir</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="s">"latex"</span><span class="o">,</span> <span class="mi">20000</span><span class="o">));</span>
+      <span class="n">rootdir</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">new</span> <span class="nc">ListVisitor</span><span class="o">());</span>
+
+      <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">""</span><span class="o">);</span>
+      <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Making user entries..."</span><span class="o">);</span>
+      <span class="nc">Directory</span> <span class="n">kim</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Directory</span><span class="o">(</span><span class="s">"Kim"</span><span class="o">);</span>
+      <span class="nc">Directory</span> <span class="n">lee</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Directory</span><span class="o">(</span><span class="s">"Lee"</span><span class="o">);</span>
+      <span class="nc">Directory</span> <span class="n">park</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Directory</span><span class="o">(</span><span class="s">"Park"</span><span class="o">);</span>
+      <span class="n">usrdir</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">kim</span><span class="o">);</span>
+      <span class="n">usrdir</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">lee</span><span class="o">);</span>
+      <span class="n">usrdir</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">park</span><span class="o">);</span>
+      <span class="n">kim</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="s">"diary.html"</span><span class="o">,</span> <span class="mi">100</span><span class="o">));</span>
+      <span class="n">kim</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="s">"Composite.java"</span><span class="o">,</span> <span class="mi">200</span><span class="o">));</span>
+      <span class="n">lee</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="s">"memotex"</span><span class="o">,</span> <span class="mi">300</span><span class="o">));</span>
+      <span class="n">park</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="s">"game.doc"</span><span class="o">,</span> <span class="mi">400</span><span class="o">));</span>
+      <span class="n">park</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="s">"junk.mail"</span><span class="o">,</span> <span class="mi">500</span><span class="o">));</span>
+      <span class="n">rootdir</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">new</span> <span class="nc">ListVisitor</span><span class="o">());</span>
+    <span class="o">}</span><span class="k">catch</span><span class="o">(</span><span class="nc">FileTreatmentException</span> <span class="n">e</span><span class="o">){</span>
+      <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="sequence-diagram">Sequence Diagram</h3>
+
+<p><img src="https://user-images.githubusercontent.com/66371206/194121630-a8c37d6a-8755-4016-bcb4-2c4b32fc4671.png" alt="image-2" /></p>
+
+<ol>
+  <li>Main 클래스에서 ListVisitor 인스턴스 생성</li>
+  <li>Main에서 Directory의 accept 메소드 호출. 인자값으로는 ListVisitor 인스턴스 전달</li>
+  <li>Directory 의 인스턴스에서는 인자로 받은 ListVisitor의 visit(Directory) 메소드 호출</li>
+  <li>visit(Directory) 로직 내부에서 디렉토리 내부를 조사해 파일의 accept 메소드 호출하며 인자값으로 자기자신(this)를 전달. (자기자신은 ListVisitor)</li>
+  <li>File의 인스턴스는 인자로 전달받은 ListVisitor의 visit(File)메소드를 호출.</li>
+  <li>5번 항목의 File의 visit(File)로직이 완료되면 다음 Iterator가 다음 File을 next()로 꺼내와서 두 번쨰 파일의 accept메소드를 호출(4~5과정의 반복)</li>
+  <li>이전과 동일하게 visit(File)의 메소드를 호출하여 완료되면 자신을 호출한 곳으로 돌아가며 Main까지 돌아갑니다.</li>
+</ol>
+
+<p>즉 정리하자면 다음과 같다</p>
+
+<ul>
+  <li>Directory와 File 인스턴스에 대해서 accept가 한 번 호출된다</li>
+  <li>accept 메소드는 각 인스터에서 한번만 호출된다</li>
+  <li>ListVisitor의 인스턴스에 대해 visit 메소드가 호출된다</li>
+  <li>visit을 처리하고 있는것은 ListVisitor의 인스턴스이다</li>
+</ul>
+
+<blockquote>
+  <p><strong>ListVisitor 부분에서 visit에 대한 처리가 집중</strong>된다</p>
+</blockquote>
+
+<h2 id="참고">참고</h2>
+
+<h3 id="double-dispatch">Double Dispatch</h3>
+
+<p>Element역할은 accept(Visitor)메소드로 Visitor를 받아들이고 Visitor는 visit(element)메소드로 element를 visit한다. 이처럼 Visitor Pattern에서는 ConcreteElement역할과 ConcreteVisitor 역할 한쌍에 의해 실제 처리가 결정되는데 이런 것을 더블 디스패치(double dispatch: 이중 분리)라고 한다.</p>
+
+<h3 id="왜-이렇게-분리하는가">왜 이렇게 분리하는가</h3>
+
+<p>굳이 Visitor Pattern을 사용해서 기능과 처리를 분리하고 재귀적으로 호출하며 어렵게 설계를 해야하는 이유는 무엇일까?
+‘처리’를 데이터 구조에서 분리를 하는게 Visitor Pattern의 핵심인데, 데이터 구조는 요소를 집합으로 정리하거나 요소 사이를 연결해주는 중요한 역할을 한다.
+하지만, 구조를 유지하는 것과 구조를 기초로 처리를 정의하는것은 별개다.
+만약, 처리내용을 File이나 Diretory 클래스의 메소드로 구현할 경우, 새로운 기능(‘처리’)이 추가될 때마다 클래스를 수정해야하는데, 이러면 클래스의 독립성도 떨어지고 단일 책임 원칙도 위배하게 된다.</p>
+
+<h3 id="ocp">OCP</h3>
+
+<p>확장에대해서는 열려있지만, 수정에 대해서는 닫혀있어야 한다는 ‘The Open-Closed Principle(OCP)’ 원칙이 있다.
+즉, 클래스를 설계할 때 특별한 이유가 없는 한 확장을 허용해야 한다는 것인데, 이것이 확장에 대해서는 열려있다는 의미이다.
+하지만, 확장을 허용한다고 확장을 할 때마다 기존의 클래스를 수정하는것은 곤란한데, 확장을 해도 기존의 클래스는 수정할 필요가 없는 것이 ‘수정에 대해서는 닫혀있다’ 라는 의미가 된다.</p>
+
+<blockquote>
+  <p>결국, 기존의 클래스를 수정하지않고 기능추가 확장이 되야한다는 말.</p>
+</blockquote>
+
+<p>개발을 하게되면 시간이 흐를수록 기능을 확장해야하는 경우가 빈번한데 그럴때마다 이미 완성된 클래스를 수정하는 것은 프로그램의 완성도(품질)를 떨어트릴 위험이 있다.</p>
+
+<h3 id="확장성">확장성</h3>
+
+<p>ConcreteVisitor 역할을 추가하는것은 쉽다. 구조를 담당하는 클래스(ConcreteElement)역할을 수정할 필요가 없기 때문.</p>
+
+<p>반면, ConcreteElement 역할의 추가는 어려운데 그 이유는, 기존의 File과 Directory 클래스에 더해 새로운 Entry의 하위 클래스인 Device 클래스를 만들기 위해서는 기존에 구현되있는 모든 Visitor 클래스에 visitor(Device)메소드를 만들어야 하고 하위 클래스(ConcreteVisitor)에도 visit(Device)메소드를 구현해야 하기 때문.</p>
+
+<hr />
+
+<p>참조</p>
+
+<p>[Java언어로 배우는 디자인 패턴 입문]-영진닷컴</p>]]></content><author><name>071yoon</name></author><category term="GoF" /><category term="TIL" /><category term="GoF" /><summary type="html"><![CDATA[방문자 패턴]]></summary></entry><entry><title type="html">망 사용료가 대체 뭔데?</title><link href="http://localhost:4000/til/2022/10/03/network-usage-fee.html" rel="alternate" type="text/html" title="망 사용료가 대체 뭔데?" /><published>2022-10-03T00:00:00+09:00</published><updated>2022-10-03T00:00:00+09:00</updated><id>http://localhost:4000/til/2022/10/03/network-usage-fee</id><content type="html" xml:base="http://localhost:4000/til/2022/10/03/network-usage-fee.html"><![CDATA[<p>요새 망 사용료에 대한 말이 온/오프라인으로 많이 언급되고 있다. 한술 더 떠서 트위치는 화질 제한을 720p로 낮추는 등 화질제한을 거는등 관련 이슈들이 정말 계속 터져나오고 있다. 망 사용료란 무엇이고, 왜 우리가 관심을 가져야 하는지에 대해서 알아보자</p>
 
 <h2 id="망-사용료란">망 사용료란?</h2>
 
@@ -2111,201 +2517,4 @@ fixtures 폴더에는 추후에 사용할 모킹하였을 때 결과로 받을 j
 <p><img src="https://user-images.githubusercontent.com/66371206/183910403-19ac163e-a202-4a59-8430-a81beae4385b.png" alt="image" /></p>
 
 <p>참조
-<a href="https://aws.amazon.com/ko/what-is/cdn/">https://aws.amazon.com/ko/what-is/cdn/</a></p>]]></content><author><name>071yoon</name></author><category term="TIL" /><category term="TIL" /><category term="AWS" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">React에서 Volume Slider 구현하기</title><link href="http://localhost:4000/modoco/2022/07/31/react-volume-slider.html" rel="alternate" type="text/html" title="React에서 Volume Slider 구현하기" /><published>2022-07-31T00:00:00+09:00</published><updated>2022-07-31T00:00:00+09:00</updated><id>http://localhost:4000/modoco/2022/07/31/react-volume-slider</id><content type="html" xml:base="http://localhost:4000/modoco/2022/07/31/react-volume-slider.html"><![CDATA[<h2 id="react-볼륨-슬라이더-만들기">React 볼륨 슬라이더 만들기</h2>
-
-<p>프로젝트를 진행중에, 이러한 시안이 날라왔다. 대충 볼륨을 컨트롤 할 수 있는 Slider를 제작하는 것.</p>
-
-<p><img width="758" alt="image" src="https://user-images.githubusercontent.com/66371206/182016262-70befb1d-aa0f-4e68-b26d-4c61d20f1199.png" /></p>
-
-<p>우선 여러가지 선택사항이 있는데, material UI를 사용하여, 간단하고 이쁜 슬라이더를 가져다 쓰는것, 아니면 직접 구현이 있었다.</p>
-
-<p>우선 라이브러리를 쓰는것 보다 구현을 하는것을 좋아하기에, 한번 알아보았고, <code class="language-plaintext highlighter-rouge">input type</code> 을 <code class="language-plaintext highlighter-rouge">range</code>로 선택하여 간단하게 구현할 수 있음을 알게되었다.</p>
-
-<h3 id="vanilla-html로-구현">Vanilla HTML로 구현</h3>
-
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">input</span>
-  <span class="kd">type</span><span class="o">=</span><span class="dl">"</span><span class="s2">range</span><span class="dl">"</span>
-  <span class="nx">min</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">}</span>
-  <span class="nx">max</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">}</span>
-  <span class="nx">color</span><span class="o">=</span><span class="dl">"</span><span class="s2">gray</span><span class="dl">"</span>
-  <span class="nx">step</span><span class="o">=</span><span class="p">{</span><span class="mf">0.02</span><span class="p">}</span>
-  <span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="nx">volume</span><span class="p">}</span>
-  <span class="nx">onChange</span><span class="o">=</span><span class="p">{(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">setVolume</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">valueAsNumber</span><span class="p">);</span>
-  <span class="p">}}</span>
-<span class="sr">/</span><span class="err">&gt;
-</span></code></pre></div></div>
-
-<p>간단하게 구현을 해보면 위의 코드와 같다.</p>
-
-<p>setVolume같은 경우에는, state로 관리하기 위해서 넣었고, step 기준으로 volume bar를 컨트롤 할 수 있다.</p>
-
-<p><img src="https://user-images.githubusercontent.com/66371206/182019180-9500a561-ee79-468d-b97b-220abb93d398.gif" alt="ezgif-3-5e9fa8f258" /></p>
-
-<p>괜찮아 보이지만, 여러 문제가 있다.</p>
-
-<ol>
-  <li>컨트롤 하는 동그라미 (thumb) 도 파란색이 마음에 안든다</li>
-  <li>볼륨이 0이 됐을 때 투명해졌으면 좋겠다</li>
-  <li>볼륨이 올라갈때 색이 파란색이 마음에 안든다</li>
-</ol>
-
-<p>이러한 문제를 해결하기 위해 CSS에서 노력을 해주어야 한다.</p>
-
-<h3 id="css-적용">CSS 적용</h3>
-
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">VolumeControl</span> <span class="nx">volume</span><span class="o">=</span><span class="p">{</span><span class="nx">volume</span> <span class="o">*</span> <span class="mi">100</span><span class="p">}</span> <span class="nx">speaker</span><span class="o">=</span><span class="p">{</span><span class="nx">userSpeaker</span><span class="p">}</span><span class="o">&gt;</span>
-  <span class="o">&lt;</span><span class="nx">input</span>
-    <span class="kd">type</span><span class="o">=</span><span class="dl">"</span><span class="s2">range</span><span class="dl">"</span>
-    <span class="nx">min</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">}</span>
-    <span class="nx">max</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">}</span>
-    <span class="nx">step</span><span class="o">=</span><span class="p">{</span><span class="mf">0.02</span><span class="p">}</span>
-    <span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="nx">volume</span><span class="p">}</span>
-    <span class="nx">onChange</span><span class="o">=</span><span class="p">{(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="nx">setVolume</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">valueAsNumber</span><span class="p">);</span>
-    <span class="p">}}</span>
-  <span class="sr">/</span><span class="err">&gt;
-</span><span class="o">&lt;</span><span class="sr">/VolumeControl</span><span class="err">&gt;
-</span></code></pre></div></div>
-
-<p>우선 styled로 크게 VolumeControl이라는 component로 분할하였고, speaker로 스피커가 꺼져있음을 판단할 수 있고, volume으로 나의 speaker 크기를 판단할 수 있게 만들었다. 여기서 <code class="language-plaintext highlighter-rouge">volume === 0</code> 인 경우 speaker 가 꺼져있다고 판단할것이다.</p>
-
-<h4 id="컨트롤-하는-동그라미-thumb-도-파란색이-마음에-안든다">컨트롤 하는 동그라미 (thumb) 도 파란색이 마음에 안든다</h4>
-
-<p>우선 처음에는 1번 문제를 해결하기 위해 slider-thumb를 손봐주었다.</p>
-
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&amp;</span><span class="nd">::-webkit-slider-thumb</span> <span class="p">{</span>
-      <span class="nl">-webkit-appearance</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
-      <span class="nl">height</span><span class="p">:</span> <span class="m">16px</span><span class="p">;</span>
-      <span class="nl">width</span><span class="p">:</span> <span class="m">16px</span><span class="p">;</span>
-      <span class="nl">border-radius</span><span class="p">:</span> <span class="m">50%</span><span class="p">;</span>
-      <span class="nl">background</span><span class="p">:</span> <span class="err">${</span><span class="p">(</span><span class="n">props</span><span class="p">)</span> <span class="err">=&gt;</span> <span class="p">(</span><span class="n">props</span><span class="p">.</span><span class="n">volume</span> <span class="err">?</span> <span class="s1">"#d9d9d9"</span> <span class="p">:</span> <span class="s1">"#E5E7EB"</span><span class="p">)}</span><span class="o">;</span>
-      <span class="nt">margin-top</span><span class="o">:</span> <span class="nt">-5px</span><span class="o">;</span>
-      <span class="nt">cursor</span><span class="o">:</span> <span class="nt">pointer</span><span class="o">;</span>
-    <span class="err">}</span>
-</code></pre></div></div>
-
-<p>해당코드는 별 문제 없이 가능하다. 그냥 volume 이 0이라면 볼륨이 꺼졌을 때의 색상이 나올 수 있게 지정하고 끝이다.</p>
-
-<h4 id="볼륨이-0이-됐을-때-투명해졌으면-좋겠다">볼륨이 0이 됐을 때 투명해졌으면 좋겠다</h4>
-
-<p>이부분도 그렇게 어렵지 않다.</p>
-
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="o">&amp;</span><span class="nd">::-webkit-slider-runnable-track</span> <span class="p">{</span>
-      <span class="nl">height</span><span class="p">:</span> <span class="m">0.6rem</span><span class="p">;</span>
-      <span class="nl">opacity</span><span class="p">:</span> <span class="err">${</span><span class="p">(</span><span class="n">props</span><span class="p">)</span> <span class="err">=&gt;</span> <span class="p">(</span><span class="n">props</span><span class="p">.</span><span class="n">volume</span> <span class="err">&amp;&amp;</span> <span class="n">props</span><span class="p">.</span><span class="n">speaker</span> <span class="err">?</span> <span class="s1">"1"</span> <span class="p">:</span> <span class="s1">"0.5"</span><span class="p">)}</span><span class="o">;</span>
-    <span class="err">}</span>
-</code></pre></div></div>
-
-<p>그냥 opacity를 volume과 speaker가 존재 시 1, 아니면 0.5를 줘서 간단히 해결하였다.</p>
-
-<h4 id="볼륨이-올라갈때-색이-파란색이-마음에-안든다">볼륨이 올라갈때 색이 파란색이 마음에 안든다</h4>
-
-<p>이부분이 상당히 애를 먹었다. 우선 여러번의 삽질과 해결법이 존재하였고, 나는 나름 정말 우아한 해결법을 찾았다고 생각한다.</p>
-
-<p>우선 첫번째는 너무나 쉬운 material-UI 를 사용하는것이다. 하지만, 이미 돌아가기엔, 너무 많이 구현을 해버린 나… 끝까지 바닐라로 해결해보았다.</p>
-
-<p>두번째는 내장 CSS 옵션을 사용하는 방법. CSS 는 브라우저에 의존적이기에, <code class="language-plaintext highlighter-rouge">fill-lower, fill-upper</code> 를 사용하여 색 지정이 되는 브라우저가 있다고 한다. 하지만 이건 IE만 지원을 하며, 크롬이나 파이어폭스는 지원하지 않아, 무시하였다.</p>
-
-<p>혹시라도 사용하고 싶다면</p>
-
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">input</span><span class="o">[</span><span class="nt">type</span><span class="o">=</span><span class="s1">"range"</span><span class="o">]</span><span class="nd">::-ms-fill-lower</span> <span class="p">{</span>
-  <span class="nl">background-color</span><span class="p">:</span> <span class="no">red</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="nt">input</span><span class="o">[</span><span class="nt">type</span><span class="o">=</span><span class="s1">"range"</span><span class="o">]</span><span class="nd">::-ms-fill-upper</span> <span class="p">{</span>
-  <span class="nl">background-color</span><span class="p">:</span> <span class="no">blue</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p>이러한 방식을 사용하면 된다.</p>
-
-<p>세번째는 인터넷에 떠돌아 다니는 방법을 사용하는 것. 바로 thumb의 box-shadow를 두어 0부터 thumb까지 전부 색칠하는 방법이다. 그리고 남는 부분은 input 전체에 <code class="language-plaintext highlighter-rouge">overflow: hidden</code>을 두어 새어 나오는것을 방지하는 방법이다.</p>
-
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">input</span><span class="o">[</span><span class="nt">type</span><span class="o">=</span><span class="s1">"range"</span><span class="o">]</span> <span class="p">{</span>
-  <span class="nl">overflow</span><span class="p">:</span> <span class="nb">hidden</span><span class="p">;</span>
-  <span class="nl">width</span><span class="p">:</span> <span class="m">80px</span><span class="p">;</span>
-  <span class="nl">-webkit-appearance</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
-  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#9a905d</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="nt">input</span><span class="o">[</span><span class="nt">type</span><span class="o">=</span><span class="s1">"range"</span><span class="o">]</span><span class="nd">::-webkit-slider-runnable-track</span> <span class="p">{</span>
-  <span class="nl">height</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>
-  <span class="nl">-webkit-appearance</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
-  <span class="nl">color</span><span class="p">:</span> <span class="m">#13bba4</span><span class="p">;</span>
-  <span class="nl">margin-top</span><span class="p">:</span> <span class="m">-1px</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="nt">input</span><span class="o">[</span><span class="nt">type</span><span class="o">=</span><span class="s1">"range"</span><span class="o">]</span><span class="nd">::-webkit-slider-thumb</span> <span class="p">{</span>
-  <span class="nl">-webkit-appearance</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
-  <span class="nl">width</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>
-  <span class="nl">height</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>
-  <span class="nl">background</span><span class="p">:</span> <span class="m">#434343</span><span class="p">;</span>
-  <span class="nl">box-shadow</span><span class="p">:</span> <span class="m">-80px</span> <span class="m">0</span> <span class="m">0</span> <span class="m">80px</span> <span class="m">#43e5f7</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p>이건 괜찮아 보이지만 문제가 많다. 우선 완성된 결과물부터 보자.</p>
-
-<p><img src="https://user-images.githubusercontent.com/66371206/182020050-bbbdd186-67b7-45b0-849f-fc0eec3c075b.gif" alt="ezgif-3-875a95cf4c" /></p>
-
-<p>우선 box shadow를 활용하기에, 동그라미인 thumb 를 사용할 수 없으며 overflow-hidden이 필수적으로 필요해 원하는 이쁜 디자인을 절대 만들 수 없다. 그래서 더 고민을 하고 linear-gradient를 활용한 우아한 해결법을 찾았다.</p>
-
-<p>linear-gradient 가 단순히 서서히 적용되지 않고, 완전 다른 색으로 hard line을 그릴 수 있는 방법을 이용하였다. 코드를 보면 다음과 같다.</p>
-
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">background</span><span class="o">:</span> <span class="err">$</span><span class="p">{</span><span class="err">(props)</span> <span class="err">=&gt;</span>
-        <span class="err">props.volume</span>
-          <span class="err">?</span> <span class="err">`linear-gradient(to</span> <span class="err">right,</span> <span class="err">#D9D9D9</span> <span class="err">${props.volume</span><span class="p">}</span><span class="o">%,</span> <span class="nt">rgba</span><span class="o">(</span><span class="err">229</span><span class="o">,</span> <span class="err">231</span><span class="o">,</span> <span class="err">235</span><span class="o">,</span> <span class="err">0</span><span class="o">.</span><span class="err">5</span><span class="o">)</span>
- <span class="err">$</span><span class="p">{</span><span class="err">props.volume</span><span class="p">}</span><span class="o">%</span> <span class="err">100</span><span class="o">%)</span><span class="err">`</span>
-          <span class="o">:</span> <span class="s1">"#E5E7EB"</span><span class="err">}</span><span class="o">;</span>
-</code></pre></div></div>
-
-<p>우선 볼륨을 0 ~ 100 의 수를 주므로, 해당하는 볼륨 % 까지, <code class="language-plaintext highlighter-rouge">#d9d9d9</code>의 색으로, 그 다음부터는 rgba(229, 231, 235, 0.5) 에 해당하는 색으로 지정하였다. 그렇게 완성된 볼륨 슬라이더는 다음과 같다.</p>
-
-<p><img src="https://user-images.githubusercontent.com/66371206/182032799-34a4b224-7e92-4388-8d45-58db2714bad0.gif" alt="ezgif-3-10012500c9" /></p>
-
-<blockquote>
-  <p>최종적으로 적용된 CSS 는 다음과 같다.</p>
-</blockquote>
-
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">VolumeControl</span> <span class="o">=</span> <span class="nx">styled</span><span class="p">.</span><span class="nx">div</span><span class="o">&lt;</span><span class="p">{</span> <span class="na">volume</span><span class="p">:</span> <span class="kr">number</span><span class="p">;</span> <span class="nl">speaker</span><span class="p">:</span> <span class="nx">boolean</span> <span class="p">}</span><span class="o">&gt;</span><span class="s2">`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: 1rem;
-  width: 6rem;
-
-  input[type='range'] {
-    -webkit-appearance: none;
-    height: 100%;
-    background: transparent;
-
-    &amp;:focus {
-      outline: none;
-    }
-
-    //WEBKIT
-    &amp;::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      height: 16px;
-      width: 16px;
-      border-radius: 50%;
-      background: </span><span class="p">${(</span><span class="nx">props</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="nx">props</span><span class="p">.</span><span class="nx">volume</span> <span class="p">?</span> <span class="dl">"</span><span class="s2">#d9d9d9</span><span class="dl">"</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">#E5E7EB</span><span class="dl">"</span><span class="p">)}</span><span class="s2">;
-      margin-top: -5px;
-      cursor: pointer;
-    }
-
-    &amp;::-webkit-slider-runnable-track {
-      height: 0.6rem;
-      background: </span><span class="p">${(</span><span class="nx">props</span><span class="p">)</span> <span class="o">=&gt;</span>
-        <span class="nx">props</span><span class="p">.</span><span class="nx">volume</span>
-          <span class="p">?</span> <span class="s2">`linear-gradient(to right, #D9D9D9 </span><span class="p">${</span><span class="nx">props</span><span class="p">.</span><span class="nx">volume</span><span class="p">}</span><span class="s2">%, rgba(229, 231, 235, 0.5)
- </span><span class="p">${</span><span class="nx">props</span><span class="p">.</span><span class="nx">volume</span><span class="p">}</span><span class="s2">% 100%)`</span>
-          <span class="p">:</span> <span class="dl">"</span><span class="s2">#E5E7EB</span><span class="dl">"</span><span class="p">}</span><span class="s2">;
-      opacity: </span><span class="p">${(</span><span class="nx">props</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="nx">props</span><span class="p">.</span><span class="nx">volume</span> <span class="o">&amp;&amp;</span> <span class="nx">props</span><span class="p">.</span><span class="nx">speaker</span> <span class="p">?</span> <span class="dl">"</span><span class="s2">1</span><span class="dl">"</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">0.5</span><span class="dl">"</span><span class="p">)}</span><span class="s2">;
-      border-radius: 3rem;
-      transition: all 0.5s;
-      cursor: pointer;
-    }
-`</span><span class="p">;</span>
-</code></pre></div></div>]]></content><author><name>071yoon</name></author><category term="modoco" /><category term="TIL" /><category term="React" /><summary type="html"><![CDATA[React 볼륨 슬라이더 만들기]]></summary></entry></feed>
+<a href="https://aws.amazon.com/ko/what-is/cdn/">https://aws.amazon.com/ko/what-is/cdn/</a></p>]]></content><author><name>071yoon</name></author><category term="TIL" /><category term="TIL" /><category term="AWS" /><summary type="html"><![CDATA[]]></summary></entry></feed>

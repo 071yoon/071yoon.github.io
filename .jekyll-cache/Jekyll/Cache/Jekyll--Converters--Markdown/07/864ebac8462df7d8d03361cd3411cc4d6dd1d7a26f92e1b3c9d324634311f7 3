@@ -1,2 +1,0 @@
-I"�<p><code class="language-plaintext highlighter-rouge">FCP(First Contentful Paint)</code>란 페이지가 로드되기 시작한 시점부터 컨텐츠의 일부가 화면에 렌더링 될 때까지의 시간 <code class="language-plaintext highlighter-rouge">LCP(Largest Contentful Paint)</code>란 페이지가 로드되기 시작한 시점부터 뷰포트 내부의 가장 큰 이미지 또는 텍스트의 렌더링까지 걸리는 시간</p>
-:ET
