@@ -343,6 +343,8 @@ ConcreteVisitor 역할을 추가하는것은 쉽다. 구조를 담당하는 클�
 
 반면, ConcreteElement 역할의 추가는 어려운데 그 이유는, 기존의 File과 Directory 클래스에 더해 새로운 Entry의 하위 클래스인 Device 클래스를 만들기 위해서는 기존에 구현되있는 모든 Visitor 클래스에 visitor(Device)메소드를 만들어야 하고 하위 클래스(ConcreteVisitor)에도 visit(Device)메소드를 구현해야 하기 때문.
 
+> 데이터와 데이터를 추상화하고, 그 동작을 추상화를 해주는 패턴! 그리고 Visitor가 알고있는 것은 Concrete Element임에 주의
+
 ---
 
 참조

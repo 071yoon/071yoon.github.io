@@ -1,4 +1,82 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-10-06T02:30:21+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi's tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">Visitor Pattern</title><link href="http://localhost:4000/gof/2022/10/05/visitor-pattern.html" rel="alternate" type="text/html" title="Visitor Pattern" /><published>2022-10-05T00:00:00+09:00</published><updated>2022-10-05T00:00:00+09:00</updated><id>http://localhost:4000/gof/2022/10/05/visitor-pattern</id><content type="html" xml:base="http://localhost:4000/gof/2022/10/05/visitor-pattern.html"><![CDATA[<h2 id="방문자-패턴">방문자 패턴</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-10-09T21:55:15+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi's tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">Fix Error via APM</title><link href="http://localhost:4000/til/2022/10/09/fix-error-via-apm.html" rel="alternate" type="text/html" title="Fix Error via APM" /><published>2022-10-09T00:00:00+09:00</published><updated>2022-10-09T00:00:00+09:00</updated><id>http://localhost:4000/til/2022/10/09/fix-error-via-apm</id><content type="html" xml:base="http://localhost:4000/til/2022/10/09/fix-error-via-apm.html"><![CDATA[<h2 id="apm-으로-오류-분석-및-해결을-해보자">APM 으로 오류 분석 및 해결을 해보자</h2>
+
+<h3 id="문제-시점">문제 시점</h3>
+
+<p>우리 서비스에는 new-relic 이라는 APM이 연동되어 있다. 하지만 사용법이 너무 복잡하고 어려워서 잘 사용하고 있지는 않고 있는데, 마침 쓸 상황이 왔다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/66371206/194757039-4ca5891c-381c-4f84-aebd-6770ced5dee4.png" alt="스크린샷 2022-10-09 오후 9 32 55" />
+<img src="https://user-images.githubusercontent.com/66371206/194757036-bb7040a6-092c-4728-a8a2-e15547395f4c.png" alt="스크린샷 2022-10-09 오후 9 32 59" /></p>
+
+<p>친구랑 같이 사용중이였는데, 친구의 어플리케이션이 사파리에 접속하자마자 튕겼다는것!
+하지만 콘솔창을 열어보지 않아서 어디가 문제인지 확인을 할 수 없는 상황이였다.</p>
+
+<p>연동한 APM을 활용하여 오류를 고쳐보도록 하자!</p>
+
+<h3 id="문제-분석">문제 분석</h3>
+
+<p>우선 new relic의 browser -&gt; 내가 보려는 Application으로 들어가자</p>
+
+<p><img width="966" alt="image" src="https://user-images.githubusercontent.com/66371206/194757160-df3694ff-ae98-492f-b17f-5a3cf60a9326.png" /></p>
+
+<p>다음 JS errors에서 어떠한 오류들이 났는지 확인해보자</p>
+
+<p><img width="858" alt="image" src="https://user-images.githubusercontent.com/66371206/194757201-787c1172-8e00-4863-b9aa-f75bbf512c6c.png" /></p>
+
+<p>근데 이미 오류가 한 두가지 아니다… 우선 제일 많은 오류가 난 too many re-renders를 확인해보자</p>
+
+<p><img width="1175" alt="image" src="https://user-images.githubusercontent.com/66371206/194757261-60300485-2a82-40ef-903e-d8a5c53a55a0.png" /></p>
+
+<p>음… 이 부분은 localhost 에서 에러가 난 것으로 보아 아마 그냥 팀원이나 내가 테스트를 하다 잘못 걸려 들어왔던 것 같다.</p>
+
+<p>나머지도 확인해보니 거의 localhost 작업시에 나왔던 에러로 보이다,,, 드디어 문제를 찾았다</p>
+
+<p><img width="1151" alt="image" src="https://user-images.githubusercontent.com/66371206/194757389-4a464c5c-6caa-4415-b197-1ab64c137bae.png" /></p>
+
+<p>약 3시간 전, modocode.com 즉 production 사이트에서 Safari오류가 난 것을 확인했다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">navigator.permissions.query</code> 가 왜 문제일까?</p>
+
+<p>혹시 버전의 문제일까 싶어 MDN 문서를 확인해보았다.</p>
+
+<p><img width="827" alt="image" src="https://user-images.githubusercontent.com/66371206/194757590-c09efd79-e1e1-4f49-af57-c20f5b6a2a14.png" /></p>
+
+<p>문서상으로는 fully compatible 이라고 나오기는 한다. 하지만 잘 보면 접속했던 Safari 브라우저는 15.5 이고, 16부터 호환이 된다고 나와있다. 그럼 혹시 15.5에서는 navigator.permissions.query가 작동하지 않는게 아닐까?</p>
+
+<p>내가 좋아하는 다른 웹사이트 <code class="language-plaintext highlighter-rouge">caniuse</code>를 확인해보자.</p>
+
+<p><img width="1449" alt="image" src="https://user-images.githubusercontent.com/66371206/194757641-d4297db0-eba7-4ce1-ac5c-dc310e27bd21.png" /></p>
+
+<p>음 문서를 보니 정확하게 15.6 까지 호환이 안되고 그 이후가 호환이 된다고 나와있다.</p>
+
+<p>이제 오류를 찾고 원인도 분석하였으니 해결해보자</p>
+
+<h3 id="문제-해결">문제 해결</h3>
+
+<p>사실 이번 오류가 난 기능은 그렇게 중요한 기능은 아니다. 내가 방에 입장하기 전, 마이크 혹은 카메라의 permission이 있는지 확인하게 2단계 보안 장치라 볼 수 있다. 하지만, 생각보다 지원하지 않는 버전과 브라우저가 꽤나 있고, 유저가 어떠한 브라우저를 사용하는지는 알 수 없으므로, 만약 지원이 되지 않는 브라우저는 과감하게 해당 기능을 제외하기로 결심했다.</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">checkValid</span> <span class="o">=</span> <span class="o">!!</span><span class="nb">navigator</span><span class="p">.</span><span class="nx">permissions</span><span class="p">?.</span><span class="nx">query</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">checkValid</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nb">navigator</span><span class="p">.</span><span class="nx">permissions</span><span class="p">.</span><span class="nx">query</span><span class="p">({</span> <span class="na">name</span><span class="p">:</span> <span class="nx">permissionName</span> <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">state</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">granted</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">setDisableButton</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">state</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">prompt</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">setDisableButton</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">state</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">denied</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">setDisableButton</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>그냥 boolean으로, 내가 permissions.query라는 함수가 있을 때는 원하는 기능을 동작하고, 아닌 경우 무시할 수 있도록 설정해주었다.</p>
+
+<h2 id="후기">후기</h2>
+
+<p>사실 문제 자체는 정말 간단하고, 해결도 쉽게 하였지만 만약 APM이 없었다면 생각보다 오래 걸렸을 것이다. 어떤 브라우저 어떤 버전에 따라 어떤 문제가 생길지도 모르는 법이고, 이러한 경우의 수를 모두 테스트해가며 코드를 완성시킬 수 없기 때문이다. APM 때문에, light house 점수도 많이 깎이고 이걸 왜 써야되지… 싶었던 적도 있었지만 해당 기술을 가지고 문제 해결을 하니 기분이 좋다 ㅎㅎ</p>
+
+<blockquote>
+  <p>세상에 쓸모 없는것은 없다</p>
+</blockquote>]]></content><author><name>071yoon</name></author><category term="TIL" /><category term="TIL" /><summary type="html"><![CDATA[APM 으로 오류 분석 및 해결을 해보자]]></summary></entry><entry><title type="html">Visitor Pattern</title><link href="http://localhost:4000/gof/2022/10/05/visitor-pattern.html" rel="alternate" type="text/html" title="Visitor Pattern" /><published>2022-10-05T00:00:00+09:00</published><updated>2022-10-05T00:00:00+09:00</updated><id>http://localhost:4000/gof/2022/10/05/visitor-pattern</id><content type="html" xml:base="http://localhost:4000/gof/2022/10/05/visitor-pattern.html"><![CDATA[<h2 id="방문자-패턴">방문자 패턴</h2>
 
 <p>데이터 구조는 많은 요소가 저장되어 있고, 각 요소에 대해 어떻게 <code class="language-plaintext highlighter-rouge">처리</code>가 필요한 경우를 생각해보자.</p>
 
@@ -399,6 +477,10 @@
 <p>ConcreteVisitor 역할을 추가하는것은 쉽다. 구조를 담당하는 클래스(ConcreteElement)역할을 수정할 필요가 없기 때문.</p>
 
 <p>반면, ConcreteElement 역할의 추가는 어려운데 그 이유는, 기존의 File과 Directory 클래스에 더해 새로운 Entry의 하위 클래스인 Device 클래스를 만들기 위해서는 기존에 구현되있는 모든 Visitor 클래스에 visitor(Device)메소드를 만들어야 하고 하위 클래스(ConcreteVisitor)에도 visit(Device)메소드를 구현해야 하기 때문.</p>
+
+<blockquote>
+  <p>데이터와 데이터를 추상화하고, 그 동작을 추상화를 해주는 패턴! 그리고 Visitor가 알고있는 것은 Concrete Element임에 주의</p>
+</blockquote>
 
 <hr />
 
@@ -2383,138 +2465,4 @@ fixtures 폴더에는 추후에 사용할 모킹하였을 때 결과로 받을 j
 
 <p>완성된 버전</p>
 
-<p><img src="https://user-images.githubusercontent.com/66371206/188813661-d31a95d8-8a3d-4916-a82e-8a924d5010f2.gif" alt="ezgif-4-8e32a6168e" /></p>]]></content><author><name>071yoon</name></author><category term="modoco" /><category term="css" /><category term="javascript" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">S3 &amp;amp; CloudFront를 활용한 CDN 서버 만들기</title><link href="http://localhost:4000/til/2022/08/10/aws-cloudFront.html" rel="alternate" type="text/html" title="S3 &amp;amp; CloudFront를 활용한 CDN 서버 만들기" /><published>2022-08-10T00:00:00+09:00</published><updated>2022-08-10T00:00:00+09:00</updated><id>http://localhost:4000/til/2022/08/10/aws-cloudFront</id><content type="html" xml:base="http://localhost:4000/til/2022/08/10/aws-cloudFront.html"><![CDATA[<p><img width="300" alt="image" src="https://user-images.githubusercontent.com/66371206/183911780-90c424e9-e115-44e2-8163-f0b4ab823458.png" /></p>
-
-<p>CDN 서버를 만들기 앞서, 왜 CDN 서버를 만드는지에 대해 알아보자</p>
-
-<h2 id="cdn">CDN</h2>
-
-<h3 id="cdn-이란">CDN 이란?</h3>
-
-<p>콘텐츠 전송 네트워크(CDN)는 데이터 사용량이 많은 애플리케이션의 웹 페이지 로드 속도를 높이는 상호 연결된 서버 네트워크로 콘텐츠 전송 혹은 배포 용도로 사용된다.</p>
-
-<p>실제 사용자는 웹사이트에 접속 시, 해당 웹사이트의 데이터를 다운받기 위해 인터넷으로 접속한다. 하지만, 사용자가 서버에서 떨어질 수록, 웹사이트의 정적 이미지(이미지, 동영상, 음악 등)를 다운받는데 오래 걸리게 됩니다. 이러한 경우, CDN 서버를 전 세계에 있는 엣지 포인트를 두어 캐싱처리를 하여 사용자가 가장 가까운 지역의 엣지 포인트로 접속하게 하여 해당 문제를 해결 할 수 있다.</p>
-
-<h2 id="cdn이-중요한-이유">CDN이 중요한 이유?</h2>
-
-<p>콘텐츠 전송 네트워크(CDN)의 주 목적은 대기 시간을 줄이거나 네트워크 설계로 인해 발생하는 통신 지연을 줄이는 것이다. CDN은 클라이언트와 웹 사이트 서버 간에 중간 서버를 두어 효율성을 높일 수 있다. 이러한 CDN 서버는 클라이언트-서버 통신을 관리하며, 웹 서버에 대한 웹 트래픽을 줄이고, 대역폭 소비를 줄이며, 애플리케이션의 사용자 환경을 개선할 수 있다.</p>
-
-<h2 id="cdn의-장점">CDN의 장점?</h2>
-
-<p>CDN을 사용함으로써 다음과 같은 이득을 볼 수 있다.</p>
-
-<h3 id="페이지-로드-시간-단축">페이지 로드 시간 단축</h3>
-
-<p>페이지 로드 시간이 너무 느리면 웹 사이트 트래픽이 감소할 수 있으므로, 반송률을 줄이고 사용자가 사이트에서 보내는 시간을 늘릴 수 있다.</p>
-
-<h3 id="대역폭-비용-절감">대역폭 비용 절감</h3>
-
-<p>들어오는 모든 웹 사이트 요청은 네트워크 대역폭을 사용하기 때문에 대역폭 비용이 상당히 높다. 캐싱 및 기타 최적화를 통해 CDN은 오리진 서버가 제공해야 하는 데이터의 양을 줄여 웹 사이트 소유자의 호스팅 비용을 절감할 수 있음.</p>
-
-<h3 id="콘텐츠-가용성-제고">콘텐츠 가용성 제고</h3>
-
-<p>한 번에 너무 많은 방문자가 방문하거나 네트워크 하드웨어 오류가 발생하면 웹 사이트가 중단될 수 있습니다. CDN 서비스는 더 많은 웹 트래픽을 처리하고 웹 서버의 로드를 줄일 수 있습니다. 또한 하나 이상의 CDN 서버가 오프라인으로 전환되면 다른 운영 서버가 해당 서버를 대체하여 서비스가 중단되지 않도록 할 수 있습니다.</p>
-
-<h3 id="웹-사이트-보안-강화">웹 사이트 보안 강화</h3>
-
-<p>분산 서비스 거부(DDoS) 공격은 대량의 가짜 트래픽을 웹 사이트로 전송하여 애플리케이션이 작동 중지되도록 만들려고 시도합니다. CDN은 여러 중간 서버 간에 로드를 분산하여 오리진 서버에 미치는 영향을 줄임으로써 이러한 트래픽 급증을 처리할 수 있습니다.</p>
-
-<h2 id="cdn-구현">CDN 구현</h2>
-
-<h3 id="s3-버킷-생성">S3 버킷 생성</h3>
-
-<p>먼저 S3 버킷을 일반적으로 생성한다.
-<img width="844" alt="image" src="https://user-images.githubusercontent.com/66371206/183887243-2b1dd102-166b-4e1f-bbc8-846ff990d27f.png" /></p>
-
-<blockquote>
-  <p>CloudFront에서 public으로 열어줄 예정이라, 액세스 차단을 해도 된다</p>
-</blockquote>
-
-<p><img width="835" alt="image" src="https://user-images.githubusercontent.com/66371206/183887348-9e248bf8-a7c3-4b79-857f-68a672208981.png" /></p>
-
-<p>다음으로, 프로젝트에서 사용할 static 파일들을 넣어준다.</p>
-
-<p><img width="1202" alt="image" src="https://user-images.githubusercontent.com/66371206/183887581-979abfb6-6557-416a-813c-a7cf04a79817.png" /></p>
-
-<p>마지막으로 버킷정책과 CORS 정책을 수립해주면 된다.
-<img src="https://user-images.githubusercontent.com/66371206/183889538-902d219b-75f3-48aa-a7b9-541a9a788125.png" alt="image" /></p>
-
-<blockquote>
-  <p>버킷정책</p>
-</blockquote>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"Version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2008-10-17"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"Id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PolicyForCloudFrontPrivateContent"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"Statement"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"Sid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"Effect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Allow"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"Principal"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"AWS"</span><span class="p">:</span><span class="w"> </span><span class="s2">"arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity [my id]"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nl">"Action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"s3:GetObject"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"Resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"arn:aws:s3:::static.[myDomain].com/*"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"Sid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"Effect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Allow"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"Principal"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"AWS"</span><span class="p">:</span><span class="w"> </span><span class="s2">"arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity [my id]"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nl">"Action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"s3:GetObject"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"Resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"arn:aws:s3:::static.[myDomain].com/*"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<blockquote>
-  <p>CORS 정책</p>
-</blockquote>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"AllowedHeaders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"*"</span><span class="p">],</span><span class="w">
-    </span><span class="nl">"AllowedMethods"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"HEAD"</span><span class="p">,</span><span class="w"> </span><span class="s2">"GET"</span><span class="p">],</span><span class="w">
-    </span><span class="nl">"AllowedOrigins"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"*"</span><span class="p">],</span><span class="w">
-    </span><span class="nl">"ExposeHeaders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="s2">"ETag"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"x-amz-server-side-encryption"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"x-amz-request-id"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"x-amz-id-2"</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"MaxAgeSeconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre></div></div>
-
-<h3 id="cloudfront-연동">CloudFront 연동</h3>
-
-<p>아까만든 S3 버킷으로 CloudFront를 생성해주면 된다
-<img src="https://user-images.githubusercontent.com/66371206/183890057-0a6c3ebb-9a0f-4886-8113-f6cc92ab5010.png" alt="image" /></p>
-
-<p>여기서 나온 ID를 앞서 버킷 정책에서의 [my id]에 넣어주면 된다.</p>
-
-<p>상세 정책은 다음과 같다</p>
-
-<p><img src="https://user-images.githubusercontent.com/66371206/183895266-496ab645-577b-45a2-a003-b374bfcabe70.png" alt="image" /></p>
-
-<p><img src="https://user-images.githubusercontent.com/66371206/183895316-83d7189c-5310-4d2e-931f-84dd6c21a565.png" alt="image" /></p>
-
-<p>CloudFront를 public으로 열어두고, CORS 정책을 S3에 위임하면 된다.</p>
-
-<h2 id="domain-달기">Domain 달기</h2>
-
-<p>Domain은 AWS 내 Route 53에서 미리 구매한 Domain을 확장해서 사용하였다.</p>
-
-<p><img src="https://user-images.githubusercontent.com/66371206/183895726-b2486618-83c4-48a9-b269-9f4af7a8fb24.png" alt="image" /></p>
-
-<p><img src="https://user-images.githubusercontent.com/66371206/183895901-8c996509-d9b8-461d-8ec4-f611672fbb01.png" alt="image" /></p>
-
-<p>그리고 다시 CloudFront로 와서, 생성한 대체 도메인을 선택 후, https 를 사용하기에 해당 SSL 인증서를 등록해주면 static.domain.com 으로 접근 가능한 cdn 서버가 완료가 된다.</p>
-
-<p><img src="https://user-images.githubusercontent.com/66371206/183910403-19ac163e-a202-4a59-8430-a81beae4385b.png" alt="image" /></p>
-
-<p>참조
-<a href="https://aws.amazon.com/ko/what-is/cdn/">https://aws.amazon.com/ko/what-is/cdn/</a></p>]]></content><author><name>071yoon</name></author><category term="TIL" /><category term="TIL" /><category term="AWS" /><summary type="html"><![CDATA[]]></summary></entry></feed>
+<p><img src="https://user-images.githubusercontent.com/66371206/188813661-d31a95d8-8a3d-4916-a82e-8a924d5010f2.gif" alt="ezgif-4-8e32a6168e" /></p>]]></content><author><name>071yoon</name></author><category term="modoco" /><category term="css" /><category term="javascript" /><summary type="html"><![CDATA[]]></summary></entry></feed>
