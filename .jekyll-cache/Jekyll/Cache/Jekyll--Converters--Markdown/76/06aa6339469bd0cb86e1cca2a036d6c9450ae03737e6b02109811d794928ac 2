@@ -1,0 +1,320 @@
+I"<h2 id="전략이란">전략이란?</h2>
+
+<ol>
+  <li>적을 부수기 위한 작전</li>
+  <li>군대를 움직일 때의 방책</li>
+  <li>문제를 해결하기 위한 방법</li>
+</ol>
+
+<p>등 이라 볼 수 있다.</p>
+
+<blockquote>
+  <p>즉 알고리즘을 빈틈없이 교체하여 같은 문제를 다른 방법으로 쉽게 해결할 수 있게 도와주는 패턴이다!</p>
+</blockquote>
+
+<h2 id="등장인물">등장인물</h2>
+
+<p><img src="https://user-images.githubusercontent.com/66371206/192945590-e33c0b30-da51-4759-a4b6-68b499b65783.png" alt="StrategyPatternTemplate drawio" /></p>
+
+<h3 id="strategy">Strategy</h3>
+
+<p>Strategy는 전략을 이용하기 위한 API를 결정한다.
+-&gt; Strategy Interface로 이용</p>
+
+<h3 id="concrete-strategy">Concrete Strategy</h3>
+
+<p>구체적인 API를 구현한다.
+-&gt; Winning Strategy, ProbStrategy로 구현</p>
+
+<h3 id="context">Context</h3>
+
+<p>Strategy를 이용한다.
+-&gt; Player로 구현</p>
+
+<h2 id="예제-프로그램">예제 프로그램</h2>
+
+<p><img src="https://user-images.githubusercontent.com/66371206/192945589-86dea94f-74a8-42db-9295-06512f4500bd.png" alt="StrategyPatternExample drawio" /></p>
+
+<h3 id="예제-설명">예제 설명</h3>
+
+<p>Strategy Pattern을 활용한 <code class="language-plaintext highlighter-rouge">가위바위보</code> 프로그램을 제작해보자!</p>
+
+<p>현재 프로그램에서는 두가지 전략이 존재한다.</p>
+
+<ol>
+  <li>이기면 다음에 같은 손을 내밀고, 졌다면 랜덤한 손을 내는 간단한 전략</li>
+  <li>직전에 냈던 손과 다음에 낼 손을 확률적으로 계산하여 높은 확률의 손을 내는 전략</li>
+</ol>
+
+<p>직접 구현을 하며, Strategy Pattern 이 어떤식으로 구현되어 있는지 알아보자</p>
+
+<h3 id="hand-class">Hand Class</h3>
+
+<p>Hand는 Player의 손을 표시하는 클래스로 존재한다. 내부적으로 [주먹, 가위, 보] 를 [0, 1, 2] 로 저장하고 있으며, Player는 필요할 때 언제든 같은 객체를 반복하여 사용할 수 있다.</p>
+
+<blockquote>
+  <p>싱글톤을 잘 활용한 예시</p>
+</blockquote>
+
+<p>주요 함수로는, 가위바위보를 진행 후에 <code class="language-plaintext highlighter-rouge">isStrongerThan</code>으로 승패를 판단할 수 있다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Hand</span><span class="o">{</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">ROCK</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">SCIS</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">PAPE</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">Hand</span><span class="o">[]</span> <span class="n">hand</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="k">new</span> <span class="nf">Hand</span><span class="o">(</span><span class="no">ROCK</span><span class="o">);</span>
+    <span class="k">new</span> <span class="nf">Hand</span><span class="o">(</span><span class="no">SICS</span><span class="o">);</span>
+    <span class="k">new</span> <span class="nf">Hand</span><span class="o">(</span><span class="no">PAPE</span><span class="o">);</span>
+  <span class="o">};</span>
+
+  <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span><span class="o">[]</span> <span class="n">name</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="err">'</span><span class="nc">Rock</span><span class="err">'</span><span class="o">,</span> <span class="err">'</span><span class="nc">Scissors</span><span class="err">'</span><span class="o">,</span> <span class="err">'</span><span class="nc">Paper</span><span class="err">'</span>
+  <span class="o">};</span>
+
+  <span class="kd">private</span> <span class="kt">int</span> <span class="n">handValue</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="nf">Hand</span><span class="o">(</span><span class="kt">int</span> <span class="n">handValue</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// constructor</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">handValue</span> <span class="o">=</span> <span class="n">handValue</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="nc">Hand</span> <span class="nf">getHand</span><span class="o">(</span><span class="kt">int</span> <span class="nc">HandValue</span><span class="o">)</span> <span class="o">{</span> <span class="c1">//get instance from value</span>
+    <span class="k">return</span> <span class="n">hand</span><span class="o">[</span><span class="n">handValue</span><span class="o">];</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isStrongerThan</span><span class="o">(</span><span class="nc">Hand</span> <span class="n">h</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// return true when win</span>
+    <span class="k">return</span> <span class="nf">fight</span><span class="o">(</span><span class="n">h</span><span class="o">)</span> <span class="o">==</span> <span class="mi">1</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isWeakerThan</span><span class="o">(</span><span class="nc">Hand</span> <span class="n">h</span><span class="o">)</span> <span class="o">{</span> <span class="c1">//return true when lose</span>
+    <span class="k">return</span> <span class="nf">fight</span><span class="o">(</span><span class="n">h</span><span class="o">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">private</span> <span class="kt">int</span> <span class="nf">fight</span><span class="o">(</span><span class="nc">Hand</span> <span class="n">h</span><span class="o">)</span> <span class="o">{</span> <span class="c1">//private fight method</span>
+    <span class="k">if</span> <span class="o">(</span><span class="k">this</span> <span class="o">==</span> <span class="n">h</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// draw</span>
+      <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">((</span><span class="k">this</span><span class="o">.</span><span class="na">handValue</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="n">h</span><span class="o">.</span><span class="na">handValue</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// win</span>
+      <span class="k">return</span> <span class="mi">1</span><span class="o">;</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span> <span class="c1">// lose</span>
+      <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">name</span><span class="o">[</span><span class="n">handValue</span><span class="o">];</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<h3 id="strategy-interface">Strategy Interface</h3>
+
+<p>전략을 위한 추상 메소드의 집합이다.
+nextHand는 다음에 내는 손을 얻기 위한 메소드이며, 이 메소드가 호출되면, 다음에 낼 손을 리턴하게 된다.
+Study는 직전에 내가 낸 손으로 이겼는지 졌는지, 그리고 그에 해당하는 학습을 위한 메소드로 사용된다. 이겼다면 <code class="language-plaintext highlighter-rouge">study(true)</code>, 졌다면 <code class="language-plaintext highlighter-rouge">study(false)</code>로 호출된다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Strategy</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="kd">abstract</span> <span class="nc">Hand</span> <span class="nf">nextHand</span><span class="o">();</span>
+	<span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">study</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">win</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="winningstrategy-class">WinningStrategy Class</h3>
+
+<p>단순한 Strategy 를 나타낸다.</p>
+
+<p>간단하게, 직전 승부에서 이겼다면, 이긴 손을 계속내고, 만약 졌다면 새로운 랜덤한 손을 생성해서 제공한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">WinningStrategy</span> <span class="kd">implements</span> <span class="nc">Strategy</span> <span class="o">{</span>
+	<span class="kd">private</span> <span class="nc">Random</span> <span class="n">random</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="kt">boolean</span> <span class="n">won</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="nc">Hand</span> <span class="n">prevHand</span><span class="o">;</span>
+
+	<span class="kd">public</span> <span class="nf">WinningStrategy</span><span class="o">(</span><span class="kt">int</span> <span class="n">seed</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// init Random from seed</span>
+		<span class="n">random</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Random</span><span class="o">(</span><span class="n">seed</span><span class="o">);</span>
+	<span class="o">}</span>
+
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="nc">Hand</span> <span class="nf">nextHand</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">if</span><span class="o">(!</span><span class="n">won</span><span class="o">){</span> <span class="c1">// lose -&gt; next hand will be random</span>
+			<span class="n">prevHand</span> <span class="o">=</span> <span class="nc">Hand</span><span class="o">.</span><span class="na">getHand</span><span class="o">(</span><span class="n">random</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="mi">3</span><span class="o">));</span>
+		<span class="o">}</span>
+		<span class="k">return</span> <span class="n">prevHand</span><span class="o">;</span> <span class="c1">// win -&gt; next hand is same</span>
+	<span class="o">}</span>
+
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">study</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">win</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// check if last game is won</span>
+		<span class="n">won</span> <span class="o">=</span> <span class="n">win</span><span class="o">;</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="probstrategy-class">ProbStrategy Class</h3>
+
+<p>가위바위보의 복잡한 전략
+간단하게 설명을 하자면
+<code class="language-plaintext highlighter-rouge">history[이전에 낸 손][이번에 낼 손]</code> 에 해당하는 데이터들을 계속 쌓아, 이번에 낼 손 중에 가장 이겼던 확률이 높았던 것을 내게 결정한다.</p>
+
+<p>예를들어 내가 이때까지 가위를 내고 다음에 주먹을 내서 이겼던 상황이 10번 있었다면 <code class="language-plaintext highlighter-rouge">history[1][2] = 10</code>이 된다.</p>
+
+<p>즉 내가 저번에 가위를 냈고 다음에 주먹, 가위, 보를 냈을때의 승률 즉 <code class="language-plaintext highlighter-rouge">history[1][0]</code> <code class="language-plaintext highlighter-rouge">history[1][1]</code> <code class="language-plaintext highlighter-rouge">history[1][2]</code>의 비율이 <code class="language-plaintext highlighter-rouge">1:3:5</code> 라면 주먹을 낼 확률이 1/9, 가위를 낼 확률이 3/9, 보를 낼 확률이 5/9. 이런식으로 정의를 하였다</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProbStrategy</span> <span class="kd">implements</span> <span class="nc">Strategy</span> <span class="o">{</span>
+	<span class="kd">private</span> <span class="nc">Random</span> <span class="n">random</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="kt">int</span> <span class="n">prevHandValue</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="kt">int</span> <span class="n">currentHandValue</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="kt">int</span><span class="o">[][]</span> <span class="n">history</span> <span class="o">=</span> <span class="o">{</span>
+			<span class="o">{</span><span class="mi">1</span><span class="o">,</span><span class="mi">1</span><span class="o">,</span><span class="mi">1</span><span class="o">,},</span>
+			<span class="o">{</span><span class="mi">1</span><span class="o">,</span><span class="mi">1</span><span class="o">,</span><span class="mi">1</span><span class="o">,},</span>
+			<span class="o">{</span><span class="mi">1</span><span class="o">,</span><span class="mi">1</span><span class="o">,</span><span class="mi">1</span><span class="o">,},</span>
+	<span class="o">};</span>
+
+	<span class="kd">public</span> <span class="nf">ProbStrategy</span><span class="o">(</span><span class="kt">int</span> <span class="n">seed</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// init Random from seed</span>
+		<span class="n">random</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Random</span><span class="o">(</span><span class="n">seed</span><span class="o">);</span>
+	<span class="o">}</span>
+
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="nc">Hand</span> <span class="nf">nextHand</span><span class="o">()</span> <span class="o">{</span> <span class="c1">// next hand algorithm logic</span>
+		<span class="kt">int</span> <span class="n">bet</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="n">getSum</span><span class="o">(</span><span class="n">currentHandValue</span><span class="o">));</span>
+		<span class="kt">int</span> <span class="n">handValue</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+		<span class="k">if</span><span class="o">(</span><span class="n">bet</span> <span class="o">&lt;</span> <span class="n">history</span><span class="o">[</span><span class="n">currentHandValue</span><span class="o">][</span><span class="mi">0</span><span class="o">]){</span>
+			<span class="n">handValue</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+		<span class="o">}</span><span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">bet</span> <span class="o">&lt;</span> <span class="n">history</span><span class="o">[</span><span class="n">currentHandValue</span><span class="o">][</span><span class="mi">0</span><span class="o">]+</span><span class="n">history</span><span class="o">[</span><span class="n">currentHandValue</span><span class="o">][</span><span class="mi">1</span><span class="o">]){</span>
+			<span class="n">handValue</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+		<span class="o">}</span><span class="k">else</span><span class="o">{</span>
+			<span class="n">handValue</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
+		<span class="o">}</span>
+		<span class="n">prevHandValue</span> <span class="o">=</span> <span class="n">currentHandValue</span><span class="o">;</span>
+		<span class="n">currentHandValue</span> <span class="o">=</span> <span class="n">handValue</span><span class="o">;</span>
+		<span class="k">return</span> <span class="nc">Hand</span><span class="o">.</span><span class="na">getHand</span><span class="o">(</span><span class="n">handValue</span><span class="o">);</span>
+	<span class="o">}</span>
+
+	<span class="kd">private</span> <span class="kt">int</span> <span class="nf">getSum</span><span class="o">(</span><span class="kt">int</span> <span class="n">hv</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// help next hand algorithm logic</span>
+		<span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">3</span><span class="o">;</span><span class="n">i</span><span class="o">++){</span>
+			<span class="n">sum</span> <span class="o">+=</span> <span class="n">history</span><span class="o">[</span><span class="n">hv</span><span class="o">][</span><span class="n">i</span><span class="o">];</span>
+		<span class="o">}</span>
+		<span class="k">return</span> <span class="n">sum</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">study</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">win</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// stack data for algorithm</span>
+		<span class="k">if</span><span class="o">(</span><span class="n">win</span><span class="o">){</span>
+			<span class="n">history</span><span class="o">[</span><span class="n">prevHandValue</span><span class="o">][</span><span class="n">currentHandValue</span><span class="o">]++;</span>
+		<span class="o">}</span><span class="k">else</span><span class="o">{</span>
+			<span class="n">history</span><span class="o">[</span><span class="n">prevHandValue</span><span class="o">][(</span><span class="n">currentHandValue</span><span class="o">+</span><span class="mi">1</span><span class="o">)%</span><span class="mi">3</span><span class="o">]++;</span>
+			<span class="n">history</span><span class="o">[</span><span class="n">prevHandValue</span><span class="o">][(</span><span class="n">currentHandValue</span><span class="o">+</span><span class="mi">2</span><span class="o">)%</span><span class="mi">3</span><span class="o">]++;</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<h3 id="player-class">Player Class</h3>
+
+<p>실제 가위바위보를 하는 사람을 표현할 클래스이다.
+Player는 <code class="language-plaintext highlighter-rouge">이름</code> 과 <code class="language-plaintext highlighter-rouge">전략</code>이 할당되어 인스턴스를 만들게 된다.
+<code class="language-plaintext highlighter-rouge">nextHand</code>를 호출하면, 전략에 알맞는 다음 손을 유추하여 리턴 받고 다음 손으로 지정하게 된다. 즉 다음에 자신이 해야 할 행동을 Strategy에 맡기고 <code class="language-plaintext highlighter-rouge">위임</code>을 하고 있다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Player</span> <span class="o">{</span>
+	<span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="nc">Strategy</span> <span class="n">strategy</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="kt">int</span> <span class="n">wincount</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="kt">int</span> <span class="n">losecount</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="kt">int</span> <span class="n">gamecount</span><span class="o">;</span>
+
+	<span class="kd">public</span> <span class="nf">Player</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">,</span><span class="nc">Strategy</span> <span class="n">strategy</span><span class="o">){</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">strategy</span> <span class="o">=</span> <span class="n">strategy</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="nc">Hand</span> <span class="nf">nextHand</span><span class="o">()</span> <span class="o">{</span> <span class="c1">// get command from strategy</span>
+		<span class="k">return</span> <span class="n">strategy</span><span class="o">.</span><span class="na">nextHand</span><span class="o">();</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">win</span><span class="o">(){</span>
+		<span class="n">strategy</span><span class="o">.</span><span class="na">study</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+		<span class="n">wincount</span><span class="o">++;</span>
+		<span class="n">gamecount</span><span class="o">++;</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">lose</span><span class="o">(){</span>
+		<span class="n">strategy</span><span class="o">.</span><span class="na">study</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+		<span class="n">losecount</span><span class="o">++;</span>
+		<span class="n">gamecount</span><span class="o">++;</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">even</span><span class="o">(){</span>
+		<span class="n">gamecount</span><span class="o">++;</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">(){</span>
+		<span class="k">return</span> <span class="s">"["</span><span class="o">+</span><span class="n">name</span><span class="o">+</span><span class="s">":"</span><span class="o">+</span><span class="n">gamecount</span><span class="o">+</span><span class="s">"games,"</span><span class="o">+</span><span class="n">wincount</span><span class="o">+</span><span class="s">"win,"</span><span class="o">+</span><span class="n">losecount</span><span class="o">+</span><span class="s">"lose"</span><span class="o">+</span><span class="s">"]"</span><span class="o">;</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<h3 id="main-class">Main Class</h3>
+
+<p>실제로 Main 함수는 다음과 같이 흘러간다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">if</span><span class="o">(</span><span class="n">args</span><span class="o">.</span><span class="na">length</span><span class="o">!=</span><span class="mi">2</span><span class="o">){</span>
+			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Usage:java Main randomseed1 randomseed2"</span><span class="o">);</span>
+			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Example:java Main 314 15"</span><span class="o">);</span>
+			<span class="nc">System</span><span class="o">.</span><span class="na">exit</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+		<span class="o">}</span>
+
+		<span class="kt">int</span> <span class="n">seed1</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">]);</span> <span class="c1">// init with seed</span>
+		<span class="kt">int</span> <span class="n">seed2</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">args</span><span class="o">[</span><span class="mi">1</span><span class="o">]);</span>
+
+		<span class="nc">Player</span> <span class="n">player1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Player</span><span class="o">(</span><span class="s">"HanRyang"</span><span class="o">,</span><span class="k">new</span> <span class="nc">WinningStrategy</span><span class="o">(</span><span class="n">seed1</span><span class="o">));</span>
+		<span class="nc">Player</span> <span class="n">player2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Player</span><span class="o">(</span><span class="s">"Halang"</span><span class="o">,</span><span class="k">new</span> <span class="nc">WinningStrategy</span><span class="o">(</span><span class="n">seed2</span><span class="o">));</span>
+
+		<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">1000</span><span class="o">;</span><span class="n">i</span><span class="o">++){</span>
+			<span class="nc">Hand</span> <span class="n">nextHand1</span> <span class="o">=</span> <span class="n">player1</span><span class="o">.</span><span class="na">nextHand</span><span class="o">();</span>
+			<span class="nc">Hand</span> <span class="n">nextHand2</span> <span class="o">=</span> <span class="n">player2</span><span class="o">.</span><span class="na">nextHand</span><span class="o">();</span>
+
+			<span class="k">if</span><span class="o">(</span><span class="n">nextHand1</span><span class="o">.</span><span class="na">isStrongThan</span><span class="o">(</span><span class="n">nextHand2</span><span class="o">))</span> <span class="o">{</span>
+				<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Winner:"</span><span class="o">+</span><span class="n">player1</span><span class="o">);</span>
+				<span class="n">player1</span><span class="o">.</span><span class="na">win</span><span class="o">();</span>
+				<span class="n">player2</span><span class="o">.</span><span class="na">lose</span><span class="o">();</span>
+			<span class="o">}</span> <span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">nextHand1</span><span class="o">.</span><span class="na">isWeakerThan</span><span class="o">(</span><span class="n">nextHand2</span><span class="o">))</span> <span class="o">{</span>
+				<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Winner:"</span><span class="o">+</span><span class="n">player2</span><span class="o">);</span>
+				<span class="n">player2</span><span class="o">.</span><span class="na">win</span><span class="o">();</span>
+				<span class="n">player1</span><span class="o">.</span><span class="na">lose</span><span class="o">();</span>
+			<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+				<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Even..."</span><span class="o">);</span>
+				<span class="n">player1</span><span class="o">.</span><span class="na">even</span><span class="o">();</span>
+				<span class="n">player2</span><span class="o">.</span><span class="na">even</span><span class="o">();</span>
+			<span class="o">}</span>
+		<span class="o">}</span>
+
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Total result:"</span><span class="o">);</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">player1</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">player2</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="왜-사용할까">왜 사용할까?</h2>
+
+<p>일반적으로 메소드 내부에 동화된 형태로 알고리즘을 구현하지만 Strategy Pattern은 알고리즘을 다른 부분을 분리하여 API 즉 알고리즘의 인터페이스만 규정하고있다.</p>
+
+<p>만약 알고리즘을 개량하고 싶은 상황이 온다면, Strategy Pattern의 인터페이스는 유지한 채로, Concrete Strategy만 변경하면 된다. 혹은 새로운 알고리즘을 사용하고 싶다면, 새로운 Concrete Strategy를 만든 후 바꾸기만 하면 된다. 즉 위임이라는 <code class="language-plaintext highlighter-rouge">느슨한 연결</code>을 제공함으로써 알고리즘을 용이하게 교환할 수 있게 된다.</p>
+
+<p>혹은 원래 알고리즘과 속도 비교등도 간단하게 교체를 통하여 진행 할 수 있다.</p>
+
+<h2 id="tip">TIP</h2>
+
+<p>Strategy 패턴을 활용하여, 동작 중에도 Concrete Strategy 역할의 클래스를 교체 할 수도 있다.</p>
+
+<blockquote>
+  <p>Ex. 메모리가 적은 환경에서는 속도가 느리지만 메모리를 절약하는 전략, 메모리가 많을 때에서는 속도가 빠르지만 메모리를 많이 사용하는 전략을 선택 할 수 있다.</p>
+</blockquote>
+
+<p>Strategy 가 알고리즘의 확장성 즉 OCP를 만족시키며, Context가 알고리즘의 메소드를 모르고도 이용할 수 있게 하며 알고리즘의 복잡도를낮춰준다.</p>
+:ET

@@ -1,0 +1,96 @@
+I"*<p>안녕하세요, <code class="language-plaintext highlighter-rouge">071yoon</code>입니다.</p>
+
+<p>원래는 노션에서 제가 하는 작업들을 정리해 왔지만, 포스팅용의 사이트가 하나 필요하다 판단되어 Github IO를 채택하기로 했습니다.</p>
+
+<p>혹시라도 제 노션이 궁금하다면 -&gt; <a href="https://yeonggi.notion.site/YeongGi-s-Scratch-9085f2628b87451a9e19e655c9c5bd5e" title="영기의 노션 링크">노션링크</a></p>
+
+<h2 id="만드는-과정-step-by-step">만드는 과정 <strong>Step by Step</strong></h2>
+<blockquote>
+  <p>MAC 환경에서 작업햇습니다!!!</p>
+</blockquote>
+
+<h2 id="1-새로운-repository-생성">1. 새로운 Repository 생성</h2>
+<blockquote>
+  <p>주의 할 점 -&gt; 이름은 username.github.io 의 형태를 유지해야한다</p>
+</blockquote>
+
+<ul>
+  <li>README는 딱히 필요 없다. (근데 어차피 추가 해야됨…)</li>
+</ul>
+
+<h2 id="2-clone">2. <code class="language-plaintext highlighter-rouge">clone</code></h2>
+<ul>
+  <li>
+    <p>git clone` 으로 만들어 둔 Repiostiry 를 local로 clone</p>
+  </li>
+  <li>
+    <p>앞으로 해당 디렉토리에서 작업을 한다</p>
+  </li>
+</ul>
+
+<h2 id="3-jekyll">3. <code class="language-plaintext highlighter-rouge">Jekyll</code></h2>
+<blockquote>
+  <p>만약 Windows 환경이라면 Ruby 설치가 필요하다</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p>terminal 에서 <code class="language-plaintext highlighter-rouge">gem install jekyll bundler</code> 로 설치</p>
+  </li>
+  <li>
+    <p>만약 사용하고 싶은 템플릿 가 없다면 <code class="language-plaintext highlighter-rouge">Jekyll</code>의 기본 템플릿을 사용해보자</p>
+  </li>
+  <li>
+    <p>clone 한 디렉토리에서</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  jekyll new ./
+  bundle <span class="nb">install 
+  </span>bundle <span class="nb">exec </span>jekyll serve
+</code></pre></div>    </div>
+
+    <ul>
+      <li>
+        <p>까지 하게되면 서버를 열 수 있다</p>
+
+        <p><img width="695" alt="image" src="https://user-images.githubusercontent.com/66371206/149091259-85fb91e9-e480-4e0d-a521-559517d5c2a3.png" /></p>
+      </li>
+      <li>
+        <p>해당 이미지에서 서버의 Host 주소를 파악 (여기서 http://127.0.0.1:4000/ 인 부분)</p>
+      </li>
+      <li>
+        <p>수정이 끝났다면</p>
+
+        <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add <span class="nb">.</span>
+git commit <span class="nt">-m</span> <span class="s2">"커밋 내용"</span>
+git push origin master
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p>를 사용해 배포 후 ` http://username.github.io ` 에서 본인의 첫 블로그를 확인 할 수 있다</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+<ul>
+  <li>
+    <p>만약 사용하고 싶은 템플릿이 있다면</p>
+
+    <ul>
+      <li>
+        <p>해당 파일의 zip 파일을 가져와 압축을 해제 한 후 전부 나의 리포지토리에 붙여넣고 서버에 push를 진행하면 기본 템플릿이 제공된 테마가 제공된다</p>
+      </li>
+      <li>
+        <p><code class="language-plaintext highlighter-rouge">jekyll</code> 테마들은 여러 웹사이트들에서 찾을 수 있으며 나는 ` http://jekyllthemes.org ` 에서 <code class="language-plaintext highlighter-rouge">yat</code> 이라는 이쁜 테마를 찾아 사용했다</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>이후 완성된 나의 첫 블로그 홈페이지</p>
+
+<p><img width="1173" alt="image" src="https://user-images.githubusercontent.com/66371206/149092791-01744bdf-8432-4e97-9f1c-522fcac07fe2.png" /></p>
+
+<p>그림은 나만의 작은 블로그를 위해 직접 그려 배너로 대체했다 ㅎㅎ</p>
+:ET

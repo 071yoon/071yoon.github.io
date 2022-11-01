@@ -1,0 +1,248 @@
+I"�T<p>최근에 마음이 맞는 사람들과 프로젝트를 진행해 보기로 했다. <code class="language-plaintext highlighter-rouge">Decrypto</code> 라는 보드게임을 웹 환경으로 만들어 보면 어떠겠는가 해서 시작된 프로젝트였다. 생각보다 관심이 있는 사람들이 많아 인원을 다 모으고 회의를 진행을 해 보았는데… 아뿔싸… 제대로 웹 개발을 해본 사람이 없는것! 그래서 프로젝트 바로 시작하는것은 잠시 미뤄두고 스터디를 진행을 해 보기로 하였다. 인원도 많았기에, 팀별로 <code class="language-plaintext highlighter-rouge">React</code>, <code class="language-plaintext highlighter-rouge">Type Script</code>, <code class="language-plaintext highlighter-rouge">Node.js</code> 이런식으로 인원을 쪼개 2주간 진행을 한 후 통합하여 실제로 웹 프로젝트를 진행해 보기로 했다.</p>
+
+<p>그렇게 우리팀인 <code class="language-plaintext highlighter-rouge">TypeScript</code> 스터디팀은 무작정 코드리뷰도 해보려고하고, 코드아카데미에서 따라도 해보았고 그렇게 결정 난 사안이 [아직 자바스크립트도 제대로 못한다] 였다. 그래서 이론적인 부분에서 자바스크립트를 조금 더 공부하고자 포스팅을 시작한다.</p>
+
+<h2 id="javscript---객체란-무엇인가">Javscript - 객체란 무엇인가</h2>
+
+<ul>
+  <li>
+    <p>객체란 다양한 데이터를 담을 수 있는 형태</p>
+  </li>
+  <li>
+    <p>키로 구분된 데이터의 집합이나 개체를 저장 할 수 있다</p>
+  </li>
+</ul>
+
+<h3 id="property">Property</h3>
+
+<ul>
+  <li>중괄호 <code class="language-plaintext highlighter-rouge">{...}</code> 를 통해 만들 수 있으며, 안에 <code class="language-plaintext highlighter-rouge">key[string]: value[all types]</code>에 해당한 프로퍼티가 들어가야 한다
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Object</span><span class="p">();</span>
+  <span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">,</span>
+      <span class="na">age</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">test case</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span>
+  <span class="p">};</span>
+</code></pre></div>    </div>
+    <blockquote>
+      <p>const로 선언된 상수 객체가 수정 될 수 있음에 주의</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="대괄호-표기법">대괄호 표기법</h3>
+
+<ul>
+  <li>만약 내가 <code class="language-plaintext highlighter-rouge">user</code>에 <code class="language-plaintext highlighter-rouge">test case</code> 를 불러오고 싶어도 <code class="language-plaintext highlighter-rouge">user.test case</code> 라 선언 시 오류가 나기 때문에, user[“test case”] 이런식으로 대괄호로 읽어야 한다</li>
+  <li>혹은
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">let</span> <span class="nx">tmp</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">test case</span><span class="dl">"</span>
+  <span class="nx">user</span><span class="p">[</span><span class="nx">tmp</span><span class="p">]</span> <span class="o">=</span> <span class="kc">true</span>
+</code></pre></div>    </div>
+    <p>처럼 선언하여 사용 할 수 있다</p>
+  </li>
+</ul>
+
+<h3 id="in-연산자로-프로퍼티-존재-확인"><code class="language-plaintext highlighter-rouge">in</code> 연산자로 프로퍼티 존재 확인</h3>
+
+<ul>
+  <li>존재하지 않는 프로퍼티에 접근해도 에러가 발생하지 않고 <code class="language-plaintext highlighter-rouge">undefined</code>로 반환됨에 주의
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span> <span class="mi">25</span><span class="p">};</span>
+<span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">age</span><span class="dl">"</span> <span class="k">in</span> <span class="nx">user</span><span class="p">);</span> <span class="c1">//TRUE</span>
+<span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">work</span><span class="dl">"</span> <span class="k">in</span> <span class="nx">user</span><span class="p">);</span><span class="c1">//FALSE</span>
+<span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">user</span><span class="p">){</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="nx">key</span><span class="p">);</span><span class="c1">//name, age</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="nx">user</span><span class="p">[</span><span class="nx">key</span><span class="p">]);</span><span class="c1">//Yoon, 25</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>정렬방식은 정수 프로퍼티가 자동으로 정렬되고, 그 외는 추가 순서로 정렬됨에 주의
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">codes</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">49</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Germany</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">41</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Swiss</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">44</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">England</span><span class="dl">"</span><span class="p">,</span>
+    <span class="c1">//..</span>
+    <span class="dl">"</span><span class="s2">1</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Korea</span><span class="dl">"</span>
+<span class="p">};</span>
+<span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">code</span> <span class="k">in</span> <span class="nx">codes</span><span class="p">){</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="nx">code</span><span class="p">);</span><span class="c1">//1, 41, 44, 49</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="참조">참조</h2>
+
+<h3 id="참조에-의한-객체복사">참조에 의한 객체복사</h3>
+
+<p>객체와 원시타입의 차이는 <code class="language-plaintext highlighter-rouge">참조에 의해</code> 저장되고 복사된다는 점이다</p>
+
+<ul>
+  <li>예시
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">let</span> <span class="nx">message</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Hello!</span><span class="dl">"</span><span class="p">;</span>
+  <span class="kd">let</span> <span class="nx">phrase</span> <span class="o">=</span> <span class="nx">message</span><span class="p">;</span>
+</code></pre></div>    </div>
+    <p>이렇게 하면 message 와 phrase 둘 다 “Hello!”라는 문자열이 저장된다</p>
+  </li>
+  <li>이제 객체에 대한 참조를 해보면
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">YeongGi</span><span class="dl">"</span><span class="p">};</span>
+  <span class="kd">let</span> <span class="nx">admin</span> <span class="o">=</span> <span class="nx">user</span><span class="p">;</span>
+</code></pre></div>    </div>
+    <p>이런식으로 참조하여 복사를 하게되면, 이후 user의 값을 임의로 변경을 하여도 admin또한 변경이 된다</p>
+  </li>
+</ul>
+
+<h3 id="참조에-의한-비교">참조에 의한 비교</h3>
+<p>객체 비교 시 동등연산자 <code class="language-plaintext highlighter-rouge">==</code> 와 <code class="language-plaintext highlighter-rouge">===</code>의 차이를 알아보자</p>
+<ul>
+  <li>원래는 비교 시 피연산자인 두 객체가 동일한 경우 참을 반환한다
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">{};</span>
+  <span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">a</span><span class="p">;</span><span class="c1">//참조에 의한 복사</span>
+  <span class="nx">alert</span> <span class="p">(</span><span class="nx">a</span> <span class="o">==</span> <span class="nx">b</span><span class="p">);</span>
+  <span class="nx">alert</span> <span class="p">(</span><span class="nx">a</span> <span class="o">===</span> <span class="nx">b</span><span class="p">);</span>
+</code></pre></div>    </div>
+    <p>둘 다 참을 반환한다</p>
+  </li>
+  <li>독립된 객체의 비교
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">{};</span>
+  <span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="p">{};</span>
+  <span class="nx">alert</span> <span class="p">(</span> <span class="nx">a</span> <span class="o">==</span> <span class="nx">b</span><span class="p">);</span><span class="c1">//false</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="객체의-복사">객체의 복사</h3>
+<p>기존의 객체와 같으면서 독립적인 객체를 만들고 싶다면 두가지정도 방법이 존재한다</p>
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">for loop</code> 을 돌며 복사</li>
+  <li><code class="language-plaintext highlighter-rouge">Object assign</code>을 활용</li>
+</ol>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">,</span>
+	<span class="na">age</span><span class="p">:</span> <span class="mi">25</span>
+<span class="p">};</span>
+
+<span class="kd">let</span> <span class="nx">clone</span> <span class="o">=</span> <span class="p">{};</span><span class="c1">//새로운 빈 객체</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">user</span><span class="p">){</span><span class="c1">//1번의 방법</span>
+	<span class="nx">clone</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">user</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="nx">clone</span><span class="p">);</span><span class="c1">//2번의 방법</span>
+</code></pre></div></div>
+
+<h2 id="가비지-컬렉션">가비지 컬렉션</h2>
+
+<p>눈에 보이지 않는 메모리 관리를 한번에 해결해주는 방법으로, Java에서 사용했던것과 유사하다.</p>
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">Reachable</code>한 값은 메모리에서 삭제하지 않음에 주의</p>
+</blockquote>
+
+<h3 id="point">Point</h3>
+<ul>
+  <li>가비지 컬렉션은 엔진이 자동으로 수행하므로 억지로 실행 할 수는 없다</li>
+  <li>객체는 도달 가능한 상태일 때 메모리에 남는다</li>
+  <li>참조된다고 도달이 되는것은 아니다
+    <ul>
+      <li>서로 연결된 객체들도 도달 불가능 할 수 있다</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="method-와-this">Method 와 this</h2>
+<p>객체는 개체를 표현하고자 할 때 생성되며, 객체의 프로퍼티로 함수를 할당해 객체에 할당 시킬 수 있다</p>
+
+<h2 id="method-생성">Method 생성</h2>
+
+<p><code class="language-plaintext highlighter-rouge">Method</code> 생성에는 다양한 방법들이 있고 하나씩 나열해보자</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">,</span>
+	<span class="na">age</span><span class="p">:</span> <span class="mi">25</span>
+<span class="p">};</span>
+
+<span class="nx">user</span><span class="p">.</span><span class="nx">sayHi</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span><span class="c1">//방법1</span>
+	<span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hello!</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">sayHi</span><span class="p">()</span> <span class="p">{</span><span class="c1">//방법2</span>
+	<span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hello!</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">};</span>
+<span class="nx">user</span><span class="p">.</span><span class="nx">SayHi</span> <span class="o">=</span> <span class="nx">sayHi</span><span class="p">;</span>
+
+<span class="nx">user</span> <span class="o">=</span> <span class="p">{</span><span class="c1">//방법3</span>
+	<span class="nx">SayHi</span><span class="p">(){</span>
+		<span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hello!</span><span class="dl">"</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+<h3 id="this의-사용법"><code class="language-plaintext highlighter-rouge">this</code>의 사용법</h3>
+<p>아까 사용했던 <code class="language-plaintext highlighter-rouge">user.sayHi()</code> 같은 경우에, 내부 코드에서 객체를 사용하려면 어떻게 사용해야 될까??</p>
+
+<p><code class="language-plaintext highlighter-rouge">this</code> 키워드를 사용하여 객체에 접근 할 수 있다</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">,</span>
+	<span class="na">age</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span>
+
+	<span class="nx">sayHi</span><span class="p">()</span> <span class="p">{</span>
+		<span class="nx">alert</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+<span class="c1">//or	alert(user.name);</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+<p>처럼 사용 할 수 있으며, 다른 프로그래밍 언어와 다르게 모든 함수에 <code class="language-plaintext highlighter-rouge">this</code>를 사용 할 수 있다</p>
+
+<blockquote>
+  <p>this가 없는 화살표 함수</p>
+  <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="na">firstName</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">,</span>
+	<span class="nx">sayHi</span><span class="p">(){</span>
+		<span class="kd">let</span> <span class="nx">arrow</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">alert</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span><span class="p">);</span>
+		<span class="nx">arrow</span><span class="p">();</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+<span class="nx">user</span><span class="p">.</span><span class="nx">sayHi</span><span class="p">();</span> <span class="c1">//Yoon</span>
+</code></pre></div>  </div>
+  <p>별개의 this가 만들어 지는것을 원하지 않고, 외부 컨텍스트에서 this를 사요하고 싶을 때 화살표 함수를 사용한다.</p>
+</blockquote>
+
+<h2 id="new-연산자와-생성자함수">New 연산자와 생성자함수</h2>
+<p>객체 리터럴을 사용하여 객체를 쉽게 만들 수 있지만, 여러개 객체를 관리 할 때 <code class="language-plaintext highlighter-rouge">new</code> 연산자와 생성자를 통해 유사한 객체를 복수로 만들 수 있다</p>
+
+<h3 id="생성자-함수">생성자 함수</h3>
+<p>특징</p>
+<ol>
+  <li>함수 이름의 첫글자는 대문자로 시작</li>
+  <li>반드시 <code class="language-plaintext highlighter-rouge">new</code> 연산자를 붙여 실행한다
+예시
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">User</span><span class="p">(</span><span class="nx">name</span><span class="p">){</span>
+ <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+ <span class="k">this</span><span class="p">.</span><span class="nx">isAdmin</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">User</span><span class="p">(</span><span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">//Yoon</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">isAdmin</span><span class="p">);</span><span class="c1">//False</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="생성자-내-method">생성자 내 Method</h3>
+
+<p>생성자 함수를 사용하면 매개변수를 이용해 객체 내부를 구성 할 수 있다.</p>
+<blockquote>
+  <p>유연하게 사용 할 수 있게 도와준다</p>
+</blockquote>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">User</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+
+	<span class="k">this</span><span class="p">.</span><span class="nx">sayHi</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">My name is </span><span class="dl">"</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">.</span><span class="dl">"</span><span class="p">);</span>
+	<span class="p">};</span>
+<span class="p">}</span>
+<span class="kd">let</span> <span class="nx">yoon</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">User</span><span class="p">(</span><span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">);</span>
+
+<span class="nx">yoon</span><span class="p">.</span><span class="nx">sayHi</span><span class="p">();</span> <span class="c1">//My name is Yoon.</span>
+</code></pre></div></div>
+
+:ET
