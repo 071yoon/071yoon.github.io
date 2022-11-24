@@ -1,3 +1,11 @@
+---
+layout: post
+title: 명령 패턴
+subtitle: 명령패턴을 박살내보자
+categories: GoF
+tags: [GoF, TIL]
+---
+
 ## Command Pattern
 
 ![Command Pattern 001](https://user-images.githubusercontent.com/66371206/202383203-558eb9f4-7433-4b6c-a5b5-8c27f52c1dd7.jpeg)

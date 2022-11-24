@@ -839,6 +839,484 @@ function googleTranslateElementInit() {
 
 
 <h2 class="post-title">
+        <a class="post-link" href="/gof/2022/11/17/command-pattern.html">
+          명령 패턴
+        </a>
+      </h2>
+      <div class="post-meta">
+        <span class="post-date"><i class="fa fa-calendar"></i> Nov 17, 2022</span>
+        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 3 mins</span>
+      </div>
+      <a class="post-excerpt" href="/gof/2022/11/17/command-pattern.html">
+        <p>
+        Command Pattern
+
+
+
+커맨드 패턴에 대하여 알아봅시다
+
+
+
+간단한 게임을 하나 제작할 예정입니다.
+이번 게임에서는 두가지 버튼만 활용할 예정이고, 버튼들은 alt 와 ctrl 만 사용할 예정이기에, alt에는 jump ctrl 에는 attack 이라는 함수를 매핑을 했습니다.
+
+
+
+사실 이정도의 게임이라면 문제가 없습니다. 하지만 키보드 세팅이 복잡한 게임이라면 어떻게 될까요?
+그럼 키 마다 세팅을 할 것입니다. 그리고 모든 키 매핑이 character에 관한 것도 아니고, esc는 게임 세팅창을 여는 등 다양한 action이 이루어 질 것입니다.
+
+여기서 더 복잡한 상황을 생각해 보겠습니다.
+
+
+
+위... <span class="read_more">Read More</span>
+        </p>
+      </a>
+      <div class="post-tags">
+<a class="post-tag" href="/tags.html#GoF">#GoF</a><a class="post-tag" href="/tags.html#TIL">#TIL</a>
+</div>
+    </li>
+<li>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2 class="post-title">
+        <a class="post-link" href="/til/2022/11/10/react-hook.html">
+          REACT Hook 구현하기
+        </a>
+      </h2>
+      <div class="post-meta">
+        <span class="post-date"><i class="fa fa-calendar"></i> Nov 10, 2022</span>
+        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 11 mins</span>
+      </div>
+      <a class="post-excerpt" href="/til/2022/11/10/react-hook.html">
+        <p>
+        React Hook 구현해보기
+
+클로저
+
+클로저의 개념
+
+Hook 을 구현하기 앞서 Closure에 대한 개념을 알고 가야된다. 클로저는 자바스크립트 처음 등장한 것은 아니며 함수를 일급 객체로 취급하는 함수형 프로그래밍 언어에서 사용되는 중요한 특성이다.
+
+MDN 공식문서를 읽어 보면 다음과 같다.
+
+
+  A closure is the combination of a function bundled together (enclosed) with references to its surrounding state (the lexical environment). In other words, a closure gives you... <span class="read_more">Read More</span>
+        </p>
+      </a>
+      <div class="post-tags">
+<a class="post-tag" href="/tags.html#TIL">#TIL</a><a class="post-tag" href="/tags.html#JavaScript">#JavaScript</a>
+</div>
+    </li>
+<li>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2 class="post-title">
+        <a class="post-link" href="/gof/2022/11/03/state-pattern.html">
+          상태 패턴
+        </a>
+      </h2>
+      <div class="post-meta">
+        <span class="post-date"><i class="fa fa-calendar"></i> Nov 03, 2022</span>
+        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 12 mins</span>
+      </div>
+      <a class="post-excerpt" href="/gof/2022/11/03/state-pattern.html">
+        <p>
+        개요
+
+
+
+
+  Finite-state_machine 참고
+
+
+모든 주어진 순간에 프로그램이 속해 있을 수 있는 상태들의 수는 유한하며, 어떤 고유한 상태 내에서든 프로그램은 다르게 행동하고 한 상태에서 다른 상태로 즉시 전환될 수 있다. 현재의 상태에 따라 프로그램은 특정 다른 상태로 전환되거나 전환되지 않을 수 있으며, 이러한 전환 규칙들을 전환들(transitions)​이라고도 하고, 이러한 규칙들 또한 유한하고 미리 결정되어 있다.
+
+
+
+단순한 상태 머신의 단점은 코드를 보면 바로 이해할 수 있다.
+
+class Document is
+    field state: string
+    // …
+    metho... <span class="read_more">Read More</span>
+        </p>
+      </a>
+      <div class="post-tags"><a class="post-tag" href="/tags.html#GoF">#GoF</a></div>
+    </li>
+<li>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2 class="post-title">
+        <a class="post-link" href="/til/2022/11/01/how-we-work.html">
+          FIRE는 이렇게 협업했다
+        </a>
+      </h2>
+      <div class="post-meta">
+        <span class="post-date"><i class="fa fa-calendar"></i> Nov 01, 2022</span>
+        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 7 mins</span>
+      </div>
+      <a class="post-excerpt" href="/til/2022/11/01/how-we-work.html">
+        <p>
+        FIRE는 이렇게 협업했다
+
+FIRE팀이 모도코를 개발한지 어느새 7개월이 넘었다. 소프트웨어 마에스트로과정도 이제 끝이 보이고 (글쓴 기준 25일정도 남았다) 우리가 어떻게 작업했었는지 정리할겸 작성해보았다.
+
+팀 구성
+
+팀 구성은 나(팀장이자 FE) 외 두명(FE, BE)로 이루어졌다. 팀은 모으는것도 정말 쉽지 않은 길이였다. 소프트웨어 마에스트로 과정이 아무래도 고등학생부터 대학교 졸업자까지 아우르는 활동이기에 나에게 딱 맞는 사람을 모으고 싶었다. 우선 소프트웨어 마에스트로에 100% 진심을 다해서 진행할 사람. 물론, 창업을 염두에 두고 한 말은 아니였고, 그냥 11월까지 정말 알차게 공부 및 개발 할 ... <span class="read_more">Read More</span>
+        </p>
+      </a>
+      <div class="post-tags"><a class="post-tag" href="/tags.html#TIL">#TIL</a></div>
+    </li>
+<li>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2 class="post-title">
+        <a class="post-link" href="/gof/2022/10/27/mediator-pattern.html">
+          중개자 패턴
+        </a>
+      </h2>
+      <div class="post-meta">
+        <span class="post-date"><i class="fa fa-calendar"></i> Oct 27, 2022</span>
+        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 9 mins</span>
+      </div>
+      <a class="post-excerpt" href="/gof/2022/10/27/mediator-pattern.html">
+        <p>
+        왜 중개자 패턴?
+
+
+  객체 간의 혼란스러운 의존 관계들을 줄일 수 있는 행동 디자인 패턴
+
+
+즉 중개자 패턴은 객체 간의 직접 통신을 제한하고 중재자 객체를 통해서만 협력할 수 있게 설정
+
+간단한 로그인 Form을 만든다고 구현을 해보자
+
+
+
+
+
+Guest를 누르면 Username과 Password가 막히고, Login을 누르면 Username이 활성화 되고, Username에 입력이 오면 Password가 활성화 되고, Password의 입력이 되면 OK가 활성화 된다.
+
+생각나는대로 구현을 해보면 다음과 유사하다.
+
+
+
+하지만 이렇게 되면
+
+
+  Guest 인지 Login인지에 따라 어떤 TextField를... <span class="read_more">Read More</span>
+        </p>
+      </a>
+      <div class="post-tags">
+<a class="post-tag" href="/tags.html#GoF">#GoF</a><a class="post-tag" href="/tags.html#TIL">#TIL</a>
+</div>
+    </li>
+<li>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2 class="post-title">
         <a class="post-link" href="/til/2022/10/09/fix-error-via-apm.html">
           Fix Error via APM
         </a>
@@ -941,7 +1419,7 @@ function googleTranslateElementInit() {
 
 <h2 class="post-title">
         <a class="post-link" href="/gof/2022/10/05/visitor-pattern.html">
-          Visitor Pattern
+          방문자 패턴
         </a>
       </h2>
       <div class="post-meta">
@@ -5181,7 +5659,7 @@ disqus
   <ul>
     <li>
       <a href="/index.html">
-        All<span>45</span>
+        All<span>50</span>
       </a>
     </li>
 
@@ -5194,7 +5672,7 @@ disqus
     
       <li>
         <a href="/categories.html#h-GoF">
-          GoF <span>3</span>
+          GoF <span>6</span>
         </a>
       </li>
     
@@ -5218,7 +5696,7 @@ disqus
     
       <li>
         <a href="/categories.html#h-TIL">
-          TIL <span>6</span>
+          TIL <span>8</span>
         </a>
       </li>
     

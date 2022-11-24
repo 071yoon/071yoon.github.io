@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>상태 패턴 | YeongGi’s tech blog</title>
+<meta name="generator" content="Jekyll v4.2.2">
+<meta property="og:title" content="상태 패턴">
+<meta name="author" content="071yoon">
+<meta property="og:locale" content="en_US">
+<meta name="description" content="개요">
+<meta property="og:description" content="개요">
+<link rel="canonical" href="http://localhost:4000/gof/2022/11/03/state-pattern.html">
+<meta property="og:url" content="http://localhost:4000/gof/2022/11/03/state-pattern.html">
+<meta property="og:site_name" content="YeongGi’s tech blog">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2022-11-03T00:00:00+09:00">
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="상태 패턴">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"071yoon"},"dateModified":"2022-11-03T00:00:00+09:00","datePublished":"2022-11-03T00:00:00+09:00","description":"개요","headline":"상태 패턴","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/gof/2022/11/03/state-pattern.html"},"url":"http://localhost:4000/gof/2022/11/03/state-pattern.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="shortcut icon" href="">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-noto-sans@0.0.72/index.min.css">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <script src="/assets/js/main.js"></script><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="YeongGi's tech blog">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+<!-- and it's easy to individually load additional languages -->
+<script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/languages/go.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// Init highlight js
+document.addEventListener('DOMContentLoaded', function(event) {
+  var els = document.querySelectorAll('pre code')
+
+  function addLangData(block) {
+    var outer = block.parentElement.parentElement.parentElement;
+    var lang = block.getAttribute('data-lang');
+    for (var i = 0; i < outer.classList.length; i++) {
+      var cls = outer.classList[i];
+      if (cls.startsWith('language-')) {
+        lang = cls;
+        break;
+      }
+    }
+    if (!lang) {
+      cls = block.getAttribute('class');
+      lang = cls ? cls.replace('hljs ', '') : '';
+    }
+    if (lang.startsWith('language-')) {
+      lang = lang.substr(9);
+    }
+    block.setAttribute('class', 'hljs ' + lang);
+    block.parentNode.setAttribute('data-lang', lang);
+  }
+
+  function addBadge(block) {
+    var enabled = ('true' || 'true').toLowerCase();
+    if (enabled == 'true') {
+      var pre = block.parentElement;
+      pre.classList.add('badge');
+    }
+  }
+
+  function handle(block) {
+    addLangData(block);
+    addBadge(block)
+    hljs.highlightBlock(block);
+  }
+
+  for (var i = 0; i < els.length; i++) {
+    var el = els[i];
+    handle(el);
+  }
+});
+</script>
+
+<style>
+  /* code language badge */
+  pre.badge::before {
+    content: attr(data-lang);
+    color: #fff;
+    background-color: #ff4e00;
+    padding: 0 .5em;
+    border-radius: 0 2px;
+    text-transform: uppercase;
+    text-align: center;
+    min-width: 32px;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+  }
+
+  /* fix wrong badge display for firefox browser */
+  code > table pre::before {
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="site-header " role="banner">
+
+  <div class="wrapper">
+    <div class="site-header-inner">
+<span class="site-brand"><a class="site-brand-inner" rel="author" href="/">
+  <img class="site-favicon" title="YeongGi's tech blog" src="" onerror="this.style.display='none'">
+  YeongGi's tech blog
+</a>
+</span><nav class="site-nav">
+          <input type="checkbox" id="nav-trigger" class="nav-trigger">
+          <label for="nav-trigger">
+            <span class="menu-icon">
+              <svg viewbox="0 0 18 15" width="18px" height="15px">
+                <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"></path>
+              </svg>
+            </span>
+          </label>
+
+          <div class="trigger">
+<a class="page-link" href="/about.html">ABOUT</a><a class="page-link" href="/archives.html">ARCHIVES</a><a class="page-link" href="/categories.html">CATEGORIES</a><a class="page-link" href="/">HOME</a><a class="page-link" href="/tags.html">TAGS</a>
+
+
+
+
+
+
+
+
+
+<span class="page-link">
+
+
+
+<div id="google_translate_element" style="display: none;">
+</div>
+
+<span class="ct-language">
+  <ul class="list-unstyled ct-language-dropdown">
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="en">
+          
+          <img src="https://cdn.countryflags.com/thumbs/united-states-of-america/flag-400.png" title="English">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="fr">
+          
+          <img src="https://cdn.countryflags.com/thumbs/france/flag-400.png" title="French">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="zh-CN">
+          
+          <img src="https://cdn.countryflags.com/thumbs/china/flag-400.png" title="Chinese(Simple)">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ja">
+          
+          <img src="https://cdn.countryflags.com/thumbs/japan/flag-400.png" title="Japanese">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ko">
+          
+          <img src="https://cdn.countryflags.com/thumbs/south-korea/flag-400.png" title="Korean">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ru">
+          
+          <img src="https://cdn.countryflags.com/thumbs/russia/flag-400.png" title="Russian">
+          
+        </a>
+      </li>
+    
+  </ul>
+</span>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    autoDisplay: false,
+    layout: google.translate.TranslateElement.InlineLayout.VERTICAL
+  }, 'google_translate_element');
+
+  // Links to cross-origin destinations are unsafe
+  var gll = document.getElementsByClassName('goog-logo-link')[0];
+  if (gll) {
+    gll.setAttribute('rel', 'noopener');
+  }
+
+  function restoreLang() {
+    var iframe = document.getElementsByClassName('goog-te-banner-frame')[0];
+    if (!iframe) return;
+
+    var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+    var restore_el = innerDoc.getElementsByTagName("button");
+
+    for (var i = 0; i < restore_el.length; i++) {
+      if (restore_el[i].id.indexOf("restore") >= 0) {
+        restore_el[i].click();
+        var close_el = innerDoc.getElementsByClassName("goog-close-link");
+        close_el[0].click();
+        return;
+      }
+    }
+  }
+
+  function triggerHtmlEvent(element, eventName) {
+    var event;
+    if (document.createEvent) {
+      event = document.createEvent('HTMLEvents');
+      event.initEvent(eventName, true, true);
+      element.dispatchEvent(event);
+    } else {
+      event = document.createEventObject();
+      event.eventType = eventName;
+      element.fireEvent('on' + event.eventType, event);
+    }
+  }
+
+  var googleCombo = document.querySelector("select.goog-te-combo");
+  var langSelect = document.querySelector('.ct-language');
+  langSelect.addEventListener('click', function(event) {
+    if (!event.target) {
+      return;
+    }
+
+    var selected = document.querySelector('.ct-language .ct-language-selected');
+    if (selected) {
+      selected.classList.remove('ct-language-selected');
+    }
+
+    var target = event.target;
+    while (target && target !== langSelect ) {
+      if (target.matches('.lang-select')) {
+        break;
+      }
+      target = target.parentElement;
+    }
+
+    if (target && target.matches('.lang-select')) {
+      var lang = target.getAttribute('data-lang');
+      if (googleCombo.value == lang) {
+        restoreLang();
+      } else {
+        target.parentElement.classList.add('ct-language-selected');
+        googleCombo.value = lang;
+        triggerHtmlEvent(googleCombo, 'change');
+      }
+    }
+
+    event.preventDefault();
+  });
+}
+</script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</span>
+</div>
+        </nav>
+</div>
+  </div>
+</header>
+
+<script>
+  function initHeader() {
+    var lastScrollY = getScrollPos().y;
+    var documentElement = document.documentElement;
+
+    function storeScrollData() {
+      var y = getScrollPos().y;var scrollStatus = "";
+
+      if (y <= 0) {
+        scrollStatus = "top";
+      } else if ((window.innerHeight + y) >= document.body.offsetHeight) {
+        scrollStatus = "bottom";
+      } else {
+        var isScrollDown = (y - lastScrollY > 0) ? true : false;
+        scrollStatus = isScrollDown ? "down" : "up";
+      }
+
+      lastScrollY = y;
+      documentElement.setAttribute("data-scroll-status", scrollStatus);
+    }
+
+    window.addEventListener('scroll', function(e) {
+      storeScrollData();
+    });
+
+    storeScrollData();
+  }
+  document.addEventListener('DOMContentLoaded', initHeader);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  function hashLocate(hashValue) {
+    hashValue = hashValue.replace(/^.*#h-/, '');
+    hashValue = decodeURIComponent(hashValue);
+    var element = document.getElementById(hashValue);
+
+    if (!element) {
+      return;
+    }
+
+    var header = document.querySelector('header.site-header');
+    var headerRect = header.getBoundingClientRect();
+    var headerTop = Math.floor(headerRect.top);
+    var headerHeight = Math.floor(headerRect.height);
+    var scrollPos = getScrollPos();
+    var offsetY = element.offsetTop - (headerTop + headerHeight + 20);
+
+    if (offsetY == scrollPos.y) {
+      return;
+    }
+
+    if (headerTop == 0  && offsetY > scrollPos.y) {
+      offsetY += headerHeight + 2;
+    } else if (headerTop < 0  && offsetY < scrollPos.y) {
+      offsetY -= headerHeight - 2;
+    }
+
+    smoothScrollTo(offsetY);
+  }
+
+  // The first event occurred
+  window.addEventListener('load', function(event) {
+    if (window.location.hash) {
+      hashLocate(window.location.hash);
+    }
+  });
+
+  // The first event occurred
+  window.addEventListener('click', function(event) {
+    if (event.target.tagName.toLowerCase() == 'a') {
+      hashLocate(event.target.getAttribute('href'));
+    }
+  });
+</script>
+<div class="theme-toggle">
+  <input type="checkbox" id="theme-switch">
+  <label for="theme-switch">
+    <div class="toggle"></div>
+    <div class="names">
+      <p class="light">Light</p>
+      <p class="dark">Dark</p>
+    </div>
+  </label>
+</div>
+
+
+
+
+<script>
+  (function() {
+    var sw = document.getElementById('theme-switch');
+    var html = document.getElementsByTagName('html')[0];
+    var nightModeOption = ('off' || 'auto').toLowerCase();
+    var storage = nightModeOption === 'manual'
+        ? localStorage
+        : sessionStorage;
+    var themeData = loadThemeData();
+
+    function saveThemeData(data) {
+      storage.setItem('theme', JSON.stringify(data));
+    }
+
+    function loadThemeData() {
+      var data = storage.getItem('theme');
+      try {
+        data = JSON.parse(data ? data : '');
+      } catch(e) {
+        data = { nightShift: undefined, autoToggleAt: 0 };
+        saveThemeData(data);
+      }
+      return data;
+    }
+
+    function handleThemeToggle(nightShift) {
+      themeData.nightShift = nightShift;
+      saveThemeData(themeData);
+      html.dataset.theme = nightShift ? 'dark' : 'light';
+      setTimeout(function() {
+        sw.checked = nightShift ? true : false;
+      }, 50);
+    }
+
+    function autoThemeToggle() {
+      // Next time point of theme toggle
+      var now = new Date();
+      var toggleAt = new Date();
+      var hours = now.getHours();
+      var nightShift = hours >= 19 || hours <=7;
+
+      if (nightShift) {
+        if (hours > 7) {
+          toggleAt.setDate(toggleAt.getDate() + 1);
+        }
+        toggleAt.setHours(7);
+      } else {
+        toggleAt.setHours(19);
+      }
+
+      toggleAt.setMinutes(0);
+      toggleAt.setSeconds(0);
+      toggleAt.setMilliseconds(0)
+
+      var delay = toggleAt.getTime() - now.getTime();
+
+      // auto toggle theme mode
+      setTimeout(function() {
+        handleThemeToggle(!nightShift);
+      }, delay);
+
+      return {
+        nightShift: nightShift,
+        toggleAt: toggleAt.getTime()
+      };
+    }
+
+    // Listen the theme toggle event
+    sw.addEventListener('change', function(event) {
+      handleThemeToggle(event.target.checked);
+    });
+
+    if (nightModeOption == 'auto') {
+      var data = autoThemeToggle();
+
+      // Toggle theme by local setting
+      if (data.toggleAt > themeData.autoToggleAt) {
+        themeData.autoToggleAt = data.toggleAt;
+        handleThemeToggle(data.nightShift);
+      } else {
+        handleThemeToggle(themeData.nightShift);
+      }
+    } else if (nightModeOption == 'manual') {
+      handleThemeToggle(themeData.nightShift);
+    } else {
+      var nightShift = themeData.nightShift;
+      if (nightShift === undefined) {
+        nightShift = nightModeOption === 'on';
+      }
+      handleThemeToggle(nightShift);
+    }
+  })();
+</script>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <div class="framework">
+  <section class="main">
+
+     <div class="post">
+  <section>
+
+
+
+
+
+
+
+
+
+<header class="post-header">
+  <h1 class="post-title p-name" itemprop="name headline">상태 패턴</h1>
+  <h2 class="post-subtitle">상태 패턴을 배워보자</h2>
+
+  <p class="post-meta">
+    <time class="dt-published" datetime="2022-11-03T00:00:00+09:00" itemprop="datePublished"><i class="fa fa-calendar"></i> Nov 03, 2022
+    </time>
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 12 mins</span>
+  </p>
+<div class="post-tags"><a class="post-tag" href="/tags.html#GoF">#GoF</a></div></header>
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <div class="post-content e-content" itemprop="articleBody">
+
+      <h2 id="개요">개요</h2>
+
+<p><img src="https://user-images.githubusercontent.com/66371206/199532363-edfb9a5d-b93d-4833-8c2a-c82655b23369.png" alt="image"></p>
+
+<blockquote>
+  <p>Finite-state_machine 참고</p>
+</blockquote>
+
+<p>모든 주어진 순간에 프로그램이 속해 있을 수 있는 상태들의 수는 유한하며, 어떤 고유한 상태 내에서든 프로그램은 다르게 행동하고 한 상태에서 다른 상태로 즉시 전환될 수 있다. 현재의 상태에 따라 프로그램은 특정 다른 상태로 전환되거나 전환되지 않을 수 있으며, 이러한 전환 규칙들을 전환들(transitions)​이라고도 하고, 이러한 규칙들 또한 유한하고 미리 결정되어 있다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/66371206/199532122-689635dd-d965-4eda-9650-ad9e25d698ef.png" alt="image"></p>
+
+<p>단순한 상태 머신의 단점은 코드를 보면 바로 이해할 수 있다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Document</span> <span class="ow">is</span>
+    <span class="n">field</span> <span class="n">state</span><span class="p">:</span> <span class="n">string</span>
+    <span class="o">//</span> <span class="err">…</span>
+    <span class="n">method</span> <span class="n">publish</span><span class="p">()</span> <span class="ow">is</span>
+        <span class="n">switch</span> <span class="p">(</span><span class="n">state</span><span class="p">)</span>
+            <span class="s">"draft"</span><span class="p">:</span>
+                <span class="n">state</span> <span class="o">=</span> <span class="s">"moderation"</span>
+                <span class="k">break</span>
+            <span class="s">"moderation"</span><span class="p">:</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">currentUser</span><span class="p">.</span><span class="n">role</span> <span class="o">==</span> <span class="s">"admin"</span><span class="p">)</span>
+                    <span class="n">state</span> <span class="o">=</span> <span class="s">"published"</span>
+                <span class="k">break</span>
+            <span class="s">"published"</span><span class="p">:</span>
+                <span class="o">//</span> <span class="n">Do</span> <span class="n">nothing</span><span class="p">.</span>
+                <span class="k">break</span>
+    <span class="o">//</span> <span class="err">…</span>
+</code></pre></div></div>
+
+<p>일반적으로 객체의 상태에 따라 적절한 행동들을 선택하는 많은 조건문​(if 또는 switch)​으로 구현되며, <code class="language-plaintext highlighter-rouge">Document</code> 클래스에 상태들과 상태에 의존하는 행동들을 추가할수록 분명해지게 된다. 그리고 프로젝트의 부피가 커질수록, transition이 발생했을 때, 메소드의 상태 조건들이 변경되어 관리가 힘들어지게 된다.</p>
+
+<h2 id="예제">예제</h2>
+
+<h3 id="조건">조건</h3>
+
+<ul>
+  <li>프로그램상의 1초를 현실 세계의 1시간으로 가정</li>
+  <li>금고는 1개가 있음</li>
+  <li>금고는 경비센터와 접속되어 있음</li>
+  <li>금고에는 비상벨과 일반통화용 전화가 접속되어 있음</li>
+  <li>금고에는 시계가 설치되어 있어 현재의 시간을 감시하고 있음</li>
+  <li>주간은 09:00~16:59, 야간은 17:00~23:59 및 0:00~8:59</li>
+  <li>금고는 주간에만 사용할 수 있음</li>
+  <li>주간에 금고를 사용하면 경비센터에 사용기록이 남음</li>
+  <li>야간에 금고를 사용하면 경비센터에 비상사태로 통보</li>
+  <li>비상벨은 언제나 사용할 수 있음</li>
+  <li>비상벨을 사용하면 경비센터에 비상벨 통보</li>
+  <li>일반통화용의 전화는 언제나 사용할 수 있음(야간은 녹음만 가능)</li>
+  <li>주간에 전화를 사용하면 경비센터가 호출</li>
+  <li>야간에 전화를 사용하면 경비센터의 자동응답기가 호출</li>
+</ul>
+
+<blockquote>
+  <p>예제 실행화면
+<img src="https://user-images.githubusercontent.com/66371206/199536253-e2de98e3-b074-460f-b67f-01a008980ad8.png" alt="image"></p>
+</blockquote>
+
+<p><img width="585" alt="image" src="https://user-images.githubusercontent.com/66371206/199536792-04b4b454-4c44-4187-9d79-02a2726e8ca2.png"></p>
+
+<p><img width="760" alt="image" src="https://user-images.githubusercontent.com/66371206/199537669-aef4aab4-d7c6-4da4-928a-9d43fb85f9fd.png"></p>
+
+<h3 id="state">State</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// state.java</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">State</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">doClock</span><span class="o">(</span><span class="nc">Context</span> <span class="n">context</span><span class="o">,</span> <span class="kt">int</span> <span class="n">hour</span><span class="o">);</span>
+    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">doUse</span><span class="o">(</span><span class="nc">Context</span> <span class="n">context</span><span class="o">);</span>
+    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">doAlarm</span><span class="o">(</span><span class="nc">Context</span> <span class="n">context</span><span class="o">);</span>
+    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">doPhone</span><span class="o">(</span><span class="nc">Context</span> <span class="n">context</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="daystate">DayState</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// DayState.java</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DayState</span> <span class="kd">implements</span> <span class="nc">State</span><span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="nc">DayState</span> <span class="n">singletone</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DayState</span><span class="o">();</span>
+
+    <span class="kd">public</span> <span class="nf">DayState</span><span class="o">()</span> <span class="o">{</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">State</span> <span class="nf">getInstance</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">singletone</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="n">singletone</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DayState</span><span class="o">();</span>
+        <span class="k">return</span> <span class="n">singletone</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doClock</span><span class="o">(</span><span class="nc">Context</span> <span class="n">context</span><span class="o">,</span> <span class="kt">int</span> <span class="n">hour</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">hour</span> <span class="o">&lt;</span> <span class="mi">9</span> <span class="o">||</span> <span class="mi">17</span> <span class="o">&lt;=</span> <span class="n">hour</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">context</span><span class="o">.</span><span class="na">changeState</span><span class="o">(</span><span class="nc">NightState</span><span class="o">.</span><span class="na">getInstance</span><span class="o">());</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doUse</span><span class="o">(</span><span class="nc">Context</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">context</span><span class="o">.</span><span class="na">recordLog</span><span class="o">(</span><span class="s">"금고사용(주간)"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doAlarm</span><span class="o">(</span><span class="nc">Context</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">context</span><span class="o">.</span><span class="na">callSecurityCenter</span><span class="o">(</span><span class="s">"비상벨(주간)"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doPhone</span><span class="o">(</span><span class="nc">Context</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">context</span><span class="o">.</span><span class="na">callSecurityCenter</span><span class="o">(</span><span class="s">"일반통화(주간)"</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"[주간]"</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="nightstate">NightState</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// NightState.java</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">NightState</span> <span class="kd">implements</span> <span class="nc">State</span><span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="nc">NightState</span> <span class="n">singletone</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">NightState</span><span class="o">();</span>
+
+    <span class="kd">public</span> <span class="nf">NightState</span><span class="o">()</span> <span class="o">{</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">State</span> <span class="nf">getInstance</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">singletone</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span><span class="n">singletone</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">NightState</span><span class="o">();</span>
+        <span class="k">return</span> <span class="n">singletone</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doClock</span><span class="o">(</span><span class="nc">Context</span> <span class="n">context</span><span class="o">,</span> <span class="kt">int</span> <span class="n">hour</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="mi">9</span> <span class="o">&lt;=</span> <span class="n">hour</span> <span class="o">&amp;&amp;</span> <span class="n">hour</span> <span class="o">&lt;</span> <span class="mi">17</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">context</span><span class="o">.</span><span class="na">changeState</span><span class="o">(</span><span class="nc">DayState</span><span class="o">.</span><span class="na">getInstance</span><span class="o">());</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doUse</span><span class="o">(</span><span class="nc">Context</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">context</span><span class="o">.</span><span class="na">recordLog</span><span class="o">(</span><span class="s">"비상: 야간금고 사용!"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doAlarm</span><span class="o">(</span><span class="nc">Context</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">context</span><span class="o">.</span><span class="na">callSecurityCenter</span><span class="o">(</span><span class="s">"비상벨(야간)"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doPhone</span><span class="o">(</span><span class="nc">Context</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">context</span><span class="o">.</span><span class="na">callSecurityCenter</span><span class="o">(</span><span class="s">"야간통화 녹음"</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"[야간]"</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="context">Context</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Context.java</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Context</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">setClock</span><span class="o">(</span><span class="kt">int</span> <span class="n">hour</span><span class="o">);</span>
+    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">changeState</span><span class="o">(</span><span class="nc">State</span> <span class="n">state</span><span class="o">);</span>
+    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">callSecurityCenter</span><span class="o">(</span><span class="nc">String</span> <span class="n">msg</span><span class="o">);</span>
+    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">recordLog</span><span class="o">(</span><span class="nc">String</span> <span class="n">msg</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="safeframe">SafeFrame</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// SafeFrame.java</span>
+<span class="kn">import</span> <span class="nn">java.awt.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.event.ActionEvent</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.event.ActionListener</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SafeFrame</span> <span class="kd">extends</span> <span class="nc">Frame</span> <span class="kd">implements</span> <span class="nc">ActionListener</span><span class="o">,</span> <span class="nc">Context</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">TextField</span> <span class="n">textClock</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TextField</span><span class="o">(</span><span class="mi">60</span><span class="o">);</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">TextArea</span> <span class="n">textScreen</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TextArea</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="mi">60</span><span class="o">);</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">Button</span> <span class="n">buttonUse</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Button</span><span class="o">(</span><span class="s">"금고사용"</span><span class="o">);</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">Button</span> <span class="n">buttonAlarm</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Button</span><span class="o">(</span><span class="s">"비상벨"</span><span class="o">);</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">Button</span> <span class="n">buttonPhone</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Button</span><span class="o">(</span><span class="s">"일반통화"</span><span class="o">);</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">Button</span> <span class="n">buttonExit</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Button</span><span class="o">(</span><span class="s">"종료"</span><span class="o">);</span>
+
+    <span class="kd">private</span> <span class="nc">State</span> <span class="n">state</span> <span class="o">=</span> <span class="nc">DayState</span><span class="o">.</span><span class="na">getInstance</span><span class="o">();</span>
+
+    <span class="kd">public</span> <span class="nf">SafeFrame</span><span class="o">(</span><span class="nc">String</span> <span class="n">title</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">HeadlessException</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">title</span><span class="o">);</span>
+        <span class="n">setBackground</span><span class="o">(</span><span class="nc">Color</span><span class="o">.</span><span class="na">lightGray</span><span class="o">);</span>
+        <span class="n">setLayout</span><span class="o">(</span><span class="k">new</span> <span class="nc">BorderLayout</span><span class="o">());</span>
+        <span class="n">add</span><span class="o">(</span><span class="n">textClock</span><span class="o">,</span> <span class="nc">BorderLayout</span><span class="o">.</span><span class="na">NORTH</span><span class="o">);</span>
+        <span class="n">textClock</span><span class="o">.</span><span class="na">setEditable</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+        <span class="n">add</span><span class="o">(</span><span class="n">textScreen</span><span class="o">,</span> <span class="nc">BorderLayout</span><span class="o">.</span><span class="na">CENTER</span><span class="o">);</span>
+        <span class="n">textScreen</span><span class="o">.</span><span class="na">setEditable</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+
+        <span class="nc">Panel</span> <span class="n">panel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Panel</span><span class="o">();</span>
+        <span class="n">panel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">buttonUse</span><span class="o">);</span>
+        <span class="n">panel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">buttonAlarm</span><span class="o">);</span>
+        <span class="n">panel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">buttonPhone</span><span class="o">);</span>
+        <span class="n">panel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">buttonExit</span><span class="o">);</span>
+        <span class="n">add</span><span class="o">(</span><span class="n">panel</span><span class="o">,</span> <span class="nc">BorderLayout</span><span class="o">.</span><span class="na">SOUTH</span><span class="o">);</span>
+
+        <span class="n">pack</span><span class="o">();</span>
+        <span class="n">show</span><span class="o">();</span>
+
+        <span class="n">buttonUse</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+        <span class="n">buttonAlarm</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+        <span class="n">buttonPhone</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+        <span class="n">buttonExit</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">//Event Listener Handler</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="o">(</span><span class="nc">ActionEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">event</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">event</span><span class="o">.</span><span class="na">getSource</span><span class="o">()</span> <span class="o">==</span> <span class="n">buttonUse</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">state</span><span class="o">.</span><span class="na">doUse</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">event</span><span class="o">.</span><span class="na">getSource</span><span class="o">()</span> <span class="o">==</span> <span class="n">buttonAlarm</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">state</span><span class="o">.</span><span class="na">doAlarm</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">event</span><span class="o">.</span><span class="na">getSource</span><span class="o">()</span> <span class="o">==</span> <span class="n">buttonPhone</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">state</span><span class="o">.</span><span class="na">doPhone</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">event</span><span class="o">.</span><span class="na">getSource</span><span class="o">()</span> <span class="o">==</span> <span class="n">buttonExit</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">exit</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"?"</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setClock</span><span class="o">(</span><span class="kt">int</span> <span class="n">hour</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">String</span> <span class="n">clockstring</span> <span class="o">=</span> <span class="s">"현재 시간은"</span><span class="o">;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">hour</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">clockstring</span> <span class="o">+=</span> <span class="s">"0"</span> <span class="o">+</span> <span class="n">hour</span> <span class="o">+</span> <span class="s">":00"</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="n">clockstring</span> <span class="o">+=</span> <span class="n">hour</span> <span class="o">+</span> <span class="s">":00"</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">clockstring</span><span class="o">);</span>
+        <span class="n">textClock</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">clockstring</span><span class="o">);</span>
+        <span class="n">state</span><span class="o">.</span><span class="na">doClock</span><span class="o">(</span><span class="k">this</span><span class="o">,</span><span class="n">hour</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="c1">//상태전환</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">changeState</span><span class="o">(</span><span class="nc">State</span> <span class="n">state</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">state</span> <span class="o">+</span> <span class="s">"에서"</span> <span class="o">+</span> <span class="n">state</span> <span class="o">+</span> <span class="s">"로 상태가 변화했습니다."</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">state</span> <span class="o">=</span> <span class="n">state</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="c1">//경비센터의 호출</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">callSecurityCenter</span><span class="o">(</span><span class="nc">String</span> <span class="n">msg</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">textScreen</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"call! "</span> <span class="o">+</span> <span class="n">msg</span> <span class="o">+</span> <span class="s">"\n"</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="c1">//경비센터의 기록</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">recordLog</span><span class="o">(</span><span class="nc">String</span> <span class="n">msg</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">textScreen</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"record ... "</span> <span class="o">+</span> <span class="n">msg</span> <span class="o">+</span> <span class="s">"\n"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="main">Main</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Main.java</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">SafeFrame</span> <span class="n">frame</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SafeFrame</span><span class="o">(</span><span class="s">"State Sample"</span><span class="o">);</span>
+        <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">hour</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">hour</span> <span class="o">&lt;</span> <span class="mi">24</span><span class="o">;</span> <span class="n">hour</span><span class="o">++)</span> <span class="o">{</span>
+                <span class="n">frame</span><span class="o">.</span><span class="na">setClock</span><span class="o">(</span><span class="n">hour</span><span class="o">);</span>
+                <span class="k">try</span><span class="o">{</span>
+                    <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span>
+                <span class="o">}</span><span class="k">catch</span><span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">){</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="등장인물">등장인물</h2>
+
+<p><img src="https://user-images.githubusercontent.com/66371206/199541328-2a641f2e-745a-4abf-b8ff-65473c7035e4.png" alt="image"></p>
+
+<h2 id="point">Point</h2>
+
+<h3 id="strategy-pattern과의-차이">Strategy Pattern과의 차이</h3>
+
+<p>이 구조는 전략 패턴과 비슷해 보이지만 한 가지 중요한 차이점이 있다. 상태 패턴에서의 특정 상태들은 서로를 인식하고 한 상태에서 다른 상태로 전환을 시작할 수 있지만 전략들은 거의 대부분 서로에 대해 알지 못한다.</p>
+
+<h3 id="분할정복">분할정복</h3>
+
+<p>복잡하고 규모가 큰 문제 혹은 프로그램은 그대로 해결하려하기보단, 우선 작은 문제로 나누고 또 나눠서 하나하나의 모듈들이 쉽게 해결가능한 수준까지 나눠 해결해야 한다.
+State Pattern에서는 각각의 <code class="language-plaintext highlighter-rouge">상태</code>를 각각의 클래스로 표현해 문제를 분할했다. 조건과 규모가 커질수록 조건은 많아지고 분기문은 많아진다. 하지만 이번처럼 State Pattern을 사용하면 각각의 ‘상태’를 클래스고 표현해 복잡한 프로그램을 분할하여 효율적으로 관리할 수 있다.</p>
+
+<h3 id="상태의존">상태의존</h3>
+
+<p>SafeFrame 클래스의 setClock메소드는 Main클래스로부터 시간이 변경될 때(반복문의 순회)마다 호출되고 있다. 그리고 이 메소드는 시간을 인자값으로받아 출력 후 state.doClock(this,hour)으로 책임을 위임하고 있다. 즉, 시간의 설정을 ‘현재의 상태에 의존한 처리’로 취급하고 있다는 말입니다. 즉 state는 항상 같은값이 아닌 시간이 변경되서 기준을 충족할 때마다 주간과 야간 상태클래스로 변경하기 때문.
+이처럼 State Pattern에서는 ‘상태에 의존한 처리’를 프로그램에서 표현하는방법은 다음과 같다.</p>
+
+<ul>
+  <li>추상 메소드로 선언후 인터페이스 명세(API)</li>
+  <li>구현 메소드로 구현 후 각각의 클래스로 한다.</li>
+</ul>
+
+<h3 id="상태전환의-관리">상태전환의 관리</h3>
+
+<p>State Pattern에서 상태전환을 어디서 관리하는지에 대해서는 고려해봐야 할 부분이다.
+예제에서는 Context역할의 SafeFrame 클래스에서 상태전환 메소드(changeState)를 구현했다. 그리고 이 메소드를 호출하는 부분은 ConcreteState역할인 DayState나 NightState클래스이다. 다시말하면 예제에서는 ‘상태전환’을 ‘상태에 의존한 동작’으로 간주하고 있다. 이 방법은 장점과 단점이 있다.
+장점은 상태전환의 시기를 하나의 클래스 내에서 가지고 있다는 점.</p>
+
+<blockquote>
+  <p>DayState 클래스가 상태전환되는 시기는 DayState 클래스 코드를 보면 된다.</p>
+</blockquote>
+
+<p>단점은 하나의 ConcreteState역할이 다른 ConcreteState역할을 알아야 한다는 점입니다.</p>
+
+<blockquote>
+  <p>doClock메소드 context.changeState(NightState.getInstance());</p>
+</blockquote>
+
+<p>이것의 문제는 클래스 사이의 의존관계를 깊게한다는 점이다.<br>
+그럼, 모든 상태전환을 Context 역할의 SafeFrame클래스에 맡길수도 있는데 이 경우 ConcreteState역할의 독립성이 높아지지만 Context가 모든 ConcreteState역할을 알아야하는 문제가 발생한다. 해결책으로는 Mediator Pattern을 쓰거나 혹은 State Pattern대신 상태의 테이블(표)를 사용해 설계하는 방식이 있다.</p>
+
+<h3 id="상태추가-is-easy">상태추가 is easy</h3>
+
+<p>State 인터페이스를 구현하는 ConcreteState 클래스를 만들어 구현하면되기에 상태추가는 어렵지 않다.
+다만, 상태전환은 다른 ConcreteState 역할과 접점이 되기에 주의해야 할 필요는 있다.
+그리고 완성된 State Pattern에 새로운 ‘상태의존의 처리’를 추가하는 것은 곤란하다. 이 말은 State 역할이 인터페이스에 메소드를 추가한다는 것을 의미하며 이를 구현하는 모든 ConcreteState역할에 구현이 필요하기 때문이다.</p>
+
+<p>출처 : Java언어로 배우는 디자인 패턴 입문</p>
+
+
+    </div>
+
+</article>
+<div class="post-nav">
+<a class="previous" href="/til/2022/11/01/how-we-work.html" title="FIRE는 이렇게 협업했다">FIRE는 이렇게 협업했다</a><a class="next" href="/til/2022/11/10/react-hook.html" title="REACT Hook 구현하기">REACT Hook 구현하기</a>
+</div>
+<div class="post-related">
+      <div>Related Articles</div>
+      <ul>
+        <li><a class="post-link" href="/gof/2022/11/17/command-pattern.html" title="REACT Hook 구현하기">명령 패턴</a></li>
+<li><a class="post-link" href="/react/2022/02/02/make-react-app-1.html" title="REACT Hook 구현하기">리액트JS로 앱 만들기 1</a></li>
+<li><a class="post-link" href="/javascript/2022/01/18/javascript-functions.html" title="REACT Hook 구현하기">자바스크립트 함수의 심화학습</a></li>
+<li><a class="post-link" href="/next.js/2022/05/04/next-optimization.html" title="REACT Hook 구현하기">NEXT-Optimization</a></li>
+</ul>
+    </div>
+<div class="post-comments">
+      <script src="https://utteranc.es/client.js" repo="071yoon/071yoon.github.io" issue-term="pathname" theme="github-light" crossorigin="anonymous" async>
+      </script>
+</div></section>
+</div>
+
+
+  </section>
+  <section class="sidebar" style="margin-left: 15px;">
+    <!-- Get sidebar items --><style type="text/css" media="screen">
+.post-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+</style>
+
+<div class="post-menu">
+  <div class="post-menu-title">TOC</div>
+  <div class="post-menu-content"></div>
+</div>
+
+<script>
+  function generateContent() {
+    var menu = document.querySelector(".post-menu");
+    var menuContent =  menu.querySelector(".post-menu-content");
+    var headings = document.querySelector(".post-content").querySelectorAll("h2, h3, h4, h5, h6");
+
+    // Hide menu when no headings
+    if (headings.length === 0) {
+      return menu.style.display = "none";
+    }
+
+    // Generate post menu
+    var menuHTML = '';
+    for (var i = 0; i < headings.length; i++) {
+      var h = headings[i];
+      menuHTML += (
+        '<li class="h-' + h.tagName.toLowerCase() + '">'
+        + '<a href="#h-' + h.getAttribute('id') + '">' + h.textContent + '</a></li>');
+    }
+
+    menuContent.innerHTML = '<ul>' + menuHTML + '</ul>';
+
+    // The header element
+    var header = document.querySelector('header.site-header');
+
+    function doMenuCollapse(index, over_items) {
+      var items = menuContent.firstChild.children;
+
+      if (over_items == undefined) {
+        over_items = 20;
+      }
+
+      if (items.length < over_items) {
+        return;
+      }
+
+      var activeItem = items[index];
+      var beginItem = activeItem
+      var endItem = activeItem
+      var beginIndex = index;
+      var endIndex = index + 1;
+      while (beginIndex >= 0
+        && !items[beginIndex].classList.contains('h-h2')) {
+        beginIndex -= 1;
+      }
+      while (endIndex < items.length
+        && !items[endIndex].classList.contains('h-h2')) {
+        endIndex += 1;
+      }
+      for (var i = 0; i < beginIndex; i++) {
+        item = items[i]
+        if (!item.classList.contains('h-h2')) {
+          item.style.display = 'none';
+        }
+      }
+      for (var i = beginIndex + 1; i < endIndex; i++) {
+        item = items[i]
+        // if (!item.classList.contains('h-h2')) {
+          item.style.display = '';
+        // }
+      }
+      for (var i = endIndex; i < items.length; i++) {
+        item = items[i]
+        if (!item.classList.contains('h-h2')) {
+          item.style.display = 'none';
+        }
+      }
+    }
+
+    // Init menu collapsed
+    doMenuCollapse(-1);
+
+    // Active the menu item
+    window.addEventListener('scroll', function (event) {
+      var lastActive = menuContent.querySelector('.active');
+      var changed = true;
+      var activeIndex = -1;
+      for (var i = headings.length - 1; i >= 0; i--) {
+        var h = headings[i];
+        var headingRect = h.getBoundingClientRect();
+        var headerRect = header.getBoundingClientRect();
+        var headerTop = Math.floor(headerRect.top);
+        var headerHeight = Math.floor(headerRect.height);
+        var headerHeight = headerTop + headerHeight + 20;
+        if (headingRect.top <= headerHeight) {
+          var id = 'h-' + h.getAttribute('id');
+          var a = menuContent.querySelector('a[href="#' + id  + '"]');
+          var curActive = a.parentNode;
+          if (curActive) {
+            curActive.classList.add('active');
+            activeIndex = i;
+          }
+          if (lastActive == curActive) {
+            changed = false;
+          }
+          break;
+        }
+      }
+      if (changed) {
+        if (lastActive) {
+          lastActive.classList.remove('active');
+        }
+        doMenuCollapse(activeIndex);
+      }
+      event.preventDefault();
+    });
+  }
+  generateContent();
+</script>
+</section>
+</div>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+    <div class="site-footer-inner">
+<div>Unpublished Work <span class="copyleft">©</span> 2021-2022 071yoon</div>
+      <div>Powered by <a title="Jekyll is a simple, blog-aware, static site
+      generator." href="http://jekyllrb.com/">Jekyll</a> &amp; <a title="Yat, yet
+      another theme." href="https://github.com/jeffreytse/jekyll-theme-yat">Yat Theme</a>.</div>
+      <div class="footer-col rss-subscribe">Subscribe <a href="/feed.xml">via RSS</a>
+</div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

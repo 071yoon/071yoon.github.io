@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Visitor Pattern
+title: 방문자 패턴
 subtitle: 방문자 패턴 박살내기
 categories: GoF
 tags: [TIL, GoF]

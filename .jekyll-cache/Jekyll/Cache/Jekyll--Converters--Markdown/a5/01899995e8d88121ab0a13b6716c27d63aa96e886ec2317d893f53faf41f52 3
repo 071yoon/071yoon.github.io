@@ -1,2 +1,0 @@
-I"i<p>주의사항3! <code class="language-plaintext highlighter-rouge">public</code> 폴더 안에 들어간 assets 들 만이 빌드 타임에서 Next.js로 넘겨진다. 런타임중에서는 추가가 되어도 활용되지 않으므로, <code class="language-plaintext highlighter-rouge">AWS S3</code>과 같은 third party를 사용하는 것이 좋다.</p>
-:ET

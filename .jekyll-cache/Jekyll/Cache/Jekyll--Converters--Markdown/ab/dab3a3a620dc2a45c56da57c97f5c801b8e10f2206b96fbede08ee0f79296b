@@ -1,0 +1,310 @@
+I"�n<h2 id="왜-중개자-패턴">왜 중개자 패턴?</h2>
+
+<blockquote>
+  <p>객체 간의 혼란스러운 의존 관계들을 줄일 수 있는 행동 디자인 패턴</p>
+</blockquote>
+
+<p><strong>즉 중개자 패턴은 객체 간의 직접 통신을 제한하고 중재자 객체를 통해서만 협력할 수 있게 설정</strong></p>
+
+<p>간단한 로그인 Form을 만든다고 구현을 해보자</p>
+
+<p><img width="279" alt="image" src="https://user-images.githubusercontent.com/66371206/198242069-ca392cd8-0124-4ab5-ad5a-b3162d6266e3.png" /></p>
+
+<p><img width="278" alt="image" src="https://user-images.githubusercontent.com/66371206/198242099-dccf424c-c2c7-4d75-9821-1cd588e21031.png" /></p>
+
+<p>Guest를 누르면 Username과 Password가 막히고, Login을 누르면 Username이 활성화 되고, Username에 입력이 오면 Password가 활성화 되고, Password의 입력이 되면 OK가 활성화 된다.</p>
+
+<p>생각나는대로 구현을 해보면 다음과 유사하다.</p>
+
+<p><img width="300" alt="image" src="https://user-images.githubusercontent.com/66371206/198241000-6f63ef32-41c3-4e77-9a77-b79fe75b1e2c.png" /></p>
+
+<p>하지만 이렇게 되면</p>
+
+<ul>
+  <li>Guest 인지 Login인지에 따라 어떤 TextField를 활성화 비활성화</li>
+  <li>Password는 Login이고 Username이 활성화 됐을 때 input이 되는 환경이어야 되고</li>
+  <li>OK 버튼은 Guest 일 때는 바로 활성화며, Login 일 때는 Username 과 Password에 입력이 있어야 활성화</li>
+</ul>
+
+<p>등 조건이 추가되고, 프로그램이 복잡해 질 수록 어떤 클래스가 어떤 역할을 하는지 정확하게 파악하기가 어려울 수 있다. 그럴 때 중개자를 두면 손쉽게 해결을 할 수 있다.</p>
+
+<p><img width="298" alt="image" src="https://user-images.githubusercontent.com/66371206/198241095-f9c99d16-7094-43ae-8534-42ab295f514a.png" /></p>
+
+<p>다음과 같이 Dialog란 중개자를 두어, 여러 TextField, CheckBox, Button 등을 확인하여 각각에 상황에 맞는 역할을 하라고 지시하게 만들 수 있다.</p>
+
+<h2 id="구현">구현</h2>
+
+<p><img width="500" alt="image" src="https://user-images.githubusercontent.com/66371206/198255317-c3e7600d-e7b1-4f6b-a2ae-2afb8fb129e2.png" /></p>
+
+<h3 id="mediator">Mediator</h3>
+
+<blockquote>
+  <p>중개자 Interface로 colleague를 추가하고, colleague의 변화가 왔을 때 할 일을 지정할 수 있다</p>
+</blockquote>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Mediator interface</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Mediator</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">createColleagues</span><span class="o">();</span>
+    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">colleagueChanged</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="colleague">Colleague</h3>
+
+<blockquote>
+  <p>Colleague 인터페이스, 공통적으로 제공하는 중개자를 세팅하는 부분과, 내가 활성화를 제어하는 부분이 포함</p>
+</blockquote>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Colleague interface</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Colleague</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">setMediator</span><span class="o">(</span><span class="nc">Mediator</span> <span class="n">mediator</span><span class="o">);</span>
+    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">setColleagueEnabled</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">enabled</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="colleaguebutton">ColleagueButton</h3>
+
+<blockquote>
+  <p>CheckBox에 따라 OK / Cancel을 할 수 있는 버튼</p>
+</blockquote>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// OK, cancel button</span>
+<span class="kn">import</span> <span class="nn">java.awt.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ColleagueButton</span> <span class="kd">extends</span> <span class="nc">Button</span> <span class="kd">implements</span> <span class="nc">Colleague</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">Mediator</span> <span class="n">mediator</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">ColleagueButton</span><span class="o">(</span><span class="nc">String</span> <span class="n">caption</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">caption</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setMediator</span><span class="o">(</span><span class="nc">Mediator</span> <span class="n">mediator</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">mediator</span> <span class="o">=</span> <span class="n">mediator</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setColleagueEnabled</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">enabled</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">setEnabled</span><span class="o">(</span><span class="n">enabled</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="colleaguecheckbox">ColleagueCheckbox</h3>
+
+<blockquote>
+  <p>Guest인지 Login인지 선택할 수 있는 체크박스</p>
+</blockquote>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Guest, Login checkbox</span>
+<span class="kn">import</span> <span class="nn">java.awt.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.event.ItemEvent</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.event.ItemListener</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ColleagueCheckbox</span> <span class="kd">extends</span> <span class="nc">Checkbox</span> <span class="kd">implements</span> <span class="nc">ItemListener</span><span class="o">,</span> <span class="nc">Colleague</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">Mediator</span> <span class="n">mediator</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">ColleagueCheckbox</span><span class="o">(</span><span class="nc">String</span> <span class="n">label</span><span class="o">,</span> <span class="nc">CheckboxGroup</span> <span class="n">group</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">state</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">HeadlessException</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">label</span><span class="o">,</span> <span class="n">group</span><span class="o">,</span> <span class="n">state</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setMediator</span><span class="o">(</span><span class="nc">Mediator</span> <span class="n">mediator</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">mediator</span> <span class="o">=</span> <span class="n">mediator</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setColleagueEnabled</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">enabled</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">setEnabled</span><span class="o">(</span><span class="n">enabled</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">itemStateChanged</span><span class="o">(</span><span class="nc">ItemEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">mediator</span><span class="o">.</span><span class="na">colleagueChanged</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="colleaguetextfield">ColleagueTextField</h3>
+
+<blockquote>
+  <p>Login이라면 Username를 enable, Username이 존재하면 Password를 enable 하는 input field</p>
+</blockquote>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Username, Password input box</span>
+<span class="kn">import</span> <span class="nn">java.awt.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.event.TextEvent</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.event.TextListener</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ColleagueTextField</span> <span class="kd">extends</span> <span class="nc">TextField</span> <span class="kd">implements</span> <span class="nc">TextListener</span><span class="o">,</span> <span class="nc">Colleague</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">Mediator</span> <span class="n">mediator</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">ColleagueTextField</span><span class="o">(</span><span class="nc">String</span> <span class="n">text</span><span class="o">,</span> <span class="kt">int</span> <span class="n">columns</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">HeadlessException</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">text</span><span class="o">,</span> <span class="n">columns</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setMediator</span><span class="o">(</span><span class="nc">Mediator</span> <span class="n">mediator</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">mediator</span> <span class="o">=</span> <span class="n">mediator</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setColleagueEnabled</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">enabled</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">setEnabled</span><span class="o">(</span><span class="n">enabled</span><span class="o">);</span>
+        <span class="n">setBackground</span><span class="o">(</span><span class="n">enabled</span><span class="o">?</span><span class="nc">Color</span><span class="o">.</span><span class="na">white</span> <span class="o">:</span> <span class="nc">Color</span><span class="o">.</span><span class="na">lightGray</span><span class="o">);</span>
+    <span class="o">}</span>
+
+	<span class="c1">// event listener</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">textValueChanged</span><span class="o">(</span><span class="nc">TextEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">mediator</span><span class="o">.</span><span class="na">colleagueChanged</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="loginframe">LoginFrame</h3>
+
+<blockquote>
+  <p>mediator로 생성부터 change를 감지하면, 동작을 하며 변화에 대한 처리를 해준다</p>
+</blockquote>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// mediator LoginFrame</span>
+<span class="kn">import</span> <span class="nn">java.awt.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.event.ActionEvent</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.event.ActionListener</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">LoginFrame</span> <span class="kd">extends</span> <span class="nc">Frame</span> <span class="kd">implements</span> <span class="nc">ActionListener</span><span class="o">,</span> <span class="nc">Mediator</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">ColleagueCheckbox</span> <span class="n">checkGuest</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">ColleagueCheckbox</span> <span class="n">checkLogin</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">ColleagueTextField</span> <span class="n">textUser</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">ColleagueTextField</span> <span class="n">textPass</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">ColleagueButton</span> <span class="n">buttonOk</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">ColleagueButton</span> <span class="n">buttonCancel</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">LoginFrame</span><span class="o">(</span><span class="nc">String</span> <span class="n">title</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">HeadlessException</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">title</span><span class="o">);</span>
+        <span class="n">setBackground</span><span class="o">(</span><span class="nc">Color</span><span class="o">.</span><span class="na">lightGray</span><span class="o">);</span>
+        <span class="n">setLayout</span><span class="o">(</span><span class="k">new</span> <span class="nc">GridLayout</span><span class="o">(</span><span class="mi">4</span><span class="o">,</span><span class="mi">2</span><span class="o">));</span>
+        <span class="n">createColleagues</span><span class="o">();</span>
+        <span class="n">add</span><span class="o">(</span><span class="n">checkGuest</span><span class="o">);</span>
+        <span class="n">add</span><span class="o">(</span><span class="n">checkLogin</span><span class="o">);</span>
+        <span class="n">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Label</span><span class="o">(</span><span class="s">"Username"</span><span class="o">));</span>
+        <span class="n">add</span><span class="o">(</span><span class="n">textUser</span><span class="o">);</span>
+        <span class="n">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Label</span><span class="o">(</span><span class="s">"Password"</span><span class="o">));</span>
+        <span class="n">add</span><span class="o">(</span><span class="n">textPass</span><span class="o">);</span>
+        <span class="n">add</span><span class="o">(</span><span class="n">buttonOk</span><span class="o">);</span>
+        <span class="n">add</span><span class="o">(</span><span class="n">buttonCancel</span><span class="o">);</span>
+        <span class="n">colleagueChanged</span><span class="o">();</span>
+        <span class="n">pack</span><span class="o">();</span>
+        <span class="n">show</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">createColleagues</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// init components and set mediator</span>
+        <span class="nc">CheckboxGroup</span> <span class="n">g</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CheckboxGroup</span><span class="o">();</span>
+        <span class="n">checkGuest</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ColleagueCheckbox</span><span class="o">(</span><span class="s">"Guest"</span><span class="o">,</span> <span class="n">g</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+        <span class="n">checkLogin</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ColleagueCheckbox</span><span class="o">(</span><span class="s">"Login"</span><span class="o">,</span> <span class="n">g</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+        <span class="n">textUser</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ColleagueTextField</span><span class="o">(</span><span class="s">""</span><span class="o">,</span> <span class="mi">10</span><span class="o">);</span>
+        <span class="n">textPass</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ColleagueTextField</span><span class="o">(</span><span class="s">""</span><span class="o">,</span> <span class="mi">10</span><span class="o">);</span>
+        <span class="n">textPass</span><span class="o">.</span><span class="na">setEchoChar</span><span class="o">(</span><span class="sc">'*'</span><span class="o">);</span>
+        <span class="n">buttonOk</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ColleagueButton</span><span class="o">(</span><span class="s">"OK"</span><span class="o">);</span>
+        <span class="n">buttonCancel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ColleagueButton</span><span class="o">(</span><span class="s">"Cancel"</span><span class="o">);</span>
+
+        <span class="n">checkGuest</span><span class="o">.</span><span class="na">setMediator</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+        <span class="n">checkLogin</span><span class="o">.</span><span class="na">setMediator</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+        <span class="n">textUser</span><span class="o">.</span><span class="na">setMediator</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+        <span class="n">textPass</span><span class="o">.</span><span class="na">setMediator</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+        <span class="n">buttonOk</span><span class="o">.</span><span class="na">setMediator</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+        <span class="n">buttonCancel</span><span class="o">.</span><span class="na">setMediator</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+
+        <span class="n">checkGuest</span><span class="o">.</span><span class="na">addItemListener</span><span class="o">(</span><span class="n">checkGuest</span><span class="o">);</span>
+        <span class="n">checkLogin</span><span class="o">.</span><span class="na">addItemListener</span><span class="o">(</span><span class="n">checkLogin</span><span class="o">);</span>
+        <span class="n">textUser</span><span class="o">.</span><span class="na">addTextListener</span><span class="o">(</span><span class="n">textUser</span><span class="o">);</span>
+        <span class="n">textPass</span><span class="o">.</span><span class="na">addTextListener</span><span class="o">(</span><span class="n">textPass</span><span class="o">);</span>
+        <span class="n">buttonOk</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+        <span class="n">buttonCancel</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">colleagueChanged</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">checkGuest</span><span class="o">.</span><span class="na">getState</span><span class="o">())</span> <span class="o">{</span>
+            <span class="n">textUser</span><span class="o">.</span><span class="na">setColleagueEnabled</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+            <span class="n">textPass</span><span class="o">.</span><span class="na">setColleagueEnabled</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+            <span class="n">buttonOk</span><span class="o">.</span><span class="na">setColleagueEnabled</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="n">textUser</span><span class="o">.</span><span class="na">setColleagueEnabled</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+            <span class="n">userpassChanged</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">userpassChanged</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">textUser</span><span class="o">.</span><span class="na">getText</span><span class="o">().</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">textPass</span><span class="o">.</span><span class="na">setColleagueEnabled</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">textPass</span><span class="o">.</span><span class="na">getText</span><span class="o">().</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">buttonOk</span><span class="o">.</span><span class="na">setColleagueEnabled</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="n">buttonOk</span><span class="o">.</span><span class="na">setColleagueEnabled</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="n">textPass</span><span class="o">.</span><span class="na">setColleagueEnabled</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+            <span class="n">buttonOk</span><span class="o">.</span><span class="na">setColleagueEnabled</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="o">(</span><span class="nc">ActionEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">event</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">exit</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="main">Main</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="k">new</span> <span class="nf">LoginFrame</span><span class="o">(</span><span class="s">"Mediator Sample"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="등장인물">등장인물</h2>
+
+<p><img width="680" alt="image" src="https://user-images.githubusercontent.com/66371206/198248610-bedf001f-b4d7-47be-a786-d9370317482b.png" /></p>
+
+<h3 id="mediator-1">Mediator</h3>
+
+<p>Colleague 역할과 통신을 하며 조정을 실행하기 위한 Interface(API)를 결정</p>
+
+<h3 id="concrete-mediator">Concrete Mediator</h3>
+
+<p>Mediator 역할의 인터페이스(API)를 구현하여 실제의 조정을 실행</p>
+
+<h3 id="colleague-1">Colleague</h3>
+
+<p>Mediator역할과 통신을 실행할 인터페이스(API) 결정</p>
+
+<h3 id="concrete-colleague">Concrete Colleague</h3>
+
+<p>Colleague 역할의 인터페이스(API)를 구현</p>
+
+<h2 id="point">POINT</h2>
+
+<h3 id="분산처리">분산처리?</h3>
+
+<p>유효/무효에 대한 모든 로직은 colleagueChanged 메소드에 포함이 되어 있기에 해당 메소드만 수정을 하면 된다. 객체지향 프로그래밍을 하다보면, 한 곳에 집중되는것을 피하기 위해 분산하여 처리를 하는 경우가 있지만, 무조건 분산하는것이 옳은 것이 아닌, 분산 할 것은 분산시키며, 집중시킬 것은 집중시켜야 된다.</p>
+
+<h3 id="통신-경로의-증가">통신 경로의 증가</h3>
+
+<p>OK button 이 text field에 따라 on/off 가 정해지는 상황에서, 중개자가 없는 경우에는 바로 text-field 가 있는지 확인 후 on/off 를 확인 할 수 있었다. 하지만, 중개자가 있기에 text field의 변화를 중개자에게 알리고, 중개자가 on/off를 결정하는 단계가 하나 늘었다. 이러한 인스턴스가 늘어날 수록 부담이 될 수 있다.</p>
+
+<h3 id="재사용">재사용</h3>
+
+<p>ConcreteColleague 역할은 concreteMediator가 손쉽게 재사용 할 수 있지만, concreteMediator의 재사용은 쉽지 않다. 예제에서의 LoginFrame이 생성과 제어를 모두 담당하기 때문에 의존도가 너무 높아 재사용하기 어려운 상황이 올 수 있다.</p>
+
+<blockquote>
+  <p>React와 비교하면 LoginFrame이라는 전역 상태를 사용하는것과 유사하다 볼 수 있을듯..!!</p>
+</blockquote>
+
+<blockquote>
+  <p>mediator가 원래 생성부터 중개 역할까지 부담을 하는걸까? Factory? 한번 고민해보자</p>
+</blockquote>
+
+<p>참고 : https://refactoring.guru/ko/design-patterns/mediator</p>
+:ET

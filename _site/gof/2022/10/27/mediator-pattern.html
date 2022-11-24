@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>중개자 패턴 | YeongGi’s tech blog</title>
+<meta name="generator" content="Jekyll v4.2.2">
+<meta property="og:title" content="중개자 패턴">
+<meta name="author" content="071yoon">
+<meta property="og:locale" content="en_US">
+<meta name="description" content="왜 중개자 패턴?">
+<meta property="og:description" content="왜 중개자 패턴?">
+<link rel="canonical" href="http://localhost:4000/gof/2022/10/27/mediator-pattern.html">
+<meta property="og:url" content="http://localhost:4000/gof/2022/10/27/mediator-pattern.html">
+<meta property="og:site_name" content="YeongGi’s tech blog">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2022-10-27T00:00:00+09:00">
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="중개자 패턴">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"071yoon"},"dateModified":"2022-10-27T00:00:00+09:00","datePublished":"2022-10-27T00:00:00+09:00","description":"왜 중개자 패턴?","headline":"중개자 패턴","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/gof/2022/10/27/mediator-pattern.html"},"url":"http://localhost:4000/gof/2022/10/27/mediator-pattern.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="shortcut icon" href="">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-noto-sans@0.0.72/index.min.css">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <script src="/assets/js/main.js"></script><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="YeongGi's tech blog">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+<!-- and it's easy to individually load additional languages -->
+<script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/languages/go.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// Init highlight js
+document.addEventListener('DOMContentLoaded', function(event) {
+  var els = document.querySelectorAll('pre code')
+
+  function addLangData(block) {
+    var outer = block.parentElement.parentElement.parentElement;
+    var lang = block.getAttribute('data-lang');
+    for (var i = 0; i < outer.classList.length; i++) {
+      var cls = outer.classList[i];
+      if (cls.startsWith('language-')) {
+        lang = cls;
+        break;
+      }
+    }
+    if (!lang) {
+      cls = block.getAttribute('class');
+      lang = cls ? cls.replace('hljs ', '') : '';
+    }
+    if (lang.startsWith('language-')) {
+      lang = lang.substr(9);
+    }
+    block.setAttribute('class', 'hljs ' + lang);
+    block.parentNode.setAttribute('data-lang', lang);
+  }
+
+  function addBadge(block) {
+    var enabled = ('true' || 'true').toLowerCase();
+    if (enabled == 'true') {
+      var pre = block.parentElement;
+      pre.classList.add('badge');
+    }
+  }
+
+  function handle(block) {
+    addLangData(block);
+    addBadge(block)
+    hljs.highlightBlock(block);
+  }
+
+  for (var i = 0; i < els.length; i++) {
+    var el = els[i];
+    handle(el);
+  }
+});
+</script>
+
+<style>
+  /* code language badge */
+  pre.badge::before {
+    content: attr(data-lang);
+    color: #fff;
+    background-color: #ff4e00;
+    padding: 0 .5em;
+    border-radius: 0 2px;
+    text-transform: uppercase;
+    text-align: center;
+    min-width: 32px;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+  }
+
+  /* fix wrong badge display for firefox browser */
+  code > table pre::before {
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="site-header " role="banner">
+
+  <div class="wrapper">
+    <div class="site-header-inner">
+<span class="site-brand"><a class="site-brand-inner" rel="author" href="/">
+  <img class="site-favicon" title="YeongGi's tech blog" src="" onerror="this.style.display='none'">
+  YeongGi's tech blog
+</a>
+</span><nav class="site-nav">
+          <input type="checkbox" id="nav-trigger" class="nav-trigger">
+          <label for="nav-trigger">
+            <span class="menu-icon">
+              <svg viewbox="0 0 18 15" width="18px" height="15px">
+                <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"></path>
+              </svg>
+            </span>
+          </label>
+
+          <div class="trigger">
+<a class="page-link" href="/about.html">ABOUT</a><a class="page-link" href="/archives.html">ARCHIVES</a><a class="page-link" href="/categories.html">CATEGORIES</a><a class="page-link" href="/">HOME</a><a class="page-link" href="/tags.html">TAGS</a>
+
+
+
+
+
+
+
+
+
+<span class="page-link">
+
+
+
+<div id="google_translate_element" style="display: none;">
+</div>
+
+<span class="ct-language">
+  <ul class="list-unstyled ct-language-dropdown">
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="en">
+          
+          <img src="https://cdn.countryflags.com/thumbs/united-states-of-america/flag-400.png" title="English">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="fr">
+          
+          <img src="https://cdn.countryflags.com/thumbs/france/flag-400.png" title="French">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="zh-CN">
+          
+          <img src="https://cdn.countryflags.com/thumbs/china/flag-400.png" title="Chinese(Simple)">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ja">
+          
+          <img src="https://cdn.countryflags.com/thumbs/japan/flag-400.png" title="Japanese">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ko">
+          
+          <img src="https://cdn.countryflags.com/thumbs/south-korea/flag-400.png" title="Korean">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ru">
+          
+          <img src="https://cdn.countryflags.com/thumbs/russia/flag-400.png" title="Russian">
+          
+        </a>
+      </li>
+    
+  </ul>
+</span>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    autoDisplay: false,
+    layout: google.translate.TranslateElement.InlineLayout.VERTICAL
+  }, 'google_translate_element');
+
+  // Links to cross-origin destinations are unsafe
+  var gll = document.getElementsByClassName('goog-logo-link')[0];
+  if (gll) {
+    gll.setAttribute('rel', 'noopener');
+  }
+
+  function restoreLang() {
+    var iframe = document.getElementsByClassName('goog-te-banner-frame')[0];
+    if (!iframe) return;
+
+    var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+    var restore_el = innerDoc.getElementsByTagName("button");
+
+    for (var i = 0; i < restore_el.length; i++) {
+      if (restore_el[i].id.indexOf("restore") >= 0) {
+        restore_el[i].click();
+        var close_el = innerDoc.getElementsByClassName("goog-close-link");
+        close_el[0].click();
+        return;
+      }
+    }
+  }
+
+  function triggerHtmlEvent(element, eventName) {
+    var event;
+    if (document.createEvent) {
+      event = document.createEvent('HTMLEvents');
+      event.initEvent(eventName, true, true);
+      element.dispatchEvent(event);
+    } else {
+      event = document.createEventObject();
+      event.eventType = eventName;
+      element.fireEvent('on' + event.eventType, event);
+    }
+  }
+
+  var googleCombo = document.querySelector("select.goog-te-combo");
+  var langSelect = document.querySelector('.ct-language');
+  langSelect.addEventListener('click', function(event) {
+    if (!event.target) {
+      return;
+    }
+
+    var selected = document.querySelector('.ct-language .ct-language-selected');
+    if (selected) {
+      selected.classList.remove('ct-language-selected');
+    }
+
+    var target = event.target;
+    while (target && target !== langSelect ) {
+      if (target.matches('.lang-select')) {
+        break;
+      }
+      target = target.parentElement;
+    }
+
+    if (target && target.matches('.lang-select')) {
+      var lang = target.getAttribute('data-lang');
+      if (googleCombo.value == lang) {
+        restoreLang();
+      } else {
+        target.parentElement.classList.add('ct-language-selected');
+        googleCombo.value = lang;
+        triggerHtmlEvent(googleCombo, 'change');
+      }
+    }
+
+    event.preventDefault();
+  });
+}
+</script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</span>
+</div>
+        </nav>
+</div>
+  </div>
+</header>
+
+<script>
+  function initHeader() {
+    var lastScrollY = getScrollPos().y;
+    var documentElement = document.documentElement;
+
+    function storeScrollData() {
+      var y = getScrollPos().y;var scrollStatus = "";
+
+      if (y <= 0) {
+        scrollStatus = "top";
+      } else if ((window.innerHeight + y) >= document.body.offsetHeight) {
+        scrollStatus = "bottom";
+      } else {
+        var isScrollDown = (y - lastScrollY > 0) ? true : false;
+        scrollStatus = isScrollDown ? "down" : "up";
+      }
+
+      lastScrollY = y;
+      documentElement.setAttribute("data-scroll-status", scrollStatus);
+    }
+
+    window.addEventListener('scroll', function(e) {
+      storeScrollData();
+    });
+
+    storeScrollData();
+  }
+  document.addEventListener('DOMContentLoaded', initHeader);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  function hashLocate(hashValue) {
+    hashValue = hashValue.replace(/^.*#h-/, '');
+    hashValue = decodeURIComponent(hashValue);
+    var element = document.getElementById(hashValue);
+
+    if (!element) {
+      return;
+    }
+
+    var header = document.querySelector('header.site-header');
+    var headerRect = header.getBoundingClientRect();
+    var headerTop = Math.floor(headerRect.top);
+    var headerHeight = Math.floor(headerRect.height);
+    var scrollPos = getScrollPos();
+    var offsetY = element.offsetTop - (headerTop + headerHeight + 20);
+
+    if (offsetY == scrollPos.y) {
+      return;
+    }
+
+    if (headerTop == 0  && offsetY > scrollPos.y) {
+      offsetY += headerHeight + 2;
+    } else if (headerTop < 0  && offsetY < scrollPos.y) {
+      offsetY -= headerHeight - 2;
+    }
+
+    smoothScrollTo(offsetY);
+  }
+
+  // The first event occurred
+  window.addEventListener('load', function(event) {
+    if (window.location.hash) {
+      hashLocate(window.location.hash);
+    }
+  });
+
+  // The first event occurred
+  window.addEventListener('click', function(event) {
+    if (event.target.tagName.toLowerCase() == 'a') {
+      hashLocate(event.target.getAttribute('href'));
+    }
+  });
+</script>
+<div class="theme-toggle">
+  <input type="checkbox" id="theme-switch">
+  <label for="theme-switch">
+    <div class="toggle"></div>
+    <div class="names">
+      <p class="light">Light</p>
+      <p class="dark">Dark</p>
+    </div>
+  </label>
+</div>
+
+
+
+
+<script>
+  (function() {
+    var sw = document.getElementById('theme-switch');
+    var html = document.getElementsByTagName('html')[0];
+    var nightModeOption = ('off' || 'auto').toLowerCase();
+    var storage = nightModeOption === 'manual'
+        ? localStorage
+        : sessionStorage;
+    var themeData = loadThemeData();
+
+    function saveThemeData(data) {
+      storage.setItem('theme', JSON.stringify(data));
+    }
+
+    function loadThemeData() {
+      var data = storage.getItem('theme');
+      try {
+        data = JSON.parse(data ? data : '');
+      } catch(e) {
+        data = { nightShift: undefined, autoToggleAt: 0 };
+        saveThemeData(data);
+      }
+      return data;
+    }
+
+    function handleThemeToggle(nightShift) {
+      themeData.nightShift = nightShift;
+      saveThemeData(themeData);
+      html.dataset.theme = nightShift ? 'dark' : 'light';
+      setTimeout(function() {
+        sw.checked = nightShift ? true : false;
+      }, 50);
+    }
+
+    function autoThemeToggle() {
+      // Next time point of theme toggle
+      var now = new Date();
+      var toggleAt = new Date();
+      var hours = now.getHours();
+      var nightShift = hours >= 19 || hours <=7;
+
+      if (nightShift) {
+        if (hours > 7) {
+          toggleAt.setDate(toggleAt.getDate() + 1);
+        }
+        toggleAt.setHours(7);
+      } else {
+        toggleAt.setHours(19);
+      }
+
+      toggleAt.setMinutes(0);
+      toggleAt.setSeconds(0);
+      toggleAt.setMilliseconds(0)
+
+      var delay = toggleAt.getTime() - now.getTime();
+
+      // auto toggle theme mode
+      setTimeout(function() {
+        handleThemeToggle(!nightShift);
+      }, delay);
+
+      return {
+        nightShift: nightShift,
+        toggleAt: toggleAt.getTime()
+      };
+    }
+
+    // Listen the theme toggle event
+    sw.addEventListener('change', function(event) {
+      handleThemeToggle(event.target.checked);
+    });
+
+    if (nightModeOption == 'auto') {
+      var data = autoThemeToggle();
+
+      // Toggle theme by local setting
+      if (data.toggleAt > themeData.autoToggleAt) {
+        themeData.autoToggleAt = data.toggleAt;
+        handleThemeToggle(data.nightShift);
+      } else {
+        handleThemeToggle(themeData.nightShift);
+      }
+    } else if (nightModeOption == 'manual') {
+      handleThemeToggle(themeData.nightShift);
+    } else {
+      var nightShift = themeData.nightShift;
+      if (nightShift === undefined) {
+        nightShift = nightModeOption === 'on';
+      }
+      handleThemeToggle(nightShift);
+    }
+  })();
+</script>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <div class="framework">
+  <section class="main">
+
+     <div class="post">
+  <section>
+
+
+
+
+
+
+
+
+
+<header class="post-header">
+  <h1 class="post-title p-name" itemprop="name headline">중개자 패턴</h1>
+  <h2 class="post-subtitle">중개자 패턴을 배워보자</h2>
+
+  <p class="post-meta">
+    <time class="dt-published" datetime="2022-10-27T00:00:00+09:00" itemprop="datePublished"><i class="fa fa-calendar"></i> Oct 27, 2022
+    </time>
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 9 mins</span>
+  </p>
+<div class="post-tags">
+<a class="post-tag" href="/tags.html#GoF">#GoF</a><a class="post-tag" href="/tags.html#TIL">#TIL</a>
+</div></header>
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <div class="post-content e-content" itemprop="articleBody">
+
+      <h2 id="왜-중개자-패턴">왜 중개자 패턴?</h2>
+
+<blockquote>
+  <p>객체 간의 혼란스러운 의존 관계들을 줄일 수 있는 행동 디자인 패턴</p>
+</blockquote>
+
+<p><strong>즉 중개자 패턴은 객체 간의 직접 통신을 제한하고 중재자 객체를 통해서만 협력할 수 있게 설정</strong></p>
+
+<p>간단한 로그인 Form을 만든다고 구현을 해보자</p>
+
+<p><img width="279" alt="image" src="https://user-images.githubusercontent.com/66371206/198242069-ca392cd8-0124-4ab5-ad5a-b3162d6266e3.png"></p>
+
+<p><img width="278" alt="image" src="https://user-images.githubusercontent.com/66371206/198242099-dccf424c-c2c7-4d75-9821-1cd588e21031.png"></p>
+
+<p>Guest를 누르면 Username과 Password가 막히고, Login을 누르면 Username이 활성화 되고, Username에 입력이 오면 Password가 활성화 되고, Password의 입력이 되면 OK가 활성화 된다.</p>
+
+<p>생각나는대로 구현을 해보면 다음과 유사하다.</p>
+
+<p><img width="300" alt="image" src="https://user-images.githubusercontent.com/66371206/198241000-6f63ef32-41c3-4e77-9a77-b79fe75b1e2c.png"></p>
+
+<p>하지만 이렇게 되면</p>
+
+<ul>
+  <li>Guest 인지 Login인지에 따라 어떤 TextField를 활성화 비활성화</li>
+  <li>Password는 Login이고 Username이 활성화 됐을 때 input이 되는 환경이어야 되고</li>
+  <li>OK 버튼은 Guest 일 때는 바로 활성화며, Login 일 때는 Username 과 Password에 입력이 있어야 활성화</li>
+</ul>
+
+<p>등 조건이 추가되고, 프로그램이 복잡해 질 수록 어떤 클래스가 어떤 역할을 하는지 정확하게 파악하기가 어려울 수 있다. 그럴 때 중개자를 두면 손쉽게 해결을 할 수 있다.</p>
+
+<p><img width="298" alt="image" src="https://user-images.githubusercontent.com/66371206/198241095-f9c99d16-7094-43ae-8534-42ab295f514a.png"></p>
+
+<p>다음과 같이 Dialog란 중개자를 두어, 여러 TextField, CheckBox, Button 등을 확인하여 각각에 상황에 맞는 역할을 하라고 지시하게 만들 수 있다.</p>
+
+<h2 id="구현">구현</h2>
+
+<p><img width="500" alt="image" src="https://user-images.githubusercontent.com/66371206/198255317-c3e7600d-e7b1-4f6b-a2ae-2afb8fb129e2.png"></p>
+
+<h3 id="mediator">Mediator</h3>
+
+<blockquote>
+  <p>중개자 Interface로 colleague를 추가하고, colleague의 변화가 왔을 때 할 일을 지정할 수 있다</p>
+</blockquote>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Mediator interface</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Mediator</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">createColleagues</span><span class="o">();</span>
+    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">colleagueChanged</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="colleague">Colleague</h3>
+
+<blockquote>
+  <p>Colleague 인터페이스, 공통적으로 제공하는 중개자를 세팅하는 부분과, 내가 활성화를 제어하는 부분이 포함</p>
+</blockquote>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Colleague interface</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Colleague</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">setMediator</span><span class="o">(</span><span class="nc">Mediator</span> <span class="n">mediator</span><span class="o">);</span>
+    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">setColleagueEnabled</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">enabled</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="colleaguebutton">ColleagueButton</h3>
+
+<blockquote>
+  <p>CheckBox에 따라 OK / Cancel을 할 수 있는 버튼</p>
+</blockquote>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// OK, cancel button</span>
+<span class="kn">import</span> <span class="nn">java.awt.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ColleagueButton</span> <span class="kd">extends</span> <span class="nc">Button</span> <span class="kd">implements</span> <span class="nc">Colleague</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">Mediator</span> <span class="n">mediator</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">ColleagueButton</span><span class="o">(</span><span class="nc">String</span> <span class="n">caption</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">caption</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setMediator</span><span class="o">(</span><span class="nc">Mediator</span> <span class="n">mediator</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">mediator</span> <span class="o">=</span> <span class="n">mediator</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setColleagueEnabled</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">enabled</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">setEnabled</span><span class="o">(</span><span class="n">enabled</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="colleaguecheckbox">ColleagueCheckbox</h3>
+
+<blockquote>
+  <p>Guest인지 Login인지 선택할 수 있는 체크박스</p>
+</blockquote>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Guest, Login checkbox</span>
+<span class="kn">import</span> <span class="nn">java.awt.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.event.ItemEvent</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.event.ItemListener</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ColleagueCheckbox</span> <span class="kd">extends</span> <span class="nc">Checkbox</span> <span class="kd">implements</span> <span class="nc">ItemListener</span><span class="o">,</span> <span class="nc">Colleague</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">Mediator</span> <span class="n">mediator</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">ColleagueCheckbox</span><span class="o">(</span><span class="nc">String</span> <span class="n">label</span><span class="o">,</span> <span class="nc">CheckboxGroup</span> <span class="n">group</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">state</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">HeadlessException</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">label</span><span class="o">,</span> <span class="n">group</span><span class="o">,</span> <span class="n">state</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setMediator</span><span class="o">(</span><span class="nc">Mediator</span> <span class="n">mediator</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">mediator</span> <span class="o">=</span> <span class="n">mediator</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setColleagueEnabled</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">enabled</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">setEnabled</span><span class="o">(</span><span class="n">enabled</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">itemStateChanged</span><span class="o">(</span><span class="nc">ItemEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">mediator</span><span class="o">.</span><span class="na">colleagueChanged</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="colleaguetextfield">ColleagueTextField</h3>
+
+<blockquote>
+  <p>Login이라면 Username를 enable, Username이 존재하면 Password를 enable 하는 input field</p>
+</blockquote>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Username, Password input box</span>
+<span class="kn">import</span> <span class="nn">java.awt.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.event.TextEvent</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.event.TextListener</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ColleagueTextField</span> <span class="kd">extends</span> <span class="nc">TextField</span> <span class="kd">implements</span> <span class="nc">TextListener</span><span class="o">,</span> <span class="nc">Colleague</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">Mediator</span> <span class="n">mediator</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">ColleagueTextField</span><span class="o">(</span><span class="nc">String</span> <span class="n">text</span><span class="o">,</span> <span class="kt">int</span> <span class="n">columns</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">HeadlessException</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">text</span><span class="o">,</span> <span class="n">columns</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setMediator</span><span class="o">(</span><span class="nc">Mediator</span> <span class="n">mediator</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">mediator</span> <span class="o">=</span> <span class="n">mediator</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setColleagueEnabled</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">enabled</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">setEnabled</span><span class="o">(</span><span class="n">enabled</span><span class="o">);</span>
+        <span class="n">setBackground</span><span class="o">(</span><span class="n">enabled</span><span class="o">?</span><span class="nc">Color</span><span class="o">.</span><span class="na">white</span> <span class="o">:</span> <span class="nc">Color</span><span class="o">.</span><span class="na">lightGray</span><span class="o">);</span>
+    <span class="o">}</span>
+
+	<span class="c1">// event listener</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">textValueChanged</span><span class="o">(</span><span class="nc">TextEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">mediator</span><span class="o">.</span><span class="na">colleagueChanged</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="loginframe">LoginFrame</h3>
+
+<blockquote>
+  <p>mediator로 생성부터 change를 감지하면, 동작을 하며 변화에 대한 처리를 해준다</p>
+</blockquote>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// mediator LoginFrame</span>
+<span class="kn">import</span> <span class="nn">java.awt.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.event.ActionEvent</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.event.ActionListener</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">LoginFrame</span> <span class="kd">extends</span> <span class="nc">Frame</span> <span class="kd">implements</span> <span class="nc">ActionListener</span><span class="o">,</span> <span class="nc">Mediator</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">ColleagueCheckbox</span> <span class="n">checkGuest</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">ColleagueCheckbox</span> <span class="n">checkLogin</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">ColleagueTextField</span> <span class="n">textUser</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">ColleagueTextField</span> <span class="n">textPass</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">ColleagueButton</span> <span class="n">buttonOk</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">ColleagueButton</span> <span class="n">buttonCancel</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">LoginFrame</span><span class="o">(</span><span class="nc">String</span> <span class="n">title</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">HeadlessException</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">title</span><span class="o">);</span>
+        <span class="n">setBackground</span><span class="o">(</span><span class="nc">Color</span><span class="o">.</span><span class="na">lightGray</span><span class="o">);</span>
+        <span class="n">setLayout</span><span class="o">(</span><span class="k">new</span> <span class="nc">GridLayout</span><span class="o">(</span><span class="mi">4</span><span class="o">,</span><span class="mi">2</span><span class="o">));</span>
+        <span class="n">createColleagues</span><span class="o">();</span>
+        <span class="n">add</span><span class="o">(</span><span class="n">checkGuest</span><span class="o">);</span>
+        <span class="n">add</span><span class="o">(</span><span class="n">checkLogin</span><span class="o">);</span>
+        <span class="n">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Label</span><span class="o">(</span><span class="s">"Username"</span><span class="o">));</span>
+        <span class="n">add</span><span class="o">(</span><span class="n">textUser</span><span class="o">);</span>
+        <span class="n">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Label</span><span class="o">(</span><span class="s">"Password"</span><span class="o">));</span>
+        <span class="n">add</span><span class="o">(</span><span class="n">textPass</span><span class="o">);</span>
+        <span class="n">add</span><span class="o">(</span><span class="n">buttonOk</span><span class="o">);</span>
+        <span class="n">add</span><span class="o">(</span><span class="n">buttonCancel</span><span class="o">);</span>
+        <span class="n">colleagueChanged</span><span class="o">();</span>
+        <span class="n">pack</span><span class="o">();</span>
+        <span class="n">show</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">createColleagues</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// init components and set mediator</span>
+        <span class="nc">CheckboxGroup</span> <span class="n">g</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CheckboxGroup</span><span class="o">();</span>
+        <span class="n">checkGuest</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ColleagueCheckbox</span><span class="o">(</span><span class="s">"Guest"</span><span class="o">,</span> <span class="n">g</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+        <span class="n">checkLogin</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ColleagueCheckbox</span><span class="o">(</span><span class="s">"Login"</span><span class="o">,</span> <span class="n">g</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+        <span class="n">textUser</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ColleagueTextField</span><span class="o">(</span><span class="s">""</span><span class="o">,</span> <span class="mi">10</span><span class="o">);</span>
+        <span class="n">textPass</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ColleagueTextField</span><span class="o">(</span><span class="s">""</span><span class="o">,</span> <span class="mi">10</span><span class="o">);</span>
+        <span class="n">textPass</span><span class="o">.</span><span class="na">setEchoChar</span><span class="o">(</span><span class="sc">'*'</span><span class="o">);</span>
+        <span class="n">buttonOk</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ColleagueButton</span><span class="o">(</span><span class="s">"OK"</span><span class="o">);</span>
+        <span class="n">buttonCancel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ColleagueButton</span><span class="o">(</span><span class="s">"Cancel"</span><span class="o">);</span>
+
+        <span class="n">checkGuest</span><span class="o">.</span><span class="na">setMediator</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+        <span class="n">checkLogin</span><span class="o">.</span><span class="na">setMediator</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+        <span class="n">textUser</span><span class="o">.</span><span class="na">setMediator</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+        <span class="n">textPass</span><span class="o">.</span><span class="na">setMediator</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+        <span class="n">buttonOk</span><span class="o">.</span><span class="na">setMediator</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+        <span class="n">buttonCancel</span><span class="o">.</span><span class="na">setMediator</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+
+        <span class="n">checkGuest</span><span class="o">.</span><span class="na">addItemListener</span><span class="o">(</span><span class="n">checkGuest</span><span class="o">);</span>
+        <span class="n">checkLogin</span><span class="o">.</span><span class="na">addItemListener</span><span class="o">(</span><span class="n">checkLogin</span><span class="o">);</span>
+        <span class="n">textUser</span><span class="o">.</span><span class="na">addTextListener</span><span class="o">(</span><span class="n">textUser</span><span class="o">);</span>
+        <span class="n">textPass</span><span class="o">.</span><span class="na">addTextListener</span><span class="o">(</span><span class="n">textPass</span><span class="o">);</span>
+        <span class="n">buttonOk</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+        <span class="n">buttonCancel</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">colleagueChanged</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">checkGuest</span><span class="o">.</span><span class="na">getState</span><span class="o">())</span> <span class="o">{</span>
+            <span class="n">textUser</span><span class="o">.</span><span class="na">setColleagueEnabled</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+            <span class="n">textPass</span><span class="o">.</span><span class="na">setColleagueEnabled</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+            <span class="n">buttonOk</span><span class="o">.</span><span class="na">setColleagueEnabled</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="n">textUser</span><span class="o">.</span><span class="na">setColleagueEnabled</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+            <span class="n">userpassChanged</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">userpassChanged</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">textUser</span><span class="o">.</span><span class="na">getText</span><span class="o">().</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">textPass</span><span class="o">.</span><span class="na">setColleagueEnabled</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">textPass</span><span class="o">.</span><span class="na">getText</span><span class="o">().</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">buttonOk</span><span class="o">.</span><span class="na">setColleagueEnabled</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="n">buttonOk</span><span class="o">.</span><span class="na">setColleagueEnabled</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="n">textPass</span><span class="o">.</span><span class="na">setColleagueEnabled</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+            <span class="n">buttonOk</span><span class="o">.</span><span class="na">setColleagueEnabled</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="o">(</span><span class="nc">ActionEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">event</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">exit</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="main">Main</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="k">new</span> <span class="nf">LoginFrame</span><span class="o">(</span><span class="s">"Mediator Sample"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="등장인물">등장인물</h2>
+
+<p><img width="680" alt="image" src="https://user-images.githubusercontent.com/66371206/198248610-bedf001f-b4d7-47be-a786-d9370317482b.png"></p>
+
+<h3 id="mediator-1">Mediator</h3>
+
+<p>Colleague 역할과 통신을 하며 조정을 실행하기 위한 Interface(API)를 결정</p>
+
+<h3 id="concrete-mediator">Concrete Mediator</h3>
+
+<p>Mediator 역할의 인터페이스(API)를 구현하여 실제의 조정을 실행</p>
+
+<h3 id="colleague-1">Colleague</h3>
+
+<p>Mediator역할과 통신을 실행할 인터페이스(API) 결정</p>
+
+<h3 id="concrete-colleague">Concrete Colleague</h3>
+
+<p>Colleague 역할의 인터페이스(API)를 구현</p>
+
+<h2 id="point">POINT</h2>
+
+<h3 id="분산처리">분산처리?</h3>
+
+<p>유효/무효에 대한 모든 로직은 colleagueChanged 메소드에 포함이 되어 있기에 해당 메소드만 수정을 하면 된다. 객체지향 프로그래밍을 하다보면, 한 곳에 집중되는것을 피하기 위해 분산하여 처리를 하는 경우가 있지만, 무조건 분산하는것이 옳은 것이 아닌, 분산 할 것은 분산시키며, 집중시킬 것은 집중시켜야 된다.</p>
+
+<h3 id="통신-경로의-증가">통신 경로의 증가</h3>
+
+<p>OK button 이 text field에 따라 on/off 가 정해지는 상황에서, 중개자가 없는 경우에는 바로 text-field 가 있는지 확인 후 on/off 를 확인 할 수 있었다. 하지만, 중개자가 있기에 text field의 변화를 중개자에게 알리고, 중개자가 on/off를 결정하는 단계가 하나 늘었다. 이러한 인스턴스가 늘어날 수록 부담이 될 수 있다.</p>
+
+<h3 id="재사용">재사용</h3>
+
+<p>ConcreteColleague 역할은 concreteMediator가 손쉽게 재사용 할 수 있지만, concreteMediator의 재사용은 쉽지 않다. 예제에서의 LoginFrame이 생성과 제어를 모두 담당하기 때문에 의존도가 너무 높아 재사용하기 어려운 상황이 올 수 있다.</p>
+
+<blockquote>
+  <p>React와 비교하면 LoginFrame이라는 전역 상태를 사용하는것과 유사하다 볼 수 있을듯..!!</p>
+</blockquote>
+
+<blockquote>
+  <p>mediator가 원래 생성부터 중개 역할까지 부담을 하는걸까? Factory? 한번 고민해보자</p>
+</blockquote>
+
+<p>참고 : https://refactoring.guru/ko/design-patterns/mediator</p>
+
+
+    </div>
+
+</article>
+<div class="post-nav">
+<a class="previous" href="/til/2022/10/09/fix-error-via-apm.html" title="Fix Error via APM">Fix Error via APM</a><a class="next" href="/til/2022/11/01/how-we-work.html" title="FIRE는 이렇게 협업했다">FIRE는 이렇게 협업했다</a>
+</div>
+<div class="post-related">
+      <div>Related Articles</div>
+      <ul>
+        <li><a class="post-link" href="/next.js/2022/04/24/why-next-js.html" title="FIRE는 이렇게 협업했다">NEXT</a></li>
+<li><a class="post-link" href="/gof/2022/11/03/state-pattern.html" title="FIRE는 이렇게 협업했다">상태 패턴</a></li>
+<li><a class="post-link" href="/javascript/2022/01/20/javascript-property.html" title="FIRE는 이렇게 협업했다">자바스크립트 객체 프로퍼티 설정</a></li>
+<li><a class="post-link" href="/til/2022/06/30/why-typescript.html" title="FIRE는 이렇게 협업했다">왜 TypeScript인가</a></li>
+</ul>
+    </div>
+<div class="post-comments">
+      <script src="https://utteranc.es/client.js" repo="071yoon/071yoon.github.io" issue-term="pathname" theme="github-light" crossorigin="anonymous" async>
+      </script>
+</div></section>
+</div>
+
+
+  </section>
+  <section class="sidebar" style="margin-left: 15px;">
+    <!-- Get sidebar items --><style type="text/css" media="screen">
+.post-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+</style>
+
+<div class="post-menu">
+  <div class="post-menu-title">TOC</div>
+  <div class="post-menu-content"></div>
+</div>
+
+<script>
+  function generateContent() {
+    var menu = document.querySelector(".post-menu");
+    var menuContent =  menu.querySelector(".post-menu-content");
+    var headings = document.querySelector(".post-content").querySelectorAll("h2, h3, h4, h5, h6");
+
+    // Hide menu when no headings
+    if (headings.length === 0) {
+      return menu.style.display = "none";
+    }
+
+    // Generate post menu
+    var menuHTML = '';
+    for (var i = 0; i < headings.length; i++) {
+      var h = headings[i];
+      menuHTML += (
+        '<li class="h-' + h.tagName.toLowerCase() + '">'
+        + '<a href="#h-' + h.getAttribute('id') + '">' + h.textContent + '</a></li>');
+    }
+
+    menuContent.innerHTML = '<ul>' + menuHTML + '</ul>';
+
+    // The header element
+    var header = document.querySelector('header.site-header');
+
+    function doMenuCollapse(index, over_items) {
+      var items = menuContent.firstChild.children;
+
+      if (over_items == undefined) {
+        over_items = 20;
+      }
+
+      if (items.length < over_items) {
+        return;
+      }
+
+      var activeItem = items[index];
+      var beginItem = activeItem
+      var endItem = activeItem
+      var beginIndex = index;
+      var endIndex = index + 1;
+      while (beginIndex >= 0
+        && !items[beginIndex].classList.contains('h-h2')) {
+        beginIndex -= 1;
+      }
+      while (endIndex < items.length
+        && !items[endIndex].classList.contains('h-h2')) {
+        endIndex += 1;
+      }
+      for (var i = 0; i < beginIndex; i++) {
+        item = items[i]
+        if (!item.classList.contains('h-h2')) {
+          item.style.display = 'none';
+        }
+      }
+      for (var i = beginIndex + 1; i < endIndex; i++) {
+        item = items[i]
+        // if (!item.classList.contains('h-h2')) {
+          item.style.display = '';
+        // }
+      }
+      for (var i = endIndex; i < items.length; i++) {
+        item = items[i]
+        if (!item.classList.contains('h-h2')) {
+          item.style.display = 'none';
+        }
+      }
+    }
+
+    // Init menu collapsed
+    doMenuCollapse(-1);
+
+    // Active the menu item
+    window.addEventListener('scroll', function (event) {
+      var lastActive = menuContent.querySelector('.active');
+      var changed = true;
+      var activeIndex = -1;
+      for (var i = headings.length - 1; i >= 0; i--) {
+        var h = headings[i];
+        var headingRect = h.getBoundingClientRect();
+        var headerRect = header.getBoundingClientRect();
+        var headerTop = Math.floor(headerRect.top);
+        var headerHeight = Math.floor(headerRect.height);
+        var headerHeight = headerTop + headerHeight + 20;
+        if (headingRect.top <= headerHeight) {
+          var id = 'h-' + h.getAttribute('id');
+          var a = menuContent.querySelector('a[href="#' + id  + '"]');
+          var curActive = a.parentNode;
+          if (curActive) {
+            curActive.classList.add('active');
+            activeIndex = i;
+          }
+          if (lastActive == curActive) {
+            changed = false;
+          }
+          break;
+        }
+      }
+      if (changed) {
+        if (lastActive) {
+          lastActive.classList.remove('active');
+        }
+        doMenuCollapse(activeIndex);
+      }
+      event.preventDefault();
+    });
+  }
+  generateContent();
+</script>
+</section>
+</div>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+    <div class="site-footer-inner">
+<div>Unpublished Work <span class="copyleft">©</span> 2021-2022 071yoon</div>
+      <div>Powered by <a title="Jekyll is a simple, blog-aware, static site
+      generator." href="http://jekyllrb.com/">Jekyll</a> &amp; <a title="Yat, yet
+      another theme." href="https://github.com/jeffreytse/jekyll-theme-yat">Yat Theme</a>.</div>
+      <div class="footer-col rss-subscribe">Subscribe <a href="/feed.xml">via RSS</a>
+</div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

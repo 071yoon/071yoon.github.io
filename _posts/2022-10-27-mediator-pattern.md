@@ -1,3 +1,11 @@
+---
+layout: post
+title: 중개자 패턴
+subtitle: 중개자 패턴을 배워보자
+categories: GoF
+tags: [GoF, TIL]
+---
+
 ## 왜 중개자 패턴?
 
 > 객체 간의 혼란스러운 의존 관계들을 줄일 수 있는 행동 디자인 패턴

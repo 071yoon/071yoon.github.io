@@ -1,3 +1,11 @@
+---
+layout: post
+title: 상태 패턴
+subtitle: 상태 패턴을 배워보자
+categories: GoF
+tags: [GoF]
+---
+
 ## 개요
 
 ![image](https://user-images.githubusercontent.com/66371206/199532363-edfb9a5d-b93d-4833-8c2a-c82655b23369.png)

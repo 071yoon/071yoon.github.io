@@ -1,3 +1,11 @@
+---
+layout: post
+title: REACT Hook 구현하기
+subtitle: REACT Hook을 직접 구현해보자
+categories: TIL
+tags: [TIL, JavaScript]
+---
+
 # React Hook 구현해보기
 
 ## 클로저
