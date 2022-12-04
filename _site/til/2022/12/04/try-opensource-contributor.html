@@ -7,22 +7,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>SQL 예제를 풀어보자 | YeongGi’s tech blog</title>
+<title>오픈소스 컨트리뷰터 찍먹해보기 | YeongGi’s tech blog</title>
 <meta name="generator" content="Jekyll v4.2.2">
-<meta property="og:title" content="SQL 예제를 풀어보자">
+<meta property="og:title" content="오픈소스 컨트리뷰터 찍먹해보기">
 <meta name="author" content="071yoon">
 <meta property="og:locale" content="en_US">
-<meta name="description" content="Why SQL?">
-<meta property="og:description" content="Why SQL?">
-<link rel="canonical" href="http://localhost:4000/sql/2022/01/24/sql-practice.html">
-<meta property="og:url" content="http://localhost:4000/sql/2022/01/24/sql-practice.html">
+<meta name="description" content="오픈소스 컨트리뷰터가 되어보자">
+<meta property="og:description" content="오픈소스 컨트리뷰터가 되어보자">
+<link rel="canonical" href="http://localhost:4000/til/2022/12/04/try-opensource-contributor.html">
+<meta property="og:url" content="http://localhost:4000/til/2022/12/04/try-opensource-contributor.html">
 <meta property="og:site_name" content="YeongGi’s tech blog">
 <meta property="og:type" content="article">
-<meta property="article:published_time" content="2022-01-24T00:00:00+09:00">
+<meta property="article:published_time" content="2022-12-04T00:00:00+09:00">
 <meta name="twitter:card" content="summary">
-<meta property="twitter:title" content="SQL 예제를 풀어보자">
+<meta property="twitter:title" content="오픈소스 컨트리뷰터 찍먹해보기">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"071yoon"},"dateModified":"2022-01-24T00:00:00+09:00","datePublished":"2022-01-24T00:00:00+09:00","description":"Why SQL?","headline":"SQL 예제를 풀어보자","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/sql/2022/01/24/sql-practice.html"},"url":"http://localhost:4000/sql/2022/01/24/sql-practice.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"071yoon"},"dateModified":"2022-12-04T00:00:00+09:00","datePublished":"2022-12-04T00:00:00+09:00","description":"오픈소스 컨트리뷰터가 되어보자","headline":"오픈소스 컨트리뷰터 찍먹해보기","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/til/2022/12/04/try-opensource-contributor.html"},"url":"http://localhost:4000/til/2022/12/04/try-opensource-contributor.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="shortcut icon" href="">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -764,11 +764,11 @@ function googleTranslateElementInit() {
 
 
 <header class="post-header">
-  <h1 class="post-title p-name" itemprop="name headline">SQL 예제를 풀어보자</h1>
-  <h2 class="post-subtitle">SQL 고득점 마스터하기</h2>
+  <h1 class="post-title p-name" itemprop="name headline">오픈소스 컨트리뷰터 찍먹해보기</h1>
+  <h2 class="post-subtitle">오픈소스 컨트리뷰터가 되어보자</h2>
 
   <p class="post-meta">
-    <time class="dt-published" datetime="2022-01-24T00:00:00+09:00" itemprop="datePublished"><i class="fa fa-calendar"></i> Jan 24, 2022
+    <time class="dt-published" datetime="2022-12-04T00:00:00+09:00" itemprop="datePublished"><i class="fa fa-calendar"></i> Dec 04, 2022
     </time>
 
     
@@ -805,150 +805,98 @@ function googleTranslateElementInit() {
 
 
 
-    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 5 mins</span>
+    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 1 min</span>
   </p>
-<div class="post-tags">
-<a class="post-tag" href="/tags.html#sql">#sql</a><a class="post-tag" href="/tags.html#qeury">#qeury</a>
-</div></header>
+<div class="post-tags"><a class="post-tag" href="/tags.html#TIL">#TIL</a></div></header>
 <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
     <div class="post-content e-content" itemprop="articleBody">
 
-      <h2 id="why-sql">Why SQL?</h2>
-
-<hr>
-
-<p><code class="language-plaintext highlighter-rouge">SQL</code>은 내가 데이터베이스 강의를 들을 때 잠깐 만져보고 처음 본 <code class="language-plaintext highlighter-rouge">Query</code> 언어이다. 그 당시에 효율이 정몰 좋고 데이터베이스 관리를 위해서 꼭 사용해야 하는 언어라고 배웠고, 실제로 <code class="language-plaintext highlighter-rouge">MariaDB</code> 를 활용한 웹을 만들어 보면서 왜 사용해야되는지 배워보았다. 그리고 <code class="language-plaintext highlighter-rouge">SQl</code> 을 펼쳐보지도 않은지 거의 두 세달 이 되어서, S/W Maestro 관련 글을 보던 중 코딩테스트에 <code class="language-plaintext highlighter-rouge">SQL</code>이 나온다는 소식을 들었다… ㅜㅜ 그래서 어쩔 수 없이 <code class="language-plaintext highlighter-rouge">SQL</code> 문제들을 살펴보던 중 프로그래머스에 <code class="language-plaintext highlighter-rouge">SQL</code> 문제들이 올라와 있는걸 보았고, 기본기를 다지는데 훌륭하다고 하여서 한번 풀어보기로 했다.</p>
+      <h2 id="오픈소스-컨트리뷰터가-되어보자">오픈소스 컨트리뷰터가 되어보자</h2>
 
 <blockquote>
-  <p>그리고 어차피 한번 리마인드 할 때 됐다!!</p>
+  <p>항상 오픈소스 컨트리뷰터가 되어보는것이 꿈이였던 나…</p>
 </blockquote>
 
-<p>문제풀기를 진행하며 까다로웠던 부분들을 다시 보자</p>
+<h2 id="괜찮은-repository-찾기">괜찮은 Repository 찾기</h2>
 
-<h2 id="select">SELECT</h2>
+<p>깃허브의 망령처럼 돌아다니다 깃허브를 꾸며주는 레포지토리중 하나를 찾게되었다. 기능도 단순하고 이쁜 뱃지를 제공하는 레포였는데 나의 눈에 띈 것은 바로 번역률!</p>
 
-<hr>
+<p><img width="813" alt="image" src="https://user-images.githubusercontent.com/66371206/205490276-b473ef4d-9c13-425c-80aa-4f99ad31a11b.png"></p>
 
-<p><code class="language-plaintext highlighter-rouge">SELECT</code>는 <code class="language-plaintext highlighter-rouge">SQL</code>을 처음 배우면 나오는 문법이다. 그냥 찾아주는거고 여기서 뭐 어려운 것은 없다.</p>
+<p>한국어가 67% 밖에 번역이 되어 있지 않았다. 실제로 그렇게 많은 번역이 필요로 하는 기능은 아니였지만, 최근 업데이트되며 번역해야될 항목이 늘어나 대부분의 언어가 67%에 머물러 있어보였던 것 같다.
+그래서 어떤 부분이 필요한지 확인을 해 보았는데… 두줄만 번역을 해주면 됐다..!</p>
 
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">ANIMAL_ID</span>
-<span class="k">FROM</span> <span class="n">ANIMAL_INS</span>
-<span class="k">WHERE</span> <span class="n">ANIMAL_ID</span> <span class="o">&gt;</span> <span class="mi">100</span>
-<span class="k">ORDER</span> <span class="k">BY</span> <span class="nb">DATETIME</span> <span class="k">ASC</span> <span class="o">#</span><span class="k">DESC</span>
-<span class="n">LMIIT</span> <span class="mi">1</span>
-</code></pre></div></div>
+<p>해보자!!</p>
 
-<p>이런식으로, 찾는다 -&gt; 어디서? -&gt; 어떻게? 이런식으로 주면 된다</p>
+<h2 id="issue--chore-찾아보기">Issue / Chore 찾아보기</h2>
 
-<h2 id="count">COUNT</h2>
+<p>바로 PR을 날리기전에 먼저 Issue 확인을 해봐야 된다. 이번것 같은 경우에는 너무 간단한 번역일이라, 누가 선점했을 리는 없지만 누군가 작업중이라면 민폐일 수 있으니 조심하자.</p>
 
-<hr>
-
-<p><code class="language-plaintext highlighter-rouge">COUNT(*)</code> 로 무엇의 개수를 셀 지 정할 수 있다.
-중요한점은 <code class="language-plaintext highlighter-rouge">GROUP BY</code> 로 어떤것의 개수를 어떤 그룹으로 쪼개서 계산할 지 할 수 있고, 같은것을 세기가 싫다면 <code class="language-plaintext highlighter-rouge">COUNT(DISTINCT NAME)</code> 이런식으로 할 수 도 있다.</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">HOUR</span><span class="p">(</span><span class="nb">DATETIME</span><span class="p">)</span> <span class="k">as</span> <span class="n">HOUR</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="nb">DATETIME</span><span class="p">)</span> <span class="k">as</span> <span class="k">COUNT</span>
-<span class="k">FROM</span> <span class="n">ANIMAL_OUTS</span>
-<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">HOUR</span><span class="p">(</span><span class="nb">DATETIME</span><span class="p">)</span> <span class="k">HAVING</span> <span class="n">HOUR</span> <span class="o">&gt;=</span> <span class="mi">9</span> <span class="k">AND</span> <span class="n">HOUR</span> <span class="o">&lt;=</span> <span class="mi">19</span>
-<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">HOUR</span><span class="p">(</span><span class="nb">DATETIME</span><span class="p">)</span>
-</code></pre></div></div>
-
-<p>09:00부터 19:59까지, 각 시간대별로 입양이 몇 건이나 발생했는지 조회하는 SQL문</p>
-
-<h2 id="is-null">IS NULL</h2>
-
-<hr>
-
-<p><code class="language-plaintext highlighter-rouge">NULL</code> 문은 특징이 있다. 우선 단독으로 <code class="language-plaintext highlighter-rouge">Something = 'NULL'</code> 이런식으로 사용 할 수 없고, <code class="language-plaintext highlighter-rouge">Something is NULL</code> 이런식으로 사용해야 알아듣는다. 생각해보면 당연한 것</p>
-
-<p>그리고 만약 <code class="language-plaintext highlighter-rouge">NULL</code> 이면 이러한 구문을 넣어라 이런것도 가능하다</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">ANIMAL_TYPE</span><span class="p">,</span> <span class="n">IFNULL</span><span class="p">(</span><span class="n">NAME</span><span class="p">,</span> <span class="nv">"No name"</span><span class="p">)</span> <span class="k">as</span> <span class="n">NAME</span><span class="p">,</span> <span class="n">SEX_UPON_INTAKE</span>
-<span class="k">FROM</span> <span class="n">ANIMAL_INS</span>
-</code></pre></div></div>
-
-<p>이렇게 하면 만약 <code class="language-plaintext highlighter-rouge">Name</code> 에 <code class="language-plaintext highlighter-rouge">NULL</code> 이라면 <code class="language-plaintext highlighter-rouge">No name</code> 이 들어가게 된다.</p>
-
-<h2 id="join">JOIN</h2>
-
-<hr>
-
-<p><code class="language-plaintext highlighter-rouge">SQL</code>의 꽃이라고 할 수 있는 <code class="language-plaintext highlighter-rouge">JOIN</code> 문이다. 간단하게 말하면 두 테이블을 합쳐주는 것인데, 합치는 과정에서 어떤식으로 문제를 찾을 지 정할 수 있는 방법이 무궁무진하기 떄문에, 만약 제대로 알고 가지 못한다면 어려워 질 수 있다. 실제로 내가 공부를 할 때는 <code class="language-plaintext highlighter-rouge">Natural JOIN</code> 으로 다 풀었었는데, 문제에서는 다 특이한 방법으로 값들을 찾으라 해서 조금 까다로웠다.</p>
-
-<p><code class="language-plaintext highlighter-rouge">OUTS</code> 에는 있지만 <code class="language-plaintext highlighter-rouge">INS</code> 에는 없는 데이터 출력</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span>
-    <span class="n">OUTS</span><span class="p">.</span><span class="n">ANIMAL_ID</span><span class="p">,</span> <span class="n">OUTS</span><span class="p">.</span><span class="n">NAME</span>
-<span class="k">FROM</span>
-    <span class="n">ANIMAL_INS</span> <span class="k">AS</span> <span class="n">INS</span>
-<span class="k">RIGHT</span> <span class="k">JOIN</span>
-    <span class="n">ANIMAL_OUTS</span> <span class="k">AS</span> <span class="n">OUTS</span>
-<span class="k">ON</span>
-    <span class="n">INS</span><span class="p">.</span><span class="n">ANIMAL_ID</span> <span class="o">=</span> <span class="n">OUTS</span><span class="p">.</span><span class="n">ANIMAL_ID</span>
-<span class="k">WHERE</span>
-    <span class="n">INS</span><span class="p">.</span><span class="n">ANIMAL_ID</span> <span class="k">IS</span> <span class="k">NULL</span><span class="p">;</span>
-</code></pre></div></div>
-
-<p>보호소에서 중성화 즉 Intact -&gt; Neutered or Sapyed가 된 경우 찾기</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">INS</span><span class="p">.</span><span class="n">ANIMAL_ID</span><span class="p">,</span> <span class="n">INS</span><span class="p">.</span><span class="n">ANIMAL_TYPE</span><span class="p">,</span> <span class="n">INS</span><span class="p">.</span><span class="n">NAME</span>
-<span class="k">FROM</span> <span class="n">ANIMAL_INS</span> <span class="n">INS</span>
-<span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">ANIMAL_OUTS</span> <span class="n">OUTS</span>
-<span class="k">ON</span> <span class="n">INS</span><span class="p">.</span><span class="n">ANIMAL_ID</span> <span class="o">=</span> <span class="n">OUTS</span><span class="p">.</span><span class="n">ANIMAL_ID</span>
-<span class="k">WHERE</span> <span class="n">INS</span><span class="p">.</span><span class="n">SEX_UPON_INTAKE</span> <span class="k">LIKE</span> <span class="s1">'Intact%'</span> <span class="k">AND</span> <span class="p">(</span><span class="n">OUTS</span><span class="p">.</span><span class="n">SEX_UPON_OUTCOME</span> <span class="k">LIKE</span> <span class="s1">'Neutered%'</span> <span class="k">OR</span> <span class="n">OUTS</span><span class="p">.</span><span class="n">SEX_UPON_OUTCOME</span> <span class="k">LIKE</span> <span class="s1">'Spayed%'</span><span class="p">)</span>
-<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">ANIMAL_ID</span>
-</code></pre></div></div>
-
-<h2 id="string-date">STRING, DATE</h2>
-
-<hr>
-
-<p><code class="language-plaintext highlighter-rouge">CASE</code> 를 나눠서 만약 1번이면 <code class="language-plaintext highlighter-rouge">X</code> 2번이면 <code class="language-plaintext highlighter-rouge">O</code> 를 출력하는 테이블을 만들 수 있다</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">ANIMAL_ID</span><span class="p">,</span> <span class="n">NAME</span><span class="p">,</span>
-<span class="k">CASE</span> <span class="k">WHEN</span> <span class="n">SEX_UPON_INTAKE</span> <span class="k">LIKE</span> <span class="s1">'Neutered%'</span> <span class="k">OR</span> <span class="n">SEX_UPON_INTAKE</span> <span class="k">LIKE</span> <span class="s1">'Spayed%'</span> <span class="k">THEN</span> <span class="s1">'O'</span> <span class="k">ELSE</span> <span class="s1">'X'</span> <span class="k">END</span> <span class="k">AS</span> <span class="s1">'중성화'</span>
-<span class="k">FROM</span> <span class="n">ANIMAL_INS</span>
-<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">ANIMAL_ID</span>
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">DATE</code> 를 뺼 때, 두가지 경우가 있는데 <code class="language-plaintext highlighter-rouge">DATEDIFF</code> 함수를 사용해서, 실제로 차이가 얼마나 나는지 원하는 데이터 타입으로 찾을 수 있고 아니면 그냥 변수마냥 빼도 알아서 게산을 해준다</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">INS</span><span class="p">.</span><span class="n">ANIMAL_ID</span><span class="p">,</span> <span class="n">INS</span><span class="p">.</span><span class="n">NAME</span>
-<span class="k">FROM</span> <span class="n">ANIMAL_INS</span> <span class="n">INS</span>
-<span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">ANIMAL_OUTS</span> <span class="n">OUTS</span>
-<span class="k">ON</span> <span class="n">INS</span><span class="p">.</span><span class="n">ANIMAL_ID</span> <span class="o">=</span> <span class="n">OUTS</span><span class="p">.</span><span class="n">ANIMAL_ID</span>
-<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">OUTS</span><span class="p">.</span><span class="nb">DATETIME</span> <span class="o">-</span> <span class="n">INS</span><span class="p">.</span><span class="nb">DATETIME</span> <span class="k">DESC</span>
-<span class="k">LIMIT</span> <span class="mi">2</span>
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">DATE</code> 에는 내장 함수들이 많은데, 그 중에 <code class="language-plaintext highlighter-rouge">DATE_FORMAT</code> 을 통해 내가 원하는 형식을 지정 해 줄 수 도 있다.</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">ANIMAL_ID</span><span class="p">,</span> <span class="n">NAME</span><span class="p">,</span> <span class="n">DATE_FORMAT</span><span class="p">(</span><span class="nb">DATETIME</span><span class="p">,</span> <span class="s1">'%Y-%m-%d'</span><span class="p">)</span> <span class="k">as</span> <span class="s1">'날짜'</span>
-<span class="k">FROM</span> <span class="n">ANIMAL_INS</span>
-<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">ANIMAL_ID</span>
-</code></pre></div></div>
-
-<p>이렇게 하면 내가 원하는 YEAR-MONTH-DAY 형식으로 출력이 된다.</p>
+<p><img width="912" alt="image" src="https://user-images.githubusercontent.com/66371206/205492485-7a45de4a-5416-42d6-886e-61b940075b80.png"></p>
 
 <blockquote>
-  <p>{Y,y} {M,m} {D,d} 모두 형식이 다르다. [문자열 vs 숫자]</p>
+  <p>확인을 해 보니 다행스럽게도 아무도 작업중이지 않았다!</p>
 </blockquote>
+
+<p>README에 친절하게 어떻게 PR을 날리는지, template은 어떤 방식인지 친절하게 적혀 있으므로 천천히 따라가보도록 하자.</p>
+
+<p><img width="947" alt="image" src="https://user-images.githubusercontent.com/66371206/205492546-590fe143-813e-4c4f-8464-41256dba4b44.png"></p>
+
+<h2 id="pull-request">Pull Request</h2>
+
+<p>우선 해당하는 repository fork를 해서 복제를 하자.</p>
+
+<p>복제한 repository에서 branch를 하나 파서 내가 원하는 부분 수정을 하고 commit -&gt; push 를 한다.</p>
+
+<blockquote>
+  <p>여기서 commit/branch name에 정해진 convention이 있을 확률이 높으니 잘 확인해보자</p>
+</blockquote>
+
+<p>그리고 github에서 fork 된 repository의 내 branch에서 실제 repository main에 create pull request를 하면 된다.</p>
+
+<h2 id="approve">Approve</h2>
+
+<p>개발자분이 활발하게 개발을 하셔서 그런지 자고 일어났더니 메일이 와있었다.</p>
+
+<p><img width="676" alt="image" src="https://user-images.githubusercontent.com/66371206/205492672-49ef114e-df8b-46f1-aa9c-fa0de148cc99.png"></p>
+
+<blockquote>
+  <p>approve 떴냐??</p>
+</blockquote>
+
+<p><img width="1294" alt="image" src="https://user-images.githubusercontent.com/66371206/205492700-6a2cdd0f-0bb8-4400-989a-dc159920ad91.png"></p>
+
+<p>정말 별것도 아닌 두줄 번역이지만, 나름 star 수가 2,000개가 넘는 레포지토리에 내 코드가 들어갔다니 감격이다…</p>
+
+<p><img width="833" alt="image" src="https://user-images.githubusercontent.com/66371206/205492743-38523d04-97d1-4f38-9a60-9ff50db96cf7.png"></p>
+
+<p>그리고 62명의 contributor 중에서 내 이름도 들어가 있다!!</p>
+
+<blockquote>
+  <p><img width="952" alt="image" src="https://user-images.githubusercontent.com/66371206/205492794-bca47d2a-d28b-44fd-8b70-015b59594632.png"></p>
+
+  <p>뿌듯한 마음에 pin 까지 달아뒀다 ㅎㅎ</p>
+</blockquote>
+
+<p>나도 언젠가는 오픈소스 컨트리뷰터가 되어야지, 오픈소스 프로젝트를 해야지 마음만 먹었는데 이번에 우연한 계기로 정말 간단한 활동을 해보았는데 너무 재미있었다.</p>
+
+<p>비록 별것도 아닌 간단한 번역이였지만, 이번을 계기로 더욱더 활발하게 오픈소스 chore 헌터가 되어야겠다.</p>
 
 
     </div>
 
 </article>
 <div class="post-nav">
-<a class="previous" href="/javascript/2022/01/22/javascript-coding-2.html" title="바닐라JS로 앱 만들기 2">바닐라JS로 앱 만들기 2</a><a class="next" href="/deep-thought/2022/01/26/deep-thoughts-1.html" title="The mind behind linux">The mind behind linux</a>
+<a class="previous" href="/gof/2022/11/17/command-pattern.html" title="명령 패턴">명령 패턴</a><span></span>
 </div>
 <div class="post-related">
       <div>Related Articles</div>
       <ul>
-        <li><a class="post-link" href="/modoco/2022/07/11/react-horizontal-scroll.html" title="The mind behind linux">React + Typescript 에서 Horizontal Scroll 구현</a></li>
-<li><a class="post-link" href="/modoco/2022/09/07/audio-visualizer.html" title="The mind behind linux">오디오 비주얼라이저 만들기</a></li>
-<li><a class="post-link" href="/deep-thought/2022/02/03/monty-hall.html" title="The mind behind linux">몬티 홀 문제</a></li>
-<li><a class="post-link" href="/next.js/2022/05/15/next-api.html" title="The mind behind linux">NEXT-API</a></li>
+        <li><a class="post-link" href="/next.js/2022/05/08/next-others-2.html" title="">NEXT-Others-2</a></li>
+<li><a class="post-link" href="/gof/2022/09/15/builder-pattern.html" title="">빌더 패턴</a></li>
+<li><a class="post-link" href="/til/2022/07/01/recoil.html" title="">Recoil 배우기</a></li>
+<li><a class="post-link" href="/next.js/2022/05/15/next-api.html" title="">NEXT-API</a></li>
 </ul>
     </div>
 <div class="post-comments">

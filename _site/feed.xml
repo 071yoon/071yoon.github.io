@@ -1,4 +1,73 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-11-24T18:52:44+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi's tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">명령 패턴</title><link href="http://localhost:4000/gof/2022/11/17/command-pattern.html" rel="alternate" type="text/html" title="명령 패턴" /><published>2022-11-17T00:00:00+09:00</published><updated>2022-11-17T00:00:00+09:00</updated><id>http://localhost:4000/gof/2022/11/17/command-pattern</id><content type="html" xml:base="http://localhost:4000/gof/2022/11/17/command-pattern.html"><![CDATA[<h2 id="command-pattern">Command Pattern</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-12-04T22:21:59+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi's tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">오픈소스 컨트리뷰터 찍먹해보기</title><link href="http://localhost:4000/til/2022/12/04/try-opensource-contributor.html" rel="alternate" type="text/html" title="오픈소스 컨트리뷰터 찍먹해보기" /><published>2022-12-04T00:00:00+09:00</published><updated>2022-12-04T00:00:00+09:00</updated><id>http://localhost:4000/til/2022/12/04/try-opensource-contributor</id><content type="html" xml:base="http://localhost:4000/til/2022/12/04/try-opensource-contributor.html"><![CDATA[<h2 id="오픈소스-컨트리뷰터가-되어보자">오픈소스 컨트리뷰터가 되어보자</h2>
+
+<blockquote>
+  <p>항상 오픈소스 컨트리뷰터가 되어보는것이 꿈이였던 나…</p>
+</blockquote>
+
+<h2 id="괜찮은-repository-찾기">괜찮은 Repository 찾기</h2>
+
+<p>깃허브의 망령처럼 돌아다니다 깃허브를 꾸며주는 레포지토리중 하나를 찾게되었다. 기능도 단순하고 이쁜 뱃지를 제공하는 레포였는데 나의 눈에 띈 것은 바로 번역률!</p>
+
+<p><img width="813" alt="image" src="https://user-images.githubusercontent.com/66371206/205490276-b473ef4d-9c13-425c-80aa-4f99ad31a11b.png" /></p>
+
+<p>한국어가 67% 밖에 번역이 되어 있지 않았다. 실제로 그렇게 많은 번역이 필요로 하는 기능은 아니였지만, 최근 업데이트되며 번역해야될 항목이 늘어나 대부분의 언어가 67%에 머물러 있어보였던 것 같다.
+그래서 어떤 부분이 필요한지 확인을 해 보았는데… 두줄만 번역을 해주면 됐다..!</p>
+
+<p>해보자!!</p>
+
+<h2 id="issue--chore-찾아보기">Issue / Chore 찾아보기</h2>
+
+<p>바로 PR을 날리기전에 먼저 Issue 확인을 해봐야 된다. 이번것 같은 경우에는 너무 간단한 번역일이라, 누가 선점했을 리는 없지만 누군가 작업중이라면 민폐일 수 있으니 조심하자.</p>
+
+<p><img width="912" alt="image" src="https://user-images.githubusercontent.com/66371206/205492485-7a45de4a-5416-42d6-886e-61b940075b80.png" /></p>
+
+<blockquote>
+  <p>확인을 해 보니 다행스럽게도 아무도 작업중이지 않았다!</p>
+</blockquote>
+
+<p>README에 친절하게 어떻게 PR을 날리는지, template은 어떤 방식인지 친절하게 적혀 있으므로 천천히 따라가보도록 하자.</p>
+
+<p><img width="947" alt="image" src="https://user-images.githubusercontent.com/66371206/205492546-590fe143-813e-4c4f-8464-41256dba4b44.png" /></p>
+
+<h2 id="pull-request">Pull Request</h2>
+
+<p>우선 해당하는 repository fork를 해서 복제를 하자.</p>
+
+<p>복제한 repository에서 branch를 하나 파서 내가 원하는 부분 수정을 하고 commit -&gt; push 를 한다.</p>
+
+<blockquote>
+  <p>여기서 commit/branch name에 정해진 convention이 있을 확률이 높으니 잘 확인해보자</p>
+</blockquote>
+
+<p>그리고 github에서 fork 된 repository의 내 branch에서 실제 repository main에 create pull request를 하면 된다.</p>
+
+<h2 id="approve">Approve</h2>
+
+<p>개발자분이 활발하게 개발을 하셔서 그런지 자고 일어났더니 메일이 와있었다.</p>
+
+<p><img width="676" alt="image" src="https://user-images.githubusercontent.com/66371206/205492672-49ef114e-df8b-46f1-aa9c-fa0de148cc99.png" /></p>
+
+<blockquote>
+  <p>approve 떴냐??</p>
+</blockquote>
+
+<p><img width="1294" alt="image" src="https://user-images.githubusercontent.com/66371206/205492700-6a2cdd0f-0bb8-4400-989a-dc159920ad91.png" /></p>
+
+<p>정말 별것도 아닌 두줄 번역이지만, 나름 star 수가 2,000개가 넘는 레포지토리에 내 코드가 들어갔다니 감격이다…</p>
+
+<p><img width="833" alt="image" src="https://user-images.githubusercontent.com/66371206/205492743-38523d04-97d1-4f38-9a60-9ff50db96cf7.png" /></p>
+
+<p>그리고 62명의 contributor 중에서 내 이름도 들어가 있다!!</p>
+
+<blockquote>
+  <p><img width="952" alt="image" src="https://user-images.githubusercontent.com/66371206/205492794-bca47d2a-d28b-44fd-8b70-015b59594632.png" /></p>
+
+  <p>뿌듯한 마음에 pin 까지 달아뒀다 ㅎㅎ</p>
+</blockquote>
+
+<p>나도 언젠가는 오픈소스 컨트리뷰터가 되어야지, 오픈소스 프로젝트를 해야지 마음만 먹었는데 이번에 우연한 계기로 정말 간단한 활동을 해보았는데 너무 재미있었다.</p>
+
+<p>비록 별것도 아닌 간단한 번역이였지만, 이번을 계기로 더욱더 활발하게 오픈소스 chore 헌터가 되어야겠다.</p>]]></content><author><name>071yoon</name></author><category term="TIL" /><category term="TIL" /><summary type="html"><![CDATA[오픈소스 컨트리뷰터가 되어보자]]></summary></entry><entry><title type="html">명령 패턴</title><link href="http://localhost:4000/gof/2022/11/17/command-pattern.html" rel="alternate" type="text/html" title="명령 패턴" /><published>2022-11-17T00:00:00+09:00</published><updated>2022-11-17T00:00:00+09:00</updated><id>http://localhost:4000/gof/2022/11/17/command-pattern</id><content type="html" xml:base="http://localhost:4000/gof/2022/11/17/command-pattern.html"><![CDATA[<h2 id="command-pattern">Command Pattern</h2>
 
 <p><img src="https://user-images.githubusercontent.com/66371206/202383203-558eb9f4-7433-4b6c-a5b5-8c27f52c1dd7.jpeg" alt="Command Pattern 001" /></p>
 
@@ -973,7 +1042,7 @@ State Pattern에서는 각각의 <code class="language-plaintext highlighter-rou
 
 <h2 id="후기">후기</h2>
 
-<p>정말 간단하게 우리의 프로젝트 과정을 설명해봤는데, 생각보다 양이 많았다. 휴학을 하고 진행을 한 프로젝트라 시간이 아깝지 않게 열심히 노력한 프로젝트였는데, 정리를 해 보니 꽤나 열심히 살았던 것 같아 뿌듯해진다. 이렇게 프로젝트를 기획부터 배포 그리고 유지보수까지 해볼 경험이 많지 않은데, 정말 갚진 경험을 했던 것 같고 너무나도 좋은 팀원과 멘토님들을 만날 수 있어서 영광이였다.</p>
+<p>정말 간단하게 우리의 프로젝트 과정을 설명해봤는데, 생각보다 양이 많았다. 휴학을 하고 진행을 한 프로젝트라 시간이 아깝지 않게 열심히 노력한 프로젝트였는데, 정리를 해 보니 꽤나 열심히 살았던 것 같아 뿌듯해진다. 이렇게 프로젝트를 기획부터 배포 그리고 유지보수까지 해볼 경험이 많지 않은데, 정말 값진 경험을 했던 것 같고 너무나도 좋은 팀원과 멘토님들을 만날 수 있어서 영광이였다.</p>
 
 <blockquote>
   <p>하지만 모도코는 아직 끝나지 않았다… 소프트웨어 마에스트로가 끝이나도 서비스는 운영됩니다..</p>
@@ -2306,263 +2375,4 @@ Player는 <code class="language-plaintext highlighter-rouge">이름</code> 과 <
   <p>Ex. 메모리가 적은 환경에서는 속도가 느리지만 메모리를 절약하는 전략, 메모리가 많을 때에서는 속도가 빠르지만 메모리를 많이 사용하는 전략을 선택 할 수 있다.</p>
 </blockquote>
 
-<p>Strategy 가 알고리즘의 확장성 즉 OCP를 만족시키며, Context가 알고리즘의 메소드를 모르고도 이용할 수 있게 하며 알고리즘의 복잡도를낮춰준다.</p>]]></content><author><name>071yoon</name></author><category term="GoF" /><category term="GoF" /><category term="TIL" /><summary type="html"><![CDATA[전략이란?]]></summary></entry><entry><title type="html">Cypress로 e2e 테스트 하기</title><link href="http://localhost:4000/react/2022/09/19/start-cypress.html" rel="alternate" type="text/html" title="Cypress로 e2e 테스트 하기" /><published>2022-09-19T00:00:00+09:00</published><updated>2022-09-19T00:00:00+09:00</updated><id>http://localhost:4000/react/2022/09/19/start-cypress</id><content type="html" xml:base="http://localhost:4000/react/2022/09/19/start-cypress.html"><![CDATA[<h2 id="cypress로-진행하는-e2e-테스트">Cypress로 진행하는 e2e 테스트</h2>
-
-<blockquote>
-  <p>환경: React, typescript, styled-components</p>
-</blockquote>
-
-<h2 id="테스트를-해야되는-이유">테스트를 해야되는 이유?</h2>
-
-<hr />
-
-<p>사실 테스트를 진행해야 되는이유는 정말 셀 수 없이 많다.</p>
-
-<ul>
-  <li>개발 과정에서 문제가 생겼을 때 바로 눈치 챌 수 있디</li>
-  <li>리팩토링을 믿고 할 수 있다</li>
-  <li>바로 코드의 동작 상태를 확인할 수 있다</li>
-  <li>테스트 코드를 만들기 위해 코드를 하다보면 컴포넌트 분할 및 클린코드가 자연스럽게 이루어진다</li>
-  <li>품질, 안전, 성능을 확인할 수 있다</li>
-  <li>지속적인 운영을 보장한다</li>
-  <li>위험을 완화할 수 있다</li>
-  <li>등등..</li>
-</ul>
-
-<p>하지만 이러한 이유들을 포함하여 도입한 이유 중 큰 이유는 우리 프로젝트가 <code class="language-plaintext highlighter-rouge">Agile</code> 방법론을 따르고 있기 때문이다.</p>
-
-<blockquote>
-  <p>“애자일의 기술 실천 방법은 모든 애자일 활동 중 가장 핵심적인 요소다.
-기술 실천 방법 없이 애자일을 도입하려는 시도는 실패할 수밖에 없다.”</p>
-</blockquote>
-
-<p>그리고 이러한 애자일의 실천방법 중 대표적인 방법이 바로 <code class="language-plaintext highlighter-rouge">TDD</code> Test Driven Development 이다. 하지만 아직 Test를 먼저 짜고 코드를 그에 맞춰 개발하는 레벨에는 도달하지 못하여 우선 e2e 테스트 코드를 짜는 연습부터 시작하기로 했다.</p>
-
-<hr />
-
-<h2 id="cypress-설치하기">Cypress 설치하기</h2>
-
-<h3 id="dependency-설치">dependency 설치</h3>
-
-<p>우선 cypress dependency 를 추가해준다</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yarn add <span class="nt">--save-dev</span> cypress
-</code></pre></div></div>
-
-<h4 id="styled-component-처리">Styled Component 처리</h4>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yarn add <span class="nt">--save-dev</span> react-remove-properties
-</code></pre></div></div>
-
-<p>테스트를 위해서 component에 <code class="language-plaintext highlighter-rouge">[data-cy=”new-component”]</code> 이런식으로 선언해주는데 빌드 과정에서 없애주는 dependency를 추가로 설치해준다. 그리고 babelrc에서 빌드하기 전에 처리하지 않는 작업도 포함해주자.</p>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"env"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-  </span><span class="nl">"production"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"plugins"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">[</span><span class="w">
-        </span><span class="s2">"react-remove-properties"</span><span class="p">,</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-          </span><span class="nl">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"data-cy"</span><span class="p">]</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-      </span><span class="p">]</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<h3 id="config-설정">config 설정</h3>
-
-<p>그 다음 cypress가 원하는대로 작동할 수 있게 config설정을 마무리 해준다.</p>
-
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// cypress.config.ts</span>
-<span class="k">import</span> <span class="p">{</span> <span class="nx">defineConfig</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">cypress</span><span class="dl">"</span><span class="p">;</span>
-
-<span class="kr">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">defineConfig</span><span class="p">({</span>
-  <span class="na">e2e</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nx">setupNodeEvents</span><span class="p">(</span><span class="nx">on</span><span class="p">,</span> <span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
-      <span class="c1">// implement node event listeners here</span>
-    <span class="p">},</span>
-    <span class="na">baseUrl</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://localhost:3000</span><span class="dl">"</span><span class="p">,</span>
-  <span class="p">},</span>
-  <span class="na">projectId</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ownProjectId</span><span class="dl">"</span><span class="p">,</span>
-<span class="p">});</span>
-</code></pre></div></div>
-
-<p>baseUrl같은 경우에는, 테스트할 서버의 주소가 되며, projectId는 추후에 cypress 앱과 연동하여 record 확인등을 할 시에 인증 용도로 사용된다.</p>
-
-<p>그리고 cypress는 테스트 코드를 실행하다보면, 자연스럽게 스크린샷과 영상을 찍어서 로컬에 저장해두는데, 깃이 무거워지기 전에 ignore도 미리 해두자</p>
-
-<pre><code class="language-gitignore"># ...
-
-cypress/videos
-cypress/screenshots
-</code></pre>
-
-<h3 id="폴더-구조">폴더 구조</h3>
-
-<p>내가 사용하고 있는 Cypress 의 폴더 구조는 다음과 같다.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>+--cypress
-      +--e2e
-      |   +--1-main-page
-      |   |      +--login.cy.ts
-      |   |      +--main.cy.ts
-      |   |      +--register.cy.ts
-      |   +--2-ready-page
-      |          +--ready-modal.cy.ts
-      |          +--ready.cy.ys
-      +--fixtures
-      |   +--allRooms.json
-      |   +--loginResult.json
-      |   +--profile.json
-      +--support
-
-</code></pre></div></div>
-
-<p>e2e 폴더에 실제로 테스트할 코드들을 페이지별로 분리했고,
-fixtures 폴더에는 추후에 사용할 모킹하였을 때 결과로 받을 json 형식들을 미리 만들어 두었다.</p>
-
-<hr />
-
-<h2 id="테스트-코드-작성하기">테스트 코드 작성하기</h2>
-
-<p>간단하게 main page를 e2e 테스를 진행해보자. 테스트해볼 사안들은 다음과 같다.</p>
-
-<ul>
-  <li>타이틀이 렌더이 잘 되는지</li>
-  <li>Header가 잘 렌더링 되었는지
-    <ul>
-      <li>로고</li>
-      <li>로그인 버튼</li>
-    </ul>
-  </li>
-  <li>Footer가 잘 렌더링 되었는지
-    <ul>
-      <li>Terms, Privacy Policy 버튼</li>
-      <li>정보</li>
-    </ul>
-  </li>
-  <li>랜딩 페이지가 잘 렌더링 되었는지</li>
-  <li>방 정보API를 잘 호출하는지</li>
-  <li>방 정보가 잘 렌더링 되었는지
-    <ul>
-      <li>방장 정보</li>
-      <li>방의 제목</li>
-      <li>방의 설명</li>
-    </ul>
-  </li>
-</ul>
-
-<p>그럼 천천히 진행해보도록 하자.</p>
-
-<h3 id="describe">describe</h3>
-
-<p>이 부분은 거의 모든 테스트코드 라이브러리들은 다 유사한 것 같다. describe 에서 내가 어떠한 컴포넌트 혹은 페이지를 검사할지 대주제를 정하고 it에서 개개인의 테스트들을 실제로 구현한다.</p>
-
-<h4 id="beforeeach">beforeEach</h4>
-
-<p>매번 it를 실행하기 전, 어떠한 역할을 수행할지 미리 정할 수 있다. 예를들어 모킹이 필요한 경우, 여기서 어떤 요청을 intercept해서 가져올지, it를 실행하기 전에, 어떤 페이지를 방문할지, viewport는 어떤 비율로 볼지 등 설정 할 수 있다.</p>
-
-<h4 id="intercept">intercept</h4>
-
-<p>여기서 가장 중요한 부분이다. Cypress는 e2e 테스트이기에 모든 방면에서 다 테스트를 진행하기에 BE에 API 요청은 당연히 일어난다. 하지만, 실제 BE에 API를 요청한다면 그건 완벽한 테스트가 될 수 없다.</p>
-
-<blockquote>
-  <p>CREATE 같은 경우 매번 BE에 요청하기에도 애매…</p>
-</blockquote>
-
-<p>그래서 요청을 보내기전에 method와 url 기준으로 intercept해서 어떠한 요청을 주거나 받을지 미리 설정할 수 있는 방법이다.</p>
-
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">cy</span><span class="p">.</span><span class="nx">intercept</span><span class="p">(</span>
-  <span class="p">{</span> <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">GET</span><span class="dl">"</span><span class="p">,</span> <span class="na">url</span><span class="p">:</span> <span class="s2">`/api/v1/rooms`</span> <span class="p">},</span>
-  <span class="p">{</span> <span class="na">fixture</span><span class="p">:</span> <span class="dl">"</span><span class="s2">allRooms.json</span><span class="dl">"</span> <span class="p">}</span>
-<span class="p">);</span>
-</code></pre></div></div>
-
-<p>해석을 간단하게 해보자면, <code class="language-plaintext highlighter-rouge">GET</code>요청을 <code class="language-plaintext highlighter-rouge">/api/v1/rooms</code>에 요청하게 되면, 실제로 <code class="language-plaintext highlighter-rouge">GET</code>을 하지는 말고, fixtures 디렉토리에 저장해둔 <code class="language-plaintext highlighter-rouge">allRooms.json</code>을 가져오라는 뜻이다.</p>
-
-<p>그렇게 완성된 beforeEach는 다음과 같다.</p>
-
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">beforeEach</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">cy</span><span class="p">.</span><span class="nx">intercept</span><span class="p">({</span> <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">GET</span><span class="dl">"</span><span class="p">,</span> <span class="na">url</span><span class="p">:</span> <span class="nx">API</span><span class="p">.</span><span class="nx">ROOM</span> <span class="p">},</span> <span class="p">{</span> <span class="na">fixture</span><span class="p">:</span> <span class="dl">"</span><span class="s2">allRooms.json</span><span class="dl">"</span> <span class="p">});</span>
-  <span class="nx">cy</span><span class="p">.</span><span class="nx">visit</span><span class="p">(</span><span class="dl">"</span><span class="s2">http://localhost:3000</span><span class="dl">"</span><span class="p">);</span>
-  <span class="nx">cy</span><span class="p">.</span><span class="nx">viewport</span><span class="p">(</span><span class="mi">1536</span><span class="p">,</span> <span class="mi">960</span><span class="p">);</span>
-<span class="p">});</span>
-</code></pre></div></div>
-
-<h3 id="it">it</h3>
-
-<blockquote>
-  <p>이제 실제로 테스트케이스들을 작성할 준비가 되었다!</p>
-</blockquote>
-
-<p>우선 cypress의 문법을 알아야된다. 정말 방대하지만, cypress.io에 정리가 잘 되어 있는지 천천히 읽어보면 좋을 것 같다.</p>
-
-<blockquote>
-  <p><a href="https://docs.cypress.io/api/table-of-contents">docs.cypress.io</a>로 바로가기</p>
-</blockquote>
-
-<p>간단한 문법들은 다음과 같다.</p>
-
-<ol>
-  <li><code class="language-plaintext highlighter-rouge">cy.get('')</code> 으로 원하는 컴포넌트를 선택 할 수 있다. 빈칸에는 class 혹은 id 등으로 검색이 가능하지만, cypress 의 best practice 는 data-cy 태그를 이용하여 unique한 컴포넌트를 가져오는 것이라 하며, 컴포넌트에 추가하여 손쉽게 적용시킬 수 있다.</li>
-  <li><code class="language-plaintext highlighter-rouge">.should()</code> 명령어로 방금 get()에서 가져온 컴포넌트가 어떠한 동작들을 해야하는지 선언 할 수 있다. 예를들어 <code class="language-plaintext highlighter-rouge">should('be.visible')</code> 이라면 선택된 컴포넌트가 보여야된다는 것이며, <code class="language-plaintext highlighter-rouge">should('have.text','word')</code> 라면, <code class="language-plaintext highlighter-rouge">word</code>라는 단어를 꼭 포함해야 된다는 뜻이다. 만약 찾는것이 실행되고 있는 비디오라면, 이런것도 가능하다.
-    <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">cy</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">[data-cy="custom-video-screen"]</span><span class="dl">'</span><span class="p">).</span><span class="nx">should</span><span class="p">(</span>
-  <span class="dl">"</span><span class="s2">have.prop</span><span class="dl">"</span><span class="p">,</span>
-  <span class="dl">"</span><span class="s2">paused</span><span class="dl">"</span><span class="p">,</span>
-  <span class="kc">false</span>
-<span class="p">);</span>
-</code></pre></div>    </div>
-  </li>
-  <li><code class="language-plaintext highlighter-rouge">cy.wait()</code> 를 이용하여 ms단위로 cypress 의 테스트를 멈춰 둘 수 있다. 영상으로 볼 때 워낙 빠르게 지나가기에, 한번씩 테스트 후에 <code class="language-plaintext highlighter-rouge">wait()</code>를 두어 눈으로 따라가는것도 괜찮았다.</li>
-  <li><code class="language-plaintext highlighter-rouge">cy.and()</code> 앞선 명령어를 연계해서 사용할 수 있게 도와준다. 예로 이런것도 가능하다.
-    <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">cy</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">[data-cy="dropbox-item"]</span><span class="dl">'</span><span class="p">)</span>
-  <span class="p">.</span><span class="nx">should</span><span class="p">(</span><span class="dl">"</span><span class="s2">have.length</span><span class="dl">"</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-  <span class="p">.</span><span class="nx">and</span><span class="p">(</span><span class="dl">"</span><span class="s2">contain.text</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">fake_device_0</span><span class="dl">"</span><span class="p">)</span>
-  <span class="p">.</span><span class="nx">click</span><span class="p">();</span>
-</code></pre></div>    </div>
-  </li>
-</ol>
-
-<blockquote>
-  <p>간단한 예시코드는 다음과 같이 만들 수 있다!</p>
-</blockquote>
-
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">it</span><span class="p">(</span><span class="dl">"</span><span class="s2">render Main Props</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="c1">// check if title is visible</span>
-  <span class="nx">cy</span><span class="p">.</span><span class="nx">title</span><span class="p">().</span><span class="nx">should</span><span class="p">(</span><span class="dl">"</span><span class="s2">include</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">MODOCO</span><span class="dl">"</span><span class="p">);</span>
-
-  <span class="c1">// check if login button is visible and clickable</span>
-  <span class="nx">cy</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">[data-cy="main-login-button"]</span><span class="dl">'</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">should</span><span class="p">(</span><span class="dl">"</span><span class="s2">be.visible</span><span class="dl">"</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">should</span><span class="p">(</span><span class="dl">"</span><span class="s2">have.text</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">로그인</span><span class="dl">"</span><span class="p">);</span>
-
-  <span class="c1">// check modoco logo</span>
-  <span class="nx">cy</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">[data-cy="modoco-logo"]</span><span class="dl">'</span><span class="p">).</span><span class="nx">should</span><span class="p">(</span><span class="dl">"</span><span class="s2">contain</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">modoco</span><span class="dl">"</span><span class="p">);</span>
-
-  <span class="c1">// check if all footer props are visible</span>
-  <span class="nx">cy</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">[data-cy="main-footer"]</span><span class="dl">'</span><span class="p">).</span><span class="nx">should</span><span class="p">(</span><span class="dl">"</span><span class="s2">be.visible</span><span class="dl">"</span><span class="p">);</span>
-  <span class="nx">cy</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">"</span><span class="s2">button</span><span class="dl">"</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">should</span><span class="p">(</span><span class="dl">"</span><span class="s2">contain</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Terms</span><span class="dl">"</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">should</span><span class="p">(</span><span class="dl">"</span><span class="s2">contain</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Privacy Policy</span><span class="dl">"</span><span class="p">);</span>
-<span class="p">});</span>
-</code></pre></div></div>
-
-<p>완성된 테스트코드를 Cypress로 실행하면 다음과 같은 결과를 얻을 수 있다.</p>
-
-<blockquote>
-  <p>메인 페이지 테스트
-<img src="https://user-images.githubusercontent.com/66371206/191083487-d63d6966-6867-47ca-abcd-b69d9e23e205.gif" alt="ezgif-4-1251ac46b2" /></p>
-</blockquote>
-
-<blockquote>
-  <p>레디 페이지 테스트
-<img src="https://user-images.githubusercontent.com/66371206/191083493-8de8438b-ff4d-4f69-a947-35ddafd58276.gif" alt="ezgif-4-350cc82de1" /></p>
-</blockquote>
-
-<hr />
-
-<p>참고문서</p>
-
-<p><a href="https://www.kiwa.com/kr/ko/services/testing/why-should-i-have-my-product-tested-or-evaluated/">https://www.kiwa.com/kr/ko/services/testing/why-should-i-have-my-product-tested-or-evaluated/</a>
-<a href="https://tech.kakao.com/2021/11/08/test-code/">https://tech.kakao.com/2021/11/08/test-code/</a></p>]]></content><author><name>071yoon</name></author><category term="React" /><category term="React" /><category term="Testing" /><summary type="html"><![CDATA[Cypress로 진행하는 e2e 테스트]]></summary></entry></feed>
+<p>Strategy 가 알고리즘의 확장성 즉 OCP를 만족시키며, Context가 알고리즘의 메소드를 모르고도 이용할 수 있게 하며 알고리즘의 복잡도를낮춰준다.</p>]]></content><author><name>071yoon</name></author><category term="GoF" /><category term="GoF" /><category term="TIL" /><summary type="html"><![CDATA[전략이란?]]></summary></entry></feed>
