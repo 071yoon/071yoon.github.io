@@ -1,153 +1,29 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-		<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url>
-	<loc>https://071yoon.github.io/</loc>
-	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
-	<priority>1.0</priority>
-</url>
-<url>
-	<loc>https://071yoon.github.io/about.html</loc>
-	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
-	<priority>1.0</priority>
-</url>
-<url>
-	<loc>https://071yoon.github.io/archives.html</loc>
-	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
-	<priority>1.0</priority>
-</url>
-<url>
-	<loc>https://071yoon.github.io/categories.html</loc>
-	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
-	<priority>1.0</priority>
-</url>
-<url>
-	<loc>https://071yoon.github.io/tags.html</loc>
-	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
-	<priority>1.0</priority>
-</url>
-<url>
-	<loc>https://071yoon.github.io/ml/2022/05/19/intro-to-machine-learning.html</loc>
-	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
-	<priority>0.2</priority>
-</url>
-<url>
-	<loc>https://071yoon.github.io/next.js/2022/05/15/next-api.html</loc>
-	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
-	<priority>0.2</priority>
-</url>
-<url>
-	<loc>https://071yoon.github.io/next.js/2022/05/08/next-others-2.html</loc>
-	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
-	<priority>0.2</priority>
-</url>
-<url>
-	<loc>https://071yoon.github.io/next.js/2022/05/05/next-others-1.html</loc>
-	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
-	<priority>0.2</priority>
-</url>
-<url>
-	<loc>https://071yoon.github.io/next.js/2022/05/04/next-optimization.html</loc>
-	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
-	<priority>0.2</priority>
-</url>
-<url>
-	<loc>https://071yoon.github.io/next.js/2022/04/28/next-layouts.html</loc>
-	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
-	<priority>0.2</priority>
-</url>
-<url>
-	<loc>https://071yoon.github.io/next.js/2022/04/27/next-built-in-css.html</loc>
-	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
-	<priority>0.2</priority>
-</url>
-<url>
-	<loc>https://071yoon.github.io/next.js/2022/04/25/next-pages.html</loc>
-	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
-	<priority>0.2</priority>
-</url>
-<url>
-	<loc>https://071yoon.github.io/next.js/2022/04/24/why-next-js.html</loc>
-	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
-	<priority>0.2</priority>
-</url>
-<url>
-	<loc>https://071yoon.github.io/deep-thought/2022/04/22/grow-together.html</loc>
-	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
-	<priority>0.2</priority>
-</url>
-<url>
-	<loc>https://071yoon.github.io/retrospect/2022/03/03/sw-maestro.html</loc>
-	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
-	<priority>0.2</priority>
-</url>
-<url>
-	<loc>https://071yoon.github.io/server/2022/02/23/server.html</loc>
-	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
-	<priority>0.2</priority>
-</url>
-<url>
-	<loc>https://071yoon.github.io/deep-thought/2022/02/03/monty-hall.html</loc>
-	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
-	<priority>0.2</priority>
-</url>
-<url>
-	<loc>https://071yoon.github.io/react/2022/02/02/make-react-app-1.html</loc>
-	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
-	<priority>0.2</priority>
-</url>
-<url>
-	<loc>https://071yoon.github.io/deep-thought/2022/01/26/deep-thoughts-1.html</loc>
-	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
-	<priority>0.2</priority>
-</url>
-<url>
-	<loc>https://071yoon.github.io/sql/2022/01/24/sql-practice.html</loc>
-	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
-	<priority>0.2</priority>
-</url>
-<url>
-	<loc>https://071yoon.github.io/javascript/2022/01/22/javascript-coding-2.html</loc>
-	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
-	<priority>0.2</priority>
-</url>
-<url>
-	<loc>https://071yoon.github.io/javascript/2022/01/22/javascript-coding-1.html</loc>
-	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
-	<priority>0.2</priority>
-</url>
-<url>
-	<loc>https://071yoon.github.io/javascript/2022/01/20/prototype.html</loc>
-	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
-	<priority>0.2</priority>
-</url>
-<url>
-	<loc>https://071yoon.github.io/javascript/2022/01/20/javascript-property.html</loc>
-	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
-	<priority>0.2</priority>
-</url>
-<url>
-	<loc>https://071yoon.github.io/javascript/2022/01/18/javascript-functions.html</loc>
-	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
-	<priority>0.2</priority>
-</url>
-<url>
-	<loc>https://071yoon.github.io/javascript/2022/01/17/javascript-data-structure.html</loc>
-	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
-	<priority>0.2</priority>
-</url>
-<url>
-	<loc>https://071yoon.github.io/javascript/2022/01/14/javascript-object.html</loc>
-	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
-	<priority>0.2</priority>
-</url>
-<url>
-	<loc>https://071yoon.github.io/blog/2022/01/12/install-blog-comment.html</loc>
-	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
-	<priority>0.2</priority>
-</url>
-<url>
-	<loc>https://071yoon.github.io/blog/2022/01/12/how-to-install-github-io.html</loc>
-	<lastmod>2022-05-24T09:26:05+01:00</lastmod>
-	<priority>0.2</priority>
-</url>
+﻿---
+layout: null
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  {% for post in site.posts %}
+    <url>
+      <loc>{{ site.url }}{{ post.url }}</loc>
+      {% if post.lastmod == null %}
+        <lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
+      {% else %}
+        <lastmod>{{ post.lastmod | date_to_xmlschema }}</lastmod>
+      {% endif %}
+
+      {% if post.sitemap.changefreq == null %}
+        <changefreq>weekly</changefreq>
+      {% else %}
+        <changefreq>{{ post.sitemap.changefreq }}</changefreq>
+      {% endif %}
+
+      {% if post.sitemap.priority == null %}
+          <priority>0.5</priority>
+      {% else %}
+        <priority>{{ post.sitemap.priority }}</priority>
+      {% endif %}
+
+    </url>
+  {% endfor %}
 </urlset>
