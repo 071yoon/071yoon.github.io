@@ -7,22 +7,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>명령 패턴 | YeongGi’s tech blog</title>
+<title>네트워크 공부를 마치며 | YeongGi’s tech blog</title>
 <meta name="generator" content="Jekyll v4.2.2">
-<meta property="og:title" content="명령 패턴">
+<meta property="og:title" content="네트워크 공부를 마치며">
 <meta name="author" content="071yoon">
 <meta property="og:locale" content="en_US">
-<meta name="description" content="Command Pattern">
-<meta property="og:description" content="Command Pattern">
-<link rel="canonical" href="http://localhost:4000/gof/2022/11/17/command-pattern.html">
-<meta property="og:url" content="http://localhost:4000/gof/2022/11/17/command-pattern.html">
+<meta name="description" content="네트워크 공부를 시작하게 된 계기">
+<meta property="og:description" content="네트워크 공부를 시작하게 된 계기">
+<link rel="canonical" href="http://localhost:4000/retrospect/2022/12/28/after-studying-network.html">
+<meta property="og:url" content="http://localhost:4000/retrospect/2022/12/28/after-studying-network.html">
 <meta property="og:site_name" content="YeongGi’s tech blog">
 <meta property="og:type" content="article">
-<meta property="article:published_time" content="2022-11-17T00:00:00+09:00">
+<meta property="article:published_time" content="2022-12-28T00:00:00+09:00">
 <meta name="twitter:card" content="summary">
-<meta property="twitter:title" content="명령 패턴">
+<meta property="twitter:title" content="네트워크 공부를 마치며">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"071yoon"},"dateModified":"2022-11-17T00:00:00+09:00","datePublished":"2022-11-17T00:00:00+09:00","description":"Command Pattern","headline":"명령 패턴","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/gof/2022/11/17/command-pattern.html"},"url":"http://localhost:4000/gof/2022/11/17/command-pattern.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"071yoon"},"dateModified":"2022-12-28T00:00:00+09:00","datePublished":"2022-12-28T00:00:00+09:00","description":"네트워크 공부를 시작하게 된 계기","headline":"네트워크 공부를 마치며","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/retrospect/2022/12/28/after-studying-network.html"},"url":"http://localhost:4000/retrospect/2022/12/28/after-studying-network.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="shortcut icon" href="https://user-images.githubusercontent.com/66371206/209624313-0cebd9f7-df12-4397-8e99-8f7b12eede16.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -764,11 +764,11 @@ function googleTranslateElementInit() {
 
 
 <header class="post-header">
-  <h1 class="post-title p-name" itemprop="name headline">명령 패턴</h1>
-  <h2 class="post-subtitle">명령패턴을 박살내보자</h2>
+  <h1 class="post-title p-name" itemprop="name headline">네트워크 공부를 마치며</h1>
+  <h2 class="post-subtitle">한달 반의 네트워크 공부를 마치며</h2>
 
   <p class="post-meta">
-    <time class="dt-published" datetime="2022-11-17T00:00:00+09:00" itemprop="datePublished"><i class="fa fa-calendar"></i> Nov 17, 2022
+    <time class="dt-published" datetime="2022-12-28T00:00:00+09:00" itemprop="datePublished"><i class="fa fa-calendar"></i> Dec 28, 2022
     </time>
 
     
@@ -807,130 +807,84 @@ function googleTranslateElementInit() {
 
     <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 3 mins</span>
   </p>
-<div class="post-tags">
-<a class="post-tag" href="/tags.html#GoF">#GoF</a><a class="post-tag" href="/tags.html#TIL">#TIL</a>
-</div></header>
+<div class="post-tags"><a class="post-tag" href="/tags.html#retrospect">#retrospect</a></div></header>
 <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
     <div class="post-content e-content" itemprop="articleBody">
 
-      <h2 id="command-pattern">Command Pattern</h2>
+      <h2 id="네트워크-공부를-시작하게-된-계기">네트워크 공부를 시작하게 된 계기</h2>
 
-<p><img src="https://user-images.githubusercontent.com/66371206/202383203-558eb9f4-7433-4b6c-a5b5-8c27f52c1dd7.jpeg" alt="Command Pattern 001"></p>
+<p>네트워크 공부를 시작한 계기는 생각보다 단순했다. 소프트웨어 마에스트로 과정에서, 우리는 화면공유 기반의 화상채팅 웹 어플리케이션을 제작하였는데, 아무래도 RTC 기반의 작업을 하다보니 네트워크가 필수적이였다. 문제는 내가 네트워크에 대한 지식이 너무 부족하여 항상 아쉬움을 느끼게 되었고, 네트워크 공부를 시작하게 되었다.</p>
 
-<p>커맨드 패턴에 대하여 알아봅시다</p>
+<p>사실 9월달부터 시작하려고 크로우즈 교수님이 집필하신 네트워크 하향식 접근 책을 구매했지만, 너무 바빠 볼 시간이 없었고 11월 중순부터 제대로 시작하게 되었다.</p>
 
-<p><img src="https://user-images.githubusercontent.com/66371206/202383211-00446e40-9907-4b8c-84e3-f093f8120dac.jpeg" alt="Command Pattern 002"></p>
-
-<p>간단한 게임을 하나 제작할 예정입니다.
-이번 게임에서는 두가지 버튼만 활용할 예정이고, 버튼들은 <code class="language-plaintext highlighter-rouge">alt</code> 와 <code class="language-plaintext highlighter-rouge">ctrl</code> 만 사용할 예정이기에, <code class="language-plaintext highlighter-rouge">alt</code>에는 <code class="language-plaintext highlighter-rouge">jump</code> <code class="language-plaintext highlighter-rouge">ctrl</code> 에는 <code class="language-plaintext highlighter-rouge">attack</code> 이라는 함수를 매핑을 했습니다.</p>
-
-<p><img src="https://user-images.githubusercontent.com/66371206/202383233-2b84ab5a-7db6-482f-947d-59eb3a38d294.jpeg" alt="Command Pattern 003"></p>
-
-<p>사실 이정도의 게임이라면 문제가 없습니다. 하지만 키보드 세팅이 복잡한 게임이라면 어떻게 될까요?
-그럼 키 마다 세팅을 할 것입니다. 그리고 모든 키 매핑이 character에 관한 것도 아니고, <code class="language-plaintext highlighter-rouge">esc</code>는 게임 세팅창을 여는 등 다양한 <code class="language-plaintext highlighter-rouge">action</code>이 이루어 질 것입니다.</p>
-
-<p>여기서 더 복잡한 상황을 생각해 보겠습니다.</p>
-
-<p><img src="https://user-images.githubusercontent.com/66371206/202387140-a83c1032-65f7-444d-b5e8-6767e8866b83.gif" alt="img"></p>
-
-<p>위의 영상을 보면, 같은 공격키를 누르지만, 공격에는 곰 -&gt; 새 -&gt; 호랑이 -&gt; 창 순서로 공격하게 되어 있습니다.</p>
-
-<p><img src="https://user-images.githubusercontent.com/66371206/202383238-80b7e3af-ea54-4569-bdc3-a08a86e32bd2.jpeg" alt="Command Pattern 004"></p>
-
-<p>그걸 간단하게 코드로 보면 다음과 같이, <code class="language-plaintext highlighter-rouge">ctrl</code>을 눌렀을 때, 상황에 따라 다른 공격이 이루어지도록 수정을 해둬야 됩니다.</p>
-
-<p>단순히 <code class="language-plaintext highlighter-rouge">키를 누른다</code> -&gt; <code class="language-plaintext highlighter-rouge">해당 키에 해당하는 Action을 취한다</code> 면 됐다고 생각했던 코드가 점점 복잡해져 가는게 보이시나요?</p>
-
-<p><img src="https://user-images.githubusercontent.com/66371206/202383248-5e72fd6d-45c7-448e-8199-ceb56ce0b2ec.jpeg" alt="Command Pattern 005"></p>
-
-<p>하지만 여기서 끝이 나지 않습니다. 보통 게임에는 유저가 원하는 키에 유저가 원하는 Action을 취하도록 커스텀 가능한 환경을 제공합니다. 그럼 alt에 해당했던 <code class="language-plaintext highlighter-rouge">jump</code> 가 <code class="language-plaintext highlighter-rouge">npc/채집</code>으로 바뀌어야 됩니다.
-이런 수정사항이 게임에 runtime에 수정되기란 상당히 힘들어 보입니다.</p>
-
-<p>아니면 게임을 진행 할 수록 아까 보았던 attack 순서가 바뀌거나 추가가 되었다면 어떻게 될까요? 공격으로 지정된 키를 찾아 공격에 대한 로직을 수정해야 될 것입니다.</p>
-
-<p><img src="https://user-images.githubusercontent.com/66371206/202383258-1020a0e2-2f2e-4389-8d0a-660ba409f980.jpeg" alt="Command Pattern 006"></p>
-
-<p>Command Pattern을 활용하면 다음과 같이 간결하고 유지보수가 쉬운 형태로 유지 할 수 있습니다.</p>
-
-<p><img src="https://user-images.githubusercontent.com/66371206/202383263-0b6a0c2e-f958-4ebd-9554-bd3d1858f8a0.jpeg" alt="Command Pattern 007"></p>
-
-<p>Command Pattern에는 5개의 등장인물이 존재합니다.</p>
-
-<ol>
-  <li>Command : 명령의 Interface를 정의</li>
-  <li>Concrete Command : Command Interface를 구현</li>
-  <li>Invoker : 명령의 행동을 개시하는 역할로 Command를 호출</li>
-  <li>Receiver : Command가 실행될 때 대상이 되는 역할</li>
-  <li>Client : Concrete Command를 생성 및 Receiver 역할을 할당</li>
-</ol>
-
-<p>Command는 단순히 실행을 하라는 execute 메소드만 생성을 하고, Concrete Command에서 해당하는 execute 메소드를 구현을 합니다.</p>
-
-<p>예를 들어, AttackCommand에서의 execute라는 명령은 캐릭터를 공격을 유발합니다.</p>
-
-<p><img src="https://user-images.githubusercontent.com/66371206/202383268-9e6626e0-f74f-441e-8f3d-787d7bbdf0c2.jpeg" alt="Command Pattern 008"></p>
-
-<p>이와 유사하게 JumpCommand도 만들 수 있습니다.</p>
-
-<p><img src="https://user-images.githubusercontent.com/66371206/202383273-f1c4eec2-1842-4e28-9219-621bad62eb1d.jpeg" alt="Command Pattern 009"></p>
-
-<p>마찬가지로, SettingCommand는 game에 해당하는 setting창을 여는 Concrete Command또한 만들 수 있다.</p>
+<p><img width="546" alt="image" src="https://user-images.githubusercontent.com/66371206/209802965-258902ac-f3d2-457d-a91c-a9c0944531ac.png"></p>
 
 <blockquote>
-  <p>해당 command는 멤버변수는 character가 아닌 game임에 주의!</p>
+  <p>11월에 Network 공부의 시작을 알리는 Commit</p>
 </blockquote>
 
-<p><img src="https://user-images.githubusercontent.com/66371206/202383276-e859b904-42ef-4d3d-8da2-b235c8c740ce.jpeg" alt="Command Pattern 010"></p>
+<h2 id="네트워크-스터디">네트워크 스터디</h2>
 
-<p>이제 Receiver는 Concrete Command의 실행에서 사용되는 클래스이다. 여기서 게임에서 동작하는 실제 로직을 작성하면 된다.</p>
+<p>원래 혼자 천천히 책을 읽으며 정리를 해나가는 방식으로 네트워크 공부를 하려 했지만, 프로젝트를 진행하다 보니 책에 나오는 정보들이 전부가 아님을 깨달았다.</p>
 
-<p><img src="https://user-images.githubusercontent.com/66371206/202383278-0a4eebac-5603-4b20-93fe-afd07b044966.jpeg" alt="Command Pattern 011"></p>
+<p>프로젝트를 진행하고 면접을 보다보니 , TLS, Session, HTTP, DNS, JWT 등이 언급 되었지만, 아무래도 책은 OSI 7 Layer 관점에서 매우 세세하게 접근을 하기에 책만 읽고 네트워크 공부를 마쳤다고 하기에는 아쉬움이 들었다. 그래서 네트워크 스터디를 진행하며 네트워크 관련 지식을 전체적으로 쌓는것으로 방향성을 다시 잡게 되었다.</p>
 
-<p>Client는 버튼으로, 해당 버튼이 어떠한 커맨드를 할 지 지정할 수 있는 setCommand 메소드가 존재하며, Invoke된 경우 커맨드를 실행시킬 수 있는 onPressed란 메소드를 구현해 주었다.</p>
+<p>구체적으로는, 매일 오후 23시에 디스코드에서 모여 각자 맡은 네트워크 파트에 대한 공부를 진행하고, 마치게 되면 테크톡처럼 발표를 하는 방식으로 진행을 하였다. 첫 일주일은 꽤나 진행이 잘 되었지만, 아무래도 진행했던 시점인 11월 중순에 소프트웨어 마에스트로 최종 발표및 나의 면접과 채용프로세스 등 일정이 겹쳐 제대로 하지 못했다. 스터디 주최자로서 제대로 방향성을 잡지 못해 아쉬움이 남는다.</p>
 
-<p><img src="https://user-images.githubusercontent.com/66371206/202383279-7ea3c8ed-f171-41ee-9400-17e7ad2f54e6.jpeg" alt="Command Pattern 012"></p>
+<p>그렇게 다들 스터디에대한 의욕도가 떨어지고, 자연스럽게 스터디는 포기하게 되었다. 그래서 나라도 공부를 해야겠다 싶어 혼자서 진행을 하게 되었다.</p>
 
-<p>이제 실제로 Main에서 동작시켜보자.</p>
+<h2 id="네트워크-공부">네트워크 공부</h2>
 
-<p>우선, 필요한 버튼, 커맨드, Receiver 등을 할당시켜준다.
-그 다음, 필요한 버튼에 원하는 커맨드를 setCommand로 할당시켜 준다.
-마지막으로, 어떠한 입력이 나왔을 때, 원하는 버튼에 해당하는 command만 실행시켜주면 끝이다.</p>
+<p>나의 스터디 목표는 네트워크 관련 어떠한 인터뷰 질문을 받아도 정말 잘 대답할 수 있을정도로 말을 할 수 있을만큼 지식을 쌓는 것이였다. 그렇게 하기 위해서는 단순히 인터뷰 질문을 달달 외우기보다는, 정말 관련 이론에 대하여 공식 문서를 읽어보며 학습을 하는 방향으로 공부를 하였다.</p>
 
-<p><img src="https://user-images.githubusercontent.com/66371206/202383286-03ab9de2-cb11-4dc8-ba69-298d752f7669.jpeg" alt="Command Pattern 013"></p>
+<p>예를들어, DNS를 학습하자고 마음 먹었다면, 단순히 DNS query의 순서를 학습하기 보다는, 실제로 우리가 AWS에서 애먹었던 A Record, CName 등도 같이 정리를 하고, 현재 우리가 사용하는 DNS에서는 GSLB 등으로 load balancing을 한다는 것 까지 정리를 해보았다.</p>
 
-<p>괜히 더 복잡해 보일 수 있지만, 유지보수의 관점에서 보면 정말 좋다.
-아까와 같은 상황처럼, 버튼에 해당하는 Action이 수정되어야 한다면, <code class="language-plaintext highlighter-rouge">Button.setCommand(원하는 커맨드)</code> 한줄로 수정할 수 있게 된다.</p>
+<p>그리고 나의 학습에는 특이한 점이 하나 존재한다. 다이어그램을 왠만하면 내가 그린다는 것이다. 다이어그램을 그리면서 학습을 하다보면, 내가 학습한 내용을 정리할 수 있고, 또한 내가 학습한 내용을 다른 사람에게 손쉽게 설명할 수 있기 때문이다.</p>
 
-<p><img src="https://user-images.githubusercontent.com/66371206/202383293-d9a3720e-2cba-41d2-82ea-09248e220ac5.jpeg" alt="Command Pattern 014"></p>
+<p><img width="1242" alt="image" src="https://user-images.githubusercontent.com/66371206/209804324-7432e5ec-9f81-4f90-9154-864a24984e37.png"></p>
 
-<p>혹은 공격에 대한 로직에 수정이 필요하다면, character 안에서 attack의 로직만 수정해 주면 되기에, 유지보수가 정말 쉬워진다.</p>
+<p><img width="1094" alt="image" src="https://user-images.githubusercontent.com/66371206/209804358-78ad65d1-1d46-41ed-b623-ff318fb7e803.png"></p>
 
-<p><img src="https://user-images.githubusercontent.com/66371206/202383298-b5d3877f-3572-4c2b-8b52-8404b8499019.jpeg" alt="Command Pattern 015"></p>
+<h2 id="네트워크-공부를-하며-느낀점">네트워크 공부를 하며 느낀점</h2>
 
-<p>이걸 sequence diagram에서 보면 다음과 같다.</p>
+<p>사실 면접을 보면서 네트워크 관련 질문을 받았을 때 힘들었던 일이 생각보다 꽤 있었다.</p>
 
-<ol>
-  <li>미리 버튼에 Command를 설정해준다</li>
-  <li>버튼을 누른다면</li>
-  <li>해당하는 Command의 execute를 호출</li>
-  <li>execute에 해당하는 행동을 Receiver가 동작</li>
-</ol>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>`google.com`을 치면 어떤 일이 일어날까요?
+</code></pre></div></div>
+
+<p>이런 질문을 처음 받았을 때 정말 너무 힘들었었다. 어디서부터 시작을 해야될지도 몰랐었지만, 이제는 정말 자신있게 대답을 할 수 있게 되었다.</p>
+
+<p>아마 <code class="language-plaintext highlighter-rouge">네트워크가 연결되기 위한 구성요소 -&gt; 7 layer -&gt; DHCP -&gt; NAT -&gt; ARP -&gt; DNS -&gt; Routing -&gt; TLS -&gt; GET</code> 이런 방향으로 흘러가지 않을까…</p>
+
+<p>그리고 마침 네트워크 공부를 막 마치고 다음날 면접을 보았을때 이런 질문이 나왔었다.</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">DHCP에 대한 설명을 해주세요</code> 라는 질문이었다. 학습했던 대로, 4가지의 과정을 설명하고, 어떤 이유에서 broadcast를 해야되는지 등 잘 대답을 했었다.</p>
+</blockquote>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">REST api 에 대한 설명을 해주세요</code> 라는 다음 질문에도 <code class="language-plaintext highlighter-rouge">로이 필딩</code>이 주장한 REST부터 시작하여 <code class="language-plaintext highlighter-rouge">microsoft</code>가 주장하는 REST까지 내려오며 잘 대답을 해나갔다.</p>
+</blockquote>
+
+<p>이렇게 대답을 잘 했을 때 정말 내가 공부한게 헛된게 아니였고 뿌듯함을 더 느꼈던 것 같다.</p>
+
+<p>단순히 인터뷰에 더 잘 대답을 할 수 있는 것 뿐만 아니라, 이제 네트워크 자체에 대해서 더 친숙해진 느낌이고, 다음에 RTC관련 문제가 생긴다면 당당하게 packet을 분석하며 어디가 문제인지 파악하고 해결할 수 있을것 만 같은 자신감이 생겼다.</p>
 
 
     </div>
 
 </article>
 <div class="post-nav">
-<a class="previous" href="/til/2022/11/10/react-hook.html" title="REACT Hook 구현하기">REACT Hook 구현하기</a><a class="next" href="/til/2022/12/04/try-opensource-contributor.html" title="오픈소스 컨트리뷰터 찍먹해보기">오픈소스 컨트리뷰터 찍먹해보기</a>
+<a class="previous" href="/retrospect/2022/12/26/about-1-day-1-commit.html" title="1일 1커밋에 대한 고찰">1일 1커밋에 대한 고찰</a><span></span>
 </div>
 <div class="post-related">
       <div>Related Articles</div>
       <ul>
-        <li><a class="post-link" href="/til/2022/10/03/network-usage-fee.html" title="오픈소스 컨트리뷰터 찍먹해보기">망 사용료가 대체 뭔데?</a></li>
-<li><a class="post-link" href="/next.js/2022/05/15/next-api.html" title="오픈소스 컨트리뷰터 찍먹해보기">NEXT-API</a></li>
-<li><a class="post-link" href="/til/2022/06/29/socket-error.html" title="오픈소스 컨트리뷰터 찍먹해보기">Socket.io 연결 에러</a></li>
-<li><a class="post-link" href="/modoco/2022/09/07/audio-visualizer.html" title="오픈소스 컨트리뷰터 찍먹해보기">오디오 비주얼라이저 만들기</a></li>
+        <li><a class="post-link" href="/server/2022/02/23/server.html" title="">서버 맛보기</a></li>
+<li><a class="post-link" href="/gof/2022/09/15/builder-pattern.html" title="">빌더 패턴</a></li>
+<li><a class="post-link" href="/til/2022/07/01/recoil.html" title="">Recoil 배우기</a></li>
+<li><a class="post-link" href="/blog/2022/01/12/install-blog-comment.html" title="">깃허브 블로그 코멘트 설치하기</a></li>
 </ul>
     </div>
 <div class="post-comments">
