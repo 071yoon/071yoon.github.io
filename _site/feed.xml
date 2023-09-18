@@ -1,97 +1,95 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-09-18T12:23:27+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi&apos;s tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">크롬 익스텐션을 개발해보자</title><link href="http://localhost:4000/til/2023/09/18/make-chomre-web-extension.html" rel="alternate" type="text/html" title="크롬 익스텐션을 개발해보자" /><published>2023-09-18T00:00:00+09:00</published><updated>2023-09-18T00:00:00+09:00</updated><id>http://localhost:4000/til/2023/09/18/make-chomre-web-extension</id><content type="html" xml:base="http://localhost:4000/til/2023/09/18/make-chomre-web-extension.html"><![CDATA[<h2 id="발단">발단</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-07-12T14:11:27+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi's tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">걸어서 제주도 한바퀴</title><link href="http://localhost:4000/retrospect/2023/07/12/walk-through-jeju.html" rel="alternate" type="text/html" title="걸어서 제주도 한바퀴" /><published>2023-07-12T00:00:00+09:00</published><updated>2023-07-12T00:00:00+09:00</updated><id>http://localhost:4000/retrospect/2023/07/12/walk-through-jeju</id><content type="html" xml:base="http://localhost:4000/retrospect/2023/07/12/walk-through-jeju.html"><![CDATA[<h1 id="걸어서-제주도-한바퀴">걸어서 제주도 한바퀴</h1>
 
-<p>요새 메이플이란 게임에 빠져있었다. 그리고 이 게임에는 <code class="language-plaintext highlighter-rouge">재획</code> 이라는 시스템이 존재한다. 일반적으로 사냥을 하는 컨텐츠이지만 이 사냥을 많이 하다보면 게임 화면을 보지 않고도 컨텐츠를 즐길 수 있는 경지에 오르게 된다. 보통 이러한 경지를 <code class="language-plaintext highlighter-rouge">뇌빼기</code>(대충 뇌 빼고도 사냥한다는…) 라고도 하는데, 여기서 메이플의 서브 컨텐츠인 딴거하기를 즐길 수 있다.
-보통 이 딴거하기 단계에서는 넷플릭스나 유튜브등 동영상 컨텐츠를 많이 즐기게 된다. 그러던 중 메이플 커뮤니티에서 웹툰을 보는 방법이 올라왔다.
-<img width="461" alt="image" src="https://github.com/071yoon/071yoon.github.io/assets/66371206/5b668973-8501-4570-98f0-f8adc7100a67" />
-사진에 보이듯, f12를 눌러.. 개발자 도구에 들어가.. javascript를 입력해.. 조절을 이렇게… 아마 개발을 하는 나에게는 익숙하지만 일반인에게는 꽤나 복잡하고 이해가 안될거 같다는 생각이 들었다. 그럼 이걸 확장으로 만들면 더 쉽지 않을까? 라고 생각해 바로 개발에 들어갔다.</p>
+<h2 id="계획">계획</h2>
 
-<h2 id="개발">개발</h2>
+<p>처음에는 국토대장정이였다.
+인천에서 출발하여 부산까지 걸어서 가는 20박 21일의 여정을 생각했었다. 하지만, 일정상 너무 길고 날씨또한 7월의 무더움을 견뎌내기 힘들것 같아 제주도로 방향을 틀고 계획을 잡았다.</p>
 
-<p>매우 간단한 화면이 되겠지만, 그럼에도 불구하고 React를 심어두면 개발이 편하고 추후에 수정하기도 편할 것 같아, 우선 React + Web Extension을 우선으로 개발하기로 결정했다.</p>
+<p>계획은 3월에 비행기를 예매하여 시작되었다. 원래 다니던 회사의 계약기간만료가 6월30일이였기에, 퇴사 후 바로 비행기를 타고 제주도에서 8박9일동안 제주도 한바퀴를 걷기로 친구와 약속을 하고 그 뒤에 일정은 아무것도 고려하지 않았다. (숙소 예약은 그날 컨디션에 따라 조절해야될 것 같아 첫날을 공항근처에서 예약해두고 나머지는 예약도 안하고 출발)</p>
 
-<h3 id="react-심기">React 심기</h3>
-
-<p>React를 심는것은 기존에 있는 React boilerplate와 유사하다. 다른점은 extension에서 <code class="language-plaintext highlighter-rouge">popup</code>이란 화면이 메인 화면임이므로 <code class="language-plaintext highlighter-rouge">root</code> 대신 <code class="language-plaintext highlighter-rouge">popup</code>에 render해주면 되는것이다.</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">mountNode</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">popup</span><span class="dl">"</span><span class="p">);</span>
-<span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">App</span> <span class="o">/&gt;</span><span class="p">,</span> <span class="nx">mountNode</span><span class="p">);</span>
-</code></pre></div></div>
-
-<p>그리고 package.json에 필요한 library등을 삽입하여 <App></App>에서 사용해주면 된다.</p>
-
-<h3 id="mainfest">mainfest</h3>
-
-<p>manifest는 어떻게 확장을 구성할지에 대한 정의라고 할 수 있다. 일반적으로 그냥 chrome확장에서 제시해주는 대로 작성하면 되지만, 중요한점은 <code class="language-plaintext highlighter-rouge">manifest_version</code>과 <code class="language-plaintext highlighter-rouge">permissions</code> 라고 생각한다.</p>
-
-<p>manifest_version은 3이 최신버전이므로 사용하는게 맞지만, 참고 어플들은 2가 많으므로 주의해서 사용하자. 나는 처음에 2로 사용했다가 chrome extension 사이트를 보며 개발하다 outdated가 많아 3으로 올려 버전업을 했다.</p>
-
-<p>permissions는 내 확장에 어떠한 기능들까지 허용해줄지에 대한 정의이다. 나같은 경우에 3가지를 허용해주었는데 하나하나 알아보자.</p>
+<p>여행을 시작하기전 여러 사람들의 후기를 보니 무조건 가방을 가볍게 가져가야 된다는 이야기가 정말 많았다. 그래서 나도 최대한 압축을 해서 가져갔고 항목들은 다음과 같다.</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">activeTab</code>
-    <ul>
-      <li>확장이 열린 탭(내가 보고 있는 탭)에 대한 정보를 제공해주겠다는 뜻</li>
-    </ul>
-  </li>
-  <li><code class="language-plaintext highlighter-rouge">scripting</code>
-    <ul>
-      <li>확장에서 script를 실행하게 해주겠다는 뜻</li>
-    </ul>
-  </li>
-  <li><code class="language-plaintext highlighter-rouge">storage</code>
-    <ul>
-      <li>chrome web storage를 사용하게 해주겠다는 뜻</li>
-    </ul>
-  </li>
+  <li>반팔, 반바지, 속옷 두세트 (그런데 당일날 빨래를 했었어서 사실 한세트만 있었어도 충분했을 것 같다)</li>
+  <li>스피커 (필수..!)</li>
+  <li>보조배터리 / 충전기</li>
+  <li>세면도구 (로션, 칫솔 등)</li>
+  <li>우비</li>
+  <li>깃발 (낭만 원툴)</li>
 </ul>
 
-<h3 id="javascript">javascript</h3>
+<p>정말 이정도만 챙겨서 갔었다. 혹시몰라서 긴바지도 준비했었었는데, 2일차에서 조금이라도 가방 무게를 줄여야겠다고 생각이 들어서 숙소에서 버리고 갔다… ㅜ</p>
 
-<p>확장에서 javascript를 실행할때 주의할 점은 node환경이 별개로 두개가 된다는 점이다. 하나는 내가 지금 보고 있는 화면의 javascript와 하나는 확장이 돌아가고 있는 화면의 javascript이다. 각각 content.js와 background.js에서 돌아가게 된다.</p>
+<p>그렇게 정말 낭만밖에 없는 바보들의 걸어서 제주도 한바퀴가 시작됐다.</p>
 
-<p>하지만 개발을 하다보면 background.js -&gt; content.js로 넘어가게 되는 상황이 많이 생기게 된다. 그럴경우 event listener로 넘겨주며 주고받을 수 있지만, 나는 보다 쉽게 개발하기 위해 바로 확장에서 바로 content의 javascript를 실행할 수 있게 <code class="language-plaintext highlighter-rouge">chrome.scripting.executeScript()</code>함수를 활용하였다.</p>
+<p>위풍당당한 첫날
+<img width="523" alt="image" src="https://github.com/071yoon/071yoon/assets/66371206/b5f92839-1331-40da-b658-bc124afb999e" /></p>
 
-<p>예시는 다음과 같다.</p>
+<h2 id="일정">일정</h2>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">const</span> <span class="nx">onStart</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="kd">let</span> <span class="nx">queryOptions</span> <span class="o">=</span> <span class="p">{</span> <span class="na">active</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">lastFocusedWindow</span><span class="p">:</span> <span class="kc">true</span> <span class="p">};</span>
-    <span class="nx">chrome</span><span class="p">.</span><span class="nx">tabs</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">queryOptions</span><span class="p">,</span> <span class="p">([</span><span class="nx">tab</span><span class="p">])</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="k">if</span> <span class="p">(</span><span class="nx">chrome</span><span class="p">.</span><span class="nx">runtime</span><span class="p">.</span><span class="nx">lastError</span><span class="p">)</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">chrome</span><span class="p">.</span><span class="nx">runtime</span><span class="p">.</span><span class="nx">lastError</span><span class="p">);</span>
+<p>일정은 제주도 환상 자전거 종주길을 따라 가기로 했다.</p>
 
-      <span class="c1">// @ts-ignore</span>
-      <span class="nx">chrome</span><span class="p">.</span><span class="nx">scripting</span><span class="p">.</span><span class="nx">executeScript</span><span class="p">({</span>
-        <span class="na">target</span><span class="p">:</span> <span class="p">{</span> <span class="na">tabId</span><span class="p">:</span> <span class="nx">tab</span><span class="p">.</span><span class="nx">id</span> <span class="p">},</span>
-        <span class="na">func</span><span class="p">:</span> <span class="p">(</span><span class="na">sv</span><span class="p">:</span> <span class="nx">number</span><span class="p">,</span> <span class="na">st</span><span class="p">:</span> <span class="nx">number</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-          <span class="c1">// do something with sv, st</span>
-        <span class="p">},</span>
-        <span class="na">args</span><span class="p">:</span> <span class="p">[</span><span class="nx">scrollValue</span><span class="p">,</span> <span class="nx">scrollTime</span><span class="p">],</span>
-      <span class="p">});</span>
-    <span class="p">});</span>
-  <span class="p">})();</span>
-<span class="p">};</span>
-</code></pre></div></div>
+<p><img width="1151" alt="image" src="https://github.com/071yoon/071yoon/assets/66371206/aac2fb5c-271c-4b1f-b7e6-0bfa98a33f7f" /></p>
 
-<h3 id="실행">실행</h3>
+<p>공항근처인 용두암으로 시작해서 다시 용두암으로 돌아오는 7박 8일 코스로 시작했다.</p>
 
-<p>실행은 <code class="language-plaintext highlighter-rouge">build</code>를 통해 나온 dist.zip 파일을 <code class="language-plaintext highlighter-rouge">chrome://extensions</code>에 넣어주고 사용하면 된다. 여기서 조금 불편한점은 매번 update할 때 마다 build를 하고 refresh를 해줘야된다.</p>
+<p>일정을 하루하루 적기에는 양이 너무 많아 재미있었던 에피소드별로 작성해보려고 한다.</p>
 
-<h2 id="배포">배포</h2>
+<h3 id="올레길의-지옥">올레길의 지옥</h3>
 
-<p>개발보다 배포가 더 오래 걸렸다. 우선 웹 대시보드 콘솔에 들어가 가입도 해야되고 (가입비 5$도 지불해야된다) 어떤 목적으로 개발했는지, 앞서 허용해주었던 permissions들은 왜 허용을 해주었는지, logo는 잘 등록이 됐는지 등 설명을 많이 해줘야된다. 그래도 나름 콘솔이 잘되어 있어 어떤걸 놓쳤고 미숙한지 잘 알려주기 때문에 나름 따라가기가 쉬웠다.</p>
+<p>첫날에는 체력이 너무 많아서 잘못된 선택을 해버렸다. 바로 올레길을 따라가버린것. 우선 환상 자전거길을 아래와 같이 파란색 선으로 제주도 한바퀴에 걸쳐 그려져 있어 쭉 따라가기만 하면 된다.</p>
 
-<p>하지만 나는 설명을 충분히 적지 않아 한번 거부를 당했다..
-<img width="505" alt="image" src="https://github.com/071yoon/071yoon.github.io/assets/66371206/267d5e46-2b4b-4f91-9143-a6697d9c9018" /></p>
+<p><img width="713" alt="image" src="https://github.com/071yoon/071yoon/assets/66371206/08144542-5314-4ad7-9084-0a3946db9d72" /></p>
 
-<p>그리고 게시가 되면 다시 메일이 올 줄 알았는데, 게시가 잘 되면 메일이 오지 않고 자동으로 등록됨에 주의..!</p>
+<p>하지만 첫날에 힘이 너무 넘치는 바람에 아스팔트길이 아닌 올레길을 가기로 결정을 해버렸다.</p>
+
+<p>아래 사진에서 빨간색 선이 자전거길이고 파란색 선이 올레길 18번이다. 지도로만 보았을 때는, 돌아가지도 않고 풍경도 훨씬 좋을것이라 예상이 되어 이구간을 올레길로 따라가보았다.
+<img width="1059" alt="image" src="https://github.com/071yoon/071yoon/assets/66371206/3b6eba39-a3cf-4d39-ac88-b68fc90de3f5" /></p>
+
+<p>풍경자체는 사진처럼 너무 좋았지만 비온다음날이였기에, 곳곳에 웅덩이(함정)가 숨어 있었고, 신발은 진흙탕이 되어 버리고 계단 혹은 언덕이 중간에 너무 많아 다음날 허벅지 및 온 하체가 너무 아팠다. 그 뒤로는 정말 올레길을 쳐다도 보지 않고 환상 자전거길만 따라가게 되었다..</p>
+
+<p><img width="709" alt="image" src="https://github.com/071yoon/071yoon/assets/66371206/65afaef4-4f73-49bc-9975-387a6a9d7b18" /></p>
+
+<p>그리고 그날 밤..
+<img width="724" alt="image" src="https://github.com/071yoon/071yoon/assets/66371206/6395cb19-5ec9-49bd-993b-1e3c09b58f3c" /></p>
+
+<h3 id="뜨거운날">뜨거운날</h3>
+
+<p>우리는 날씨복을 정말 타고났었다. 출발할때만 해도 제주도는 일주일 내내 비가 올 예정에 중간중간에 뇌우까지 껴있어서 정말 비가 많이 온다면 계획을 취소하자는 이야기 까지 나왔었다. 하지만 막상 도착해보니 정말 부슬부슬 오는 비를 제외하고는 제대로 비가온날은 없었고, 오히려 맑은 날이 이틀정도 존재했었다. 처음에는 맑은날에 많이 걷자, 혹은 이때 버닝을 해서 40km를 걸어야 된다. 이런말을 했었는데, 막상 맑은 날은 지옥이였다.</p>
+
+<p><img width="722" alt="image" src="https://github.com/071yoon/071yoon/assets/66371206/f1669e7e-83ca-4d90-ae72-5c4779077b5c" /></p>
+
+<p>처음에 제주도 한바퀴를 한다고 했었을때 사람들이 제일 많이한 걱정이긴 했다. <code class="language-plaintext highlighter-rouge">7월에 더우면 어떡해?</code> 질문에 대한 나의 대답은 <code class="language-plaintext highlighter-rouge">바다 옆이니까 시원하겠지</code> 이거였다. 하지만 환상 자전거길은 항상 바다 옆에 있는것도 아니였고 정말 너무너무 더웠다. 해가 너무 강렬해서 목은 두시간에 한번씩 선크림을 발랐음에도 불구하고 빨갛게 익어버렸고 내 친구는 상남자답게 다리에는 선크림을 바르지 않았더니 정말 삼겹살마냥 구워져버렸다. 정말 살면서 이렇게 경계가 뚜렷한 피부는 처음봤다…
+<img width="712" alt="image" src="https://github.com/071yoon/071yoon/assets/66371206/a005068f-5674-4db8-8024-c12ce26cc9dc" /></p>
+
+<h3 id="바선생-두둥등장">바선생 두둥등장</h3>
+
+<p>3일차에 우리는 지도를 보고 일정에 대한 조율을 생각해보았다. 우리가 걷는 시간으로는 딱 7일인데 이런 페이스로 걷기에는 시간이 너무 촉박한것. 그래서 무조건 35km를 맞추기로 결정을 하고 숙소 예약을 하였더니 어느날 외진곳에서 숙소를 잡아야되는 상황이 발생했다. 외진곳이다 보니 펜션밖에 없었고 가격도 비쌌지만, 일정을 맞추기 위해 어쩔 수 없이 예약하게 되었다. 그렇게 3일차를 끝내고 저녁 7시쯤에 숙소에 도착을 하게 되었다.</p>
+
+<p>펜션 사장님 아주머니께서 안내를 해주시고 에어컨을 딱 키셨는데 거기서 바선생(바퀴벌레)가 툭 하고 떨어졌다..! (진짜 무서웠음) 근데 우리는 다리에 힘도 없고 너무너무 지쳐있는 상태라 말도 제대로 못하고 그저 충격과 공포에 쌓인채로 앉아있었다. 그리고 아주머니가 잡으려고 출동 하시는데…! 바퀴벌레가 어찌나 빠른지 호다다닥 하고 침대 밑 프레임으로 들어가버렸다.. 결국 바퀴벌레를 잡지도 못하고 소동이 끝나버린 후 우리는 나름의 작전으로 이불을 모조리 가져와서 침대의 모든 구석공간을 막은 후 바로 잠에 들었다.</p>
+
+<p>정말 평소같았다면 방을 바꿔달라 혹은 조치를 취했을 텐데, 이미 밤이 늦었고 정말 너무너무 피곤해서 빨리 씻고 자고싶은 마음에 극단의 선택을 했었던 것 같다. (지금 생각하면 진짜 어이없음)</p>
+
+<p><img width="1268" alt="image" src="https://github.com/071yoon/071yoon/assets/66371206/d3f07d21-f5a7-4616-a1da-a1cb76570f26" /></p>
+
+<h3 id="응원">응원</h3>
+
+<p>의외로 꽤나 응원을 많이 받았다. 음식점에서 서비스로 응원한다며 사이다를 받은적도 있고, 올레길을 가시던 할머니 혹은 카페에서 만난 할아버지도 응원을 해주셨다. 그리고 나이드신분들은 공통적으로 우리에게 부러움을 많이 표현하셨다. 한가지는 나이에 대한 부러움이였고, 하나는 친구의 존재에 대한 부러움이였다. 이 나이에서 밖에 하지 못할 행동이라고 표현을 해주셨고 요즘 애들은 이런 고생 안하려고 하는데 멋지다고도 많이 해주셨다. 그리고 어떠한 관심사가 있어서 모인게 아닌 (ex. 동아리) 고등학교 친구끼리 마음이 맞아 이렇게 여행을 떠날 수 있다는것에 대해 부러워 해주셨다. 나도 이런말을 듣고 생각을 해보니 정말 이친구가 아니였으면 못했을 것 같다는 생각이 들어 새삼 되게 고마워졌다.</p>
+
+<p><img width="723" alt="image" src="https://github.com/071yoon/071yoon/assets/66371206/1ae27911-c9ed-4c19-9011-ac7a6ffef9ff" /></p>
 
 <h2 id="후기">후기</h2>
 
-<p>개발을 완료한 후 당당하게 메이플 커뮤니티에 올렸다. 다행히 반응도 좋았고 사람들이 많이 좋아해줬다. (이것이 나의 개발의 원동력…)
-<img width="210" alt="image" src="https://github.com/071yoon/071yoon.github.io/assets/66371206/06c355ec-e44f-426f-991c-efeaa3e656bb" />
-그리고 다른 커뮤니티에서 까지 퍼가서 홍보해주시는 분도 보았다.. 뿌듯..
-다른 커뮤니티에 올라온 나의 글..
-<img width="439" alt="스크린샷 2023-09-18 오후 12 22 20" src="https://github.com/071yoon/071yoon.github.io/assets/66371206/af8661fa-d558-427c-864f-0dc3378c3924" /></p>]]></content><author><name>071yoon</name></author><category term="TIL" /><category term="web" /><summary type="html"><![CDATA[발단]]></summary></entry><entry><title type="html">마음의 법칙</title><link href="http://localhost:4000/book/2023/01/15/rule-of-mind.html" rel="alternate" type="text/html" title="마음의 법칙" /><published>2023-01-15T00:00:00+09:00</published><updated>2023-01-15T00:00:00+09:00</updated><id>http://localhost:4000/book/2023/01/15/rule-of-mind</id><content type="html" xml:base="http://localhost:4000/book/2023/01/15/rule-of-mind.html"><![CDATA[<h1 id="마음의-법칙">마음의 법칙</h1>
+<p>사실 고생 및 여행을 즐기고 싶었던것도 있지만, 이번 일주일동안 정말 깊은 생각을 해보고 싶었다. 퇴사를 하면서 이런저런 생각들이 많이 들었었는데, 그런 생각 정리를 조금 하고 싶었다. <code class="language-plaintext highlighter-rouge">과연 지금 내가 걷고있는 이 길이 맞는걸까?</code> 같은 방향성에 대한 고민들이 정말 많이 있었다. 그런데 막상 걸어보니 다리 및 종아리는 너무 아프고 발바닥은 첫날에 아프더니 갈수록 감각도 없어지고, 더운날에는 목이 뜨겁고 화상을 입은듯이 팔은 타들어가고 하니 생각할 겨를도 없이 일주일이 지나갔다. 물론 바다도 정말 많이 보고 컴퓨터를 열지 않아서 마음에 부담 혹은 스트레스가 정말 없었지만, 당시에 유일하게 들었던 생각은 <code class="language-plaintext highlighter-rouge">내가 왜 이러고 있지</code> 이것밖에 없었다.</p>
+
+<p>그리고 일정이 너무 빡빡했던것도 큰 패착이였던것 같다. 하루에 35km? 솔직히 쉬울줄 알았다. 인간은 생각보다 나약했구나.. 만약 다음번에 또 제주도 한바퀴를 한다면, 혹은 누군가 내 블로그를 보며 비슷한 여정을 계획한다면 적어도 9박 10일로 일정을 잡길 바란다.</p>
+
+<p><img width="722" alt="image" src="https://github.com/071yoon/071yoon/assets/66371206/c86d781e-0314-4201-b4a3-fd3a6537ef99" /></p>
+
+<p>너무 부정적인것들만 나열한것 같지만 사실은 정말 재미있었다. 우선 앞서 말했듯이 컴퓨터를 일주일동안 보지 않았던게 너무 좋았다. 군대 전역 후 정말 일주일동안 컴퓨터 없이 생활을 처음 해봤던것 같다. 입사를 한 이후에는 휴가를 써도 계속 <code class="language-plaintext highlighter-rouge">slack</code>을 확인하게 되고, 계속 걱정하게되어 제대로 휴식을 해본적이 없었을 뿐더러, 집에 가만히 누워 휴식을 취하고 싶어도 계속 <code class="language-plaintext highlighter-rouge">이렇게 쉬어도 되나?</code> 라는 생각에 사로잡혀 공부 혹은 개발을 해야될것 같은 스트레스에 쌓여있었는데, 이번에는 정말 잡생각 하나 없이 <code class="language-plaintext highlighter-rouge">걷기</code>에만 집중할 수 있었고 이렇게 개발이 아닌 딴것에 온전히 100% 집중할 수 있는 환경이 너무 좋았다.</p>
+
+<p>그리고 태원아.. 같이 가줘서 정말 고맙다~
+<img width="1006" alt="image" src="https://github.com/071yoon/071yoon/assets/66371206/0b7001be-4979-4492-b9d2-e29469ea78cb" /></p>]]></content><author><name>071yoon</name></author><category term="retrospect" /><category term="retrospect" /><summary type="html"><![CDATA[걸어서 제주도 한바퀴]]></summary></entry><entry><title type="html">마음의 법칙</title><link href="http://localhost:4000/book/2023/01/15/rule-of-mind.html" rel="alternate" type="text/html" title="마음의 법칙" /><published>2023-01-15T00:00:00+09:00</published><updated>2023-01-15T00:00:00+09:00</updated><id>http://localhost:4000/book/2023/01/15/rule-of-mind</id><content type="html" xml:base="http://localhost:4000/book/2023/01/15/rule-of-mind.html"><![CDATA[<h1 id="마음의-법칙">마음의 법칙</h1>
 
 <blockquote>
   <p>사람의 마음은 어떻게 작동하는 것일까?</p>
