@@ -7,22 +7,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>자바스크립트 자료구조와 자료형 | YeongGi’s tech blog</title>
+<title>크롬 익스텐션을 개발해보자 | YeongGi’s tech blog</title>
 <meta name="generator" content="Jekyll v4.2.2">
-<meta property="og:title" content="자바스크립트 자료구조와 자료형">
+<meta property="og:title" content="크롬 익스텐션을 개발해보자">
 <meta name="author" content="071yoon">
 <meta property="og:locale" content="en_US">
-<meta name="description" content="자료구조와 자료형">
-<meta property="og:description" content="자료구조와 자료형">
-<link rel="canonical" href="http://localhost:4000/javascript/2022/01/17/javascript-data-structure.html">
-<meta property="og:url" content="http://localhost:4000/javascript/2022/01/17/javascript-data-structure.html">
+<meta name="description" content="발단">
+<meta property="og:description" content="발단">
+<link rel="canonical" href="http://localhost:4000/til/2023/09/18/make-chomre-web-extension.html">
+<meta property="og:url" content="http://localhost:4000/til/2023/09/18/make-chomre-web-extension.html">
 <meta property="og:site_name" content="YeongGi’s tech blog">
 <meta property="og:type" content="article">
-<meta property="article:published_time" content="2022-01-17T00:00:00+09:00">
+<meta property="article:published_time" content="2023-09-18T00:00:00+09:00">
 <meta name="twitter:card" content="summary">
-<meta property="twitter:title" content="자바스크립트 자료구조와 자료형">
+<meta property="twitter:title" content="크롬 익스텐션을 개발해보자">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"071yoon"},"dateModified":"2022-01-17T00:00:00+09:00","datePublished":"2022-01-17T00:00:00+09:00","description":"자료구조와 자료형","headline":"자바스크립트 자료구조와 자료형","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/javascript/2022/01/17/javascript-data-structure.html"},"url":"http://localhost:4000/javascript/2022/01/17/javascript-data-structure.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"071yoon"},"dateModified":"2023-09-18T00:00:00+09:00","datePublished":"2023-09-18T00:00:00+09:00","description":"발단","headline":"크롬 익스텐션을 개발해보자","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/til/2023/09/18/make-chomre-web-extension.html"},"url":"http://localhost:4000/til/2023/09/18/make-chomre-web-extension.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="shortcut icon" href="https://user-images.githubusercontent.com/66371206/209624313-0cebd9f7-df12-4397-8e99-8f7b12eede16.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -764,11 +764,11 @@ function googleTranslateElementInit() {
 
 
 <header class="post-header">
-  <h1 class="post-title p-name" itemprop="name headline">자바스크립트 자료구조와 자료형</h1>
-  <h2 class="post-subtitle">자바스크립트의 자료형에 대하여 알아보자</h2>
+  <h1 class="post-title p-name" itemprop="name headline">크롬 익스텐션을 개발해보자</h1>
+  <h2 class="post-subtitle">첫 크롬 익스텐션을 개발해보며</h2>
 
   <p class="post-meta">
-    <time class="dt-published" datetime="2022-01-17T00:00:00+09:00" itemprop="datePublished"><i class="fa fa-calendar"></i> Jan 17, 2022
+    <time class="dt-published" datetime="2023-09-18T00:00:00+09:00" itemprop="datePublished"><i class="fa fa-calendar"></i> Sep 18, 2023
     </time>
 
     
@@ -805,205 +805,125 @@ function googleTranslateElementInit() {
 
 
 
-    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 5 mins</span>
+    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 4 mins</span>
   </p>
-<div class="post-tags">
-<a class="post-tag" href="/tags.html#javascript">#javascript</a><a class="post-tag" href="/tags.html#typescript">#typescript</a><a class="post-tag" href="/tags.html#TIL">#TIL</a><a class="post-tag" href="/tags.html#data%20structure">#data structure</a>
-</div></header>
+<div class="post-tags"><a class="post-tag" href="/tags.html#web">#web</a></div></header>
 <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
     <div class="post-content e-content" itemprop="articleBody">
 
-      <h2 id="자료구조와-자료형">자료구조와 자료형</h2>
+      <h2 id="발단">발단</h2>
 
-<p>기본적으로, 프로그래밍 언어들에 대한 기본지식이 있는 상태로 공부를 진행하여, 기본적인 유형인 부분들은 스킵하도록 하였다</p>
+<p>요새 메이플이란 게임에 빠져있었다. 그리고 이 게임에는 <code class="language-plaintext highlighter-rouge">재획</code> 이라는 시스템이 존재한다. 일반적으로 사냥을 하는 컨텐츠이지만 이 사냥을 많이 하다보면 게임 화면을 보지 않고도 컨텐츠를 즐길 수 있는 경지에 오르게 된다. 보통 이러한 경지를 <code class="language-plaintext highlighter-rouge">뇌빼기</code>(대충 뇌 빼고도 사냥한다는…) 라고도 하는데, 여기서 메이플의 서브 컨텐츠인 딴거하기를 즐길 수 있다.
+보통 이 딴거하기 단계에서는 넷플릭스나 유튜브등 동영상 컨텐츠를 많이 즐기게 된다. 그러던 중 메이플 커뮤니티에서 웹툰을 보는 방법이 올라왔다.
+<img width="461" alt="image" src="https://github.com/071yoon/071yoon.github.io/assets/66371206/5b668973-8501-4570-98f0-f8adc7100a67">
+사진에 보이듯, f12를 눌러.. 개발자 도구에 들어가.. javascript를 입력해.. 조절을 이렇게… 아마 개발을 하는 나에게는 익숙하지만 일반인에게는 꽤나 복잡하고 이해가 안될거 같다는 생각이 들었다. 그럼 이걸 확장으로 만들면 더 쉽지 않을까? 라고 생각해 바로 개발에 들어갔다.</p>
 
-<h3 id="원시값과-객체의-차이">원시값과 객체의 차이</h3>
+<h2 id="개발">개발</h2>
 
-<p>원시값이란</p>
-<ul>
-  <li>원시형의 값</li>
-  <li>종류로는 <code class="language-plaintext highlighter-rouge">string, number, bigint, boolean, symbol, null, undefined </code>으로 총 7가지가 올 수 있다</li>
-</ul>
+<p>매우 간단한 화면이 되겠지만, 그럼에도 불구하고 React를 심어두면 개발이 편하고 추후에 수정하기도 편할 것 같아, 우선 React + Web Extension을 우선으로 개발하기로 결정했다.</p>
 
-<p>객체</p>
-<ul>
-  <li>Property에 다양한 종류의 값을 저장 할 수 있다</li>
-  <li>
-<code class="language-plaintext highlighter-rouge">{name: "Yoon", age: 25}</code>와 같이 {}를 사용해 만들 수 있다</li>
-  <li>자바스크립트에는 여러 종류의 객체가 있으며, 함수도 객체의 일종이다</li>
-</ul>
+<h3 id="react-심기">React 심기</h3>
 
-<h3 id="문자열">문자열</h3>
-<blockquote>
-  <p>자바스크립트는 글자 하나만 저장 할 수 있는 <code class="language-plaintext highlighter-rouge">char</code> 형의 자료형이 없다!</p>
-</blockquote>
+<p>React를 심는것은 기존에 있는 React boilerplate와 유사하다. 다른점은 extension에서 <code class="language-plaintext highlighter-rouge">popup</code>이란 화면이 메인 화면임이므로 <code class="language-plaintext highlighter-rouge">root</code> 대신 <code class="language-plaintext highlighter-rouge">popup</code>에 render해주면 되는것이다.</p>
 
-<p>따옴표의 종류가 <code class="language-plaintext highlighter-rouge">'</code> 와 <code class="language-plaintext highlighter-rouge">"</code> 으로 두개 있고, 둘 다 사용 할 수 있으며, 백틱으로도 감쌀 수가 있다. 그리고 백틱에는 특별한 기능이 있는데, 표현식을 ${…} 으로 감싸고 이를 백틱에 감싼 문자열에 넣어주면, 표현식을 쉽게 삽입을 할 수 있게 해준다</p>
-<blockquote>
-  <p><code class="language-plaintext highlighter-rouge">template literal</code> 이라 부른다
-예시를 보면</p>
-  <div class="language-javascript highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">sum</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">){</span>
-	<span class="k">return</span> <span class="p">(</span><span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="nx">alert</span><span class="p">(</span><span class="s2">`1 + 2 = </span><span class="p">${</span><span class="nx">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)}</span><span class="s2">.`</span><span class="p">);</span>
-</code></pre></div>  </div>
-  <p>또한 백틱을 이용하여 문자열을 여러줄로 작성 할 수 도 있다</p>
-  <div class="language-javascript highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">guests</span> <span class="o">=</span> <span class="s2">`Guests:
-	* Kim
-	* Yoon
-	* Lee
-`</span><span class="p">;</span>
-</code></pre></div>  </div>
-</blockquote>
-
-<h3 id="배열">배열</h3>
-
-<p>배열 선언에는 두가지 방법이 있다</p>
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">();</span><span class="c1">//no.1</span>
-<span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[];</span><span class="c1">//no.2</span>
-</code></pre></div></div>
-<ul>
-  <li>그리고 두번째 방법으로 대괄호 안에, 초기화를 시켜주는 것 또한 가능하다.</li>
-  <li>배열 요소의 자료형에는 제약이 없다
-    <div class="language-javascript highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code>  <span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="dl">'</span><span class="s1">apple</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">yoon</span><span class="dl">'</span><span class="p">},</span> <span class="kc">true</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span><span class="nx">alert</span><span class="p">(</span><span class="dl">'</span><span class="s1">hello</span><span class="dl">'</span><span class="p">);}];</span>
-  <span class="nx">arr</span><span class="p">[</span><span class="mi">3</span><span class="p">]();</span> <span class="c1">//hello</span>
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<h4 id="반복문">반복문</h4>
-<p><code class="language-plaintext highlighter-rouge">for</code>문은 배열을 순회 할 때 사용하는 가장 쉬운 방법이다
-배열에 적용하는 순회 방법중 가장 쉬운 for…of를 사용해 보자</p>
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="dl">'</span><span class="s1">apple</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">orange</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">pear</span><span class="dl">'</span><span class="p">];</span>
-<span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">fruit</span> <span class="k">of</span> <span class="nx">fruits</span><span class="p">){</span>
-	<span class="nx">alert</span> <span class="p">(</span><span class="nx">fruit</span><span class="p">);</span><span class="c1">//apple -&gt; orange -&gt; pear</span>
-<span class="c1">//	or alert(arr[key]);</span>
-<span class="p">}</span>
-</code></pre></div></div>
-<p><code class="language-plaintext highlighter-rouge">for..of</code>를 사용하면 현재 요소의 인덱스는 얻을 수 없고 값만 얻을 수 있다. 하지만 구현하기가 쉽고 문법도 짧아 배열의 요소를 대상으로 반복 작업을 할 때는 매우 편리하다</p>
-
-<h3 id="iterable-객체">
-<code class="language-plaintext highlighter-rouge">iterable</code> 객체</h3>
-
-<ul>
-  <li>반복 가능한 객체는 배열을 일반화 한 객체이다</li>
-  <li>
-<code class="language-plaintext highlighter-rouge">iterable</code>을 사용하여 어떤 객체에서든 <code class="language-plaintext highlighter-rouge">for..of</code> 반복문을 적용 시킬 수 있다</li>
-</ul>
-
-<h4 id="symboliterator"><code class="language-plaintext highlighter-rouge">Symbol.iterator</code></h4>
-<ol>
-  <li>
-<code class="language-plaintext highlighter-rouge">range</code> 를 iterable로 만들기 위해 객체에 <code class="language-plaintext highlighter-rouge">Symbol.iterator</code> 를 추가한다</li>
-  <li>
-<code class="language-plaintext highlighter-rouge">for..of</code> 가 시작되면 <code class="language-plaintext highlighter-rouge">Symbol.iterator</code>를 호출 해 조건성을 만족시킨다</li>
-  <li>
-<code class="language-plaintext highlighter-rouge">for..of</code>는 반환된 객체만을 대상으로 동작한다</li>
-  <li>
-<code class="language-plaintext highlighter-rouge">for..of</code>에 다음값이 필요하면 iterator의 <code class="language-plaintext highlighter-rouge">next()</code>를 호출한다</li>
-  <li>
-<code class="language-plaintext highlighter-rouge">next()</code>의 반환값은 <code class="language-plaintext highlighter-rouge">{done: Boolean, value: any}</code> 와 같은 형태이고 <code class="language-plaintext highlighter-rouge">done === true</code>면 반복이 종료되었다는 뜻이다</li>
-</ol>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">range</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">from</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="na">to</span><span class="p">:</span> <span class="mi">5</span>
-<span class="p">};</span>
-
-<span class="c1">// 1. for..of 최초 호출 시, Symbol.iterator가 호출됩니다.</span>
-<span class="nx">range</span><span class="p">[</span><span class="nb">Symbol</span><span class="p">.</span><span class="nx">iterator</span><span class="p">]</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-
-  <span class="c1">// Symbol.iterator는 이터레이터 객체를 반환합니다.</span>
-  <span class="c1">// 2. 이후 for..of는 반환된 이터레이터 객체만을 대상으로 동작하는데, 이때 다음 값도 정해집니다.</span>
-  <span class="k">return</span> <span class="p">{</span>
-    <span class="na">current</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="k">from</span><span class="p">,</span>
-    <span class="na">last</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">to</span><span class="p">,</span>
-
-    <span class="c1">// 3. for..of 반복문에 의해 반복마다 next()가 호출됩니다.</span>
-    <span class="nx">next</span><span class="p">()</span> <span class="p">{</span>
-      <span class="c1">// 4. next()는 값을 객체 {done:.., value :...}형태로 반환해야 합니다.</span>
-      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">current</span> <span class="o">&lt;=</span> <span class="k">this</span><span class="p">.</span><span class="nx">last</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="p">{</span> <span class="na">done</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="na">value</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">current</span><span class="o">++</span> <span class="p">};</span>
-      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="p">{</span> <span class="na">done</span><span class="p">:</span> <span class="kc">true</span> <span class="p">};</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-  <span class="p">};</span>
-<span class="p">};</span>
-
-<span class="c1">// 이제 의도한 대로 동작합니다!</span>
-<span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">num</span> <span class="k">of</span> <span class="nx">range</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">alert</span><span class="p">(</span><span class="nx">num</span><span class="p">);</span> <span class="c1">// 1, then 2, 3, 4, 5</span>
-<span class="p">}</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">mountNode</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">popup</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">App</span> <span class="o">/&gt;</span><span class="p">,</span> <span class="nx">mountNode</span><span class="p">);</span>
 </code></pre></div></div>
 
-<h3 id="date-객체와-날짜">Date 객체와 날짜</h3>
-<p>날짜를 저장 할 수 있고, 관련된 함수를 제공하는 <code class="language-plaintext highlighter-rouge">Date</code>에 대해 알아보자</p>
+<p>그리고 package.json에 필요한 library등을 삽입하여 <app></app>에서 사용해주면 된다.</p>
+
+<h3 id="mainfest">mainfest</h3>
+
+<p>manifest는 어떻게 확장을 구성할지에 대한 정의라고 할 수 있다. 일반적으로 그냥 chrome확장에서 제시해주는 대로 작성하면 되지만, 중요한점은 <code class="language-plaintext highlighter-rouge">manifest_version</code>과 <code class="language-plaintext highlighter-rouge">permissions</code> 라고 생각한다.</p>
+
+<p>manifest_version은 3이 최신버전이므로 사용하는게 맞지만, 참고 어플들은 2가 많으므로 주의해서 사용하자. 나는 처음에 2로 사용했다가 chrome extension 사이트를 보며 개발하다 outdated가 많아 3으로 올려 버전업을 했다.</p>
+
+<p>permissions는 내 확장에 어떠한 기능들까지 허용해줄지에 대한 정의이다. 나같은 경우에 3가지를 허용해주었는데 하나하나 알아보자.</p>
+
 <ul>
-  <li>객체의 생성
+  <li>
+<code class="language-plaintext highlighter-rouge">activeTab</code>
     <ul>
-      <li>
-<code class="language-plaintext highlighter-rouge">new Date()</code> 를 호출해 새로운 객체를 만들어 사용 할 수 있다</li>
+      <li>확장이 열린 탭(내가 보고 있는 탭)에 대한 정보를 제공해주겠다는 뜻</li>
     </ul>
   </li>
-  <li>날짜 찾기
+  <li>
+<code class="language-plaintext highlighter-rouge">scripting</code>
     <ul>
-      <li>getFullYear() -&gt; 네자릿수 연도</li>
-      <li>getMonth() -&gt; 0부터 11까지의 월</li>
-      <li>getDate() -&gt; 1부터 31까지 날</li>
-      <li>getHours()</li>
-      <li>getMinutes()</li>
-      <li>getSeconds()</li>
-      <li>getMillioseconds()</li>
-      <li>getDay() -&gt; 0부터 6까지, 일요일부터 토요일</li>
-      <li>getTime() -&gt; 주어진 시간과 1970년 1월 1일 00초 사이의 간격</li>
-      <li>getTimezoneOffset() -&gt; 현지 시간과 표준 시간의 차이를 반환</li>
+      <li>확장에서 script를 실행하게 해주겠다는 뜻</li>
+    </ul>
+  </li>
+  <li>
+<code class="language-plaintext highlighter-rouge">storage</code>
+    <ul>
+      <li>chrome web storage를 사용하게 해주겠다는 뜻</li>
     </ul>
   </li>
 </ul>
 
-<h3 id="json과-method">JSON과 Method</h3>
+<h3 id="javascript">javascript</h3>
 
-<p>복잡한 객체를 사용하고 있어, 네트워크를 통해 객체를 보내거나 로깅 목적으로 객체를 출력해야 할 때 사용하는 방법으로 <code class="language-plaintext highlighter-rouge">JSON</code>을 사용 할 수 있다</p>
+<p>확장에서 javascript를 실행할때 주의할 점은 node환경이 별개로 두개가 된다는 점이다. 하나는 내가 지금 보고 있는 화면의 javascript와 하나는 확장이 돌아가고 있는 화면의 javascript이다. 각각 content.js와 background.js에서 돌아가게 된다.</p>
 
-<h4 id="jsonstringify">JSON.stringify</h4>
-<ul>
-  <li>JSON,stringify -&gt; 객체를 JSON으로 바꿔준다</li>
-  <li>JSON.parse -&gt; JSON을 객체로 바꿔준다</li>
-</ul>
+<p>하지만 개발을 하다보면 background.js -&gt; content.js로 넘어가게 되는 상황이 많이 생기게 된다. 그럴경우 event listener로 넘겨주며 주고받을 수 있지만, 나는 보다 쉽게 개발하기 위해 바로 확장에서 바로 content의 javascript를 실행할 수 있게 <code class="language-plaintext highlighter-rouge">chrome.scripting.executeScript()</code>함수를 활용하였다.</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">student</span> <span class="o">=</span> <span class="p">{</span>
-	<span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Yoon</span><span class="dl">'</span><span class="p">,</span>
-	<span class="na">age</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span>
-	<span class="na">isAdmin</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-	<span class="na">courses</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">html</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">css</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">js</span><span class="dl">'</span><span class="p">],</span>
-	<span class="na">wifi</span><span class="p">:</span><span class="kc">null</span>
+<p>예시는 다음과 같다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">const</span> <span class="nx">onStart</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">queryOptions</span> <span class="o">=</span> <span class="p">{</span> <span class="na">active</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">lastFocusedWindow</span><span class="p">:</span> <span class="kc">true</span> <span class="p">};</span>
+    <span class="nx">chrome</span><span class="p">.</span><span class="nx">tabs</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">queryOptions</span><span class="p">,</span> <span class="p">([</span><span class="nx">tab</span><span class="p">])</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">chrome</span><span class="p">.</span><span class="nx">runtime</span><span class="p">.</span><span class="nx">lastError</span><span class="p">)</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">chrome</span><span class="p">.</span><span class="nx">runtime</span><span class="p">.</span><span class="nx">lastError</span><span class="p">);</span>
+
+      <span class="c1">// @ts-ignore</span>
+      <span class="nx">chrome</span><span class="p">.</span><span class="nx">scripting</span><span class="p">.</span><span class="nx">executeScript</span><span class="p">({</span>
+        <span class="na">target</span><span class="p">:</span> <span class="p">{</span> <span class="na">tabId</span><span class="p">:</span> <span class="nx">tab</span><span class="p">.</span><span class="nx">id</span> <span class="p">},</span>
+        <span class="na">func</span><span class="p">:</span> <span class="p">(</span><span class="na">sv</span><span class="p">:</span> <span class="nx">number</span><span class="p">,</span> <span class="na">st</span><span class="p">:</span> <span class="nx">number</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+          <span class="c1">// do something with sv, st</span>
+        <span class="p">},</span>
+        <span class="na">args</span><span class="p">:</span> <span class="p">[</span><span class="nx">scrollValue</span><span class="p">,</span> <span class="nx">scrollTime</span><span class="p">],</span>
+      <span class="p">});</span>
+    <span class="p">});</span>
+  <span class="p">})();</span>
 <span class="p">};</span>
-
-<span class="kd">let</span> <span class="nx">json</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">student</span><span class="p">);</span>
-
-<span class="nx">alert</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">json</span><span class="p">);</span> <span class="c1">//string</span>
-<span class="nx">alert</span><span class="p">(</span><span class="nx">json</span><span class="p">);</span><span class="c1">//student의 내용을 string으로 출력</span>
 </code></pre></div></div>
+
+<h3 id="실행">실행</h3>
+
+<p>실행은 <code class="language-plaintext highlighter-rouge">build</code>를 통해 나온 dist.zip 파일을 <code class="language-plaintext highlighter-rouge">chrome://extensions</code>에 넣어주고 사용하면 된다. 여기서 조금 불편한점은 매번 update할 때 마다 build를 하고 refresh를 해줘야된다.</p>
+
+<h2 id="배포">배포</h2>
+
+<p>개발보다 배포가 더 오래 걸렸다. 우선 웹 대시보드 콘솔에 들어가 가입도 해야되고 (가입비 5$도 지불해야된다) 어떤 목적으로 개발했는지, 앞서 허용해주었던 permissions들은 왜 허용을 해주었는지, logo는 잘 등록이 됐는지 등 설명을 많이 해줘야된다. 그래도 나름 콘솔이 잘되어 있어 어떤걸 놓쳤고 미숙한지 잘 알려주기 때문에 나름 따라가기가 쉬웠다.</p>
+
+<p>하지만 나는 설명을 충분히 적지 않아 한번 거부를 당했다..
+<img width="505" alt="image" src="https://github.com/071yoon/071yoon.github.io/assets/66371206/267d5e46-2b4b-4f91-9143-a6697d9c9018"></p>
+
+<p>그리고 게시가 되면 다시 메일이 올 줄 알았는데, 게시가 잘 되면 메일이 오지 않고 자동으로 등록됨에 주의..!</p>
+
+<h2 id="후기">후기</h2>
+
+<p>개발을 완료한 후 당당하게 메이플 커뮤니티에 올렸다. 다행히 반응도 좋았고 사람들이 많이 좋아해줬다. (이것이 나의 개발의 원동력…)
+<img width="210" alt="image" src="https://github.com/071yoon/071yoon.github.io/assets/66371206/06c355ec-e44f-426f-991c-efeaa3e656bb">
+그리고 다른 커뮤니티에서 까지 퍼가서 홍보해주시는 분도 보았다.. 뿌듯..
+다른 커뮤니티에 올라온 나의 글..
+<img width="439" alt="스크린샷 2023-09-18 오후 12 22 20" src="https://github.com/071yoon/071yoon.github.io/assets/66371206/af8661fa-d558-427c-864f-0dc3378c3924"></p>
 
 
     </div>
 
 </article>
 <div class="post-nav">
-<a class="previous" href="/javascript/2022/01/14/javascript-object.html" title="자바스크립트 객체">자바스크립트 객체</a><a class="next" href="/javascript/2022/01/18/javascript-functions.html" title="자바스크립트 함수의 심화학습">자바스크립트 함수의 심화학습</a>
+<a class="previous" href="/book/2023/01/15/rule-of-mind.html" title="마음의 법칙">마음의 법칙</a><span></span>
 </div>
 <div class="post-related">
       <div>Related Articles</div>
       <ul>
-        <li><a class="post-link" href="/gof/2022/11/03/state-pattern.html" title="자바스크립트 함수의 심화학습">상태 패턴</a></li>
-<li><a class="post-link" href="/gof/2022/09/28/strategy-pattern.html" title="자바스크립트 함수의 심화학습">전략 패턴</a></li>
-<li><a class="post-link" href="/javascript/2022/01/22/javascript-coding-1.html" title="자바스크립트 함수의 심화학습">바닐라JS로 앱 만들기 1</a></li>
-<li><a class="post-link" href="/modoco/2022/09/05/dropdown-animation.html" title="자바스크립트 함수의 심화학습">드랍다운 애니메이션 제작</a></li>
+        <li><a class="post-link" href="/javascript/2022/01/14/javascript-object.html" title="">자바스크립트 객체</a></li>
+<li><a class="post-link" href="/react/2022/02/02/make-react-app-1.html" title="">리액트JS로 앱 만들기 1</a></li>
+<li><a class="post-link" href="/blog/2022/01/12/install-blog-comment.html" title="">깃허브 블로그 코멘트 설치하기</a></li>
+<li><a class="post-link" href="/next.js/2022/05/05/next-others-1.html" title="">NEXT-Others-1</a></li>
 </ul>
     </div>
 <div class="post-comments">
