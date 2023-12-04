@@ -16,13 +16,13 @@ google이 갑자기 내 data를 날려버리거나 하지는 않겠지만 내가
 
 솔직히 firebase에 backup 혹은 export 기능이 없을리가 없다
 
-<img width="1155" alt="screenshot-1" src="https://github-production-user-asset-6210df.s3.amazonaws.com/66371206/287666447-8eb0250d-43c4-4f8c-9cb2-c9248b69a0d1.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20231204%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231204T102651Z&X-Amz-Expires=300&X-Amz-Signature=c39f1250399b5f90a767d999c3a8c6c22de1136ac5f4a4a8e8dbd0b30045af4a&X-Amz-SignedHeaders=host&actor_id=66371206&key_id=0&repo_id=713644713">
+<img width="1155" alt="firebase-export-import-icon" src="https://github.com/071yoon/071yoon.github.io/assets/66371206/a367acb2-37b7-4cdc-a7cb-98d1dc4defc3">
 
 당연히 있다..!
 
 하지만 아니나 다를까 결제 정보를 입력하고 돈을 내야 가능하는것 처럼 보인다.
 
-<img width="542" alt="image" src="https://github-production-user-asset-6210df.s3.amazonaws.com/66371206/287667522-5c13b841-ee6c-41c9-a6d4-5d636ddaf6df.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20231204%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231204T102845Z&X-Amz-Expires=300&X-Amz-Signature=aa125a5b8c6590a989a87921563790c0cece6ff6bffb55bc8c85b1d29f89bedb&X-Amz-SignedHeaders=host&actor_id=66371206&key_id=0&repo_id=713644713">
+<img width="542" alt="firebase-export-card-image" src="https://github.com/071yoon/071yoon.github.io/assets/66371206/fb30b9c5-a7ca-4155-b30a-46c868cff91f">
 
 (사실 GCP와 연결하는것 같아 당연히 결제 정보가 필요한것이고 실제로 돈이 필요한지는 모르겠음.. 그냥 혹시나 카드정보 입력해 두었다가 firebase traffic이 폭주해서 지갑이 털릴까봐 조금 무서웠다)
 
@@ -48,7 +48,7 @@ google이 갑자기 내 data를 날려버리거나 하지는 않겠지만 내가
 1. firebase에서 비공개 키 생성
 
    > 프로젝트 설정 -> 새 비공개 키 생성
-   > <img width="652" alt="image" src="https://github-production-user-asset-6210df.s3.amazonaws.com/66371206/287669364-17a64c41-87ff-460a-a6de-8e03d5df6d98.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20231204%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231204T103523Z&X-Amz-Expires=300&X-Amz-Signature=0b129137aa603c9278b4d41b70a55b0860a05aa1f43bb1e902dfc38b5f1a202c&X-Amz-SignedHeaders=host&actor_id=66371206&key_id=0&repo_id=713644713"> > <img width="1031" alt="스크린샷 2023-12-04 오후 7 36 31" src="https://github-production-user-asset-6210df.s3.amazonaws.com/66371206/287669853-8b563173-aafa-4d65-b92e-797ae5722c1e.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20231204%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231204T103707Z&X-Amz-Expires=300&X-Amz-Signature=e1f7a0538f30ccae00c56c933e00c2ff9043822f4980c9d036d4ec5d094722e8&X-Amz-SignedHeaders=host&actor_id=66371206&key_id=0&repo_id=713644713">
+   > <img width="652" alt="firebase-goto-image" src="https://github.com/071yoon/071yoon.github.io/assets/66371206/f4e24a2d-e09d-4608-8633-a68c84b054dc"> <img width="1031" alt="firebase-admin-sdk-image" src="https://github.com/071yoon/071yoon.github.io/assets/66371206/dfc43936-e13c-4cfc-b9df-9601485aa5cd">
 
 2. npm package 설치 및 export
 
@@ -68,7 +68,7 @@ firestore-export --accountCredentials path/to/credentials/file.json --backupFile
 
 아주 깔끔~ 하게 json 으로 export가 된다.
 
-<img width="482" alt="스크린샷 2023-12-04 오후 7 41 45" src="https://github-production-user-asset-6210df.s3.amazonaws.com/66371206/287671568-b25dbdb7-89ef-4d97-ad42-03acc4bd0314.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20231204%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231204T104311Z&X-Amz-Expires=300&X-Amz-Signature=ec01c6fed067e400411dcbc260102539c75099679d9bd419c876bddf05de9d32&X-Amz-SignedHeaders=host&actor_id=66371206&key_id=0&repo_id=713644713">
+<img width="482" alt="firebase-export-image" src="https://github.com/071yoon/071yoon.github.io/assets/66371206/ff54d889-63fa-4be0-8858-e9b157ac310e">
 
 다음엔 아마 oracle 무료 cloud를 받은 기념,, 하루에 한번씩 backup 하도록 자동화 해둘 예정..
 
