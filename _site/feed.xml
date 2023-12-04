@@ -1,4 +1,78 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-09-18T12:26:41+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi&apos;s tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">크롬 익스텐션을 개발해보자</title><link href="http://localhost:4000/til/2023/09/18/make-chomre-web-extension.html" rel="alternate" type="text/html" title="크롬 익스텐션을 개발해보자" /><published>2023-09-18T00:00:00+09:00</published><updated>2023-09-18T00:00:00+09:00</updated><id>http://localhost:4000/til/2023/09/18/make-chomre-web-extension</id><content type="html" xml:base="http://localhost:4000/til/2023/09/18/make-chomre-web-extension.html"><![CDATA[<h2 id="발단">발단</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-12-04T19:45:07+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi&apos;s tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">firebase 정보 백업하기 (export)</title><link href="http://localhost:4000/til/2023/12/04/export-firebase.html" rel="alternate" type="text/html" title="firebase 정보 백업하기 (export)" /><published>2023-12-04T00:00:00+09:00</published><updated>2023-12-04T00:00:00+09:00</updated><id>http://localhost:4000/til/2023/12/04/export-firebase</id><content type="html" xml:base="http://localhost:4000/til/2023/12/04/export-firebase.html"><![CDATA[<h2 id="배경">배경</h2>
+
+<p>firebase를 활용해서 개인 프로젝트를 잘 하고 있었는데, 문득 백업이 하고싶어졌다.</p>
+
+<p>google이 갑자기 내 data를 날려버리거나 하지는 않겠지만 내가 실수로 table을 날렸을 경우 복구도 되지 않을 것 같고 (가뜩이나 무료 버전을 쓰고 있기에) 점점 traffic이 올라감에 한번은 백업이 필요하다 생각이 들었다.</p>
+
+<h2 id="firebase-둘러보기">Firebase 둘러보기</h2>
+
+<p>솔직히 firebase에 backup 혹은 export 기능이 없을리가 없다</p>
+
+<p><img width="1155" alt="screenshot-1" src="https://github-production-user-asset-6210df.s3.amazonaws.com/66371206/287666447-8eb0250d-43c4-4f8c-9cb2-c9248b69a0d1.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20231204%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20231204T102651Z&amp;X-Amz-Expires=300&amp;X-Amz-Signature=c39f1250399b5f90a767d999c3a8c6c22de1136ac5f4a4a8e8dbd0b30045af4a&amp;X-Amz-SignedHeaders=host&amp;actor_id=66371206&amp;key_id=0&amp;repo_id=713644713" /></p>
+
+<p>당연히 있다..!</p>
+
+<p>하지만 아니나 다를까 결제 정보를 입력하고 돈을 내야 가능하는것 처럼 보인다.</p>
+
+<p><img width="542" alt="image" src="https://github-production-user-asset-6210df.s3.amazonaws.com/66371206/287667522-5c13b841-ee6c-41c9-a6d4-5d636ddaf6df.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20231204%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20231204T102845Z&amp;X-Amz-Expires=300&amp;X-Amz-Signature=aa125a5b8c6590a989a87921563790c0cece6ff6bffb55bc8c85b1d29f89bedb&amp;X-Amz-SignedHeaders=host&amp;actor_id=66371206&amp;key_id=0&amp;repo_id=713644713" /></p>
+
+<p>(사실 GCP와 연결하는것 같아 당연히 결제 정보가 필요한것이고 실제로 돈이 필요한지는 모르겠음.. 그냥 혹시나 카드정보 입력해 두었다가 firebase traffic이 폭주해서 지갑이 털릴까봐 조금 무서웠다)</p>
+
+<p>그래서 다른 방법을 찾아 나서기로…!</p>
+
+<h2 id="github-돌아다니기">github 돌아다니기</h2>
+
+<p>솔직히 firebase는 문서화가 잘 되어 있기도 하고, query를 통해 data를 읽기/쓰기가 매우 쉬워 손쉽게 코드로 export 하는 기능을 찾는것도 어렵지 않다고 생각한다. 하지만,, 누군가 더 깔끔하게 만들어 두었다면..? 굳이 내가 만들 필요가 있을까? 라는 생각에 뒤적 뒤적,.. firebase export를 찾아보기 시작했다..</p>
+
+<h3 id="node-firestore-import-export">node-firestore-import-export</h3>
+
+<p>기가 막힌 library를 찾아내고야 말았다. 바로 이름부터 직관 그 자체인 <a href="https://github.com/jloosli/node-firestore-import-export">node-firestore-import-export</a>!</p>
+
+<p>두가지 활용 방법이 존재한는데</p>
+
+<ol>
+  <li>npm 으로 전역으로 library를 설치 후 export하여 json 형태로 받기</li>
+  <li>코드로 export/import 기능을 구현하여 web application 내부에서 활용</li>
+</ol>
+
+<p>나는 굳이 export나 import를 web으로 할것이 아니기에 1번 방법으로 수동으로 백업을 하였다.</p>
+
+<p>워낙 README가 잘 되어 있어 직접 레포에 확인해보는것이 더 정확하겠지만, 간략한 사용법은 다음과 같다.</p>
+
+<ol>
+  <li>
+    <p>firebase에서 비공개 키 생성</p>
+
+    <blockquote>
+      <p>프로젝트 설정 -&gt; 새 비공개 키 생성
+<img width="652" alt="image" src="https://github-production-user-asset-6210df.s3.amazonaws.com/66371206/287669364-17a64c41-87ff-460a-a6de-8e03d5df6d98.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20231204%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20231204T103523Z&amp;X-Amz-Expires=300&amp;X-Amz-Signature=0b129137aa603c9278b4d41b70a55b0860a05aa1f43bb1e902dfc38b5f1a202c&amp;X-Amz-SignedHeaders=host&amp;actor_id=66371206&amp;key_id=0&amp;repo_id=713644713" /> &gt; <img width="1031" alt="스크린샷 2023-12-04 오후 7 36 31" src="https://github-production-user-asset-6210df.s3.amazonaws.com/66371206/287669853-8b563173-aafa-4d65-b92e-797ae5722c1e.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20231204%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20231204T103707Z&amp;X-Amz-Expires=300&amp;X-Amz-Signature=e1f7a0538f30ccae00c56c933e00c2ff9043822f4980c9d036d4ec5d094722e8&amp;X-Amz-SignedHeaders=host&amp;actor_id=66371206&amp;key_id=0&amp;repo_id=713644713" /></p>
+    </blockquote>
+  </li>
+  <li>
+    <p>npm package 설치 및 export</p>
+  </li>
+</ol>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># sudo로 해야될 수 있음</span>
+npm <span class="nb">install</span> <span class="nt">-g</span> node-firestore-import-export
+
+<span class="c"># ..비공개 키 저장된 위치로 이동..</span>
+firestore-export <span class="nt">--accountCredentials</span> path/to/credentials/file.json <span class="nt">--backupFile</span> /backups/myDatabase.json
+</code></pre></div></div>
+
+<p>그리고 이러한 open-source library를 사용하는 경우 내 credential 이 외부로 노출이 되지는 않을까.. 하는 생각으로 항상 검증 해봐야 된다.</p>
+
+<p>실제로 export 하는 부분을 링크로 남겨둘테니 한번씩은 확인해 보았으면 한다. (내가 봤을때는 문제 없음)</p>
+
+<blockquote>
+  <p><a href="https://github.com/jloosli/node-firestore-import-export/blob/master/src/lib/export.ts">firebase-export 링크</a></p>
+</blockquote>
+
+<p>아주 깔끔~ 하게 json 으로 export가 된다.</p>
+
+<p><img width="482" alt="스크린샷 2023-12-04 오후 7 41 45" src="https://github-production-user-asset-6210df.s3.amazonaws.com/66371206/287671568-b25dbdb7-89ef-4d97-ad42-03acc4bd0314.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20231204%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20231204T104311Z&amp;X-Amz-Expires=300&amp;X-Amz-Signature=ec01c6fed067e400411dcbc260102539c75099679d9bd419c876bddf05de9d32&amp;X-Amz-SignedHeaders=host&amp;actor_id=66371206&amp;key_id=0&amp;repo_id=713644713" /></p>
+
+<p>다음엔 아마 oracle 무료 cloud를 받은 기념,, 하루에 한번씩 backup 하도록 자동화 해둘 예정…</p>]]></content><author><name>071yoon</name></author><category term="TIL" /><category term="web" /><summary type="html"><![CDATA[배경]]></summary></entry><entry><title type="html">크롬 익스텐션을 개발해보자</title><link href="http://localhost:4000/til/2023/09/18/make-chomre-web-extension.html" rel="alternate" type="text/html" title="크롬 익스텐션을 개발해보자" /><published>2023-09-18T00:00:00+09:00</published><updated>2023-09-18T00:00:00+09:00</updated><id>http://localhost:4000/til/2023/09/18/make-chomre-web-extension</id><content type="html" xml:base="http://localhost:4000/til/2023/09/18/make-chomre-web-extension.html"><![CDATA[<h2 id="발단">발단</h2>
 
 <p>요새 메이플이란 게임에 빠져있었다. 그리고 이 게임에는 <code class="language-plaintext highlighter-rouge">재획</code> 이라는 시스템이 존재한다. 일반적으로 사냥을 하는 컨텐츠이지만 이 사냥을 많이 하다보면 게임 화면을 보지 않고도 컨텐츠를 즐길 수 있는 경지에 오르게 된다. 보통 이러한 경지를 <code class="language-plaintext highlighter-rouge">뇌빼기</code>(대충 뇌 빼고도 사냥한다는…) 라고도 하는데, 여기서 메이플의 서브 컨텐츠인 딴거하기를 즐길 수 있다.
 보통 이 딴거하기 단계에서는 넷플릭스나 유튜브등 동영상 컨텐츠를 많이 즐기게 된다. 그러던 중 메이플 커뮤니티에서 웹툰을 보는 방법이 올라왔다.
@@ -938,328 +1012,4 @@
 <p>참고
 https://www.netlify.com/blog/2019/03/11/deep-dive-how-do-react-hooks-really-work/</p>
 
-<p>https://poiemaweb.com/js-closure</p>]]></content><author><name>071yoon</name></author><category term="TIL" /><category term="TIL" /><category term="JavaScript" /><summary type="html"><![CDATA[React Hook 구현해보기]]></summary></entry><entry><title type="html">상태 패턴</title><link href="http://localhost:4000/gof/2022/11/03/state-pattern.html" rel="alternate" type="text/html" title="상태 패턴" /><published>2022-11-03T00:00:00+09:00</published><updated>2022-11-03T00:00:00+09:00</updated><id>http://localhost:4000/gof/2022/11/03/state-pattern</id><content type="html" xml:base="http://localhost:4000/gof/2022/11/03/state-pattern.html"><![CDATA[<h2 id="개요">개요</h2>
-
-<p><img src="https://user-images.githubusercontent.com/66371206/199532363-edfb9a5d-b93d-4833-8c2a-c82655b23369.png" alt="image" /></p>
-
-<blockquote>
-  <p>Finite-state_machine 참고</p>
-</blockquote>
-
-<p>모든 주어진 순간에 프로그램이 속해 있을 수 있는 상태들의 수는 유한하며, 어떤 고유한 상태 내에서든 프로그램은 다르게 행동하고 한 상태에서 다른 상태로 즉시 전환될 수 있다. 현재의 상태에 따라 프로그램은 특정 다른 상태로 전환되거나 전환되지 않을 수 있으며, 이러한 전환 규칙들을 전환들(transitions)​이라고도 하고, 이러한 규칙들 또한 유한하고 미리 결정되어 있다.</p>
-
-<p><img src="https://user-images.githubusercontent.com/66371206/199532122-689635dd-d965-4eda-9650-ad9e25d698ef.png" alt="image" /></p>
-
-<p>단순한 상태 머신의 단점은 코드를 보면 바로 이해할 수 있다.</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Document</span> <span class="ow">is</span>
-    <span class="n">field</span> <span class="n">state</span><span class="p">:</span> <span class="n">string</span>
-    <span class="o">//</span> <span class="err">…</span>
-    <span class="n">method</span> <span class="n">publish</span><span class="p">()</span> <span class="ow">is</span>
-        <span class="n">switch</span> <span class="p">(</span><span class="n">state</span><span class="p">)</span>
-            <span class="s">"draft"</span><span class="p">:</span>
-                <span class="n">state</span> <span class="o">=</span> <span class="s">"moderation"</span>
-                <span class="k">break</span>
-            <span class="s">"moderation"</span><span class="p">:</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">currentUser</span><span class="p">.</span><span class="n">role</span> <span class="o">==</span> <span class="s">"admin"</span><span class="p">)</span>
-                    <span class="n">state</span> <span class="o">=</span> <span class="s">"published"</span>
-                <span class="k">break</span>
-            <span class="s">"published"</span><span class="p">:</span>
-                <span class="o">//</span> <span class="n">Do</span> <span class="n">nothing</span><span class="p">.</span>
-                <span class="k">break</span>
-    <span class="o">//</span> <span class="err">…</span>
-</code></pre></div></div>
-
-<p>일반적으로 객체의 상태에 따라 적절한 행동들을 선택하는 많은 조건문​(if 또는 switch)​으로 구현되며, <code class="language-plaintext highlighter-rouge">Document</code> 클래스에 상태들과 상태에 의존하는 행동들을 추가할수록 분명해지게 된다. 그리고 프로젝트의 부피가 커질수록, transition이 발생했을 때, 메소드의 상태 조건들이 변경되어 관리가 힘들어지게 된다.</p>
-
-<h2 id="예제">예제</h2>
-
-<h3 id="조건">조건</h3>
-
-<ul>
-  <li>프로그램상의 1초를 현실 세계의 1시간으로 가정</li>
-  <li>금고는 1개가 있음</li>
-  <li>금고는 경비센터와 접속되어 있음</li>
-  <li>금고에는 비상벨과 일반통화용 전화가 접속되어 있음</li>
-  <li>금고에는 시계가 설치되어 있어 현재의 시간을 감시하고 있음</li>
-  <li>주간은 09:00~16:59, 야간은 17:00~23:59 및 0:00~8:59</li>
-  <li>금고는 주간에만 사용할 수 있음</li>
-  <li>주간에 금고를 사용하면 경비센터에 사용기록이 남음</li>
-  <li>야간에 금고를 사용하면 경비센터에 비상사태로 통보</li>
-  <li>비상벨은 언제나 사용할 수 있음</li>
-  <li>비상벨을 사용하면 경비센터에 비상벨 통보</li>
-  <li>일반통화용의 전화는 언제나 사용할 수 있음(야간은 녹음만 가능)</li>
-  <li>주간에 전화를 사용하면 경비센터가 호출</li>
-  <li>야간에 전화를 사용하면 경비센터의 자동응답기가 호출</li>
-</ul>
-
-<blockquote>
-  <p>예제 실행화면
-<img src="https://user-images.githubusercontent.com/66371206/199536253-e2de98e3-b074-460f-b67f-01a008980ad8.png" alt="image" /></p>
-</blockquote>
-
-<p><img width="585" alt="image" src="https://user-images.githubusercontent.com/66371206/199536792-04b4b454-4c44-4187-9d79-02a2726e8ca2.png" /></p>
-
-<p><img width="760" alt="image" src="https://user-images.githubusercontent.com/66371206/199537669-aef4aab4-d7c6-4da4-928a-9d43fb85f9fd.png" /></p>
-
-<h3 id="state">State</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// state.java</span>
-<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">State</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">doClock</span><span class="o">(</span><span class="nc">Context</span> <span class="n">context</span><span class="o">,</span> <span class="kt">int</span> <span class="n">hour</span><span class="o">);</span>
-    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">doUse</span><span class="o">(</span><span class="nc">Context</span> <span class="n">context</span><span class="o">);</span>
-    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">doAlarm</span><span class="o">(</span><span class="nc">Context</span> <span class="n">context</span><span class="o">);</span>
-    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">doPhone</span><span class="o">(</span><span class="nc">Context</span> <span class="n">context</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h3 id="daystate">DayState</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// DayState.java</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DayState</span> <span class="kd">implements</span> <span class="nc">State</span><span class="o">{</span>
-    <span class="kd">private</span> <span class="kd">static</span> <span class="nc">DayState</span> <span class="n">singletone</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DayState</span><span class="o">();</span>
-
-    <span class="kd">public</span> <span class="nf">DayState</span><span class="o">()</span> <span class="o">{</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">State</span> <span class="nf">getInstance</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">singletone</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="n">singletone</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DayState</span><span class="o">();</span>
-        <span class="k">return</span> <span class="n">singletone</span><span class="o">;</span>
-    <span class="o">}</span>
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doClock</span><span class="o">(</span><span class="nc">Context</span> <span class="n">context</span><span class="o">,</span> <span class="kt">int</span> <span class="n">hour</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">hour</span> <span class="o">&lt;</span> <span class="mi">9</span> <span class="o">||</span> <span class="mi">17</span> <span class="o">&lt;=</span> <span class="n">hour</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">context</span><span class="o">.</span><span class="na">changeState</span><span class="o">(</span><span class="nc">NightState</span><span class="o">.</span><span class="na">getInstance</span><span class="o">());</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doUse</span><span class="o">(</span><span class="nc">Context</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">context</span><span class="o">.</span><span class="na">recordLog</span><span class="o">(</span><span class="s">"금고사용(주간)"</span><span class="o">);</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doAlarm</span><span class="o">(</span><span class="nc">Context</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">context</span><span class="o">.</span><span class="na">callSecurityCenter</span><span class="o">(</span><span class="s">"비상벨(주간)"</span><span class="o">);</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doPhone</span><span class="o">(</span><span class="nc">Context</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">context</span><span class="o">.</span><span class="na">callSecurityCenter</span><span class="o">(</span><span class="s">"일반통화(주간)"</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="s">"[주간]"</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h3 id="nightstate">NightState</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// NightState.java</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">NightState</span> <span class="kd">implements</span> <span class="nc">State</span><span class="o">{</span>
-    <span class="kd">private</span> <span class="kd">static</span> <span class="nc">NightState</span> <span class="n">singletone</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">NightState</span><span class="o">();</span>
-
-    <span class="kd">public</span> <span class="nf">NightState</span><span class="o">()</span> <span class="o">{</span>
-    <span class="o">}</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">State</span> <span class="nf">getInstance</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">singletone</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span><span class="n">singletone</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">NightState</span><span class="o">();</span>
-        <span class="k">return</span> <span class="n">singletone</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doClock</span><span class="o">(</span><span class="nc">Context</span> <span class="n">context</span><span class="o">,</span> <span class="kt">int</span> <span class="n">hour</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="mi">9</span> <span class="o">&lt;=</span> <span class="n">hour</span> <span class="o">&amp;&amp;</span> <span class="n">hour</span> <span class="o">&lt;</span> <span class="mi">17</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">context</span><span class="o">.</span><span class="na">changeState</span><span class="o">(</span><span class="nc">DayState</span><span class="o">.</span><span class="na">getInstance</span><span class="o">());</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doUse</span><span class="o">(</span><span class="nc">Context</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">context</span><span class="o">.</span><span class="na">recordLog</span><span class="o">(</span><span class="s">"비상: 야간금고 사용!"</span><span class="o">);</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doAlarm</span><span class="o">(</span><span class="nc">Context</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">context</span><span class="o">.</span><span class="na">callSecurityCenter</span><span class="o">(</span><span class="s">"비상벨(야간)"</span><span class="o">);</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doPhone</span><span class="o">(</span><span class="nc">Context</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">context</span><span class="o">.</span><span class="na">callSecurityCenter</span><span class="o">(</span><span class="s">"야간통화 녹음"</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="s">"[야간]"</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h3 id="context">Context</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Context.java</span>
-<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Context</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">setClock</span><span class="o">(</span><span class="kt">int</span> <span class="n">hour</span><span class="o">);</span>
-    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">changeState</span><span class="o">(</span><span class="nc">State</span> <span class="n">state</span><span class="o">);</span>
-    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">callSecurityCenter</span><span class="o">(</span><span class="nc">String</span> <span class="n">msg</span><span class="o">);</span>
-    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">recordLog</span><span class="o">(</span><span class="nc">String</span> <span class="n">msg</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h3 id="safeframe">SafeFrame</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// SafeFrame.java</span>
-<span class="kn">import</span> <span class="nn">java.awt.*</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.awt.event.ActionEvent</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.awt.event.ActionListener</span><span class="o">;</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SafeFrame</span> <span class="kd">extends</span> <span class="nc">Frame</span> <span class="kd">implements</span> <span class="nc">ActionListener</span><span class="o">,</span> <span class="nc">Context</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">TextField</span> <span class="n">textClock</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TextField</span><span class="o">(</span><span class="mi">60</span><span class="o">);</span>
-    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">TextArea</span> <span class="n">textScreen</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TextArea</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="mi">60</span><span class="o">);</span>
-    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">Button</span> <span class="n">buttonUse</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Button</span><span class="o">(</span><span class="s">"금고사용"</span><span class="o">);</span>
-    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">Button</span> <span class="n">buttonAlarm</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Button</span><span class="o">(</span><span class="s">"비상벨"</span><span class="o">);</span>
-    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">Button</span> <span class="n">buttonPhone</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Button</span><span class="o">(</span><span class="s">"일반통화"</span><span class="o">);</span>
-    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">Button</span> <span class="n">buttonExit</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Button</span><span class="o">(</span><span class="s">"종료"</span><span class="o">);</span>
-
-    <span class="kd">private</span> <span class="nc">State</span> <span class="n">state</span> <span class="o">=</span> <span class="nc">DayState</span><span class="o">.</span><span class="na">getInstance</span><span class="o">();</span>
-
-    <span class="kd">public</span> <span class="nf">SafeFrame</span><span class="o">(</span><span class="nc">String</span> <span class="n">title</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">HeadlessException</span> <span class="o">{</span>
-        <span class="kd">super</span><span class="o">(</span><span class="n">title</span><span class="o">);</span>
-        <span class="n">setBackground</span><span class="o">(</span><span class="nc">Color</span><span class="o">.</span><span class="na">lightGray</span><span class="o">);</span>
-        <span class="n">setLayout</span><span class="o">(</span><span class="k">new</span> <span class="nc">BorderLayout</span><span class="o">());</span>
-        <span class="n">add</span><span class="o">(</span><span class="n">textClock</span><span class="o">,</span> <span class="nc">BorderLayout</span><span class="o">.</span><span class="na">NORTH</span><span class="o">);</span>
-        <span class="n">textClock</span><span class="o">.</span><span class="na">setEditable</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
-        <span class="n">add</span><span class="o">(</span><span class="n">textScreen</span><span class="o">,</span> <span class="nc">BorderLayout</span><span class="o">.</span><span class="na">CENTER</span><span class="o">);</span>
-        <span class="n">textScreen</span><span class="o">.</span><span class="na">setEditable</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
-
-        <span class="nc">Panel</span> <span class="n">panel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Panel</span><span class="o">();</span>
-        <span class="n">panel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">buttonUse</span><span class="o">);</span>
-        <span class="n">panel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">buttonAlarm</span><span class="o">);</span>
-        <span class="n">panel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">buttonPhone</span><span class="o">);</span>
-        <span class="n">panel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">buttonExit</span><span class="o">);</span>
-        <span class="n">add</span><span class="o">(</span><span class="n">panel</span><span class="o">,</span> <span class="nc">BorderLayout</span><span class="o">.</span><span class="na">SOUTH</span><span class="o">);</span>
-
-        <span class="n">pack</span><span class="o">();</span>
-        <span class="n">show</span><span class="o">();</span>
-
-        <span class="n">buttonUse</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
-        <span class="n">buttonAlarm</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
-        <span class="n">buttonPhone</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
-        <span class="n">buttonExit</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
-    <span class="o">}</span>
-
-    <span class="c1">//Event Listener Handler</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="o">(</span><span class="nc">ActionEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">event</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">event</span><span class="o">.</span><span class="na">getSource</span><span class="o">()</span> <span class="o">==</span> <span class="n">buttonUse</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">state</span><span class="o">.</span><span class="na">doUse</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">event</span><span class="o">.</span><span class="na">getSource</span><span class="o">()</span> <span class="o">==</span> <span class="n">buttonAlarm</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">state</span><span class="o">.</span><span class="na">doAlarm</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">event</span><span class="o">.</span><span class="na">getSource</span><span class="o">()</span> <span class="o">==</span> <span class="n">buttonPhone</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">state</span><span class="o">.</span><span class="na">doPhone</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">event</span><span class="o">.</span><span class="na">getSource</span><span class="o">()</span> <span class="o">==</span> <span class="n">buttonExit</span><span class="o">)</span> <span class="o">{</span>
-            <span class="nc">System</span><span class="o">.</span><span class="na">exit</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"?"</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setClock</span><span class="o">(</span><span class="kt">int</span> <span class="n">hour</span><span class="o">)</span> <span class="o">{</span>
-        <span class="nc">String</span> <span class="n">clockstring</span> <span class="o">=</span> <span class="s">"현재 시간은"</span><span class="o">;</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">hour</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">clockstring</span> <span class="o">+=</span> <span class="s">"0"</span> <span class="o">+</span> <span class="n">hour</span> <span class="o">+</span> <span class="s">":00"</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-            <span class="n">clockstring</span> <span class="o">+=</span> <span class="n">hour</span> <span class="o">+</span> <span class="s">":00"</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">clockstring</span><span class="o">);</span>
-        <span class="n">textClock</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">clockstring</span><span class="o">);</span>
-        <span class="n">state</span><span class="o">.</span><span class="na">doClock</span><span class="o">(</span><span class="k">this</span><span class="o">,</span><span class="n">hour</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="c1">//상태전환</span>
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">changeState</span><span class="o">(</span><span class="nc">State</span> <span class="n">state</span><span class="o">)</span> <span class="o">{</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">state</span> <span class="o">+</span> <span class="s">"에서"</span> <span class="o">+</span> <span class="n">state</span> <span class="o">+</span> <span class="s">"로 상태가 변화했습니다."</span><span class="o">);</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">state</span> <span class="o">=</span> <span class="n">state</span><span class="o">;</span>
-    <span class="o">}</span>
-    <span class="c1">//경비센터의 호출</span>
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">callSecurityCenter</span><span class="o">(</span><span class="nc">String</span> <span class="n">msg</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">textScreen</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"call! "</span> <span class="o">+</span> <span class="n">msg</span> <span class="o">+</span> <span class="s">"\n"</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="c1">//경비센터의 기록</span>
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">recordLog</span><span class="o">(</span><span class="nc">String</span> <span class="n">msg</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">textScreen</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"record ... "</span> <span class="o">+</span> <span class="n">msg</span> <span class="o">+</span> <span class="s">"\n"</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h3 id="main">Main</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Main.java</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="nc">SafeFrame</span> <span class="n">frame</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SafeFrame</span><span class="o">(</span><span class="s">"State Sample"</span><span class="o">);</span>
-        <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">hour</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">hour</span> <span class="o">&lt;</span> <span class="mi">24</span><span class="o">;</span> <span class="n">hour</span><span class="o">++)</span> <span class="o">{</span>
-                <span class="n">frame</span><span class="o">.</span><span class="na">setClock</span><span class="o">(</span><span class="n">hour</span><span class="o">);</span>
-                <span class="k">try</span><span class="o">{</span>
-                    <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span>
-                <span class="o">}</span><span class="k">catch</span><span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">){</span>
-                <span class="o">}</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h2 id="등장인물">등장인물</h2>
-
-<p><img src="https://user-images.githubusercontent.com/66371206/199541328-2a641f2e-745a-4abf-b8ff-65473c7035e4.png" alt="image" /></p>
-
-<h2 id="point">Point</h2>
-
-<h3 id="strategy-pattern과의-차이">Strategy Pattern과의 차이</h3>
-
-<p>이 구조는 전략 패턴과 비슷해 보이지만 한 가지 중요한 차이점이 있다. 상태 패턴에서의 특정 상태들은 서로를 인식하고 한 상태에서 다른 상태로 전환을 시작할 수 있지만 전략들은 거의 대부분 서로에 대해 알지 못한다.</p>
-
-<h3 id="분할정복">분할정복</h3>
-
-<p>복잡하고 규모가 큰 문제 혹은 프로그램은 그대로 해결하려하기보단, 우선 작은 문제로 나누고 또 나눠서 하나하나의 모듈들이 쉽게 해결가능한 수준까지 나눠 해결해야 한다.
-State Pattern에서는 각각의 <code class="language-plaintext highlighter-rouge">상태</code>를 각각의 클래스로 표현해 문제를 분할했다. 조건과 규모가 커질수록 조건은 많아지고 분기문은 많아진다. 하지만 이번처럼 State Pattern을 사용하면 각각의 ‘상태’를 클래스고 표현해 복잡한 프로그램을 분할하여 효율적으로 관리할 수 있다.</p>
-
-<h3 id="상태의존">상태의존</h3>
-
-<p>SafeFrame 클래스의 setClock메소드는 Main클래스로부터 시간이 변경될 때(반복문의 순회)마다 호출되고 있다. 그리고 이 메소드는 시간을 인자값으로받아 출력 후 state.doClock(this,hour)으로 책임을 위임하고 있다. 즉, 시간의 설정을 ‘현재의 상태에 의존한 처리’로 취급하고 있다는 말입니다. 즉 state는 항상 같은값이 아닌 시간이 변경되서 기준을 충족할 때마다 주간과 야간 상태클래스로 변경하기 때문.
-이처럼 State Pattern에서는 ‘상태에 의존한 처리’를 프로그램에서 표현하는방법은 다음과 같다.</p>
-
-<ul>
-  <li>추상 메소드로 선언후 인터페이스 명세(API)</li>
-  <li>구현 메소드로 구현 후 각각의 클래스로 한다.</li>
-</ul>
-
-<h3 id="상태전환의-관리">상태전환의 관리</h3>
-
-<p>State Pattern에서 상태전환을 어디서 관리하는지에 대해서는 고려해봐야 할 부분이다.
-예제에서는 Context역할의 SafeFrame 클래스에서 상태전환 메소드(changeState)를 구현했다. 그리고 이 메소드를 호출하는 부분은 ConcreteState역할인 DayState나 NightState클래스이다. 다시말하면 예제에서는 ‘상태전환’을 ‘상태에 의존한 동작’으로 간주하고 있다. 이 방법은 장점과 단점이 있다.
-장점은 상태전환의 시기를 하나의 클래스 내에서 가지고 있다는 점.</p>
-
-<blockquote>
-  <p>DayState 클래스가 상태전환되는 시기는 DayState 클래스 코드를 보면 된다.</p>
-</blockquote>
-
-<p>단점은 하나의 ConcreteState역할이 다른 ConcreteState역할을 알아야 한다는 점입니다.</p>
-
-<blockquote>
-  <p>doClock메소드 context.changeState(NightState.getInstance());</p>
-</blockquote>
-
-<p>이것의 문제는 클래스 사이의 의존관계를 깊게한다는 점이다.<br />
-그럼, 모든 상태전환을 Context 역할의 SafeFrame클래스에 맡길수도 있는데 이 경우 ConcreteState역할의 독립성이 높아지지만 Context가 모든 ConcreteState역할을 알아야하는 문제가 발생한다. 해결책으로는 Mediator Pattern을 쓰거나 혹은 State Pattern대신 상태의 테이블(표)를 사용해 설계하는 방식이 있다.</p>
-
-<h3 id="상태추가-is-easy">상태추가 is easy</h3>
-
-<p>State 인터페이스를 구현하는 ConcreteState 클래스를 만들어 구현하면되기에 상태추가는 어렵지 않다.
-다만, 상태전환은 다른 ConcreteState 역할과 접점이 되기에 주의해야 할 필요는 있다.
-그리고 완성된 State Pattern에 새로운 ‘상태의존의 처리’를 추가하는 것은 곤란하다. 이 말은 State 역할이 인터페이스에 메소드를 추가한다는 것을 의미하며 이를 구현하는 모든 ConcreteState역할에 구현이 필요하기 때문이다.</p>
-
-<p>출처 : Java언어로 배우는 디자인 패턴 입문</p>]]></content><author><name>071yoon</name></author><category term="GoF" /><category term="GoF" /><summary type="html"><![CDATA[개요]]></summary></entry></feed>
+<p>https://poiemaweb.com/js-closure</p>]]></content><author><name>071yoon</name></author><category term="TIL" /><category term="TIL" /><category term="JavaScript" /><summary type="html"><![CDATA[React Hook 구현해보기]]></summary></entry></feed>
