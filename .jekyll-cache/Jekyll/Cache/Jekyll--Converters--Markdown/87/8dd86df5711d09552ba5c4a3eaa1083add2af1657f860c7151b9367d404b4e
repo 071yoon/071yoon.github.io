@@ -1,0 +1,224 @@
+I"�D<h2 id="메모리란">메모리란</h2>
+
+<p>우선 간단하게 메모리 관리에 대한 이야기를 해보자.</p>
+
+<p>메모리란 개념은 컴퓨터 공학을 처음 배울 때 부터 배우기 시작하여 끝도 없이 공부하며, 아직까지도 많은 프로그래머들을 괴롭힌다. C언어 같은 언어는 allocation 함수들(<code class="language-plaintext highlighter-rouge">malloc()</code>, <code class="language-plaintext highlighter-rouge">calloc()</code> 등)을 활용하여 동적으로 메모리를 사용하고 <code class="language-plaintext highlighter-rouge">free()</code>함수를 활용하여 메모리를 해제한다. 하지만, JS 혹은 Java같은 언어는 runtime에 객체가 생성 시 자동으로 메모리를 할당하고 필요하지 않을 때 해제하게 된다. 여기서 <code class="language-plaintext highlighter-rouge">필요하지 않을 때</code>의 시점이 컴퓨터가 판단하기에, 개발자가 메모리 관리에 대한 고민을 할 필요는 없지만 오히려 관리를 하지 않아 문제를 발생시킬 수 있다는 점에 유의해야 한다. 이를 더 깊이 이해하기 위해 <code class="language-plaintext highlighter-rouge">Javascript</code>의 메모리 관리에 대해 공부해보자.</p>
+
+<h2 id="메모리의-생존주기">메모리의 생존주기</h2>
+
+<p>메모리의 생존주기는 <code class="language-plaintext highlighter-rouge">할당 -&gt; 사용 -&gt; 해제</code>로 매우 간단하다.</p>
+
+<p>여기서 <code class="language-plaintext highlighter-rouge">사용</code> 부분은 모든 언어에서 명시적으로 사용하지만, 앞서 말했던 것 처럼 <code class="language-plaintext highlighter-rouge">할당</code>과 <code class="language-plaintext highlighter-rouge">해제</code>는 Javascript와 같은 고수준 언어에서는 암묵적으로 작동한다.</p>
+
+<h3 id="할당">할당</h3>
+
+<p>아래는 다양한 js의 메모리 할당방법들이다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">a</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="na">b</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+<span class="p">};</span> <span class="c1">// object가 아닌 literal도 비슷하게 할당할 수 있다</span>
+
+<span class="c1">// 함수식 또한 오브젝트를 담기 위한 메모리를 할당한다.</span>
+<span class="nx">someElement</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span>
+  <span class="dl">"</span><span class="s2">click</span><span class="dl">"</span><span class="p">,</span>
+  <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">someElement</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">backgroundColor</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">blue</span><span class="dl">"</span><span class="p">;</span>
+  <span class="p">},</span>
+  <span class="kc">false</span>
+<span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">d</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span> <span class="c1">// new를 활용해 새로운 객체 할당</span>
+
+<span class="kd">const</span> <span class="nx">e</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">"</span><span class="s2">div</span><span class="dl">"</span><span class="p">);</span> <span class="c1">// DOM 엘리먼트를 위해 메모리를 할당</span>
+
+<span class="kd">const</span> <span class="nx">s</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">azerty</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">s2</span> <span class="o">=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span> <span class="c1">// 문자열은 immutable하기에, 새로운 메모리가 아닌 [0,3] 만 할당</span>
+</code></pre></div></div>
+
+<h3 id="사용">사용</h3>
+
+<p>일반적으로 js에서 variable을 가지고 읽고 쓰는것을 의미한다.</p>
+
+<h3 id="해제">해제</h3>
+
+<p><code class="language-plaintext highlighter-rouge">Javascript</code>가 <code class="language-plaintext highlighter-rouge">필요하지 않다</code>고 판단이 되면, 메모리를 해제한다. Python, Java, Javascript와 같은 언어들은 각 언어만의 Garbage Collection(GC)이 동작하며 메모리 관리를 하게된다. GC의 목적은 할당된 메모리들을 추적하여 더 이상 필요하지 않을 떄 회수하는 것이지만, 이를 판단하는것이 비결정적이기 때문에 우리도 GC에 대한 이해가 필요하다.</p>
+
+<h2 id="garbage-collection">Garbage Collection</h2>
+
+<p>Garbage Collection은 주로 두가지의 알고리즘을 사용한다. (단순 JS에 국한되는게 아님)</p>
+
+<h3 id="reference-counting">Reference Counting</h3>
+
+<p>정말 간단한 방법으로, 아무도 해당 객체를 참조하고 있지 않을 때 필요없다고 간주되어 해제해 버리는 방법이다.</p>
+
+<p>간단한 예시와 함께 살펴보자.</p>
+
+<blockquote>
+  <p>원래 js는 object에 저장될 때 obj의 주소값으로 저장하고, 해당 obj에서 변수에 대한 값 또한 주소로 저장하지만, 간편하게 도식화 하였다.</p>
+</blockquote>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">x</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">a</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">b</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+  <span class="p">},</span>
+<span class="p">};</span>
+
+<span class="kd">let</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>2개의 객체가 생성되어, 변수 x에 저장되고, y또한 x를 참조하고 있으므로 가비지는 없다는게 명확하다.
+<img src="https://github.com/071yoon/071yoon.github.io/assets/66371206/6ba565c5-976b-49c3-93fc-74af9ba1f4ea" alt="rc1" /></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>x에 대한 값을 immutable한 값으로 바꾸며 원래 객체에 대한 참조를 y만 하게 되었다
+<img src="https://github.com/071yoon/071yoon.github.io/assets/66371206/ef8edbaf-6330-4854-bc2d-abf9dfa27ba1" alt="rc2" /></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">z</span> <span class="o">=</span> <span class="nx">y</span><span class="p">.</span><span class="nx">a</span><span class="p">;</span>
+
+<span class="nx">y</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">mozilla</span><span class="dl">"</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>y의 값을 immutable한 값으로 바꾸고, z의 값을 a를 참조하도록 수정하였으므로, 아직 객체의 a 속성이 z에 대해 참조되어 메모리를 해제할 수 없다.
+<img src="https://github.com/071yoon/071yoon.github.io/assets/66371206/8b3b5d4c-8e8a-4fff-8fe1-f95ffa4a2658" alt="rc3" /></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">z</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>이제 원래 x가 참조했던 객체의 모든 속성에, 참조하고 있는 변수가 없으므로 가비지 콜렉션이 수행되어, 메모리의 해제가 이루어진다.
+<img src="https://github.com/071yoon/071yoon.github.io/assets/66371206/2d606e85-02d6-495a-89d9-3439be9e1509" alt="image" /></p>
+
+<p>하지만, 이런 단순한 방법에는 서로 참조하는 <code class="language-plaintext highlighter-rouge">순환 참조</code>가 이루어질 때 문제가 생긴다. 서로 참조하는 속성이 있는 경우, 함수 호출이 끝났음에도, 서로 참조하고 있기에 메모리가 해제되지 않고 메모리 누수가 일어날 수 있다. 순환참조의 예시는 다음과 같다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">f</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">x</span> <span class="o">=</span> <span class="p">{};</span>
+  <span class="kd">const</span> <span class="nx">y</span> <span class="o">=</span> <span class="p">{};</span>
+  <span class="nx">x</span><span class="p">.</span><span class="nx">a</span> <span class="o">=</span> <span class="nx">y</span><span class="p">;</span> <span class="c1">// x -&gt; y 참조</span>
+  <span class="nx">y</span><span class="p">.</span><span class="nx">a</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span> <span class="c1">// y -&gt; x 참조</span>
+
+  <span class="k">return</span> <span class="dl">"</span><span class="s2">nothing</span><span class="dl">"</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="mark-and-sweep">Mark and Sweep</h3>
+
+<p>해당 방법은 <code class="language-plaintext highlighter-rouge">필요 없는 객체</code> 를 <code class="language-plaintext highlighter-rouge">도달할 수 없는 객체</code>로 인식한다.</p>
+
+<p>우선 <code class="language-plaintext highlighter-rouge">roots</code>라는 객체 시작하여, roots를 참조하는 객체들을 찾으며, 도달할 수 없는 객체들을 탐색 및 수집하는 방식이다.</p>
+
+<blockquote>
+  <p>js는 전역 객체</p>
+</blockquote>
+
+<p>이러한 방식은, 이전처럼 <code class="language-plaintext highlighter-rouge">순환 참조</code>가 일어나더라도 도달할 수 없음을 판단하고, 메모리를 회수할 수 있고, 실제로 js의 최신 엔진은 해당 방법으로 메모리 관리를 하게된다.</p>
+
+<p>단점으로는, garbage collection을 수동으로 조작할 수 없고, 공식적으로 코어 언어에서도 지원하지 않을 예정이라 한다.</p>
+
+<h2 id="v8-엔진의-메모리-구조">v8 엔진의 메모리 구조</h2>
+
+<p>v8 메모리 구조는 우선, 메모리의 Resident Set이라는 공간에서 시작된다. 해당 영역에서 스택과 힙 공간으로 나누어져 메모리를 할당하게 된다. Operating System에서 배웠듯, Stack 공간은 함수호출이 끝난 후 삭제되지만, 동적인 힙 메모리는 그렇지 않기에, 메모리 누수에 취약하며 주의깊게 봐야한다.</p>
+
+<p><img src="https://github.com/071yoon/071yoon.github.io/assets/66371206/914c8119-239e-4d13-adc0-1662ead4b693" alt="v8-memory-structure" /></p>
+
+<p>힙 공간은 위 그림에서 Stack을 제외한 모든 부분이며, 여러 공간들로 나누어져 있지만 실제로, GC가 일어나는 New Space와 Old Space를 주의깊게 보자.</p>
+
+<ul>
+  <li>New Space: 새로 만들어지는 Object가 할당</li>
+  <li>
+    <p>Old Space: New Space에서 Minor GC가 2번 일어날 동안 살아남는 경우 저장된다</p>
+
+    <ul>
+      <li>Old Pointer Space: 다른 객체를 참조하는 객체 (다른 객체에 대한 포인터를 가지는 경우)</li>
+      <li>Data Space: 문자열/실수 등 데이터만 가지고 있는 객체</li>
+    </ul>
+  </li>
+  <li>Large Object Space: mmap 메모리를 가지는 객체들이 있으며, GC의 대상이 아니다.</li>
+  <li>Code space: JIT 컴파일러가 컴파일된 코드들을 저장하여, 실행 가능한 메모리가 있는 영역이다.</li>
+  <li>Rest: 이 영역들은 각각 Cells, PropertyCells, Maps이며, 각 영역은 모두 같은 크기의 객체들을 포함하며, 어떤 종류의 객체를 참조하는지에 대한 제약이 있어서 수집을 단순하게 만든다.</li>
+</ul>
+
+<h2 id="v8-엔진의-gc">v8 엔진의 GC</h2>
+
+<p>v8 엔진의 GC는 Java의 GC와 사뭇 비슷하다.</p>
+
+<blockquote>
+  <p>Java에서 갓 생성된 객체를 Eden이라고 따로 관리했던 것을 제외하면 매우 유사하다고 생각함</p>
+</blockquote>
+
+<p>JS의 Garbage Collection은 <code class="language-plaintext highlighter-rouge">Generational Hypothesis</code> 이론을 중점으로 이루어지는데, 이는 새로운 객체가 오래된 객체보다 쓸모 없어질 가능성이 높다, 즉 일회성 데이터들이 많다는 이론에 의거하여 동작한다.</p>
+
+<p>그렇게 Garbage Collection을 Minor GC와 Major GC 둘로 나누어 관리하게 된다.</p>
+
+<h3 id="minor-gc">Minor GC</h3>
+
+<p>Minor GC는 New Space의 Garbage를 수집하는 역할을 한다. 앞서 다이어그램에서 보았듯, New Space에는 두개의 Semi Space가 존재한다. 여기서 한 Semi Space는 항상 비워두며, Mark and Sweep 알고리즘을 통해 삭제되지 않는 객체들을 옮기고, 다시 한 Space를 비우는 방식으로 작동한다. 만약 다음 Minor GC에도 해당 객체들이 살아있다면, 이들은 Old Space로 이동하게 된다.</p>
+
+<p>이를 간단히 도식화 하면 다음과 같다.</p>
+
+<p><img src="https://github.com/071yoon/071yoon.github.io/assets/66371206/cfcfe251-94d4-4563-a570-a62f5f2204b7" alt="minor_gc" /></p>
+
+<h3 id="major-gc">Major GC</h3>
+
+<p>이제 Old Space에서의 Garbage Collection을 알아보자. Major GC는 Mark and Sweep Compact 와 Tri-Color Algorithm을 사용하며, 크게 마킹 -&gt; 스위핑 -&gt; 압축 으로 이루어진다.</p>
+
+<ol>
+  <li>
+    <p>마킹</p>
+
+    <p>우선 어떤 객체들이 할당 해제가 되어야 되는 객체들인지 판단을 하기 위해, 전역객체부터 시작하여 DFS로 순회하며 Tri Color Algorithm으로 마킹을 한다.</p>
+
+    <p>Tri Color는 3가지 색으로 node를 나타내며</p>
+
+    <ul>
+      <li>white: 아직 탐색을 하지 못한 노드</li>
+      <li>gray: 탐색을 했지만, 객체가 참조하고 있는 노드까지는 탐색을 완료하지 못한 노드</li>
+      <li>black: 참조하고 있는 개체까지 확인을 완료한 노드</li>
+    </ul>
+
+    <p>해당 알고리즘을 마치고 나면, 모든 노드들은 white / black인 형태로 남게 되어, white인 경우 도달할 수 없는 노드로 판단할 수 있다.</p>
+  </li>
+  <li>
+    <p>스위핑</p>
+
+    <p>white 인 노드들은 도달할 수 없으므로, 필요없는 객체라 판단되어 할당된 메모리 공간을 해제한다.</p>
+  </li>
+  <li>
+    <p>압축</p>
+
+    <p>메모리 단편화가 심한 페이지들을 재배치하여 메모리 공간을 확보한다. 이는 Fragmentation과 Segmentation을 검색해보면 더 자세히 알 수 있다.</p>
+  </li>
+</ol>
+
+<h2 id="orinoco">Orinoco</h2>
+
+<p>Garbage Collection을 수행하는 동안에는 Stop The World가 일어나며, 모든 프로세스가 멈추어 UX 적으로 많은 문제가 생긴다. 이를 v8 엔진은 우아하게 처리하기 위한 Orinoco 프로젝트를 알아보자.</p>
+
+<h3 id="incremental-marking">Incremental Marking</h3>
+
+<p>2011년에 나온 stop the world의 해결방안으로 나온 incremental marking 이다.
+<img src="https://github.com/071yoon/071yoon.github.io/assets/66371206/4544a7bf-de1e-44d1-ae0c-4a3a7eb0647e" alt="incremental marking" /></p>
+
+<p>다이어그램에서 보이듯, 짧은 GC로 쪼개어 프로그램의 반응속도 및 UX를 개선하려함을 볼 수 있다. 하지만, 프로그램이 동작함에 따라, object graph에 대한 변동사항이 생길 때 마다 Garbage Collection에 알려야 하기 때문에, idle time이 없는 경우 cost가 굉장히 높다.</p>
+
+<p>여기서 idle time이란, 크롬 자체에서 프로그램이 쉬는 기간을 미리 알 수 있다는 것이다. 이를 활용하면, 예를 들어, 1 프레임에 필요한 연산을 16ms안에 해결한다면, 남는 시간동안 idle GC를 활용하여, GC를 미리 할 수 있다.</p>
+
+<h3 id="parallel--concurrent">Parallel &amp; Concurrent</h3>
+
+<p>해당 방식은, Helper Thread를 두어, 병렬 혹은 동시적으로 Garbage Collection을 수행하여 stop the world를 최소한을 줄이는 방식이다.</p>
+
+<p>그래서 모든 GC의 기술들을 합치면 현재는 이러한 형태를 띄게 된다.</p>
+
+<p><img src="https://github.com/071yoon/071yoon.github.io/assets/66371206/fd27a383-cf71-4110-bc83-d044750b76e5" alt="v8-gc-graph" /></p>
+
+<h2 id="참조">참조</h2>
+
+<p><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Memory_management">mozilla</a></p>
+
+<p><a href="https://deepu.tech/memory-management-in-v8/">memory-management-in-v8</a></p>
+
+<p><a href="https://v8.dev/blog/trash-talk">v8-dev-trash-talk</a></p>
+
+<p><a href="https://v8.dev/blog/concurrent-marking">v8-concurrent-marking</a></p>
+:ET
