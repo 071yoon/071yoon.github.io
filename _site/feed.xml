@@ -1,4 +1,46 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-01-03T12:48:45+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi&apos;s tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">자바스크립트 메모리관리</title><link href="http://localhost:4000/javascript/2024/01/02/js-memory-management.html" rel="alternate" type="text/html" title="자바스크립트 메모리관리" /><published>2024-01-02T00:00:00+09:00</published><updated>2024-01-02T00:00:00+09:00</updated><id>http://localhost:4000/javascript/2024/01/02/js-memory-management</id><content type="html" xml:base="http://localhost:4000/javascript/2024/01/02/js-memory-management.html"><![CDATA[<h2 id="메모리란">메모리란</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-01-28T16:37:42+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi&apos;s tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">객체지향의 사실과 오해</title><link href="http://localhost:4000/book/2024/01/28/essence-of-oop.html" rel="alternate" type="text/html" title="객체지향의 사실과 오해" /><published>2024-01-28T00:00:00+09:00</published><updated>2024-01-28T00:00:00+09:00</updated><id>http://localhost:4000/book/2024/01/28/essence-of-oop</id><content type="html" xml:base="http://localhost:4000/book/2024/01/28/essence-of-oop.html"><![CDATA[<h2 id="객체지향의-사실과-오해">객체지향의 사실과 오해</h2>
+
+<p>약 2년전에 사두고 시간이 없다는 핑계로 읽지 않았던 책을 이제야 읽게 되어 남기는 후기. (AKA 토끼책)</p>
+
+<p>워낙 유명한 책인탓에, 내용을 정리하거나 분석해놓은 글은 정말 많기에, 읽으면서 느꼈던 나의 생각과 후기를 정리해보려고 한다.</p>
+
+<h3 id="책에-관하여">책에 관하여</h3>
+
+<p>이 책에서는 역할, 책임, 협력 그리고 객체의 자율성에 대한 개념을 끊임없이 강조하고 객체지향에 대해서 굉장히 추상적으로 정리한다.</p>
+
+<p>객체란 클래스와 동의어가 아니며, 실세계와 일치시키려는 노력을 버리고 객체지향은 이런거야!를 설명한다. 이는, 전공생 기준 1학년 때 배우는 객체지향의 설명의 잘못된 점을 지적하고 개념을 새로이 정립하려는 의도로 보였다.</p>
+
+<p>주로 1학년 때 배웠던 것은, 객체는 클래스에서 만든 instance이며, class라 함은 상속등을 통하여 다형성을 만족할 수 있다고 배운다. 무려 7년전 기억을 끄집어 내어 현재 내가 생각하는 객체지향과 한번 비교를 해보자.</p>
+
+<h3 id="객체지향은-붕어빵인가">객체지향은 붕어빵인가</h3>
+
+<p>생각해보면, 1학년 때는 객체지향을 붕어빵틀과 붕어빵, 혹은 다양한 종류의 피자들로 배웠던 기억이 난다. 실제로 1학년 때 교재의 첫장에는 이러한 글이 적혀있다.</p>
+
+<blockquote>
+  <p>클래스와 객체는 붕어빵틀과 붕어빵의 관계와 유사하다.</p>
+
+  <p>클래스는 붕어빵을 찍어내는 틀이며, 객체는 붕어빵이다.</p>
+</blockquote>
+
+<p>이러한 비유법은 사실 나는 크게 나쁘다고 생각하지는 않는다. 처음 배우는 학생들에게 객체지향에 대한 진입장벽을 낮추고 쉽게 이해를 시킬 수 있는 좋은 수단이라고 생각한다.</p>
+
+<p>하지만, 토끼책의 저자는 객체란 자율성을 부여받고 request와 response 관계가 있어야 한다는 점에서 이러한 예시는 정답이 아니라고 이야기한다.</p>
+
+<p>이를 설명하기 위해 책에서는 커피의 주문을 예시로 둔다. 손님의 역할은 주문할 책임을 지는것으로, 바리스타에게 주문을 <code class="language-plaintext highlighter-rouge">request</code>하고 바리스타의 역할은 커피를 만들 책임을 지는것으로, 커피를 <code class="language-plaintext highlighter-rouge">response</code>로 전달한다.</p>
+
+<p>즉 객체지향은 기능이 우선이 아닌, 이러한 <code class="language-plaintext highlighter-rouge">협력의 구조</code>가 우선시 되고 기능이 나오기에 붕어빵의 예시는 옳지 않다는 뜻이다. 또한, 현실 사물과 비교를 했을때의 문제는, 객체는 자율성을 가지고 판단을 할 수 있어야 하지만, 사물을 예시로 드는 순간, 사물이 판단을 해야 한다는 현실과의 괴리감이 생겨 오히려 이해가 어려울 수 있다는 말을 전달한다.</p>
+
+<p>1학년 때 만약, 이 책을 읽었다면 오히려 이해가 되지 않거나 굉장히 객체지향은 복잡하다고 생각했을 것 같다. 하지만, 개발을 꽤나 해보고 항상 개발을 하기 전 구조를 작성하고 진행을 해서인지 교양책처럼 공감을 하며 읽었던것 같다.</p>
+
+<h3 id="후기">후기</h3>
+
+<p>해당 책에는 예시를 코드로 들지 않는다. 대신 그림이나 UML 다이어그램등을 잘 활용하여 표현한다. 이러한 부분을 오히려 이해하기 어렵다고 부정적으로 생각하는 사람도 있었지만, 나는 오히려 다이어그램이 저자가 말하고 싶은 협력의 부분을 더 강조하고 이해를 도와주어 이해하기가 편리했다.</p>
+
+<p>사실 개발을 하다보면, 자연스럽게 책에서 말하고자 하는 바가 모두의 코드에 녹아들어 있을 수 밖에 없다고 생각한다. 하지만, 해당 책은 이러한 알고는 있지만, 말 혹은 글로 표현하기 어려운 점들을 글로 정말 잘 풀어 냈다고 생각한다. 그리고 개발을 하며 설계에 대해 한번쯤은 더 생각하게 만들어 주는 책이라 생각한다.</p>
+
+<p>사실 해당 책은 객체지향을 하기전 무조건 읽어야된다! 혹은 객체지향의 바이블! 이런 느낌 보다는 이렇게 해야 확장성 혹은 누구나 쉽게 이해할 수 있는 코드가 되지 않을까? 에 가깝다고 생각한다.</p>
+
+<p>개발트렌드가 있고 TDD, 함수형 프로그래밍이 뜨고 있는 시대 개발이론에 옳고그름은 없다 생각한다. 하나의 개발 교양도서로 한번쯤은 읽어보면 좋은 책이라 생각한다.</p>]]></content><author><name>071yoon</name></author><category term="book" /><category term="book" /><summary type="html"><![CDATA[객체지향의 사실과 오해]]></summary></entry><entry><title type="html">자바스크립트 메모리관리</title><link href="http://localhost:4000/javascript/2024/01/02/js-memory-management.html" rel="alternate" type="text/html" title="자바스크립트 메모리관리" /><published>2024-01-02T00:00:00+09:00</published><updated>2024-01-02T00:00:00+09:00</updated><id>http://localhost:4000/javascript/2024/01/02/js-memory-management</id><content type="html" xml:base="http://localhost:4000/javascript/2024/01/02/js-memory-management.html"><![CDATA[<h2 id="메모리란">메모리란</h2>
 
 <p>우선 간단하게 메모리 관리에 대한 이야기를 해보자.</p>
 
@@ -869,73 +911,4 @@ firestore-export <span class="nt">--accountCredentials</span> path/to/credential
 
 <p>얇고 길게 코딩하자</p>
 
-<p>화이팅👻</p>]]></content><author><name>071yoon</name></author><category term="retrospect" /><category term="retrospect" /><summary type="html"><![CDATA[1일 1커밋에 대한 개인적인 생각]]></summary></entry><entry><title type="html">오픈소스 컨트리뷰터 찍먹해보기</title><link href="http://localhost:4000/til/2022/12/04/try-opensource-contributor.html" rel="alternate" type="text/html" title="오픈소스 컨트리뷰터 찍먹해보기" /><published>2022-12-04T00:00:00+09:00</published><updated>2022-12-04T00:00:00+09:00</updated><id>http://localhost:4000/til/2022/12/04/try-opensource-contributor</id><content type="html" xml:base="http://localhost:4000/til/2022/12/04/try-opensource-contributor.html"><![CDATA[<h2 id="오픈소스-컨트리뷰터가-되어보자">오픈소스 컨트리뷰터가 되어보자</h2>
-
-<blockquote>
-  <p>항상 오픈소스 컨트리뷰터가 되어보는것이 꿈이였던 나…</p>
-</blockquote>
-
-<h2 id="괜찮은-repository-찾기">괜찮은 Repository 찾기</h2>
-
-<p>깃허브의 망령처럼 돌아다니다 깃허브를 꾸며주는 레포지토리중 하나를 찾게되었다. 기능도 단순하고 이쁜 뱃지를 제공하는 레포였는데 나의 눈에 띈 것은 바로 번역률!</p>
-
-<p><img width="813" alt="image" src="https://user-images.githubusercontent.com/66371206/205490276-b473ef4d-9c13-425c-80aa-4f99ad31a11b.png" /></p>
-
-<p>한국어가 67% 밖에 번역이 되어 있지 않았다. 실제로 그렇게 많은 번역이 필요로 하는 기능은 아니였지만, 최근 업데이트되며 번역해야될 항목이 늘어나 대부분의 언어가 67%에 머물러 있어보였던 것 같다.
-그래서 어떤 부분이 필요한지 확인을 해 보았는데… 두줄만 번역을 해주면 됐다..!</p>
-
-<p>해보자!!</p>
-
-<h2 id="issue--chore-찾아보기">Issue / Chore 찾아보기</h2>
-
-<p>바로 PR을 날리기전에 먼저 Issue 확인을 해봐야 된다. 이번것 같은 경우에는 너무 간단한 번역일이라, 누가 선점했을 리는 없지만 누군가 작업중이라면 민폐일 수 있으니 조심하자.</p>
-
-<p><img width="912" alt="image" src="https://user-images.githubusercontent.com/66371206/205492485-7a45de4a-5416-42d6-886e-61b940075b80.png" /></p>
-
-<blockquote>
-  <p>확인을 해 보니 다행스럽게도 아무도 작업중이지 않았다!</p>
-</blockquote>
-
-<p>README에 친절하게 어떻게 PR을 날리는지, template은 어떤 방식인지 친절하게 적혀 있으므로 천천히 따라가보도록 하자.</p>
-
-<p><img width="947" alt="image" src="https://user-images.githubusercontent.com/66371206/205492546-590fe143-813e-4c4f-8464-41256dba4b44.png" /></p>
-
-<h2 id="pull-request">Pull Request</h2>
-
-<p>우선 해당하는 repository fork를 해서 복제를 하자.</p>
-
-<p>복제한 repository에서 branch를 하나 파서 내가 원하는 부분 수정을 하고 commit -&gt; push 를 한다.</p>
-
-<blockquote>
-  <p>여기서 commit/branch name에 정해진 convention이 있을 확률이 높으니 잘 확인해보자</p>
-</blockquote>
-
-<p>그리고 github에서 fork 된 repository의 내 branch에서 실제 repository main에 create pull request를 하면 된다.</p>
-
-<h2 id="approve">Approve</h2>
-
-<p>개발자분이 활발하게 개발을 하셔서 그런지 자고 일어났더니 메일이 와있었다.</p>
-
-<p><img width="676" alt="image" src="https://user-images.githubusercontent.com/66371206/205492672-49ef114e-df8b-46f1-aa9c-fa0de148cc99.png" /></p>
-
-<blockquote>
-  <p>approve 떴냐??</p>
-</blockquote>
-
-<p><img width="1294" alt="image" src="https://user-images.githubusercontent.com/66371206/205492700-6a2cdd0f-0bb8-4400-989a-dc159920ad91.png" /></p>
-
-<p>정말 별것도 아닌 두줄 번역이지만, 나름 star 수가 2,000개가 넘는 레포지토리에 내 코드가 들어갔다니 감격이다…</p>
-
-<p><img width="833" alt="image" src="https://user-images.githubusercontent.com/66371206/205492743-38523d04-97d1-4f38-9a60-9ff50db96cf7.png" /></p>
-
-<p>그리고 62명의 contributor 중에서 내 이름도 들어가 있다!!</p>
-
-<blockquote>
-  <p><img width="952" alt="image" src="https://user-images.githubusercontent.com/66371206/205492794-bca47d2a-d28b-44fd-8b70-015b59594632.png" /></p>
-
-  <p>뿌듯한 마음에 pin 까지 달아뒀다 ㅎㅎ</p>
-</blockquote>
-
-<p>나도 언젠가는 오픈소스 컨트리뷰터가 되어야지, 오픈소스 프로젝트를 해야지 마음만 먹었는데 이번에 우연한 계기로 정말 간단한 활동을 해보았는데 너무 재미있었다.</p>
-
-<p>비록 별것도 아닌 간단한 번역이였지만, 이번을 계기로 더욱더 활발하게 오픈소스 chore 헌터가 되어야겠다.</p>]]></content><author><name>071yoon</name></author><category term="TIL" /><category term="TIL" /><summary type="html"><![CDATA[오픈소스 컨트리뷰터가 되어보자]]></summary></entry></feed>
+<p>화이팅👻</p>]]></content><author><name>071yoon</name></author><category term="retrospect" /><category term="retrospect" /><summary type="html"><![CDATA[1일 1커밋에 대한 개인적인 생각]]></summary></entry></feed>
