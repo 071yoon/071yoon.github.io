@@ -7,22 +7,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>2022년 회고 | YeongGi’s tech blog</title>
+<title>SQL 함수 알아보기 | YeongGi’s tech blog</title>
 <meta name="generator" content="Jekyll v4.2.2">
-<meta property="og:title" content="2022년 회고">
+<meta property="og:title" content="SQL 함수 알아보기">
 <meta name="author" content="071yoon">
 <meta property="og:locale" content="en_US">
-<meta name="description" content="1분기">
-<meta property="og:description" content="1분기">
-<link rel="canonical" href="http://localhost:4000/retrospect/2022/12/31/end-of-2022.html">
-<meta property="og:url" content="http://localhost:4000/retrospect/2022/12/31/end-of-2022.html">
+<meta name="description" content="SQL 함수 알아보기">
+<meta property="og:description" content="SQL 함수 알아보기">
+<link rel="canonical" href="http://localhost:4000/sql/2024/03/02/sql-functions.html">
+<meta property="og:url" content="http://localhost:4000/sql/2024/03/02/sql-functions.html">
 <meta property="og:site_name" content="YeongGi’s tech blog">
 <meta property="og:type" content="article">
-<meta property="article:published_time" content="2022-12-31T00:00:00+09:00">
+<meta property="article:published_time" content="2024-03-02T00:00:00+09:00">
 <meta name="twitter:card" content="summary">
-<meta property="twitter:title" content="2022년 회고">
+<meta property="twitter:title" content="SQL 함수 알아보기">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"071yoon"},"dateModified":"2022-12-31T00:00:00+09:00","datePublished":"2022-12-31T00:00:00+09:00","description":"1분기","headline":"2022년 회고","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/retrospect/2022/12/31/end-of-2022.html"},"url":"http://localhost:4000/retrospect/2022/12/31/end-of-2022.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"071yoon"},"dateModified":"2024-03-02T00:00:00+09:00","datePublished":"2024-03-02T00:00:00+09:00","description":"SQL 함수 알아보기","headline":"SQL 함수 알아보기","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/sql/2024/03/02/sql-functions.html"},"url":"http://localhost:4000/sql/2024/03/02/sql-functions.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="shortcut icon" href="https://user-images.githubusercontent.com/66371206/209624313-0cebd9f7-df12-4397-8e99-8f7b12eede16.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -764,11 +764,11 @@ function googleTranslateElementInit() {
 
 
 <header class="post-header">
-  <h1 class="post-title p-name" itemprop="name headline">2022년 회고</h1>
-  <h2 class="post-subtitle">2022년을 마치며</h2>
+  <h1 class="post-title p-name" itemprop="name headline">SQL 함수 알아보기</h1>
+  <h2 class="post-subtitle">잘 알지 못했던 SQL 함수들 공부해보기</h2>
 
   <p class="post-meta">
-    <time class="dt-published" datetime="2022-12-31T00:00:00+09:00" itemprop="datePublished"><i class="fa fa-calendar"></i> Dec 31, 2022
+    <time class="dt-published" datetime="2024-03-02T00:00:00+09:00" itemprop="datePublished"><i class="fa fa-calendar"></i> Mar 02, 2024
     </time>
 
     
@@ -805,114 +805,96 @@ function googleTranslateElementInit() {
 
 
 
-    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 4 mins</span>
+    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 1 min</span>
   </p>
-<div class="post-tags"><a class="post-tag" href="/tags.html#retrospect">#retrospect</a></div></header>
+<div class="post-tags"><a class="post-tag" href="/tags.html#sql">#sql</a></div></header>
 <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
     <div class="post-content e-content" itemprop="articleBody">
 
-      <h2 id="1분기">1분기</h2>
+      <h2 id="sql-함수-알아보기">SQL 함수 알아보기</h2>
 
-<p>2022년 1분기에는 딱히 많은 일들이 없었다. 소프트웨어 마에스트로에 합격하고싶어 계속 코딩테스트준비와 면접 준비를 했었다. 하지만, 이미 벌려놓은 일들이 꽤나 있어 여러가지를 병행하며 준비를 했었다.</p>
+<p>평소에 SELECT, INSERT, ALTER, CREATE 등 일반적인 DML, DDL문법만 사용하였는데 일을 하면서 다양한 문법들을 마주하고 공부하고 필요함이 느껴져 조금이나마 정리를 해보자고 한다</p>
 
-<p>우선, 42서울에서 블랙홀에 빠지지 않기위해 꾸준히 과제를 하며, 42서울 사람들과 웹 게임을 만드는 프로젝트를 하기로해서 그것도 병행해야 했다. 결국, 주로 낮에 프로젝트를 하고, 오후 11시에 매일 알고리즘 스터디를 하며 준비를 하고, 코딩테스트를 2차까지 붙고 난 후 면접 스터디를 하며 준비했다.</p>
-
-<blockquote>
-  <p>심지어 3월에는 학교까지 다녔어야 돼서 정말 바빴던것 같다.</p>
-</blockquote>
-
-<p>부트캠프치고 정말 준비 기간이 길었는데, 서류합격을 2월 24일에 받고, 최종합격 문자가 4월 8일에 나왔으니 전전긍긍하며 기다렸던 것 같다.</p>
-
-<p><img src="https://user-images.githubusercontent.com/66371206/210166063-57da40db-da8e-44c5-bd73-53560f57f218.png" alt="image"></p>
-
-<h2 id="2분기">2분기</h2>
-
-<p>2분기에는 학교를 다녔어야돼서, 많은 일을 하지 못했던것 같다. 나름 학교 강의에 대한 욕심이 있어, 수업도 열심히 듣고 과제도 열심히 하느라 바빴었다. 졸업프로젝트 HCI 과목에서 어플 만드는 강의도 있었기에, 과제가 밀렸고, 소프트웨어 마에스트로 과정에서 미니프로젝트를 하며 어플을 또 만들라고 해서 정말 바쁘게 시간이 지나갔다.</p>
+<h2 id="coalesce">COALESCE</h2>
 
 <blockquote>
-  <p>심지어 팀원들이 제대로 따라주지 않아 정신적으로 조금 힘들었다</p>
+  <p>NULl이 아닌 첫번째 값을 반환하는 함수</p>
 </blockquote>
 
-<p>그렇게 바쁘게 5월까지 흘러가고 소프트웨어 마에스트로에서 FIRE 팀원들을 만나게 되었는데, 이 때부터 조금 편했던 것 같다. 나와 맞는 팀원들과 나와 맞는 프로젝트를 진행하며 정말 즐겁게 프로젝트를 진행했다.</p>
+<p>행을 보고 COALESCE(col1, col2, col3) 이라면, 차례대로 col1, col2, col3 값을 보며 제일 먼저 null이 아닌 값을 반환하게 된다.</p>
+
+<p>마지막 값에 static한 값을 넣어두면, NVL과 비슷한 형태로 사용할 수 있다.</p>
+
+<h2 id="rollup">ROLLUP</h2>
 
 <blockquote>
-  <p>열심히 기획하던 5월의 어느날
-<img width="624" alt="image" src="https://user-images.githubusercontent.com/66371206/210167385-0754a2f6-ff7d-4898-9769-c3e4e0683d06.png"></p>
+  <p>합계를 쉽게 사용하기 위해 사용</p>
 </blockquote>
+
+<ul>
+  <li>GROUP BY ROLLUP</li>
+  <li>GROUP BY GROUP_COLUMN WITH ROLLUP</li>
+</ul>
+
+<p>두가지 형태로 사용 가능하며, <code class="language-plaintext highlighter-rouge">GROUP BY</code> 를 하여 합계에 대한 새로운 row를 생성해준다.</p>
+
+<h2 id="decode">DECODE</h2>
+
+<p>ORACLE에서 사용하는 CASE WHEN 문법</p>
+
+<p><code class="language-plaintext highlighter-rouge">DECODE(GENDER, 'M', 'Male', 'F', 'Female', 'others')</code></p>
+
+<p>라 하면, GENDER가 ‘M’ 이면 ‘Male’, ‘F’면 ‘Female’, 둘 다 아니면 ‘others’인 문법</p>
+
+<h2 id="character--varchar">CHARACTER / VARCHAR</h2>
+
+<p>CHAR인 경우 크기가 고정되며, 만약 부족하다면 우측에 공백을 넣어 사이즈를 무조건 맞춘다.</p>
+
+<p>VARCHAR인 경우, 가변 길이기에 공백을 넣는 방식이 아님.</p>
+
+<h2 id="connect-by">CONNECT BY</h2>
 
 <blockquote>
-  <p>그리고 42서울은 자진퇴소를…ㅠㅠ</p>
+  <p>CONNECT BY, LEVEL, PRIOR 등 다양한 문법 세트
+https://vaert.tistory.com/166 이사람의 블로그를 보면 쉽게 이해가 가능하다</p>
 </blockquote>
 
-<p>그리고 병행한 학교역시 나름 열심히 다닌 덕인지 꽤나 괜찮은 성적으로 7학기를 마무리 지을 수 있었다.</p>
+<p>헷갈리는걸 정리 한번만 하자면 PRIOR 순서.</p>
 
-<h2 id="3분기">3분기</h2>
+<p><code class="language-plaintext highlighter-rouge">connect by 직속상사 = prior 직원</code> 이라면 <code class="language-plaintext highlighter-rouge">방금 전 행의 직원 값이 현재 행의 직속상사 값인 모든 행을 찾아라</code>
+즉 이 순서라면 직속상사가 상위 계층(LEVEL 1) 으로 뻗어져가는 노드의 형태가 되고,</p>
 
-<p>이 때는 나름 고민이 많았다. 우선 4-2를 다니며 바로 졸업을 할지 아니면 휴학을 하고 졸업을 늦출지에 고민을 많이 했다. 하지만, FIRE 팀원을 모집할 때 휴학을 하고 프로젝트에 집중하기로 했기에, 휴학을 하고 완전히 프로젝트에 몰두하게 되었다.</p>
+<p><code class="language-plaintext highlighter-rouge">connect by prior 직속상사 = 직원</code> 이라면 <code class="language-plaintext highlighter-rouge">방금 전 행의 직속상사 값이 현재 행의 직원 값인 모든 행을 찾아라</code>
+이 순서라면 제일 아래 직급이 상위의 계층이 되는 형태로 정렬이 된다.</p>
 
-<p>우리팀은 정말 7, 8, 9월동안 미친듯이 개발하며 시간을 보냈다. 어쩌다 보니 올빼미 타입이 3명인 팀이였기에, 오후 1시에 다같이 센터에서 모여서 밤 11시에 각자 집에 가는 것이 일상이 되었다.</p>
+<h2 id="rank">RANK</h2>
+
+<p>RANK는 <code class="language-plaintext highlighter-rouge">RANK() OVER()</code> 형태로 사용되며, 순위를 지정하는데 사용된다.
+RANK 자체가 순위를 지정하기에, OVER 구문에 ORDER BY 로 순서를 지정해주어야 한다.</p>
 
 <blockquote>
-  <p>그런데 새벽 5시까지 팀원들이 칼답을 했다..!</p>
+  <p>ex. RANK() OVER(ORDER BY SOMETHING DESC) as rank</p>
 </blockquote>
 
-<p><a href="https://071yoon.github.io/til/2022/11/01/how-we-work.html">FIRE는 이렇게 협업했다 보러가기</a></p>
+<p>일반 RANK는 중복값이 들어갔을 경우, (1, 1, 3, 4, 5..) 이런 방향이라면 DENSE_RANK는 (1, 1, 2, 3, 4) 이렇게 중복과 순위의 측정 방식에 따라 다르다.</p>
 
-<p>한가지 아쉬웠던 점은, 소프트웨어 마에스트로를 지원할 때만 해도 그냥 개발만 미친듯이 하면 되는지 알았는데, 과정자체가 창업이 주된 목표이기에, 창업을 위한 기획, 마케팅, 발표, 서류작성 등등을 배우게 되었다. 그리고 멘토링은 최소 주 1번을 했어야 됐고 (우리팀은 주 3번씩 진행했다..) 지원금을 사용할 때 매번 서류를 작성하거나 소모임을 진행할 때 보고서를 제출 등 개발 외적으로 해야될 일들이 너무 많았다. 물론 멘토링 등은 좋은점이 참 많았지만, 개발에만 집중하고 싶었던 나에게 조금 아쉬웠던 점이였다.</p>
-
-<p>그럼에도 불구하고, 우리팀은 일을 정말 많이 하여 누구보다 빠르게 MVP가 나와서, 이벤트도 진행하고 프로젝트의 완성도를 높여갈 수 있었다.</p>
-
-<blockquote>
-  <p>7월의 회의록 리스트
-<img width="264" alt="image" src="https://user-images.githubusercontent.com/66371206/210166486-9f4ca936-8d3d-45a3-84f6-c8c734e65739.png"></p>
-</blockquote>
-
-<h2 id="4분기">4분기</h2>
-
-<p>멘토링을 진행하며 멘토님께서 디자인 패턴 스터디를 제안하셔서 스터디를 진행하게 되었는데, 정말 내 개발 안목을 높여주는 계기가 되었던 것 같다. 주에 1번 2~3시간씩 진행을 하며 3개월간 하여 11월에 끝나게 되었는데, 멘토님께서 말해주시는 이야기의 절반도 제대로 이해하지 못했지만, 내가 어떠한 점이 부족하고 공부해야되는지, 그리고 더 나아가 좋은 프로그래밍이란 어떠한 것인지에 대한 생각을 할 수 있는 좋은 기회였다. 아쉬웠던 부분은, 아무래도 초반에는 이해도 잘 못하고 재미도 없었기에 제대로 준비를 하지 않았다는 점이다. 정말 내가 발표할 부분만 정리하고 공부를 대충 했었는데, 지금 돌아간다면 이 기회를 제댈 잡아 디자인 패턴을 제대로 학습했을 것 같다.</p>
-
-<p>그리고 이 때는 프로젝트도 진행을 하였지만, 슬슬 취업준비도 같이 했었다. 사실 실제로 취업을 하려고 했던것은 아니고, 멘토님께서 면접을 보는것 까지도 경험이라고 하셔서 경험을 쌓기 위해 지원을 시작했다.</p>
-
-<p><img width="677" alt="image" src="https://user-images.githubusercontent.com/66371206/210167280-19df9a7c-de2f-460f-bfc5-f76196d1da67.png"></p>
-
-<p>처음에는 이력서도 대충 쓰고, 정말 아무 생각없이 들어본 회사라면 신입/경력 할 것 없이 전부 지원을 해서 불합격을 정말 많이 받았다.</p>
-
-<blockquote>
-  <p>소프트웨어 마에스트로 과정 중이여서 가지는 못했지만, 정말 좋게 봐서 나름 중견기업에 합격도 했었다!</p>
-</blockquote>
-
-<p><img width="631" alt="image" src="https://user-images.githubusercontent.com/66371206/210167292-abb1d261-9bd5-40c3-bc1f-7900133f230e.png"></p>
-
-<p>그리고 12월에는 나름 취업 전략을 짜서 이력서도 수정을 하고, 인턴과 신입을 적극적으로 지원했더니 합격 소식을 많이 받을 수 있었다. 그 중에 내 워너비 회사중에 하나에 합격을 하게 되어 내년 1월부터 입사하게 되었다.</p>
-
-<blockquote>
-  <p>정규직은 아니지만.. 그래도 어차피 복학을 해야되기에 6개월동안 다녀보기로 했다!!</p>
-</blockquote>
-
-<p>많이 한것 없이 빠르게 지나갔다고 생각을 했지만, 글로 적어보니 생각보다 많은 일들이 있었고 나름대로 성장도 많이 한 것 같아 뿌듯하다. 소프트웨어 마에스트로 과정도 무사히 마칠 수 있었고, 좋은 회사에서 일해볼 기회도 생겼다.</p>
-
-<p>내년에는 졸업도 하고, 더 좋은곳으로 취업까지 할 수 있으면 좋겠다~!</p>
-
-<blockquote>
-  <p>모도코비드 화이팅!!
-<img width="464" alt="image" src="https://user-images.githubusercontent.com/66371206/210167407-a3310bf3-27e0-4236-afc0-48e10f88cce5.png"></p>
-</blockquote>
+<p>공부하다 새로운것이 생기면 더 정리할 것</p>
 
 
     </div>
 
 </article>
 <div class="post-nav">
-<a class="previous" href="/retrospect/2022/12/28/after-studying-network.html" title="네트워크 공부를 마치며">네트워크 공부를 마치며</a><a class="next" href="/book/2023/01/15/rule-of-mind.html" title="마음의 법칙">마음의 법칙</a>
+<a class="previous" href="/book/2024/01/28/essence-of-oop.html" title="객체지향의 사실과 오해">객체지향의 사실과 오해</a><span></span>
 </div>
 <div class="post-related">
       <div>Related Articles</div>
       <ul>
-        <li><a class="post-link" href="/next.js/2022/04/24/why-next-js.html" title="마음의 법칙">NEXT</a></li>
-<li><a class="post-link" href="/book/2024/01/28/essence-of-oop.html" title="마음의 법칙">객체지향의 사실과 오해</a></li>
-<li><a class="post-link" href="/retrospect/2023/12/27/2023-retrospect.html" title="마음의 법칙">2023년 회고</a></li>
-<li><a class="post-link" href="/deep-thought/2022/04/22/grow-together.html" title="마음의 법칙">함께 자라기</a></li>
+        <li><a class="post-link" href="/next.js/2022/05/04/next-optimization.html" title="">NEXT-Optimization</a></li>
+<li><a class="post-link" href="/javascript/2022/01/22/javascript-coding-2.html" title="">바닐라JS로 앱 만들기 2</a></li>
+<li><a class="post-link" href="/react/2022/02/02/make-react-app-1.html" title="">리액트JS로 앱 만들기 1</a></li>
+<li><a class="post-link" href="/next.js/2022/04/28/next-layouts.html" title="">NEXT-Layouts</a></li>
 </ul>
     </div>
 <div class="post-comments">
