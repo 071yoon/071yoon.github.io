@@ -1,4 +1,73 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-03-02T17:22:28+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi&apos;s tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">SQL 함수 알아보기</title><link href="http://localhost:4000/sql/2024/03/02/sql-functions.html" rel="alternate" type="text/html" title="SQL 함수 알아보기" /><published>2024-03-02T00:00:00+09:00</published><updated>2024-03-02T00:00:00+09:00</updated><id>http://localhost:4000/sql/2024/03/02/sql-functions</id><content type="html" xml:base="http://localhost:4000/sql/2024/03/02/sql-functions.html"><![CDATA[<h2 id="sql-함수-알아보기">SQL 함수 알아보기</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-03-28T19:46:09+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi's tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">Firebase JWT 에러</title><link href="http://localhost:4000/web/2024/03/28/firebase-jwt.html" rel="alternate" type="text/html" title="Firebase JWT 에러" /><published>2024-03-28T00:00:00+09:00</published><updated>2024-03-28T00:00:00+09:00</updated><id>http://localhost:4000/web/2024/03/28/firebase-jwt</id><content type="html" xml:base="http://localhost:4000/web/2024/03/28/firebase-jwt.html"><![CDATA[<h2 id="문제-확인">문제 확인</h2>
+
+<p>최근 운영하고 있던 서버 중 하나에 정말 큰 문제가 생겼다. 갑자기 모든 화면이 보이지 않는다는것.</p>
+
+<p>현재 DB를 Firebase를 쓰고 있었는데, 혹시나 firebase DB를 너무 많이 써서 초기화를 시켜버리거나 하지는 않았을까? 백업을 안한지 오래됐는데 혹시 파일이 날라가면 어떡하지 두근두근 거리며 확인을 했더니 데이터는 다행히 살아있었고, 즉 firebase 문제는 아니였다.</p>
+
+<p>모든 데이터가 보이지 않고, 작성/수정/삭제 등 모든 기능이 정지되었다. 흠,, 그렇게 되면 사실 데이터를 가져오는 곳에서 문제가 생겼다는 것이고 높은 확률로 fetch 부분이였기에 그부분을 자세히 살펴보았다. 그러던 중 이러한 코드를 발견</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">auth</span> <span class="o">=</span> <span class="p">(</span><span class="nx">token</span><span class="p">:</span> <span class="kr">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">decoded</span> <span class="o">=</span> <span class="nx">jwtDecode</span><span class="p">(</span><span class="nx">token</span><span class="p">,</span> <span class="p">{</span> <span class="na">header</span><span class="p">:</span> <span class="kc">true</span> <span class="p">});</span>
+  <span class="k">if</span> <span class="p">(</span>
+    <span class="nx">decoded</span><span class="p">.</span><span class="nx">kid</span> <span class="o">===</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NEXT_PUBLIC_FIREBASE_CERT_ONE</span> <span class="o">||</span>
+    <span class="nx">decoded</span><span class="p">.</span><span class="nx">kid</span> <span class="o">===</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NEXT_PUBLIC_FIREBASE_CERT_TWO</span>
+  <span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>꽤나 최근에 작성된 코드였는데, jwt 인증 토큰을 가지고 kid 를 비교해서 올바른 token인지 확인하는 과정이였다.</p>
+
+<p>해당 코드를 작성하게된 계기는 웹사이트 인증수단이 필요했고, 모든 get/update/delete 등 firebase api를 활용할 때 인가를 주기 위해서였다.</p>
+
+<p>그리고 firebase website 내에서도 <code class="language-plaintext highlighter-rouge">마지막으로, 토큰의 kid 클레임에 해당하는 비공개 키로 ID 토큰이 서명되었는지 확인합니다.</code> 이렇게 작성이 되어 있어, 서명 확인을 조금 단순하게 kid key 값을 가져와 env로 설정하여 진행했었는데, 바로 이 부분에서 문제가 생겼다.</p>
+
+<h2 id="해결">해결</h2>
+
+<p>앞 코드의 <code class="language-plaintext highlighter-rouge">NEXT_PUBLIC_FIREBASE_CERT_ONE/TWO</code> 같은 경우는 <a href="https://www.googleapis.com/robot/v1/metadata/x509/securetoken@system.gserviceaccount.com">google api 사이트</a>에서 직접 가져온 kid 코드였다.</p>
+
+<p>작성 당시에는 문제가 없을거라 생각했는데, google api가 똑똑한것인지 kid 코드를 주기적으로 변경하여 생긴 문제였다. 임시방편으로 웹사이트에 들어가 새로운 kid로 env를 수정하니 생긴 오류는 막을 수 있었다.</p>
+
+<p>다음은 주기적으로 같은 문제가 재발하지 않기위한 코드 수정이 남았다.</p>
+
+<p>수정사항은 간단하다. google api 서버에 접속하여 kid를 실시간으로 가져온 후 jwt decode를 한 kid와 매칭시켜본다. 여기서 추가되는 부분은 <code class="language-plaintext highlighter-rouge">매번 google api 서버에 요청하기보다 한번 가져온 후 재사용할 수 있었으면 좋겠다</code> 였다.</p>
+
+<p>나 혼자 작성해도 크게 문제될 것 없는 쉬운 문제이지만 reference는 언제나 좋으니 github을 뒤적거리다 좋은 소스를 발견했다.
+바로 이름부터 신뢰가 가는 <a href="https://github.com/kriasoft/web-auth-library/blob/42a722e4cedc09ea2a86f92fe5aed73b19e5de94/google/credentials.ts#L43">web-auth-library</a>.</p>
+
+<p>대충 보아하니, auth 인증이 된 유저 instance를 만들어 사용하는 방법인것 같은데, 내 서비스와 살짝 상황이 달랐다. 그래도, 싱글톤 instance로 관리하면 재요청 하지 않고 계속 쓰일 수 있을 것 같아 FirebaseCert Class를 만들어 관리하기로 했다.</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">private</span> <span class="k">async</span> <span class="nx">getCertificateFromServer</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="nx">CLIENT_AUTH_URL</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">setCert</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>대충 이런식으로 initialize를 1회 해주는 class를 만들어</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">firebaseCert</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FirebaseCert</span><span class="p">();</span>
+
+<span class="kd">const</span> <span class="nx">auth</span> <span class="o">=</span> <span class="p">(</span><span class="nx">token</span><span class="p">:</span> <span class="kr">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">decoded</span> <span class="o">=</span> <span class="nx">jwtDecode</span><span class="p">(</span><span class="nx">token</span><span class="p">,</span> <span class="p">{</span> <span class="na">header</span><span class="p">:</span> <span class="kc">true</span> <span class="p">});</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">firebaseCert</span><span class="p">.</span><span class="nx">getCert</span><span class="p">()</span> <span class="o">||</span> <span class="o">!</span><span class="nx">decoded</span><span class="p">.</span><span class="nx">kid</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="kd">const</span> <span class="nx">arr</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">firebaseCert</span><span class="p">.</span><span class="nx">getCert</span><span class="p">());</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">decoded</span><span class="p">.</span><span class="nx">kid</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>이렇게 사용하도록 수정했다.</p>
+
+<p>테스트해보니 fetch도 최초 1회만 하고, 페이지 전환을 하여도 client 세션이 만료되거나 새로고침 전에는 재 요청 하지 않음을 확인할 수 있었다.</p>
+
+<p>오늘의 문제 해결 끝</p>]]></content><author><name>071yoon</name></author><category term="web" /><category term="web" /><summary type="html"><![CDATA[문제 확인]]></summary></entry><entry><title type="html">SQL 함수 알아보기</title><link href="http://localhost:4000/sql/2024/03/02/sql-functions.html" rel="alternate" type="text/html" title="SQL 함수 알아보기" /><published>2024-03-02T00:00:00+09:00</published><updated>2024-03-02T00:00:00+09:00</updated><id>http://localhost:4000/sql/2024/03/02/sql-functions</id><content type="html" xml:base="http://localhost:4000/sql/2024/03/02/sql-functions.html"><![CDATA[<h2 id="sql-함수-알아보기">SQL 함수 알아보기</h2>
 
 <p>평소에 SELECT, INSERT, ALTER, CREATE 등 일반적인 DML, DDL문법만 사용하였는데 일을 하면서 다양한 문법들을 마주하고 공부하고 필요함이 느껴져 조금이나마 정리를 해보자고 한다</p>
 
@@ -825,61 +894,4 @@ firestore-export <span class="nt">--accountCredentials</span> path/to/credential
 <blockquote>
   <p>모도코비드 화이팅!!
 <img width="464" alt="image" src="https://user-images.githubusercontent.com/66371206/210167407-a3310bf3-27e0-4236-afc0-48e10f88cce5.png" /></p>
-</blockquote>]]></content><author><name>071yoon</name></author><category term="retrospect" /><category term="retrospect" /><summary type="html"><![CDATA[1분기]]></summary></entry><entry><title type="html">네트워크 공부를 마치며</title><link href="http://localhost:4000/retrospect/2022/12/28/after-studying-network.html" rel="alternate" type="text/html" title="네트워크 공부를 마치며" /><published>2022-12-28T00:00:00+09:00</published><updated>2022-12-28T00:00:00+09:00</updated><id>http://localhost:4000/retrospect/2022/12/28/after-studying-network</id><content type="html" xml:base="http://localhost:4000/retrospect/2022/12/28/after-studying-network.html"><![CDATA[<h2 id="네트워크-공부를-시작하게-된-계기">네트워크 공부를 시작하게 된 계기</h2>
-
-<p>네트워크 공부를 시작한 계기는 생각보다 단순했다. 소프트웨어 마에스트로 과정에서, 우리는 화면공유 기반의 화상채팅 웹 어플리케이션을 제작하였는데, 아무래도 RTC 기반의 작업을 하다보니 네트워크가 필수적이였다. 문제는 내가 네트워크에 대한 지식이 너무 부족하여 항상 아쉬움을 느끼게 되었고, 네트워크 공부를 시작하게 되었다.</p>
-
-<p>사실 9월달부터 시작하려고 크로우즈 교수님이 집필하신 네트워크 하향식 접근 책을 구매했지만, 너무 바빠 볼 시간이 없었고 11월 중순부터 제대로 시작하게 되었다.</p>
-
-<p><img width="546" alt="image" src="https://user-images.githubusercontent.com/66371206/209802965-258902ac-f3d2-457d-a91c-a9c0944531ac.png" /></p>
-
-<blockquote>
-  <p>11월에 Network 공부의 시작을 알리는 Commit</p>
-</blockquote>
-
-<h2 id="네트워크-스터디">네트워크 스터디</h2>
-
-<p>원래 혼자 천천히 책을 읽으며 정리를 해나가는 방식으로 네트워크 공부를 하려 했지만, 프로젝트를 진행하다 보니 책에 나오는 정보들이 전부가 아님을 깨달았다.</p>
-
-<p>프로젝트를 진행하고 면접을 보다보니 , TLS, Session, HTTP, DNS, JWT 등이 언급 되었지만, 아무래도 책은 OSI 7 Layer 관점에서 매우 세세하게 접근을 하기에 책만 읽고 네트워크 공부를 마쳤다고 하기에는 아쉬움이 들었다. 그래서 네트워크 스터디를 진행하며 네트워크 관련 지식을 전체적으로 쌓는것으로 방향성을 다시 잡게 되었다.</p>
-
-<p>구체적으로는, 매일 오후 23시에 디스코드에서 모여 각자 맡은 네트워크 파트에 대한 공부를 진행하고, 마치게 되면 테크톡처럼 발표를 하는 방식으로 진행을 하였다. 첫 일주일은 꽤나 진행이 잘 되었지만, 아무래도 진행했던 시점인 11월 중순에 소프트웨어 마에스트로 최종 발표및 나의 면접과 채용프로세스 등 일정이 겹쳐 제대로 하지 못했다. 스터디 주최자로서 제대로 방향성을 잡지 못해 아쉬움이 남는다.</p>
-
-<p>그렇게 다들 스터디에대한 의욕도가 떨어지고, 자연스럽게 스터디는 포기하게 되었다. 그래서 나라도 공부를 해야겠다 싶어 혼자서 진행을 하게 되었다.</p>
-
-<h2 id="네트워크-공부">네트워크 공부</h2>
-
-<p>나의 스터디 목표는 네트워크 관련 어떠한 인터뷰 질문을 받아도 정말 잘 대답할 수 있을정도로 말을 할 수 있을만큼 지식을 쌓는 것이였다. 그렇게 하기 위해서는 단순히 인터뷰 질문을 달달 외우기보다는, 정말 관련 이론에 대하여 공식 문서를 읽어보며 학습을 하는 방향으로 공부를 하였다.</p>
-
-<p>예를들어, DNS를 학습하자고 마음 먹었다면, 단순히 DNS query의 순서를 학습하기 보다는, 실제로 우리가 AWS에서 애먹었던 A Record, CName 등도 같이 정리를 하고, 현재 우리가 사용하는 DNS에서는 GSLB 등으로 load balancing을 한다는 것 까지 정리를 해보았다.</p>
-
-<p>그리고 나의 학습에는 특이한 점이 하나 존재한다. 다이어그램을 왠만하면 내가 그린다는 것이다. 다이어그램을 그리면서 학습을 하다보면, 내가 학습한 내용을 정리할 수 있고, 또한 내가 학습한 내용을 다른 사람에게 손쉽게 설명할 수 있기 때문이다.</p>
-
-<p><img width="1242" alt="image" src="https://user-images.githubusercontent.com/66371206/209804324-7432e5ec-9f81-4f90-9154-864a24984e37.png" /></p>
-
-<p><img width="1094" alt="image" src="https://user-images.githubusercontent.com/66371206/209804358-78ad65d1-1d46-41ed-b623-ff318fb7e803.png" /></p>
-
-<h2 id="네트워크-공부를-하며-느낀점">네트워크 공부를 하며 느낀점</h2>
-
-<p>사실 면접을 보면서 네트워크 관련 질문을 받았을 때 힘들었던 일이 생각보다 꽤 있었다.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>`google.com`을 치면 어떤 일이 일어날까요?
-</code></pre></div></div>
-
-<p>이런 질문을 처음 받았을 때 정말 너무 힘들었었다. 어디서부터 시작을 해야될지도 몰랐었지만, 이제는 정말 자신있게 대답을 할 수 있게 되었다.</p>
-
-<p>아마 <code class="language-plaintext highlighter-rouge">네트워크가 연결되기 위한 구성요소 -&gt; 7 layer -&gt; DHCP -&gt; NAT -&gt; ARP -&gt; DNS -&gt; Routing -&gt; TLS -&gt; GET</code> 이런 방향으로 흘러가지 않을까…</p>
-
-<p>그리고 마침 네트워크 공부를 막 마치고 다음날 면접을 보았을때 이런 질문이 나왔었다.</p>
-
-<blockquote>
-  <p><code class="language-plaintext highlighter-rouge">DHCP에 대한 설명을 해주세요</code> 라는 질문이었다. 학습했던 대로, 4가지의 과정을 설명하고, 어떤 이유에서 broadcast를 해야되는지 등 잘 대답을 했었다.</p>
-</blockquote>
-
-<blockquote>
-  <p><code class="language-plaintext highlighter-rouge">REST api 에 대한 설명을 해주세요</code> 라는 다음 질문에도 <code class="language-plaintext highlighter-rouge">로이 필딩</code>이 주장한 REST부터 시작하여 <code class="language-plaintext highlighter-rouge">microsoft</code>가 주장하는 REST까지 내려오며 잘 대답을 해나갔다.</p>
-</blockquote>
-
-<p>이렇게 대답을 잘 했을 때 정말 내가 공부한게 헛된게 아니였고 뿌듯함을 더 느꼈던 것 같다.</p>
-
-<p>단순히 인터뷰에 더 잘 대답을 할 수 있는 것 뿐만 아니라, 이제 네트워크 자체에 대해서 더 친숙해진 느낌이고, 다음에 RTC관련 문제가 생긴다면 당당하게 packet을 분석하며 어디가 문제인지 파악하고 해결할 수 있을것 만 같은 자신감이 생겼다.</p>]]></content><author><name>071yoon</name></author><category term="retrospect" /><category term="retrospect" /><summary type="html"><![CDATA[네트워크 공부를 시작하게 된 계기]]></summary></entry></feed>
+</blockquote>]]></content><author><name>071yoon</name></author><category term="retrospect" /><category term="retrospect" /><summary type="html"><![CDATA[1분기]]></summary></entry></feed>

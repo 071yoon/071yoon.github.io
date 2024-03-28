@@ -7,22 +7,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>드랍다운 애니메이션 제작 | YeongGi’s tech blog</title>
+<title>Firebase JWT 에러 | YeongGi’s tech blog</title>
 <meta name="generator" content="Jekyll v4.2.2">
-<meta property="og:title" content="드랍다운 애니메이션 제작">
+<meta property="og:title" content="Firebase JWT 에러">
 <meta name="author" content="071yoon">
 <meta property="og:locale" content="en_US">
-<meta name="description" content="This is YeongGi’s tech blog. I post IT related items.">
-<meta property="og:description" content="This is YeongGi’s tech blog. I post IT related items.">
-<link rel="canonical" href="http://localhost:4000/modoco/2022/09/05/dropdown-animation.html">
-<meta property="og:url" content="http://localhost:4000/modoco/2022/09/05/dropdown-animation.html">
+<meta name="description" content="문제 확인">
+<meta property="og:description" content="문제 확인">
+<link rel="canonical" href="http://localhost:4000/web/2024/03/28/firebase-jwt.html">
+<meta property="og:url" content="http://localhost:4000/web/2024/03/28/firebase-jwt.html">
 <meta property="og:site_name" content="YeongGi’s tech blog">
 <meta property="og:type" content="article">
-<meta property="article:published_time" content="2022-09-05T00:00:00+09:00">
+<meta property="article:published_time" content="2024-03-28T00:00:00+09:00">
 <meta name="twitter:card" content="summary">
-<meta property="twitter:title" content="드랍다운 애니메이션 제작">
+<meta property="twitter:title" content="Firebase JWT 에러">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"071yoon"},"dateModified":"2022-09-05T00:00:00+09:00","datePublished":"2022-09-05T00:00:00+09:00","description":"This is YeongGi’s tech blog. I post IT related items.","headline":"드랍다운 애니메이션 제작","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/modoco/2022/09/05/dropdown-animation.html"},"url":"http://localhost:4000/modoco/2022/09/05/dropdown-animation.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"071yoon"},"dateModified":"2024-03-28T00:00:00+09:00","datePublished":"2024-03-28T00:00:00+09:00","description":"문제 확인","headline":"Firebase JWT 에러","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/web/2024/03/28/firebase-jwt.html"},"url":"http://localhost:4000/web/2024/03/28/firebase-jwt.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="shortcut icon" href="https://user-images.githubusercontent.com/66371206/209624313-0cebd9f7-df12-4397-8e99-8f7b12eede16.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -764,11 +764,11 @@ function googleTranslateElementInit() {
 
 
 <header class="post-header">
-  <h1 class="post-title p-name" itemprop="name headline">드랍다운 애니메이션 제작</h1>
-  <h2 class="post-subtitle">커스텀 드랍다운 애니메이션을 만들어보자</h2>
+  <h1 class="post-title p-name" itemprop="name headline">Firebase JWT 에러</h1>
+  <h2 class="post-subtitle">Firebase JWT를 활용하여 생겼던 에러 수정</h2>
 
   <p class="post-meta">
-    <time class="dt-published" datetime="2022-09-05T00:00:00+09:00" itemprop="datePublished"><i class="fa fa-calendar"></i> Sep 05, 2022
+    <time class="dt-published" datetime="2024-03-28T00:00:00+09:00" itemprop="datePublished"><i class="fa fa-calendar"></i> Mar 28, 2024
     </time>
 
     
@@ -805,192 +805,98 @@ function googleTranslateElementInit() {
 
 
 
-    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 5 mins</span>
+    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 3 mins</span>
   </p>
-<div class="post-tags">
-<a class="post-tag" href="/tags.html#css">#css</a><a class="post-tag" href="/tags.html#javascript">#javascript</a>
-</div></header>
+<div class="post-tags"><a class="post-tag" href="/tags.html#web">#web</a></div></header>
 <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
     <div class="post-content e-content" itemprop="articleBody">
 
-      <p><img src="https://user-images.githubusercontent.com/66371206/188813661-d31a95d8-8a3d-4916-a82e-8a924d5010f2.gif" alt="ezgif-4-8e32a6168e"></p>
+      <h2 id="문제-확인">문제 확인</h2>
 
-<h2 id="why">Why?</h2>
+<p>최근 운영하고 있던 서버 중 하나에 정말 큰 문제가 생겼다. 갑자기 모든 화면이 보이지 않는다는것.</p>
 
-<p>나만의 드랍다운을 만들어보자.</p>
+<p>현재 DB를 Firebase를 쓰고 있었는데, 혹시나 firebase DB를 너무 많이 써서 초기화를 시켜버리거나 하지는 않았을까? 백업을 안한지 오래됐는데 혹시 파일이 날라가면 어떡하지 두근두근 거리며 확인을 했더니 데이터는 다행히 살아있었고, 즉 firebase 문제는 아니였다.</p>
 
-<p>사실 커스텀 드랍다운은 옛날부터 만들고 싶었지만, 시간 투자 대비 사소한 디자인이여서 그냥 기본 custom selector를 주로 사용했었다.
-그러다 이제는 더이상 미룰 수 없기에 커스텀 드랍다운 제작에 나섰다.
-우선 이번 드랍다운의 기능은 다음과 같다.</p>
+<p>모든 데이터가 보이지 않고, 작성/수정/삭제 등 모든 기능이 정지되었다. 흠,, 그렇게 되면 사실 데이터를 가져오는 곳에서 문제가 생겼다는 것이고 높은 확률로 fetch 부분이였기에 그부분을 자세히 살펴보았다. 그러던 중 이러한 코드를 발견</p>
 
-<ol>
-  <li>드랍다운 메뉴를 클릭하면, 드랍다운 메뉴(현재 내가 선택 가능한 입출력 디바이스)가 나타난다.</li>
-  <li>드랍다운 메뉴를 다시 클릭 혹은 select하면, 드랍다운 메뉴가 사라진다.</li>
-  <li>select된 입출력 디바이스는 해당 브라우저 탭에서 오디오 입출력 디바이스가 된다.</li>
-</ol>
-
-<p>입출력 디바이스를 선택하는 부분은, 따로 라이브러리를 사용하지 않고, 브라우저의 MediaDevices API를 사용하여 구현하였다.
-내용이 생각보다 길어 다음 포스트에 이어서 작성하겠다.</p>
-
-<h3 id="드랍다운-프레임-만들기">드랍다운 프레임 만들기</h3>
-
-<p>드랍다운을 만들기 전에, 먼저 디자인을 해보자.</p>
-
-<p>우선 어떠한 버튼을 누르면 DropDown이 나오게 될지 만들어야 된다.</p>
-
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">dropDown</span> <span class="o">=</span> <span class="p">(</span><span class="nx">event</span><span class="p">:</span> <span class="nx">React</span><span class="p">.</span><span class="nx">MouseEvent</span><span class="o">&lt;</span><span class="nx">HTMLDivElement</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
-  <span class="nx">setDropDown</span><span class="p">(</span><span class="o">!</span><span class="nx">showDropDown</span><span class="p">);</span>
-<span class="p">};</span>
-
-<span class="o">&lt;</span><span class="nx">DropDownContainer</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">dropDown</span><span class="p">}</span><span class="o">&gt;</span>
-  <span class="o">&lt;</span><span class="nx">Text</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">myDevice</span> <span class="o">!==</span> <span class="kc">null</span> <span class="p">?</span> <span class="nx">myDevice</span><span class="p">?.</span><span class="nx">label</span> <span class="p">:</span> <span class="nx">defaultDevice</span><span class="p">(</span><span class="nx">device</span><span class="p">)}</span><span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
-</span>  <span class="o">&lt;</span><span class="nx">BottomArrow</span> <span class="o">/&gt;</span>
-<span class="o">&lt;</span><span class="sr">/DropDownContainer&gt;</span><span class="err">;
-</span></code></pre></div></div>
-
-<p>여기서 DropDownContainer를 누르면, !setDropDown을 해주어, 껐다 킬 수 있는 toggle을 만들어 주었다. 그렇게 되면, 애니메이션이 없는 누르면 껐다 켜질 수 있는 토글 버튼이 만들어 지게 된다.</p>
-
-<p>그 다음에, <code class="language-plaintext highlighter-rouge">DropDownItem</code>에 내가 원하는 디바이스의 아이템들을 이쁘게 담아둔다.</p>
-
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">setDevice</span> <span class="o">=</span> <span class="p">(</span>
-  <span class="nx">device</span><span class="p">:</span> <span class="nx">MediaDeviceInfo</span><span class="p">,</span>
-  <span class="nx">event</span><span class="p">:</span> <span class="nx">React</span><span class="p">.</span><span class="nx">MouseEvent</span><span class="o">&lt;</span><span class="nx">HTMLDivElement</span><span class="o">&gt;</span>
-<span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
-  <span class="nx">setMyDevice</span><span class="p">(</span><span class="nx">device</span><span class="p">);</span>
-  <span class="nx">setDropDown</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
-<span class="p">};</span>
-
-<span class="o">&lt;</span><span class="nx">DropDownItem</span>
-  <span class="nx">key</span><span class="o">=</span><span class="p">{</span><span class="nx">device</span><span class="p">.</span><span class="nx">deviceId</span><span class="p">}</span>
-  <span class="nx">onClick</span><span class="o">=</span><span class="p">{(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">setDevice</span><span class="p">(</span><span class="nx">device</span><span class="p">,</span> <span class="nx">event</span><span class="p">);</span>
-  <span class="p">}}</span>
-<span class="o">&gt;</span>
-  <span class="o">&lt;</span><span class="nx">Text</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">device</span><span class="p">.</span><span class="nx">label</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
-</span><span class="o">&lt;</span><span class="sr">/DropDownItem&gt;</span><span class="err">;
-</span>
-<span class="kd">const</span> <span class="nx">DropDownItem</span> <span class="o">=</span> <span class="nx">styled</span><span class="p">.</span><span class="nx">div</span><span class="s2">`
-  border-radius: 0.5rem;
-  padding: 1rem;
-  cursor: pointer;
-  &amp;:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-`</span><span class="p">;</span>
-</code></pre></div></div>
-
-<p>DropDown을 클릭하게 되면, 현재 내가 선택한 디바이스state로 설정한 후 추후에 state변화를 감지하여, 입출력 디바이스로 변경할 것이다. 그리고, 자연스럽게 DropDown을 닫아준다.
-디자인적으로 <code class="language-plaintext highlighter-rouge">Text</code>로 디바이스의 이름을 이쁘게 출력할 수 있게 설정해주었다.</p>
-
-<p><img src="https://user-images.githubusercontent.com/66371206/188814527-971f756d-5b06-4b7f-b2ed-0004c1465103.gif" alt="ezgif-4-76b3c89864"></p>
-
-<p>이렇게 되면, 애니메이션 없는 드랍다운이 완성된다. 하지만 내가 원하는건 그저 토글이 되는 드랍다운이 아닌, 밑으로 죽 내려오는 드랍다운이다.</p>
-
-<h3 id="드랍다운-애니메이션-만들기">드랍다운 애니메이션 만들기</h3>
-
-<p>여기서 내적 고민을 잠깐 하였다… 간단하게 Bootstrap혹은 이미 있는걸 가져다 사용할 지 아니면 직접 CSS로 완성할지… 그러다 내가 원하는 디자인 및 감성으로 제작하기 위해 커스텀 DropDown을 만들게 되었다.</p>
-
-<p>생각보다 자료도 많이 없고, 아이디어를 생각해내기 쉽지 않았다. 그러다 생각해낸 방법은, 드랍다운이 내려오는 창 바로 위에 선을 하나 두고 <code class="language-plaintext highlighter-rouge">overflow: hidden</code>으로 감싼 뒤 toggle되면 드랍다운을 내리는 animation transition을 넣는 방식이였다.</p>
-
-<p>animation은 간단하게 keyframes 로 구성하였다</p>
-
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">@</span><span class="nd">keyframes</span> <span class="nx">dropdown</span> <span class="p">{</span>
-    <span class="mi">0</span><span class="o">%</span> <span class="p">{</span>
-      <span class="na">transform</span><span class="p">:</span> <span class="nx">translateY</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="o">%</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="mi">100</span><span class="o">%</span> <span class="p">{</span>
-      <span class="na">transform</span><span class="p">:</span> <span class="nx">translateY</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-    <span class="p">}</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">auth</span> <span class="o">=</span> <span class="p">(</span><span class="nx">token</span><span class="p">:</span> <span class="kr">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">decoded</span> <span class="o">=</span> <span class="nx">jwtDecode</span><span class="p">(</span><span class="nx">token</span><span class="p">,</span> <span class="p">{</span> <span class="na">header</span><span class="p">:</span> <span class="kc">true</span> <span class="p">});</span>
+  <span class="k">if</span> <span class="p">(</span>
+    <span class="nx">decoded</span><span class="p">.</span><span class="nx">kid</span> <span class="o">===</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NEXT_PUBLIC_FIREBASE_CERT_ONE</span> <span class="o">||</span>
+    <span class="nx">decoded</span><span class="p">.</span><span class="nx">kid</span> <span class="o">===</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NEXT_PUBLIC_FIREBASE_CERT_TWO</span>
+  <span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
   <span class="p">}</span>
-  <span class="nl">animation</span><span class="p">:</span> <span class="nx">dropdown</span> <span class="mf">0.4</span><span class="nx">s</span> <span class="nx">ease</span><span class="p">;</span>
+  <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="p">};</span>
 </code></pre></div></div>
 
-<p>영상으로 보는것이 이해가 쉬울 것 같아 가져왔다.</p>
+<p>꽤나 최근에 작성된 코드였는데, jwt 인증 토큰을 가지고 kid 를 비교해서 올바른 token인지 확인하는 과정이였다.</p>
 
-<p><img src="https://user-images.githubusercontent.com/66371206/188813331-8fd6e3ca-6739-429b-84d0-cb6250365424.gif" alt="ezgif-4-c2ecb01224"></p>
+<p>해당 코드를 작성하게된 계기는 웹사이트 인증수단이 필요했고, 모든 get/update/delete 등 firebase api를 활용할 때 인가를 주기 위해서였다.</p>
 
-<p>보이는것과 같이, 바를 기준으로 드랍다운이 내려오게 설정하였고, <code class="language-plaintext highlighter-rouge">overflow: hidden</code> 을 하지 않았을 때 상황이다.</p>
+<p>그리고 firebase website 내에서도 <code class="language-plaintext highlighter-rouge">마지막으로, 토큰의 kid 클레임에 해당하는 비공개 키로 ID 토큰이 서명되었는지 확인합니다.</code> 이렇게 작성이 되어 있어, 서명 확인을 조금 단순하게 kid key 값을 가져와 env로 설정하여 진행했었는데, 바로 이 부분에서 문제가 생겼다.</p>
 
-<p>이 상태에서, <code class="language-plaintext highlighter-rouge">overflow</code> 를 가려서 위에 부분을 안보이게만 하면 이쁜 드랍다운이 완성된다.</p>
+<h2 id="해결">해결</h2>
 
-<p>주요 코드는 다음과 같다.</p>
+<p>앞 코드의 <code class="language-plaintext highlighter-rouge">NEXT_PUBLIC_FIREBASE_CERT_ONE/TWO</code> 같은 경우는 <a href="https://www.googleapis.com/robot/v1/metadata/x509/securetoken@system.gserviceaccount.com">google api 사이트</a>에서 직접 가져온 kid 코드였다.</p>
 
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">DropDownContainer</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">dropDown</span><span class="p">}</span><span class="o">&gt;</span>
-  <span class="o">&lt;</span><span class="nx">Text</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">myDevice</span> <span class="o">!==</span> <span class="kc">null</span> <span class="p">?</span> <span class="nx">myDevice</span><span class="p">?.</span><span class="nx">label</span> <span class="p">:</span> <span class="nx">defaultDevice</span><span class="p">(</span><span class="nx">device</span><span class="p">)}</span><span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
-</span>  <span class="o">&lt;</span><span class="nx">BottomArrow</span> <span class="o">/&gt;</span>
-  <span class="p">{</span><span class="nx">showDropDown</span> <span class="o">&amp;&amp;</span> <span class="p">(</span>
-    <span class="o">&lt;</span><span class="nx">DropDownPosition</span><span class="o">&gt;</span>
-      <span class="o">&lt;</span><span class="nx">DropDown</span><span class="o">&gt;</span>
-        <span class="p">{</span><span class="nx">device</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">device</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span>
-          <span class="o">&lt;</span><span class="nx">DropDownItem</span>
-            <span class="nx">key</span><span class="o">=</span><span class="p">{</span><span class="nx">device</span><span class="p">.</span><span class="nx">deviceId</span><span class="p">}</span>
-            <span class="nx">onClick</span><span class="o">=</span><span class="p">{(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-              <span class="nx">setDevice</span><span class="p">(</span><span class="nx">device</span><span class="p">,</span> <span class="nx">event</span><span class="p">);</span>
-            <span class="p">}}</span>
-          <span class="o">&gt;</span>
-            <span class="o">&lt;</span><span class="nx">Text</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">device</span><span class="p">.</span><span class="nx">label</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
-</span>          <span class="o">&lt;</span><span class="sr">/DropDownItem</span><span class="err">&gt;
-</span>        <span class="p">))}</span>
-      <span class="o">&lt;</span><span class="sr">/DropDown</span><span class="err">&gt;
-</span>    <span class="o">&lt;</span><span class="sr">/DropDownPosition</span><span class="err">&gt;
-</span>  <span class="p">)}</span>
-<span class="o">&lt;</span><span class="sr">/DropDownContainer&gt;</span><span class="err">;
-</span>
-<span class="kd">const</span> <span class="nx">DropDownPosition</span> <span class="o">=</span> <span class="nx">styled</span><span class="p">.</span><span class="nx">div</span><span class="s2">`
-  position: absolute;
-  top: 5rem;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  z-index: 1;
-`</span><span class="p">;</span>
+<p>작성 당시에는 문제가 없을거라 생각했는데, google api가 똑똑한것인지 kid 코드를 주기적으로 변경하여 생긴 문제였다. 임시방편으로 웹사이트에 들어가 새로운 kid로 env를 수정하니 생긴 오류는 막을 수 있었다.</p>
 
-<span class="kd">const</span> <span class="nx">DropDown</span> <span class="o">=</span> <span class="nx">styled</span><span class="p">.</span><span class="nx">div</span><span class="s2">`
-  border-radius: 0.5rem;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  background-color: #31343e;
-  @keyframes dropdown {
-    0% {
-      transform: translateY(-100%);
-    }
-    100% {
-      transform: translateY(0);
-    }
-  }
-  animation: dropdown 0.4s ease;
-`</span><span class="p">;</span>
+<p>다음은 주기적으로 같은 문제가 재발하지 않기위한 코드 수정이 남았다.</p>
 
-<span class="kd">const</span> <span class="nx">DropDownItem</span> <span class="o">=</span> <span class="nx">styled</span><span class="p">.</span><span class="nx">div</span><span class="s2">`
-  border-radius: 0.5rem;
-  padding: 1rem;
-  cursor: pointer;
-  &amp;:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-`</span><span class="p">;</span>
+<p>수정사항은 간단하다. google api 서버에 접속하여 kid를 실시간으로 가져온 후 jwt decode를 한 kid와 매칭시켜본다. 여기서 추가되는 부분은 <code class="language-plaintext highlighter-rouge">매번 google api 서버에 요청하기보다 한번 가져온 후 재사용할 수 있었으면 좋겠다</code> 였다.</p>
+
+<p>나 혼자 작성해도 크게 문제될 것 없는 쉬운 문제이지만 reference는 언제나 좋으니 github을 뒤적거리다 좋은 소스를 발견했다.
+바로 이름부터 신뢰가 가는 <a href="https://github.com/kriasoft/web-auth-library/blob/42a722e4cedc09ea2a86f92fe5aed73b19e5de94/google/credentials.ts#L43">web-auth-library</a>.</p>
+
+<p>대충 보아하니, auth 인증이 된 유저 instance를 만들어 사용하는 방법인것 같은데, 내 서비스와 살짝 상황이 달랐다. 그래도, 싱글톤 instance로 관리하면 재요청 하지 않고 계속 쓰일 수 있을 것 같아 FirebaseCert Class를 만들어 관리하기로 했다.</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">private</span> <span class="k">async</span> <span class="nx">getCertificateFromServer</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="nx">CLIENT_AUTH_URL</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">setCert</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
-<p>완성된 버전</p>
+<p>대충 이런식으로 initialize를 1회 해주는 class를 만들어</p>
 
-<p><img src="https://user-images.githubusercontent.com/66371206/188813661-d31a95d8-8a3d-4916-a82e-8a924d5010f2.gif" alt="ezgif-4-8e32a6168e"></p>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">firebaseCert</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FirebaseCert</span><span class="p">();</span>
+
+<span class="kd">const</span> <span class="nx">auth</span> <span class="o">=</span> <span class="p">(</span><span class="nx">token</span><span class="p">:</span> <span class="kr">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">decoded</span> <span class="o">=</span> <span class="nx">jwtDecode</span><span class="p">(</span><span class="nx">token</span><span class="p">,</span> <span class="p">{</span> <span class="na">header</span><span class="p">:</span> <span class="kc">true</span> <span class="p">});</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">firebaseCert</span><span class="p">.</span><span class="nx">getCert</span><span class="p">()</span> <span class="o">||</span> <span class="o">!</span><span class="nx">decoded</span><span class="p">.</span><span class="nx">kid</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="kd">const</span> <span class="nx">arr</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">firebaseCert</span><span class="p">.</span><span class="nx">getCert</span><span class="p">());</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">decoded</span><span class="p">.</span><span class="nx">kid</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>이렇게 사용하도록 수정했다.</p>
+
+<p>테스트해보니 fetch도 최초 1회만 하고, 페이지 전환을 하여도 client 세션이 만료되거나 새로고침 전에는 재 요청 하지 않음을 확인할 수 있었다.</p>
+
+<p>오늘의 문제 해결 끝</p>
 
 
     </div>
 
 </article>
 <div class="post-nav">
-<a class="previous" href="/til/2022/08/10/aws-cloudFront.html" title="S3 &amp; CloudFront를 활용한 CDN 서버 만들기">S3 &amp; CloudFront를 활용한 CDN 서버...</a><a class="next" href="/modoco/2022/09/06/audio-inputoutput.html" title="브라우저에서 입출력 제어하기">브라우저에서 입출력 제어하기</a>
+<a class="previous" href="/sql/2024/03/02/sql-functions.html" title="SQL 함수 알아보기">SQL 함수 알아보기</a><span></span>
 </div>
 <div class="post-related">
       <div>Related Articles</div>
       <ul>
-        <li><a class="post-link" href="/javascript/2024/01/02/js-memory-management.html" title="브라우저에서 입출력 제어하기">자바스크립트 메모리관리</a></li>
-<li><a class="post-link" href="/javascript/2022/01/22/javascript-coding-1.html" title="브라우저에서 입출력 제어하기">바닐라JS로 앱 만들기 1</a></li>
-<li><a class="post-link" href="/gof/2022/09/15/builder-pattern.html" title="브라우저에서 입출력 제어하기">빌더 패턴</a></li>
-<li><a class="post-link" href="/til/2023/12/04/export-firebase.html" title="브라우저에서 입출력 제어하기">firebase 정보 백업하기 (export)</a></li>
+        <li><a class="post-link" href="/til/2022/06/29/socket-error.html" title="">Socket.io 연결 에러</a></li>
+<li><a class="post-link" href="/til/2022/10/09/fix-error-via-apm.html" title="">Fix Error via APM</a></li>
+<li><a class="post-link" href="/react/2022/09/19/start-cypress.html" title="">Cypress로 e2e 테스트 하기</a></li>
+<li><a class="post-link" href="/javascript/2022/01/17/javascript-data-structure.html" title="">자바스크립트 자료구조와 자료형</a></li>
 </ul>
     </div>
 <div class="post-comments">
