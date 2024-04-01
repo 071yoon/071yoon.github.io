@@ -7,22 +7,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>1일 1커밋에 대한 고찰 | YeongGi’s tech blog</title>
+<title>Github Action starter 오류 수정 이야기 | YeongGi’s tech blog</title>
 <meta name="generator" content="Jekyll v4.2.2">
-<meta property="og:title" content="1일 1커밋에 대한 고찰">
+<meta property="og:title" content="Github Action starter 오류 수정 이야기">
 <meta name="author" content="071yoon">
 <meta property="og:locale" content="en_US">
-<meta name="description" content="1일 1커밋에 대한 개인적인 생각">
-<meta property="og:description" content="1일 1커밋에 대한 개인적인 생각">
-<link rel="canonical" href="http://localhost:4000/retrospect/2022/12/26/about-1-day-1-commit.html">
-<meta property="og:url" content="http://localhost:4000/retrospect/2022/12/26/about-1-day-1-commit.html">
+<meta name="description" content="서론">
+<meta property="og:description" content="서론">
+<link rel="canonical" href="http://localhost:4000/til/2024/04/01/opensource-github-action.html">
+<meta property="og:url" content="http://localhost:4000/til/2024/04/01/opensource-github-action.html">
 <meta property="og:site_name" content="YeongGi’s tech blog">
 <meta property="og:type" content="article">
-<meta property="article:published_time" content="2022-12-26T00:00:00+09:00">
+<meta property="article:published_time" content="2024-04-01T00:00:00+09:00">
 <meta name="twitter:card" content="summary">
-<meta property="twitter:title" content="1일 1커밋에 대한 고찰">
+<meta property="twitter:title" content="Github Action starter 오류 수정 이야기">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"071yoon"},"dateModified":"2022-12-26T00:00:00+09:00","datePublished":"2022-12-26T00:00:00+09:00","description":"1일 1커밋에 대한 개인적인 생각","headline":"1일 1커밋에 대한 고찰","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/retrospect/2022/12/26/about-1-day-1-commit.html"},"url":"http://localhost:4000/retrospect/2022/12/26/about-1-day-1-commit.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"071yoon"},"dateModified":"2024-04-01T00:00:00+09:00","datePublished":"2024-04-01T00:00:00+09:00","description":"서론","headline":"Github Action starter 오류 수정 이야기","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/til/2024/04/01/opensource-github-action.html"},"url":"http://localhost:4000/til/2024/04/01/opensource-github-action.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="shortcut icon" href="https://user-images.githubusercontent.com/66371206/209624313-0cebd9f7-df12-4397-8e99-8f7b12eede16.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -764,11 +764,11 @@ function googleTranslateElementInit() {
 
 
 <header class="post-header">
-  <h1 class="post-title p-name" itemprop="name headline">1일 1커밋에 대한 고찰</h1>
-  <h2 class="post-subtitle">1일 1커밋에 대한 개인적인 생각</h2>
+  <h1 class="post-title p-name" itemprop="name headline">Github Action starter 오류 수정 이야기</h1>
+  <h2 class="post-subtitle">github action starter-workflows 기여를 했던건에 대하여</h2>
 
   <p class="post-meta">
-    <time class="dt-published" datetime="2022-12-26T00:00:00+09:00" itemprop="datePublished"><i class="fa fa-calendar"></i> Dec 26, 2022
+    <time class="dt-published" datetime="2024-04-01T00:00:00+09:00" itemprop="datePublished"><i class="fa fa-calendar"></i> Apr 01, 2024
     </time>
 
     
@@ -805,125 +805,76 @@ function googleTranslateElementInit() {
 
 
 
-    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 4 mins</span>
+    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 1 min</span>
   </p>
-<div class="post-tags"><a class="post-tag" href="/tags.html#retrospect">#retrospect</a></div></header>
+<div class="post-tags"><a class="post-tag" href="/tags.html#TIL">#TIL</a></div></header>
 <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
     <div class="post-content e-content" itemprop="articleBody">
 
-      <h1 id="1일-1커밋에-대한-개인적인-생각">1일 1커밋에 대한 개인적인 생각</h1>
+      <h2 id="서론">서론</h2>
+
+<p>github action 의 starter workflows는 github의 기본적으로 page를 deploy 할 시 등 가장 기본적으로 사용되는 workflow이다. 아마 많은 FE 개발자 혹은 github pages를 통하여 블로그를 만드시는 분들은 많이들 사용해 봤을 것이라 생각된다.</p>
+
+<p>보통 이러한 workflow는 보통, github deploy 페이지에서 GUI로 선행되어 repository 까지 갈 일이 보통 없다. 그런데, 꽤나 예전에 평소처럼 github page에서 Next.js deploy를 하였는데 문제가 생겼던 경험이 있다. 해당 문제를 타고보니 starter-workflows 에서 최신 Next.js를 지원하지 않아서 문제가 발생했고, 현재 수정이 되었는데, 해결과정을 서술해보도록 하겠다.</p>
+
+<h2 id="문제-파악">문제 파악</h2>
+
+<p>우선 문제는 크게 두가지였다.</p>
+
+<ol>
+  <li>Next.js v.14에서는 node 버전을 공식적으로 node v.18 이상을 사용해야된다 &gt; <a href="https://nextjs.org/docs/pages/building-your-application/upgrading/version-14">참고</a>
+</li>
+  <li>next config 에서 default output을 export로 지정하고, static HTML export를 따로 실행하지 않는것으로 바뀌었다 &gt; <a href="https://nextjs.org/docs/app/building-your-application/deploying/static-exports">참고</a>
+</li>
+</ol>
+
+<p>해당 두 가지 문제를 해결하기 위해서는 next.config.js 파일도 수정해야 하지만 github action workflow에도 수정이 필수적으로 필요했다.</p>
+
+<p>5개월 전 삽질의 흔적을 보니 로컬에서는 변경 후 잘 작동 했던것으로 보인다.</p>
+
+<p><img src="https://github.com/071yoon/071yoon.github.io/assets/66371206/4d74aac6-1196-4e46-98ed-708d89d34171" alt="image"></p>
+
+<p>여기서 나의 문제는 해결 되었지만, 아무래도 공식 workflow 에서 수정하지 않으면 나와 비슷한 사람들이 많을 것 같아 repository 까지 들어가보며 확인을 해 보았다.</p>
+
+<h2 id="공식적으로-해결해보기">공식적으로 해결해보기</h2>
+
+<p>우선 꽤나 많은 사람들이 사용하는 workflow template 인데, 나만 문제가 생겼을거라 생각하지 않아 pull request 를 살펴보니 비슷한 문제들이 많이 있었다.</p>
 
 <blockquote>
-  <p>주관적인 생각 듬뿍 담겼음에 주의</p>
+  <p>문제를 기술 및 해결한 <a href="https://github.com/actions/starter-workflows/pull/2204">PR LINK</a></p>
 </blockquote>
 
-<h2 id="1일-1커밋이란">1일 1커밋이란?</h2>
+<p>여기서는 앞서 문제 파악에서의 2번 문제 즉 yaml 에서 static HTML export를 하는 부분을 삭제 해주기는 하였지만, node 버전 수정을 하지는 않았다. 이 부분은 편하게 댓글을 달아 수정 요청사항을 추가해서 반영토록 도와주웠다.</p>
 
-<p>말 그대로 하루에 하루에 커밋 한개를 한다는 뜻으로, 매일 코딩하는 습관을 들이자는 것이다.</p>
+<p><img width="933" alt="image" src="https://github.com/071yoon/071yoon.github.io/assets/66371206/e43305c9-5436-4e79-849d-ba99e51a33ad"></p>
 
-<p>한국어로 <code class="language-plaintext highlighter-rouge">1일 1커밋</code> 이라는 단어는, 2015년에 <a href="https://blog.outsider.ne.kr/1141">아웃사이더님의 블로그</a>로 시작된것으로 보인다.</p>
+<p>그리고 무려 PR이 올라간지 5개월이 지난 현재 잘 수정되었다고 메일이 왔다.</p>
 
-<p><a href="https://github.com/071yoon"><img src="https://streak-stats.demolab.com?user=071yoon" alt="GitHub Streak"></a></p>
+<p><img width="952" alt="image" src="https://github.com/071yoon/071yoon.github.io/assets/66371206/6af5eb93-4eec-4c66-a4c9-e5c73f0fb430"></p>
 
-<p>블로그 작성 기준 92 streak으로, 나도 열심히 진행중이다!</p>
-
-<h2 id="왜-1일-1커밋인가">왜 1일 1커밋인가</h2>
-
-<p>아웃사이더님의 1일 1커밋에 대한 블로그를 읽고 있으면, <a href="https://johnresig.com/blog/write-code-every-day/">John Resig의 Writce Code Everyday</a> 라는 글로 가게 된다.</p>
-
-<p>이 글에 1일 1커밋을 주장하는 바는 다음과 같다.</p>
-
-<p><code class="language-plaintext highlighter-rouge">a week between working on some code is a long time, it’s very easy to forget what you were working on or what you left off on</code> 즉 한 코드 작업을 하다, 다른 작업을 하다 오면 공백이 생기고 길을 잃게 된다는 뜻이다.</p>
+<p>한가지 아쉬웠던 점은, 따로 PR로 빼서 날렸으면 나도 contributor badge를 받을 수 있었을텐데, 귀찮아서 댓글만 남기고 넘어갔던 것 정도,,</p>
 
 <blockquote>
-  <p>컴퓨터 공학도 답게 <code class="language-plaintext highlighter-rouge">context switching</code> 비용이 든다고 적혀있다 ㅋㅋ</p>
+  <p>그리고 진짜 간단한 PR인데, 되게 여유롭게 일 하시는듯</p>
 </blockquote>
 
-<p>그리고 포스트를 읽다보면 John Resig의 Write Code Everyday 전략은<a href="https://jenniferdewalt.com/">Jennifer Dewlt</a> 의 180일 Blog Challenge(하루에 한 웹사이트씩 180일동안 180개를 만드는 사이드 프로젝트)를 모티브로 따왔다고 한다.</p>
-
-<h2 id="1일-1커밋-규칙">1일 1커밋 규칙</h2>
-
-<p>그리고 완성된 Write Code Everyday는 다음과 같은 임의의 규칙이 존재한다고 알려줬다.</p>
-
-<ol>
-  <li>매일 코드를 작성해야 되며, 문서, 블로그 게시물 또는 기타 항목을 작성할 수 있지만 이는 내가 작성하는 코드에 추가되어야 합니다.</li>
-  <li>유용한 코드여야 합니다. 들여쓰기 조정, 코드 재포맷, 가능하다면 리팩토링도 없습니다.</li>
-  <li>모든 코드는 자정 전에 작성해야 합니다.</li>
-  <li>코드는 오픈 소스여야 하고 Github에 있어야 합니다.</li>
-</ol>
-
-<p>여기에 꼭 commit을 해야된다는 규칙은 의외로 없지만, 한국에 넘어오며 잔디밭 심는것으로 넘어오며 1일 1커밋으로 말이 고정된 것 같다.</p>
-
-<p>그리고 아웃사이더님의 블로그의 1일 1커밋 규칙은 다음과 같다.</p>
-
-<ol>
-  <li>의미 없는 커밋은 하지 않는다. 평소에도 할만한 커밋만을 작성한다. 나는 평소에도 커밋을 좀 잘게 쪼개서 하는 편이라서 이 규칙에 모호함이 있긴 하지만 스스로 양심에 맡기는 수밖에 없다.</li>
-  <li>치팅은 하지만 어뷰징은 하지 않는다. 이 규칙도 약간 애매한 구석이 있기는 하다. 예를 들어 package.json에 새로운 라이브러리를 추가하고 이를 커밋하는 경우가 많은데 작업하다 보니 나는 평소에도 이렇게 했나 아니면 일일 커밋을 하기 위해서 하나 하는 고민을 종종 하게 됐다. 컴퓨터 시간을 어제로 바꿔서 커밋한다거나 하는 등의 어뷰징은 하지 않겠다는 의미이다.</li>
-  <li>사이드 프로젝트 외에도 오픈 소스에 대한 공헌을 늘려간다. 이는 일일 커밋을 하는 목표이기도 하므로 개인 프로젝트에만 몰두하지 않고 틈나는 대로 다른 오픈 소스 프로젝트의 공헌하는 기회도 늘려간다. 장기적으로 특정 오픈 소스 프로젝트에 지속해서 참여하는 것이 목표이기도 하다.</li>
-  <li>아무리 바빠도 일일 커밋을 최대한 한다. 바쁠 때는 안 하고 안 바쁠 때만 일일 커밋을 하게 되면 이전과 다를 바가 없으므로 바쁘고 안 바쁘고의 상관없이 진행한다.</li>
-  <li>공개 저장소에 커밋하는 내용을 기준으로 한다. 현재 회사에서도 Github을 사용하기는 하지만 공개저장소에 올리는 커밋만을 기준으로 한다. 즉, Github의 공개 컨트리뷰션 그래프에 그려지는 것을 기준으로 한다.</li>
-</ol>
-
-<p>John Resig와 유사하지만, 조금 더 구체적으로 작성해주신것 같다.</p>
-
-<h2 id="1일-1커밋-효과">1일 1커밋 효과</h2>
-
-<p>John Resig가 느낀 매일 코드를 작성하면 느낀바는 다음과 같다.</p>
-
-<ul>
-  <li>실행 가능한 최소 코드 작성</li>
-  <li>코딩하는 습관 형성</li>
-  <li>Context Switching</li>
-</ul>
-
-<p>등이 있었지만, 의외로 장점만 있었던 것은 아니다.</p>
-
-<p>흔히 말하는 워라밸이 붕괴가 된다거나, 항상 생각해야되기 때문에 불안해진다는 점도 말을 해주었다.</p>
-
-<h2 id="내-생각">내 생각</h2>
-
-<p>사실 나는 1일 1커밋이라는것이 꼭 프로그래밍 관점에서만 발생한다고 생각하지 않는다. 헬스를 매일매일 하는것이나, 더 단순하게 게임에서 일일 퀘스트를 깨는것도 비슷하다고 생각한다.</p>
-
-<h3 id="숙제">숙제</h3>
-
-<p>예전에 <code class="language-plaintext highlighter-rouge">메이플스토리</code>라는 게임을 한참 할 때 일일 퀘스트라는것이 존재했다. 매일매일 과제처럼 해야 캐릭터가 성장하고 보상을 받는 시스템으로 되어 있었다. 하루에 적어도 30분은 투자해야됐고, 누적되다 보면 정말 심리적으로 압박감이 오게된다. 실제로 게임 커뮤니티에서는 이걸 <code class="language-plaintext highlighter-rouge">숙제</code> 라고 부르기도 했었다. 그리고 나도 처음에는 캐릭터가 성장한다는 성취감에 매일매일 퀘스트를 달성했지만, 3달정도 진행을 하다 끊게 되었다.</p>
-
-<p>캐릭터가 성장하는것은 즐겁지만, 데이트를 하던, 친구들과 술을 마시던, 계속 <code class="language-plaintext highlighter-rouge">오늘 우르스를 했었나?</code> 혹은 <code class="language-plaintext highlighter-rouge">일퀘 깼나?</code> 라는 생각이 들었었다. 이게 계속 쌓이다 보니 심리적으로 압박이 되고, 집착이 됐었던것 같다. 그리고 스트레스를 해소하기 위해 시작했던 게임인데, 오히려 불안함과 스트레스를 주게되어 접게 되었던 것 같다.</p>
-
-<p>1일 1커밋도 마찬가지라고 생각한다. 꼭 하루에 한번쯤으 프로그래밍적으로 생각하게 만들고, 코드를 치게 함으로써 성장시켜준다는 관점, 더 나아가 오픈소스 컨트리뷰트를 하며 프로그래밍 생태계에 기여한다는 것 자체가 너무 좋은 취지라고 생각하지만, 이게 나를 불안하게 만들고 스트레스를 준다면 오히려 집착하지 않는것이 더 좋다고 생각한다.</p>
-
-<h3 id="나만의-규칙">나만의 규칙</h3>
-
-<p>나는 1일 1커밋을 몇년 째 해오는 사람도 아니고, 집착을 가진 사람도 아니다. 그리고 최대한 내가 스트레스를 받지 않고, 꾸준히 성장하기 위해 나만의 규칙을 정해보았다.</p>
-
-<ol>
-  <li>의미없는 커밋은 하지 않기 (docs 스페이스 만들었다 지우는 정도)</li>
-  <li>시간 조작하지 않기 (amend 금지!)</li>
-</ol>
-
-<p>나에게는 딱 이정도가 좋다고 생각한다.</p>
-
-<p>물론 아웃사이더님이나 John Resig가 언급한 정도로 매일 꾸준히 코딩을 할 수 있다면 너무 좋겠지만 나는 나를 알고 있기에 저런 빡빡한 규칙속에서는 금방 지쳐 쓰러질 것이다.</p>
-
-<p>얇고 길게 코딩하자</p>
-
-<p>화이팅👻</p>
+<p>여튼 좋은 일 하나 하기 성공</p>
 
 
     </div>
 
 </article>
 <div class="post-nav">
-<a class="previous" href="/til/2022/12/04/try-opensource-contributor.html" title="오픈소스 컨트리뷰터 찍먹해보기">오픈소스 컨트리뷰터 찍먹해보기</a><a class="next" href="/retrospect/2022/12/28/after-studying-network.html" title="네트워크 공부를 마치며">네트워크 공부를 마치며</a>
+<a class="previous" href="/web/2024/03/28/firebase-jwt.html" title="Firebase JWT 에러">Firebase JWT 에러</a><span></span>
 </div>
 <div class="post-related">
       <div>Related Articles</div>
       <ul>
-        <li><a class="post-link" href="/til/2022/11/10/react-hook.html" title="네트워크 공부를 마치며">REACT Hook 구현하기</a></li>
-<li><a class="post-link" href="/javascript/2022/01/14/javascript-object.html" title="네트워크 공부를 마치며">자바스크립트 객체</a></li>
-<li><a class="post-link" href="/modoco/2022/09/06/audio-inputoutput.html" title="네트워크 공부를 마치며">브라우저에서 입출력 제어하기</a></li>
-<li><a class="post-link" href="/web/2024/03/28/firebase-jwt.html" title="네트워크 공부를 마치며">Firebase JWT 에러</a></li>
+        <li><a class="post-link" href="/next.js/2022/05/15/next-api.html" title="">NEXT-API</a></li>
+<li><a class="post-link" href="/modoco/2022/07/03/zustand.html" title="">Typescript 에서 Zustand 배우기</a></li>
+<li><a class="post-link" href="/retrospect/2023/07/12/walk-through-jeju.html" title="">걸어서 제주도 한바퀴</a></li>
+<li><a class="post-link" href="/til/2022/08/10/aws-cloudFront.html" title="">S3 &amp; CloudFront를 활용한 CDN 서버 만들기</a></li>
 </ul>
     </div>
 <div class="post-comments">

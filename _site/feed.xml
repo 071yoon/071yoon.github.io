@@ -1,4 +1,49 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-03-28T19:46:09+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi's tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">Firebase JWT 에러</title><link href="http://localhost:4000/web/2024/03/28/firebase-jwt.html" rel="alternate" type="text/html" title="Firebase JWT 에러" /><published>2024-03-28T00:00:00+09:00</published><updated>2024-03-28T00:00:00+09:00</updated><id>http://localhost:4000/web/2024/03/28/firebase-jwt</id><content type="html" xml:base="http://localhost:4000/web/2024/03/28/firebase-jwt.html"><![CDATA[<h2 id="문제-확인">문제 확인</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-04-01T14:03:20+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi&apos;s tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">Github Action starter 오류 수정 이야기</title><link href="http://localhost:4000/til/2024/04/01/opensource-github-action.html" rel="alternate" type="text/html" title="Github Action starter 오류 수정 이야기" /><published>2024-04-01T00:00:00+09:00</published><updated>2024-04-01T00:00:00+09:00</updated><id>http://localhost:4000/til/2024/04/01/opensource-github-action</id><content type="html" xml:base="http://localhost:4000/til/2024/04/01/opensource-github-action.html"><![CDATA[<h2 id="서론">서론</h2>
+
+<p>github action 의 starter workflows는 github의 기본적으로 page를 deploy 할 시 등 가장 기본적으로 사용되는 workflow이다. 아마 많은 FE 개발자 혹은 github pages를 통하여 블로그를 만드시는 분들은 많이들 사용해 봤을 것이라 생각된다.</p>
+
+<p>보통 이러한 workflow는 보통, github deploy 페이지에서 GUI로 선행되어 repository 까지 갈 일이 보통 없다. 그런데, 꽤나 예전에 평소처럼 github page에서 Next.js deploy를 하였는데 문제가 생겼던 경험이 있다. 해당 문제를 타고보니 starter-workflows 에서 최신 Next.js를 지원하지 않아서 문제가 발생했고, 현재 수정이 되었는데, 해결과정을 서술해보도록 하겠다.</p>
+
+<h2 id="문제-파악">문제 파악</h2>
+
+<p>우선 문제는 크게 두가지였다.</p>
+
+<ol>
+  <li>Next.js v.14에서는 node 버전을 공식적으로 node v.18 이상을 사용해야된다 &gt; <a href="https://nextjs.org/docs/pages/building-your-application/upgrading/version-14">참고</a></li>
+  <li>next config 에서 default output을 export로 지정하고, static HTML export를 따로 실행하지 않는것으로 바뀌었다 &gt; <a href="https://nextjs.org/docs/app/building-your-application/deploying/static-exports">참고</a></li>
+</ol>
+
+<p>해당 두 가지 문제를 해결하기 위해서는 next.config.js 파일도 수정해야 하지만 github action workflow에도 수정이 필수적으로 필요했다.</p>
+
+<p>5개월 전 삽질의 흔적을 보니 로컬에서는 변경 후 잘 작동 했던것으로 보인다.</p>
+
+<p><img src="https://github.com/071yoon/071yoon.github.io/assets/66371206/4d74aac6-1196-4e46-98ed-708d89d34171" alt="image" /></p>
+
+<p>여기서 나의 문제는 해결 되었지만, 아무래도 공식 workflow 에서 수정하지 않으면 나와 비슷한 사람들이 많을 것 같아 repository 까지 들어가보며 확인을 해 보았다.</p>
+
+<h2 id="공식적으로-해결해보기">공식적으로 해결해보기</h2>
+
+<p>우선 꽤나 많은 사람들이 사용하는 workflow template 인데, 나만 문제가 생겼을거라 생각하지 않아 pull request 를 살펴보니 비슷한 문제들이 많이 있었다.</p>
+
+<blockquote>
+  <p>문제를 기술 및 해결한 <a href="https://github.com/actions/starter-workflows/pull/2204">PR LINK</a></p>
+</blockquote>
+
+<p>여기서는 앞서 문제 파악에서의 2번 문제 즉 yaml 에서 static HTML export를 하는 부분을 삭제 해주기는 하였지만, node 버전 수정을 하지는 않았다. 이 부분은 편하게 댓글을 달아 수정 요청사항을 추가해서 반영토록 도와주웠다.</p>
+
+<p><img width="933" alt="image" src="https://github.com/071yoon/071yoon.github.io/assets/66371206/e43305c9-5436-4e79-849d-ba99e51a33ad" /></p>
+
+<p>그리고 무려 PR이 올라간지 5개월이 지난 현재 잘 수정되었다고 메일이 왔다.</p>
+
+<p><img width="952" alt="image" src="https://github.com/071yoon/071yoon.github.io/assets/66371206/6af5eb93-4eec-4c66-a4c9-e5c73f0fb430" /></p>
+
+<p>한가지 아쉬웠던 점은, 따로 PR로 빼서 날렸으면 나도 contributor badge를 받을 수 있었을텐데, 귀찮아서 댓글만 남기고 넘어갔던 것 정도,,</p>
+
+<blockquote>
+  <p>그리고 진짜 간단한 PR인데, 되게 여유롭게 일 하시는듯</p>
+</blockquote>
+
+<p>여튼 좋은 일 하나 하기 성공</p>]]></content><author><name>071yoon</name></author><category term="TIL" /><category term="TIL" /><summary type="html"><![CDATA[서론]]></summary></entry><entry><title type="html">Firebase JWT 에러</title><link href="http://localhost:4000/web/2024/03/28/firebase-jwt.html" rel="alternate" type="text/html" title="Firebase JWT 에러" /><published>2024-03-28T00:00:00+09:00</published><updated>2024-03-28T00:00:00+09:00</updated><id>http://localhost:4000/web/2024/03/28/firebase-jwt</id><content type="html" xml:base="http://localhost:4000/web/2024/03/28/firebase-jwt.html"><![CDATA[<h2 id="문제-확인">문제 확인</h2>
 
 <p>최근 운영하고 있던 서버 중 하나에 정말 큰 문제가 생겼다. 갑자기 모든 화면이 보이지 않는다는것.</p>
 
@@ -809,89 +854,4 @@ firestore-export <span class="nt">--accountCredentials</span> path/to/credential
 
 <p><img width="863" alt="image" src="https://user-images.githubusercontent.com/66371206/212532999-2633999b-e991-4e96-8174-1e394b8c89b8.png" /></p>
 
-<p>실제로 결과에 대해서 논란이 존재했고, 이러한 결과는 조심해서 봐야된다고 알려줬다. 역시 나 말고도 비판적으로 보고 있었던 사람이 존재했나보다</p>]]></content><author><name>071yoon</name></author><category term="book" /><category term="book" /><summary type="html"><![CDATA[마음의 법칙]]></summary></entry><entry><title type="html">2022년 회고</title><link href="http://localhost:4000/retrospect/2022/12/31/end-of-2022.html" rel="alternate" type="text/html" title="2022년 회고" /><published>2022-12-31T00:00:00+09:00</published><updated>2022-12-31T00:00:00+09:00</updated><id>http://localhost:4000/retrospect/2022/12/31/end-of-2022</id><content type="html" xml:base="http://localhost:4000/retrospect/2022/12/31/end-of-2022.html"><![CDATA[<h2 id="1분기">1분기</h2>
-
-<p>2022년 1분기에는 딱히 많은 일들이 없었다. 소프트웨어 마에스트로에 합격하고싶어 계속 코딩테스트준비와 면접 준비를 했었다. 하지만, 이미 벌려놓은 일들이 꽤나 있어 여러가지를 병행하며 준비를 했었다.</p>
-
-<p>우선, 42서울에서 블랙홀에 빠지지 않기위해 꾸준히 과제를 하며, 42서울 사람들과 웹 게임을 만드는 프로젝트를 하기로해서 그것도 병행해야 했다. 결국, 주로 낮에 프로젝트를 하고, 오후 11시에 매일 알고리즘 스터디를 하며 준비를 하고, 코딩테스트를 2차까지 붙고 난 후 면접 스터디를 하며 준비했다.</p>
-
-<blockquote>
-  <p>심지어 3월에는 학교까지 다녔어야 돼서 정말 바빴던것 같다.</p>
-</blockquote>
-
-<p>부트캠프치고 정말 준비 기간이 길었는데, 서류합격을 2월 24일에 받고, 최종합격 문자가 4월 8일에 나왔으니 전전긍긍하며 기다렸던 것 같다.</p>
-
-<p><img src="https://user-images.githubusercontent.com/66371206/210166063-57da40db-da8e-44c5-bd73-53560f57f218.png" alt="image" /></p>
-
-<h2 id="2분기">2분기</h2>
-
-<p>2분기에는 학교를 다녔어야돼서, 많은 일을 하지 못했던것 같다. 나름 학교 강의에 대한 욕심이 있어, 수업도 열심히 듣고 과제도 열심히 하느라 바빴었다. 졸업프로젝트 HCI 과목에서 어플 만드는 강의도 있었기에, 과제가 밀렸고, 소프트웨어 마에스트로 과정에서 미니프로젝트를 하며 어플을 또 만들라고 해서 정말 바쁘게 시간이 지나갔다.</p>
-
-<blockquote>
-  <p>심지어 팀원들이 제대로 따라주지 않아 정신적으로 조금 힘들었다</p>
-</blockquote>
-
-<p>그렇게 바쁘게 5월까지 흘러가고 소프트웨어 마에스트로에서 FIRE 팀원들을 만나게 되었는데, 이 때부터 조금 편했던 것 같다. 나와 맞는 팀원들과 나와 맞는 프로젝트를 진행하며 정말 즐겁게 프로젝트를 진행했다.</p>
-
-<blockquote>
-  <p>열심히 기획하던 5월의 어느날
-<img width="624" alt="image" src="https://user-images.githubusercontent.com/66371206/210167385-0754a2f6-ff7d-4898-9769-c3e4e0683d06.png" /></p>
-</blockquote>
-
-<blockquote>
-  <p>그리고 42서울은 자진퇴소를…ㅠㅠ</p>
-</blockquote>
-
-<p>그리고 병행한 학교역시 나름 열심히 다닌 덕인지 꽤나 괜찮은 성적으로 7학기를 마무리 지을 수 있었다.</p>
-
-<h2 id="3분기">3분기</h2>
-
-<p>이 때는 나름 고민이 많았다. 우선 4-2를 다니며 바로 졸업을 할지 아니면 휴학을 하고 졸업을 늦출지에 고민을 많이 했다. 하지만, FIRE 팀원을 모집할 때 휴학을 하고 프로젝트에 집중하기로 했기에, 휴학을 하고 완전히 프로젝트에 몰두하게 되었다.</p>
-
-<p>우리팀은 정말 7, 8, 9월동안 미친듯이 개발하며 시간을 보냈다. 어쩌다 보니 올빼미 타입이 3명인 팀이였기에, 오후 1시에 다같이 센터에서 모여서 밤 11시에 각자 집에 가는 것이 일상이 되었다.</p>
-
-<blockquote>
-  <p>그런데 새벽 5시까지 팀원들이 칼답을 했다..!</p>
-</blockquote>
-
-<p><a href="https://071yoon.github.io/til/2022/11/01/how-we-work.html">FIRE는 이렇게 협업했다 보러가기</a></p>
-
-<p>한가지 아쉬웠던 점은, 소프트웨어 마에스트로를 지원할 때만 해도 그냥 개발만 미친듯이 하면 되는지 알았는데, 과정자체가 창업이 주된 목표이기에, 창업을 위한 기획, 마케팅, 발표, 서류작성 등등을 배우게 되었다. 그리고 멘토링은 최소 주 1번을 했어야 됐고 (우리팀은 주 3번씩 진행했다..) 지원금을 사용할 때 매번 서류를 작성하거나 소모임을 진행할 때 보고서를 제출 등 개발 외적으로 해야될 일들이 너무 많았다. 물론 멘토링 등은 좋은점이 참 많았지만, 개발에만 집중하고 싶었던 나에게 조금 아쉬웠던 점이였다.</p>
-
-<p>그럼에도 불구하고, 우리팀은 일을 정말 많이 하여 누구보다 빠르게 MVP가 나와서, 이벤트도 진행하고 프로젝트의 완성도를 높여갈 수 있었다.</p>
-
-<blockquote>
-  <p>7월의 회의록 리스트
-<img width="264" alt="image" src="https://user-images.githubusercontent.com/66371206/210166486-9f4ca936-8d3d-45a3-84f6-c8c734e65739.png" /></p>
-</blockquote>
-
-<h2 id="4분기">4분기</h2>
-
-<p>멘토링을 진행하며 멘토님께서 디자인 패턴 스터디를 제안하셔서 스터디를 진행하게 되었는데, 정말 내 개발 안목을 높여주는 계기가 되었던 것 같다. 주에 1번 2~3시간씩 진행을 하며 3개월간 하여 11월에 끝나게 되었는데, 멘토님께서 말해주시는 이야기의 절반도 제대로 이해하지 못했지만, 내가 어떠한 점이 부족하고 공부해야되는지, 그리고 더 나아가 좋은 프로그래밍이란 어떠한 것인지에 대한 생각을 할 수 있는 좋은 기회였다. 아쉬웠던 부분은, 아무래도 초반에는 이해도 잘 못하고 재미도 없었기에 제대로 준비를 하지 않았다는 점이다. 정말 내가 발표할 부분만 정리하고 공부를 대충 했었는데, 지금 돌아간다면 이 기회를 제댈 잡아 디자인 패턴을 제대로 학습했을 것 같다.</p>
-
-<p>그리고 이 때는 프로젝트도 진행을 하였지만, 슬슬 취업준비도 같이 했었다. 사실 실제로 취업을 하려고 했던것은 아니고, 멘토님께서 면접을 보는것 까지도 경험이라고 하셔서 경험을 쌓기 위해 지원을 시작했다.</p>
-
-<p><img width="677" alt="image" src="https://user-images.githubusercontent.com/66371206/210167280-19df9a7c-de2f-460f-bfc5-f76196d1da67.png" /></p>
-
-<p>처음에는 이력서도 대충 쓰고, 정말 아무 생각없이 들어본 회사라면 신입/경력 할 것 없이 전부 지원을 해서 불합격을 정말 많이 받았다.</p>
-
-<blockquote>
-  <p>소프트웨어 마에스트로 과정 중이여서 가지는 못했지만, 정말 좋게 봐서 나름 중견기업에 합격도 했었다!</p>
-</blockquote>
-
-<p><img width="631" alt="image" src="https://user-images.githubusercontent.com/66371206/210167292-abb1d261-9bd5-40c3-bc1f-7900133f230e.png" /></p>
-
-<p>그리고 12월에는 나름 취업 전략을 짜서 이력서도 수정을 하고, 인턴과 신입을 적극적으로 지원했더니 합격 소식을 많이 받을 수 있었다. 그 중에 내 워너비 회사중에 하나에 합격을 하게 되어 내년 1월부터 입사하게 되었다.</p>
-
-<blockquote>
-  <p>정규직은 아니지만.. 그래도 어차피 복학을 해야되기에 6개월동안 다녀보기로 했다!!</p>
-</blockquote>
-
-<p>많이 한것 없이 빠르게 지나갔다고 생각을 했지만, 글로 적어보니 생각보다 많은 일들이 있었고 나름대로 성장도 많이 한 것 같아 뿌듯하다. 소프트웨어 마에스트로 과정도 무사히 마칠 수 있었고, 좋은 회사에서 일해볼 기회도 생겼다.</p>
-
-<p>내년에는 졸업도 하고, 더 좋은곳으로 취업까지 할 수 있으면 좋겠다~!</p>
-
-<blockquote>
-  <p>모도코비드 화이팅!!
-<img width="464" alt="image" src="https://user-images.githubusercontent.com/66371206/210167407-a3310bf3-27e0-4236-afc0-48e10f88cce5.png" /></p>
-</blockquote>]]></content><author><name>071yoon</name></author><category term="retrospect" /><category term="retrospect" /><summary type="html"><![CDATA[1분기]]></summary></entry></feed>
+<p>실제로 결과에 대해서 논란이 존재했고, 이러한 결과는 조심해서 봐야된다고 알려줬다. 역시 나 말고도 비판적으로 보고 있었던 사람이 존재했나보다</p>]]></content><author><name>071yoon</name></author><category term="book" /><category term="book" /><summary type="html"><![CDATA[마음의 법칙]]></summary></entry></feed>
