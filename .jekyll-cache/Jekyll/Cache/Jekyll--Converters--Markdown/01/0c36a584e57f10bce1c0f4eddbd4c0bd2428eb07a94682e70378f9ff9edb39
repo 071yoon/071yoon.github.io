@@ -1,0 +1,62 @@
+I"Z<h2 id="굵기가-있는-div-만들기">굵기가 있는 div 만들기</h2>
+
+<p>요즘 kinetic animation 이 대세이다. 대충 이러한 <a href="https://www.youtube.com/watch?v=V8SjH8URkuc">[SAMSUNG AI]</a> 애니메이션들이라 볼 수 있다.</p>
+
+<p>위와 같은 애니메이션은 사실 그렇게 어렵지 않게 캔버스 없이도 웹으로 구현이 가능하다. 아주 동일하지는 않지만, bezier curve를 대충 그린다면 <a href="https://071yoon.github.io/kinetic/samsung/ai">이렇게</a> 구현을 할 수 있다.</p>
+
+<p>하지만 만약 3D animation 이라면 이야기가 조금 달라진다. LG 로고의 예시를 봐보자.</p>
+
+<p><a href="https://www.youtube.com/shorts/0ak8UT3zt4w">눈도 반짝 입도 활짝, 저 뭐 달라진거 없나요?</a> 해당 영상을 보면 로고가 다채롭게 움직이는걸 볼 수 있다.</p>
+
+<p>물론 해당 이미지는 canvas 를 활용하면 손쉽게 3D animation 으로 구현할 수 있지만, 문서안 혹은 텍스트 사이에 사용하기 쉽지 않아, div 로 구현을 해보려고 한다.</p>
+
+<h2 id="div-만들기">DIV 만들기</h2>
+
+<p>전체 애니메이션을 따라 만들기에는 시간이 부족하니 우선 3D 부분이 눈에 띄는 눈 부분을 제작해보기로 하자.</p>
+
+<h3 id="아이디어-생각">아이디어 생각</h3>
+
+<p>처음 드는 생각은 눈 자체를 동그란 형식으로 만든 뒤 rotateX 혹은 rotate3D를 통해 돌리는 방안이 제일 먼저 떠오른다.</p>
+
+<p>하지만 그렇게 설계하고 구현할 경우, 굵기를 표현하기가 어려운데, 간단하게 이미지로 예시를 들어보면 다음과 같다.</p>
+
+<p><img src="https://github.com/071yoon/071yoon.github.io/assets/66371206/8613452b-b7f5-4e3e-acf2-8f46c8cddb9f" alt="image" /></p>
+
+<p>이를 만약 우리가 보는 화면 기준에서 바라본다면.</p>
+
+<p><img src="https://github.com/071yoon/071yoon.github.io/assets/66371206/7cb1ebca-84de-4851-990b-38bbed5f2c55" alt="image" /></p>
+
+<p>이런 형식으로 보이게 될 것이다.</p>
+
+<blockquote>
+  <p>전혀 3D 처럼 보이지 않는다.</p>
+</blockquote>
+
+<p>이는 perspective 나 3D 로테이션을 준다 하여도 thickness 자체를 주기는 어려워보인다.</p>
+
+<p>실제 현실에서 어떤식으로 구현이 되어야 하는지 한번 생각해보면 다음과 같다.</p>
+
+<p><img src="https://github.com/071yoon/071yoon.github.io/assets/66371206/f3f4bab6-efb2-4ed9-8740-fd63c57c7f3a" alt="image" /></p>
+
+<p><img src="https://github.com/071yoon/071yoon.github.io/assets/66371206/6446390b-3c8a-4146-99cb-03790f8cbbc7" alt="image" /></p>
+
+<p>이런식으로 표현 될 수 있다.</p>
+
+<p>이를 dom 을 통해 구현해보자.</p>
+
+<h3 id="구현해보기">구현해보기</h3>
+
+<p>정작 그림에 필요한 부분을 따로 본다면 다음 이미지 처럼 볼 수 있다.</p>
+
+<p><img src="https://github.com/071yoon/071yoon.github.io/assets/66371206/fecbc43e-3f31-42df-b54a-c3783db9870c" alt="image" /></p>
+
+<p>즉 간단하게 도식화 해서 살펴보자면 해당 부분만 구현을 하면 3D 처럼 보일 수 있다.</p>
+
+<p><img src="https://github.com/071yoon/071yoon.github.io/assets/66371206/76151c39-2111-47e4-b658-3eef73b81b3c" alt="image" /></p>
+
+<p>그리고 이미 원 부분은 간단하게 그린 후 <code class="language-plaintext highlighter-rouge">rotateX(90)</code> 으로 해결이 되므로 위 막대만 위치에 맞춰 회전 시켜주면 된다.</p>
+
+<p>그럼 대충 이런 형식으로 그릴 수 있다.</p>
+
+<p><img src="https://github.com/071yoon/071yoon.github.io/assets/66371206/2894f60d-f2ef-4747-ba13-36e46fad7c4b" alt="image" /></p>
+:ET
