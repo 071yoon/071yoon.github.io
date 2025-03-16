@@ -1,4 +1,70 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-07-07T15:54:18+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi&apos;s tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">SQLD / 정보처리기사 취득기</title><link href="http://localhost:4000/til/2024/07/07/certificates.html" rel="alternate" type="text/html" title="SQLD / 정보처리기사 취득기" /><published>2024-07-07T00:00:00+09:00</published><updated>2024-07-07T00:00:00+09:00</updated><id>http://localhost:4000/til/2024/07/07/certificates</id><content type="html" xml:base="http://localhost:4000/til/2024/07/07/certificates.html"><![CDATA[<h2 id="취득-배경">취득 배경</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-03-16T17:20:53+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YeongGi’s tech blog</title><subtitle>This is YeongGi&apos;s tech blog. I post IT related items.</subtitle><author><name>071yoon</name></author><entry><title type="html">Chrome Web Store 유지보수</title><link href="http://localhost:4000/web/2025/03/16/maintain-chrome-extension.html" rel="alternate" type="text/html" title="Chrome Web Store 유지보수" /><published>2025-03-16T00:00:00+09:00</published><updated>2025-03-16T00:00:00+09:00</updated><id>http://localhost:4000/web/2025/03/16/maintain-chrome-extension</id><content type="html" xml:base="http://localhost:4000/web/2025/03/16/maintain-chrome-extension.html"><![CDATA[<h2 id="chrome-extension-console">Chrome Extension Console</h2>
+
+<p>예전에 크롬 웹 익스텐션을 개발한 적이 있다.
+처음에는 단순히 게임하면서 내가 활용하려고 개발하였다가, 같이 쓸 수 있으면 좋겠다고 생각해서 공유를 했었다.</p>
+
+<blockquote>
+  <p><a href="https://071yoon.github.io/til/2023/09/18/make-chomre-web-extension.html">블로그 링크</a> 는 여기서</p>
+</blockquote>
+
+<p>그러던 어느날, 그냥 extension 이 잘 살아있는지? 사람들은 잘 쓰고 있는지 궁금해서 Web Extension Console 에 들어가서 한번 통계를 살펴 봤었다.</p>
+
+<p>그런데 웬걸, 생각보다 내가 개발한 익스텐션이 검색에 상위 노출이 되었고, 지속적으로 다운로드가 되고 있었다.</p>
+
+<p>나름 Auto Scroll Extension 이라고 치면 상위 3등으로 검색이 되어 있었다.
+<img width="1345" alt="Image" src="https://github.com/user-attachments/assets/0e077026-83e1-4a0a-982b-dcc0ea1bddab" /></p>
+
+<p>여튼 그런데 통계를 보니까 처음에는 한국인 기준으로 개발을 했었는데, 생각보다 해외에서 다운로드가 많았다.</p>
+
+<p>익스텐션 같은 경우에는 구글에서 승인을 받아야지 올릴 수가 있어서, 설명이나 주석 같은것들을 전부 영어로 작성해서 그래서 외국인 유입이 좀 많았나보다.</p>
+
+<p>여튼 그래서 기왕 상위 노출도 되고, 외국인들도 많이 쓰는것 같으니 조금 유지보수를 해서 영어 지원도 하고 일반 사용자들이 사용하기 쉽게 만들어 보기로 했다.</p>
+
+<p>작년 초 기준 (유지보수 하기 전) 최고 97이고 평균적으로 일일 방문자 30명 정도에 설치수는 10회 정도로 보였다.</p>
+
+<p><img width="504" alt="Image" src="https://github.com/user-attachments/assets/8cdaccf4-0073-40d4-a6f4-af5e81a48d8b" /></p>
+
+<p><img width="524" alt="Image" src="https://github.com/user-attachments/assets/2b966638-a59a-496a-9746-eb19e7b46bd6" /></p>
+
+<h2 id="유지보수">유지보수</h2>
+
+<p>우선 다국어 지원을 통해 외국인 사용자들이 조금 더 유입이 편하도록 수정하고, 조금더 사용성이 용이할 수 있게 자동 모드 등을 포함시켰다.</p>
+
+<blockquote>
+  <p><a href="https://github.com/071yoon/auto-scroll-extension/commit/33a99118b0366ed703338a95d6af968554a68c03">수정사항 커밋</a></p>
+</blockquote>
+
+<p>코드는 조금 날림으로 쓰고 이따 천천히 리팩토링도 하고 수정도 해야지 해야지 하는데 요즘 일에 치이고 시간도 없고 귀찮아서 자꾸만 밀린다… ㅠ</p>
+
+<h2 id="비교-분석">비교 분석</h2>
+
+<p>여튼 이렇게 수정하고 나니 확실히 조회수나 설치수도 눈에 띄게 늘었다. 일일 조회수는 이제 평균적으로 50 명 정도로 늘었고, 설치수도 20회 정도로 물론 날마다 차이는 있지만, 큰 흐름으로 보았을 때 우상향으로 증가했다.</p>
+
+<p><img width="555" alt="Image" src="https://github.com/user-attachments/assets/3628ae9c-ade5-4d39-97e3-c056e47db8cd" /></p>
+
+<p><img width="589" alt="Image" src="https://github.com/user-attachments/assets/fcfa4fef-e0db-4da7-9c50-8d22a0c1c60f" /></p>
+
+<p>특히 1년간 사용자의 증가 추이를 보면, 천천히지만 증가하는 모습을 볼 수 있다. 그리규 유지보수를 진행했던 10월을 기점으로 확실히 사용자가 확 늘어남을 눈으로 확인할 수 있다.</p>
+
+<p><img width="1087" alt="Image" src="https://github.com/user-attachments/assets/c3956b94-3dc7-46ef-ad05-7772289541d1" /></p>
+
+<p>여기서 google analytics 등록하여 페이지 조회를 하면 더 자세한 내용을 볼 수 있는데, 국가 통계를 보면 다음과 같다.</p>
+
+<p><img width="1308" alt="Image" src="https://github.com/user-attachments/assets/1881880b-dfc6-4a12-82b4-ea04649abac7" /></p>
+
+<p>아쉽게도 기간으로 보는 법은 없어서 해외 유입이 얼마나 증가했는지는 볼 수 없지만, 예전에 비해서는 정말 해외 비율이 많아졌다.</p>
+
+<p>버저닝으로 사용자가 얼마나 많아졌는지 보는 방법도 있었는데, 해당 그래프틑 다음과 같다.</p>
+
+<p><img width="735" alt="Image" src="https://github.com/user-attachments/assets/8c439595-0a74-4fc6-8ee3-09b02f778e19" /></p>
+
+<p>1.0.2.0 버전 기준에서 천천히 증가를 하다 (300 - 600 까지 7개월) 업데이트 후 600 - 1200 까지 5개월만에 달성하였다.</p>
+
+<h2 id="회고">회고</h2>
+
+<p>사실 이때까지 몇가지 프로젝트를 하고, 유지보수를 포기한 프로젝트도 많고 (거의 90%) 정말 공을 들였지만 사람들이 쓰지 않아서 망했던 프로젝트들도 참 많은데, 역시 사람일은 모르는것 같다.</p>
+
+<p>예전에 사이드 프로젝트로 억대 연봉을 버는 사람 말이 생각나는데, <code class="language-plaintext highlighter-rouge">사이드 프로젝트 그냥 그거 일주일에 하나씩 만들다 보면 하나는 대박 터져요</code> 가 참</p>]]></content><author><name>071yoon</name></author><category term="web" /><category term="web" /><category term="extension" /><summary type="html"><![CDATA[Chrome Extension Console]]></summary></entry><entry><title type="html">SQLD / 정보처리기사 취득기</title><link href="http://localhost:4000/til/2024/07/07/certificates.html" rel="alternate" type="text/html" title="SQLD / 정보처리기사 취득기" /><published>2024-07-07T00:00:00+09:00</published><updated>2024-07-07T00:00:00+09:00</updated><id>http://localhost:4000/til/2024/07/07/certificates</id><content type="html" xml:base="http://localhost:4000/til/2024/07/07/certificates.html"><![CDATA[<h2 id="취득-배경">취득 배경</h2>
 
 <p>이번 상반기에 회사를 다니며 어떤걸 해볼까? 하다 자격증 취득에 관심이 생겨 SQLD 와 정보처리기사를 취득해보게 되었다. 두 자격증 다 운이 좋게도 한번에 취득을 했고, 사실 공부한 노력과 시간에 비례하여 쉽게 취득을 한 것 같다. 하지만 해당 자격증들은 조금 호불호가 있는 자격증들이다. 특히나 정보처리기사 같은 경우에는 <code class="language-plaintext highlighter-rouge">엥 컴공생이 정보처리기사를 왜 따?</code> 라는 말이 있을정도로 인기 및 필요가 없다는 인식이 꽤나 있는 자격증이다. 그럼 내가 왜 해당 자격증을 따게 되었을까?</p>
 
@@ -640,80 +706,4 @@ RANK 자체가 순위를 지정하기에, OVER 구문에 ORDER BY 로 순서를 
 
 <h2 id="짧온-메모">짧온 메모</h2>
 
-<p>다소 건방진 이야기일 수 도 있지만, 다들 취업이 힘들다 하는것은 내가 원하는 회사에 들어가지 못해 계속 도전하고 불합격에 좌절하기 때문이라 생각한다. 하지만, 원하는 회사가 정말 본인이 원하는 회사인지 혹은 사회적으로 형성된 좋은 회사인지 모두가 고민해 보는 시간을 가졌으면 좋겠다. 단순히 모두가 <code class="language-plaintext highlighter-rouge">우아</code> 소리가 나오는 회사를 갔다고 해서 내가 행복할지, 혹은 그곳에 꿈이 있어 나의 비전과 미래를 이룰 수 있는 곳이기에 가고 싶은지.. 나 또한 평생 고민할 숙제라고 생각한다.</p>]]></content><author><name>071yoon</name></author><category term="retrospect" /><category term="retrospect" /><summary type="html"><![CDATA[되게 바빴지만, 동시에 여유로웠던 한해였다.]]></summary></entry><entry><title type="html">firebase 정보 백업하기 (export)</title><link href="http://localhost:4000/til/2023/12/04/export-firebase.html" rel="alternate" type="text/html" title="firebase 정보 백업하기 (export)" /><published>2023-12-04T00:00:00+09:00</published><updated>2023-12-04T00:00:00+09:00</updated><id>http://localhost:4000/til/2023/12/04/export-firebase</id><content type="html" xml:base="http://localhost:4000/til/2023/12/04/export-firebase.html"><![CDATA[<h2 id="배경">배경</h2>
-
-<p>firebase를 활용해서 개인 프로젝트를 잘 하고 있었는데, 문득 백업이 하고싶어졌다.</p>
-
-<p>google이 갑자기 내 data를 날려버리거나 하지는 않겠지만 내가 실수로 table을 날렸을 경우 복구도 되지 않을 것 같고 (가뜩이나 무료 버전을 쓰고 있기에) 점점 traffic이 올라감에 한번은 백업이 필요하다 생각이 들었다.</p>
-
-<h2 id="firebase-둘러보기">Firebase 둘러보기</h2>
-
-<p>솔직히 firebase에 backup 혹은 export 기능이 없을리가 없다</p>
-
-<p><img width="1155" alt="firebase-export-import-icon" src="https://github.com/071yoon/071yoon.github.io/assets/66371206/a367acb2-37b7-4cdc-a7cb-98d1dc4defc3" /></p>
-
-<p>당연히 있다..!</p>
-
-<p>하지만 아니나 다를까 결제 정보를 입력하고 돈을 내야 가능하는것 처럼 보인다.</p>
-
-<p><img width="542" alt="firebase-export-card-image" src="https://github.com/071yoon/071yoon.github.io/assets/66371206/fb30b9c5-a7ca-4155-b30a-46c868cff91f" /></p>
-
-<p>(사실 GCP와 연결하는것 같아 당연히 결제 정보가 필요한것이고 실제로 돈이 필요한지는 모르겠음.. 그냥 혹시나 카드정보 입력해 두었다가 firebase traffic이 폭주해서 지갑이 털릴까봐 조금 무서웠다)</p>
-
-<p>그래서 다른 방법을 찾아 나서기로…!</p>
-
-<h2 id="github-돌아다니기">github 돌아다니기</h2>
-
-<p>솔직히 firebase는 문서화가 잘 되어 있기도 하고, query를 통해 data를 읽기/쓰기가 매우 쉬워 손쉽게 코드로 export 하는 기능을 찾는것도 어렵지 않다고 생각한다. 하지만,, 누군가 더 깔끔하게 만들어 두었다면..? 굳이 내가 만들 필요가 있을까? 라는 생각에 뒤적 뒤적,.. firebase export를 찾아보기 시작했다..</p>
-
-<h3 id="node-firestore-import-export">node-firestore-import-export</h3>
-
-<p>기가 막힌 library를 찾아내고야 말았다. 바로 이름부터 직관 그 자체인 <a href="https://github.com/jloosli/node-firestore-import-export">node-firestore-import-export</a>!</p>
-
-<p>두가지 활용 방법이 존재한는데</p>
-
-<ol>
-  <li>npm 으로 전역으로 library를 설치 후 export하여 json 형태로 받기</li>
-  <li>코드로 export/import 기능을 구현하여 web application 내부에서 활용</li>
-</ol>
-
-<p>나는 굳이 export나 import를 web으로 할것이 아니기에 1번 방법으로 수동으로 백업을 하였다.</p>
-
-<p>워낙 README가 잘 되어 있어 직접 레포에 확인해보는것이 더 정확하겠지만, 간략한 사용법은 다음과 같다.</p>
-
-<ol>
-  <li>
-    <p>firebase에서 비공개 키 생성</p>
-
-    <blockquote>
-      <p>프로젝트 설정 -&gt; 새 비공개 키 생성
-<img width="652" alt="firebase-goto-image" src="https://github.com/071yoon/071yoon.github.io/assets/66371206/f4e24a2d-e09d-4608-8633-a68c84b054dc" /> <img width="1031" alt="firebase-admin-sdk-image" src="https://github.com/071yoon/071yoon.github.io/assets/66371206/dfc43936-e13c-4cfc-b9df-9601485aa5cd" /></p>
-    </blockquote>
-  </li>
-  <li>
-    <p>npm package 설치 및 export</p>
-  </li>
-</ol>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># sudo로 해야될 수 있음</span>
-npm <span class="nb">install</span> <span class="nt">-g</span> node-firestore-import-export
-
-<span class="c"># ..비공개 키 저장된 위치로 이동..</span>
-firestore-export <span class="nt">--accountCredentials</span> path/to/credentials/file.json <span class="nt">--backupFile</span> /backups/myDatabase.json
-</code></pre></div></div>
-
-<p>그리고 이러한 open-source library를 사용하는 경우 내 credential 이 외부로 노출이 되지는 않을까.. 하는 생각으로 항상 검증 해봐야 된다.</p>
-
-<p>실제로 export 하는 부분을 링크로 남겨둘테니 한번씩은 확인해 보았으면 한다. (내가 봤을때는 문제 없음)</p>
-
-<blockquote>
-  <p><a href="https://github.com/jloosli/node-firestore-import-export/blob/master/src/lib/export.ts">firebase-export 링크</a></p>
-</blockquote>
-
-<p>아주 깔끔~ 하게 json 으로 export가 된다.</p>
-
-<p><img width="482" alt="firebase-export-image" src="https://github.com/071yoon/071yoon.github.io/assets/66371206/ff54d889-63fa-4be0-8858-e9b157ac310e" /></p>
-
-<p>다음엔 아마 oracle 무료 cloud를 받은 기념,, 하루에 한번씩 backup 하도록 자동화 해둘 예정..</p>
-
-<p>총총..</p>]]></content><author><name>071yoon</name></author><category term="TIL" /><category term="web" /><summary type="html"><![CDATA[배경]]></summary></entry></feed>
+<p>다소 건방진 이야기일 수 도 있지만, 다들 취업이 힘들다 하는것은 내가 원하는 회사에 들어가지 못해 계속 도전하고 불합격에 좌절하기 때문이라 생각한다. 하지만, 원하는 회사가 정말 본인이 원하는 회사인지 혹은 사회적으로 형성된 좋은 회사인지 모두가 고민해 보는 시간을 가졌으면 좋겠다. 단순히 모두가 <code class="language-plaintext highlighter-rouge">우아</code> 소리가 나오는 회사를 갔다고 해서 내가 행복할지, 혹은 그곳에 꿈이 있어 나의 비전과 미래를 이룰 수 있는 곳이기에 가고 싶은지.. 나 또한 평생 고민할 숙제라고 생각한다.</p>]]></content><author><name>071yoon</name></author><category term="retrospect" /><category term="retrospect" /><summary type="html"><![CDATA[되게 바빴지만, 동시에 여유로웠던 한해였다.]]></summary></entry></feed>
