@@ -17,7 +17,7 @@
 
 <ul>
   <li>중괄호 <code class="language-plaintext highlighter-rouge">{...}</code> 를 통해 만들 수 있으며, 안에 <code class="language-plaintext highlighter-rouge">key[string]: value[all types]</code>에 해당한 프로퍼티가 들어가야 한다
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Object</span><span class="p">();</span>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Object</span><span class="p">();</span>
   <span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
       <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">,</span>
       <span class="na">age</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span>
@@ -47,11 +47,11 @@
 <ul>
   <li>존재하지 않는 프로퍼티에 접근해도 에러가 발생하지 않고 <code class="language-plaintext highlighter-rouge">undefined</code>로 반환됨에 주의
     <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span> <span class="mi">25</span><span class="p">};</span>
-<span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">age</span><span class="dl">"</span> <span class="k">in</span> <span class="nx">user</span><span class="p">);</span> <span class="c1">//TRUE</span>
-<span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">work</span><span class="dl">"</span> <span class="k">in</span> <span class="nx">user</span><span class="p">);</span><span class="c1">//FALSE</span>
-<span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">user</span><span class="p">){</span>
-    <span class="nx">alert</span><span class="p">(</span><span class="nx">key</span><span class="p">);</span><span class="c1">//name, age</span>
-    <span class="nx">alert</span><span class="p">(</span><span class="nx">user</span><span class="p">[</span><span class="nx">key</span><span class="p">]);</span><span class="c1">//Yoon, 25</span>
+<span class="nf">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">age</span><span class="dl">"</span> <span class="k">in</span> <span class="nx">user</span><span class="p">);</span> <span class="c1">//TRUE</span>
+<span class="nf">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">work</span><span class="dl">"</span> <span class="k">in</span> <span class="nx">user</span><span class="p">);</span><span class="c1">//FALSE</span>
+<span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">user</span><span class="p">){</span>
+    <span class="nf">alert</span><span class="p">(</span><span class="nx">key</span><span class="p">);</span><span class="c1">//name, age</span>
+    <span class="nf">alert</span><span class="p">(</span><span class="nx">user</span><span class="p">[</span><span class="nx">key</span><span class="p">]);</span><span class="c1">//Yoon, 25</span>
 <span class="p">}</span>
 </code></pre></div>    </div>
   </li>
@@ -64,7 +64,7 @@
     <span class="dl">"</span><span class="s2">1</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Korea</span><span class="dl">"</span>
 <span class="p">};</span>
 <span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">code</span> <span class="k">in</span> <span class="nx">codes</span><span class="p">){</span>
-    <span class="nx">alert</span><span class="p">(</span><span class="nx">code</span><span class="p">);</span><span class="c1">//1, 41, 44, 49</span>
+    <span class="nf">alert</span><span class="p">(</span><span class="nx">code</span><span class="p">);</span><span class="c1">//1, 41, 44, 49</span>
 <span class="p">}</span>
 </code></pre></div>    </div>
   </li>
@@ -97,15 +97,15 @@
   <li>원래는 비교 시 피연산자인 두 객체가 동일한 경우 참을 반환한다
     <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">{};</span>
   <span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">a</span><span class="p">;</span><span class="c1">//참조에 의한 복사</span>
-  <span class="nx">alert</span> <span class="p">(</span><span class="nx">a</span> <span class="o">==</span> <span class="nx">b</span><span class="p">);</span>
-  <span class="nx">alert</span> <span class="p">(</span><span class="nx">a</span> <span class="o">===</span> <span class="nx">b</span><span class="p">);</span>
+  <span class="nf">alert </span><span class="p">(</span><span class="nx">a</span> <span class="o">==</span> <span class="nx">b</span><span class="p">);</span>
+  <span class="nf">alert </span><span class="p">(</span><span class="nx">a</span> <span class="o">===</span> <span class="nx">b</span><span class="p">);</span>
 </code></pre></div>    </div>
     <p>둘 다 참을 반환한다</p>
   </li>
   <li>독립된 객체의 비교
     <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">{};</span>
   <span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="p">{};</span>
-  <span class="nx">alert</span> <span class="p">(</span> <span class="nx">a</span> <span class="o">==</span> <span class="nx">b</span><span class="p">);</span><span class="c1">//false</span>
+  <span class="nf">alert </span><span class="p">(</span> <span class="nx">a</span> <span class="o">==</span> <span class="nx">b</span><span class="p">);</span><span class="c1">//false</span>
 </code></pre></div>    </div>
   </li>
 </ul>
@@ -124,11 +124,11 @@
 
 <span class="kd">let</span> <span class="nx">clone</span> <span class="o">=</span> <span class="p">{};</span><span class="c1">//새로운 빈 객체</span>
 
-<span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">user</span><span class="p">){</span><span class="c1">//1번의 방법</span>
+<span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">user</span><span class="p">){</span><span class="c1">//1번의 방법</span>
 	<span class="nx">clone</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">user</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>
 <span class="p">}</span>
 
-<span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="nx">clone</span><span class="p">);</span><span class="c1">//2번의 방법</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nf">assign</span><span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="nx">clone</span><span class="p">);</span><span class="c1">//2번의 방법</span>
 </code></pre></div></div>
 
 <h2 id="가비지-컬렉션">가비지 컬렉션</h2>
@@ -161,17 +161,17 @@
 <span class="p">};</span>
 
 <span class="nx">user</span><span class="p">.</span><span class="nx">sayHi</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span><span class="c1">//방법1</span>
-	<span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hello!</span><span class="dl">"</span><span class="p">);</span>
+	<span class="nf">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hello!</span><span class="dl">"</span><span class="p">);</span>
 <span class="p">};</span>
 
-<span class="kd">function</span> <span class="nx">sayHi</span><span class="p">()</span> <span class="p">{</span><span class="c1">//방법2</span>
-	<span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hello!</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">function</span> <span class="nf">sayHi</span><span class="p">()</span> <span class="p">{</span><span class="c1">//방법2</span>
+	<span class="nf">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hello!</span><span class="dl">"</span><span class="p">);</span>
 <span class="p">};</span>
 <span class="nx">user</span><span class="p">.</span><span class="nx">SayHi</span> <span class="o">=</span> <span class="nx">sayHi</span><span class="p">;</span>
 
 <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span><span class="c1">//방법3</span>
-	<span class="nx">SayHi</span><span class="p">(){</span>
-		<span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hello!</span><span class="dl">"</span><span class="p">);</span>
+	<span class="nc">SayHi</span><span class="p">(){</span>
+		<span class="nf">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hello!</span><span class="dl">"</span><span class="p">);</span>
 	<span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div></div>
@@ -184,8 +184,8 @@
 	<span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">,</span>
 	<span class="na">age</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span>
 
-	<span class="nx">sayHi</span><span class="p">()</span> <span class="p">{</span>
-		<span class="nx">alert</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+	<span class="nf">sayHi</span><span class="p">()</span> <span class="p">{</span>
+		<span class="nf">alert</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
 <span class="c1">//or	alert(user.name);</span>
 	<span class="p">}</span>
 <span class="p">};</span>
@@ -196,12 +196,12 @@
   <p>this가 없는 화살표 함수</p>
   <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
 	<span class="na">firstName</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">,</span>
-	<span class="nx">sayHi</span><span class="p">(){</span>
-		<span class="kd">let</span> <span class="nx">arrow</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">alert</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span><span class="p">);</span>
-		<span class="nx">arrow</span><span class="p">();</span>
+	<span class="nf">sayHi</span><span class="p">(){</span>
+		<span class="kd">let</span> <span class="nx">arrow</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nf">alert</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span><span class="p">);</span>
+		<span class="nf">arrow</span><span class="p">();</span>
 	<span class="p">}</span>
 <span class="p">};</span>
-<span class="nx">user</span><span class="p">.</span><span class="nx">sayHi</span><span class="p">();</span> <span class="c1">//Yoon</span>
+<span class="nx">user</span><span class="p">.</span><span class="nf">sayHi</span><span class="p">();</span> <span class="c1">//Yoon</span>
 </code></pre></div>  </div>
   <p>별개의 this가 만들어 지는것을 원하지 않고, 외부 컨텍스트에서 this를 사요하고 싶을 때 화살표 함수를 사용한다.</p>
 </blockquote>
@@ -215,13 +215,13 @@
   <li>함수 이름의 첫글자는 대문자로 시작</li>
   <li>반드시 <code class="language-plaintext highlighter-rouge">new</code> 연산자를 붙여 실행한다
 예시
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">User</span><span class="p">(</span><span class="nx">name</span><span class="p">){</span>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">User</span><span class="p">(</span><span class="nx">name</span><span class="p">){</span>
  <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
  <span class="k">this</span><span class="p">.</span><span class="nx">isAdmin</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
 <span class="p">}</span>
-<span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">User</span><span class="p">(</span><span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">);</span>
-<span class="nx">alert</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">//Yoon</span>
-<span class="nx">alert</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">isAdmin</span><span class="p">);</span><span class="c1">//False</span>
+<span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">User</span><span class="p">(</span><span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">);</span>
+<span class="nf">alert</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">//Yoon</span>
+<span class="nf">alert</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">isAdmin</span><span class="p">);</span><span class="c1">//False</span>
 </code></pre></div>    </div>
   </li>
 </ol>
@@ -233,16 +233,16 @@
   <p>유연하게 사용 할 수 있게 도와준다</p>
 </blockquote>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">User</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">User</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
 	<span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
 
 	<span class="k">this</span><span class="p">.</span><span class="nx">sayHi</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">My name is </span><span class="dl">"</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">.</span><span class="dl">"</span><span class="p">);</span>
+		<span class="nf">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">My name is </span><span class="dl">"</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">.</span><span class="dl">"</span><span class="p">);</span>
 	<span class="p">};</span>
 <span class="p">}</span>
-<span class="kd">let</span> <span class="nx">yoon</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">User</span><span class="p">(</span><span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">yoon</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">User</span><span class="p">(</span><span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">);</span>
 
-<span class="nx">yoon</span><span class="p">.</span><span class="nx">sayHi</span><span class="p">();</span> <span class="c1">//My name is Yoon.</span>
+<span class="nx">yoon</span><span class="p">.</span><span class="nf">sayHi</span><span class="p">();</span> <span class="c1">//My name is Yoon.</span>
 </code></pre></div></div>
 
 :ET

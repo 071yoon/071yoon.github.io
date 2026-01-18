@@ -1,4 +1,4 @@
-I"$�<h2 id="개요">개요</h2>
+I"G�<h2 id="개요">개요</h2>
 
 <p><img src="https://user-images.githubusercontent.com/66371206/199532363-edfb9a5d-b93d-4833-8c2a-c82655b23369.png" alt="image" /></p>
 
@@ -15,16 +15,16 @@
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Document</span> <span class="ow">is</span>
     <span class="n">field</span> <span class="n">state</span><span class="p">:</span> <span class="n">string</span>
     <span class="o">//</span> <span class="err">…</span>
-    <span class="n">method</span> <span class="n">publish</span><span class="p">()</span> <span class="ow">is</span>
-        <span class="n">switch</span> <span class="p">(</span><span class="n">state</span><span class="p">)</span>
-            <span class="s">"draft"</span><span class="p">:</span>
-                <span class="n">state</span> <span class="o">=</span> <span class="s">"moderation"</span>
+    <span class="n">method</span> <span class="nf">publish</span><span class="p">()</span> <span class="ow">is</span>
+        <span class="nf">switch </span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+            <span class="sh">"</span><span class="s">draft</span><span class="sh">"</span><span class="p">:</span>
+                <span class="n">state</span> <span class="o">=</span> <span class="sh">"</span><span class="s">moderation</span><span class="sh">"</span>
                 <span class="k">break</span>
-            <span class="s">"moderation"</span><span class="p">:</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">currentUser</span><span class="p">.</span><span class="n">role</span> <span class="o">==</span> <span class="s">"admin"</span><span class="p">)</span>
-                    <span class="n">state</span> <span class="o">=</span> <span class="s">"published"</span>
+            <span class="sh">"</span><span class="s">moderation</span><span class="sh">"</span><span class="p">:</span>
+                <span class="nf">if </span><span class="p">(</span><span class="n">currentUser</span><span class="p">.</span><span class="n">role</span> <span class="o">==</span> <span class="sh">"</span><span class="s">admin</span><span class="sh">"</span><span class="p">)</span>
+                    <span class="n">state</span> <span class="o">=</span> <span class="sh">"</span><span class="s">published</span><span class="sh">"</span>
                 <span class="k">break</span>
-            <span class="s">"published"</span><span class="p">:</span>
+            <span class="sh">"</span><span class="s">published</span><span class="sh">"</span><span class="p">:</span>
                 <span class="o">//</span> <span class="n">Do</span> <span class="n">nothing</span><span class="p">.</span>
                 <span class="k">break</span>
     <span class="o">//</span> <span class="err">…</span>

@@ -45,7 +45,7 @@
 <span class="kd">const</span> <span class="nx">IdStore</span> <span class="o">=</span> <span class="nx">create</span><span class="o">&lt;</span><span class="nx">ID</span><span class="o">&gt;</span><span class="p">((</span><span class="kd">set</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span>
   <span class="na">id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">init</span><span class="dl">"</span><span class="p">,</span>
   <span class="na">setId</span><span class="p">:</span> <span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="kd">set</span><span class="p">((</span><span class="nx">state</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span> <span class="na">id</span><span class="p">:</span> <span class="nx">id</span> <span class="p">}));</span>
+    <span class="nf">set</span><span class="p">((</span><span class="nx">state</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span> <span class="na">id</span><span class="p">:</span> <span class="nx">id</span> <span class="p">}));</span>
   <span class="p">},</span>
   <span class="cm">/*
     setId: (by) =&gt; {
@@ -63,20 +63,20 @@
 
 <h3 id="id-입력하는-페이지-구성">ID 입력하는 페이지 구성</h3>
 
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">InputID</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="nx">navigate</span> <span class="o">=</span> <span class="nx">useNavigate</span><span class="p">();</span>
-  <span class="kd">const</span> <span class="p">{</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">setId</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">IdStore</span><span class="p">();</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nf">InputID</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">navigate</span> <span class="o">=</span> <span class="nf">useNavigate</span><span class="p">();</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">setId</span> <span class="p">}</span> <span class="o">=</span> <span class="nc">IdStore</span><span class="p">();</span>
 
   <span class="kd">const</span> <span class="nx">onSubmit</span> <span class="o">=</span> <span class="p">(</span><span class="nx">event</span><span class="p">:</span> <span class="nx">React</span><span class="p">.</span><span class="nx">FormEvent</span><span class="o">&lt;</span><span class="nx">HTMLFormElement</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
-    <span class="nx">navigate</span><span class="p">(</span><span class="s2">`/lobby`</span><span class="p">);</span>
+    <span class="nx">event</span><span class="p">.</span><span class="nf">preventDefault</span><span class="p">();</span>
+    <span class="nf">navigate</span><span class="p">(</span><span class="s2">`/lobby`</span><span class="p">);</span>
   <span class="p">};</span>
 
   <span class="kd">const</span> <span class="nx">onChange</span> <span class="o">=</span> <span class="p">(</span><span class="nx">event</span><span class="p">:</span> <span class="nx">React</span><span class="p">.</span><span class="nx">ChangeEvent</span><span class="o">&lt;</span><span class="nx">HTMLInputElement</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">setId</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+    <span class="nf">setId</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
   <span class="p">};</span>
 
-  <span class="k">return</span> <span class="p">(</span>
+  <span class="k">return </span><span class="p">(</span>
     <span class="o">&lt;</span><span class="nx">Form</span> <span class="nx">onSubmit</span><span class="o">=</span><span class="p">{</span><span class="nx">onSubmit</span><span class="p">}</span><span class="o">&gt;</span>
       <span class="o">&lt;</span><span class="nx">Input</span>
         <span class="nx">autoComplete</span><span class="o">=</span><span class="dl">"</span><span class="s2">off</span><span class="dl">"</span>
@@ -92,9 +92,9 @@
 
 <h3 id="다음-페이지에-방금-입력한-id가-잘-적용-되었는지-확인">다음 페이지에 방금 입력한 ID가 잘 적용 되었는지 확인</h3>
 
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">Lobby</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="p">{</span> <span class="nx">id</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">IdStore</span><span class="p">();</span>
-  <span class="k">return</span> <span class="p">(</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nf">Lobby</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">id</span> <span class="p">}</span> <span class="o">=</span> <span class="nc">IdStore</span><span class="p">();</span>
+  <span class="k">return </span><span class="p">(</span>
     <span class="o">&lt;</span><span class="nx">Container</span><span class="o">&gt;</span>
       <span class="o">&lt;</span><span class="nx">Header</span><span class="o">&gt;</span><span class="nx">Lobby</span><span class="o">&lt;</span><span class="sr">/Header</span><span class="err">&gt;
 </span>      <span class="o">&lt;</span><span class="nx">Me</span><span class="o">&gt;</span><span class="nx">name</span><span class="p">:</span> <span class="p">{</span><span class="nx">id</span><span class="p">}</span> <span class="o">&lt;</span><span class="sr">/Me</span><span class="err">&gt;
@@ -122,7 +122,7 @@
 
 <span class="kd">const</span> <span class="nx">useStore</span> <span class="o">=</span> <span class="nx">create</span><span class="o">&lt;</span><span class="nx">BearState</span><span class="o">&gt;</span><span class="p">()((</span><span class="kd">set</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span>
   <span class="na">bears</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-  <span class="na">increase</span><span class="p">:</span> <span class="p">(</span><span class="nx">by</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="kd">set</span><span class="p">((</span><span class="nx">state</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span> <span class="na">bears</span><span class="p">:</span> <span class="nx">state</span><span class="p">.</span><span class="nx">bears</span> <span class="o">+</span> <span class="nx">by</span> <span class="p">})),</span>
+  <span class="na">increase</span><span class="p">:</span> <span class="p">(</span><span class="nx">by</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nf">set</span><span class="p">((</span><span class="nx">state</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span> <span class="na">bears</span><span class="p">:</span> <span class="nx">state</span><span class="p">.</span><span class="nx">bears</span> <span class="o">+</span> <span class="nx">by</span> <span class="p">})),</span>
 <span class="p">}));</span>
 
 <span class="k">export</span> <span class="k">default</span> <span class="nx">useStore</span><span class="p">;</span>
@@ -130,18 +130,18 @@
 
 <h3 id="bearcounter-component">BearCounter Component</h3>
 
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">TestOne</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="nx">navigate</span> <span class="o">=</span> <span class="nx">useNavigate</span><span class="p">();</span>
-  <span class="kd">const</span> <span class="p">{</span> <span class="nx">bears</span><span class="p">,</span> <span class="nx">increase</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">useStore</span><span class="p">();</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">TestOne</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">navigate</span> <span class="o">=</span> <span class="nf">useNavigate</span><span class="p">();</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">bears</span><span class="p">,</span> <span class="nx">increase</span> <span class="p">}</span> <span class="o">=</span> <span class="nf">useStore</span><span class="p">();</span>
   <span class="kd">const</span> <span class="p">[</span><span class="nx">id</span><span class="p">,</span> <span class="nx">setId</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="o">&lt;</span><span class="kr">number</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
   <span class="c1">// const increasePopulation = useStore((state) =&gt; state.increase);</span>
 
   <span class="kd">const</span> <span class="nx">formHandler</span> <span class="o">=</span> <span class="p">(</span><span class="nx">event</span><span class="p">:</span> <span class="nx">React</span><span class="p">.</span><span class="nx">FormEvent</span><span class="o">&lt;</span><span class="nx">HTMLFormElement</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
-    <span class="k">return</span> <span class="nx">increase</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="nx">event</span><span class="p">.</span><span class="nf">preventDefault</span><span class="p">();</span>
+    <span class="k">return</span> <span class="nf">increase</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
   <span class="p">};</span>
 
-  <span class="k">return</span> <span class="p">(</span>
+  <span class="k">return </span><span class="p">(</span>
     <span class="o">&lt;</span><span class="nx">Container</span><span class="o">&gt;</span>
       <span class="o">&lt;</span><span class="nx">form</span> <span class="nx">onSubmit</span><span class="o">=</span><span class="p">{</span><span class="nx">formHandler</span><span class="p">}</span><span class="o">&gt;</span>
         <span class="o">&lt;</span><span class="nx">button</span> <span class="kd">type</span><span class="o">=</span><span class="dl">"</span><span class="s2">submit</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">incrase</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
@@ -156,9 +156,9 @@
 
 <h3 id="testtwo">TestTwo</h3>
 
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">TestTwo</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="p">{</span> <span class="nx">bears</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">useStore</span><span class="p">();</span>
-  <span class="k">return</span> <span class="p">(</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">TestTwo</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">bears</span> <span class="p">}</span> <span class="o">=</span> <span class="nf">useStore</span><span class="p">();</span>
+  <span class="k">return </span><span class="p">(</span>
     <span class="o">&lt;</span><span class="nx">Container</span><span class="o">&gt;</span>
       <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">bears</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/h1</span><span class="err">&gt;
 </span>    <span class="o">&lt;</span><span class="sr">/Container</span><span class="err">&gt;

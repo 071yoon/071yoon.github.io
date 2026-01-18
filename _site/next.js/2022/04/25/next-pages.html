@@ -8,7 +8,7 @@
   <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
 <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>NEXT-Pages | YeongGi’s tech blog</title>
-<meta name="generator" content="Jekyll v4.2.2">
+<meta name="generator" content="Jekyll v4.4.1">
 <meta property="og:title" content="NEXT-Pages">
 <meta name="author" content="071yoon">
 <meta property="og:locale" content="en_US">
@@ -834,7 +834,7 @@ function googleTranslateElementInit() {
 
 <p>Next.js 는 기본적으로 데이터 fetching을 제외한 <code class="language-plaintext highlighter-rouge">Static Generation</code>으로 작동한다.</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">About</span><span class="p">()</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">About</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">return</span> <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="nx">About</span><span class="o">&lt;</span><span class="sr">/div&gt;</span><span class="err">;
 </span><span class="p">}</span>
 
@@ -849,10 +849,10 @@ function googleTranslateElementInit() {
 
 <h4 id="1-content가-의존성일-때">1. content가 의존성일 때</h4>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Blog</span><span class="p">({</span> <span class="nx">posts</span> <span class="p">})</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="p">(</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">Blog</span><span class="p">({</span> <span class="nx">posts</span> <span class="p">})</span> <span class="p">{</span>
+  <span class="k">return </span><span class="p">(</span>
     <span class="o">&lt;</span><span class="nx">ul</span><span class="o">&gt;</span>
-      <span class="p">{</span><span class="nx">posts</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">post</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span>
+      <span class="p">{</span><span class="nx">posts</span><span class="p">.</span><span class="nf">map</span><span class="p">((</span><span class="nx">post</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span>
         <span class="o">&lt;</span><span class="nx">li</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">post</span><span class="p">.</span><span class="nx">title</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/li</span><span class="err">&gt;
 </span>      <span class="p">))}</span>
     <span class="o">&lt;</span><span class="sr">/ul</span><span class="err">&gt;
@@ -864,19 +864,19 @@ function googleTranslateElementInit() {
 
 <p>이러한 형태의 함수를 보낼시에, Next.js 는 async 를 export 하게 도와준다. <code class="language-plaintext highlighter-rouge">getStaticProps</code> 란 함수를 불러 사용이 가능하며, <code class="language-plaintext highlighter-rouge">pre-render</code> 과정에서, data를 fetch하게 도와준다. 그럼 수정본 코드를 보면 다음과 같다.</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Blog</span><span class="p">({</span> <span class="nx">posts</span> <span class="p">})</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="p">(</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">Blog</span><span class="p">({</span> <span class="nx">posts</span> <span class="p">})</span> <span class="p">{</span>
+  <span class="k">return </span><span class="p">(</span>
     <span class="o">&lt;</span><span class="nx">ul</span><span class="o">&gt;</span>
-      <span class="p">{</span><span class="nx">posts</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">post</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span>
+      <span class="p">{</span><span class="nx">posts</span><span class="p">.</span><span class="nf">map</span><span class="p">((</span><span class="nx">post</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span>
         <span class="o">&lt;</span><span class="nx">li</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">post</span><span class="p">.</span><span class="nx">title</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/li</span><span class="err">&gt;
 </span>      <span class="p">))}</span>
     <span class="o">&lt;</span><span class="sr">/ul</span><span class="err">&gt;
 </span>  <span class="p">);</span>
 <span class="p">}</span>
 
-<span class="k">export</span> <span class="k">async</span> <span class="kd">function</span> <span class="nx">getStaticProps</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://.../posts</span><span class="dl">"</span><span class="p">);</span>
-  <span class="kd">const</span> <span class="nx">posts</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="k">export</span> <span class="k">async</span> <span class="kd">function</span> <span class="nf">getStaticProps</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">await</span> <span class="nf">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://.../posts</span><span class="dl">"</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">posts</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">res</span><span class="p">.</span><span class="nf">json</span><span class="p">();</span>
 
   <span class="k">return</span> <span class="p">{</span>
     <span class="na">props</span><span class="p">:</span> <span class="p">{</span>
@@ -917,17 +917,17 @@ function googleTranslateElementInit() {
 
 <p>path의 pre-render과정을 보면 다음과 같다.</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Post</span><span class="p">({</span> <span class="nx">post</span> <span class="p">})</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">Post</span><span class="p">({</span> <span class="nx">post</span> <span class="p">})</span> <span class="p">{</span>
   <span class="c1">// Render post...</span>
 <span class="p">}</span>
 
-<span class="k">export</span> <span class="k">async</span> <span class="kd">function</span> <span class="nx">getStaticPaths</span><span class="p">()</span> <span class="p">{</span>
+<span class="k">export</span> <span class="k">async</span> <span class="kd">function</span> <span class="nf">getStaticPaths</span><span class="p">()</span> <span class="p">{</span>
   <span class="c1">// Call an external API endpoint to get posts</span>
-  <span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://.../posts</span><span class="dl">"</span><span class="p">);</span>
-  <span class="kd">const</span> <span class="nx">posts</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+  <span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">await</span> <span class="nf">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://.../posts</span><span class="dl">"</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">posts</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">res</span><span class="p">.</span><span class="nf">json</span><span class="p">();</span>
 
   <span class="c1">// Get the paths we want to pre-render based on posts</span>
-  <span class="kd">const</span> <span class="nx">paths</span> <span class="o">=</span> <span class="nx">posts</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">post</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span>
+  <span class="kd">const</span> <span class="nx">paths</span> <span class="o">=</span> <span class="nx">posts</span><span class="p">.</span><span class="nf">map</span><span class="p">((</span><span class="nx">post</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span>
     <span class="na">params</span><span class="p">:</span> <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="nx">post</span><span class="p">.</span><span class="nx">id</span> <span class="p">},</span>
   <span class="p">}));</span>
 
@@ -935,10 +935,10 @@ function googleTranslateElementInit() {
   <span class="k">return</span> <span class="p">{</span> <span class="nx">paths</span><span class="p">,</span> <span class="na">fallback</span><span class="p">:</span> <span class="kc">false</span> <span class="p">};</span>
 <span class="p">}</span>
 <span class="c1">// 이것도 빌드시에 사용</span>
-<span class="k">export</span> <span class="k">async</span> <span class="kd">function</span> <span class="nx">getStaticProps</span><span class="p">({</span> <span class="nx">params</span> <span class="p">})</span> <span class="p">{</span>
+<span class="k">export</span> <span class="k">async</span> <span class="kd">function</span> <span class="nf">getStaticProps</span><span class="p">({</span> <span class="nx">params</span> <span class="p">})</span> <span class="p">{</span>
   <span class="c1">// 다이나믹하게 작동한다</span>
-  <span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="s2">`https://.../posts/</span><span class="p">${</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
-  <span class="kd">const</span> <span class="nx">post</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+  <span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">await</span> <span class="nf">fetch</span><span class="p">(</span><span class="s2">`https://.../posts/</span><span class="p">${</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">post</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">res</span><span class="p">.</span><span class="nf">json</span><span class="p">();</span>
 
   <span class="c1">// Pass post data to the page via props</span>
   <span class="k">return</span> <span class="p">{</span> <span class="na">props</span><span class="p">:</span> <span class="p">{</span> <span class="nx">post</span> <span class="p">}</span> <span class="p">};</span>
@@ -981,15 +981,15 @@ function googleTranslateElementInit() {
 
 <p>이건 <code class="language-plaintext highlighter-rouge">export</code> 와 <code class="language-plaintext highlighter-rouge">async</code> 를 활용한 <code class="language-plaintext highlighter-rouge">getServerSideProps</code> 란 함수를 사용하여 구현할 수 있다.</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Page</span><span class="p">({</span> <span class="nx">data</span> <span class="p">})</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">Page</span><span class="p">({</span> <span class="nx">data</span> <span class="p">})</span> <span class="p">{</span>
   <span class="c1">// Render data...</span>
 <span class="p">}</span>
 
 <span class="c1">// 매번 불러온다</span>
-<span class="k">export</span> <span class="k">async</span> <span class="kd">function</span> <span class="nx">getServerSideProps</span><span class="p">()</span> <span class="p">{</span>
+<span class="k">export</span> <span class="k">async</span> <span class="kd">function</span> <span class="nf">getServerSideProps</span><span class="p">()</span> <span class="p">{</span>
   <span class="c1">// Fetch data from external API</span>
-  <span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="s2">`https://.../data`</span><span class="p">);</span>
-  <span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+  <span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">await</span> <span class="nf">fetch</span><span class="p">(</span><span class="s2">`https://.../data`</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">res</span><span class="p">.</span><span class="nf">json</span><span class="p">();</span>
 
   <span class="c1">// props 로 data 불러오기</span>
   <span class="k">return</span> <span class="p">{</span> <span class="na">props</span><span class="p">:</span> <span class="p">{</span> <span class="nx">data</span> <span class="p">}</span> <span class="p">};</span>
@@ -1029,10 +1029,10 @@ function googleTranslateElementInit() {
 
 <p>사용하기 위해서는 다음과 같이 <code class="language-plaintext highlighter-rouge">getStaticProps</code>에 <code class="language-plaintext highlighter-rouge">revalidate</code>를 사용해야 된다.</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Blog</span><span class="p">({</span> <span class="nx">posts</span> <span class="p">})</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="p">(</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">Blog</span><span class="p">({</span> <span class="nx">posts</span> <span class="p">})</span> <span class="p">{</span>
+  <span class="k">return </span><span class="p">(</span>
     <span class="o">&lt;</span><span class="nx">ul</span><span class="o">&gt;</span>
-      <span class="p">{</span><span class="nx">posts</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">post</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span>
+      <span class="p">{</span><span class="nx">posts</span><span class="p">.</span><span class="nf">map</span><span class="p">((</span><span class="nx">post</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span>
         <span class="o">&lt;</span><span class="nx">li</span> <span class="nx">key</span><span class="o">=</span><span class="p">{</span><span class="nx">post</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">post</span><span class="p">.</span><span class="nx">title</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/li</span><span class="err">&gt;
 </span>      <span class="p">))}</span>
     <span class="o">&lt;</span><span class="sr">/ul</span><span class="err">&gt;
@@ -1040,9 +1040,9 @@ function googleTranslateElementInit() {
 <span class="p">}</span>
 
 <span class="c1">//serverside 에서 빌드되는 함수</span>
-<span class="k">export</span> <span class="k">async</span> <span class="kd">function</span> <span class="nx">getStaticProps</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://.../posts</span><span class="dl">"</span><span class="p">);</span>
-  <span class="kd">const</span> <span class="nx">posts</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="k">export</span> <span class="k">async</span> <span class="kd">function</span> <span class="nf">getStaticProps</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">await</span> <span class="nf">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://.../posts</span><span class="dl">"</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">posts</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">res</span><span class="p">.</span><span class="nf">json</span><span class="p">();</span>
 
   <span class="k">return</span> <span class="p">{</span>
     <span class="na">pros</span><span class="p">:</span> <span class="p">{</span>
@@ -1053,11 +1053,11 @@ function googleTranslateElementInit() {
   <span class="p">};</span>
 
   <span class="c1">//마찬가지로 server-side 에서 build시 실행</span>
-  <span class="k">export</span> <span class="k">async</span> <span class="kd">function</span> <span class="nx">getStaticPaths</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://.../posts</span><span class="dl">"</span><span class="p">);</span>
-    <span class="kd">const</span> <span class="nx">posts</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+  <span class="k">export</span> <span class="k">async</span> <span class="kd">function</span> <span class="nf">getStaticPaths</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">await</span> <span class="nf">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://.../posts</span><span class="dl">"</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">posts</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">res</span><span class="p">.</span><span class="nf">json</span><span class="p">();</span>
 
-    <span class="kd">const</span> <span class="nx">paths</span> <span class="o">=</span> <span class="nx">posts</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">post</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span>
+    <span class="kd">const</span> <span class="nx">paths</span> <span class="o">=</span> <span class="nx">posts</span><span class="p">.</span><span class="nf">map</span><span class="p">((</span><span class="nx">post</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span>
       <span class="na">params</span><span class="p">:</span> <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="nx">post</span><span class="p">.</span><span class="nx">id</span> <span class="p">},</span>
     <span class="p">}));</span>
 
@@ -1112,15 +1112,15 @@ function googleTranslateElementInit() {
 
 <p><code class="language-plaintext highlighter-rouge">getStaticProps</code>안에, <code class="language-plaintext highlighter-rouge">revalidate</code>를 명시해주지 않아도, 된다. 만약 빠졌다면, Next.js가 자동으로 FALSE로 주고, <code class="language-plaintext highlighter-rouge">unstable-revalidate</code>요청시에만 업데이트를 진행한다.</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="k">async</span> <span class="kd">function</span> <span class="nx">handler</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">secret</span> <span class="o">!==</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">MY_SECRET_TOKE</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">401</span><span class="p">).</span><span class="nx">json</span><span class="p">({</span> <span class="na">message</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Invalid token</span><span class="dl">"</span> <span class="p">});</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="k">async</span> <span class="kd">function</span> <span class="nf">handler</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if </span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">secret</span> <span class="o">!==</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">MY_SECRET_TOKE</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nf">status</span><span class="p">(</span><span class="mi">401</span><span class="p">).</span><span class="nf">json</span><span class="p">({</span> <span class="na">message</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Invalid token</span><span class="dl">"</span> <span class="p">});</span>
   <span class="p">}</span>
   <span class="k">try</span> <span class="p">{</span>
-    <span class="k">await</span> <span class="nx">res</span><span class="p">.</span><span class="nx">unstable_revalidate</span><span class="p">(</span><span class="dl">"</span><span class="s2">path-to-revalidate</span><span class="dl">"</span><span class="p">);</span>
-    <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">({</span> <span class="na">revalidated</span><span class="p">:</span> <span class="kc">true</span> <span class="p">});</span>
-  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">500</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="dl">"</span><span class="s2">Error revalidating</span><span class="dl">"</span><span class="p">);</span>
+    <span class="k">await</span> <span class="nx">res</span><span class="p">.</span><span class="nf">unstable_revalidate</span><span class="p">(</span><span class="dl">"</span><span class="s2">path-to-revalidate</span><span class="dl">"</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nf">json</span><span class="p">({</span> <span class="na">revalidated</span><span class="p">:</span> <span class="kc">true</span> <span class="p">});</span>
+  <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nf">status</span><span class="p">(</span><span class="mi">500</span><span class="p">).</span><span class="nf">send</span><span class="p">(</span><span class="dl">"</span><span class="s2">Error revalidating</span><span class="dl">"</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -1137,11 +1137,11 @@ function googleTranslateElementInit() {
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">useSWR</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">swr</span><span class="dl">"</span><span class="p">;</span>
 
-<span class="kd">function</span> <span class="nx">Profile</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="p">{</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">error</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">useSWR</span><span class="p">(</span><span class="dl">"</span><span class="s2">/api/user</span><span class="dl">"</span><span class="p">,</span> <span class="nx">fetcher</span><span class="p">);</span>
+<span class="kd">function</span> <span class="nf">Profile</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">error</span> <span class="p">}</span> <span class="o">=</span> <span class="nf">useSWR</span><span class="p">(</span><span class="dl">"</span><span class="s2">/api/user</span><span class="dl">"</span><span class="p">,</span> <span class="nx">fetcher</span><span class="p">);</span>
 
-  <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="k">return</span> <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="nx">failed</span> <span class="nx">to</span> <span class="nx">load</span><span class="o">&lt;</span><span class="sr">/div&gt;</span><span class="err">;
-</span>  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">data</span><span class="p">)</span> <span class="k">return</span> <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="nx">loading</span><span class="p">...</span><span class="o">&lt;</span><span class="sr">/div&gt;</span><span class="err">;
+  <span class="k">if </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="k">return</span> <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="nx">failed</span> <span class="nx">to</span> <span class="nx">load</span><span class="o">&lt;</span><span class="sr">/div&gt;</span><span class="err">;
+</span>  <span class="k">if </span><span class="p">(</span><span class="o">!</span><span class="nx">data</span><span class="p">)</span> <span class="k">return</span> <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="nx">loading</span><span class="p">...</span><span class="o">&lt;</span><span class="sr">/div&gt;</span><span class="err">;
 </span>  <span class="k">return</span> <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="nx">hello</span> <span class="p">{</span><span class="nx">data</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="o">!&lt;</span><span class="sr">/div&gt;</span><span class="err">;
 </span><span class="p">}</span>
 </code></pre></div></div>
@@ -1161,16 +1161,16 @@ function googleTranslateElementInit() {
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">useSWR</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">swr</span><span class="dl">'</span>
 
-<span class="kd">const</span> <span class="nx">fetcher</span> <span class="o">=</span> <span class="p">(...</span><span class="nx">args</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">fetch</span><span class="p">(...</span><span class="nx">args</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+<span class="kd">const</span> <span class="nx">fetcher</span> <span class="o">=</span> <span class="p">(...</span><span class="nx">args</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nf">fetch</span><span class="p">(...</span><span class="nx">args</span><span class="p">).</span><span class="nf">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">res</span><span class="p">.</span><span class="nf">json</span><span class="p">())</span>
 
-<span class="nx">functoin</span> <span class="nx">Profile</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="p">{</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">error</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">useSWR</span><span class="p">(</span><span class="dl">'</span><span class="s1">/api/profile-data</span><span class="dl">'</span><span class="p">,</span> <span class="nx">fecther</span><span class="p">)</span>
+<span class="nx">functoin</span> <span class="nc">Profile</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">error</span> <span class="p">}</span> <span class="o">=</span> <span class="nf">useSWR</span><span class="p">(</span><span class="dl">'</span><span class="s1">/api/profile-data</span><span class="dl">'</span><span class="p">,</span> <span class="nx">fecther</span><span class="p">)</span>
 
-  <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span>
+  <span class="k">if </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span>
     <span class="k">return</span> <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="nx">Failed</span> <span class="nx">to</span> <span class="nx">load</span><span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
-</span>  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">data</span><span class="p">)</span> <span class="k">return</span> <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="nx">Loading</span><span class="p">...</span><span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>  <span class="k">if </span><span class="p">(</span><span class="o">!</span><span class="nx">data</span><span class="p">)</span> <span class="k">return</span> <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="nx">Loading</span><span class="p">...</span><span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
 </span>
-  <span class="k">return</span> <span class="p">(</span>
+  <span class="k">return </span><span class="p">(</span>
     <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
       <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">data</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/h1</span><span class="err">&gt;
 </span>      <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">data</span><span class="p">.</span><span class="nx">bio</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/p</span><span class="err">&gt;
@@ -1189,10 +1189,10 @@ function googleTranslateElementInit() {
 <div class="post-related">
       <div>Related Articles</div>
       <ul>
-        <li><a class="post-link" href="/javascript/2022/01/20/javascript-property.html" title="NEXT-Built-In CSS">자바스크립트 객체 프로퍼티 설정</a></li>
-<li><a class="post-link" href="/gof/2022/11/17/command-pattern.html" title="NEXT-Built-In CSS">명령 패턴</a></li>
-<li><a class="post-link" href="/next.js/2022/04/25/next-pages.html" title="NEXT-Built-In CSS">NEXT-Pages</a></li>
-<li><a class="post-link" href="/til/2022/06/29/socket-error.html" title="NEXT-Built-In CSS">Socket.io 연결 에러</a></li>
+        <li><a class="post-link" href="/modoco/2022/07/09/typescript-font.html" title="NEXT-Built-In CSS">Typescript React Styled-Component 에서 Font 적용하기</a></li>
+<li><a class="post-link" href="/retrospect/2023/07/12/walk-through-jeju.html" title="NEXT-Built-In CSS">걸어서 제주도 한바퀴</a></li>
+<li><a class="post-link" href="/til/2022/11/10/react-hook.html" title="NEXT-Built-In CSS">REACT Hook 구현하기</a></li>
+<li><a class="post-link" href="/til/2024/07/07/certificates.html" title="NEXT-Built-In CSS">SQLD / 정보처리기사 취득기</a></li>
 </ul>
     </div>
 <div class="post-comments">
@@ -1335,7 +1335,7 @@ function googleTranslateElementInit() {
 
   <div class="wrapper">
     <div class="site-footer-inner">
-<div>Unpublished Work <span class="copyleft">©</span> 2021-2025 071yoon</div>
+<div>Unpublished Work <span class="copyleft">©</span> 2021-2026 071yoon</div>
       <div>Powered by <a title="Jekyll is a simple, blog-aware, static site
       generator." href="http://jekyllrb.com/">Jekyll</a> &amp; <a title="Yat, yet
       another theme." href="https://github.com/jeffreytse/jekyll-theme-yat">Yat Theme</a>.</div>

@@ -8,7 +8,7 @@
   <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
 <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Recoil 배우기 | YeongGi’s tech blog</title>
-<meta name="generator" content="Jekyll v4.2.2">
+<meta name="generator" content="Jekyll v4.4.1">
 <meta property="og:title" content="Recoil 배우기">
 <meta name="author" content="071yoon">
 <meta property="og:locale" content="en_US">
@@ -845,7 +845,7 @@ function googleTranslateElementInit() {
 
 <h3 id="atom-생성">Atom 생성</h3>
 
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">atom</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span><span class="p">({</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">atom</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span><span class="p">({</span>
   <span class="na">key</span><span class="p">:</span> <span class="kr">string</span><span class="p">,</span>
   <span class="na">default</span><span class="p">:</span> <span class="nx">T</span> <span class="o">|</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span> <span class="o">|</span> <span class="nx">RecoilValue</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span><span class="p">,</span>
 
@@ -872,7 +872,7 @@ function googleTranslateElementInit() {
 
 <p>먼저 atom을 생성해야된다</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">myState</span> <span class="o">=</span> <span class="nx">atom</span><span class="p">({</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">myState</span> <span class="o">=</span> <span class="nf">atom</span><span class="p">({</span>
   <span class="na">key</span><span class="p">:</span> <span class="dl">"</span><span class="s2">uniqueKey</span><span class="dl">"</span><span class="p">,</span>
   <span class="na">default</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
 <span class="p">});</span>
@@ -882,14 +882,14 @@ function googleTranslateElementInit() {
 
 <p>atom을 읽고 쓰기 위해 사용</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">[</span><span class="nx">val</span><span class="p">,</span> <span class="nx">setVal</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useRecoilState</span><span class="p">(</span><span class="nx">uniqueKey</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">[</span><span class="nx">val</span><span class="p">,</span> <span class="nx">setVal</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useRecoilState</span><span class="p">(</span><span class="nx">uniqueKey</span><span class="p">);</span>
 </code></pre></div></div>
 
 <h4 id="userecoilvalue">useRecoilValue</h4>
 
 <p>atom을 읽을 때 사용</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">val</span> <span class="o">=</span> <span class="nx">useRecoilValue</span><span class="p">(</span><span class="nx">uniqueKey</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">val</span> <span class="o">=</span> <span class="nf">useRecoilValue</span><span class="p">(</span><span class="nx">uniqueKey</span><span class="p">);</span>
 </code></pre></div></div>
 
 <h4 id="usesetrecoilstate">useSetRecoilState</h4>
@@ -898,7 +898,7 @@ function googleTranslateElementInit() {
 업데이트 할 수 있는 setter를 리턴한다
 컴포넌트를 atom에 등록하지 않아, 변경이 되어도 리렌더링 되지는 않는다. -&gt; 즉 atom을 사용하지 않는 경우 이 훅을 사용</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">setVal</span> <span class="o">=</span> <span class="nx">useSetRecoilState</span><span class="p">(</span><span class="nx">uniqueKey</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">setVal</span> <span class="o">=</span> <span class="nf">useSetRecoilState</span><span class="p">(</span><span class="nx">uniqueKey</span><span class="p">);</span>
 </code></pre></div></div>
 
 <h4 id="useresetrecoilstate">useResetRecoilState</h4>
@@ -906,7 +906,7 @@ function googleTranslateElementInit() {
 <p>atom을 default를 초기화한다
 비동기 setter를 리턴하며, 컴포넌트 리렌더링이 되지는 않는다</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">reset</span> <span class="o">=</span> <span class="nx">useResetRecoilState</span><span class="p">(</span><span class="nx">uniqueKey</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">reset</span> <span class="o">=</span> <span class="nf">useResetRecoilState</span><span class="p">(</span><span class="nx">uniqueKey</span><span class="p">);</span>
 </code></pre></div></div>
 
 <h4 id="userecoilcallback">useRecoilCallback</h4>
@@ -921,8 +921,8 @@ function googleTranslateElementInit() {
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">RecoilRoot</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">recoil</span><span class="dl">"</span><span class="p">;</span>
 
-<span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="p">(</span>
+<span class="kd">function</span> <span class="nf">App</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return </span><span class="p">(</span>
     <span class="o">&lt;</span><span class="nx">RecoilRoot</span><span class="o">&gt;</span>
       <span class="o">&lt;</span><span class="nx">Components</span> <span class="o">/&gt;</span>
     <span class="o">&lt;</span><span class="sr">/RecoilRoot</span><span class="err">&gt;
@@ -944,10 +944,10 @@ function googleTranslateElementInit() {
 <div class="post-related">
       <div>Related Articles</div>
       <ul>
-        <li><a class="post-link" href="/react/2022/09/19/start-cypress.html" title="Typescript 에서 Zustand 배우기">Cypress로 e2e 테스트 하기</a></li>
-<li><a class="post-link" href="/next.js/2022/04/24/why-next-js.html" title="Typescript 에서 Zustand 배우기">NEXT</a></li>
+        <li><a class="post-link" href="/til/2022/11/01/how-we-work.html" title="Typescript 에서 Zustand 배우기">FIRE는 이렇게 협업했다</a></li>
+<li><a class="post-link" href="/javascript/2022/01/17/javascript-data-structure.html" title="Typescript 에서 Zustand 배우기">자바스크립트 자료구조와 자료형</a></li>
 <li><a class="post-link" href="/book/2024/01/28/essence-of-oop.html" title="Typescript 에서 Zustand 배우기">객체지향의 사실과 오해</a></li>
-<li><a class="post-link" href="/retrospect/2022/12/26/about-1-day-1-commit.html" title="Typescript 에서 Zustand 배우기">1일 1커밋에 대한 고찰</a></li>
+<li><a class="post-link" href="/javascript/2022/01/22/javascript-coding-1.html" title="Typescript 에서 Zustand 배우기">바닐라JS로 앱 만들기 1</a></li>
 </ul>
     </div>
 <div class="post-comments">
@@ -1090,7 +1090,7 @@ function googleTranslateElementInit() {
 
   <div class="wrapper">
     <div class="site-footer-inner">
-<div>Unpublished Work <span class="copyleft">©</span> 2021-2025 071yoon</div>
+<div>Unpublished Work <span class="copyleft">©</span> 2021-2026 071yoon</div>
       <div>Powered by <a title="Jekyll is a simple, blog-aware, static site
       generator." href="http://jekyllrb.com/">Jekyll</a> &amp; <a title="Yat, yet
       another theme." href="https://github.com/jeffreytse/jekyll-theme-yat">Yat Theme</a>.</div>

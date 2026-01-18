@@ -8,7 +8,7 @@
   <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
 <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>React에서 Volume Slider 구현하기 | YeongGi’s tech blog</title>
-<meta name="generator" content="Jekyll v4.2.2">
+<meta name="generator" content="Jekyll v4.4.1">
 <meta property="og:title" content="React에서 Volume Slider 구현하기">
 <meta name="author" content="071yoon">
 <meta property="og:locale" content="en_US">
@@ -834,7 +834,7 @@ function googleTranslateElementInit() {
   <span class="nx">step</span><span class="o">=</span><span class="p">{</span><span class="mf">0.02</span><span class="p">}</span>
   <span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="nx">volume</span><span class="p">}</span>
   <span class="nx">onChange</span><span class="o">=</span><span class="p">{(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">setVolume</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">valueAsNumber</span><span class="p">);</span>
+    <span class="nf">setVolume</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">valueAsNumber</span><span class="p">);</span>
   <span class="p">}}</span>
 <span class="sr">/</span><span class="err">&gt;
 </span></code></pre></div></div>
@@ -865,7 +865,7 @@ function googleTranslateElementInit() {
     <span class="nx">step</span><span class="o">=</span><span class="p">{</span><span class="mf">0.02</span><span class="p">}</span>
     <span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="nx">volume</span><span class="p">}</span>
     <span class="nx">onChange</span><span class="o">=</span><span class="p">{(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="nx">setVolume</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">valueAsNumber</span><span class="p">);</span>
+      <span class="nf">setVolume</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">valueAsNumber</span><span class="p">);</span>
     <span class="p">}}</span>
   <span class="sr">/</span><span class="err">&gt;
 </span><span class="o">&lt;</span><span class="sr">/VolumeControl</span><span class="err">&gt;
@@ -913,11 +913,11 @@ function googleTranslateElementInit() {
 <p>혹시라도 사용하고 싶다면</p>
 
 <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">input</span><span class="o">[</span><span class="nt">type</span><span class="o">=</span><span class="s1">"range"</span><span class="o">]</span><span class="nd">::-ms-fill-lower</span> <span class="p">{</span>
-  <span class="nl">background-color</span><span class="p">:</span> <span class="no">red</span><span class="p">;</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="nx">red</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="nt">input</span><span class="o">[</span><span class="nt">type</span><span class="o">=</span><span class="s1">"range"</span><span class="o">]</span><span class="nd">::-ms-fill-upper</span> <span class="p">{</span>
-  <span class="nl">background-color</span><span class="p">:</span> <span class="no">blue</span><span class="p">;</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="nx">blue</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -929,13 +929,13 @@ function googleTranslateElementInit() {
   <span class="nl">overflow</span><span class="p">:</span> <span class="nb">hidden</span><span class="p">;</span>
   <span class="nl">width</span><span class="p">:</span> <span class="m">80px</span><span class="p">;</span>
   <span class="nl">-webkit-appearance</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
-  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#9a905d</span><span class="p">;</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#9a905d</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="nt">input</span><span class="o">[</span><span class="nt">type</span><span class="o">=</span><span class="s1">"range"</span><span class="o">]</span><span class="nd">::-webkit-slider-runnable-track</span> <span class="p">{</span>
   <span class="nl">height</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>
   <span class="nl">-webkit-appearance</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
-  <span class="nl">color</span><span class="p">:</span> <span class="m">#13bba4</span><span class="p">;</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="nx">#13bba4</span><span class="p">;</span>
   <span class="nl">margin-top</span><span class="p">:</span> <span class="m">-1px</span><span class="p">;</span>
 <span class="p">}</span>
 
@@ -943,8 +943,8 @@ function googleTranslateElementInit() {
   <span class="nl">-webkit-appearance</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
   <span class="nl">width</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>
   <span class="nl">height</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>
-  <span class="nl">background</span><span class="p">:</span> <span class="m">#434343</span><span class="p">;</span>
-  <span class="nl">box-shadow</span><span class="p">:</span> <span class="m">-80px</span> <span class="m">0</span> <span class="m">0</span> <span class="m">80px</span> <span class="m">#43e5f7</span><span class="p">;</span>
+  <span class="nl">background</span><span class="p">:</span> <span class="nx">#434343</span><span class="p">;</span>
+  <span class="nl">box-shadow</span><span class="p">:</span> <span class="m">-80px</span> <span class="m">0</span> <span class="m">0</span> <span class="m">80px</span> <span class="nx">#43e5f7</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -959,7 +959,7 @@ function googleTranslateElementInit() {
 <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">background</span><span class="o">:</span> <span class="err">$</span><span class="p">{</span><span class="err">(props)</span> <span class="err">=&gt;</span>
         <span class="err">props.volume</span>
           <span class="err">?</span> <span class="err">`linear-gradient(to</span> <span class="err">right,</span> <span class="err">#D9D9D9</span> <span class="err">${props.volume</span><span class="p">}</span><span class="o">%,</span> <span class="nt">rgba</span><span class="o">(</span><span class="err">229</span><span class="o">,</span> <span class="err">231</span><span class="o">,</span> <span class="err">235</span><span class="o">,</span> <span class="err">0</span><span class="o">.</span><span class="err">5</span><span class="o">)</span>
- <span class="err">$</span><span class="p">{</span><span class="err">props.volume</span><span class="p">}</span><span class="o">%</span> <span class="err">100</span><span class="o">%)</span><span class="err">`</span>
+ <span class="err">$</span><span class="p">{</span><span class="err">props.volume</span><span class="p">}</span><span class="o">%</span> <span class="m">100%</span><span class="o">)</span><span class="err">`</span>
           <span class="o">:</span> <span class="s1">"#E5E7EB"</span><span class="err">}</span><span class="o">;</span>
 </code></pre></div></div>
 
@@ -1023,10 +1023,10 @@ function googleTranslateElementInit() {
 <div class="post-related">
       <div>Related Articles</div>
       <ul>
-        <li><a class="post-link" href="/react/2022/09/19/start-cypress.html" title="S3 &amp; CloudFront를 활용한 CDN 서버 만들기">Cypress로 e2e 테스트 하기</a></li>
-<li><a class="post-link" href="/gof/2022/11/17/command-pattern.html" title="S3 &amp; CloudFront를 활용한 CDN 서버 만들기">명령 패턴</a></li>
-<li><a class="post-link" href="/web/2024/04/07/lighthouse-improvement.html" title="S3 &amp; CloudFront를 활용한 CDN 서버 만들기">Lighthouse 점수 개선기</a></li>
-<li><a class="post-link" href="/til/2022/08/10/aws-cloudFront.html" title="S3 &amp; CloudFront를 활용한 CDN 서버 만들기">S3 &amp; CloudFront를 활용한 CDN 서버 만들기</a></li>
+        <li><a class="post-link" href="/book/2024/01/28/essence-of-oop.html" title="S3 &amp; CloudFront를 활용한 CDN 서버 만들기">객체지향의 사실과 오해</a></li>
+<li><a class="post-link" href="/web/2025/03/16/maintain-chrome-extension.html" title="S3 &amp; CloudFront를 활용한 CDN 서버 만들기">Chrome Web Store 유지보수</a></li>
+<li><a class="post-link" href="/retrospect/2022/12/26/about-1-day-1-commit.html" title="S3 &amp; CloudFront를 활용한 CDN 서버 만들기">1일 1커밋에 대한 고찰</a></li>
+<li><a class="post-link" href="/javascript/2022/01/18/javascript-functions.html" title="S3 &amp; CloudFront를 활용한 CDN 서버 만들기">자바스크립트 함수의 심화학습</a></li>
 </ul>
     </div>
 <div class="post-comments">
@@ -1169,7 +1169,7 @@ function googleTranslateElementInit() {
 
   <div class="wrapper">
     <div class="site-footer-inner">
-<div>Unpublished Work <span class="copyleft">©</span> 2021-2025 071yoon</div>
+<div>Unpublished Work <span class="copyleft">©</span> 2021-2026 071yoon</div>
       <div>Powered by <a title="Jekyll is a simple, blog-aware, static site
       generator." href="http://jekyllrb.com/">Jekyll</a> &amp; <a title="Yat, yet
       another theme." href="https://github.com/jeffreytse/jekyll-theme-yat">Yat Theme</a>.</div>

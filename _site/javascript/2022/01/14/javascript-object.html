@@ -8,7 +8,7 @@
   <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
 <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>자바스크립트 객체 | YeongGi’s tech blog</title>
-<meta name="generator" content="Jekyll v4.2.2">
+<meta name="generator" content="Jekyll v4.4.1">
 <meta property="og:title" content="자바스크립트 객체">
 <meta name="author" content="071yoon">
 <meta property="og:locale" content="en_US">
@@ -834,7 +834,7 @@ function googleTranslateElementInit() {
 <ul>
   <li>중괄호 <code class="language-plaintext highlighter-rouge">{...}</code> 를 통해 만들 수 있으며, 안에 <code class="language-plaintext highlighter-rouge">key[string]: value[all types]</code>에 해당한 프로퍼티가 들어가야 한다
     <div class="language-javascript highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code>  <span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Object</span><span class="p">();</span>
+<div class="highlight"><pre class="highlight"><code>  <span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Object</span><span class="p">();</span>
   <span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
       <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">,</span>
       <span class="na">age</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span>
@@ -867,11 +867,11 @@ function googleTranslateElementInit() {
   <li>존재하지 않는 프로퍼티에 접근해도 에러가 발생하지 않고 <code class="language-plaintext highlighter-rouge">undefined</code>로 반환됨에 주의
     <div class="language-javascript highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span> <span class="mi">25</span><span class="p">};</span>
-<span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">age</span><span class="dl">"</span> <span class="k">in</span> <span class="nx">user</span><span class="p">);</span> <span class="c1">//TRUE</span>
-<span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">work</span><span class="dl">"</span> <span class="k">in</span> <span class="nx">user</span><span class="p">);</span><span class="c1">//FALSE</span>
-<span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">user</span><span class="p">){</span>
-    <span class="nx">alert</span><span class="p">(</span><span class="nx">key</span><span class="p">);</span><span class="c1">//name, age</span>
-    <span class="nx">alert</span><span class="p">(</span><span class="nx">user</span><span class="p">[</span><span class="nx">key</span><span class="p">]);</span><span class="c1">//Yoon, 25</span>
+<span class="nf">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">age</span><span class="dl">"</span> <span class="k">in</span> <span class="nx">user</span><span class="p">);</span> <span class="c1">//TRUE</span>
+<span class="nf">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">work</span><span class="dl">"</span> <span class="k">in</span> <span class="nx">user</span><span class="p">);</span><span class="c1">//FALSE</span>
+<span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">user</span><span class="p">){</span>
+    <span class="nf">alert</span><span class="p">(</span><span class="nx">key</span><span class="p">);</span><span class="c1">//name, age</span>
+    <span class="nf">alert</span><span class="p">(</span><span class="nx">user</span><span class="p">[</span><span class="nx">key</span><span class="p">]);</span><span class="c1">//Yoon, 25</span>
 <span class="p">}</span>
 </code></pre></div>    </div>
   </li>
@@ -885,7 +885,7 @@ function googleTranslateElementInit() {
     <span class="dl">"</span><span class="s2">1</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Korea</span><span class="dl">"</span>
 <span class="p">};</span>
 <span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">code</span> <span class="k">in</span> <span class="nx">codes</span><span class="p">){</span>
-    <span class="nx">alert</span><span class="p">(</span><span class="nx">code</span><span class="p">);</span><span class="c1">//1, 41, 44, 49</span>
+    <span class="nf">alert</span><span class="p">(</span><span class="nx">code</span><span class="p">);</span><span class="c1">//1, 41, 44, 49</span>
 <span class="p">}</span>
 </code></pre></div>    </div>
   </li>
@@ -921,8 +921,8 @@ function googleTranslateElementInit() {
     <div class="language-javascript highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code>  <span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">{};</span>
   <span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">a</span><span class="p">;</span><span class="c1">//참조에 의한 복사</span>
-  <span class="nx">alert</span> <span class="p">(</span><span class="nx">a</span> <span class="o">==</span> <span class="nx">b</span><span class="p">);</span>
-  <span class="nx">alert</span> <span class="p">(</span><span class="nx">a</span> <span class="o">===</span> <span class="nx">b</span><span class="p">);</span>
+  <span class="nf">alert </span><span class="p">(</span><span class="nx">a</span> <span class="o">==</span> <span class="nx">b</span><span class="p">);</span>
+  <span class="nf">alert </span><span class="p">(</span><span class="nx">a</span> <span class="o">===</span> <span class="nx">b</span><span class="p">);</span>
 </code></pre></div>    </div>
     <p>둘 다 참을 반환한다</p>
   </li>
@@ -930,7 +930,7 @@ function googleTranslateElementInit() {
     <div class="language-javascript highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code>  <span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">{};</span>
   <span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="p">{};</span>
-  <span class="nx">alert</span> <span class="p">(</span> <span class="nx">a</span> <span class="o">==</span> <span class="nx">b</span><span class="p">);</span><span class="c1">//false</span>
+  <span class="nf">alert </span><span class="p">(</span> <span class="nx">a</span> <span class="o">==</span> <span class="nx">b</span><span class="p">);</span><span class="c1">//false</span>
 </code></pre></div>    </div>
   </li>
 </ul>
@@ -951,11 +951,11 @@ function googleTranslateElementInit() {
 
 <span class="kd">let</span> <span class="nx">clone</span> <span class="o">=</span> <span class="p">{};</span><span class="c1">//새로운 빈 객체</span>
 
-<span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">user</span><span class="p">){</span><span class="c1">//1번의 방법</span>
+<span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">user</span><span class="p">){</span><span class="c1">//1번의 방법</span>
 	<span class="nx">clone</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">user</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>
 <span class="p">}</span>
 
-<span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="nx">clone</span><span class="p">);</span><span class="c1">//2번의 방법</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nf">assign</span><span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="nx">clone</span><span class="p">);</span><span class="c1">//2번의 방법</span>
 </code></pre></div></div>
 
 <h2 id="가비지-컬렉션">가비지 컬렉션</h2>
@@ -988,17 +988,17 @@ function googleTranslateElementInit() {
 <span class="p">};</span>
 
 <span class="nx">user</span><span class="p">.</span><span class="nx">sayHi</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span><span class="c1">//방법1</span>
-	<span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hello!</span><span class="dl">"</span><span class="p">);</span>
+	<span class="nf">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hello!</span><span class="dl">"</span><span class="p">);</span>
 <span class="p">};</span>
 
-<span class="kd">function</span> <span class="nx">sayHi</span><span class="p">()</span> <span class="p">{</span><span class="c1">//방법2</span>
-	<span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hello!</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">function</span> <span class="nf">sayHi</span><span class="p">()</span> <span class="p">{</span><span class="c1">//방법2</span>
+	<span class="nf">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hello!</span><span class="dl">"</span><span class="p">);</span>
 <span class="p">};</span>
 <span class="nx">user</span><span class="p">.</span><span class="nx">SayHi</span> <span class="o">=</span> <span class="nx">sayHi</span><span class="p">;</span>
 
 <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span><span class="c1">//방법3</span>
-	<span class="nx">SayHi</span><span class="p">(){</span>
-		<span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hello!</span><span class="dl">"</span><span class="p">);</span>
+	<span class="nc">SayHi</span><span class="p">(){</span>
+		<span class="nf">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hello!</span><span class="dl">"</span><span class="p">);</span>
 	<span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div></div>
@@ -1012,8 +1012,8 @@ function googleTranslateElementInit() {
 	<span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">,</span>
 	<span class="na">age</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span>
 
-	<span class="nx">sayHi</span><span class="p">()</span> <span class="p">{</span>
-		<span class="nx">alert</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+	<span class="nf">sayHi</span><span class="p">()</span> <span class="p">{</span>
+		<span class="nf">alert</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
 <span class="c1">//or	alert(user.name);</span>
 	<span class="p">}</span>
 <span class="p">};</span>
@@ -1025,12 +1025,12 @@ function googleTranslateElementInit() {
   <div class="language-javascript highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
 	<span class="na">firstName</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">,</span>
-	<span class="nx">sayHi</span><span class="p">(){</span>
-		<span class="kd">let</span> <span class="nx">arrow</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">alert</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span><span class="p">);</span>
-		<span class="nx">arrow</span><span class="p">();</span>
+	<span class="nf">sayHi</span><span class="p">(){</span>
+		<span class="kd">let</span> <span class="nx">arrow</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nf">alert</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span><span class="p">);</span>
+		<span class="nf">arrow</span><span class="p">();</span>
 	<span class="p">}</span>
 <span class="p">};</span>
-<span class="nx">user</span><span class="p">.</span><span class="nx">sayHi</span><span class="p">();</span> <span class="c1">//Yoon</span>
+<span class="nx">user</span><span class="p">.</span><span class="nf">sayHi</span><span class="p">();</span> <span class="c1">//Yoon</span>
 </code></pre></div>  </div>
   <p>별개의 this가 만들어 지는것을 원하지 않고, 외부 컨텍스트에서 this를 사요하고 싶을 때 화살표 함수를 사용한다.</p>
 </blockquote>
@@ -1045,13 +1045,13 @@ function googleTranslateElementInit() {
   <li>반드시 <code class="language-plaintext highlighter-rouge">new</code> 연산자를 붙여 실행한다
 예시
     <div class="language-javascript highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">User</span><span class="p">(</span><span class="nx">name</span><span class="p">){</span>
+<div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">User</span><span class="p">(</span><span class="nx">name</span><span class="p">){</span>
  <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
  <span class="k">this</span><span class="p">.</span><span class="nx">isAdmin</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
 <span class="p">}</span>
-<span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">User</span><span class="p">(</span><span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">);</span>
-<span class="nx">alert</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">//Yoon</span>
-<span class="nx">alert</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">isAdmin</span><span class="p">);</span><span class="c1">//False</span>
+<span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">User</span><span class="p">(</span><span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">);</span>
+<span class="nf">alert</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">//Yoon</span>
+<span class="nf">alert</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">isAdmin</span><span class="p">);</span><span class="c1">//False</span>
 </code></pre></div>    </div>
   </li>
 </ol>
@@ -1063,16 +1063,16 @@ function googleTranslateElementInit() {
   <p>유연하게 사용 할 수 있게 도와준다</p>
 </blockquote>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">User</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">User</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
 	<span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
 
 	<span class="k">this</span><span class="p">.</span><span class="nx">sayHi</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">My name is </span><span class="dl">"</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">.</span><span class="dl">"</span><span class="p">);</span>
+		<span class="nf">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">My name is </span><span class="dl">"</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">.</span><span class="dl">"</span><span class="p">);</span>
 	<span class="p">};</span>
 <span class="p">}</span>
-<span class="kd">let</span> <span class="nx">yoon</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">User</span><span class="p">(</span><span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">yoon</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">User</span><span class="p">(</span><span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">);</span>
 
-<span class="nx">yoon</span><span class="p">.</span><span class="nx">sayHi</span><span class="p">();</span> <span class="c1">//My name is Yoon.</span>
+<span class="nx">yoon</span><span class="p">.</span><span class="nf">sayHi</span><span class="p">();</span> <span class="c1">//My name is Yoon.</span>
 </code></pre></div></div>
 
 
@@ -1086,10 +1086,10 @@ function googleTranslateElementInit() {
 <div class="post-related">
       <div>Related Articles</div>
       <ul>
-        <li><a class="post-link" href="/javascript/2022/01/20/prototype.html" title="자바스크립트 자료구조와 자료형">자바스크립트 프로토타입과 클래스</a></li>
-<li><a class="post-link" href="/til/2022/06/30/why-typescript.html" title="자바스크립트 자료구조와 자료형">왜 TypeScript인가</a></li>
-<li><a class="post-link" href="/next.js/2022/05/15/next-api.html" title="자바스크립트 자료구조와 자료형">NEXT-API</a></li>
-<li><a class="post-link" href="/retrospect/2022/03/03/sw-maestro.html" title="자바스크립트 자료구조와 자료형">SW Maestro 지원 후기</a></li>
+        <li><a class="post-link" href="/javascript/2022/01/20/javascript-property.html" title="자바스크립트 자료구조와 자료형">자바스크립트 객체 프로퍼티 설정</a></li>
+<li><a class="post-link" href="/gof/2022/09/28/strategy-pattern.html" title="자바스크립트 자료구조와 자료형">전략 패턴</a></li>
+<li><a class="post-link" href="/til/2024/04/01/opensource-github-action.html" title="자바스크립트 자료구조와 자료형">Github Action starter 오류 수정 이야기</a></li>
+<li><a class="post-link" href="/next.js/2022/04/25/next-pages.html" title="자바스크립트 자료구조와 자료형">NEXT-Pages</a></li>
 </ul>
     </div>
 <div class="post-comments">
@@ -1232,7 +1232,7 @@ function googleTranslateElementInit() {
 
   <div class="wrapper">
     <div class="site-footer-inner">
-<div>Unpublished Work <span class="copyleft">©</span> 2021-2025 071yoon</div>
+<div>Unpublished Work <span class="copyleft">©</span> 2021-2026 071yoon</div>
       <div>Powered by <a title="Jekyll is a simple, blog-aware, static site
       generator." href="http://jekyllrb.com/">Jekyll</a> &amp; <a title="Yat, yet
       another theme." href="https://github.com/jeffreytse/jekyll-theme-yat">Yat Theme</a>.</div>

@@ -37,8 +37,8 @@
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">Image</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">next/image</span><span class="dl">"</span><span class="p">;</span>
 <span class="k">import</span> <span class="nx">profilePic</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">../public/me.png</span><span class="dl">"</span><span class="p">;</span>
 
-<span class="kd">function</span> <span class="nx">Home</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="p">(</span>
+<span class="kd">function</span> <span class="nf">Home</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return </span><span class="p">(</span>
     <span class="o">&lt;&gt;</span>
       <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">My</span> <span class="nx">Homepage</span><span class="o">&lt;</span><span class="sr">/h1</span><span class="err">&gt;
 </span>      <span class="o">&lt;</span><span class="nx">Image</span>
@@ -71,8 +71,8 @@
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">Image</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">next/image</span><span class="dl">"</span><span class="p">;</span>
 
-<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">Home</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="p">(</span>
+<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nf">Home</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return </span><span class="p">(</span>
     <span class="o">&lt;&gt;</span>
       <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">My</span> <span class="nx">Homepage</span><span class="o">&lt;</span><span class="sr">/h1</span><span class="err">&gt;
 </span>      <span class="o">&lt;</span><span class="nx">Image</span>
@@ -122,8 +122,8 @@
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">Image</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">next/image</span><span class="dl">"</span><span class="p">;</span>
 
-<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">Home</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="p">(</span>
+<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nf">Home</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return </span><span class="p">(</span>
     <span class="o">&lt;&gt;</span>
       <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">My</span> <span class="nx">Homepage</span><span class="o">&lt;</span><span class="sr">/h1</span><span class="err">&gt;
 </span>      <span class="o">&lt;</span><span class="nx">Image</span>
@@ -224,9 +224,9 @@
 
 <span class="k">import</span> <span class="nx">Document</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Html</span><span class="p">,</span> <span class="nx">Head</span><span class="p">,</span> <span class="nx">Main</span><span class="p">,</span> <span class="nx">NextScript</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">next/document</span><span class="dl">"</span><span class="p">;</span>
 
-<span class="kd">class</span> <span class="nx">MyDocument</span> <span class="kd">extends</span> <span class="nx">Document</span> <span class="p">{</span>
-  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="p">(</span>
+<span class="kd">class</span> <span class="nc">MyDocument</span> <span class="kd">extends</span> <span class="nc">Document</span> <span class="p">{</span>
+  <span class="nf">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return </span><span class="p">(</span>
       <span class="o">&lt;</span><span class="nx">Html</span><span class="o">&gt;</span>
         <span class="o">&lt;</span><span class="nx">Head</span><span class="o">&gt;</span>
           <span class="o">&lt;</span><span class="nx">link</span>

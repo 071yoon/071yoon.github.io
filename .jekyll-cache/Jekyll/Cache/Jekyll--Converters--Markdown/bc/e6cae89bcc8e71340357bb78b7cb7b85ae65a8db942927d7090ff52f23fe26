@@ -7,8 +7,8 @@
 <p>모든 데이터가 보이지 않고, 작성/수정/삭제 등 모든 기능이 정지되었다. 흠,, 그렇게 되면 사실 데이터를 가져오는 곳에서 문제가 생겼다는 것이고 높은 확률로 fetch 부분이였기에 그부분을 자세히 살펴보았다. 그러던 중 이러한 코드를 발견</p>
 
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">auth</span> <span class="o">=</span> <span class="p">(</span><span class="nx">token</span><span class="p">:</span> <span class="kr">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="nx">decoded</span> <span class="o">=</span> <span class="nx">jwtDecode</span><span class="p">(</span><span class="nx">token</span><span class="p">,</span> <span class="p">{</span> <span class="na">header</span><span class="p">:</span> <span class="kc">true</span> <span class="p">});</span>
-  <span class="k">if</span> <span class="p">(</span>
+  <span class="kd">const</span> <span class="nx">decoded</span> <span class="o">=</span> <span class="nf">jwtDecode</span><span class="p">(</span><span class="nx">token</span><span class="p">,</span> <span class="p">{</span> <span class="na">header</span><span class="p">:</span> <span class="kc">true</span> <span class="p">});</span>
+  <span class="k">if </span><span class="p">(</span>
     <span class="nx">decoded</span><span class="p">.</span><span class="nx">kid</span> <span class="o">===</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NEXT_PUBLIC_FIREBASE_CERT_ONE</span> <span class="o">||</span>
     <span class="nx">decoded</span><span class="p">.</span><span class="nx">kid</span> <span class="o">===</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NEXT_PUBLIC_FIREBASE_CERT_TWO</span>
   <span class="p">)</span> <span class="p">{</span>
@@ -39,24 +39,24 @@
 
 <p>대충 보아하니, auth 인증이 된 유저 instance를 만들어 사용하는 방법인것 같은데, 내 서비스와 살짝 상황이 달랐다. 그래도, 싱글톤 instance로 관리하면 재요청 하지 않고 계속 쓰일 수 있을 것 같아 FirebaseCert Class를 만들어 관리하기로 했다.</p>
 
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">private</span> <span class="k">async</span> <span class="nx">getCertificateFromServer</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="nx">CLIENT_AUTH_URL</span><span class="p">);</span>
-  <span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">setCert</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">private</span> <span class="k">async</span> <span class="nf">getCertificateFromServer</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nf">fetch</span><span class="p">(</span><span class="nx">CLIENT_AUTH_URL</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">response</span><span class="p">.</span><span class="nf">json</span><span class="p">();</span>
+  <span class="k">this</span><span class="p">.</span><span class="nf">setCert</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
 <p>대충 이런식으로 initialize를 1회 해주는 class를 만들어</p>
 
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">firebaseCert</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FirebaseCert</span><span class="p">();</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">firebaseCert</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FirebaseCert</span><span class="p">();</span>
 
 <span class="kd">const</span> <span class="nx">auth</span> <span class="o">=</span> <span class="p">(</span><span class="nx">token</span><span class="p">:</span> <span class="kr">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="nx">decoded</span> <span class="o">=</span> <span class="nx">jwtDecode</span><span class="p">(</span><span class="nx">token</span><span class="p">,</span> <span class="p">{</span> <span class="na">header</span><span class="p">:</span> <span class="kc">true</span> <span class="p">});</span>
-  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">firebaseCert</span><span class="p">.</span><span class="nx">getCert</span><span class="p">()</span> <span class="o">||</span> <span class="o">!</span><span class="nx">decoded</span><span class="p">.</span><span class="nx">kid</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">decoded</span> <span class="o">=</span> <span class="nf">jwtDecode</span><span class="p">(</span><span class="nx">token</span><span class="p">,</span> <span class="p">{</span> <span class="na">header</span><span class="p">:</span> <span class="kc">true</span> <span class="p">});</span>
+  <span class="k">if </span><span class="p">(</span><span class="o">!</span><span class="nx">firebaseCert</span><span class="p">.</span><span class="nf">getCert</span><span class="p">()</span> <span class="o">||</span> <span class="o">!</span><span class="nx">decoded</span><span class="p">.</span><span class="nx">kid</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
   <span class="p">}</span>
-  <span class="kd">const</span> <span class="nx">arr</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">firebaseCert</span><span class="p">.</span><span class="nx">getCert</span><span class="p">());</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">decoded</span><span class="p">.</span><span class="nx">kid</span><span class="p">))</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">arr</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nf">keys</span><span class="p">(</span><span class="nx">firebaseCert</span><span class="p">.</span><span class="nf">getCert</span><span class="p">());</span>
+  <span class="k">if </span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nf">includes</span><span class="p">(</span><span class="nx">decoded</span><span class="p">.</span><span class="nx">kid</span><span class="p">))</span> <span class="p">{</span>
     <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
   <span class="p">}</span>
   <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>

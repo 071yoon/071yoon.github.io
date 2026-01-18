@@ -69,9 +69,9 @@
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// cypress.config.ts</span>
 <span class="k">import</span> <span class="p">{</span> <span class="nx">defineConfig</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">cypress</span><span class="dl">"</span><span class="p">;</span>
 
-<span class="kr">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">defineConfig</span><span class="p">({</span>
+<span class="kr">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nf">defineConfig</span><span class="p">({</span>
   <span class="na">e2e</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nx">setupNodeEvents</span><span class="p">(</span><span class="nx">on</span><span class="p">,</span> <span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nf">setupNodeEvents</span><span class="p">(</span><span class="nx">on</span><span class="p">,</span> <span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
       <span class="c1">// implement node event listeners here</span>
     <span class="p">},</span>
     <span class="na">baseUrl</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://localhost:3000</span><span class="dl">"</span><span class="p">,</span>
@@ -165,7 +165,7 @@ fixtures 폴더에는 추후에 사용할 모킹하였을 때 결과로 받을 j
 
 <p>그래서 요청을 보내기전에 method와 url 기준으로 intercept해서 어떠한 요청을 주거나 받을지 미리 설정할 수 있는 방법이다.</p>
 
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">cy</span><span class="p">.</span><span class="nx">intercept</span><span class="p">(</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">cy</span><span class="p">.</span><span class="nf">intercept</span><span class="p">(</span>
   <span class="p">{</span> <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">GET</span><span class="dl">"</span><span class="p">,</span> <span class="na">url</span><span class="p">:</span> <span class="s2">`/api/v1/rooms`</span> <span class="p">},</span>
   <span class="p">{</span> <span class="na">fixture</span><span class="p">:</span> <span class="dl">"</span><span class="s2">allRooms.json</span><span class="dl">"</span> <span class="p">}</span>
 <span class="p">);</span>
@@ -175,10 +175,10 @@ fixtures 폴더에는 추후에 사용할 모킹하였을 때 결과로 받을 j
 
 <p>그렇게 완성된 beforeEach는 다음과 같다.</p>
 
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">beforeEach</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">cy</span><span class="p">.</span><span class="nx">intercept</span><span class="p">({</span> <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">GET</span><span class="dl">"</span><span class="p">,</span> <span class="na">url</span><span class="p">:</span> <span class="nx">API</span><span class="p">.</span><span class="nx">ROOM</span> <span class="p">},</span> <span class="p">{</span> <span class="na">fixture</span><span class="p">:</span> <span class="dl">"</span><span class="s2">allRooms.json</span><span class="dl">"</span> <span class="p">});</span>
-  <span class="nx">cy</span><span class="p">.</span><span class="nx">visit</span><span class="p">(</span><span class="dl">"</span><span class="s2">http://localhost:3000</span><span class="dl">"</span><span class="p">);</span>
-  <span class="nx">cy</span><span class="p">.</span><span class="nx">viewport</span><span class="p">(</span><span class="mi">1536</span><span class="p">,</span> <span class="mi">960</span><span class="p">);</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">beforeEach</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">cy</span><span class="p">.</span><span class="nf">intercept</span><span class="p">({</span> <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">GET</span><span class="dl">"</span><span class="p">,</span> <span class="na">url</span><span class="p">:</span> <span class="nx">API</span><span class="p">.</span><span class="nx">ROOM</span> <span class="p">},</span> <span class="p">{</span> <span class="na">fixture</span><span class="p">:</span> <span class="dl">"</span><span class="s2">allRooms.json</span><span class="dl">"</span> <span class="p">});</span>
+  <span class="nx">cy</span><span class="p">.</span><span class="nf">visit</span><span class="p">(</span><span class="dl">"</span><span class="s2">http://localhost:3000</span><span class="dl">"</span><span class="p">);</span>
+  <span class="nx">cy</span><span class="p">.</span><span class="nf">viewport</span><span class="p">(</span><span class="mi">1536</span><span class="p">,</span> <span class="mi">960</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre></div></div>
 
@@ -199,7 +199,7 @@ fixtures 폴더에는 추후에 사용할 모킹하였을 때 결과로 받을 j
 <ol>
   <li><code class="language-plaintext highlighter-rouge">cy.get('')</code> 으로 원하는 컴포넌트를 선택 할 수 있다. 빈칸에는 class 혹은 id 등으로 검색이 가능하지만, cypress 의 best practice 는 data-cy 태그를 이용하여 unique한 컴포넌트를 가져오는 것이라 하며, 컴포넌트에 추가하여 손쉽게 적용시킬 수 있다.</li>
   <li><code class="language-plaintext highlighter-rouge">.should()</code> 명령어로 방금 get()에서 가져온 컴포넌트가 어떠한 동작들을 해야하는지 선언 할 수 있다. 예를들어 <code class="language-plaintext highlighter-rouge">should('be.visible')</code> 이라면 선택된 컴포넌트가 보여야된다는 것이며, <code class="language-plaintext highlighter-rouge">should('have.text','word')</code> 라면, <code class="language-plaintext highlighter-rouge">word</code>라는 단어를 꼭 포함해야 된다는 뜻이다. 만약 찾는것이 실행되고 있는 비디오라면, 이런것도 가능하다.
-    <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">cy</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">[data-cy="custom-video-screen"]</span><span class="dl">'</span><span class="p">).</span><span class="nx">should</span><span class="p">(</span>
+    <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">cy</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">[data-cy="custom-video-screen"]</span><span class="dl">'</span><span class="p">).</span><span class="nf">should</span><span class="p">(</span>
   <span class="dl">"</span><span class="s2">have.prop</span><span class="dl">"</span><span class="p">,</span>
   <span class="dl">"</span><span class="s2">paused</span><span class="dl">"</span><span class="p">,</span>
   <span class="kc">false</span>
@@ -208,10 +208,10 @@ fixtures 폴더에는 추후에 사용할 모킹하였을 때 결과로 받을 j
   </li>
   <li><code class="language-plaintext highlighter-rouge">cy.wait()</code> 를 이용하여 ms단위로 cypress 의 테스트를 멈춰 둘 수 있다. 영상으로 볼 때 워낙 빠르게 지나가기에, 한번씩 테스트 후에 <code class="language-plaintext highlighter-rouge">wait()</code>를 두어 눈으로 따라가는것도 괜찮았다.</li>
   <li><code class="language-plaintext highlighter-rouge">cy.and()</code> 앞선 명령어를 연계해서 사용할 수 있게 도와준다. 예로 이런것도 가능하다.
-    <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">cy</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">[data-cy="dropbox-item"]</span><span class="dl">'</span><span class="p">)</span>
-  <span class="p">.</span><span class="nx">should</span><span class="p">(</span><span class="dl">"</span><span class="s2">have.length</span><span class="dl">"</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-  <span class="p">.</span><span class="nx">and</span><span class="p">(</span><span class="dl">"</span><span class="s2">contain.text</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">fake_device_0</span><span class="dl">"</span><span class="p">)</span>
-  <span class="p">.</span><span class="nx">click</span><span class="p">();</span>
+    <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">cy</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">[data-cy="dropbox-item"]</span><span class="dl">'</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">should</span><span class="p">(</span><span class="dl">"</span><span class="s2">have.length</span><span class="dl">"</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">and</span><span class="p">(</span><span class="dl">"</span><span class="s2">contain.text</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">fake_device_0</span><span class="dl">"</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">click</span><span class="p">();</span>
 </code></pre></div>    </div>
   </li>
 </ol>
@@ -220,23 +220,23 @@ fixtures 폴더에는 추후에 사용할 모킹하였을 때 결과로 받을 j
   <p>간단한 예시코드는 다음과 같이 만들 수 있다!</p>
 </blockquote>
 
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">it</span><span class="p">(</span><span class="dl">"</span><span class="s2">render Main Props</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">it</span><span class="p">(</span><span class="dl">"</span><span class="s2">render Main Props</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// check if title is visible</span>
-  <span class="nx">cy</span><span class="p">.</span><span class="nx">title</span><span class="p">().</span><span class="nx">should</span><span class="p">(</span><span class="dl">"</span><span class="s2">include</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">MODOCO</span><span class="dl">"</span><span class="p">);</span>
+  <span class="nx">cy</span><span class="p">.</span><span class="nf">title</span><span class="p">().</span><span class="nf">should</span><span class="p">(</span><span class="dl">"</span><span class="s2">include</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">MODOCO</span><span class="dl">"</span><span class="p">);</span>
 
   <span class="c1">// check if login button is visible and clickable</span>
-  <span class="nx">cy</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">[data-cy="main-login-button"]</span><span class="dl">'</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">should</span><span class="p">(</span><span class="dl">"</span><span class="s2">be.visible</span><span class="dl">"</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">should</span><span class="p">(</span><span class="dl">"</span><span class="s2">have.text</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">로그인</span><span class="dl">"</span><span class="p">);</span>
+  <span class="nx">cy</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">[data-cy="main-login-button"]</span><span class="dl">'</span><span class="p">)</span>
+    <span class="p">.</span><span class="nf">should</span><span class="p">(</span><span class="dl">"</span><span class="s2">be.visible</span><span class="dl">"</span><span class="p">)</span>
+    <span class="p">.</span><span class="nf">should</span><span class="p">(</span><span class="dl">"</span><span class="s2">have.text</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">로그인</span><span class="dl">"</span><span class="p">);</span>
 
   <span class="c1">// check modoco logo</span>
-  <span class="nx">cy</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">[data-cy="modoco-logo"]</span><span class="dl">'</span><span class="p">).</span><span class="nx">should</span><span class="p">(</span><span class="dl">"</span><span class="s2">contain</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">modoco</span><span class="dl">"</span><span class="p">);</span>
+  <span class="nx">cy</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">[data-cy="modoco-logo"]</span><span class="dl">'</span><span class="p">).</span><span class="nf">should</span><span class="p">(</span><span class="dl">"</span><span class="s2">contain</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">modoco</span><span class="dl">"</span><span class="p">);</span>
 
   <span class="c1">// check if all footer props are visible</span>
-  <span class="nx">cy</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">[data-cy="main-footer"]</span><span class="dl">'</span><span class="p">).</span><span class="nx">should</span><span class="p">(</span><span class="dl">"</span><span class="s2">be.visible</span><span class="dl">"</span><span class="p">);</span>
-  <span class="nx">cy</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">"</span><span class="s2">button</span><span class="dl">"</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">should</span><span class="p">(</span><span class="dl">"</span><span class="s2">contain</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Terms</span><span class="dl">"</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">should</span><span class="p">(</span><span class="dl">"</span><span class="s2">contain</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Privacy Policy</span><span class="dl">"</span><span class="p">);</span>
+  <span class="nx">cy</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">[data-cy="main-footer"]</span><span class="dl">'</span><span class="p">).</span><span class="nf">should</span><span class="p">(</span><span class="dl">"</span><span class="s2">be.visible</span><span class="dl">"</span><span class="p">);</span>
+  <span class="nx">cy</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="dl">"</span><span class="s2">button</span><span class="dl">"</span><span class="p">)</span>
+    <span class="p">.</span><span class="nf">should</span><span class="p">(</span><span class="dl">"</span><span class="s2">contain</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Terms</span><span class="dl">"</span><span class="p">)</span>
+    <span class="p">.</span><span class="nf">should</span><span class="p">(</span><span class="dl">"</span><span class="s2">contain</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Privacy Policy</span><span class="dl">"</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre></div></div>
 

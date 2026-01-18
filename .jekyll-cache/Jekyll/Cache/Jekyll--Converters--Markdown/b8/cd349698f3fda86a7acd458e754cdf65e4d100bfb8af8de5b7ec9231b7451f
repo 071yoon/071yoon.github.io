@@ -1,4 +1,4 @@
-I"T	<h2 id="socket-통신시-에러나는-경우">Socket 통신시 에러나는 경우</h2>
+I"U	<h2 id="socket-통신시-에러나는-경우">Socket 통신시 에러나는 경우</h2>
 
 <p>최근에 WebRTC를 사용하며 소켓 통신을 해야할 일이 생겼는데, 웬걸 자꾸 연결에서 실패를 하였다.</p>
 
@@ -10,7 +10,7 @@
 <h3 id="공식-document와-stackoverflow를-보며-했던-tries">공식 document와 StackOverflow를 보며 했던 tries</h3>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">io</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">socket.io-client</span><span class="dl">"</span><span class="p">;</span>
-<span class="k">import</span> <span class="o">*</span> <span class="k">as</span> <span class="nx">io</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">socket.io-client</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">io</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">socket.io-client</span><span class="dl">"</span><span class="p">;</span>
 <span class="k">import</span> <span class="nx">io</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">socket.io-client</span><span class="dl">"</span><span class="p">;</span>
 </code></pre></div></div>
 

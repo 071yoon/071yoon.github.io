@@ -67,10 +67,10 @@
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">App</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./App</span><span class="dl">"</span><span class="p">;</span>
 <span class="k">import</span> <span class="nx">GlobalStyle</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./styles/global</span><span class="dl">"</span><span class="p">;</span>
 
-<span class="kd">const</span> <span class="nx">rootElement</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">root</span><span class="dl">"</span><span class="p">);</span>
-<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">rootElement</span><span class="p">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="dl">"</span><span class="s2">Failed to find the root element</span><span class="dl">"</span><span class="p">);</span>
-<span class="kd">const</span> <span class="nx">root</span> <span class="o">=</span> <span class="nx">createRoot</span><span class="p">(</span><span class="nx">rootElement</span><span class="p">);</span>
-<span class="nx">root</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span>
+<span class="kd">const</span> <span class="nx">rootElement</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">root</span><span class="dl">"</span><span class="p">);</span>
+<span class="k">if </span><span class="p">(</span><span class="o">!</span><span class="nx">rootElement</span><span class="p">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="nc">Error</span><span class="p">(</span><span class="dl">"</span><span class="s2">Failed to find the root element</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">root</span> <span class="o">=</span> <span class="nf">createRoot</span><span class="p">(</span><span class="nx">rootElement</span><span class="p">);</span>
+<span class="nx">root</span><span class="p">.</span><span class="nf">render</span><span class="p">(</span>
   <span class="o">&lt;</span><span class="nx">StrictMode</span><span class="o">&gt;</span>
     <span class="o">&lt;</span><span class="nx">GlobalStyle</span> <span class="o">/&gt;</span>
     <span class="o">&lt;</span><span class="nx">App</span> <span class="o">/&gt;</span>

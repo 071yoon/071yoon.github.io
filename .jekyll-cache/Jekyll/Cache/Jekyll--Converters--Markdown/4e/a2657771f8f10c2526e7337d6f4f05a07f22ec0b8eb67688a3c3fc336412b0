@@ -28,9 +28,9 @@
   <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span>
 <span class="p">};</span>
 
-<span class="kd">let</span> <span class="nx">descriptor</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">getOwnPropertyDescriptor</span><span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="dl">'</span><span class="s1">name</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">descriptor</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nf">getOwnPropertyDescriptor</span><span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="dl">'</span><span class="s1">name</span><span class="dl">'</span><span class="p">);</span>
 
-<span class="nx">alert</span><span class="p">(</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">descriptor</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">2</span> <span class="p">)</span> <span class="p">);</span>
+<span class="nf">alert</span><span class="p">(</span> <span class="nx">JSON</span><span class="p">.</span><span class="nf">stringify</span><span class="p">(</span><span class="nx">descriptor</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">2</span> <span class="p">)</span> <span class="p">);</span>
 <span class="cm">/* property descriptor:
 {
   "value": "Yoon",
@@ -52,11 +52,11 @@
 </ol>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="kd">get</span> <span class="nx">propName</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">get</span> <span class="nf">propName</span><span class="p">()</span> <span class="p">{</span>
     <span class="c1">// getter, obj.propName실행시</span>
   <span class="p">},</span>
 
-  <span class="kd">set</span> <span class="nx">propName</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">set</span> <span class="nf">propName</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// setter, obj.propName = value실행시</span>
   <span class="p">}</span>
 <span class="p">};</span>
@@ -67,13 +67,13 @@
 <p><code class="language-plaintext highlighter-rouge">getter</code>와 <code class="language-plaintext highlighter-rouge">setter</code>를 실제 프로퍼티 값을 감싸는 래퍼로 사용하여, 프로퍼티 값을 통제하는 방법이 있다</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="kd">get</span> <span class="nx">name</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">get</span> <span class="nf">name</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_name</span><span class="p">;</span>
   <span class="p">},</span>
 
-  <span class="kd">set</span> <span class="nx">name</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">value</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">Too Short</span><span class="dl">"</span><span class="p">);</span>
+  <span class="kd">set</span> <span class="nf">name</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if </span><span class="p">(</span><span class="nx">value</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nf">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">Too Short</span><span class="dl">"</span><span class="p">);</span>
       <span class="k">return</span><span class="p">;</span>
     <span class="p">}</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">_name</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
@@ -81,7 +81,7 @@
 <span class="p">};</span>
 
 <span class="nx">user</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">;</span>
-<span class="nx">alert</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">// Yoon</span>
+<span class="nf">alert</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">// Yoon</span>
 
 <span class="nx">user</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="dl">""</span><span class="p">;</span> <span class="c1">// 너무 짧은 이름을 할당하려 함</span>
 </code></pre></div></div>

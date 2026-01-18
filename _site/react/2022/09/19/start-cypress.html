@@ -8,7 +8,7 @@
   <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
 <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Cypress로 e2e 테스트 하기 | YeongGi’s tech blog</title>
-<meta name="generator" content="Jekyll v4.2.2">
+<meta name="generator" content="Jekyll v4.4.1">
 <meta property="og:title" content="Cypress로 e2e 테스트 하기">
 <meta name="author" content="071yoon">
 <meta property="og:locale" content="en_US">
@@ -885,9 +885,9 @@ function googleTranslateElementInit() {
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// cypress.config.ts</span>
 <span class="k">import</span> <span class="p">{</span> <span class="nx">defineConfig</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">cypress</span><span class="dl">"</span><span class="p">;</span>
 
-<span class="kr">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">defineConfig</span><span class="p">({</span>
+<span class="kr">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nf">defineConfig</span><span class="p">({</span>
   <span class="na">e2e</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nx">setupNodeEvents</span><span class="p">(</span><span class="nx">on</span><span class="p">,</span> <span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nf">setupNodeEvents</span><span class="p">(</span><span class="nx">on</span><span class="p">,</span> <span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
       <span class="c1">// implement node event listeners here</span>
     <span class="p">},</span>
     <span class="na">baseUrl</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://localhost:3000</span><span class="dl">"</span><span class="p">,</span>
@@ -981,7 +981,7 @@ fixtures 폴더에는 추후에 사용할 모킹하였을 때 결과로 받을 j
 
 <p>그래서 요청을 보내기전에 method와 url 기준으로 intercept해서 어떠한 요청을 주거나 받을지 미리 설정할 수 있는 방법이다.</p>
 
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">cy</span><span class="p">.</span><span class="nx">intercept</span><span class="p">(</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">cy</span><span class="p">.</span><span class="nf">intercept</span><span class="p">(</span>
   <span class="p">{</span> <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">GET</span><span class="dl">"</span><span class="p">,</span> <span class="na">url</span><span class="p">:</span> <span class="s2">`/api/v1/rooms`</span> <span class="p">},</span>
   <span class="p">{</span> <span class="na">fixture</span><span class="p">:</span> <span class="dl">"</span><span class="s2">allRooms.json</span><span class="dl">"</span> <span class="p">}</span>
 <span class="p">);</span>
@@ -991,10 +991,10 @@ fixtures 폴더에는 추후에 사용할 모킹하였을 때 결과로 받을 j
 
 <p>그렇게 완성된 beforeEach는 다음과 같다.</p>
 
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">beforeEach</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">cy</span><span class="p">.</span><span class="nx">intercept</span><span class="p">({</span> <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">GET</span><span class="dl">"</span><span class="p">,</span> <span class="na">url</span><span class="p">:</span> <span class="nx">API</span><span class="p">.</span><span class="nx">ROOM</span> <span class="p">},</span> <span class="p">{</span> <span class="na">fixture</span><span class="p">:</span> <span class="dl">"</span><span class="s2">allRooms.json</span><span class="dl">"</span> <span class="p">});</span>
-  <span class="nx">cy</span><span class="p">.</span><span class="nx">visit</span><span class="p">(</span><span class="dl">"</span><span class="s2">http://localhost:3000</span><span class="dl">"</span><span class="p">);</span>
-  <span class="nx">cy</span><span class="p">.</span><span class="nx">viewport</span><span class="p">(</span><span class="mi">1536</span><span class="p">,</span> <span class="mi">960</span><span class="p">);</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">beforeEach</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">cy</span><span class="p">.</span><span class="nf">intercept</span><span class="p">({</span> <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">GET</span><span class="dl">"</span><span class="p">,</span> <span class="na">url</span><span class="p">:</span> <span class="nx">API</span><span class="p">.</span><span class="nx">ROOM</span> <span class="p">},</span> <span class="p">{</span> <span class="na">fixture</span><span class="p">:</span> <span class="dl">"</span><span class="s2">allRooms.json</span><span class="dl">"</span> <span class="p">});</span>
+  <span class="nx">cy</span><span class="p">.</span><span class="nf">visit</span><span class="p">(</span><span class="dl">"</span><span class="s2">http://localhost:3000</span><span class="dl">"</span><span class="p">);</span>
+  <span class="nx">cy</span><span class="p">.</span><span class="nf">viewport</span><span class="p">(</span><span class="mi">1536</span><span class="p">,</span> <span class="mi">960</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre></div></div>
 
@@ -1018,7 +1018,7 @@ fixtures 폴더에는 추후에 사용할 모킹하였을 때 결과로 받을 j
   <li>
 <code class="language-plaintext highlighter-rouge">.should()</code> 명령어로 방금 get()에서 가져온 컴포넌트가 어떠한 동작들을 해야하는지 선언 할 수 있다. 예를들어 <code class="language-plaintext highlighter-rouge">should('be.visible')</code> 이라면 선택된 컴포넌트가 보여야된다는 것이며, <code class="language-plaintext highlighter-rouge">should('have.text','word')</code> 라면, <code class="language-plaintext highlighter-rouge">word</code>라는 단어를 꼭 포함해야 된다는 뜻이다. 만약 찾는것이 실행되고 있는 비디오라면, 이런것도 가능하다.
     <div class="language-typescript highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="nx">cy</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">[data-cy="custom-video-screen"]</span><span class="dl">'</span><span class="p">).</span><span class="nx">should</span><span class="p">(</span>
+<div class="highlight"><pre class="highlight"><code><span class="nx">cy</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">[data-cy="custom-video-screen"]</span><span class="dl">'</span><span class="p">).</span><span class="nf">should</span><span class="p">(</span>
   <span class="dl">"</span><span class="s2">have.prop</span><span class="dl">"</span><span class="p">,</span>
   <span class="dl">"</span><span class="s2">paused</span><span class="dl">"</span><span class="p">,</span>
   <span class="kc">false</span>
@@ -1030,10 +1030,10 @@ fixtures 폴더에는 추후에 사용할 모킹하였을 때 결과로 받을 j
   <li>
 <code class="language-plaintext highlighter-rouge">cy.and()</code> 앞선 명령어를 연계해서 사용할 수 있게 도와준다. 예로 이런것도 가능하다.
     <div class="language-typescript highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="nx">cy</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">[data-cy="dropbox-item"]</span><span class="dl">'</span><span class="p">)</span>
-  <span class="p">.</span><span class="nx">should</span><span class="p">(</span><span class="dl">"</span><span class="s2">have.length</span><span class="dl">"</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-  <span class="p">.</span><span class="nx">and</span><span class="p">(</span><span class="dl">"</span><span class="s2">contain.text</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">fake_device_0</span><span class="dl">"</span><span class="p">)</span>
-  <span class="p">.</span><span class="nx">click</span><span class="p">();</span>
+<div class="highlight"><pre class="highlight"><code><span class="nx">cy</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">[data-cy="dropbox-item"]</span><span class="dl">'</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">should</span><span class="p">(</span><span class="dl">"</span><span class="s2">have.length</span><span class="dl">"</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">and</span><span class="p">(</span><span class="dl">"</span><span class="s2">contain.text</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">fake_device_0</span><span class="dl">"</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">click</span><span class="p">();</span>
 </code></pre></div>    </div>
   </li>
 </ol>
@@ -1042,23 +1042,23 @@ fixtures 폴더에는 추후에 사용할 모킹하였을 때 결과로 받을 j
   <p>간단한 예시코드는 다음과 같이 만들 수 있다!</p>
 </blockquote>
 
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">it</span><span class="p">(</span><span class="dl">"</span><span class="s2">render Main Props</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">it</span><span class="p">(</span><span class="dl">"</span><span class="s2">render Main Props</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// check if title is visible</span>
-  <span class="nx">cy</span><span class="p">.</span><span class="nx">title</span><span class="p">().</span><span class="nx">should</span><span class="p">(</span><span class="dl">"</span><span class="s2">include</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">MODOCO</span><span class="dl">"</span><span class="p">);</span>
+  <span class="nx">cy</span><span class="p">.</span><span class="nf">title</span><span class="p">().</span><span class="nf">should</span><span class="p">(</span><span class="dl">"</span><span class="s2">include</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">MODOCO</span><span class="dl">"</span><span class="p">);</span>
 
   <span class="c1">// check if login button is visible and clickable</span>
-  <span class="nx">cy</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">[data-cy="main-login-button"]</span><span class="dl">'</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">should</span><span class="p">(</span><span class="dl">"</span><span class="s2">be.visible</span><span class="dl">"</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">should</span><span class="p">(</span><span class="dl">"</span><span class="s2">have.text</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">로그인</span><span class="dl">"</span><span class="p">);</span>
+  <span class="nx">cy</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">[data-cy="main-login-button"]</span><span class="dl">'</span><span class="p">)</span>
+    <span class="p">.</span><span class="nf">should</span><span class="p">(</span><span class="dl">"</span><span class="s2">be.visible</span><span class="dl">"</span><span class="p">)</span>
+    <span class="p">.</span><span class="nf">should</span><span class="p">(</span><span class="dl">"</span><span class="s2">have.text</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">로그인</span><span class="dl">"</span><span class="p">);</span>
 
   <span class="c1">// check modoco logo</span>
-  <span class="nx">cy</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">[data-cy="modoco-logo"]</span><span class="dl">'</span><span class="p">).</span><span class="nx">should</span><span class="p">(</span><span class="dl">"</span><span class="s2">contain</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">modoco</span><span class="dl">"</span><span class="p">);</span>
+  <span class="nx">cy</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">[data-cy="modoco-logo"]</span><span class="dl">'</span><span class="p">).</span><span class="nf">should</span><span class="p">(</span><span class="dl">"</span><span class="s2">contain</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">modoco</span><span class="dl">"</span><span class="p">);</span>
 
   <span class="c1">// check if all footer props are visible</span>
-  <span class="nx">cy</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">[data-cy="main-footer"]</span><span class="dl">'</span><span class="p">).</span><span class="nx">should</span><span class="p">(</span><span class="dl">"</span><span class="s2">be.visible</span><span class="dl">"</span><span class="p">);</span>
-  <span class="nx">cy</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">"</span><span class="s2">button</span><span class="dl">"</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">should</span><span class="p">(</span><span class="dl">"</span><span class="s2">contain</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Terms</span><span class="dl">"</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">should</span><span class="p">(</span><span class="dl">"</span><span class="s2">contain</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Privacy Policy</span><span class="dl">"</span><span class="p">);</span>
+  <span class="nx">cy</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">[data-cy="main-footer"]</span><span class="dl">'</span><span class="p">).</span><span class="nf">should</span><span class="p">(</span><span class="dl">"</span><span class="s2">be.visible</span><span class="dl">"</span><span class="p">);</span>
+  <span class="nx">cy</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="dl">"</span><span class="s2">button</span><span class="dl">"</span><span class="p">)</span>
+    <span class="p">.</span><span class="nf">should</span><span class="p">(</span><span class="dl">"</span><span class="s2">contain</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Terms</span><span class="dl">"</span><span class="p">)</span>
+    <span class="p">.</span><span class="nf">should</span><span class="p">(</span><span class="dl">"</span><span class="s2">contain</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Privacy Policy</span><span class="dl">"</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre></div></div>
 
@@ -1091,10 +1091,10 @@ fixtures 폴더에는 추후에 사용할 모킹하였을 때 결과로 받을 j
 <div class="post-related">
       <div>Related Articles</div>
       <ul>
-        <li><a class="post-link" href="/til/2023/09/18/make-chomre-web-extension.html" title="전략 패턴">크롬 익스텐션을 개발해보자</a></li>
-<li><a class="post-link" href="/react/2022/09/09/react-test.html" title="전략 패턴">리액트 테스팅하기</a></li>
-<li><a class="post-link" href="/til/2022/10/03/network-usage-fee.html" title="전략 패턴">망 사용료가 대체 뭔데?</a></li>
-<li><a class="post-link" href="/til/2022/11/10/react-hook.html" title="전략 패턴">REACT Hook 구현하기</a></li>
+        <li><a class="post-link" href="/book/2024/01/28/essence-of-oop.html" title="전략 패턴">객체지향의 사실과 오해</a></li>
+<li><a class="post-link" href="/til/2022/08/10/aws-cloudFront.html" title="전략 패턴">S3 &amp; CloudFront를 활용한 CDN 서버 만들기</a></li>
+<li><a class="post-link" href="/til/2022/10/09/fix-error-via-apm.html" title="전략 패턴">Fix Error via APM</a></li>
+<li><a class="post-link" href="/javascript/2022/01/22/javascript-coding-1.html" title="전략 패턴">바닐라JS로 앱 만들기 1</a></li>
 </ul>
     </div>
 <div class="post-comments">
@@ -1237,7 +1237,7 @@ fixtures 폴더에는 추후에 사용할 모킹하였을 때 결과로 받을 j
 
   <div class="wrapper">
     <div class="site-footer-inner">
-<div>Unpublished Work <span class="copyleft">©</span> 2021-2025 071yoon</div>
+<div>Unpublished Work <span class="copyleft">©</span> 2021-2026 071yoon</div>
       <div>Powered by <a title="Jekyll is a simple, blog-aware, static site
       generator." href="http://jekyllrb.com/">Jekyll</a> &amp; <a title="Yat, yet
       another theme." href="https://github.com/jeffreytse/jekyll-theme-yat">Yat Theme</a>.</div>

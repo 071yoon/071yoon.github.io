@@ -26,10 +26,10 @@
 <blockquote>
   <p><code class="language-plaintext highlighter-rouge">template literal</code> 이라 부른다
 예시를 보면</p>
-  <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">sum</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">){</span>
-	<span class="k">return</span> <span class="p">(</span><span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">);</span>
+  <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">sum</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">){</span>
+	<span class="k">return </span><span class="p">(</span><span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">);</span>
 <span class="p">}</span>
-<span class="nx">alert</span><span class="p">(</span><span class="s2">`1 + 2 = </span><span class="p">${</span><span class="nx">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)}</span><span class="s2">.`</span><span class="p">);</span>
+<span class="nf">alert</span><span class="p">(</span><span class="s2">`1 + 2 = </span><span class="p">${</span><span class="nf">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)}</span><span class="s2">.`</span><span class="p">);</span>
 </code></pre></div>  </div>
   <p>또한 백틱을 이용하여 문자열을 여러줄로 작성 할 수 도 있다</p>
   <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">guests</span> <span class="o">=</span> <span class="s2">`Guests:
@@ -43,13 +43,13 @@
 <h3 id="배열">배열</h3>
 
 <p>배열 선언에는 두가지 방법이 있다</p>
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">();</span><span class="c1">//no.1</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Array</span><span class="p">();</span><span class="c1">//no.1</span>
 <span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[];</span><span class="c1">//no.2</span>
 </code></pre></div></div>
 <ul>
   <li>그리고 두번째 방법으로 대괄호 안에, 초기화를 시켜주는 것 또한 가능하다.</li>
   <li>배열 요소의 자료형에는 제약이 없다
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="dl">'</span><span class="s1">apple</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">yoon</span><span class="dl">'</span><span class="p">},</span> <span class="kc">true</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span><span class="nx">alert</span><span class="p">(</span><span class="dl">'</span><span class="s1">hello</span><span class="dl">'</span><span class="p">);}];</span>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="dl">'</span><span class="s1">apple</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">yoon</span><span class="dl">'</span><span class="p">},</span> <span class="kc">true</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span><span class="nf">alert</span><span class="p">(</span><span class="dl">'</span><span class="s1">hello</span><span class="dl">'</span><span class="p">);}];</span>
   <span class="nx">arr</span><span class="p">[</span><span class="mi">3</span><span class="p">]();</span> <span class="c1">//hello</span>
 </code></pre></div>    </div>
   </li>
@@ -60,7 +60,7 @@
 배열에 적용하는 순회 방법중 가장 쉬운 for…of를 사용해 보자</p>
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="dl">'</span><span class="s1">apple</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">orange</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">pear</span><span class="dl">'</span><span class="p">];</span>
 <span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">fruit</span> <span class="k">of</span> <span class="nx">fruits</span><span class="p">){</span>
-	<span class="nx">alert</span> <span class="p">(</span><span class="nx">fruit</span><span class="p">);</span><span class="c1">//apple -&gt; orange -&gt; pear</span>
+	<span class="nf">alert </span><span class="p">(</span><span class="nx">fruit</span><span class="p">);</span><span class="c1">//apple -&gt; orange -&gt; pear</span>
 <span class="c1">//	or alert(arr[key]);</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -97,9 +97,9 @@
     <span class="na">last</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">to</span><span class="p">,</span>
 
     <span class="c1">// 3. for..of 반복문에 의해 반복마다 next()가 호출됩니다.</span>
-    <span class="nx">next</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nf">next</span><span class="p">()</span> <span class="p">{</span>
       <span class="c1">// 4. next()는 값을 객체 {done:.., value :...}형태로 반환해야 합니다.</span>
-      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">current</span> <span class="o">&lt;=</span> <span class="k">this</span><span class="p">.</span><span class="nx">last</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">current</span> <span class="o">&lt;=</span> <span class="k">this</span><span class="p">.</span><span class="nx">last</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">return</span> <span class="p">{</span> <span class="na">done</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="na">value</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">current</span><span class="o">++</span> <span class="p">};</span>
       <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
         <span class="k">return</span> <span class="p">{</span> <span class="na">done</span><span class="p">:</span> <span class="kc">true</span> <span class="p">};</span>
@@ -109,8 +109,8 @@
 <span class="p">};</span>
 
 <span class="c1">// 이제 의도한 대로 동작합니다!</span>
-<span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">num</span> <span class="k">of</span> <span class="nx">range</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">alert</span><span class="p">(</span><span class="nx">num</span><span class="p">);</span> <span class="c1">// 1, then 2, 3, 4, 5</span>
+<span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">num</span> <span class="k">of</span> <span class="nx">range</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nf">alert</span><span class="p">(</span><span class="nx">num</span><span class="p">);</span> <span class="c1">// 1, then 2, 3, 4, 5</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -156,9 +156,9 @@
 	<span class="na">wifi</span><span class="p">:</span><span class="kc">null</span>
 <span class="p">};</span>
 
-<span class="kd">let</span> <span class="nx">json</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">student</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">json</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nf">stringify</span><span class="p">(</span><span class="nx">student</span><span class="p">);</span>
 
-<span class="nx">alert</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">json</span><span class="p">);</span> <span class="c1">//string</span>
-<span class="nx">alert</span><span class="p">(</span><span class="nx">json</span><span class="p">);</span><span class="c1">//student의 내용을 string으로 출력</span>
+<span class="nf">alert</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">json</span><span class="p">);</span> <span class="c1">//string</span>
+<span class="nf">alert</span><span class="p">(</span><span class="nx">json</span><span class="p">);</span><span class="c1">//student의 내용을 string으로 출력</span>
 </code></pre></div></div>
 :ET

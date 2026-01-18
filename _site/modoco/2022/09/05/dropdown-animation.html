@@ -8,7 +8,7 @@
   <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
 <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>드랍다운 애니메이션 제작 | YeongGi’s tech blog</title>
-<meta name="generator" content="Jekyll v4.2.2">
+<meta name="generator" content="Jekyll v4.4.1">
 <meta property="og:title" content="드랍다운 애니메이션 제작">
 <meta name="author" content="071yoon">
 <meta property="og:locale" content="en_US">
@@ -840,12 +840,12 @@ function googleTranslateElementInit() {
 <p>우선 어떠한 버튼을 누르면 DropDown이 나오게 될지 만들어야 된다.</p>
 
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">dropDown</span> <span class="o">=</span> <span class="p">(</span><span class="nx">event</span><span class="p">:</span> <span class="nx">React</span><span class="p">.</span><span class="nx">MouseEvent</span><span class="o">&lt;</span><span class="nx">HTMLDivElement</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
-  <span class="nx">setDropDown</span><span class="p">(</span><span class="o">!</span><span class="nx">showDropDown</span><span class="p">);</span>
+  <span class="nx">event</span><span class="p">.</span><span class="nf">preventDefault</span><span class="p">();</span>
+  <span class="nf">setDropDown</span><span class="p">(</span><span class="o">!</span><span class="nx">showDropDown</span><span class="p">);</span>
 <span class="p">};</span>
 
 <span class="o">&lt;</span><span class="nx">DropDownContainer</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">dropDown</span><span class="p">}</span><span class="o">&gt;</span>
-  <span class="o">&lt;</span><span class="nx">Text</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">myDevice</span> <span class="o">!==</span> <span class="kc">null</span> <span class="p">?</span> <span class="nx">myDevice</span><span class="p">?.</span><span class="nx">label</span> <span class="p">:</span> <span class="nx">defaultDevice</span><span class="p">(</span><span class="nx">device</span><span class="p">)}</span><span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
+  <span class="o">&lt;</span><span class="nx">Text</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">myDevice</span> <span class="o">!==</span> <span class="kc">null</span> <span class="p">?</span> <span class="nx">myDevice</span><span class="p">?.</span><span class="nx">label</span> <span class="p">:</span> <span class="nf">defaultDevice</span><span class="p">(</span><span class="nx">device</span><span class="p">)}</span><span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
 </span>  <span class="o">&lt;</span><span class="nx">BottomArrow</span> <span class="o">/&gt;</span>
 <span class="o">&lt;</span><span class="sr">/DropDownContainer&gt;</span><span class="err">;
 </span></code></pre></div></div>
@@ -858,15 +858,15 @@ function googleTranslateElementInit() {
   <span class="nx">device</span><span class="p">:</span> <span class="nx">MediaDeviceInfo</span><span class="p">,</span>
   <span class="nx">event</span><span class="p">:</span> <span class="nx">React</span><span class="p">.</span><span class="nx">MouseEvent</span><span class="o">&lt;</span><span class="nx">HTMLDivElement</span><span class="o">&gt;</span>
 <span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
-  <span class="nx">setMyDevice</span><span class="p">(</span><span class="nx">device</span><span class="p">);</span>
-  <span class="nx">setDropDown</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+  <span class="nx">event</span><span class="p">.</span><span class="nf">preventDefault</span><span class="p">();</span>
+  <span class="nf">setMyDevice</span><span class="p">(</span><span class="nx">device</span><span class="p">);</span>
+  <span class="nf">setDropDown</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
 <span class="p">};</span>
 
 <span class="o">&lt;</span><span class="nx">DropDownItem</span>
   <span class="nx">key</span><span class="o">=</span><span class="p">{</span><span class="nx">device</span><span class="p">.</span><span class="nx">deviceId</span><span class="p">}</span>
   <span class="nx">onClick</span><span class="o">=</span><span class="p">{(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">setDevice</span><span class="p">(</span><span class="nx">device</span><span class="p">,</span> <span class="nx">event</span><span class="p">);</span>
+    <span class="nf">setDevice</span><span class="p">(</span><span class="nx">device</span><span class="p">,</span> <span class="nx">event</span><span class="p">);</span>
   <span class="p">}}</span>
 <span class="o">&gt;</span>
   <span class="o">&lt;</span><span class="nx">Text</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">device</span><span class="p">.</span><span class="nx">label</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
@@ -899,10 +899,10 @@ function googleTranslateElementInit() {
 
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">@</span><span class="nd">keyframes</span> <span class="nx">dropdown</span> <span class="p">{</span>
     <span class="mi">0</span><span class="o">%</span> <span class="p">{</span>
-      <span class="na">transform</span><span class="p">:</span> <span class="nx">translateY</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="o">%</span><span class="p">);</span>
+      <span class="na">transform</span><span class="p">:</span> <span class="nf">translateY</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="o">%</span><span class="p">);</span>
     <span class="p">}</span>
     <span class="mi">100</span><span class="o">%</span> <span class="p">{</span>
-      <span class="na">transform</span><span class="p">:</span> <span class="nx">translateY</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+      <span class="na">transform</span><span class="p">:</span> <span class="nf">translateY</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
     <span class="p">}</span>
   <span class="p">}</span>
   <span class="nl">animation</span><span class="p">:</span> <span class="nx">dropdown</span> <span class="mf">0.4</span><span class="nx">s</span> <span class="nx">ease</span><span class="p">;</span>
@@ -919,16 +919,16 @@ function googleTranslateElementInit() {
 <p>주요 코드는 다음과 같다.</p>
 
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">DropDownContainer</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">dropDown</span><span class="p">}</span><span class="o">&gt;</span>
-  <span class="o">&lt;</span><span class="nx">Text</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">myDevice</span> <span class="o">!==</span> <span class="kc">null</span> <span class="p">?</span> <span class="nx">myDevice</span><span class="p">?.</span><span class="nx">label</span> <span class="p">:</span> <span class="nx">defaultDevice</span><span class="p">(</span><span class="nx">device</span><span class="p">)}</span><span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
+  <span class="o">&lt;</span><span class="nx">Text</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">myDevice</span> <span class="o">!==</span> <span class="kc">null</span> <span class="p">?</span> <span class="nx">myDevice</span><span class="p">?.</span><span class="nx">label</span> <span class="p">:</span> <span class="nf">defaultDevice</span><span class="p">(</span><span class="nx">device</span><span class="p">)}</span><span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
 </span>  <span class="o">&lt;</span><span class="nx">BottomArrow</span> <span class="o">/&gt;</span>
   <span class="p">{</span><span class="nx">showDropDown</span> <span class="o">&amp;&amp;</span> <span class="p">(</span>
     <span class="o">&lt;</span><span class="nx">DropDownPosition</span><span class="o">&gt;</span>
       <span class="o">&lt;</span><span class="nx">DropDown</span><span class="o">&gt;</span>
-        <span class="p">{</span><span class="nx">device</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">device</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span>
+        <span class="p">{</span><span class="nx">device</span><span class="p">.</span><span class="nf">map</span><span class="p">((</span><span class="nx">device</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span>
           <span class="o">&lt;</span><span class="nx">DropDownItem</span>
             <span class="nx">key</span><span class="o">=</span><span class="p">{</span><span class="nx">device</span><span class="p">.</span><span class="nx">deviceId</span><span class="p">}</span>
             <span class="nx">onClick</span><span class="o">=</span><span class="p">{(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-              <span class="nx">setDevice</span><span class="p">(</span><span class="nx">device</span><span class="p">,</span> <span class="nx">event</span><span class="p">);</span>
+              <span class="nf">setDevice</span><span class="p">(</span><span class="nx">device</span><span class="p">,</span> <span class="nx">event</span><span class="p">);</span>
             <span class="p">}}</span>
           <span class="o">&gt;</span>
             <span class="o">&lt;</span><span class="nx">Text</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">device</span><span class="p">.</span><span class="nx">label</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
@@ -987,10 +987,10 @@ function googleTranslateElementInit() {
 <div class="post-related">
       <div>Related Articles</div>
       <ul>
-        <li><a class="post-link" href="/til/2022/10/03/network-usage-fee.html" title="브라우저에서 입출력 제어하기">망 사용료가 대체 뭔데?</a></li>
-<li><a class="post-link" href="/react/2022/09/19/start-cypress.html" title="브라우저에서 입출력 제어하기">Cypress로 e2e 테스트 하기</a></li>
-<li><a class="post-link" href="/til/2024/04/01/opensource-github-action.html" title="브라우저에서 입출력 제어하기">Github Action starter 오류 수정 이야기</a></li>
-<li><a class="post-link" href="/javascript/2022/01/22/javascript-coding-2.html" title="브라우저에서 입출력 제어하기">바닐라JS로 앱 만들기 2</a></li>
+        <li><a class="post-link" href="/ai/2026/01/18/next-programmer.html" title="브라우저에서 입출력 제어하기">AI 시대에 우리가 공부해야 할 본질에 대하여</a></li>
+<li><a class="post-link" href="/next.js/2022/05/04/next-optimization.html" title="브라우저에서 입출력 제어하기">NEXT-Optimization</a></li>
+<li><a class="post-link" href="/next.js/2022/04/24/why-next-js.html" title="브라우저에서 입출력 제어하기">NEXT</a></li>
+<li><a class="post-link" href="/gof/2022/09/15/builder-pattern.html" title="브라우저에서 입출력 제어하기">빌더 패턴</a></li>
 </ul>
     </div>
 <div class="post-comments">
@@ -1133,7 +1133,7 @@ function googleTranslateElementInit() {
 
   <div class="wrapper">
     <div class="site-footer-inner">
-<div>Unpublished Work <span class="copyleft">©</span> 2021-2025 071yoon</div>
+<div>Unpublished Work <span class="copyleft">©</span> 2021-2026 071yoon</div>
       <div>Powered by <a title="Jekyll is a simple, blog-aware, static site
       generator." href="http://jekyllrb.com/">Jekyll</a> &amp; <a title="Yat, yet
       another theme." href="https://github.com/jeffreytse/jekyll-theme-yat">Yat Theme</a>.</div>

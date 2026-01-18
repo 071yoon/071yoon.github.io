@@ -8,7 +8,7 @@
   <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
 <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>브라우저에서 입출력 제어하기 | YeongGi’s tech blog</title>
-<meta name="generator" content="Jekyll v4.2.2">
+<meta name="generator" content="Jekyll v4.4.1">
 <meta property="og:title" content="브라우저에서 입출력 제어하기">
 <meta name="author" content="071yoon">
 <meta property="og:locale" content="en_US">
@@ -852,15 +852,15 @@ function googleTranslateElementInit() {
 <p>모든 선택 및 제어는 드랍다운에서 렌더링에도 사용되므로 전부 상태로 관리해주었다.</p>
 
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Selectors.tsx</span>
-<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">Selectors</span><span class="p">()</span> <span class="p">{</span>
+<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nf">Selectors</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">const</span> <span class="p">[</span><span class="nx">audioInput</span><span class="p">,</span> <span class="nx">setAudioInput</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="o">&lt;</span><span class="nx">MediaDeviceInfo</span><span class="p">[]</span> <span class="o">|</span> <span class="kc">null</span><span class="o">&gt;</span><span class="p">([]);</span>
   <span class="kd">const</span> <span class="p">[</span><span class="nx">audioOutput</span><span class="p">,</span> <span class="nx">setAudioOutput</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="o">&lt;</span><span class="nx">MediaDeviceInfo</span><span class="p">[]</span> <span class="o">|</span> <span class="kc">null</span><span class="o">&gt;</span><span class="p">([]);</span>
   <span class="kd">const</span> <span class="p">[</span><span class="nx">videoInput</span><span class="p">,</span> <span class="nx">setVideoInput</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="o">&lt;</span><span class="nx">MediaDeviceInfo</span><span class="p">[]</span> <span class="o">|</span> <span class="kc">null</span><span class="o">&gt;</span><span class="p">([]);</span>
-  <span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">getDevice</span><span class="p">(</span><span class="nx">setAudioInput</span><span class="p">,</span> <span class="nx">setAudioOutput</span><span class="p">,</span> <span class="nx">setVideoInput</span><span class="p">);</span>
+  <span class="nf">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nf">getDevice</span><span class="p">(</span><span class="nx">setAudioInput</span><span class="p">,</span> <span class="nx">setAudioOutput</span><span class="p">,</span> <span class="nx">setVideoInput</span><span class="p">);</span>
   <span class="p">},</span> <span class="p">[]);</span>
 
-  <span class="k">return</span> <span class="p">(</span>
+  <span class="k">return </span><span class="p">(</span>
     <span class="o">&lt;</span><span class="nx">Container</span><span class="o">&gt;</span>
       <span class="o">&lt;</span><span class="nx">SelectorContainer</span><span class="o">&gt;</span>
         <span class="o">&lt;</span><span class="nx">Selector</span> <span class="nx">select</span><span class="o">=</span><span class="dl">"</span><span class="s2">camera</span><span class="dl">"</span> <span class="nx">device</span><span class="o">=</span><span class="p">{</span><span class="nx">videoInput</span><span class="p">}</span> <span class="sr">/</span><span class="err">&gt;
@@ -880,19 +880,19 @@ function googleTranslateElementInit() {
 <p>여기서 <code class="language-plaintext highlighter-rouge">kind</code>로 분류하여 비디오 입력, 오디오 입력, 오디오 출력을 구별하여 따로 저장하였다.</p>
 
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// getDevice.ts</span>
-<span class="kd">const</span> <span class="nx">getDevice</span> <span class="o">=</span> <span class="k">async</span> <span class="p">(</span>
+<span class="kd">const</span> <span class="nx">getDevice</span> <span class="o">=</span> <span class="k">async </span><span class="p">(</span>
   <span class="nx">setAudioInput</span><span class="p">:</span> <span class="nx">Dispatch</span><span class="o">&lt;</span><span class="nx">SetStateAction</span><span class="o">&lt;</span><span class="nx">MediaDeviceInfo</span><span class="p">[]</span><span class="o">&gt;&gt;</span><span class="p">,</span>
   <span class="nx">setAudioOutput</span><span class="p">:</span> <span class="nx">Dispatch</span><span class="o">&lt;</span><span class="nx">SetStateAction</span><span class="o">&lt;</span><span class="nx">MediaDeviceInfo</span><span class="p">[]</span><span class="o">&gt;&gt;</span><span class="p">,</span>
   <span class="nx">setVideoInput</span><span class="p">:</span> <span class="nx">Dispatch</span><span class="o">&lt;</span><span class="nx">SetStateAction</span><span class="o">&lt;</span><span class="nx">MediaDeviceInfo</span><span class="p">[]</span><span class="o">&gt;&gt;</span>
 <span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="k">try</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">devices</span> <span class="o">=</span> <span class="k">await</span> <span class="nb">navigator</span><span class="p">.</span><span class="nx">mediaDevices</span><span class="p">.</span><span class="nx">enumerateDevices</span><span class="p">();</span>
-    <span class="nx">setAudioInput</span><span class="p">(</span><span class="nx">devices</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">device</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">device</span><span class="p">.</span><span class="nx">kind</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">audioinput</span><span class="dl">"</span><span class="p">));</span>
-    <span class="nx">setAudioOutput</span><span class="p">(</span><span class="nx">devices</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">device</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">device</span><span class="p">.</span><span class="nx">kind</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">audiooutput</span><span class="dl">"</span><span class="p">));</span>
-    <span class="nx">setVideoInput</span><span class="p">(</span><span class="nx">devices</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">device</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">device</span><span class="p">.</span><span class="nx">kind</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">videoinput</span><span class="dl">"</span><span class="p">));</span>
+    <span class="kd">const</span> <span class="nx">devices</span> <span class="o">=</span> <span class="k">await</span> <span class="nb">navigator</span><span class="p">.</span><span class="nx">mediaDevices</span><span class="p">.</span><span class="nf">enumerateDevices</span><span class="p">();</span>
+    <span class="nf">setAudioInput</span><span class="p">(</span><span class="nx">devices</span><span class="p">.</span><span class="nf">filter</span><span class="p">((</span><span class="nx">device</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">device</span><span class="p">.</span><span class="nx">kind</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">audioinput</span><span class="dl">"</span><span class="p">));</span>
+    <span class="nf">setAudioOutput</span><span class="p">(</span><span class="nx">devices</span><span class="p">.</span><span class="nf">filter</span><span class="p">((</span><span class="nx">device</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">device</span><span class="p">.</span><span class="nx">kind</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">audiooutput</span><span class="dl">"</span><span class="p">));</span>
+    <span class="nf">setVideoInput</span><span class="p">(</span><span class="nx">devices</span><span class="p">.</span><span class="nf">filter</span><span class="p">((</span><span class="nx">device</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">device</span><span class="p">.</span><span class="nx">kind</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">videoinput</span><span class="dl">"</span><span class="p">));</span>
     <span class="k">return</span> <span class="nx">devices</span><span class="p">;</span>
-  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="dl">"</span><span class="s2">error getting devices</span><span class="dl">"</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="dl">"</span><span class="s2">error getting devices</span><span class="dl">"</span><span class="p">);</span>
     <span class="k">return</span> <span class="dl">"</span><span class="s2">error</span><span class="dl">"</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">};</span>
@@ -920,24 +920,24 @@ function googleTranslateElementInit() {
 <p>우선 상대방의 마이크 음성을 제어하는 부분을 보면 다음과 같다.</p>
 
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Screen.tsx</span>
-<span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">videoRef</span><span class="p">.</span><span class="nx">current</span> <span class="o">&amp;&amp;</span> <span class="nx">stream</span><span class="p">)</span> <span class="p">{</span>
+<span class="nf">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">if </span><span class="p">(</span><span class="nx">videoRef</span><span class="p">.</span><span class="nx">current</span> <span class="o">&amp;&amp;</span> <span class="nx">stream</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">videoRef</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">srcObject</span> <span class="o">=</span> <span class="nx">stream</span><span class="p">;</span>
   <span class="p">}</span>
   <span class="kd">const</span> <span class="nx">newRef</span> <span class="o">=</span> <span class="nx">videoRef</span><span class="p">.</span><span class="nx">current</span><span class="p">;</span>
-  <span class="p">(</span><span class="nx">newRef</span> <span class="k">as</span> <span class="kr">any</span><span class="p">).</span><span class="nx">setSinkId</span><span class="p">(</span><span class="nx">userAudioOutputDevice</span><span class="p">?.</span><span class="nx">deviceId</span><span class="p">);</span>
+  <span class="p">(</span><span class="nx">newRef</span> <span class="kd">as </span><span class="kr">any</span><span class="p">).</span><span class="nf">setSinkId</span><span class="p">(</span><span class="nx">userAudioOutputDevice</span><span class="p">?.</span><span class="nx">deviceId</span><span class="p">);</span>
 <span class="p">},</span> <span class="p">[</span><span class="nx">stream</span><span class="p">,</span> <span class="nx">videoRef</span><span class="p">,</span> <span class="nx">userAudioOutputDevice</span><span class="p">]);</span>
 </code></pre></div></div>
 
 <p>테마로 나오는 음성을 다음과 같다.</p>
 
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Theme.tsx</span>
-<span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">volumeRef</span><span class="p">.</span><span class="nx">current</span><span class="p">)</span> <span class="p">{</span>
+<span class="nf">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">if </span><span class="p">(</span><span class="nx">volumeRef</span><span class="p">.</span><span class="nx">current</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">volumeRef</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">volume</span> <span class="o">=</span> <span class="nx">volume</span><span class="p">;</span>
   <span class="p">}</span>
   <span class="kd">const</span> <span class="nx">newAudio</span> <span class="o">=</span> <span class="nx">volumeRef</span><span class="p">.</span><span class="nx">current</span><span class="p">;</span>
-  <span class="p">(</span><span class="nx">newAudio</span> <span class="k">as</span> <span class="kr">any</span><span class="p">).</span><span class="nx">setSinkId</span><span class="p">(</span><span class="nx">userAudioOutputDevice</span><span class="p">?.</span><span class="nx">deviceId</span><span class="p">);</span>
+  <span class="p">(</span><span class="nx">newAudio</span> <span class="kd">as </span><span class="kr">any</span><span class="p">).</span><span class="nf">setSinkId</span><span class="p">(</span><span class="nx">userAudioOutputDevice</span><span class="p">?.</span><span class="nx">deviceId</span><span class="p">);</span>
 <span class="p">},</span> <span class="p">[</span><span class="nx">volume</span><span class="p">,</span> <span class="nx">userAudioOutputDevice</span><span class="p">]);</span>
 </code></pre></div></div>
 
@@ -963,23 +963,23 @@ function googleTranslateElementInit() {
 </ol>
 
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// useCreateMediaStream.tsx</span>
-<span class="kd">const</span> <span class="nx">replaceAudioStream</span> <span class="o">=</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<span class="kd">const</span> <span class="nx">replaceAudioStream</span> <span class="o">=</span> <span class="k">async </span><span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="k">try</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">audioStream</span> <span class="o">=</span> <span class="k">await</span> <span class="nb">navigator</span><span class="p">.</span><span class="nx">mediaDevices</span><span class="p">.</span><span class="nx">getUserMedia</span><span class="p">({</span>
+    <span class="kd">const</span> <span class="nx">audioStream</span> <span class="o">=</span> <span class="k">await</span> <span class="nb">navigator</span><span class="p">.</span><span class="nx">mediaDevices</span><span class="p">.</span><span class="nf">getUserMedia</span><span class="p">({</span>
       <span class="na">audio</span><span class="p">:</span> <span class="p">{</span>
         <span class="na">deviceId</span><span class="p">:</span> <span class="nx">userAudioInputDevice</span><span class="p">?.</span><span class="nx">deviceId</span><span class="p">,</span>
       <span class="p">},</span>
     <span class="p">});</span>
-    <span class="nx">myStream</span><span class="p">.</span><span class="nx">localStream</span><span class="p">.</span><span class="nx">removeTrack</span><span class="p">(</span><span class="nx">myStream</span><span class="p">.</span><span class="nx">localStream</span><span class="p">.</span><span class="nx">getAudioTracks</span><span class="p">()[</span><span class="mi">0</span><span class="p">]);</span>
-    <span class="nx">myStream</span><span class="p">.</span><span class="nx">localStream</span><span class="p">.</span><span class="nx">addTrack</span><span class="p">(</span><span class="nx">audioStream</span><span class="p">.</span><span class="nx">getAudioTracks</span><span class="p">()[</span><span class="mi">0</span><span class="p">]);</span>
-    <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">pcs</span><span class="p">).</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">pc</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="kd">const</span> <span class="nx">sender</span> <span class="o">=</span> <span class="nx">pcs</span><span class="p">[</span><span class="nx">pc</span><span class="p">].</span><span class="nx">getSenders</span><span class="p">().</span><span class="nx">find</span><span class="p">((</span><span class="nx">s</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">s</span><span class="p">.</span><span class="nx">track</span><span class="p">.</span><span class="nx">kind</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">audio</span><span class="dl">"</span><span class="p">);</span>
-      <span class="nx">sender</span><span class="p">.</span><span class="nx">replaceTrack</span><span class="p">(</span><span class="nx">audioStream</span><span class="p">.</span><span class="nx">getAudioTracks</span><span class="p">()[</span><span class="mi">0</span><span class="p">]);</span>
+    <span class="nx">myStream</span><span class="p">.</span><span class="nx">localStream</span><span class="p">.</span><span class="nf">removeTrack</span><span class="p">(</span><span class="nx">myStream</span><span class="p">.</span><span class="nx">localStream</span><span class="p">.</span><span class="nf">getAudioTracks</span><span class="p">()[</span><span class="mi">0</span><span class="p">]);</span>
+    <span class="nx">myStream</span><span class="p">.</span><span class="nx">localStream</span><span class="p">.</span><span class="nf">addTrack</span><span class="p">(</span><span class="nx">audioStream</span><span class="p">.</span><span class="nf">getAudioTracks</span><span class="p">()[</span><span class="mi">0</span><span class="p">]);</span>
+    <span class="nb">Object</span><span class="p">.</span><span class="nf">keys</span><span class="p">(</span><span class="nx">pcs</span><span class="p">).</span><span class="nf">forEach</span><span class="p">((</span><span class="nx">pc</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">sender</span> <span class="o">=</span> <span class="nx">pcs</span><span class="p">[</span><span class="nx">pc</span><span class="p">].</span><span class="nf">getSenders</span><span class="p">().</span><span class="nf">find</span><span class="p">((</span><span class="nx">s</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">s</span><span class="p">.</span><span class="nx">track</span><span class="p">.</span><span class="nx">kind</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">audio</span><span class="dl">"</span><span class="p">);</span>
+      <span class="nx">sender</span><span class="p">.</span><span class="nf">replaceTrack</span><span class="p">(</span><span class="nx">audioStream</span><span class="p">.</span><span class="nf">getAudioTracks</span><span class="p">()[</span><span class="mi">0</span><span class="p">]);</span>
     <span class="p">});</span>
-  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">failed to change audio stream</span><span class="dl">"</span><span class="p">,</span> <span class="nx">error</span><span class="p">);</span>
-    <span class="kd">const</span> <span class="nx">stream</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MediaStream</span><span class="p">();</span>
-    <span class="nx">setUserMediaStream</span><span class="p">(</span><span class="nx">stream</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">failed to change audio stream</span><span class="dl">"</span><span class="p">,</span> <span class="nx">error</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">stream</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">MediaStream</span><span class="p">();</span>
+    <span class="nf">setUserMediaStream</span><span class="p">(</span><span class="nx">stream</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div></div>
@@ -987,8 +987,8 @@ function googleTranslateElementInit() {
 <p>그리고 이런 과정을 useEffect로 감싸서, userAudioInput이 바뀔때 마다 선언해준다.</p>
 
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// settingModal</span>
-<span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">replaceAudioStream</span><span class="p">();</span>
+<span class="nf">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nf">replaceAudioStream</span><span class="p">();</span>
 <span class="p">},</span> <span class="p">[</span><span class="nx">replaceAudioStream</span><span class="p">,</span> <span class="nx">userAudioInputDevice</span><span class="p">]);</span>
 </code></pre></div></div>
 
@@ -1006,10 +1006,10 @@ function googleTranslateElementInit() {
 <div class="post-related">
       <div>Related Articles</div>
       <ul>
-        <li><a class="post-link" href="/til/2024/04/01/opensource-github-action.html" title="오디오 비주얼라이저 만들기">Github Action starter 오류 수정 이야기</a></li>
-<li><a class="post-link" href="/til/2023/09/18/make-chomre-web-extension.html" title="오디오 비주얼라이저 만들기">크롬 익스텐션을 개발해보자</a></li>
+        <li><a class="post-link" href="/ai/2025/06/02/about-vibe-coding.html" title="오디오 비주얼라이저 만들기">바이브 코딩</a></li>
+<li><a class="post-link" href="/sql/2024/03/02/sql-functions.html" title="오디오 비주얼라이저 만들기">SQL 함수 알아보기</a></li>
 <li><a class="post-link" href="/modoco/2022/09/06/audio-inputoutput.html" title="오디오 비주얼라이저 만들기">브라우저에서 입출력 제어하기</a></li>
-<li><a class="post-link" href="/til/2022/08/10/aws-cloudFront.html" title="오디오 비주얼라이저 만들기">S3 &amp; CloudFront를 활용한 CDN 서버 만들기</a></li>
+<li><a class="post-link" href="/sql/2022/01/24/sql-practice.html" title="오디오 비주얼라이저 만들기">SQL 예제를 풀어보자</a></li>
 </ul>
     </div>
 <div class="post-comments">
@@ -1152,7 +1152,7 @@ function googleTranslateElementInit() {
 
   <div class="wrapper">
     <div class="site-footer-inner">
-<div>Unpublished Work <span class="copyleft">©</span> 2021-2025 071yoon</div>
+<div>Unpublished Work <span class="copyleft">©</span> 2021-2026 071yoon</div>
       <div>Powered by <a title="Jekyll is a simple, blog-aware, static site
       generator." href="http://jekyllrb.com/">Jekyll</a> &amp; <a title="Yat, yet
       another theme." href="https://github.com/jeffreytse/jekyll-theme-yat">Yat Theme</a>.</div>

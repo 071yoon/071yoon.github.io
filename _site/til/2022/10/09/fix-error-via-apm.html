@@ -8,7 +8,7 @@
   <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
 <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Fix Error via APM | YeongGi’s tech blog</title>
-<meta name="generator" content="Jekyll v4.2.2">
+<meta name="generator" content="Jekyll v4.4.1">
 <meta property="og:title" content="Fix Error via APM">
 <meta name="author" content="071yoon">
 <meta property="og:locale" content="en_US">
@@ -869,14 +869,14 @@ function googleTranslateElementInit() {
 <p>사실 이번 오류가 난 기능은 그렇게 중요한 기능은 아니다. 내가 방에 입장하기 전, 마이크 혹은 카메라의 permission이 있는지 확인하게 2단계 보안 장치라 볼 수 있다. 하지만, 생각보다 지원하지 않는 버전과 브라우저가 꽤나 있고, 유저가 어떠한 브라우저를 사용하는지는 알 수 없으므로, 만약 지원이 되지 않는 브라우저는 과감하게 해당 기능을 제외하기로 결심했다.</p>
 
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">checkValid</span> <span class="o">=</span> <span class="o">!!</span><span class="nb">navigator</span><span class="p">.</span><span class="nx">permissions</span><span class="p">?.</span><span class="nx">query</span><span class="p">;</span>
-<span class="k">if</span> <span class="p">(</span><span class="nx">checkValid</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nb">navigator</span><span class="p">.</span><span class="nx">permissions</span><span class="p">.</span><span class="nx">query</span><span class="p">({</span> <span class="na">name</span><span class="p">:</span> <span class="nx">permissionName</span> <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">state</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">granted</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">setDisableButton</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">state</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">prompt</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">setDisableButton</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">state</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">denied</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">setDisableButton</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+<span class="k">if </span><span class="p">(</span><span class="nx">checkValid</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nb">navigator</span><span class="p">.</span><span class="nx">permissions</span><span class="p">.</span><span class="nf">query</span><span class="p">({</span> <span class="na">name</span><span class="p">:</span> <span class="nx">permissionName</span> <span class="p">}).</span><span class="nf">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if </span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">state</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">granted</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nf">setDisableButton</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if </span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">state</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">prompt</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nf">setDisableButton</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if </span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">state</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">denied</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nf">setDisableButton</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
     <span class="p">}</span>
   <span class="p">});</span>
 <span class="p">}</span>
@@ -902,10 +902,10 @@ function googleTranslateElementInit() {
 <div class="post-related">
       <div>Related Articles</div>
       <ul>
-        <li><a class="post-link" href="/til/2022/07/01/recoil.html" title="중개자 패턴">Recoil 배우기</a></li>
-<li><a class="post-link" href="/book/2024/01/28/essence-of-oop.html" title="중개자 패턴">객체지향의 사실과 오해</a></li>
+        <li><a class="post-link" href="/next.js/2022/05/15/next-api.html" title="중개자 패턴">NEXT-API</a></li>
+<li><a class="post-link" href="/javascript/2022/01/18/javascript-functions.html" title="중개자 패턴">자바스크립트 함수의 심화학습</a></li>
 <li><a class="post-link" href="/modoco/2022/09/06/audio-inputoutput.html" title="중개자 패턴">브라우저에서 입출력 제어하기</a></li>
-<li><a class="post-link" href="/next.js/2022/05/04/next-optimization.html" title="중개자 패턴">NEXT-Optimization</a></li>
+<li><a class="post-link" href="/sql/2024/03/02/sql-functions.html" title="중개자 패턴">SQL 함수 알아보기</a></li>
 </ul>
     </div>
 <div class="post-comments">
@@ -1048,7 +1048,7 @@ function googleTranslateElementInit() {
 
   <div class="wrapper">
     <div class="site-footer-inner">
-<div>Unpublished Work <span class="copyleft">©</span> 2021-2025 071yoon</div>
+<div>Unpublished Work <span class="copyleft">©</span> 2021-2026 071yoon</div>
       <div>Powered by <a title="Jekyll is a simple, blog-aware, static site
       generator." href="http://jekyllrb.com/">Jekyll</a> &amp; <a title="Yat, yet
       another theme." href="https://github.com/jeffreytse/jekyll-theme-yat">Yat Theme</a>.</div>

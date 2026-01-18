@@ -8,7 +8,7 @@
   <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
 <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Typescript 에서 Zustand 배우기 | YeongGi’s tech blog</title>
-<meta name="generator" content="Jekyll v4.2.2">
+<meta name="generator" content="Jekyll v4.4.1">
 <meta property="og:title" content="Typescript 에서 Zustand 배우기">
 <meta name="author" content="071yoon">
 <meta property="og:locale" content="en_US">
@@ -861,7 +861,7 @@ function googleTranslateElementInit() {
 <span class="kd">const</span> <span class="nx">IdStore</span> <span class="o">=</span> <span class="nx">create</span><span class="o">&lt;</span><span class="nx">ID</span><span class="o">&gt;</span><span class="p">((</span><span class="kd">set</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span>
   <span class="na">id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">init</span><span class="dl">"</span><span class="p">,</span>
   <span class="na">setId</span><span class="p">:</span> <span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="kd">set</span><span class="p">((</span><span class="nx">state</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span> <span class="na">id</span><span class="p">:</span> <span class="nx">id</span> <span class="p">}));</span>
+    <span class="nf">set</span><span class="p">((</span><span class="nx">state</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span> <span class="na">id</span><span class="p">:</span> <span class="nx">id</span> <span class="p">}));</span>
   <span class="p">},</span>
   <span class="cm">/*
     setId: (by) =&gt; {
@@ -879,20 +879,20 @@ function googleTranslateElementInit() {
 
 <h3 id="id-입력하는-페이지-구성">ID 입력하는 페이지 구성</h3>
 
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">InputID</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="nx">navigate</span> <span class="o">=</span> <span class="nx">useNavigate</span><span class="p">();</span>
-  <span class="kd">const</span> <span class="p">{</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">setId</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">IdStore</span><span class="p">();</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nf">InputID</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">navigate</span> <span class="o">=</span> <span class="nf">useNavigate</span><span class="p">();</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">setId</span> <span class="p">}</span> <span class="o">=</span> <span class="nc">IdStore</span><span class="p">();</span>
 
   <span class="kd">const</span> <span class="nx">onSubmit</span> <span class="o">=</span> <span class="p">(</span><span class="nx">event</span><span class="p">:</span> <span class="nx">React</span><span class="p">.</span><span class="nx">FormEvent</span><span class="o">&lt;</span><span class="nx">HTMLFormElement</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
-    <span class="nx">navigate</span><span class="p">(</span><span class="s2">`/lobby`</span><span class="p">);</span>
+    <span class="nx">event</span><span class="p">.</span><span class="nf">preventDefault</span><span class="p">();</span>
+    <span class="nf">navigate</span><span class="p">(</span><span class="s2">`/lobby`</span><span class="p">);</span>
   <span class="p">};</span>
 
   <span class="kd">const</span> <span class="nx">onChange</span> <span class="o">=</span> <span class="p">(</span><span class="nx">event</span><span class="p">:</span> <span class="nx">React</span><span class="p">.</span><span class="nx">ChangeEvent</span><span class="o">&lt;</span><span class="nx">HTMLInputElement</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">setId</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+    <span class="nf">setId</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
   <span class="p">};</span>
 
-  <span class="k">return</span> <span class="p">(</span>
+  <span class="k">return </span><span class="p">(</span>
     <span class="o">&lt;</span><span class="nx">Form</span> <span class="nx">onSubmit</span><span class="o">=</span><span class="p">{</span><span class="nx">onSubmit</span><span class="p">}</span><span class="o">&gt;</span>
       <span class="o">&lt;</span><span class="nx">Input</span>
         <span class="nx">autoComplete</span><span class="o">=</span><span class="dl">"</span><span class="s2">off</span><span class="dl">"</span>
@@ -908,9 +908,9 @@ function googleTranslateElementInit() {
 
 <h3 id="다음-페이지에-방금-입력한-id가-잘-적용-되었는지-확인">다음 페이지에 방금 입력한 ID가 잘 적용 되었는지 확인</h3>
 
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">Lobby</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="p">{</span> <span class="nx">id</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">IdStore</span><span class="p">();</span>
-  <span class="k">return</span> <span class="p">(</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nf">Lobby</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">id</span> <span class="p">}</span> <span class="o">=</span> <span class="nc">IdStore</span><span class="p">();</span>
+  <span class="k">return </span><span class="p">(</span>
     <span class="o">&lt;</span><span class="nx">Container</span><span class="o">&gt;</span>
       <span class="o">&lt;</span><span class="nx">Header</span><span class="o">&gt;</span><span class="nx">Lobby</span><span class="o">&lt;</span><span class="sr">/Header</span><span class="err">&gt;
 </span>      <span class="o">&lt;</span><span class="nx">Me</span><span class="o">&gt;</span><span class="nx">name</span><span class="p">:</span> <span class="p">{</span><span class="nx">id</span><span class="p">}</span> <span class="o">&lt;</span><span class="sr">/Me</span><span class="err">&gt;
@@ -938,7 +938,7 @@ function googleTranslateElementInit() {
 
 <span class="kd">const</span> <span class="nx">useStore</span> <span class="o">=</span> <span class="nx">create</span><span class="o">&lt;</span><span class="nx">BearState</span><span class="o">&gt;</span><span class="p">()((</span><span class="kd">set</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span>
   <span class="na">bears</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-  <span class="na">increase</span><span class="p">:</span> <span class="p">(</span><span class="nx">by</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="kd">set</span><span class="p">((</span><span class="nx">state</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span> <span class="na">bears</span><span class="p">:</span> <span class="nx">state</span><span class="p">.</span><span class="nx">bears</span> <span class="o">+</span> <span class="nx">by</span> <span class="p">})),</span>
+  <span class="na">increase</span><span class="p">:</span> <span class="p">(</span><span class="nx">by</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nf">set</span><span class="p">((</span><span class="nx">state</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span> <span class="na">bears</span><span class="p">:</span> <span class="nx">state</span><span class="p">.</span><span class="nx">bears</span> <span class="o">+</span> <span class="nx">by</span> <span class="p">})),</span>
 <span class="p">}));</span>
 
 <span class="k">export</span> <span class="k">default</span> <span class="nx">useStore</span><span class="p">;</span>
@@ -946,18 +946,18 @@ function googleTranslateElementInit() {
 
 <h3 id="bearcounter-component">BearCounter Component</h3>
 
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">TestOne</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="nx">navigate</span> <span class="o">=</span> <span class="nx">useNavigate</span><span class="p">();</span>
-  <span class="kd">const</span> <span class="p">{</span> <span class="nx">bears</span><span class="p">,</span> <span class="nx">increase</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">useStore</span><span class="p">();</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">TestOne</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">navigate</span> <span class="o">=</span> <span class="nf">useNavigate</span><span class="p">();</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">bears</span><span class="p">,</span> <span class="nx">increase</span> <span class="p">}</span> <span class="o">=</span> <span class="nf">useStore</span><span class="p">();</span>
   <span class="kd">const</span> <span class="p">[</span><span class="nx">id</span><span class="p">,</span> <span class="nx">setId</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="o">&lt;</span><span class="kr">number</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
   <span class="c1">// const increasePopulation = useStore((state) =&gt; state.increase);</span>
 
   <span class="kd">const</span> <span class="nx">formHandler</span> <span class="o">=</span> <span class="p">(</span><span class="nx">event</span><span class="p">:</span> <span class="nx">React</span><span class="p">.</span><span class="nx">FormEvent</span><span class="o">&lt;</span><span class="nx">HTMLFormElement</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
-    <span class="k">return</span> <span class="nx">increase</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="nx">event</span><span class="p">.</span><span class="nf">preventDefault</span><span class="p">();</span>
+    <span class="k">return</span> <span class="nf">increase</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
   <span class="p">};</span>
 
-  <span class="k">return</span> <span class="p">(</span>
+  <span class="k">return </span><span class="p">(</span>
     <span class="o">&lt;</span><span class="nx">Container</span><span class="o">&gt;</span>
       <span class="o">&lt;</span><span class="nx">form</span> <span class="nx">onSubmit</span><span class="o">=</span><span class="p">{</span><span class="nx">formHandler</span><span class="p">}</span><span class="o">&gt;</span>
         <span class="o">&lt;</span><span class="nx">button</span> <span class="kd">type</span><span class="o">=</span><span class="dl">"</span><span class="s2">submit</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">incrase</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
@@ -972,9 +972,9 @@ function googleTranslateElementInit() {
 
 <h3 id="testtwo">TestTwo</h3>
 
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">TestTwo</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="p">{</span> <span class="nx">bears</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">useStore</span><span class="p">();</span>
-  <span class="k">return</span> <span class="p">(</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">TestTwo</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">bears</span> <span class="p">}</span> <span class="o">=</span> <span class="nf">useStore</span><span class="p">();</span>
+  <span class="k">return </span><span class="p">(</span>
     <span class="o">&lt;</span><span class="nx">Container</span><span class="o">&gt;</span>
       <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">bears</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/h1</span><span class="err">&gt;
 </span>    <span class="o">&lt;</span><span class="sr">/Container</span><span class="err">&gt;
@@ -998,10 +998,10 @@ function googleTranslateElementInit() {
 <div class="post-related">
       <div>Related Articles</div>
       <ul>
-        <li><a class="post-link" href="/web/2025/03/16/maintain-chrome-extension.html" title="Typescript React Styled-Component 에서 Font 적용하기">Chrome Web Store 유지보수</a></li>
-<li><a class="post-link" href="/retrospect/2022/12/31/end-of-2022.html" title="Typescript React Styled-Component 에서 Font 적용하기">2022년 회고</a></li>
-<li><a class="post-link" href="/deep-thought/2022/02/03/monty-hall.html" title="Typescript React Styled-Component 에서 Font 적용하기">몬티 홀 문제</a></li>
-<li><a class="post-link" href="/til/2022/10/09/fix-error-via-apm.html" title="Typescript React Styled-Component 에서 Font 적용하기">Fix Error via APM</a></li>
+        <li><a class="post-link" href="/til/2023/12/04/export-firebase.html" title="Typescript React Styled-Component 에서 Font 적용하기">firebase 정보 백업하기 (export)</a></li>
+<li><a class="post-link" href="/deep-thought/2022/04/22/grow-together.html" title="Typescript React Styled-Component 에서 Font 적용하기">함께 자라기</a></li>
+<li><a class="post-link" href="/retrospect/2023/12/27/2023-retrospect.html" title="Typescript React Styled-Component 에서 Font 적용하기">2023년 회고</a></li>
+<li><a class="post-link" href="/modoco/2022/07/11/react-horizontal-scroll.html" title="Typescript React Styled-Component 에서 Font 적용하기">React + Typescript 에서 Horizontal Scroll 구현</a></li>
 </ul>
     </div>
 <div class="post-comments">
@@ -1144,7 +1144,7 @@ function googleTranslateElementInit() {
 
   <div class="wrapper">
     <div class="site-footer-inner">
-<div>Unpublished Work <span class="copyleft">©</span> 2021-2025 071yoon</div>
+<div>Unpublished Work <span class="copyleft">©</span> 2021-2026 071yoon</div>
       <div>Powered by <a title="Jekyll is a simple, blog-aware, static site
       generator." href="http://jekyllrb.com/">Jekyll</a> &amp; <a title="Yat, yet
       another theme." href="https://github.com/jeffreytse/jekyll-theme-yat">Yat Theme</a>.</div>

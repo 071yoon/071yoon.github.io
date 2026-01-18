@@ -8,7 +8,7 @@
   <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
 <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>바닐라JS로 앱 만들기 2 | YeongGi’s tech blog</title>
-<meta name="generator" content="Jekyll v4.2.2">
+<meta name="generator" content="Jekyll v4.4.1">
 <meta property="og:title" content="바닐라JS로 앱 만들기 2">
 <meta name="author" content="071yoon">
 <meta property="og:locale" content="en_US">
@@ -872,12 +872,12 @@ function googleTranslateElementInit() {
 
 <p>내가 만약 <code class="language-plaintext highlighter-rouge">class</code> 를 받아와서 사용중에 있는데, 현재 내가 사용하고 있는 클래스는 폰트지정 클래스이고, 색변환 클래스를 추가하고 싶으면 어떻게 사용해야 될까??</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">handleCheck</span><span class="p">()</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">handleCheck</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">const</span> <span class="nx">clickedClass</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">clicked</span><span class="dl">"</span><span class="p">;</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">h1</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="nx">clickedClass</span><span class="p">))</span> <span class="p">{</span>
-    <span class="nx">h1</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">clickedClass</span><span class="p">);</span>
+  <span class="k">if </span><span class="p">(</span><span class="nx">h1</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nf">contains</span><span class="p">(</span><span class="nx">clickedClass</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nx">h1</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nf">remove</span><span class="p">(</span><span class="nx">clickedClass</span><span class="p">);</span>
   <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="nx">h1</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">clickedClass</span><span class="p">);</span>
+    <span class="nx">h1</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="nx">clickedClass</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -886,8 +886,8 @@ function googleTranslateElementInit() {
 
 <p>이걸 편하게 해주는것이 <code class="language-plaintext highlighter-rouge">toggle function</code> 은 어떤 역할이다.</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">handleCheck</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nx">h1</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">toggle</span><span class="p">(</span><span class="dl">"</span><span class="s2">clicked</span><span class="dl">"</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">handleCheck</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">h1</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nf">toggle</span><span class="p">(</span><span class="dl">"</span><span class="s2">clicked</span><span class="dl">"</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -907,10 +907,10 @@ function googleTranslateElementInit() {
 <div class="post-related">
       <div>Related Articles</div>
       <ul>
-        <li><a class="post-link" href="/javascript/2022/01/17/javascript-data-structure.html" title="SQL 예제를 풀어보자">자바스크립트 자료구조와 자료형</a></li>
-<li><a class="post-link" href="/til/2022/06/30/why-typescript.html" title="SQL 예제를 풀어보자">왜 TypeScript인가</a></li>
-<li><a class="post-link" href="/retrospect/2023/07/12/walk-through-jeju.html" title="SQL 예제를 풀어보자">걸어서 제주도 한바퀴</a></li>
-<li><a class="post-link" href="/jira/2022/05/30/jira-github-%EC%97%B0%EB%8F%99.html" title="SQL 예제를 풀어보자">Jira와 깃허브 연동</a></li>
+        <li><a class="post-link" href="/next.js/2022/05/04/next-optimization.html" title="SQL 예제를 풀어보자">NEXT-Optimization</a></li>
+<li><a class="post-link" href="/gof/2022/09/15/builder-pattern.html" title="SQL 예제를 풀어보자">빌더 패턴</a></li>
+<li><a class="post-link" href="/retrospect/2022/12/28/after-studying-network.html" title="SQL 예제를 풀어보자">네트워크 공부를 마치며</a></li>
+<li><a class="post-link" href="/javascript/2022/01/22/javascript-coding-2.html" title="SQL 예제를 풀어보자">바닐라JS로 앱 만들기 2</a></li>
 </ul>
     </div>
 <div class="post-comments">
@@ -1053,7 +1053,7 @@ function googleTranslateElementInit() {
 
   <div class="wrapper">
     <div class="site-footer-inner">
-<div>Unpublished Work <span class="copyleft">©</span> 2021-2025 071yoon</div>
+<div>Unpublished Work <span class="copyleft">©</span> 2021-2026 071yoon</div>
       <div>Powered by <a title="Jekyll is a simple, blog-aware, static site
       generator." href="http://jekyllrb.com/">Jekyll</a> &amp; <a title="Yat, yet
       another theme." href="https://github.com/jeffreytse/jekyll-theme-yat">Yat Theme</a>.</div>

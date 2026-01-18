@@ -22,14 +22,14 @@
 <span class="k">import</span> <span class="nx">Block</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./Block</span><span class="dl">'</span><span class="p">;</span>
 <span class="p">...</span>
 
-<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">Scrolls</span><span class="p">()</span> <span class="p">{</span>
+<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nf">Scrolls</span><span class="p">()</span> <span class="p">{</span>
   <span class="p">);</span>
-  <span class="k">return</span> <span class="p">(</span>
+  <span class="k">return </span><span class="p">(</span>
     <span class="o">&lt;</span><span class="nx">Container</span><span class="o">&gt;</span>
         <span class="o">&lt;</span><span class="nx">ScrollMenu</span> <span class="nx">LeftArrow</span><span class="o">=</span><span class="p">{</span><span class="nx">LeftArrow</span><span class="p">}</span> <span class="nx">RightArrow</span><span class="o">=</span><span class="p">{</span><span class="nx">RightArrow</span><span class="p">}</span><span class="o">&gt;</span>
-            <span class="p">{</span><span class="nx">Data</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span>
+            <span class="p">{</span><span class="nx">Data</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span>
                 <span class="p">({</span> <span class="nx">nickname</span><span class="p">,</span> <span class="nx">avatar</span><span class="p">,</span> <span class="nx">itemId</span> <span class="p">}:</span> <span class="nx">Interface</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-                    <span class="k">return</span> <span class="p">(</span>
+                    <span class="k">return </span><span class="p">(</span>
                         <span class="o">&lt;</span><span class="nx">Block</span>
                             <span class="nx">itemId</span><span class="o">=</span><span class="p">{</span><span class="nx">itemId</span><span class="p">}</span>
                             <span class="nx">nickname</span><span class="o">=</span><span class="p">{</span><span class="nx">nickname</span><span class="p">}</span>
@@ -75,19 +75,19 @@
 <span class="k">import</span> <span class="nx">styled</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">styled-components</span><span class="dl">"</span><span class="p">;</span>
 <span class="k">import</span> <span class="p">{</span> <span class="nx">VisibilityContext</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">react-horizontal-scrolling-menu</span><span class="dl">"</span><span class="p">;</span>
 
-<span class="kd">function</span> <span class="nx">Left</span><span class="p">({</span>
+<span class="kd">function</span> <span class="nf">Left</span><span class="p">({</span>
   <span class="nx">children</span><span class="p">,</span>
   <span class="nx">onClick</span><span class="p">,</span>
 <span class="p">}:</span> <span class="p">{</span>
   <span class="nl">children</span><span class="p">:</span> <span class="nx">React</span><span class="p">.</span><span class="nx">ReactNode</span><span class="p">;</span>
   <span class="nl">onClick</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">void</span><span class="p">;</span>
 <span class="p">})</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="p">[</span><span class="nx">show</span><span class="p">,</span> <span class="nx">setShow</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">show</span><span class="p">,</span> <span class="nx">setShow</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
   <span class="k">return</span> <span class="nx">show</span> <span class="p">?</span> <span class="p">(</span>
     <span class="o">&lt;</span><span class="nx">Button</span>
       <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">onClick</span><span class="p">}</span>
       <span class="nx">onMouseLeave</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">setShow</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+        <span class="nf">setShow</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
       <span class="p">}}</span>
     <span class="o">&gt;</span>
       <span class="p">{</span><span class="nx">children</span><span class="p">}</span>
@@ -95,7 +95,7 @@
 </span>  <span class="p">)</span> <span class="p">:</span> <span class="p">(</span>
     <span class="o">&lt;</span><span class="nx">Transparent</span>
       <span class="nx">onMouseEnter</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">setShow</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+        <span class="nf">setShow</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
       <span class="p">}}</span>
     <span class="sr">/</span><span class="err">&gt;
 </span>  <span class="p">);</span>
@@ -114,9 +114,9 @@
   cursor: pointer;
 `</span><span class="p">;</span>
 
-<span class="k">export</span> <span class="kd">function</span> <span class="nx">LeftArrow</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="p">{</span> <span class="nx">scrollPrev</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">useContext</span><span class="p">(</span><span class="nx">VisibilityContext</span><span class="p">);</span>
-  <span class="k">return</span> <span class="o">&lt;</span><span class="nx">Left</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="nx">scrollPrev</span><span class="p">()}</span><span class="o">&gt;</span><span class="err">←</span><span class="o">&lt;</span><span class="sr">/Left&gt;</span><span class="err">;
+<span class="k">export</span> <span class="kd">function</span> <span class="nf">LeftArrow</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">scrollPrev</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nf">useContext</span><span class="p">(</span><span class="nx">VisibilityContext</span><span class="p">);</span>
+  <span class="k">return</span> <span class="o">&lt;</span><span class="nx">Left</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="nf">scrollPrev</span><span class="p">()}</span><span class="o">&gt;</span><span class="err">←</span><span class="o">&lt;</span><span class="sr">/Left&gt;</span><span class="err">;
 </span><span class="p">}</span>
 </code></pre></div></div>
 
@@ -126,9 +126,9 @@
 
 <p>그리고 장황하게 써두었지만, 사실 핵심 코드는 아래만 보면 된다.</p>
 
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">function</span> <span class="nx">LeftArrow</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="p">{</span> <span class="nx">scrollPrev</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">useContext</span><span class="p">(</span><span class="nx">VisibilityContext</span><span class="p">);</span>
-  <span class="k">return</span> <span class="o">&lt;</span><span class="nx">Left</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="nx">scrollPrev</span><span class="p">()}</span><span class="o">&gt;</span><span class="err">←</span><span class="o">&lt;</span><span class="sr">/Left&gt;</span><span class="err">;
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">function</span> <span class="nf">LeftArrow</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">scrollPrev</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nf">useContext</span><span class="p">(</span><span class="nx">VisibilityContext</span><span class="p">);</span>
+  <span class="k">return</span> <span class="o">&lt;</span><span class="nx">Left</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="nf">scrollPrev</span><span class="p">()}</span><span class="o">&gt;</span><span class="err">←</span><span class="o">&lt;</span><span class="sr">/Left&gt;</span><span class="err">;
 </span><span class="p">}</span>
 </code></pre></div></div>
 

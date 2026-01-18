@@ -8,7 +8,7 @@
   <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
 <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>NEXT-Layouts | YeongGi’s tech blog</title>
-<meta name="generator" content="Jekyll v4.2.2">
+<meta name="generator" content="Jekyll v4.4.1">
 <meta property="og:title" content="NEXT-Layouts">
 <meta name="author" content="071yoon">
 <meta property="og:locale" content="en_US">
@@ -832,8 +832,8 @@ function googleTranslateElementInit() {
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">Layout</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">../components/layout</span><span class="dl">"</span><span class="p">;</span>
 
-<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">MyApp</span><span class="p">({</span> <span class="nx">Component</span><span class="p">,</span> <span class="nx">pageProps</span> <span class="p">})</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="p">(</span>
+<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nf">MyApp</span><span class="p">({</span> <span class="nx">Component</span><span class="p">,</span> <span class="nx">pageProps</span> <span class="p">})</span> <span class="p">{</span>
+  <span class="k">return </span><span class="p">(</span>
     <span class="o">&lt;</span><span class="nx">Layout</span><span class="o">&gt;</span>
       <span class="o">&lt;</span><span class="nx">Component</span> <span class="p">{...</span><span class="nx">pageProps</span><span class="p">}</span> <span class="sr">/</span><span class="err">&gt;
 </span>    <span class="o">&lt;</span><span class="sr">/Layout</span><span class="err">&gt;
@@ -848,14 +848,14 @@ function googleTranslateElementInit() {
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">Layout</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">../components/layout</span><span class="dl">"</span><span class="p">;</span>
 <span class="k">import</span> <span class="nx">NestedLayout</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">../components/nested-layout</span><span class="dl">"</span><span class="p">;</span>
 
-<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">Page</span><span class="p">()</span> <span class="p">{</span>
+<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nf">Page</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">{</span>
     <span class="cm">/** Your content */</span>
   <span class="p">};</span>
 <span class="p">}</span>
 
-<span class="nx">Page</span><span class="p">.</span><span class="nx">getLayout</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">getLayout</span><span class="p">(</span><span class="nx">page</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="p">(</span>
+<span class="nx">Page</span><span class="p">.</span><span class="nx">getLayout</span> <span class="o">=</span> <span class="kd">function</span> <span class="nf">getLayout</span><span class="p">(</span><span class="nx">page</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return </span><span class="p">(</span>
     <span class="o">&lt;</span><span class="nx">Layout</span><span class="o">&gt;</span>
       <span class="o">&lt;</span><span class="nx">NestedLayout</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">page</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/NestedLayout</span><span class="err">&gt;
 </span>    <span class="o">&lt;</span><span class="sr">/Layout</span><span class="err">&gt;
@@ -865,21 +865,21 @@ function googleTranslateElementInit() {
 
 <p>이렇게 선언 후 실제로 사용할 때는 다음과 같다.</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">MyApp</span><span class="p">({</span> <span class="nx">Component</span><span class="p">,</span> <span class="nx">pageProps</span> <span class="p">})</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nf">MyApp</span><span class="p">({</span> <span class="nx">Component</span><span class="p">,</span> <span class="nx">pageProps</span> <span class="p">})</span> <span class="p">{</span>
   <span class="c1">// Use the layout defined at the page level, if available</span>
   <span class="kd">const</span> <span class="nx">getLayout</span> <span class="o">=</span> <span class="nx">Component</span><span class="p">.</span><span class="nx">getLayout</span> <span class="o">||</span> <span class="p">((</span><span class="nx">page</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">page</span><span class="p">);</span>
 
-  <span class="k">return</span> <span class="nx">getLayout</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">Component</span> <span class="p">{...</span><span class="nx">pageProps</span><span class="p">}</span> <span class="sr">/&gt;</span><span class="se">)</span><span class="err">;
+  <span class="k">return</span> <span class="nf">getLayout</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">Component</span> <span class="p">{...</span><span class="nx">pageProps</span><span class="p">}</span> <span class="sr">/&gt;</span><span class="se">)</span><span class="err">;
 </span><span class="p">}</span>
 </code></pre></div></div>
 
 <p>타입스크립트를 이용하면 Props의 type에 주의해야된다.</p>
 
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">MyApp</span><span class="p">({</span> <span class="nx">Component</span><span class="p">,</span> <span class="nx">pageProps</span> <span class="p">}:</span> <span class="nx">AppPropsWithLayout</span><span class="p">)</span> <span class="p">{</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nf">MyApp</span><span class="p">({</span> <span class="nx">Component</span><span class="p">,</span> <span class="nx">pageProps</span> <span class="p">}:</span> <span class="nx">AppPropsWithLayout</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// Use the layout defined at the page level, if available</span>
   <span class="kd">const</span> <span class="nx">getLayout</span> <span class="o">=</span> <span class="nx">Component</span><span class="p">.</span><span class="nx">getLayout</span> <span class="o">??</span> <span class="p">((</span><span class="nx">page</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">page</span><span class="p">);</span>
 
-  <span class="k">return</span> <span class="nx">getLayout</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">Component</span> <span class="p">{...</span><span class="nx">pageProps</span><span class="p">}</span> <span class="sr">/&gt;</span><span class="se">)</span><span class="err">;
+  <span class="k">return</span> <span class="nf">getLayout</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">Component</span> <span class="p">{...</span><span class="nx">pageProps</span><span class="p">}</span> <span class="sr">/&gt;</span><span class="se">)</span><span class="err">;
 </span><span class="p">}</span>
 </code></pre></div></div>
 
@@ -891,13 +891,13 @@ function googleTranslateElementInit() {
 <span class="k">import</span> <span class="nx">Navbar</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./navbar</span><span class="dl">"</span><span class="p">;</span>
 <span class="k">import</span> <span class="nx">Footer</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./footer</span><span class="dl">"</span><span class="p">;</span>
 
-<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">Layout</span><span class="p">({</span> <span class="nx">children</span> <span class="p">})</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="p">{</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">error</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">useSWR</span><span class="p">(</span><span class="dl">"</span><span class="s2">/api/navigation</span><span class="dl">"</span><span class="p">,</span> <span class="nx">fetcher</span><span class="p">);</span>
+<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nf">Layout</span><span class="p">({</span> <span class="nx">children</span> <span class="p">})</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">error</span> <span class="p">}</span> <span class="o">=</span> <span class="nf">useSWR</span><span class="p">(</span><span class="dl">"</span><span class="s2">/api/navigation</span><span class="dl">"</span><span class="p">,</span> <span class="nx">fetcher</span><span class="p">);</span>
 
-  <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="k">return</span> <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="nx">Failed</span> <span class="nx">to</span> <span class="nx">load</span><span class="o">&lt;</span><span class="sr">/div&gt;</span><span class="err">;
-</span>  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">data</span><span class="p">)</span> <span class="k">return</span> <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="nx">Loading</span><span class="p">...</span><span class="o">&lt;</span><span class="sr">/div&gt;</span><span class="err">;
+  <span class="k">if </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="k">return</span> <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="nx">Failed</span> <span class="nx">to</span> <span class="nx">load</span><span class="o">&lt;</span><span class="sr">/div&gt;</span><span class="err">;
+</span>  <span class="k">if </span><span class="p">(</span><span class="o">!</span><span class="nx">data</span><span class="p">)</span> <span class="k">return</span> <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="nx">Loading</span><span class="p">...</span><span class="o">&lt;</span><span class="sr">/div&gt;</span><span class="err">;
 </span>
-  <span class="k">return</span> <span class="p">(</span>
+  <span class="k">return </span><span class="p">(</span>
     <span class="o">&lt;&gt;</span>
       <span class="o">&lt;</span><span class="nx">Navbar</span> <span class="nx">links</span><span class="o">=</span><span class="p">{</span><span class="nx">data</span><span class="p">.</span><span class="nx">links</span><span class="p">}</span> <span class="sr">/</span><span class="err">&gt;
 </span>      <span class="o">&lt;</span><span class="nx">main</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">children</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/main</span><span class="err">&gt;
@@ -917,10 +917,10 @@ function googleTranslateElementInit() {
 <div class="post-related">
       <div>Related Articles</div>
       <ul>
-        <li><a class="post-link" href="/mac/2022/06/05/mac-setting.html" title="NEXT-Optimization">Mac 초기 세팅</a></li>
-<li><a class="post-link" href="/javascript/2022/01/22/javascript-coding-1.html" title="NEXT-Optimization">바닐라JS로 앱 만들기 1</a></li>
+        <li><a class="post-link" href="/next.js/2022/05/08/next-others-2.html" title="NEXT-Optimization">NEXT-Others-2</a></li>
+<li><a class="post-link" href="/gof/2022/10/27/mediator-pattern.html" title="NEXT-Optimization">중개자 패턴</a></li>
+<li><a class="post-link" href="/ai/2025/06/02/about-vibe-coding.html" title="NEXT-Optimization">바이브 코딩</a></li>
 <li><a class="post-link" href="/next.js/2022/04/27/next-built-in-css.html" title="NEXT-Optimization">NEXT-Built-In CSS</a></li>
-<li><a class="post-link" href="/javascript/2022/01/17/javascript-data-structure.html" title="NEXT-Optimization">자바스크립트 자료구조와 자료형</a></li>
 </ul>
     </div>
 <div class="post-comments">
@@ -1063,7 +1063,7 @@ function googleTranslateElementInit() {
 
   <div class="wrapper">
     <div class="site-footer-inner">
-<div>Unpublished Work <span class="copyleft">©</span> 2021-2025 071yoon</div>
+<div>Unpublished Work <span class="copyleft">©</span> 2021-2026 071yoon</div>
       <div>Powered by <a title="Jekyll is a simple, blog-aware, static site
       generator." href="http://jekyllrb.com/">Jekyll</a> &amp; <a title="Yat, yet
       another theme." href="https://github.com/jeffreytse/jekyll-theme-yat">Yat Theme</a>.</div>

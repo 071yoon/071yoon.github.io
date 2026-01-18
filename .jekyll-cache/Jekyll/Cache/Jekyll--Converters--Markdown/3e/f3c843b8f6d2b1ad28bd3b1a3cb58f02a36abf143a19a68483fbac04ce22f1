@@ -29,7 +29,7 @@
 
 <h3 id="atom-생성">Atom 생성</h3>
 
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">atom</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span><span class="p">({</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">atom</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span><span class="p">({</span>
   <span class="na">key</span><span class="p">:</span> <span class="kr">string</span><span class="p">,</span>
   <span class="na">default</span><span class="p">:</span> <span class="nx">T</span> <span class="o">|</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span> <span class="o">|</span> <span class="nx">RecoilValue</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span><span class="p">,</span>
 
@@ -52,7 +52,7 @@
 
 <p>먼저 atom을 생성해야된다</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">myState</span> <span class="o">=</span> <span class="nx">atom</span><span class="p">({</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">myState</span> <span class="o">=</span> <span class="nf">atom</span><span class="p">({</span>
   <span class="na">key</span><span class="p">:</span> <span class="dl">"</span><span class="s2">uniqueKey</span><span class="dl">"</span><span class="p">,</span>
   <span class="na">default</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
 <span class="p">});</span>
@@ -62,14 +62,14 @@
 
 <p>atom을 읽고 쓰기 위해 사용</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">[</span><span class="nx">val</span><span class="p">,</span> <span class="nx">setVal</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useRecoilState</span><span class="p">(</span><span class="nx">uniqueKey</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">[</span><span class="nx">val</span><span class="p">,</span> <span class="nx">setVal</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useRecoilState</span><span class="p">(</span><span class="nx">uniqueKey</span><span class="p">);</span>
 </code></pre></div></div>
 
 <h4 id="userecoilvalue">useRecoilValue</h4>
 
 <p>atom을 읽을 때 사용</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">val</span> <span class="o">=</span> <span class="nx">useRecoilValue</span><span class="p">(</span><span class="nx">uniqueKey</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">val</span> <span class="o">=</span> <span class="nf">useRecoilValue</span><span class="p">(</span><span class="nx">uniqueKey</span><span class="p">);</span>
 </code></pre></div></div>
 
 <h4 id="usesetrecoilstate">useSetRecoilState</h4>
@@ -78,7 +78,7 @@
 업데이트 할 수 있는 setter를 리턴한다
 컴포넌트를 atom에 등록하지 않아, 변경이 되어도 리렌더링 되지는 않는다. -&gt; 즉 atom을 사용하지 않는 경우 이 훅을 사용</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">setVal</span> <span class="o">=</span> <span class="nx">useSetRecoilState</span><span class="p">(</span><span class="nx">uniqueKey</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">setVal</span> <span class="o">=</span> <span class="nf">useSetRecoilState</span><span class="p">(</span><span class="nx">uniqueKey</span><span class="p">);</span>
 </code></pre></div></div>
 
 <h4 id="useresetrecoilstate">useResetRecoilState</h4>
@@ -86,7 +86,7 @@
 <p>atom을 default를 초기화한다
 비동기 setter를 리턴하며, 컴포넌트 리렌더링이 되지는 않는다</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">reset</span> <span class="o">=</span> <span class="nx">useResetRecoilState</span><span class="p">(</span><span class="nx">uniqueKey</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">reset</span> <span class="o">=</span> <span class="nf">useResetRecoilState</span><span class="p">(</span><span class="nx">uniqueKey</span><span class="p">);</span>
 </code></pre></div></div>
 
 <h4 id="userecoilcallback">useRecoilCallback</h4>
@@ -101,8 +101,8 @@
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">RecoilRoot</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">recoil</span><span class="dl">"</span><span class="p">;</span>
 
-<span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="p">(</span>
+<span class="kd">function</span> <span class="nf">App</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return </span><span class="p">(</span>
     <span class="o">&lt;</span><span class="nx">RecoilRoot</span><span class="o">&gt;</span>
       <span class="o">&lt;</span><span class="nx">Components</span> <span class="o">/&gt;</span>
     <span class="o">&lt;</span><span class="sr">/RecoilRoot</span><span class="err">&gt;

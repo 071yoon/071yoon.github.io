@@ -21,13 +21,13 @@
 <p>우선 오디오 비주얼라이저를 구현하기 위해서는 audioContext라는 객체에 대한 이해가 필요하다. 쉽게 말하자면, 오디오 볼률 및 frequency같은 것을 조절해주는 분석기라 볼 수 있다. 나의 audioContext generator는 다음과 같다.</p>
 
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">audioContext</span> <span class="o">=</span> <span class="p">(</span><span class="nx">stream</span><span class="p">:</span> <span class="nx">MediaStream</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="nx">audioContext</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AudioContext</span><span class="p">();</span>
-  <span class="kd">const</span> <span class="nx">analyser</span> <span class="o">=</span> <span class="nx">audioContext</span><span class="p">.</span><span class="nx">createAnalyser</span><span class="p">();</span>
-  <span class="kd">const</span> <span class="nx">microphone</span> <span class="o">=</span> <span class="nx">audioContext</span><span class="p">.</span><span class="nx">createMediaStreamSource</span><span class="p">(</span><span class="nx">stream</span><span class="p">);</span>
-  <span class="nx">microphone</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="nx">analyser</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">audioContext</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">AudioContext</span><span class="p">();</span>
+  <span class="kd">const</span> <span class="nx">analyser</span> <span class="o">=</span> <span class="nx">audioContext</span><span class="p">.</span><span class="nf">createAnalyser</span><span class="p">();</span>
+  <span class="kd">const</span> <span class="nx">microphone</span> <span class="o">=</span> <span class="nx">audioContext</span><span class="p">.</span><span class="nf">createMediaStreamSource</span><span class="p">(</span><span class="nx">stream</span><span class="p">);</span>
+  <span class="nx">microphone</span><span class="p">.</span><span class="nf">connect</span><span class="p">(</span><span class="nx">analyser</span><span class="p">);</span>
   <span class="nx">analyser</span><span class="p">.</span><span class="nx">fftSize</span> <span class="o">=</span> <span class="mi">256</span><span class="p">;</span> <span class="c1">// 256 ~ 2048</span>
   <span class="kd">const</span> <span class="nx">bufferLength</span> <span class="o">=</span> <span class="nx">analyser</span><span class="p">.</span><span class="nx">frequencyBinCount</span><span class="p">;</span>
-  <span class="kd">const</span> <span class="nx">dataArray</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Uint8Array</span><span class="p">(</span><span class="nx">bufferLength</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">dataArray</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Uint8Array</span><span class="p">(</span><span class="nx">bufferLength</span><span class="p">);</span>
   <span class="k">return</span> <span class="p">{</span> <span class="nx">analyser</span><span class="p">,</span> <span class="nx">bufferLength</span><span class="p">,</span> <span class="nx">dataArray</span> <span class="p">};</span>
 <span class="p">};</span>
 <span class="k">export</span> <span class="k">default</span> <span class="nx">audioContext</span><span class="p">;</span>
@@ -69,15 +69,15 @@
 
 <p>해당 코드는 아래와 같다.</p>
 
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">{</span> <span class="nx">analyser</span><span class="p">,</span> <span class="nx">bufferLength</span><span class="p">,</span> <span class="nx">dataArray</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">audioContext</span><span class="p">(</span><span class="nx">userMediaStream</span><span class="p">);</span>
-<span class="nx">analyser</span><span class="p">.</span><span class="nx">getByteFrequencyData</span><span class="p">(</span><span class="nx">dataArray</span><span class="p">);</span>
-<span class="kd">const</span> <span class="nx">vol</span> <span class="o">=</span> <span class="nx">audioFrequency</span><span class="p">(</span><span class="nx">dataArray</span><span class="p">,</span> <span class="nx">bufferLength</span><span class="p">);</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">{</span> <span class="nx">analyser</span><span class="p">,</span> <span class="nx">bufferLength</span><span class="p">,</span> <span class="nx">dataArray</span> <span class="p">}</span> <span class="o">=</span> <span class="nf">audioContext</span><span class="p">(</span><span class="nx">userMediaStream</span><span class="p">);</span>
+<span class="nx">analyser</span><span class="p">.</span><span class="nf">getByteFrequencyData</span><span class="p">(</span><span class="nx">dataArray</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">vol</span> <span class="o">=</span> <span class="nf">audioFrequency</span><span class="p">(</span><span class="nx">dataArray</span><span class="p">,</span> <span class="nx">bufferLength</span><span class="p">);</span>
 </code></pre></div></div>
 
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// audioFrequency.ts</span>
 <span class="kd">const</span> <span class="nx">audioFrequency</span> <span class="o">=</span> <span class="p">(</span><span class="nx">dataArray</span><span class="p">,</span> <span class="nx">bufferLength</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="kd">let</span> <span class="nx">total</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">bufferLength</span><span class="p">;</span> <span class="nx">i</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">bufferLength</span><span class="p">;</span> <span class="nx">i</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">total</span> <span class="o">+=</span> <span class="nx">dataArray</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
   <span class="p">}</span>
   <span class="k">return</span> <span class="nx">total</span> <span class="o">/</span> <span class="nx">bufferLength</span><span class="p">;</span>
@@ -90,17 +90,17 @@
 
 <p>나는 이 값을 setting이라는 모달창이 켜졌을 때만 동작하며, 30ms에서 한번씩 동작하면 되므로, 호출하는 완성된 코드는 다음과 같다. 그리고 이러한 volume을 state로 변경하여, 추후에 값이 바뀔 때 마다 렌더링 할 수 있게 설정하였다.</p>
 
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="kd">let</span> <span class="nx">myInterval</span><span class="p">;</span>
-  <span class="kd">const</span> <span class="p">{</span> <span class="nx">analyser</span><span class="p">,</span> <span class="nx">bufferLength</span><span class="p">,</span> <span class="nx">dataArray</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">audioContext</span><span class="p">(</span><span class="nx">userMediaStream</span><span class="p">);</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">setting</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">myInterval</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="nx">analyser</span><span class="p">.</span><span class="nx">getByteFrequencyData</span><span class="p">(</span><span class="nx">dataArray</span><span class="p">);</span>
-      <span class="kd">const</span> <span class="nx">vol</span> <span class="o">=</span> <span class="nx">audioFrequency</span><span class="p">(</span><span class="nx">dataArray</span><span class="p">,</span> <span class="nx">bufferLength</span><span class="p">);</span>
-      <span class="nx">setVol</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">((</span><span class="nx">vol</span> <span class="o">/</span> <span class="mi">256</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">));</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">analyser</span><span class="p">,</span> <span class="nx">bufferLength</span><span class="p">,</span> <span class="nx">dataArray</span> <span class="p">}</span> <span class="o">=</span> <span class="nf">audioContext</span><span class="p">(</span><span class="nx">userMediaStream</span><span class="p">);</span>
+  <span class="k">if </span><span class="p">(</span><span class="nx">setting</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">myInterval</span> <span class="o">=</span> <span class="nf">setInterval</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">analyser</span><span class="p">.</span><span class="nf">getByteFrequencyData</span><span class="p">(</span><span class="nx">dataArray</span><span class="p">);</span>
+      <span class="kd">const</span> <span class="nx">vol</span> <span class="o">=</span> <span class="nf">audioFrequency</span><span class="p">(</span><span class="nx">dataArray</span><span class="p">,</span> <span class="nx">bufferLength</span><span class="p">);</span>
+      <span class="nf">setVol</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nf">floor</span><span class="p">((</span><span class="nx">vol</span> <span class="o">/</span> <span class="mi">256</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">));</span>
     <span class="p">},</span> <span class="mi">30</span><span class="p">);</span>
   <span class="p">}</span>
-  <span class="k">return</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">clearInterval</span><span class="p">(</span><span class="nx">myInterval</span><span class="p">);</span>
+  <span class="k">return </span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nf">clearInterval</span><span class="p">(</span><span class="nx">myInterval</span><span class="p">);</span>
 <span class="p">},</span> <span class="p">[</span><span class="nx">setting</span><span class="p">]);</span>
 </code></pre></div></div>
 
@@ -114,13 +114,13 @@
 
 <p>이 부분은 굳이 js를 사용할 필요도 없이, css로 넘겨주는 prop 즉 volume과 내가 몇번째 volume 아이콘인지 알아 낸후 몇 이상일 때, 초록색으로 표시를 해야 되는지 비교하며 관리할 수 있다.</p>
 
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">VolumeBar</span><span class="p">({</span> <span class="nx">volume</span> <span class="p">}:</span> <span class="p">{</span> <span class="nl">volume</span><span class="p">:</span> <span class="kr">number</span> <span class="p">})</span> <span class="p">{</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nf">VolumeBar</span><span class="p">({</span> <span class="nx">volume</span> <span class="p">}:</span> <span class="p">{</span> <span class="nl">volume</span><span class="p">:</span> <span class="kr">number</span> <span class="p">})</span> <span class="p">{</span>
   <span class="kd">const</span> <span class="nx">n</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
-  <span class="k">return</span> <span class="p">(</span>
+  <span class="k">return </span><span class="p">(</span>
     <span class="o">&lt;</span><span class="nx">Container</span><span class="o">&gt;</span>
       <span class="o">&lt;</span><span class="nx">Bars</span><span class="o">&gt;</span>
-        <span class="p">{[...</span><span class="nb">Array</span><span class="p">(</span><span class="nx">n</span><span class="p">)].</span><span class="nx">map</span><span class="p">((</span><span class="nx">no</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span>
-          <span class="o">&lt;</span><span class="nx">Bar</span> <span class="nx">key</span><span class="o">=</span><span class="p">{</span><span class="nb">Symbol</span><span class="p">(</span><span class="nx">index</span><span class="p">).</span><span class="nx">toString</span><span class="p">()}</span> <span class="nx">volume</span><span class="o">=</span><span class="p">{</span><span class="nx">volume</span><span class="p">}</span> <span class="nx">no</span><span class="o">=</span><span class="p">{</span><span class="nx">index</span><span class="p">}</span> <span class="sr">/</span><span class="err">&gt;
+        <span class="p">{[...</span><span class="nc">Array</span><span class="p">(</span><span class="nx">n</span><span class="p">)].</span><span class="nf">map</span><span class="p">((</span><span class="nx">no</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span>
+          <span class="o">&lt;</span><span class="nx">Bar</span> <span class="nx">key</span><span class="o">=</span><span class="p">{</span><span class="nc">Symbol</span><span class="p">(</span><span class="nx">index</span><span class="p">).</span><span class="nf">toString</span><span class="p">()}</span> <span class="nx">volume</span><span class="o">=</span><span class="p">{</span><span class="nx">volume</span><span class="p">}</span> <span class="nx">no</span><span class="o">=</span><span class="p">{</span><span class="nx">index</span><span class="p">}</span> <span class="sr">/</span><span class="err">&gt;
 </span>        <span class="p">))}</span>
       <span class="o">&lt;</span><span class="sr">/Bars</span><span class="err">&gt;
 </span>    <span class="o">&lt;</span><span class="sr">/Container</span><span class="err">&gt;

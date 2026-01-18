@@ -16,7 +16,7 @@
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="dl">'</span><span class="s1">../style.css</span><span class="dl">'</span>
 
-<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">MyApp</span><span class="p">({</span> <span class="nx">Component</span><span class="p">,</span> <span class="nx">pageProps</span> <span class="p">})</span> <span class="p">{</span>
+<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nf">MyApp</span><span class="p">({</span> <span class="nx">Component</span><span class="p">,</span> <span class="nx">pageProps</span> <span class="p">})</span> <span class="p">{</span>
 	<span class="k">return</span> <span class="o">&lt;</span><span class="nx">Component</span> <span class="p">{...</span><span class="nx">pageProps</span><span class="p">}</span><span class="o">&gt;</span> <span class="sr">/</span><span class="err">&gt;
 </span><span class="p">}</span>
 </code></pre></div></div>
@@ -51,12 +51,12 @@
 <span class="k">import</span> <span class="nx">VisuallyHidden</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@reach/visually-hidden</span><span class="dl">"</span><span class="p">;</span>
 <span class="k">import</span> <span class="dl">"</span><span class="s2">@reach/dialog/styles.css</span><span class="dl">"</span><span class="p">;</span>
 
-<span class="kd">function</span> <span class="nx">ExampleDialog</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="p">[</span><span class="nx">showDialog</span><span class="p">,</span> <span class="nx">setShowDialog</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
-  <span class="kd">const</span> <span class="nx">open</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">setShowDialog</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
-  <span class="kd">const</span> <span class="nx">close</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">setShowDialog</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+<span class="kd">function</span> <span class="nf">ExampleDialog</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">showDialog</span><span class="p">,</span> <span class="nx">setShowDialog</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">open</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nf">setShowDialog</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">close</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nf">setShowDialog</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
 
-  <span class="k">return</span> <span class="p">(</span>
+  <span class="k">return </span><span class="p">(</span>
     <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
       <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">open</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">Open</span> <span class="nx">Dialog</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
 </span>      <span class="o">&lt;</span><span class="nx">Dialog</span> <span class="nx">isOpen</span><span class="o">=</span><span class="p">{</span><span class="nx">showDialog</span><span class="p">}</span> <span class="nx">onDismiss</span><span class="o">=</span><span class="p">{</span><span class="nx">close</span><span class="p">}</span><span class="o">&gt;</span>
@@ -80,8 +80,8 @@
 <p>우선 <code class="language-plaintext highlighter-rouge">components/Button.module.css</code>를 만든다.</p>
 
 <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.error</span> <span class="p">{</span>
-  <span class="nl">color</span><span class="p">:</span> <span class="no">white</span><span class="p">;</span>
-  <span class="nl">background-color</span><span class="p">:</span> <span class="no">red</span><span class="p">;</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="nx">white</span><span class="p">;</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="nx">red</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -89,8 +89,8 @@
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">styles</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./Button.module.css</span><span class="dl">"</span><span class="p">;</span>
 
-<span class="k">export</span> <span class="kd">function</span> <span class="nx">Button</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="p">(</span>
+<span class="k">export</span> <span class="kd">function</span> <span class="nf">Button</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return </span><span class="p">(</span>
     <span class="o">&lt;</span><span class="nx">button</span>
       <span class="nx">type</span><span class="o">=</span><span class="dl">"</span><span class="s2">button</span><span class="dl">"</span>
       <span class="c1">// Note how the "error" class is accessed as a property on the imported</span>
@@ -124,8 +124,8 @@
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// pages/_app.js</span>
 <span class="k">import</span> <span class="nx">variables</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">../styles/variables.module.scss</span><span class="dl">"</span><span class="p">;</span>
 
-<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">MyApp</span><span class="p">({</span> <span class="nx">Component</span><span class="p">,</span> <span class="nx">pageProps</span> <span class="p">})</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="p">(</span>
+<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nf">MyApp</span><span class="p">({</span> <span class="nx">Component</span><span class="p">,</span> <span class="nx">pageProps</span> <span class="p">})</span> <span class="p">{</span>
+  <span class="k">return </span><span class="p">(</span>
     <span class="o">&lt;</span><span class="nx">Layout</span> <span class="nx">color</span><span class="o">=</span><span class="p">{</span><span class="nx">variables</span><span class="p">.</span><span class="nx">primaryColor</span><span class="p">}</span><span class="o">&gt;</span>
       <span class="o">&lt;</span><span class="nx">Component</span> <span class="p">{...</span><span class="nx">pageProps</span><span class="p">}</span> <span class="sr">/</span><span class="err">&gt;
 </span>    <span class="o">&lt;</span><span class="sr">/Layout</span><span class="err">&gt;
@@ -141,8 +141,8 @@
 
 <p><code class="language-plaintext highlighter-rouge">styled jsx</code>의 예제는 다음과 같다.</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">HelloWorld</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="p">(</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">HelloWorld</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return </span><span class="p">(</span>
     <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
       <span class="nx">Hello</span> <span class="nx">world</span>
       <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">scoped</span><span class="o">!&lt;</span><span class="sr">/p</span><span class="err">&gt;

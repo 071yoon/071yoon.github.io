@@ -13,8 +13,8 @@
 
 <p>React를 심는것은 기존에 있는 React boilerplate와 유사하다. 다른점은 extension에서 <code class="language-plaintext highlighter-rouge">popup</code>이란 화면이 메인 화면임이므로 <code class="language-plaintext highlighter-rouge">root</code> 대신 <code class="language-plaintext highlighter-rouge">popup</code>에 render해주면 되는것이다.</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">mountNode</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">popup</span><span class="dl">"</span><span class="p">);</span>
-<span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">App</span> <span class="o">/&gt;</span><span class="p">,</span> <span class="nx">mountNode</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">mountNode</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">popup</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">ReactDOM</span><span class="p">.</span><span class="nf">render</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">App</span> <span class="o">/&gt;</span><span class="p">,</span> <span class="nx">mountNode</span><span class="p">);</span>
 </code></pre></div></div>
 
 <p>그리고 package.json에 필요한 library등을 삽입하여 <App></App>에서 사용해주면 된다.</p>
@@ -54,13 +54,13 @@
 <p>예시는 다음과 같다.</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">const</span> <span class="nx">onStart</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="p">(</span><span class="nf">function </span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">let</span> <span class="nx">queryOptions</span> <span class="o">=</span> <span class="p">{</span> <span class="na">active</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">lastFocusedWindow</span><span class="p">:</span> <span class="kc">true</span> <span class="p">};</span>
-    <span class="nx">chrome</span><span class="p">.</span><span class="nx">tabs</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">queryOptions</span><span class="p">,</span> <span class="p">([</span><span class="nx">tab</span><span class="p">])</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="k">if</span> <span class="p">(</span><span class="nx">chrome</span><span class="p">.</span><span class="nx">runtime</span><span class="p">.</span><span class="nx">lastError</span><span class="p">)</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">chrome</span><span class="p">.</span><span class="nx">runtime</span><span class="p">.</span><span class="nx">lastError</span><span class="p">);</span>
+    <span class="nx">chrome</span><span class="p">.</span><span class="nx">tabs</span><span class="p">.</span><span class="nf">query</span><span class="p">(</span><span class="nx">queryOptions</span><span class="p">,</span> <span class="p">([</span><span class="nx">tab</span><span class="p">])</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">if </span><span class="p">(</span><span class="nx">chrome</span><span class="p">.</span><span class="nx">runtime</span><span class="p">.</span><span class="nx">lastError</span><span class="p">)</span> <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="nx">chrome</span><span class="p">.</span><span class="nx">runtime</span><span class="p">.</span><span class="nx">lastError</span><span class="p">);</span>
 
       <span class="c1">// @ts-ignore</span>
-      <span class="nx">chrome</span><span class="p">.</span><span class="nx">scripting</span><span class="p">.</span><span class="nx">executeScript</span><span class="p">({</span>
+      <span class="nx">chrome</span><span class="p">.</span><span class="nx">scripting</span><span class="p">.</span><span class="nf">executeScript</span><span class="p">({</span>
         <span class="na">target</span><span class="p">:</span> <span class="p">{</span> <span class="na">tabId</span><span class="p">:</span> <span class="nx">tab</span><span class="p">.</span><span class="nx">id</span> <span class="p">},</span>
         <span class="na">func</span><span class="p">:</span> <span class="p">(</span><span class="na">sv</span><span class="p">:</span> <span class="nx">number</span><span class="p">,</span> <span class="na">st</span><span class="p">:</span> <span class="nx">number</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
           <span class="c1">// do something with sv, st</span>

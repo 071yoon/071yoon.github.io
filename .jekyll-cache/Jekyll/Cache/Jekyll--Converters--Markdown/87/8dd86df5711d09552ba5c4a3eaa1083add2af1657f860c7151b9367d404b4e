@@ -20,7 +20,7 @@
 <span class="p">};</span> <span class="c1">// object가 아닌 literal도 비슷하게 할당할 수 있다</span>
 
 <span class="c1">// 함수식 또한 오브젝트를 담기 위한 메모리를 할당한다.</span>
-<span class="nx">someElement</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span>
+<span class="nx">someElement</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span>
   <span class="dl">"</span><span class="s2">click</span><span class="dl">"</span><span class="p">,</span>
   <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">someElement</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">backgroundColor</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">blue</span><span class="dl">"</span><span class="p">;</span>
@@ -28,12 +28,12 @@
   <span class="kc">false</span>
 <span class="p">);</span>
 
-<span class="kd">const</span> <span class="nx">d</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span> <span class="c1">// new를 활용해 새로운 객체 할당</span>
+<span class="kd">const</span> <span class="nx">d</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Date</span><span class="p">();</span> <span class="c1">// new를 활용해 새로운 객체 할당</span>
 
-<span class="kd">const</span> <span class="nx">e</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">"</span><span class="s2">div</span><span class="dl">"</span><span class="p">);</span> <span class="c1">// DOM 엘리먼트를 위해 메모리를 할당</span>
+<span class="kd">const</span> <span class="nx">e</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">createElement</span><span class="p">(</span><span class="dl">"</span><span class="s2">div</span><span class="dl">"</span><span class="p">);</span> <span class="c1">// DOM 엘리먼트를 위해 메모리를 할당</span>
 
 <span class="kd">const</span> <span class="nx">s</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">azerty</span><span class="dl">"</span><span class="p">;</span>
-<span class="kd">const</span> <span class="nx">s2</span> <span class="o">=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span> <span class="c1">// 문자열은 immutable하기에, 새로운 메모리가 아닌 [0,3] 만 할당</span>
+<span class="kd">const</span> <span class="nx">s2</span> <span class="o">=</span> <span class="nx">s</span><span class="p">.</span><span class="nf">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span> <span class="c1">// 문자열은 immutable하기에, 새로운 메모리가 아닌 [0,3] 만 할당</span>
 </code></pre></div></div>
 
 <h3 id="사용">사용</h3>
@@ -92,7 +92,7 @@
 
 <p>하지만, 이런 단순한 방법에는 서로 참조하는 <code class="language-plaintext highlighter-rouge">순환 참조</code>가 이루어질 때 문제가 생긴다. 서로 참조하는 속성이 있는 경우, 함수 호출이 끝났음에도, 서로 참조하고 있기에 메모리가 해제되지 않고 메모리 누수가 일어날 수 있다. 순환참조의 예시는 다음과 같다.</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">f</span><span class="p">()</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">f</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">const</span> <span class="nx">x</span> <span class="o">=</span> <span class="p">{};</span>
   <span class="kd">const</span> <span class="nx">y</span> <span class="o">=</span> <span class="p">{};</span>
   <span class="nx">x</span><span class="p">.</span><span class="nx">a</span> <span class="o">=</span> <span class="nx">y</span><span class="p">;</span> <span class="c1">// x -&gt; y 참조</span>

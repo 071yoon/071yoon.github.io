@@ -24,12 +24,12 @@
 <p>우선 어떠한 버튼을 누르면 DropDown이 나오게 될지 만들어야 된다.</p>
 
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">dropDown</span> <span class="o">=</span> <span class="p">(</span><span class="nx">event</span><span class="p">:</span> <span class="nx">React</span><span class="p">.</span><span class="nx">MouseEvent</span><span class="o">&lt;</span><span class="nx">HTMLDivElement</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
-  <span class="nx">setDropDown</span><span class="p">(</span><span class="o">!</span><span class="nx">showDropDown</span><span class="p">);</span>
+  <span class="nx">event</span><span class="p">.</span><span class="nf">preventDefault</span><span class="p">();</span>
+  <span class="nf">setDropDown</span><span class="p">(</span><span class="o">!</span><span class="nx">showDropDown</span><span class="p">);</span>
 <span class="p">};</span>
 
 <span class="o">&lt;</span><span class="nx">DropDownContainer</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">dropDown</span><span class="p">}</span><span class="o">&gt;</span>
-  <span class="o">&lt;</span><span class="nx">Text</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">myDevice</span> <span class="o">!==</span> <span class="kc">null</span> <span class="p">?</span> <span class="nx">myDevice</span><span class="p">?.</span><span class="nx">label</span> <span class="p">:</span> <span class="nx">defaultDevice</span><span class="p">(</span><span class="nx">device</span><span class="p">)}</span><span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
+  <span class="o">&lt;</span><span class="nx">Text</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">myDevice</span> <span class="o">!==</span> <span class="kc">null</span> <span class="p">?</span> <span class="nx">myDevice</span><span class="p">?.</span><span class="nx">label</span> <span class="p">:</span> <span class="nf">defaultDevice</span><span class="p">(</span><span class="nx">device</span><span class="p">)}</span><span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
 </span>  <span class="o">&lt;</span><span class="nx">BottomArrow</span> <span class="o">/&gt;</span>
 <span class="o">&lt;</span><span class="sr">/DropDownContainer&gt;</span><span class="err">;
 </span></code></pre></div></div>
@@ -42,15 +42,15 @@
   <span class="nx">device</span><span class="p">:</span> <span class="nx">MediaDeviceInfo</span><span class="p">,</span>
   <span class="nx">event</span><span class="p">:</span> <span class="nx">React</span><span class="p">.</span><span class="nx">MouseEvent</span><span class="o">&lt;</span><span class="nx">HTMLDivElement</span><span class="o">&gt;</span>
 <span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
-  <span class="nx">setMyDevice</span><span class="p">(</span><span class="nx">device</span><span class="p">);</span>
-  <span class="nx">setDropDown</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+  <span class="nx">event</span><span class="p">.</span><span class="nf">preventDefault</span><span class="p">();</span>
+  <span class="nf">setMyDevice</span><span class="p">(</span><span class="nx">device</span><span class="p">);</span>
+  <span class="nf">setDropDown</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
 <span class="p">};</span>
 
 <span class="o">&lt;</span><span class="nx">DropDownItem</span>
   <span class="nx">key</span><span class="o">=</span><span class="p">{</span><span class="nx">device</span><span class="p">.</span><span class="nx">deviceId</span><span class="p">}</span>
   <span class="nx">onClick</span><span class="o">=</span><span class="p">{(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">setDevice</span><span class="p">(</span><span class="nx">device</span><span class="p">,</span> <span class="nx">event</span><span class="p">);</span>
+    <span class="nf">setDevice</span><span class="p">(</span><span class="nx">device</span><span class="p">,</span> <span class="nx">event</span><span class="p">);</span>
   <span class="p">}}</span>
 <span class="o">&gt;</span>
   <span class="o">&lt;</span><span class="nx">Text</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">device</span><span class="p">.</span><span class="nx">label</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
@@ -83,10 +83,10 @@
 
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">@</span><span class="nd">keyframes</span> <span class="nx">dropdown</span> <span class="p">{</span>
     <span class="mi">0</span><span class="o">%</span> <span class="p">{</span>
-      <span class="na">transform</span><span class="p">:</span> <span class="nx">translateY</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="o">%</span><span class="p">);</span>
+      <span class="na">transform</span><span class="p">:</span> <span class="nf">translateY</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="o">%</span><span class="p">);</span>
     <span class="p">}</span>
     <span class="mi">100</span><span class="o">%</span> <span class="p">{</span>
-      <span class="na">transform</span><span class="p">:</span> <span class="nx">translateY</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+      <span class="na">transform</span><span class="p">:</span> <span class="nf">translateY</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
     <span class="p">}</span>
   <span class="p">}</span>
   <span class="nl">animation</span><span class="p">:</span> <span class="nx">dropdown</span> <span class="mf">0.4</span><span class="nx">s</span> <span class="nx">ease</span><span class="p">;</span>
@@ -103,16 +103,16 @@
 <p>주요 코드는 다음과 같다.</p>
 
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">DropDownContainer</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">dropDown</span><span class="p">}</span><span class="o">&gt;</span>
-  <span class="o">&lt;</span><span class="nx">Text</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">myDevice</span> <span class="o">!==</span> <span class="kc">null</span> <span class="p">?</span> <span class="nx">myDevice</span><span class="p">?.</span><span class="nx">label</span> <span class="p">:</span> <span class="nx">defaultDevice</span><span class="p">(</span><span class="nx">device</span><span class="p">)}</span><span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
+  <span class="o">&lt;</span><span class="nx">Text</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">myDevice</span> <span class="o">!==</span> <span class="kc">null</span> <span class="p">?</span> <span class="nx">myDevice</span><span class="p">?.</span><span class="nx">label</span> <span class="p">:</span> <span class="nf">defaultDevice</span><span class="p">(</span><span class="nx">device</span><span class="p">)}</span><span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
 </span>  <span class="o">&lt;</span><span class="nx">BottomArrow</span> <span class="o">/&gt;</span>
   <span class="p">{</span><span class="nx">showDropDown</span> <span class="o">&amp;&amp;</span> <span class="p">(</span>
     <span class="o">&lt;</span><span class="nx">DropDownPosition</span><span class="o">&gt;</span>
       <span class="o">&lt;</span><span class="nx">DropDown</span><span class="o">&gt;</span>
-        <span class="p">{</span><span class="nx">device</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">device</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span>
+        <span class="p">{</span><span class="nx">device</span><span class="p">.</span><span class="nf">map</span><span class="p">((</span><span class="nx">device</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span>
           <span class="o">&lt;</span><span class="nx">DropDownItem</span>
             <span class="nx">key</span><span class="o">=</span><span class="p">{</span><span class="nx">device</span><span class="p">.</span><span class="nx">deviceId</span><span class="p">}</span>
             <span class="nx">onClick</span><span class="o">=</span><span class="p">{(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-              <span class="nx">setDevice</span><span class="p">(</span><span class="nx">device</span><span class="p">,</span> <span class="nx">event</span><span class="p">);</span>
+              <span class="nf">setDevice</span><span class="p">(</span><span class="nx">device</span><span class="p">,</span> <span class="nx">event</span><span class="p">);</span>
             <span class="p">}}</span>
           <span class="o">&gt;</span>
             <span class="o">&lt;</span><span class="nx">Text</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">device</span><span class="p">.</span><span class="nx">label</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;

@@ -8,7 +8,7 @@
   <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
 <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>왜 TypeScript인가 | YeongGi’s tech blog</title>
-<meta name="generator" content="Jekyll v4.2.2">
+<meta name="generator" content="Jekyll v4.4.1">
 <meta property="og:title" content="왜 TypeScript인가">
 <meta name="author" content="071yoon">
 <meta property="og:locale" content="en_US">
@@ -828,12 +828,12 @@ function googleTranslateElementInit() {
 <span class="mi">1</span> <span class="o">+</span> <span class="kc">true</span><span class="p">;</span> <span class="c1">//?</span>
 </code></pre></div></div>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">mul</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">mul</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="nx">a</span> <span class="o">*</span> <span class="nx">b</span><span class="p">;</span>
 <span class="p">}</span>
-<span class="nx">mul</span><span class="p">();</span> <span class="c1">//?</span>
-<span class="nx">mul</span><span class="p">(</span><span class="dl">"</span><span class="s2">hi</span><span class="dl">"</span><span class="p">);</span> <span class="c1">//?</span>
-<span class="nx">mul</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span> <span class="dl">"</span><span class="s2">hi</span><span class="dl">"</span><span class="p">);</span> <span class="c1">//? -&gt; Runtime Error</span>
+<span class="nf">mul</span><span class="p">();</span> <span class="c1">//?</span>
+<span class="nf">mul</span><span class="p">(</span><span class="dl">"</span><span class="s2">hi</span><span class="dl">"</span><span class="p">);</span> <span class="c1">//?</span>
+<span class="nf">mul</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span> <span class="dl">"</span><span class="s2">hi</span><span class="dl">"</span><span class="p">);</span> <span class="c1">//? -&gt; Runtime Error</span>
 </code></pre></div></div>
 
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -852,11 +852,11 @@ function googleTranslateElementInit() {
 <span class="nx">obj</span><span class="p">.</span><span class="nx">apend</span><span class="p">;</span> <span class="c1">//'append'아니야? 그거 2번줄에 declared ㅋㅋ</span>
 </code></pre></div></div>
 
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">mul</span><span class="p">(</span><span class="nx">a</span><span class="p">:</span> <span class="kr">number</span><span class="p">,</span> <span class="nx">b</span><span class="p">:</span> <span class="kr">number</span><span class="p">):</span> <span class="kr">string</span> <span class="p">{</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">mul</span><span class="p">(</span><span class="nx">a</span><span class="p">:</span> <span class="kr">number</span><span class="p">,</span> <span class="nx">b</span><span class="p">:</span> <span class="kr">number</span><span class="p">):</span> <span class="kr">string</span> <span class="p">{</span>
   <span class="c1">//return도 지정 가능</span>
-  <span class="k">return</span> <span class="p">(</span><span class="nx">a</span> <span class="o">*</span> <span class="nx">b</span><span class="p">).</span><span class="nx">toString</span><span class="p">();</span>
+  <span class="k">return </span><span class="p">(</span><span class="nx">a</span> <span class="o">*</span> <span class="nx">b</span><span class="p">).</span><span class="nf">toString</span><span class="p">();</span>
 <span class="p">}</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mul</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nf">mul</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">));</span>
 </code></pre></div></div>
 
 <h3 id="types">Types</h3>
@@ -866,7 +866,7 @@ function googleTranslateElementInit() {
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">test</span><span class="dl">"</span><span class="p">;</span>
 <span class="nx">a</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">//string -&gt; number 안됨!</span>
 <span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">a</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">b</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">c</span><span class="dl">"</span><span class="p">];</span>
-<span class="nx">b</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="dl">"</span><span class="s2">d</span><span class="dl">"</span><span class="p">);</span> <span class="c1">//OK</span>
+<span class="nx">b</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="dl">"</span><span class="s2">d</span><span class="dl">"</span><span class="p">);</span> <span class="c1">//OK</span>
 </code></pre></div></div>
 
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">fire</span> <span class="o">=</span> <span class="p">{</span>
@@ -880,7 +880,7 @@ function googleTranslateElementInit() {
 <h4 id="explicit-types-타입지정">Explicit Types [타입지정]</h4>
 
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">c</span><span class="p">:</span> <span class="kr">number</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[];</span>
-<span class="nx">c</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="c1">//OK</span>
+<span class="nx">c</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="c1">//OK</span>
 </code></pre></div></div>
 
 <h4 id="null-처리">NULL 처리</h4>
@@ -891,9 +891,9 @@ function googleTranslateElementInit() {
 <span class="p">}</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">team</span><span class="p">:</span> <span class="dl">"</span><span class="s2">FIRE</span><span class="dl">"</span><span class="p">,</span>
 <span class="p">};</span>
-<span class="k">if</span> <span class="p">(</span><span class="nx">yeonggi</span><span class="p">.</span><span class="nx">age</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">if </span><span class="p">(</span><span class="nx">yeonggi</span><span class="p">.</span><span class="nx">age</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">//ERROR</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">yeonggi</span><span class="p">.</span><span class="nx">age</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">yeonggi</span><span class="p">.</span><span class="nx">age</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -901,14 +901,14 @@ function googleTranslateElementInit() {
   <span class="na">name</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
   <span class="nl">age</span><span class="p">?:</span> <span class="kr">number</span><span class="p">;</span>
 <span class="p">};</span>
-<span class="kd">function</span> <span class="nx">memberGenerator</span><span class="p">(</span><span class="nx">name</span><span class="p">:</span> <span class="kr">string</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">function</span> <span class="nf">memberGenerator</span><span class="p">(</span><span class="nx">name</span><span class="p">:</span> <span class="kr">string</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">//?</span>
   <span class="k">return</span> <span class="p">{</span>
     <span class="nx">name</span><span class="p">,</span>
   <span class="p">};</span>
 <span class="p">}</span>
 <span class="c1">// const memberGenerator = (name: string) : Player =&gt; ({name})</span>
-<span class="kd">const</span> <span class="nx">yeonggi</span> <span class="o">=</span> <span class="nx">memberGenerator</span><span class="p">(</span><span class="dl">"</span><span class="s2">yeonggi</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">yeonggi</span> <span class="o">=</span> <span class="nf">memberGenerator</span><span class="p">(</span><span class="dl">"</span><span class="s2">yeonggi</span><span class="dl">"</span><span class="p">);</span>
 <span class="nx">yeonggi</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
 </code></pre></div></div>
 
@@ -921,10 +921,10 @@ function googleTranslateElementInit() {
 </code></pre></div></div>
 
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">a</span><span class="p">:</span> <span class="nx">unknown</span><span class="p">;</span>
-<span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">a</span> <span class="o">===</span> <span class="kr">string</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">if </span><span class="p">(</span><span class="k">typeof</span> <span class="nx">a</span> <span class="o">===</span> <span class="kr">string</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">a</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">1</span><span class="dl">"</span><span class="p">;</span>
 <span class="p">}</span>
-<span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">a</span> <span class="o">===</span> <span class="kr">number</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">if </span><span class="p">(</span><span class="k">typeof</span> <span class="nx">a</span> <span class="o">===</span> <span class="kr">number</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">a</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -945,10 +945,10 @@ function googleTranslateElementInit() {
 <div class="post-related">
       <div>Related Articles</div>
       <ul>
-        <li><a class="post-link" href="/server/2022/02/23/server.html" title="Recoil 배우기">서버 맛보기</a></li>
-<li><a class="post-link" href="/modoco/2022/07/11/react-horizontal-scroll.html" title="Recoil 배우기">React + Typescript 에서 Horizontal Scroll 구현</a></li>
-<li><a class="post-link" href="/next.js/2022/05/04/next-optimization.html" title="Recoil 배우기">NEXT-Optimization</a></li>
-<li><a class="post-link" href="/next.js/2022/04/25/next-pages.html" title="Recoil 배우기">NEXT-Pages</a></li>
+        <li><a class="post-link" href="/javascript/2022/01/14/javascript-object.html" title="Recoil 배우기">자바스크립트 객체</a></li>
+<li><a class="post-link" href="/react/2022/02/02/make-react-app-1.html" title="Recoil 배우기">리액트JS로 앱 만들기 1</a></li>
+<li><a class="post-link" href="/til/2022/10/09/fix-error-via-apm.html" title="Recoil 배우기">Fix Error via APM</a></li>
+<li><a class="post-link" href="/modoco/2022/07/09/typescript-font.html" title="Recoil 배우기">Typescript React Styled-Component 에서 Font 적용하기</a></li>
 </ul>
     </div>
 <div class="post-comments">
@@ -1091,7 +1091,7 @@ function googleTranslateElementInit() {
 
   <div class="wrapper">
     <div class="site-footer-inner">
-<div>Unpublished Work <span class="copyleft">©</span> 2021-2025 071yoon</div>
+<div>Unpublished Work <span class="copyleft">©</span> 2021-2026 071yoon</div>
       <div>Powered by <a title="Jekyll is a simple, blog-aware, static site
       generator." href="http://jekyllrb.com/">Jekyll</a> &amp; <a title="Yat, yet
       another theme." href="https://github.com/jeffreytse/jekyll-theme-yat">Yat Theme</a>.</div>

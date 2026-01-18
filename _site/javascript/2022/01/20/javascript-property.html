@@ -8,7 +8,7 @@
   <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
 <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>자바스크립트 객체 프로퍼티 설정 | YeongGi’s tech blog</title>
-<meta name="generator" content="Jekyll v4.2.2">
+<meta name="generator" content="Jekyll v4.4.1">
 <meta property="og:title" content="자바스크립트 객체 프로퍼티 설정">
 <meta name="author" content="071yoon">
 <meta property="og:locale" content="en_US">
@@ -846,9 +846,9 @@ function googleTranslateElementInit() {
   <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span>
 <span class="p">};</span>
 
-<span class="kd">let</span> <span class="nx">descriptor</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">getOwnPropertyDescriptor</span><span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="dl">'</span><span class="s1">name</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">descriptor</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nf">getOwnPropertyDescriptor</span><span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="dl">'</span><span class="s1">name</span><span class="dl">'</span><span class="p">);</span>
 
-<span class="nx">alert</span><span class="p">(</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">descriptor</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">2</span> <span class="p">)</span> <span class="p">);</span>
+<span class="nf">alert</span><span class="p">(</span> <span class="nx">JSON</span><span class="p">.</span><span class="nf">stringify</span><span class="p">(</span><span class="nx">descriptor</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">2</span> <span class="p">)</span> <span class="p">);</span>
 <span class="cm">/* property descriptor:
 {
   "value": "Yoon",
@@ -870,11 +870,11 @@ function googleTranslateElementInit() {
 </ol>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="kd">get</span> <span class="nx">propName</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">get</span> <span class="nf">propName</span><span class="p">()</span> <span class="p">{</span>
     <span class="c1">// getter, obj.propName실행시</span>
   <span class="p">},</span>
 
-  <span class="kd">set</span> <span class="nx">propName</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">set</span> <span class="nf">propName</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// setter, obj.propName = value실행시</span>
   <span class="p">}</span>
 <span class="p">};</span>
@@ -885,13 +885,13 @@ function googleTranslateElementInit() {
 <p><code class="language-plaintext highlighter-rouge">getter</code>와 <code class="language-plaintext highlighter-rouge">setter</code>를 실제 프로퍼티 값을 감싸는 래퍼로 사용하여, 프로퍼티 값을 통제하는 방법이 있다</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="kd">get</span> <span class="nx">name</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">get</span> <span class="nf">name</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_name</span><span class="p">;</span>
   <span class="p">},</span>
 
-  <span class="kd">set</span> <span class="nx">name</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">value</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">Too Short</span><span class="dl">"</span><span class="p">);</span>
+  <span class="kd">set</span> <span class="nf">name</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if </span><span class="p">(</span><span class="nx">value</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nf">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">Too Short</span><span class="dl">"</span><span class="p">);</span>
       <span class="k">return</span><span class="p">;</span>
     <span class="p">}</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">_name</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
@@ -899,7 +899,7 @@ function googleTranslateElementInit() {
 <span class="p">};</span>
 
 <span class="nx">user</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Yoon</span><span class="dl">"</span><span class="p">;</span>
-<span class="nx">alert</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">// Yoon</span>
+<span class="nf">alert</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">// Yoon</span>
 
 <span class="nx">user</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="dl">""</span><span class="p">;</span> <span class="c1">// 너무 짧은 이름을 할당하려 함</span>
 </code></pre></div></div>
@@ -920,10 +920,10 @@ function googleTranslateElementInit() {
 <div class="post-related">
       <div>Related Articles</div>
       <ul>
-        <li><a class="post-link" href="/mac/2022/06/05/mac-setting.html" title="자바스크립트 프로토타입과 클래스">Mac 초기 세팅</a></li>
-<li><a class="post-link" href="/sql/2024/03/02/sql-functions.html" title="자바스크립트 프로토타입과 클래스">SQL 함수 알아보기</a></li>
-<li><a class="post-link" href="/javascript/2022/01/22/javascript-coding-1.html" title="자바스크립트 프로토타입과 클래스">바닐라JS로 앱 만들기 1</a></li>
-<li><a class="post-link" href="/web/2025/03/16/maintain-chrome-extension.html" title="자바스크립트 프로토타입과 클래스">Chrome Web Store 유지보수</a></li>
+        <li><a class="post-link" href="/modoco/2022/07/31/react-volume-slider.html" title="자바스크립트 프로토타입과 클래스">React에서 Volume Slider 구현하기</a></li>
+<li><a class="post-link" href="/web/2024/05/27/make-3d-div.html" title="자바스크립트 프로토타입과 클래스">굵기가 있는 div 만들기</a></li>
+<li><a class="post-link" href="/gof/2022/09/28/strategy-pattern.html" title="자바스크립트 프로토타입과 클래스">전략 패턴</a></li>
+<li><a class="post-link" href="/book/2023/01/15/rule-of-mind.html" title="자바스크립트 프로토타입과 클래스">마음의 법칙</a></li>
 </ul>
     </div>
 <div class="post-comments">
@@ -1066,7 +1066,7 @@ function googleTranslateElementInit() {
 
   <div class="wrapper">
     <div class="site-footer-inner">
-<div>Unpublished Work <span class="copyleft">©</span> 2021-2025 071yoon</div>
+<div>Unpublished Work <span class="copyleft">©</span> 2021-2026 071yoon</div>
       <div>Powered by <a title="Jekyll is a simple, blog-aware, static site
       generator." href="http://jekyllrb.com/">Jekyll</a> &amp; <a title="Yat, yet
       another theme." href="https://github.com/jeffreytse/jekyll-theme-yat">Yat Theme</a>.</div>

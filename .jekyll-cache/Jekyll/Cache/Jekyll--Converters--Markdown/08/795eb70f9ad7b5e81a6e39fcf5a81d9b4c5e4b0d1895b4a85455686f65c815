@@ -11,8 +11,8 @@
 
 <p>해당 환경변수들은 Node.js에서 자동으로 <code class="language-plaintext highlighter-rouge">Next.js</code>의 데이터를 가져오는 방식으로 사용하게 된다. 예를들어 해당 환경변수를 가지고 ` getStaticProps`를 사용하는 방식을 보면 다음과 같다.</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">async</span> <span class="kd">function</span> <span class="nx">getStaticProps</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="nx">db</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">myDB</span><span class="p">.</span><span class="nx">connect</span><span class="p">({</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">async</span> <span class="kd">function</span> <span class="nf">getStaticProps</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">db</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">myDB</span><span class="p">.</span><span class="nf">connect</span><span class="p">({</span>
     <span class="na">host</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DB_HOST</span><span class="p">,</span>
     <span class="na">username</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DB_USER</span><span class="p">,</span>
     <span class="na">password</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DB_PASS</span><span class="p">,</span>
@@ -51,9 +51,9 @@
 <span class="k">import</span> <span class="nx">setupAnalyticsService</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">../lib/my-analytics-service</span><span class="dl">"</span><span class="p">;</span>
 
 <span class="c1">// NEXT_PUBLIC_ANALYTICS_ID can be used here as it's prefixed by NEXT_PUBLIC_</span>
-<span class="nx">setupAnalyticsService</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NEXT_PUBLIC_ANALYTICS_ID</span><span class="p">);</span>
+<span class="nf">setupAnalyticsService</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NEXT_PUBLIC_ANALYTICS_ID</span><span class="p">);</span>
 
-<span class="kd">function</span> <span class="nx">HomePage</span><span class="p">()</span> <span class="p">{</span>
+<span class="kd">function</span> <span class="nf">HomePage</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">return</span> <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Hello</span> <span class="nx">World</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span><span class="err">;
 </span><span class="p">}</span>
 
@@ -85,9 +85,9 @@
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// The below can be used in a Jest global setup file or similar for your testing set-up</span>
 <span class="k">import</span> <span class="p">{</span> <span class="nx">loadEnvConfig</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@next/env</span><span class="dl">"</span><span class="p">;</span>
 
-<span class="k">export</span> <span class="k">default</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="nx">projectDir</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">cwd</span><span class="p">();</span>
-  <span class="nx">loadEnvConfig</span><span class="p">(</span><span class="nx">projectDir</span><span class="p">);</span>
+<span class="k">export</span> <span class="k">default</span> <span class="k">async </span><span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">projectDir</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nf">cwd</span><span class="p">();</span>
+  <span class="nf">loadEnvConfig</span><span class="p">(</span><span class="nx">projectDir</span><span class="p">);</span>
 <span class="p">};</span>
 </code></pre></div></div>
 
@@ -127,8 +127,8 @@
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">Script</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">next/script</span><span class="dl">"</span><span class="p">;</span>
 
-<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">Home</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="p">(</span>
+<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nf">Home</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return </span><span class="p">(</span>
     <span class="o">&lt;&gt;</span>
       <span class="o">&lt;</span><span class="nx">Script</span> <span class="nx">src</span><span class="o">=</span><span class="dl">"</span><span class="s2">https://www.google-analytics.com/analytics.js</span><span class="dl">"</span> <span class="o">/&gt;</span>
     <span class="o">&lt;</span><span class="sr">/</span><span class="err">&gt;
@@ -173,8 +173,8 @@
 <span class="k">import</span> <span class="p">{</span> <span class="nx">Html</span><span class="p">,</span> <span class="nx">Head</span><span class="p">,</span> <span class="nx">Main</span><span class="p">,</span> <span class="nx">NextScript</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">next/document</span><span class="dl">"</span><span class="p">;</span>
 <span class="k">import</span> <span class="nx">Script</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">next/script</span><span class="dl">"</span><span class="p">;</span>
 
-<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">Document</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="p">(</span>
+<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nf">Document</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return </span><span class="p">(</span>
     <span class="o">&lt;</span><span class="nx">Html</span><span class="o">&gt;</span>
       <span class="o">&lt;</span><span class="nx">Head</span> <span class="o">/&gt;</span>
       <span class="o">&lt;</span><span class="nx">body</span><span class="o">&gt;</span>

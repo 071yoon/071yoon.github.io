@@ -8,7 +8,7 @@
   <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
 <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>자바스크립트 메모리관리 | YeongGi’s tech blog</title>
-<meta name="generator" content="Jekyll v4.2.2">
+<meta name="generator" content="Jekyll v4.4.1">
 <meta property="og:title" content="자바스크립트 메모리관리">
 <meta name="author" content="071yoon">
 <meta property="og:locale" content="en_US">
@@ -836,7 +836,7 @@ function googleTranslateElementInit() {
 <span class="p">};</span> <span class="c1">// object가 아닌 literal도 비슷하게 할당할 수 있다</span>
 
 <span class="c1">// 함수식 또한 오브젝트를 담기 위한 메모리를 할당한다.</span>
-<span class="nx">someElement</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span>
+<span class="nx">someElement</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span>
   <span class="dl">"</span><span class="s2">click</span><span class="dl">"</span><span class="p">,</span>
   <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">someElement</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">backgroundColor</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">blue</span><span class="dl">"</span><span class="p">;</span>
@@ -844,12 +844,12 @@ function googleTranslateElementInit() {
   <span class="kc">false</span>
 <span class="p">);</span>
 
-<span class="kd">const</span> <span class="nx">d</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span> <span class="c1">// new를 활용해 새로운 객체 할당</span>
+<span class="kd">const</span> <span class="nx">d</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Date</span><span class="p">();</span> <span class="c1">// new를 활용해 새로운 객체 할당</span>
 
-<span class="kd">const</span> <span class="nx">e</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">"</span><span class="s2">div</span><span class="dl">"</span><span class="p">);</span> <span class="c1">// DOM 엘리먼트를 위해 메모리를 할당</span>
+<span class="kd">const</span> <span class="nx">e</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">createElement</span><span class="p">(</span><span class="dl">"</span><span class="s2">div</span><span class="dl">"</span><span class="p">);</span> <span class="c1">// DOM 엘리먼트를 위해 메모리를 할당</span>
 
 <span class="kd">const</span> <span class="nx">s</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">azerty</span><span class="dl">"</span><span class="p">;</span>
-<span class="kd">const</span> <span class="nx">s2</span> <span class="o">=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span> <span class="c1">// 문자열은 immutable하기에, 새로운 메모리가 아닌 [0,3] 만 할당</span>
+<span class="kd">const</span> <span class="nx">s2</span> <span class="o">=</span> <span class="nx">s</span><span class="p">.</span><span class="nf">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span> <span class="c1">// 문자열은 immutable하기에, 새로운 메모리가 아닌 [0,3] 만 할당</span>
 </code></pre></div></div>
 
 <h3 id="사용">사용</h3>
@@ -908,7 +908,7 @@ function googleTranslateElementInit() {
 
 <p>하지만, 이런 단순한 방법에는 서로 참조하는 <code class="language-plaintext highlighter-rouge">순환 참조</code>가 이루어질 때 문제가 생긴다. 서로 참조하는 속성이 있는 경우, 함수 호출이 끝났음에도, 서로 참조하고 있기에 메모리가 해제되지 않고 메모리 누수가 일어날 수 있다. 순환참조의 예시는 다음과 같다.</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">f</span><span class="p">()</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">f</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">const</span> <span class="nx">x</span> <span class="o">=</span> <span class="p">{};</span>
   <span class="kd">const</span> <span class="nx">y</span> <span class="o">=</span> <span class="p">{};</span>
   <span class="nx">x</span><span class="p">.</span><span class="nx">a</span> <span class="o">=</span> <span class="nx">y</span><span class="p">;</span> <span class="c1">// x -&gt; y 참조</span>
@@ -1048,10 +1048,10 @@ function googleTranslateElementInit() {
 <div class="post-related">
       <div>Related Articles</div>
       <ul>
-        <li><a class="post-link" href="/til/2022/07/01/recoil.html" title="객체지향의 사실과 오해">Recoil 배우기</a></li>
-<li><a class="post-link" href="/next.js/2022/04/24/why-next-js.html" title="객체지향의 사실과 오해">NEXT</a></li>
-<li><a class="post-link" href="/react/2022/09/19/start-cypress.html" title="객체지향의 사실과 오해">Cypress로 e2e 테스트 하기</a></li>
-<li><a class="post-link" href="/sql/2022/01/24/sql-practice.html" title="객체지향의 사실과 오해">SQL 예제를 풀어보자</a></li>
+        <li><a class="post-link" href="/retrospect/2023/12/27/2023-retrospect.html" title="객체지향의 사실과 오해">2023년 회고</a></li>
+<li><a class="post-link" href="/blog/2022/01/12/install-blog-comment.html" title="객체지향의 사실과 오해">깃허브 블로그 코멘트 설치하기</a></li>
+<li><a class="post-link" href="/web/2024/05/27/make-3d-div.html" title="객체지향의 사실과 오해">굵기가 있는 div 만들기</a></li>
+<li><a class="post-link" href="/modoco/2022/09/06/audio-inputoutput.html" title="객체지향의 사실과 오해">브라우저에서 입출력 제어하기</a></li>
 </ul>
     </div>
 <div class="post-comments">
@@ -1194,7 +1194,7 @@ function googleTranslateElementInit() {
 
   <div class="wrapper">
     <div class="site-footer-inner">
-<div>Unpublished Work <span class="copyleft">©</span> 2021-2025 071yoon</div>
+<div>Unpublished Work <span class="copyleft">©</span> 2021-2026 071yoon</div>
       <div>Powered by <a title="Jekyll is a simple, blog-aware, static site
       generator." href="http://jekyllrb.com/">Jekyll</a> &amp; <a title="Yat, yet
       another theme." href="https://github.com/jeffreytse/jekyll-theme-yat">Yat Theme</a>.</div>

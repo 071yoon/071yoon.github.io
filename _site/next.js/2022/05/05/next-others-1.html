@@ -8,7 +8,7 @@
   <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
 <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>NEXT-Others-1 | YeongGi’s tech blog</title>
-<meta name="generator" content="Jekyll v4.2.2">
+<meta name="generator" content="Jekyll v4.4.1">
 <meta property="og:title" content="NEXT-Others-1">
 <meta name="author" content="071yoon">
 <meta property="og:locale" content="en_US">
@@ -822,7 +822,7 @@ function googleTranslateElementInit() {
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">Image</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">next/image</span><span class="dl">"</span><span class="p">;</span>
 
-<span class="kd">function</span> <span class="nx">Avatar</span><span class="p">()</span> <span class="p">{</span>
+<span class="kd">function</span> <span class="nf">Avatar</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">return</span> <span class="o">&lt;</span><span class="nx">Image</span> <span class="nx">src</span><span class="o">=</span><span class="dl">"</span><span class="s2">/me.png</span><span class="dl">"</span> <span class="nx">alt</span><span class="o">=</span><span class="dl">"</span><span class="s2">me</span><span class="dl">"</span> <span class="nx">width</span><span class="o">=</span><span class="dl">"</span><span class="s2">64</span><span class="dl">"</span> <span class="nx">height</span><span class="o">=</span><span class="dl">"</span><span class="s2">64</span><span class="dl">"</span> <span class="o">/&gt;</span><span class="p">;</span>
 <span class="p">}</span>
 
@@ -968,15 +968,15 @@ pnpm create next-app <span class="nt">--</span> <span class="nt">--ts</span>
 
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">GetStaticProps</span><span class="p">,</span> <span class="nx">GetStaticPaths</span><span class="p">,</span> <span class="nx">GetServerSideProps</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">next</span><span class="dl">"</span><span class="p">;</span>
 
-<span class="k">export</span> <span class="kd">const</span> <span class="nx">getStaticProps</span><span class="p">:</span> <span class="nx">GetStaticProps</span> <span class="o">=</span> <span class="k">async</span> <span class="p">(</span><span class="nx">context</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">getStaticProps</span><span class="p">:</span> <span class="nx">GetStaticProps</span> <span class="o">=</span> <span class="k">async </span><span class="p">(</span><span class="nx">context</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// ...</span>
 <span class="p">};</span>
 
-<span class="k">export</span> <span class="kd">const</span> <span class="nx">getStaticPaths</span><span class="p">:</span> <span class="nx">GetStaticPaths</span> <span class="o">=</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">getStaticPaths</span><span class="p">:</span> <span class="nx">GetStaticPaths</span> <span class="o">=</span> <span class="k">async </span><span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// ...</span>
 <span class="p">};</span>
 
-<span class="k">export</span> <span class="kd">const</span> <span class="nx">getServerSideProps</span><span class="p">:</span> <span class="nx">GetServerSideProps</span> <span class="o">=</span> <span class="k">async</span> <span class="p">(</span><span class="nx">context</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">getServerSideProps</span><span class="p">:</span> <span class="nx">GetServerSideProps</span> <span class="o">=</span> <span class="k">async </span><span class="p">(</span><span class="nx">context</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// ...</span>
 <span class="p">};</span>
 </code></pre></div></div>
@@ -985,8 +985,8 @@ pnpm create next-app <span class="nt">--</span> <span class="nt">--ts</span>
 
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="kd">type</span> <span class="p">{</span> <span class="nx">NextApiRequest</span><span class="p">,</span> <span class="nx">NextApiResponse</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">next</span><span class="dl">"</span><span class="p">;</span>
 
-<span class="k">export</span> <span class="k">default</span> <span class="p">(</span><span class="nx">req</span><span class="p">:</span> <span class="nx">NextApiRequest</span><span class="p">,</span> <span class="nx">res</span><span class="p">:</span> <span class="nx">NextApiResponse</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">200</span><span class="p">).</span><span class="nx">json</span><span class="p">({</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">John Doe</span><span class="dl">"</span> <span class="p">});</span>
+<span class="k">export</span> <span class="k">default </span><span class="p">(</span><span class="nx">req</span><span class="p">:</span> <span class="nx">NextApiRequest</span><span class="p">,</span> <span class="nx">res</span><span class="p">:</span> <span class="nx">NextApiResponse</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nf">status</span><span class="p">(</span><span class="mi">200</span><span class="p">).</span><span class="nf">json</span><span class="p">({</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">John Doe</span><span class="dl">"</span> <span class="p">});</span>
 <span class="p">};</span>
 </code></pre></div></div>
 
@@ -998,8 +998,8 @@ pnpm create next-app <span class="nt">--</span> <span class="nt">--ts</span>
   <span class="na">name</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
 <span class="p">};</span>
 
-<span class="k">export</span> <span class="k">default</span> <span class="p">(</span><span class="nx">req</span><span class="p">:</span> <span class="nx">NextApiRequest</span><span class="p">,</span> <span class="nx">res</span><span class="p">:</span> <span class="nx">NextApiResponse</span><span class="o">&lt;</span><span class="nx">Data</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">200</span><span class="p">).</span><span class="nx">json</span><span class="p">({</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">John Doe</span><span class="dl">"</span> <span class="p">});</span>
+<span class="k">export</span> <span class="k">default </span><span class="p">(</span><span class="nx">req</span><span class="p">:</span> <span class="nx">NextApiRequest</span><span class="p">,</span> <span class="nx">res</span><span class="p">:</span> <span class="nx">NextApiResponse</span><span class="o">&lt;</span><span class="nx">Data</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nf">status</span><span class="p">(</span><span class="mi">200</span><span class="p">).</span><span class="nf">json</span><span class="p">({</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">John Doe</span><span class="dl">"</span> <span class="p">});</span>
 <span class="p">};</span>
 </code></pre></div></div>
 
@@ -1010,7 +1010,7 @@ pnpm create next-app <span class="nt">--</span> <span class="nt">--ts</span>
 
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="kd">type</span> <span class="p">{</span> <span class="nx">AppProps</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">next/app</span><span class="dl">"</span><span class="p">;</span>
 
-<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">MyApp</span><span class="p">({</span> <span class="nx">Component</span><span class="p">,</span> <span class="nx">pageProps</span> <span class="p">}:</span> <span class="nx">AppProps</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nf">MyApp</span><span class="p">({</span> <span class="nx">Component</span><span class="p">,</span> <span class="nx">pageProps</span> <span class="p">}:</span> <span class="nx">AppProps</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="o">&lt;</span><span class="nx">Component</span> <span class="p">{...</span><span class="nx">pageProps</span><span class="p">}</span> <span class="sr">/&gt;</span><span class="err">;
 </span><span class="p">}</span>
 </code></pre></div></div>
@@ -1045,10 +1045,10 @@ pnpm create next-app <span class="nt">--</span> <span class="nt">--ts</span>
 <div class="post-related">
       <div>Related Articles</div>
       <ul>
-        <li><a class="post-link" href="/retrospect/2022/03/03/sw-maestro.html" title="NEXT-Others-2">SW Maestro 지원 후기</a></li>
-<li><a class="post-link" href="/gof/2022/11/17/command-pattern.html" title="NEXT-Others-2">명령 패턴</a></li>
-<li><a class="post-link" href="/react/2022/09/19/start-cypress.html" title="NEXT-Others-2">Cypress로 e2e 테스트 하기</a></li>
-<li><a class="post-link" href="/til/2022/06/30/why-typescript.html" title="NEXT-Others-2">왜 TypeScript인가</a></li>
+        <li><a class="post-link" href="/modoco/2022/09/06/audio-inputoutput.html" title="NEXT-Others-2">브라우저에서 입출력 제어하기</a></li>
+<li><a class="post-link" href="/mac/2022/06/05/mac-setting.html" title="NEXT-Others-2">Mac 초기 세팅</a></li>
+<li><a class="post-link" href="/retrospect/2022/12/26/about-1-day-1-commit.html" title="NEXT-Others-2">1일 1커밋에 대한 고찰</a></li>
+<li><a class="post-link" href="/web/2024/04/07/lighthouse-improvement.html" title="NEXT-Others-2">Lighthouse 점수 개선기</a></li>
 </ul>
     </div>
 <div class="post-comments">
@@ -1191,7 +1191,7 @@ pnpm create next-app <span class="nt">--</span> <span class="nt">--ts</span>
 
   <div class="wrapper">
     <div class="site-footer-inner">
-<div>Unpublished Work <span class="copyleft">©</span> 2021-2025 071yoon</div>
+<div>Unpublished Work <span class="copyleft">©</span> 2021-2026 071yoon</div>
       <div>Powered by <a title="Jekyll is a simple, blog-aware, static site
       generator." href="http://jekyllrb.com/">Jekyll</a> &amp; <a title="Yat, yet
       another theme." href="https://github.com/jeffreytse/jekyll-theme-yat">Yat Theme</a>.</div>

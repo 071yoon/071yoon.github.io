@@ -8,7 +8,7 @@
   <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
 <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>리액트JS로 앱 만들기 1 | YeongGi’s tech blog</title>
-<meta name="generator" content="Jekyll v4.2.2">
+<meta name="generator" content="Jekyll v4.4.1">
 <meta property="og:title" content="리액트JS로 앱 만들기 1">
 <meta name="author" content="071yoon">
 <meta property="og:locale" content="en_US">
@@ -839,10 +839,10 @@ function googleTranslateElementInit() {
 
 <p>간단하게 보면, <code class="language-plaintext highlighter-rouge">React</code> 파일에서</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">btn</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">btn</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nf">createElement</span><span class="p">(</span>
   <span class="dl">"</span><span class="s2">button</span><span class="dl">"</span><span class="p">,</span>
   <span class="p">{</span>
-    <span class="na">onClick</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">im clicked</span><span class="dl">"</span><span class="p">),</span>
+    <span class="na">onClick</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">im clicked</span><span class="dl">"</span><span class="p">),</span>
   <span class="p">},</span>
   <span class="dl">"</span><span class="s2">Click me</span><span class="dl">"</span>
 <span class="p">);</span>
@@ -867,7 +867,7 @@ function googleTranslateElementInit() {
 <p>JSX 가 나옴으로써, <code class="language-plaintext highlighter-rouge">React</code> 가 단순히 Javascript 처럼 활용하는것이 아니라, 마치 <code class="language-plaintext highlighter-rouge">HTML</code> 에서 사용한 것 처럼도 사용 할 수 있게 되었다. 이것또한 예제를 보고 확인해보자</p>
 
 <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">Title</span> <span class="o">=</span> <span class="p">(</span>
-  <span class="p">&lt;</span><span class="nt">h3</span> <span class="na">id</span><span class="p">=</span><span class="s">"title"</span> <span class="na">onMouseEnter</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">mouse enter</span><span class="dl">"</span><span class="p">)</span><span class="si">}</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">h3</span> <span class="na">id</span><span class="p">=</span><span class="s">"title"</span> <span class="na">onMouseEnter</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">mouse enter</span><span class="dl">"</span><span class="p">)</span><span class="si">}</span><span class="p">&gt;</span>
     Hello I am a title
   <span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
 <span class="p">);</span>
@@ -892,7 +892,7 @@ function googleTranslateElementInit() {
 		<span class="nx">counter</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
 	<span class="si">}</span>
 	function Container() <span class="si">{</span>
-		<span class="k">return</span> <span class="p">(</span>
+		<span class="k">return </span><span class="p">(</span>
 			<span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
 				<span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span> Total Clicks: <span class="si">{</span><span class="nx">counter</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
 				<span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="nx">countUp</span><span class="si">}</span><span class="p">&gt;</span>Click me<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
@@ -910,13 +910,13 @@ function googleTranslateElementInit() {
 <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span> <span class="p">=</span> <span class="s">"text/babel"</span><span class="p">&gt;</span>
 	const root = document.getElementById("root");
 	function Container() <span class="si">{</span>
-		<span class="kd">let</span> <span class="p">[</span><span class="nx">counter</span><span class="p">,</span> <span class="nx">modifier</span><span class="p">]</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+		<span class="kd">let</span> <span class="p">[</span><span class="nx">counter</span><span class="p">,</span> <span class="nx">modifier</span><span class="p">]</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nf">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 		<span class="c1">//counter = data[0], modifier = data[1]</span>
 		<span class="kd">const</span> <span class="nx">onClick</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-			<span class="nx">modifier</span><span class="p">(</span><span class="nx">counter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+			<span class="nf">modifier</span><span class="p">(</span><span class="nx">counter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
 			<span class="c1">//OR modifier((current) =&gt; current + 1);</span>
 		<span class="p">};</span>
-		<span class="k">return</span> <span class="p">(</span>
+		<span class="k">return </span><span class="p">(</span>
 			<span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
 				<span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span> Total Clicks: <span class="si">{</span><span class="nx">counter</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
 				<span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="nx">onClick</span><span class="si">}</span><span class="p">&gt;</span>Click me<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
@@ -937,8 +937,8 @@ function googleTranslateElementInit() {
   <p>Ex) 버튼의 스타일을 하나하나 다 바꿔주지 말고, 어차피 공통으로 갈거면 그러한 템플릿을 저장해 두었다가 사용하면 더 편하지 않겠냐 라는 것..!!</p>
 </blockquote>
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Btn</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">reutnr</span><span class="p">(</span>
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">Btn</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nf">reutnr</span><span class="p">(</span>
     <span class="p">&lt;</span><span class="nt">button</span>
       <span class="na">styles</span><span class="p">=</span><span class="si">{</span>
         <span class="nx">backgroundColor</span><span class="p">:</span> <span class="dl">"</span><span class="s2">white</span><span class="dl">"</span><span class="p">,</span>
@@ -953,8 +953,8 @@ function googleTranslateElementInit() {
   <span class="p">);</span>
 <span class="p">}</span>
 
-<span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="p">(</span>
+<span class="kd">function</span> <span class="nf">App</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return </span><span class="p">(</span>
     <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
       <span class="p">&lt;</span><span class="nc">Btn</span> <span class="na">text</span><span class="p">=</span><span class="s">"Save changes"</span> <span class="p">/&gt;</span>
       <span class="p">&lt;</span><span class="nc">Btn</span> <span class="na">text</span><span class="p">=</span><span class="s">"Continue"</span> <span class="p">/&gt;</span>
@@ -985,10 +985,10 @@ function googleTranslateElementInit() {
 <div class="post-related">
       <div>Related Articles</div>
       <ul>
-        <li><a class="post-link" href="/gof/2022/11/17/command-pattern.html" title="몬티 홀 문제">명령 패턴</a></li>
-<li><a class="post-link" href="/gof/2022/09/28/strategy-pattern.html" title="몬티 홀 문제">전략 패턴</a></li>
-<li><a class="post-link" href="/web/2024/04/07/lighthouse-improvement.html" title="몬티 홀 문제">Lighthouse 점수 개선기</a></li>
-<li><a class="post-link" href="/deep-thought/2022/02/03/monty-hall.html" title="몬티 홀 문제">몬티 홀 문제</a></li>
+        <li><a class="post-link" href="/javascript/2022/01/14/javascript-object.html" title="몬티 홀 문제">자바스크립트 객체</a></li>
+<li><a class="post-link" href="/modoco/2022/09/06/audio-inputoutput.html" title="몬티 홀 문제">브라우저에서 입출력 제어하기</a></li>
+<li><a class="post-link" href="/modoco/2022/07/09/typescript-font.html" title="몬티 홀 문제">Typescript React Styled-Component 에서 Font 적용하기</a></li>
+<li><a class="post-link" href="/til/2024/07/07/certificates.html" title="몬티 홀 문제">SQLD / 정보처리기사 취득기</a></li>
 </ul>
     </div>
 <div class="post-comments">
@@ -1131,7 +1131,7 @@ function googleTranslateElementInit() {
 
   <div class="wrapper">
     <div class="site-footer-inner">
-<div>Unpublished Work <span class="copyleft">©</span> 2021-2025 071yoon</div>
+<div>Unpublished Work <span class="copyleft">©</span> 2021-2026 071yoon</div>
       <div>Powered by <a title="Jekyll is a simple, blog-aware, static site
       generator." href="http://jekyllrb.com/">Jekyll</a> &amp; <a title="Yat, yet
       another theme." href="https://github.com/jeffreytse/jekyll-theme-yat">Yat Theme</a>.</div>

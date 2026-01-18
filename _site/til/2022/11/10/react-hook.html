@@ -8,7 +8,7 @@
   <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
 <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>REACT Hook 구현하기 | YeongGi’s tech blog</title>
-<meta name="generator" content="Jekyll v4.2.2">
+<meta name="generator" content="Jekyll v4.4.1">
 <meta property="og:title" content="REACT Hook 구현하기">
 <meta name="author" content="071yoon">
 <meta property="og:locale" content="en_US">
@@ -834,15 +834,15 @@ function googleTranslateElementInit() {
 
 <p>개념이 잘 와닿지 않을 수 있으므로 예제를 보고 이해해보자.</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">outerFunc</span><span class="p">()</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">outerFunc</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
-  <span class="kd">var</span> <span class="nx">innerFunc</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">innerFunc</span> <span class="o">=</span> <span class="nf">function </span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span>
   <span class="p">};</span>
-  <span class="nx">innerFunc</span><span class="p">();</span>
+  <span class="nf">innerFunc</span><span class="p">();</span>
 <span class="p">}</span>
 
-<span class="nx">outerFunc</span><span class="p">();</span> <span class="c1">// 10</span>
+<span class="nf">outerFunc</span><span class="p">();</span> <span class="c1">// 10</span>
 </code></pre></div></div>
 
 <p>코드에서 보이듯 outerFunc에서 innerFunc가 선언되고, 호출도 되었다. 하지만 여기서 핵심은 <code class="language-plaintext highlighter-rouge">var x</code>이다. innerFunc에서 <code class="language-plaintext highlighter-rouge">x</code>가 호출되었지만, 이는 외부함수인 <code class="language-plaintext highlighter-rouge">outerFunc</code>에서 선언되어있다. 여기서 innerFunc가 함수 outerFunc의 내부에 선언된 내부함수이므로 innerFunc는 자신이 속한 렉시컬스코프를 참조 할 수 있으므로 x에 접근할 수 있다.</p>
@@ -867,16 +867,16 @@ function googleTranslateElementInit() {
 
 <p>이제 innerFunc를 호출이 아닌 return으로 변환하여 보자</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">outerFunc</span><span class="p">()</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">outerFunc</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
-  <span class="kd">var</span> <span class="nx">innerFunc</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">innerFunc</span> <span class="o">=</span> <span class="nf">function </span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span>
   <span class="p">};</span>
   <span class="k">return</span> <span class="nx">innerFunc</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kd">var</span> <span class="nx">inner</span> <span class="o">=</span> <span class="nx">outerFunc</span><span class="p">();</span>
-<span class="nx">inner</span><span class="p">();</span> <span class="c1">// 10</span>
+<span class="kd">var</span> <span class="nx">inner</span> <span class="o">=</span> <span class="nf">outerFunc</span><span class="p">();</span>
+<span class="nf">inner</span><span class="p">();</span> <span class="c1">// 10</span>
 </code></pre></div></div>
 
 <p>이제 outerFunc는 innerFunc를 반환하고 끝이 났다. 즉 1회 실행 후 실행 컨텍스트에서 제거되었으므로 outerFunc의 <code class="language-plaintext highlighter-rouge">var x</code>가 유효하지 않아, 접근할 수 있는 방법이 없어 보인다. 하지만 실제로 실행해보면 10이 잘 나온다. 이렇게 자신을 포함한 외부함수보다 내부함수가 더 오래 유지되는 경우, 내부함수가 호출되더라도 외부함수의 변수에 접근할 수 있는 환경을 클로저라 부른다.</p>
@@ -895,10 +895,10 @@ function googleTranslateElementInit() {
 
 <p>먼저 useState의 사용 예시를 보면 다음과 같다.</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">[</span><span class="nx">counter</span><span class="p">,</span> <span class="nx">setCounter</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">counter</span><span class="p">);</span> <span class="c1">// 0</span>
-<span class="nx">setCounter</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// 1 and reflow</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">counter</span><span class="p">);</span> <span class="c1">// 1</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">[</span><span class="nx">counter</span><span class="p">,</span> <span class="nx">setCounter</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">counter</span><span class="p">);</span> <span class="c1">// 0</span>
+<span class="nf">setCounter</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// 1 and reflow</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">counter</span><span class="p">);</span> <span class="c1">// 1</span>
 </code></pre></div></div>
 
 <p>즉 간단하게 생각하면, useState를 destruct한 형태로 받아오고, 첫번째 인자로 state에 대한 정보를 호출, 두번째 인자로 state를 변경할 수 있는 React의 common hook 이라 할 수 있다.</p>
@@ -909,53 +909,53 @@ function googleTranslateElementInit() {
   <p>state() 함수에서 나의 상태, setState(val)에서 상태 변경</p>
 </blockquote>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">useState</span><span class="p">(</span><span class="nx">init</span><span class="p">)</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">useState</span><span class="p">(</span><span class="nx">init</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">val</span> <span class="o">=</span> <span class="nx">init</span><span class="p">;</span>
-  <span class="kd">function</span> <span class="nx">state</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="nf">state</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nx">val</span><span class="p">;</span>
   <span class="p">}</span>
-  <span class="kd">function</span> <span class="nx">setState</span><span class="p">(</span><span class="nx">newVal</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="nf">setState</span><span class="p">(</span><span class="nx">newVal</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">val</span> <span class="o">=</span> <span class="nx">newVal</span><span class="p">;</span>
   <span class="p">}</span>
   <span class="k">return</span> <span class="p">[</span><span class="nx">state</span><span class="p">,</span> <span class="nx">setState</span><span class="p">];</span>
 <span class="p">}</span>
-<span class="kd">var</span> <span class="p">[</span><span class="nx">foo</span><span class="p">,</span> <span class="nx">setFoo</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">foo</span><span class="p">());</span> <span class="c1">// 0</span>
-<span class="nx">setFoo</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">foo</span><span class="p">());</span> <span class="c1">// 1</span>
+<span class="kd">var</span> <span class="p">[</span><span class="nx">foo</span><span class="p">,</span> <span class="nx">setFoo</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nf">foo</span><span class="p">());</span> <span class="c1">// 0</span>
+<span class="nf">setFoo</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nf">foo</span><span class="p">());</span> <span class="c1">// 1</span>
 </code></pre></div></div>
 
 <p>앞서 봤던 클로저의 개념과 매우 유사하게 이해할 수 있다. val 같은 경우에는, useState(0)을 실행한 후, 직접적으로 호출하지 않아 더 이상 접근이 안될 것 같지만, state() 와 setState()에서 사용하는 변수기에 앞서 설명했던 것 처럼 외부함수의 자유변수 즉 val에 접근을 할 수 있다.</p>
 
 <p>이를 React 와 같은 함수형 컴포넌트에서는 다음과 같이 사용할 수 있다.</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Counter</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="p">[</span><span class="nx">count</span><span class="p">,</span> <span class="nx">setCount</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">Counter</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">count</span><span class="p">,</span> <span class="nx">setCount</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
   <span class="k">return</span> <span class="p">{</span>
-    <span class="na">click</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">setCount</span><span class="p">(</span><span class="nx">count</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
-    <span class="na">render</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">render:</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span> <span class="na">count</span><span class="p">:</span> <span class="nx">count</span><span class="p">()</span> <span class="p">}),</span>
+    <span class="na">click</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nf">setCount</span><span class="p">(</span><span class="nf">count</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="na">render</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">render:</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span> <span class="na">count</span><span class="p">:</span> <span class="nf">count</span><span class="p">()</span> <span class="p">}),</span>
   <span class="p">};</span>
 <span class="p">}</span>
-<span class="kd">const</span> <span class="nx">C</span> <span class="o">=</span> <span class="nx">Counter</span><span class="p">();</span>
-<span class="nx">C</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span> <span class="c1">// render: { count: 0 }</span>
-<span class="nx">C</span><span class="p">.</span><span class="nx">click</span><span class="p">();</span>
-<span class="nx">C</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span> <span class="c1">// render: { count: 1 }</span>
+<span class="kd">const</span> <span class="nx">C</span> <span class="o">=</span> <span class="nc">Counter</span><span class="p">();</span>
+<span class="nx">C</span><span class="p">.</span><span class="nf">render</span><span class="p">();</span> <span class="c1">// render: { count: 0 }</span>
+<span class="nx">C</span><span class="p">.</span><span class="nf">click</span><span class="p">();</span>
+<span class="nx">C</span><span class="p">.</span><span class="nf">render</span><span class="p">();</span> <span class="c1">// render: { count: 1 }</span>
 </code></pre></div></div>
 
 <p>그리고 Closure를 사용하여 구현할 때 주의해야 될 점은, 함수로 꼭 감싸주어야 된다는 것이다.
 다음 함수를 확인해보자</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">useState</span><span class="p">(</span><span class="nx">initialValue</span><span class="p">)</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">useState</span><span class="p">(</span><span class="nx">initialValue</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">_val</span> <span class="o">=</span> <span class="nx">initialValue</span><span class="p">;</span>
-  <span class="kd">function</span> <span class="nx">setState</span><span class="p">(</span><span class="nx">newVal</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="nf">setState</span><span class="p">(</span><span class="nx">newVal</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">_val</span> <span class="o">=</span> <span class="nx">newVal</span><span class="p">;</span>
   <span class="p">}</span>
   <span class="k">return</span> <span class="p">[</span><span class="nx">_val</span><span class="p">,</span> <span class="nx">setState</span><span class="p">];</span>
 <span class="p">}</span>
-<span class="kd">var</span> <span class="p">[</span><span class="nx">foo</span><span class="p">,</span> <span class="nx">setFoo</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">foo</span><span class="p">);</span> <span class="c1">// 0</span>
-<span class="nx">setFoo</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">foo</span><span class="p">);</span> <span class="c1">// 0</span>
+<span class="kd">var</span> <span class="p">[</span><span class="nx">foo</span><span class="p">,</span> <span class="nx">setFoo</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">foo</span><span class="p">);</span> <span class="c1">// 0</span>
+<span class="nf">setFoo</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">foo</span><span class="p">);</span> <span class="c1">// 0</span>
 </code></pre></div></div>
 
 <p>왜 setFoo(1)을 호출했는데 아직 0일까?</p>
@@ -968,8 +968,8 @@ function googleTranslateElementInit() {
 
 <p>useEffect의 사용 예시를 보면 다음과 같다.</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">do something</span><span class="dl">"</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">do something</span><span class="dl">"</span><span class="p">);</span>
 <span class="p">},</span> <span class="p">[</span><span class="nx">someDependency</span><span class="p">]);</span>
 </code></pre></div></div>
 
@@ -994,15 +994,15 @@ function googleTranslateElementInit() {
 
 <p>이제 javascript로 구현하면 다음과 같다.</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">useEffect</span><span class="p">(</span><span class="nx">callback</span><span class="p">,</span> <span class="nx">depArray</span><span class="p">)</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">useEffect</span><span class="p">(</span><span class="nx">callback</span><span class="p">,</span> <span class="nx">depArray</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">const</span> <span class="nx">hasNoDeps</span> <span class="o">=</span> <span class="o">!</span><span class="nx">depArray</span><span class="p">;</span> <span class="c1">// if dependency is [] run once first time</span>
   <span class="kd">const</span> <span class="nx">deps</span> <span class="o">=</span> <span class="nx">hooks</span><span class="p">[</span><span class="nx">currentHook</span><span class="p">];</span> <span class="c1">// closure hook</span>
   <span class="kd">const</span> <span class="nx">hasChangedDeps</span> <span class="o">=</span> <span class="nx">deps</span> <span class="c1">// check closure hook and depArray</span>
-    <span class="p">?</span> <span class="o">!</span><span class="nx">depArray</span><span class="p">.</span><span class="nx">every</span><span class="p">((</span><span class="nx">el</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">el</span> <span class="o">===</span> <span class="nx">deps</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
+    <span class="p">?</span> <span class="o">!</span><span class="nx">depArray</span><span class="p">.</span><span class="nf">every</span><span class="p">((</span><span class="nx">el</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">el</span> <span class="o">===</span> <span class="nx">deps</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
     <span class="p">:</span> <span class="kc">true</span><span class="p">;</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">hasNoDeps</span> <span class="o">||</span> <span class="nx">hasChangedDeps</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if </span><span class="p">(</span><span class="nx">hasNoDeps</span> <span class="o">||</span> <span class="nx">hasChangedDeps</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// call callback when depArray changed or dependency is []</span>
-    <span class="nx">callback</span><span class="p">();</span>
+    <span class="nf">callback</span><span class="p">();</span>
     <span class="nx">hooks</span><span class="p">[</span><span class="nx">currentHook</span><span class="p">]</span> <span class="o">=</span> <span class="nx">depArray</span><span class="p">;</span> <span class="c1">// set hook to current dependency</span>
   <span class="p">}</span>
   <span class="nx">currentHook</span><span class="o">++</span><span class="p">;</span> <span class="c1">// increase hook iterator</span>
@@ -1011,30 +1011,30 @@ function googleTranslateElementInit() {
 
 <p>이제 마치 React에서 사용할 수 있도록 render와 useState를 함께 붙여보면 다음과 같은 형태로 나오게 된다.</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">MyReact</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">MyReact</span> <span class="o">=</span> <span class="p">(</span><span class="nf">function </span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">let</span> <span class="nx">hooks</span> <span class="o">=</span> <span class="p">[],</span>
     <span class="nx">currentHook</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// hook iterator</span>
   <span class="k">return</span> <span class="p">{</span>
-    <span class="nx">render</span><span class="p">(</span><span class="nx">Component</span><span class="p">)</span> <span class="p">{</span>
-      <span class="kd">const</span> <span class="nx">Comp</span> <span class="o">=</span> <span class="nx">Component</span><span class="p">();</span> <span class="c1">// run effect</span>
-      <span class="nx">Comp</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
+    <span class="nf">render</span><span class="p">(</span><span class="nx">Component</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">Comp</span> <span class="o">=</span> <span class="nc">Component</span><span class="p">();</span> <span class="c1">// run effect</span>
+      <span class="nx">Comp</span><span class="p">.</span><span class="nf">render</span><span class="p">();</span>
       <span class="nx">currentHook</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// init for next render</span>
       <span class="k">return</span> <span class="nx">Comp</span><span class="p">;</span>
     <span class="p">},</span>
-    <span class="nx">useEffect</span><span class="p">(</span><span class="nx">callback</span><span class="p">,</span> <span class="nx">depArray</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nf">useEffect</span><span class="p">(</span><span class="nx">callback</span><span class="p">,</span> <span class="nx">depArray</span><span class="p">)</span> <span class="p">{</span>
       <span class="kd">const</span> <span class="nx">hasNoDeps</span> <span class="o">=</span> <span class="o">!</span><span class="nx">depArray</span><span class="p">;</span> <span class="c1">// if dependency is [] run once first time</span>
       <span class="kd">const</span> <span class="nx">deps</span> <span class="o">=</span> <span class="nx">hooks</span><span class="p">[</span><span class="nx">currentHook</span><span class="p">];</span> <span class="c1">// closure hook</span>
       <span class="kd">const</span> <span class="nx">hasChangedDeps</span> <span class="o">=</span> <span class="nx">deps</span> <span class="c1">// check closure hook and depArray</span>
-        <span class="p">?</span> <span class="o">!</span><span class="nx">depArray</span><span class="p">.</span><span class="nx">every</span><span class="p">((</span><span class="nx">el</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">el</span> <span class="o">===</span> <span class="nx">deps</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
+        <span class="p">?</span> <span class="o">!</span><span class="nx">depArray</span><span class="p">.</span><span class="nf">every</span><span class="p">((</span><span class="nx">el</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">el</span> <span class="o">===</span> <span class="nx">deps</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
         <span class="p">:</span> <span class="kc">true</span><span class="p">;</span>
-      <span class="k">if</span> <span class="p">(</span><span class="nx">hasNoDeps</span> <span class="o">||</span> <span class="nx">hasChangedDeps</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if </span><span class="p">(</span><span class="nx">hasNoDeps</span> <span class="o">||</span> <span class="nx">hasChangedDeps</span><span class="p">)</span> <span class="p">{</span>
         <span class="c1">// call callback when depArray changed or dependency is []</span>
-        <span class="nx">callback</span><span class="p">();</span>
+        <span class="nf">callback</span><span class="p">();</span>
         <span class="nx">hooks</span><span class="p">[</span><span class="nx">currentHook</span><span class="p">]</span> <span class="o">=</span> <span class="nx">depArray</span><span class="p">;</span> <span class="c1">// set hook to current dependency</span>
       <span class="p">}</span>
       <span class="nx">currentHook</span><span class="o">++</span><span class="p">;</span> <span class="c1">// increase hook iterator</span>
     <span class="p">},</span>
-    <span class="nx">useState</span><span class="p">(</span><span class="nx">initialValue</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nf">useState</span><span class="p">(</span><span class="nx">initialValue</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">hooks</span><span class="p">[</span><span class="nx">currentHook</span><span class="p">]</span> <span class="o">=</span> <span class="nx">hooks</span><span class="p">[</span><span class="nx">currentHook</span><span class="p">]</span> <span class="o">||</span> <span class="nx">initialValue</span><span class="p">;</span>
       <span class="kd">const</span> <span class="nx">setStateHookIndex</span> <span class="o">=</span> <span class="nx">currentHook</span><span class="p">;</span> <span class="c1">// for setState closure</span>
       <span class="kd">const</span> <span class="nx">setState</span> <span class="o">=</span> <span class="p">(</span><span class="nx">newState</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="nx">hooks</span><span class="p">[</span><span class="nx">setStateHookIndex</span><span class="p">]</span> <span class="o">=</span> <span class="nx">newState</span><span class="p">);</span>
@@ -1046,17 +1046,17 @@ function googleTranslateElementInit() {
 
 <p>이를 활용한 Counter hook을 만든다면 다음과 같이 사용할 수 있다.</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Counter</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="p">[</span><span class="nx">count</span><span class="p">,</span> <span class="nx">setCount</span><span class="p">]</span> <span class="o">=</span> <span class="nx">MyReact</span><span class="p">.</span><span class="nx">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-  <span class="kd">const</span> <span class="p">[</span><span class="nx">text</span><span class="p">,</span> <span class="nx">setText</span><span class="p">]</span> <span class="o">=</span> <span class="nx">MyReact</span><span class="p">.</span><span class="nx">useState</span><span class="p">(</span><span class="dl">"</span><span class="s2">foo</span><span class="dl">"</span><span class="p">);</span> <span class="c1">// second hook state</span>
-  <span class="nx">MyReact</span><span class="p">.</span><span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">effect</span><span class="dl">"</span><span class="p">,</span> <span class="nx">count</span><span class="p">,</span> <span class="nx">text</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">Counter</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">count</span><span class="p">,</span> <span class="nx">setCount</span><span class="p">]</span> <span class="o">=</span> <span class="nx">MyReact</span><span class="p">.</span><span class="nf">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">text</span><span class="p">,</span> <span class="nx">setText</span><span class="p">]</span> <span class="o">=</span> <span class="nx">MyReact</span><span class="p">.</span><span class="nf">useState</span><span class="p">(</span><span class="dl">"</span><span class="s2">foo</span><span class="dl">"</span><span class="p">);</span> <span class="c1">// second hook state</span>
+  <span class="nx">MyReact</span><span class="p">.</span><span class="nf">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">effect</span><span class="dl">"</span><span class="p">,</span> <span class="nx">count</span><span class="p">,</span> <span class="nx">text</span><span class="p">);</span>
   <span class="p">},</span> <span class="p">[</span><span class="nx">count</span><span class="p">,</span> <span class="nx">text</span><span class="p">]);</span>
   <span class="k">return</span> <span class="p">{</span>
-    <span class="na">click</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">setCount</span><span class="p">(</span><span class="nx">count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
-    <span class="na">type</span><span class="p">:</span> <span class="p">(</span><span class="nx">txt</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">setText</span><span class="p">(</span><span class="nx">txt</span><span class="p">),</span>
-    <span class="na">noop</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">setCount</span><span class="p">(</span><span class="nx">count</span><span class="p">),</span>
-    <span class="na">render</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">render</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span> <span class="nx">count</span><span class="p">,</span> <span class="nx">text</span> <span class="p">}),</span>
+    <span class="na">click</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nf">setCount</span><span class="p">(</span><span class="nx">count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="na">type</span><span class="p">:</span> <span class="p">(</span><span class="nx">txt</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nf">setText</span><span class="p">(</span><span class="nx">txt</span><span class="p">),</span>
+    <span class="na">noop</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nf">setCount</span><span class="p">(</span><span class="nx">count</span><span class="p">),</span>
+    <span class="na">render</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">render</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span> <span class="nx">count</span><span class="p">,</span> <span class="nx">text</span> <span class="p">}),</span>
   <span class="p">};</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -1080,10 +1080,10 @@ https://www.netlify.com/blog/2019/03/11/deep-dive-how-do-react-hooks-really-work
 <div class="post-related">
       <div>Related Articles</div>
       <ul>
-        <li><a class="post-link" href="/til/2022/10/03/network-usage-fee.html" title="명령 패턴">망 사용료가 대체 뭔데?</a></li>
-<li><a class="post-link" href="/next.js/2022/05/15/next-api.html" title="명령 패턴">NEXT-API</a></li>
-<li><a class="post-link" href="/blog/2022/01/12/how-to-install-github-io.html" title="명령 패턴">깃허브 블로그 설치하기</a></li>
-<li><a class="post-link" href="/javascript/2022/01/20/prototype.html" title="명령 패턴">자바스크립트 프로토타입과 클래스</a></li>
+        <li><a class="post-link" href="/javascript/2022/01/20/javascript-property.html" title="명령 패턴">자바스크립트 객체 프로퍼티 설정</a></li>
+<li><a class="post-link" href="/mac/2022/06/05/mac-setting.html" title="명령 패턴">Mac 초기 세팅</a></li>
+<li><a class="post-link" href="/web/2024/04/07/lighthouse-improvement.html" title="명령 패턴">Lighthouse 점수 개선기</a></li>
+<li><a class="post-link" href="/ai/2025/06/02/about-vibe-coding.html" title="명령 패턴">바이브 코딩</a></li>
 </ul>
     </div>
 <div class="post-comments">
@@ -1226,7 +1226,7 @@ https://www.netlify.com/blog/2019/03/11/deep-dive-how-do-react-hooks-really-work
 
   <div class="wrapper">
     <div class="site-footer-inner">
-<div>Unpublished Work <span class="copyleft">©</span> 2021-2025 071yoon</div>
+<div>Unpublished Work <span class="copyleft">©</span> 2021-2026 071yoon</div>
       <div>Powered by <a title="Jekyll is a simple, blog-aware, static site
       generator." href="http://jekyllrb.com/">Jekyll</a> &amp; <a title="Yat, yet
       another theme." href="https://github.com/jeffreytse/jekyll-theme-yat">Yat Theme</a>.</div>
